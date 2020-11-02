@@ -27,7 +27,7 @@ scene.add(light);
 var render = function() {
     requestAnimationFrame(render);
 
-    mesh.rotation.y += 0.008;
+    mesh.rotation.y += 0.002;
 
     renderer.render(scene, camera);
 };
