@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+canvas {
+    display: block;
+}
