@@ -31,7 +31,7 @@ mesh.receiveShadow = true;
 
 scene.add(mesh);
 
-var render = function() {
+var render = function () {
     requestAnimationFrame(render);
     mesh.rotation.y += 0.002;
     renderer.render(scene, camera);
@@ -49,6 +49,7 @@ var materialPlane = new THREE.MeshLambertMaterial({
     shininess: 20,
     flatShading: true,
 });
+<<<<<<< Updated upstream
 
 
 // meshPlane.position.set(0, 0, 2);
@@ -76,6 +77,38 @@ for (let i = 0; i < 2; i++) {
     meshPlanes.push(meshPlane);
     scene.add(meshPlane);
 
+=======
+
+var meshPlane = new THREE.Mesh(plane, materialPlane);
+
+// meshPlane.position.set(0, 0, 2);
+
+// meshPlane.castShadow = true;
+// meshPlane.receiveShadow = true;
+
+// scene.add(meshPlane);
+
+let rotY = 0;
+let posX = 0;
+let posY = 0;
+let posZ = 0;
+let meshPlanes = [];
+
+for (let i = 0; i < 10; i++) {
+    var meshPlane = new THREE.Mesh(plane, materialPlane);
+
+    meshPlane.position.set(0 + posX, 0 + posY, 2);
+    meshPlane.rotation.y += rotY;
+
+    meshPlane.castShadow = true;
+    meshPlane.receiveShadow = true;
+
+    meshPlanes.push(meshPlane);
+    scene.add(meshPlane);
+
+    console.log(meshPlanes);
+
+>>>>>>> Stashed changes
     rotY += 0.7330382858376184;
     posX += 0.9999999999999997;
     posY += -0.35;
@@ -164,7 +197,31 @@ document.body.addEventListener('scroll', function() {
             e.rotation.y -= 12 * Math.PI / 360;
             e.position.y += 0.05;
 
+<<<<<<< Updated upstream
         });
+=======
+            console.log(e.position)
+        });
+        
+
+        // for (let i = 0; i < nbPlane; i++) {
+        //     var yAxisPlane = new THREE.Vector3(0, 50);
+        //     rotateAboutWorldAxis(meshPlane.i, yAxisPlane, Math.PI * 6 / -180);
+        //     meshPlane.i.rotation.y -= 12 * Math.PI / 360;
+        //     meshPlane.i.position.y += 0.05;
+
+        //     console.log(meshPlane.i.position);
+        // }
+
+        // var yAxisPlane = new THREE.Vector3(0, 50);
+        // rotateAboutWorldAxis(meshPlane, yAxisPlane, Math.PI * 6 / -180);
+        // meshPlane.rotation.y -= 12 * Math.PI / 360;
+        // meshPlane.position.y += 0.05;
+
+        // console.log(meshPlane.rotation.y);
+        // console.log(meshPlane.position.y);
+        // console.log(meshPlane.position.z);
+>>>>>>> Stashed changes
     } else {
         mesh.rotation.y -= 0.1;
 
@@ -174,7 +231,33 @@ document.body.addEventListener('scroll', function() {
             e.rotation.y += 12 * Math.PI / 360;
             e.position.y -= 0.05;
         });
+<<<<<<< Updated upstream
     }
+=======
+
+        // for (let i = 0; i < nbPlane; i++) {
+        //     var yAxisPlane = new THREE.Vector3(0, 50);
+        //     rotateAboutWorldAxis(meshPlane.i, yAxisPlane, Math.PI * 6 / 180);
+        //     meshPlane.i.rotation.y += 12 * Math.PI / 360;
+        //     meshPlane.i.position.y -= 0.05;
+
+        //     console.log(meshPlane.i.position);
+
+        // }
+
+        // var yAxisPlane = new THREE.Vector3(0, 50);
+        // rotateAboutWorldAxis(meshPlane, yAxisPlane, Math.PI * 6 / 180);
+        // meshPlane.rotation.y += 12 * Math.PI / 360;
+        // meshPlane.position.y -= 0.05;
+
+        // var yAxisPlane2 = new THREE.Vector3(0, 50);
+        // rotateAboutWorldAxis(meshPlane2, yAxisPlane2, Math.PI * 6 / 180);
+        // meshPlane2.rotation.y += 12 * Math.PI / 360;
+        // meshPlane2.position.y -= 0.05;
+    }
+    
+}
+>>>>>>> Stashed changes
 
     scrollPos = (scrollContainer.getBoundingClientRect()).top;
 });
