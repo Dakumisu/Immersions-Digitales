@@ -31,7 +31,7 @@ mesh.receiveShadow = true;
 
 scene.add(mesh);
 
-var render = function() {
+var render = function () {
     requestAnimationFrame(render);
     mesh.rotation.y += 0.002;
     renderer.render(scene, camera);
