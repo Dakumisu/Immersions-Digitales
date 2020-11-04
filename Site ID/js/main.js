@@ -116,46 +116,10 @@ scene.add(light);
 
 
 /////// SCROLL EVENT ///////
-// document.body.addEventListener('scroll', checkScrollDirection);
+document.body.addEventListener('wheel', checkScrollDirection);
 
-// function checkScrollDirection(event) {
-//     if (checkScrollDirectionIsUp(event)) {
-//         mesh.rotation.y += 0.1;
-
-//         meshPlanes.forEach(e => {
-//             var yAxisPlane = new THREE.Vector3(0, 50);
-//             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / -180);
-//             e.rotation.y -= 12 * Math.PI / 360;
-//             e.position.y += 0.05;
-
-//         });
-
-//     } else {
-//         mesh.rotation.y -= 0.1;
-
-//         meshPlanes.forEach(e => {
-//             var yAxisPlane = new THREE.Vector3(0, 50);
-//             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / 180);
-//             e.rotation.y += 12 * Math.PI / 360;
-//             e.position.y -= 0.05;
-//         });
-//     }
-// }
-
-// function checkScrollDirectionIsUp(event) {
-//     if (event.scrollDelta) {
-//         return event.scrollDelta > 0;
-//     }
-//     return event.deltaY < 0;
-// }
-
-
-var scrollContainer = document.querySelector('.scrollContainer');
-var scrollPos = 0;
-
-document.body.addEventListener('scroll', function() {
-
-    if ((scrollContainer.getBoundingClientRect()).top > scrollPos) {
+function checkScrollDirection(event) {
+    if (checkScrollDirectionIsUp(event)) {
         mesh.rotation.y += 0.1;
 
         meshPlanes.forEach(e => {
@@ -165,6 +129,7 @@ document.body.addEventListener('scroll', function() {
             e.position.y += 0.05;
 
         });
+
     } else {
         mesh.rotation.y -= 0.1;
 
@@ -175,6 +140,42 @@ document.body.addEventListener('scroll', function() {
             e.position.y -= 0.05;
         });
     }
+}
 
-    scrollPos = (scrollContainer.getBoundingClientRect()).top;
-});
+function checkScrollDirectionIsUp(event) {
+    if (event.wheellDelta) {
+        return event.wheelDelta > 0;
+    }
+    return event.deltaY < 0;
+}
+
+
+
+// var scrollContainer = document.querySelector('.scrollContainer');
+// var scrollPos = 0;
+
+// document.body.addEventListener('scroll', function () {
+
+//     if ((scrollContainer.getBoundingClientRect()).top > scrollPos) {
+//         mesh.rotation.y += 0.1;
+
+//         meshPlanes.forEach(e => {
+//             var yAxisPlane = new THREE.Vector3(0, 50);
+//             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / -180);
+//             e.rotation.y -= 2 * Math.PI / 360;
+//             e.position.y += 0.05;
+
+//         });
+//     } else {
+//         mesh.rotation.y -= 0.1;
+
+//         meshPlanes.forEach(e => {
+//             var yAxisPlane = new THREE.Vector3(0, 50);
+//             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / 180);
+//             e.rotation.y += 2 * Math.PI / 360;
+//             e.position.y -= 0.05;
+//         });
+//     }
+
+//     scrollPos = (scrollContainer.getBoundingClientRect()).top;
+// });
