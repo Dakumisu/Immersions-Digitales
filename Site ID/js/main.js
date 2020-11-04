@@ -3,7 +3,7 @@ var scene = new THREE.Scene();
 
 ////////// CAMERA //////////
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 6);
+camera.position.set(0, 0, 3);
 
 /////// RENDERER ///////
 var renderer = new THREE.WebGLRenderer();
@@ -26,14 +26,13 @@ var geometry = new THREE.BoxGeometry(.5, 3, 1);
 var material = new THREE.MeshLambertMaterial({ color: 0x0142AC });
 var mesh = new THREE.Mesh(geometry, material);
 
-mesh.castShadow = true;
-mesh.receiveShadow = true;
-
 scene.add(mesh);
 
-var render = function () {
+var render = function() {
     requestAnimationFrame(render);
+
     mesh.rotation.y += 0.002;
+
     renderer.render(scene, camera);
 };
 
@@ -42,127 +41,146 @@ render();
 /////// PLANES ///////
 var plane = new THREE.PlaneGeometry(1.6 / 1.5, .9 / 1.5);
 
+/////// PLANES MATERIALS ///////
 
-let rotY = 0;
-let posX = 0;
-let posY = 0;
-let posZ = 0;
-let meshPlanes = [];
-var yAxisPlane = new THREE.Vector3(0, 1);
+var materialPlane1 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier1.png'),
+    side: THREE.DoubleSide
+});
+var materialPlane2 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier2.png'),
+    side: THREE.DoubleSide
+});
+var materialPlane3 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier3.png'),
+    side: THREE.DoubleSide
+});
+var materialPlane4 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier4.png'),
+    side: THREE.DoubleSide
+});
+var materialPlane5 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier5.png'),
+    side: THREE.DoubleSide
+});
+var materialPlane6 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier6.png'),
+    side: THREE.DoubleSide
+});
+var materialPlane7 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier7.png'),
+    side: THREE.DoubleSide
+});
+var materialPlane8 = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load('/assets/img/atelier8.png'),
+    side: THREE.DoubleSide
+});
 
-<<<<<<< Updated upstream
-for (let i = 0; i < 2; i++) {
-    // var materialPlane = new THREE.MeshLambertMaterial({
-    //     color: 0xffff00,
-    //     side: THREE.DoubleSide,
-    //     emissive: '#448aff'
-    // });
-    
-    let texture = new THREE.TextureLoader().load( 'test.png' );
-    let materialPlane= new THREE.MeshBasicMaterial({map: texture, opacity: 0.8, transparent: true, side: THREE.DoubleSide})    
+/////// PLANE AXES ///////
+planeAxe = new THREE.Object3D();
+scene.add(planeAxe);
 
-=======
-/////// Génération des planes ///////
-for (let i = 0; i < 4; i++) {
->>>>>>> Stashed changes
-    meshPlane = new THREE.Mesh(plane, materialPlane);
+/////// PLANES PIVOTS ///////
+var pivot1 = new THREE.Object3D();
+var pivot2 = new THREE.Object3D();
+var pivot3 = new THREE.Object3D();
+var pivot4 = new THREE.Object3D();
+var pivot5 = new THREE.Object3D();
+var pivot6 = new THREE.Object3D();
+var pivot7 = new THREE.Object3D();
+var pivot8 = new THREE.Object3D();
 
-    meshPlane.castShadow = true;
-    meshPlane.receiveShadow = true;
+pivot1.position.x = 2;
+pivot2.position.z = 2;
+pivot3.position.x = -2;
+pivot4.position.z = -2;
+pivot5.position.x = 2;
+pivot6.position.z = 2;
+pivot7.position.x = -2;
+pivot8.position.z = -2;
 
-    meshPlane.position.set(0 + posX, 0 + posY, 2 + posZ);
-    meshPlane.rotation.y += rotY;
+planeAxe.add(pivot1);
+planeAxe.add(pivot2);
+planeAxe.add(pivot3);
+planeAxe.add(pivot4);
+planeAxe.add(pivot5);
+planeAxe.add(pivot6);
+planeAxe.add(pivot7);
+planeAxe.add(pivot8);
 
+/////// PLANES MESHS ///////
+var planeMesh1 = new THREE.Mesh(plane, materialPlane1);
+var planeMesh2 = new THREE.Mesh(plane, materialPlane2);
+var planeMesh3 = new THREE.Mesh(plane, materialPlane3);
+var planeMesh4 = new THREE.Mesh(plane, materialPlane4);
+var planeMesh5 = new THREE.Mesh(plane, materialPlane5);
+var planeMesh6 = new THREE.Mesh(plane, materialPlane6);
+var planeMesh7 = new THREE.Mesh(plane, materialPlane7);
+var planeMesh8 = new THREE.Mesh(plane, materialPlane8);
 
-    meshPlanes.push(meshPlane);
-    scene.add(meshPlane);
+planeMesh1.position.y = -1;
+planeMesh2.position.y = 0;
+planeMesh3.position.y = 1;
+planeMesh4.position.y = 2;
+planeMesh5.position.y = 3;
+planeMesh6.position.y = 4;
+planeMesh7.position.y = 5;
+planeMesh8.position.y = 6;
 
-    rotY += 12 * Math.PI / 360 + 1 / 2 * Math.PI;
-    posX = -2;
-    posY -= 0.7;
-    posZ += -2;
-    meshPlanes.forEach(e => {
-        let yAxisPlane = new THREE.Vector3(0, 0);
-        rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / 180);
-    });
-}
-
+planeMesh1.rotation.y = Math.PI / 2;
+planeMesh3.rotation.y = -Math.PI / 2;
+planeMesh4.rotation.y = Math.PI;
+planeMesh5.rotation.y = Math.PI / 2;
+planeMesh7.rotation.y = -Math.PI / 2;
+planeMesh8.rotation.y = Math.PI;
 
 /////// ROTATION AROUND AXIS ///////
-function rotateAboutWorldAxis(object, axis, angle) {
-    var rotationMatrix = new THREE.Matrix4();
-    rotationMatrix.makeRotationAxis(axis.normalize(), angle);
-    var currentPos = new THREE.Vector4(object.position.x, object.position.y, object.position.z);
-    var newPos = currentPos.applyMatrix4(rotationMatrix);
-    object.position.x = newPos.x;
-    object.position.y = newPos.y;
-    object.position.z = newPos.z;
-}
+pivot1.add(planeMesh1);
+pivot2.add(planeMesh2);
+pivot3.add(planeMesh3);
+pivot4.add(planeMesh4);
+pivot5.add(planeMesh5);
+pivot6.add(planeMesh6);
+pivot7.add(planeMesh7);
+pivot8.add(planeMesh8);
 
 /////// LIGHT ///////
-const light = new THREE.PointLight(0xffffff, 1, 500);
-light.position.set(10, 0, 25);
-scene.add(light);
+const lightBottom = new THREE.PointLight(0xffffff, .5, 500);
+lightBottom.position.set(0, -15, 0);
 
+const lightTop = new THREE.PointLight(0xffffff, .5, 500);
+lightTop.position.set(0, 15, 0);
 
-/////// SCROLL EVENT ///////
+const lightRight = new THREE.PointLight(0xffffff, 1, 500);
+lightRight.position.set(3, 0, 25);
+
+scene.add(lightBottom, lightRight, lightTop);
+
+/////// SCROLL FUNCTION ///////
 document.body.addEventListener('wheel', checkScrollDirection);
 
 function checkScrollDirection(event) {
     if (checkScrollDirectionIsUp(event)) {
+
         mesh.rotation.y += 0.1;
 
-        meshPlanes.forEach(e => {
-            rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / -180);
-            e.rotation.y -= 12 * Math.PI / 360;
-            e.position.y -= 0.05;
-
-            // console.log(e.position.z)
-        });
+        planeAxe.rotation.y -= 1 / 2 * Math.PI / 8; // ROTATION SPEED
+        planeAxe.position.y += 1 / 8; // POSITION SPEED
 
     } else {
+
         mesh.rotation.y -= 0.1;
 
-        meshPlanes.forEach(e => {
-            rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / 180);
-            e.rotation.y += 12 * Math.PI / 360;
-            e.position.y += 0.05;
-        });
+        planeAxe.rotation.y += 1 / 2 * Math.PI / 8; // ROTATION SPEED
+        planeAxe.position.y -= 1 / 8; // POSITION SPEED
+
     }
 }
 
+/////// REVERSE SCROLL FUNCTION ///////
 function checkScrollDirectionIsUp(event) {
     if (event.wheelDelta) {
         return event.wheelDelta > 0;
     }
     return event.deltaY < 0;
 }
-
-// var scrollContainer = document.querySelector('.scrollContainer');
-// var scrollPos = 0;
-
-// document.body.addEventListener('scroll', function() {
-
-//     if ((scrollContainer.getBoundingClientRect()).top > scrollPos) {
-//         mesh.rotation.y += 0.1;
-
-//         meshPlanes.forEach(e => {
-//             var yAxisPlane = new THREE.Vector3(0, 50);
-//             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / -180);
-//             e.rotation.y -= 12 * Math.PI / 360;
-//             e.position.y += 0.05;
-
-//         });
-//     } else {
-//         mesh.rotation.y -= 0.1;
-
-//         meshPlanes.forEach(e => {
-//             var yAxisPlane = new THREE.Vector3(0, 50);
-//             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / 180);
-//             e.rotation.y += 12 * Math.PI / 360;
-//             e.position.y -= 0.05;
-//         });
-//     }
-
-//     scrollPos = (scrollContainer.getBoundingClientRect()).top;
-// });
