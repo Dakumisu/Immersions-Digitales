@@ -62,6 +62,9 @@ for (let i = 0; i < 2; i++) {
     meshPlane.position.set(0 + posX, 0 + posY, 2 + posZ);
     meshPlane.rotation.y += rotY;
 
+    let texture = new THREE.TextureLoader().load( '../assets/img/test.png' );
+    let flwmtl= new THREE.MeshBasicMaterial( { map: texture ,opacity: 0.8, transparent: true } )    
+
     meshPlanes.push(meshPlane);
     scene.add(meshPlane);
 
