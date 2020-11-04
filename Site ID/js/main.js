@@ -3,7 +3,7 @@ var scene = new THREE.Scene();
 
 ////////// CAMERA //////////
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 3);
+camera.position.set(0, 0, 6);
 
 /////// RENDERER ///////
 var renderer = new THREE.WebGLRenderer();
@@ -48,7 +48,9 @@ let posX = 0;
 let posY = 0;
 let posZ = 0;
 let meshPlanes = [];
+var yAxisPlane = new THREE.Vector3(0, 1);
 
+<<<<<<< Updated upstream
 for (let i = 0; i < 2; i++) {
     // var materialPlane = new THREE.MeshLambertMaterial({
     //     color: 0xffff00,
@@ -59,6 +61,10 @@ for (let i = 0; i < 2; i++) {
     let texture = new THREE.TextureLoader().load( 'test.png' );
     let materialPlane= new THREE.MeshBasicMaterial({map: texture, opacity: 0.8, transparent: true, side: THREE.DoubleSide})    
 
+=======
+/////// Génération des planes ///////
+for (let i = 0; i < 4; i++) {
+>>>>>>> Stashed changes
     meshPlane = new THREE.Mesh(plane, materialPlane);
 
     meshPlane.castShadow = true;
@@ -72,10 +78,15 @@ for (let i = 0; i < 2; i++) {
     scene.add(meshPlane);
 
     rotY += 12 * Math.PI / 360 + 1 / 2 * Math.PI;
-    posX += -2;
-    posY += 0.7;
-    posZ += -1.8;
+    posX = -2;
+    posY -= 0.7;
+    posZ += -2;
+    meshPlanes.forEach(e => {
+        let yAxisPlane = new THREE.Vector3(0, 0);
+        rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / 180);
+    });
 }
+
 
 /////// ROTATION AROUND AXIS ///////
 function rotateAboutWorldAxis(object, axis, angle) {
@@ -102,20 +113,20 @@ function checkScrollDirection(event) {
         mesh.rotation.y += 0.1;
 
         meshPlanes.forEach(e => {
-            var yAxisPlane = new THREE.Vector3(0, 1);
             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / -180);
             e.rotation.y -= 12 * Math.PI / 360;
-            e.position.y += 0.05;
+            e.position.y -= 0.05;
+
+            // console.log(e.position.z)
         });
 
     } else {
         mesh.rotation.y -= 0.1;
 
         meshPlanes.forEach(e => {
-            var yAxisPlane = new THREE.Vector3(0, 1);
             rotateAboutWorldAxis(e, yAxisPlane, Math.PI * 6 / 180);
             e.rotation.y += 12 * Math.PI / 360;
-            e.position.y -= 0.05;
+            e.position.y += 0.05;
         });
     }
 }
