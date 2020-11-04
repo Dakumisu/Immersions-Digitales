@@ -41,11 +41,7 @@ render();
 
 /////// PLANES ///////
 var plane = new THREE.PlaneGeometry(1.6 / 1.5, .9 / 1.5);
-var materialPlane = new THREE.MeshLambertMaterial({
-    color: 0xffff00,
-    side: THREE.DoubleSide,
-    emissive: '#448aff'
-});
+
 
 let rotY = 0;
 let posX = 0;
@@ -54,6 +50,15 @@ let posZ = 0;
 let meshPlanes = [];
 
 for (let i = 0; i < 2; i++) {
+    // var materialPlane = new THREE.MeshLambertMaterial({
+    //     color: 0xffff00,
+    //     side: THREE.DoubleSide,
+    //     emissive: '#448aff'
+    // });
+    
+    let texture = new THREE.TextureLoader().load( 'test.png' );
+    let materialPlane= new THREE.MeshBasicMaterial({map: texture, opacity: 0.8, transparent: true, side: THREE.DoubleSide})    
+
     meshPlane = new THREE.Mesh(plane, materialPlane);
 
     meshPlane.castShadow = true;
@@ -62,8 +67,6 @@ for (let i = 0; i < 2; i++) {
     meshPlane.position.set(0 + posX, 0 + posY, 2 + posZ);
     meshPlane.rotation.y += rotY;
 
-    let texture = new THREE.TextureLoader().load( '../assets/img/test.png' );
-    let flwmtl= new THREE.MeshBasicMaterial( { map: texture ,opacity: 0.8, transparent: true } )    
 
     meshPlanes.push(meshPlane);
     scene.add(meshPlane);
