@@ -38,15 +38,18 @@ var render = function() {
 
 render();
 
-/////// PLANES ///////
-var plane = new THREE.PlaneGeometry(1.6 / 1.5, .9 / 1.5);
+/////// PLANES DIMENSIONS ///////
+var plane = new THREE.PlaneGeometry(1.6/1.5, .9/1.5);
 
 /////// PLANES MATERIALS ///////
-
 var materialPlane1 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier1.png'),
+    map: new THREE.TextureLoader().load('../assets/img/atelier1.png'),
+    color: 0x0142AC,
     side: THREE.DoubleSide
 });
+
+console.log(materialPlane1.map);
+
 var materialPlane2 = new THREE.MeshLambertMaterial({
     map: new THREE.TextureLoader().load('/assets/img/atelier2.png'),
     side: THREE.DoubleSide
@@ -117,6 +120,15 @@ var planeMesh5 = new THREE.Mesh(plane, materialPlane5);
 var planeMesh6 = new THREE.Mesh(plane, materialPlane6);
 var planeMesh7 = new THREE.Mesh(plane, materialPlane7);
 var planeMesh8 = new THREE.Mesh(plane, materialPlane8);
+
+planeMesh1.receiveShadow = true;
+planeMesh2.receiveShadow = true;
+planeMesh3.receiveShadow = true;
+planeMesh4.receiveShadow = true;
+planeMesh5.receiveShadow = true;
+planeMesh6.receiveShadow = true;
+planeMesh7.receiveShadow = true;
+planeMesh8.receiveShadow = true;
 
 planeMesh1.position.y = -1;
 planeMesh2.position.y = 0;
