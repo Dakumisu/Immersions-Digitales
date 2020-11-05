@@ -156,7 +156,7 @@ lightRight.position.set(3, 0, 25);
 
 scene.add(lightBottom, lightRight, lightTop);
 
-/////// SCROLL FUNCTION ///////
+/////// SCROLL EVENT ///////
 document.body.addEventListener('wheel', checkScrollDirection);
 
 function checkScrollDirection(event) {
@@ -177,10 +177,135 @@ function checkScrollDirection(event) {
     }
 }
 
-/////// REVERSE SCROLL FUNCTION ///////
+/////// REVERSE SCROLL ///////
 function checkScrollDirectionIsUp(event) {
     if (event.wheelDelta) {
         return event.wheelDelta > 0;
     }
     return event.deltaY < 0;
 }
+
+
+/////// DRAG EVENT ///////
+let isDown = false;
+var last_position = {};
+
+document.body.addEventListener('mousedown', () => {
+    isDown = true;
+
+    document.body.style.cursor = "grab";
+});
+document.body.addEventListener('mouseleave', () => {
+    isDown = false;
+});
+document.body.addEventListener('mouseup', () => {
+    isDown = false;
+
+    document.body.style.cursor = "grab";
+});
+
+
+/////// DRAG EVENT COMPUTER ///////
+document.body.addEventListener('mousemove', function(event) {
+    if (typeof(last_position.x) != 'undefined') {
+        var deltaX = last_position.x - event.offsetX,
+            deltaY = last_position.y - event.offsetY;
+        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX > 0) { // MOUSEMOVE LEFT
+
+            if (!isDown) return;
+
+            mesh.rotation.y += 0.1;
+
+            planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y += 1 / 20; // POSITION SPEED
+
+            document.body.style.cursor = "grabbing";
+
+        } else if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) { // MOUSEMOVE RIGHT
+
+            if (!isDown) return;
+
+            mesh.rotation.y -= 0.1;
+
+            planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y -= 1 / 20; // POSITION SPEED
+
+            document.body.style.cursor = "grabbing";
+
+        } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) { // MOUSEMOVE UP
+
+            if (!isDown) return;
+
+            mesh.rotation.y -= 0.1;
+
+            planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y -= 1 / 20; // POSITION SPEED
+
+            document.body.style.cursor = "grabbing";
+
+        } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < 0) { // MOUSEMOVE DOWN
+
+            if (!isDown) return;
+
+            mesh.rotation.y += 0.1;
+
+            planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y += 1 / 20; // POSITION SPEED
+
+            document.body.style.cursor = "grabbing";
+        }
+    }
+    last_position = {
+        x: event.offsetX,
+        y: event.offsetY
+    }
+})
+
+/////// DRAG EVENT MOBILE ///////
+document.body.addEventListener('touchmove', function(event) {
+    if (typeof(last_position.x) != 'undefined') {
+        var deltaX = last_position.x - event.offsetX,
+            deltaY = last_position.y - event.offsetY;
+        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX > 0) { // TOUCHMOVE LEFT
+
+            if (!isDown) return;
+
+            mesh.rotation.y += 0.1;
+
+            planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y += 1 / 20; // POSITION SPEED
+
+        } else if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) { // TOUCHMOVE RIGHT
+
+            if (!isDown) return;
+
+            mesh.rotation.y -= 0.1;
+
+            planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y -= 1 / 20; // POSITION SPEED
+
+
+        } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) { // TOUCHMOVE UP
+
+            if (!isDown) return;
+
+            mesh.rotation.y -= 0.1;
+
+            planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y -= 1 / 20; // POSITION SPEED
+
+        } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < 0) { // TOUCHMOVE DOWN
+
+            if (!isDown) return;
+
+            mesh.rotation.y += 0.1;
+
+            planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
+            planeAxe.position.y += 1 / 20; // POSITION SPEED
+        }
+    }
+    last_position = {
+        x: event.offsetX,
+        y: event.offsetY
+    }
+})
