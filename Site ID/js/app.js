@@ -6,7 +6,9 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 camera.position.set(0, 0, 3);
 
 /////// RENDERER ///////
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({
+    antialias: true
+});
 renderer.setClearColor("#020659");
 renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -38,40 +40,40 @@ var render = function() {
 
 render();
 
-/////// PLANES DIMENSIONS ///////
-var plane = new THREE.PlaneGeometry(1.6/1.5, .9/1.5);
+/////// PLANES ///////
+var plane = new THREE.PlaneGeometry(1.6 / 1.5, .9 / 1.5);
 
 /////// PLANES MATERIALS ///////
 var materialPlane1 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier1.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier1.png'),
     side: THREE.DoubleSide
 });
 var materialPlane2 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier2.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier2.png'),
     side: THREE.DoubleSide
 });
 var materialPlane3 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier3.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier3.png'),
     side: THREE.DoubleSide
 });
 var materialPlane4 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier4.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier4.png'),
     side: THREE.DoubleSide
 });
 var materialPlane5 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier5.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier5.png'),
     side: THREE.DoubleSide
 });
 var materialPlane6 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier6.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier6.png'),
     side: THREE.DoubleSide
 });
 var materialPlane7 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier7.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier7.png'),
     side: THREE.DoubleSide
 });
 var materialPlane8 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('./assets/img/atelier8.png'),
+    map: new THREE.TextureLoader().load('/assets/img/atelier8.png'),
     side: THREE.DoubleSide
 });
 
@@ -89,14 +91,14 @@ var pivot6 = new THREE.Object3D();
 var pivot7 = new THREE.Object3D();
 var pivot8 = new THREE.Object3D();
 
-pivot1.position.x = 2;
-pivot2.position.z = 2;
-pivot3.position.x = -2;
-pivot4.position.z = -2;
-pivot5.position.x = 2;
-pivot6.position.z = 2;
-pivot7.position.x = -2;
-pivot8.position.z = -2;
+pivot1.position.z = 2;
+pivot2.position.x = -2;
+pivot3.position.z = -2;
+pivot4.position.x = 2;
+pivot5.position.z = 2;
+pivot6.position.x = -2;
+pivot7.position.z = -2;
+pivot8.position.x = 2;
 
 planeAxe.add(pivot1);
 planeAxe.add(pivot2);
@@ -117,30 +119,29 @@ var planeMesh6 = new THREE.Mesh(plane, materialPlane6);
 var planeMesh7 = new THREE.Mesh(plane, materialPlane7);
 var planeMesh8 = new THREE.Mesh(plane, materialPlane8);
 
-planeMesh1.receiveShadow = true;
-planeMesh2.receiveShadow = true;
-planeMesh3.receiveShadow = true;
-planeMesh4.receiveShadow = true;
-planeMesh5.receiveShadow = true;
-planeMesh6.receiveShadow = true;
-planeMesh7.receiveShadow = true;
-planeMesh8.receiveShadow = true;
+planeMesh1.position.y = 0;
+planeMesh2.position.y = 1;
+planeMesh3.position.y = 2;
+planeMesh4.position.y = 3;
+planeMesh5.position.y = 4;
+planeMesh6.position.y = 5;
+planeMesh7.position.y = 6;
+planeMesh8.position.y = 7;
 
-planeMesh1.position.y = -1;
-planeMesh2.position.y = 0;
-planeMesh3.position.y = 1;
-planeMesh4.position.y = 2;
-planeMesh5.position.y = 3;
-planeMesh6.position.y = 4;
-planeMesh7.position.y = 5;
-planeMesh8.position.y = 6;
+planeMesh2.rotation.y = -Math.PI / 2;
+planeMesh3.rotation.y = -Math.PI;
+planeMesh4.rotation.y = Math.PI / 2;
+planeMesh6.rotation.y = -Math.PI / 2;
+planeMesh7.rotation.y = -Math.PI;
+planeMesh8.rotation.y = Math.PI / 2;
 
-planeMesh1.rotation.y = Math.PI / 2;
-planeMesh3.rotation.y = -Math.PI / 2;
-planeMesh4.rotation.y = Math.PI;
-planeMesh5.rotation.y = Math.PI / 2;
-planeMesh7.rotation.y = -Math.PI / 2;
-planeMesh8.rotation.y = Math.PI;
+planeMesh2.rotation.z = .24;
+planeMesh3.rotation.z = .24 * 2;
+planeMesh4.rotation.z = .24 * 3;
+planeMesh5.rotation.z = .24 * 4;
+planeMesh6.rotation.z = .24 * 5;
+planeMesh7.rotation.z = .24 * 6;
+planeMesh8.rotation.z = .24 * 7;
 
 /////// ROTATION AROUND AXIS ///////
 pivot1.add(planeMesh1);
@@ -175,6 +176,28 @@ function checkScrollDirection(event) {
         planeAxe.rotation.y -= 1 / 2 * Math.PI / 8; // ROTATION SPEED
         planeAxe.position.y += 1 / 8; // POSITION SPEED
 
+        if (planeAxe.position.y <= 0) {
+            planeMesh1.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh2.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh3.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh4.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh5.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh6.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh7.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh8.rotation.z += .03; // POSITION ROTATION Z
+
+        } else {
+            planeMesh1.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh2.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh3.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh4.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh5.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh6.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh7.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh8.rotation.z -= .03; // POSITION ROTATION Z
+
+        }
+
     } else {
 
         mesh.rotation.y -= 0.1;
@@ -182,17 +205,38 @@ function checkScrollDirection(event) {
         planeAxe.rotation.y += 1 / 2 * Math.PI / 8; // ROTATION SPEED
         planeAxe.position.y -= 1 / 8; // POSITION SPEED
 
+        if (planeAxe.position.y >= 0) {
+            planeMesh1.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh2.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh3.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh4.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh5.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh6.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh7.rotation.z += .03; // POSITION ROTATION Z
+            planeMesh8.rotation.z += .03; // POSITION ROTATION Z
+
+        } else {
+            planeMesh1.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh2.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh3.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh4.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh5.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh6.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh7.rotation.z -= .03; // POSITION ROTATION Z
+            planeMesh8.rotation.z -= .03; // POSITION ROTATION Z
+
+        }
+
     }
 }
 
 /////// REVERSE SCROLL ///////
 function checkScrollDirectionIsUp(event) {
-    if (event.wheelDelta) {
-        return event.wheelDelta > 0;
+    if (event.wheelDeltaY) {
+        return event.wheelDeltaY > 0;
     }
     return event.deltaY < 0;
 }
-
 
 /////// DRAG EVENT ///////
 let isDown = false;
