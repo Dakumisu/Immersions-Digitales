@@ -38,41 +38,40 @@ var render = function() {
 
 render();
 
-/////// PLANES ///////
-var plane = new THREE.PlaneGeometry(1.6 / 1.5, .9 / 1.5);
+/////// PLANES DIMENSIONS ///////
+var plane = new THREE.PlaneGeometry(1.6/1.5, .9/1.5);
 
 /////// PLANES MATERIALS ///////
-
 var materialPlane1 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier1.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier1.png'),
     side: THREE.DoubleSide
 });
 var materialPlane2 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier2.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier2.png'),
     side: THREE.DoubleSide
 });
 var materialPlane3 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier3.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier3.png'),
     side: THREE.DoubleSide
 });
 var materialPlane4 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier4.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier4.png'),
     side: THREE.DoubleSide
 });
 var materialPlane5 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier5.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier5.png'),
     side: THREE.DoubleSide
 });
 var materialPlane6 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier6.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier6.png'),
     side: THREE.DoubleSide
 });
 var materialPlane7 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier7.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier7.png'),
     side: THREE.DoubleSide
 });
 var materialPlane8 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier8.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier8.png'),
     side: THREE.DoubleSide
 });
 
@@ -117,6 +116,15 @@ var planeMesh5 = new THREE.Mesh(plane, materialPlane5);
 var planeMesh6 = new THREE.Mesh(plane, materialPlane6);
 var planeMesh7 = new THREE.Mesh(plane, materialPlane7);
 var planeMesh8 = new THREE.Mesh(plane, materialPlane8);
+
+planeMesh1.receiveShadow = true;
+planeMesh2.receiveShadow = true;
+planeMesh3.receiveShadow = true;
+planeMesh4.receiveShadow = true;
+planeMesh5.receiveShadow = true;
+planeMesh6.receiveShadow = true;
+planeMesh7.receiveShadow = true;
+planeMesh8.receiveShadow = true;
 
 planeMesh1.position.y = -1;
 planeMesh2.position.y = 0;
