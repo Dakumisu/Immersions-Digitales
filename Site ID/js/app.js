@@ -1,3 +1,6 @@
+import vertexShader from "/glsl/vertex.glsl";
+import fragmentShader from "/glsl/fragment.glsl";
+
 ////////// SCENE //////////
 var scene = new THREE.Scene();
 
@@ -44,7 +47,12 @@ render();
 var plane = new THREE.PlaneGeometry(1.6 / 1.5, .9 / 1.5);
 
 /////// PLANES MATERIALS ///////
-var materialPlane1 = new THREE.MeshLambertMaterial({
+var materialPlane1 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+      uTime: { value: 0.0 }
+    },
     map: new THREE.TextureLoader().load('/assets/img/atelier1.png'),
     side: THREE.DoubleSide
 });
@@ -367,9 +375,9 @@ document.body.addEventListener('touchmove', function(event) {
 // });
 
 
-function init(){
-	new SmoothScroll(document,120,12)
-}
+// function init(){
+// 	new SmoothScroll(document,120,12)
+// }
 
 function SmoothScroll(target, speed, smooth) {
 	if (target === document)
