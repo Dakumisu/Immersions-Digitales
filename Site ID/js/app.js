@@ -8,9 +8,10 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 0, 3);
 
-/////// RENDERER ///////
+/////// MAIN RENDERER ///////
 var renderer = new THREE.WebGLRenderer({
-    antialias: true
+    antialias: true,
+    alpha: true
 });
 renderer.setClearColor("#020659");
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -20,15 +21,17 @@ document.body.appendChild(renderer.domElement);
 /////// RESIZE EVENT ///////
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
+    css3Renderer.setSize(window.innerWidth, window.innerHeight);
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
 })
 
+
 /////// CENTRAL MODEL ///////
 var geometry = new THREE.BoxGeometry(.5, 3, 1);
-var material = new THREE.MeshLambertMaterial({color: 0x0142AC});
+var material = new THREE.MeshLambertMaterial({ color: 0x0142AC });
 var mesh = new THREE.Mesh(geometry, material);
 
 scene.add(mesh);
@@ -127,14 +130,14 @@ var planeMesh6 = new THREE.Mesh(plane, materialPlane6);
 var planeMesh7 = new THREE.Mesh(plane, materialPlane7);
 var planeMesh8 = new THREE.Mesh(plane, materialPlane8);
 
-planeMesh1.position.y = 0;
-planeMesh2.position.y = 1;
-planeMesh3.position.y = 2;
-planeMesh4.position.y = 3;
-planeMesh5.position.y = 4;
-planeMesh6.position.y = 5;
-planeMesh7.position.y = 6;
-planeMesh8.position.y = 7;
+planeMesh1.position.y = 4;
+planeMesh2.position.y = 5;
+planeMesh3.position.y = 6;
+planeMesh4.position.y = 7;
+planeMesh5.position.y = 8;
+planeMesh6.position.y = 9;
+planeMesh7.position.y = 10;
+planeMesh8.position.y = 11;
 
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
@@ -143,13 +146,13 @@ planeMesh6.rotation.y = -Math.PI / 2;
 planeMesh7.rotation.y = -Math.PI;
 planeMesh8.rotation.y = Math.PI / 2;
 
-planeMesh2.rotation.z = .24;
-planeMesh3.rotation.z = .24 * 2;
-planeMesh4.rotation.z = .24 * 3;
-planeMesh5.rotation.z = .24 * 4;
-planeMesh6.rotation.z = .24 * 5;
-planeMesh7.rotation.z = .24 * 6;
-planeMesh8.rotation.z = .24 * 7;
+// planeMesh2.rotation.z = .24;
+// planeMesh3.rotation.z = .24 * 2;
+// planeMesh4.rotation.z = .24 * 3;
+// planeMesh5.rotation.z = .24 * 4;
+// planeMesh6.rotation.z = .24 * 5;
+// planeMesh7.rotation.z = .24 * 6;
+// planeMesh8.rotation.z = .24 * 7;
 
 /////// ROTATION AROUND AXIS ///////
 pivot1.add(planeMesh1);
@@ -173,6 +176,64 @@ lightRight.position.set(3, 0, 25);
 
 scene.add(lightBottom, lightRight, lightTop);
 
+
+
+/////// CLICS EVENTS ///////
+let workShopStart = document.querySelector('.workShopStart');
+let workShop1 = document.querySelector('.workShop1');
+let workShop2 = document.querySelector('.workShop2');
+let workShop3 = document.querySelector('.workShop3');
+let workShop4 = document.querySelector('.workShop4');
+let workShop5 = document.querySelector('.workShop5');
+let workShop6 = document.querySelector('.workShop6');
+let workShop7 = document.querySelector('.workShop7');
+let workShop8 = document.querySelector('.workShop8');
+
+workShopStart.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -4, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 2 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop1.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -4, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 2 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop2.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -5, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 2.5 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop3.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -6, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 3 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop4.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -7, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 3.5 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop5.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -8, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 4 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop6.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -9, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 4.5 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop7.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -10, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 5 * Math.PI, ease: Expo.easeOut })
+})
+
+workShop8.addEventListener('click', function() {
+    gsap.to(planeAxe.position, 1.5, { y: -11, ease: Expo.easeOut })
+    gsap.to(planeAxe.rotation, 1.5, { y: 5.5 * Math.PI, ease: Expo.easeOut })
+})
+
 /////// SCROLL EVENT ///////
 document.body.addEventListener('wheel', checkScrollDirection);
 
@@ -184,27 +245,27 @@ function checkScrollDirection(event) {
         planeAxe.rotation.y -= 1 / 2 * Math.PI / 8; // ROTATION SPEED
         planeAxe.position.y += 1 / 8; // POSITION SPEED
 
-        if (planeAxe.position.y <= 0) {
-            planeMesh1.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh2.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh3.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh4.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh5.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh6.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh7.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh8.rotation.z += .03; // POSITION ROTATION Z
+        // if (planeAxe.position.y <= 0) {
+        //     planeMesh1.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh2.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh3.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh4.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh5.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh6.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh7.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh8.rotation.z += .03; // POSITION ROTATION Z
 
-        } else {
-            planeMesh1.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh2.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh3.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh4.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh5.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh6.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh7.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh8.rotation.z -= .03; // POSITION ROTATION Z
+        // } else {
+        //     planeMesh1.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh2.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh3.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh4.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh5.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh6.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh7.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh8.rotation.z -= .03; // POSITION ROTATION Z
 
-        }
+        // }
 
     } else {
 
@@ -213,27 +274,27 @@ function checkScrollDirection(event) {
         planeAxe.rotation.y += 1 / 2 * Math.PI / 8; // ROTATION SPEED
         planeAxe.position.y -= 1 / 8; // POSITION SPEED
 
-        if (planeAxe.position.y >= 0) {
-            planeMesh1.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh2.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh3.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh4.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh5.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh6.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh7.rotation.z += .03; // POSITION ROTATION Z
-            planeMesh8.rotation.z += .03; // POSITION ROTATION Z
+        // if (planeAxe.position.y >= 0) {
+        //     planeMesh1.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh2.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh3.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh4.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh5.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh6.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh7.rotation.z += .03; // POSITION ROTATION Z
+        //     planeMesh8.rotation.z += .03; // POSITION ROTATION Z
 
-        } else {
-            planeMesh1.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh2.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh3.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh4.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh5.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh6.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh7.rotation.z -= .03; // POSITION ROTATION Z
-            planeMesh8.rotation.z -= .03; // POSITION ROTATION Z
+        // } else {
+        //     planeMesh1.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh2.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh3.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh4.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh5.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh6.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh7.rotation.z -= .03; // POSITION ROTATION Z
+        //     planeMesh8.rotation.z -= .03; // POSITION ROTATION Z
 
-        }
+        // }
 
     }
 }
@@ -369,77 +430,3 @@ document.body.addEventListener('touchmove', function(event) {
         y: event.offsetY
     }
 })
-
-// $(function() {  
-// 	jQuery.scrollSpeed(step, speed);
-// });
-
-
-// function init(){
-// 	new SmoothScroll(document,120,12)
-// }
-
-function SmoothScroll(target, speed, smooth) {
-	if (target === document)
-		target = (document.scrollingElement 
-              || document.documentElement 
-              || document.body.parentNode 
-              || document.body) // cross browser support for document scrolling
-      
-	var moving = false
-	var pos = target.scrollTop
-  var frame = target === document.body 
-              && document.documentElement 
-              ? document.documentElement 
-              : target // safari is the new IE
-  
-	target.addEventListener('mousewheel', scrolled, { passive: false })
-	target.addEventListener('DOMMouseScroll', scrolled, { passive: false })
-
-	function scrolled(e) {
-		e.preventDefault(); // disable default scrolling
-
-		var delta = normalizeWheelDelta(e)
-
-		pos += -delta * speed
-		pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)) // limit scrolling
-
-		if (!moving) update()
-	}
-
-	function normalizeWheelDelta(e){
-		if(e.detail){
-			if(e.wheelDelta)
-				return e.wheelDelta/e.detail/40 * (e.detail>0 ? 1 : -1) // Opera
-			else
-				return -e.detail/3 // Firefox
-		}else
-			return e.wheelDelta/120 // IE,Safari,Chrome
-	}
-
-	function update() {
-		moving = true
-    
-		var delta = (pos - target.scrollTop) / smooth
-    
-		target.scrollTop += delta
-    
-		if (Math.abs(delta) > 0.5)
-			requestFrame(update)
-		else
-			moving = false
-	}
-
-	var requestFrame = function() { // requestAnimationFrame cross browser
-		return (
-			window.requestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.oRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			function(func) {
-				window.setTimeout(func, 1000 / 50);
-			}
-		);
-	}()
-}
