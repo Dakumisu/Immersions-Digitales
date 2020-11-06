@@ -1,15 +1,32 @@
 * {
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 body {
-    height: 101vh;
+    height: 100vh;
     margin: 0;
     cursor: grab;
+    overflow: hidden;
+    /* background: #020659; */
+}
+
+main {
+    position: fixed;
+}
+
+.number {
+    font-size: 100px;
+    font-family: 'Alegreya SC', serif;
+}
+
+span {
+    color: #fff;
+    font-size: 5vh;
 }
 
 canvas {
     display: block;
     position: absolute;
+    z-index: -1;
 }
