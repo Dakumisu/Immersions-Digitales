@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,15 +32462,23 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  
+  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  	var d = light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.scale.set( d, d, d );
-  	}
-  	this.add( this.lightDistance );
+  
+  var d = light.distance;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.scale.set( d, d, d );
+  
+  }
+  
+  this.add( this.lightDistance );
   */
 }
 
@@ -32490,12 +32498,17 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.visible = true;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  	}
+  
+  }
   */
 
 };
@@ -32926,7 +32939,8 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  	0: max.x, max.y, max.z
+  
+  0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -35306,22 +35320,50 @@ if (typeof __THREE_DEVTOOLS__ !== 'undefined') {
   /* eslint-enable no-undef */
 
 }
-},{}],"js/glsl/vertex.glsl":[function(require,module,exports) {
+},{}],"js/libs/glsl/vertex.glsl":[function(require,module,exports) {
 module.exports = "precision mediump float;\n#define GLSLIFY 1\n\nvarying vec2 vUv;\nvarying float vWave;\nuniform float uTime;\n\n//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : ijm\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n     return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v) {\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n  \n  // First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n  \n  // Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n  \n  // Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n             i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n           + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n           + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n           \n  // Gradients: 7x7 points over a square, mapped onto an octahedron.\n  // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n  \n  // Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n  \n  // Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}\n\nvoid main() {\n  vUv = uv;\n\n  vec3 pos = position;\n  float noiseFreq = -1.5;\n  float noiseAmp = -0.05; \n  vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);\n  pos.z += snoise(noisePos) * noiseAmp;\n  vWave = pos.z;\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.);\n}";
-},{}],"js/glsl/fragment.glsl":[function(require,module,exports) {
-module.exports = "precision mediump float;\n#define GLSLIFY 1\n\nvarying vec2 vUv;\nvarying float vWave;\nuniform sampler2D uTexture;\n\nvoid main() {\n  float wave = vWave * 5.0;\n  float r = texture2D(uTexture, vUv).r;\n  float g = texture2D(uTexture, vUv).g;\n  float b = texture2D(uTexture, vUv + wave).b;\n  vec3 texture = vec3(r, g, b);\n  gl_FragColor = vec4(texture, 1.);\n}";
+},{}],"js/libs/glsl/fragment.glsl":[function(require,module,exports) {
+module.exports = "precision mediump float;\n#define GLSLIFY 1\n\nvarying vec2 vUv;\nvarying float vWave;\nuniform sampler2D uTexture;\n\nvoid main() {\n  float wave = vWave * 0.3;\n  float r = texture2D(uTexture, vUv).r;\n  float g = texture2D(uTexture, vUv).g;\n  float b = texture2D(uTexture, vUv + wave).b;\n  vec3 texture = vec3(r, g, b);\n  gl_FragColor = vec4(texture, 1.);\n}";
 },{}],"assets/img/atelier1.png":[function(require,module,exports) {
 module.exports = "/atelier1.25e2fcb4.png";
+},{}],"assets/img/atelier2.png":[function(require,module,exports) {
+module.exports = "/atelier2.47d2fa59.png";
+},{}],"assets/img/atelier3.png":[function(require,module,exports) {
+module.exports = "/atelier3.5fa1412a.png";
+},{}],"assets/img/atelier4.png":[function(require,module,exports) {
+module.exports = "/atelier4.e2b94073.png";
+},{}],"assets/img/atelier5.png":[function(require,module,exports) {
+module.exports = "/atelier5.97fbcc26.png";
+},{}],"assets/img/atelier6.png":[function(require,module,exports) {
+module.exports = "/atelier6.e6acb1fc.png";
+},{}],"assets/img/atelier7.png":[function(require,module,exports) {
+module.exports = "/atelier7.a643c5e6.png";
+},{}],"assets/img/atelier8.png":[function(require,module,exports) {
+module.exports = "/atelier8.afc7a582.png";
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var THREE = _interopRequireWildcard(require("three"));
 
-var _vertex = _interopRequireDefault(require("./glsl/vertex.glsl"));
+var _vertex = _interopRequireDefault(require("./libs/glsl/vertex.glsl"));
 
-var _fragment = _interopRequireDefault(require("./glsl/fragment.glsl"));
+var _fragment = _interopRequireDefault(require("./libs/glsl/fragment.glsl"));
 
 var _atelier = _interopRequireDefault(require("../assets/img/atelier1.png"));
+
+var _atelier2 = _interopRequireDefault(require("../assets/img/atelier2.png"));
+
+var _atelier3 = _interopRequireDefault(require("../assets/img/atelier3.png"));
+
+var _atelier4 = _interopRequireDefault(require("../assets/img/atelier4.png"));
+
+var _atelier5 = _interopRequireDefault(require("../assets/img/atelier5.png"));
+
+var _atelier6 = _interopRequireDefault(require("../assets/img/atelier6.png"));
+
+var _atelier7 = _interopRequireDefault(require("../assets/img/atelier7.png"));
+
+var _atelier8 = _interopRequireDefault(require("../assets/img/atelier8.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35330,11 +35372,10 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 ////////// SCENE //////////
-var scene = new THREE.Scene(); // var cssScene = new THREE.Scene();
-////////// CAMERA //////////
+var scene = new THREE.Scene(); ////////// CAMERA //////////
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-camera.position.set(0, 0, 280); /////// MAIN RENDERER ///////
+camera.position.set(0, 0, 2.7); /////// MAIN RENDERER ///////
 
 var renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -35352,14 +35393,14 @@ window.addEventListener('resize', function () {
   camera.updateProjectionMatrix();
 }); /////// CENTRAL MODEL ///////
 
-var geometry = new THREE.BoxGeometry(200, 200, 200);
+var geometry = new THREE.BoxGeometry(1, 3, 1);
 var material = new THREE.MeshLambertMaterial({
   color: 0x0142AC
 });
 var mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh); /////// PLANES ///////
 
-var plane = new THREE.PlaneGeometry(160, 90, 25, 25); /////// PLANES MATERIALS ///////
+var plane = new THREE.PlaneGeometry(1.6, .9, 10, 10); /////// PLANES MATERIALS ///////
 
 var materialPlane1 = new THREE.ShaderMaterial({
   vertexShader: _vertex.default,
@@ -35374,32 +35415,95 @@ var materialPlane1 = new THREE.ShaderMaterial({
   },
   side: THREE.DoubleSide
 });
-var materialPlane2 = new THREE.MeshLambertMaterial({
-  map: new THREE.TextureLoader().load('./assets/img/atelier2.png'),
+var materialPlane2 = new THREE.ShaderMaterial({
+  vertexShader: _vertex.default,
+  fragmentShader: _fragment.default,
+  uniforms: {
+    uTime: {
+      value: 0.0
+    },
+    uTexture: {
+      value: new THREE.TextureLoader().load(_atelier2.default)
+    }
+  },
   side: THREE.DoubleSide
 });
-var materialPlane3 = new THREE.MeshLambertMaterial({
-  map: new THREE.TextureLoader().load('./assets/img/atelier3.png'),
+var materialPlane3 = new THREE.ShaderMaterial({
+  vertexShader: _vertex.default,
+  fragmentShader: _fragment.default,
+  uniforms: {
+    uTime: {
+      value: 0.0
+    },
+    uTexture: {
+      value: new THREE.TextureLoader().load(_atelier3.default)
+    }
+  },
   side: THREE.DoubleSide
 });
-var materialPlane4 = new THREE.MeshLambertMaterial({
-  map: new THREE.TextureLoader().load('./assets/img/atelier4.png'),
+var materialPlane4 = new THREE.ShaderMaterial({
+  vertexShader: _vertex.default,
+  fragmentShader: _fragment.default,
+  uniforms: {
+    uTime: {
+      value: 0.0
+    },
+    uTexture: {
+      value: new THREE.TextureLoader().load(_atelier4.default)
+    }
+  },
   side: THREE.DoubleSide
 });
-var materialPlane5 = new THREE.MeshLambertMaterial({
-  map: new THREE.TextureLoader().load('./assets/img/atelier5.png'),
+var materialPlane5 = new THREE.ShaderMaterial({
+  vertexShader: _vertex.default,
+  fragmentShader: _fragment.default,
+  uniforms: {
+    uTime: {
+      value: 0.0
+    },
+    uTexture: {
+      value: new THREE.TextureLoader().load(_atelier5.default)
+    }
+  },
   side: THREE.DoubleSide
 });
-var materialPlane6 = new THREE.MeshLambertMaterial({
-  map: new THREE.TextureLoader().load('./assets/img/atelier6.png'),
+var materialPlane6 = new THREE.ShaderMaterial({
+  vertexShader: _vertex.default,
+  fragmentShader: _fragment.default,
+  uniforms: {
+    uTime: {
+      value: 0.0
+    },
+    uTexture: {
+      value: new THREE.TextureLoader().load(_atelier6.default)
+    }
+  },
   side: THREE.DoubleSide
 });
-var materialPlane7 = new THREE.MeshLambertMaterial({
-  map: new THREE.TextureLoader().load('./assets/img/atelier7.png'),
+var materialPlane7 = new THREE.ShaderMaterial({
+  vertexShader: _vertex.default,
+  fragmentShader: _fragment.default,
+  uniforms: {
+    uTime: {
+      value: 0.0
+    },
+    uTexture: {
+      value: new THREE.TextureLoader().load(_atelier7.default)
+    }
+  },
   side: THREE.DoubleSide
 });
-var materialPlane8 = new THREE.MeshLambertMaterial({
-  map: new THREE.TextureLoader().load('./assets/img/atelier8.png'),
+var materialPlane8 = new THREE.ShaderMaterial({
+  vertexShader: _vertex.default,
+  fragmentShader: _fragment.default,
+  uniforms: {
+    uTime: {
+      value: 0.0
+    },
+    uTexture: {
+      value: new THREE.TextureLoader().load(_atelier8.default)
+    }
+  },
   side: THREE.DoubleSide
 }); /////// PLANE AXES ///////
 
@@ -35414,14 +35518,14 @@ var pivot5 = new THREE.Object3D();
 var pivot6 = new THREE.Object3D();
 var pivot7 = new THREE.Object3D();
 var pivot8 = new THREE.Object3D();
-pivot1.position.z = 200;
-pivot2.position.x = -200;
-pivot3.position.z = -200;
-pivot4.position.x = 200;
-pivot5.position.z = 200;
-pivot6.position.x = -200;
-pivot7.position.z = -200;
-pivot8.position.x = 200;
+pivot1.position.z = 2;
+pivot2.position.x = -2;
+pivot3.position.z = -2;
+pivot4.position.x = 2;
+pivot5.position.z = 2;
+pivot6.position.x = -2;
+pivot7.position.z = -2;
+pivot8.position.x = 2;
 planeAxe.add(pivot1, pivot2, pivot3, pivot4, pivot5, pivot6, pivot7, pivot8); /////// PLANES MESHS ///////
 
 var planeMesh1 = new THREE.Mesh(plane, materialPlane1);
@@ -35432,14 +35536,14 @@ var planeMesh5 = new THREE.Mesh(plane, materialPlane5);
 var planeMesh6 = new THREE.Mesh(plane, materialPlane6);
 var planeMesh7 = new THREE.Mesh(plane, materialPlane7);
 var planeMesh8 = new THREE.Mesh(plane, materialPlane8);
-planeMesh1.position.y = 400;
-planeMesh2.position.y = 500;
-planeMesh3.position.y = 600;
-planeMesh4.position.y = 700;
-planeMesh5.position.y = 800;
-planeMesh6.position.y = 900;
-planeMesh7.position.y = 1000;
-planeMesh8.position.y = 1100;
+planeMesh1.position.y = 4;
+planeMesh2.position.y = 5;
+planeMesh3.position.y = 6;
+planeMesh4.position.y = 7;
+planeMesh5.position.y = 8;
+planeMesh6.position.y = 9;
+planeMesh7.position.y = 10;
+planeMesh8.position.y = 11;
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
 planeMesh4.rotation.y = Math.PI / 2;
@@ -35468,7 +35572,7 @@ lightBottom.position.set(0, -15, 0);
 var lightTop = new THREE.PointLight(0xffffff, .5, 500);
 lightTop.position.set(0, 15, 0);
 var lightRight = new THREE.PointLight(0xffffff, 1, 500);
-lightRight.position.set(3, 0, 400);
+lightRight.position.set(3, 0, 4);
 scene.add(lightBottom, lightRight, lightTop); /////// VARIABLES EVENTS ///////
 
 var homeContainer = document.querySelector('.homeContainer');
@@ -35496,29 +35600,29 @@ btnBackHome.addEventListener('click', function () {
   }); // gsap.to(mesh.rotation, 1.5, { y: 2 * Math.PI, ease: "power1.inOut" })
 
   gsap.to(camera.position, 1.5, {
-    z: 280,
+    z: 2.7,
     ease: "power3.inOut"
   });
-  TweenMax.to("h1", .75, {
+  TweenMax.to(h1, .75, {
     opacity: 1,
     scale: 1,
     letterSpacing: '0',
     delay: .75,
     ease: "power3.inOut"
   });
-  TweenMax.to(".btnWorkShopStart", .75, {
+  TweenMax.to(btnWorkShopStart, .75, {
     opacity: 1,
     clipPath: "inset(0% 0% 0% 0%)",
     delay: .75,
     ease: "power3.inOut"
   });
-  TweenMax.to(".btnStoryStart", .75, {
+  TweenMax.to(btnStoryStart, .75, {
     opacity: 1,
     clipPath: "inset(0% 0% 0% 0%)",
     delay: .75,
     ease: "power3.inOut"
   });
-  TweenMax.to(".btnBackHome", 1, {
+  TweenMax.to(btnBackHome, 1, {
     opacity: 0,
     clipPath: "inset(0% 100% 0% 0%)",
     ease: "power3.inOut"
@@ -35530,38 +35634,75 @@ btnBackHome.addEventListener('click', function () {
 });
 btnWorkShopStart.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1.5, {
-    y: -400,
+    y: -4,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1.5, {
     y: 2 * Math.PI,
     ease: "power3.inOut"
+  });
+  gsap.to(planeAxe.scale, 0, {
+    y: 1,
+    x: 1,
+    z: 1
   }); // gsap.to(mesh.rotation, 1.5, { y: .5 * Math.PI, ease: "power1.inOut" })
 
   gsap.to(camera.position, 1.5, {
-    z: 380,
+    z: 3.7,
     ease: "power3.inOut"
   });
-  TweenMax.to("h1", 1, {
+  TweenMax.to(h1, 1, {
     opacity: 0,
     scale: 1.3,
     letterSpacing: '1vw',
     ease: "power3.inOut"
   });
-  TweenMax.to(".btnWorkShopStart", 1, {
+  TweenMax.to(btnWorkShopStart, 1, {
     opacity: 0,
     clipPath: "inset(0% 0% 0% 100%)",
     ease: "power3.inOut"
   });
-  TweenMax.to(".btnStoryStart", 1, {
+  TweenMax.to(btnStoryStart, 1, {
     opacity: 0,
     clipPath: "inset(0% 100% 0% 0%)",
     ease: "power3.inOut"
   });
-  TweenMax.to(".btnBackHome", .75, {
+  TweenMax.to(btnBackHome, .75, {
     opacity: 1,
     clipPath: "inset(0% 0% 0% 0%)",
     delay: .75,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
     ease: "power3.inOut"
   });
   setTimeout(function () {
@@ -35573,81 +35714,337 @@ btnWorkShopStart.addEventListener('click', function () {
 });
 btnWorkShop1.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -400,
+    y: -4,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 2 * Math.PI,
     ease: "power3.inOut"
   });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
 });
 btnWorkShop2.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -500,
+    y: -5,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 2.5 * Math.PI,
     ease: "power3.inOut"
   });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
 });
 btnWorkShop3.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -600,
+    y: -6,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 3 * Math.PI,
     ease: "power3.inOut"
   });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
 });
 btnWorkShop4.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -700,
+    y: -7,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 3.5 * Math.PI,
     ease: "power3.inOut"
   });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
 });
 btnWorkShop5.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -800,
+    y: -8,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 4 * Math.PI,
     ease: "power3.inOut"
   });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
 });
 btnWorkShop6.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -900,
+    y: -9,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 4.5 * Math.PI,
     ease: "power3.inOut"
   });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
 });
 btnWorkShop7.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -1000,
+    y: -10,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 5 * Math.PI,
     ease: "power3.inOut"
   });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
 });
 btnWorkShop8.addEventListener('click', function () {
   gsap.to(planeAxe.position, 1, {
-    y: -1100,
+    y: -11,
     ease: "power3.inOut"
   });
   gsap.to(planeAxe.rotation, 1, {
     y: 5.5 * Math.PI,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh1.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh2.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh3.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh4.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh5.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh6.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh7.rotation, .75, {
+    z: -.25,
+    ease: "power3.inOut"
+  });
+  gsap.to(planeMesh8.rotation, .75, {
+    z: 0,
     ease: "power3.inOut"
   });
 }); ///// SCROLL EVENT ///////
@@ -35660,87 +36057,376 @@ function checkScrollDirection(event) {
     console.log("position:" + planeAxe.position.y);
     console.log("rotation:" + planeAxe.rotation.y);
 
-    if (planeAxe.position.y == -400) {
+    if (planeAxe.position.y == -4) {
       gsap.to(planeAxe.position, 1.5, {
         y: 0,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, 1.5, {
-        y: .5 * Math.PI,
+        y: -.5 * Math.PI,
+        ease: "power3.inOut"
+      }); // gsap.to(mesh.rotation, 1.5, { y: 2 * Math.PI, ease: "power1.inOut" })
+
+      gsap.to(camera.position, 1.5, {
+        z: 2.7,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -400 && planeAxe.position.y >= -501) {
+      TweenMax.to(h1, .75, {
+        opacity: 1,
+        scale: 1,
+        letterSpacing: '0',
+        delay: .75,
+        ease: "power3.inOut"
+      });
+      TweenMax.to(btnWorkShopStart, .75, {
+        opacity: 1,
+        clipPath: "inset(0% 0% 0% 0%)",
+        delay: .75,
+        ease: "power3.inOut"
+      });
+      TweenMax.to(btnStoryStart, .75, {
+        opacity: 1,
+        clipPath: "inset(0% 0% 0% 0%)",
+        delay: .75,
+        ease: "power3.inOut"
+      });
+      TweenMax.to(btnBackHome, 1, {
+        opacity: 0,
+        clipPath: "inset(0% 100% 0% 0%)",
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      homeContainer.classList.add('close');
+      homeContainer.classList.remove('open');
+      btnBackHome.classList.add('close');
+      btnBackHome.classList.remove('open');
+    } else if (planeAxe.position.y <= -4 && planeAxe.position.y >= -5.1) {
       gsap.to(planeAxe.position, .75, {
-        y: -400,
+        y: -4,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 2 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -500 && planeAxe.position.y >= -601) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -5 && planeAxe.position.y >= -6.1) {
       gsap.to(planeAxe.position, .75, {
-        y: -500,
+        y: -5,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 2.5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -600 && planeAxe.position.y >= -701) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -6 && planeAxe.position.y >= -7.1) {
       gsap.to(planeAxe.position, .75, {
-        y: -600,
+        y: -6,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 3 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -700 && planeAxe.position.y >= -801) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -7 && planeAxe.position.y >= -8.1) {
       gsap.to(planeAxe.position, .75, {
-        y: -700,
+        y: -7,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 3.5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -800 && planeAxe.position.y >= -901) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -8 && planeAxe.position.y >= -9.1) {
       gsap.to(planeAxe.position, .75, {
-        y: -800,
+        y: -8,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 4 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -900 && planeAxe.position.y >= -1001) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -9 && planeAxe.position.y >= -10.1) {
       gsap.to(planeAxe.position, .75, {
-        y: -900,
+        y: -9,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 4.5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -1000 && planeAxe.position.y >= -1101) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -10 && planeAxe.position.y >= -11.1) {
       gsap.to(planeAxe.position, .75, {
-        y: -1000,
+        y: -10,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 5 * Math.PI,
         ease: "power3.inOut"
       });
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
     } // if (planeAxe.position.y <= 0) {
-    //     planeMesh1.rotation.z += .03; // POSITION ROTATION Z
-    //     planeMesh2.rotation.z += .03; // POSITION ROTATION Z
-    //     planeMesh3.rotation.z += .03; // POSITION ROTATION Z
-    //     planeMesh4.rotation.z += .03; // POSITION ROTATION Z
-    //     planeMesh5.rotation.z += .03; // POSITION ROTATION Z
-    //     planeMesh6.rotation.z += .03; // POSITION ROTATION Z
-    //     planeMesh7.rotation.z += .03; // POSITION ROTATION Z
-    //     planeMesh8.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh1.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh2.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh3.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh4.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh5.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh6.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh7.rotation.z += .03; // POSITION ROTATION Z
+    // planeMesh8.rotation.z += .03; // POSITION ROTATION Z
     // } else {
     //     planeMesh1.rotation.z -= .03; // POSITION ROTATION Z
     //     planeMesh2.rotation.z -= .03; // POSITION ROTATION Z
@@ -35754,86 +36440,388 @@ function checkScrollDirection(event) {
 
   } else {
     // SCROLL DOWN
-    if (planeAxe.position.y == 0 && camera.position.z == 380) {
+    if (planeAxe.position.y == 0 && camera.position.z == 3.8) {
       gsap.to(planeAxe.position, 1.5, {
-        y: -400,
+        y: -4,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, 1.5, {
         y: 2 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -400 && planeAxe.position.y >= -499) {
+    } else if (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.9) {
       gsap.to(planeAxe.position, .75, {
-        y: -500,
+        y: -5,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 2.5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -500 && planeAxe.position.y >= -599) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.9) {
       gsap.to(planeAxe.position, .75, {
-        y: -600,
+        y: -6,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 3 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -600 && planeAxe.position.y >= -699) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.9) {
       gsap.to(planeAxe.position, .75, {
-        y: -700,
+        y: -7,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 3.5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -700 && planeAxe.position.y >= -799) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.9) {
       gsap.to(planeAxe.position, .75, {
-        y: -800,
+        y: -8,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 4 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -800 && planeAxe.position.y >= -899) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.9) {
       gsap.to(planeAxe.position, .75, {
-        y: -900,
+        y: -9,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 4.5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -900 && planeAxe.position.y >= -999) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.9) {
       gsap.to(planeAxe.position, .75, {
-        y: -1000,
+        y: -10,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -1000 && planeAxe.position.y >= -1099) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.9) {
       gsap.to(planeAxe.position, .75, {
-        y: -1100,
+        y: -11,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, .75, {
         y: 5.5 * Math.PI,
         ease: "power3.inOut"
       });
-    } else if (planeAxe.position.y <= -1100 && planeAxe.position.y >= -1199) {
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: 0,
+        ease: "power3.inOut"
+      });
+    } else if (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.9) {
       gsap.to(planeAxe.position, 1.5, {
-        y: -1500,
+        y: -15,
         ease: "power3.inOut"
       });
       gsap.to(planeAxe.rotation, 1.5, {
         y: 7 * Math.PI,
         ease: "power3.inOut"
+      });
+      gsap.to(camera.position, 1.5, {
+        z: 2.7,
+        ease: "power3.inOut"
+      });
+      TweenMax.to(h1, .75, {
+        opacity: 1,
+        scale: 1,
+        letterSpacing: '0',
+        delay: .75,
+        ease: "power3.inOut"
+      });
+      TweenMax.to(btnWorkShopStart, .75, {
+        opacity: 1,
+        clipPath: "inset(0% 0% 0% 0%)",
+        delay: .75,
+        ease: "power3.inOut"
+      });
+      TweenMax.to(btnStoryStart, .75, {
+        opacity: 1,
+        clipPath: "inset(0% 0% 0% 0%)",
+        delay: .75,
+        ease: "power3.inOut"
+      });
+      TweenMax.to(btnBackHome, 1, {
+        opacity: 0,
+        clipPath: "inset(0% 100% 0% 0%)",
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh1.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh2.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh3.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh4.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh5.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh6.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh7.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMesh8.rotation, .75, {
+        z: -.25,
+        ease: "power3.inOut"
+      });
+      homeContainer.classList.add('close');
+      homeContainer.classList.remove('open');
+      btnBackHome.classList.add('close');
+      btnBackHome.classList.remove('open');
+      gsap.to(planeAxe.position, 0, {
+        y: 0,
+        delay: 1.5
+      });
+      gsap.to(planeAxe.rotation, 0, {
+        y: -.5 * Math.PI,
+        delay: 1.5
+      });
+      gsap.to(planeAxe.scale, 0, {
+        y: 0,
+        x: 0,
+        z: 0,
+        delay: 1.5
       });
     }
 
@@ -35949,11 +36937,18 @@ var render = function render() {
   requestAnimationFrame(render);
   mesh.rotation.y += 0.004;
   renderer.render(scene, camera);
-  materialPlane1.uniforms.uTime.value = clock.getElapsedTime(); // console.log(clock);
+  materialPlane1.uniforms.uTime.value = clock.getElapsedTime();
+  materialPlane2.uniforms.uTime.value = clock.getElapsedTime();
+  materialPlane3.uniforms.uTime.value = clock.getElapsedTime();
+  materialPlane4.uniforms.uTime.value = clock.getElapsedTime();
+  materialPlane5.uniforms.uTime.value = clock.getElapsedTime();
+  materialPlane6.uniforms.uTime.value = clock.getElapsedTime();
+  materialPlane7.uniforms.uTime.value = clock.getElapsedTime();
+  materialPlane8.uniforms.uTime.value = clock.getElapsedTime();
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","./glsl/vertex.glsl":"js/glsl/vertex.glsl","./glsl/fragment.glsl":"js/glsl/fragment.glsl","../assets/img/atelier1.png":"assets/img/atelier1.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.png":"assets/img/atelier3.png","../assets/img/atelier4.png":"assets/img/atelier4.png","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.png":"assets/img/atelier7.png","../assets/img/atelier8.png":"assets/img/atelier8.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -35981,7 +36976,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60674" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38845" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
