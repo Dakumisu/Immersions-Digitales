@@ -35359,7 +35359,7 @@ var material = new THREE.MeshLambertMaterial({
 var mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh); /////// PLANES ///////
 
-var plane = new THREE.PlaneGeometry(16, 9, 25, 25); /////// PLANES MATERIALS ///////
+var plane = new THREE.PlaneGeometry(160, 90, 25, 25); /////// PLANES MATERIALS ///////
 
 var materialPlane1 = new THREE.ShaderMaterial({
   vertexShader: _vertex.default,

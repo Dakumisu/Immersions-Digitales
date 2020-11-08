@@ -39,7 +39,7 @@ scene.add(mesh);
 
 
 /////// PLANES ///////
-var plane = new THREE.PlaneGeometry(16, 9, 25, 25);
+var plane = new THREE.PlaneGeometry(160, 90, 25, 25);
 
 /////// PLANES MATERIALS ///////
 var materialPlane1 = new THREE.ShaderMaterial({
