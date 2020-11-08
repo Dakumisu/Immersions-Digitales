@@ -44,36 +44,48 @@ render();
 var plane = new THREE.PlaneGeometry(160, 90);
 
 /////// PLANES MATERIALS ///////
+<<<<<<< HEAD
 var materialPlane1 = new THREE.MeshLambertMaterial({
     map: new THREE.TextureLoader().load('/assets/img/atelier1.png'),
+=======
+
+var uniforms = {
+    texture1: { type: "t", value: THREE.ImageUtils.loadTexture( "./assets/img/atelier1.png" ) }
+};
+
+var materialPlane1 = new THREE.MeshLambertMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: uniforms,
+>>>>>>> 24d60b5ea27d7efdb47bfdc639fc3a7c7fc7fa89
     side: THREE.DoubleSide
 });
 var materialPlane2 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier2.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier2.png'),
     side: THREE.DoubleSide
 });
 var materialPlane3 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier3.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier3.png'),
     side: THREE.DoubleSide
 });
 var materialPlane4 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier4.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier4.png'),
     side: THREE.DoubleSide
 });
 var materialPlane5 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier5.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier5.png'),
     side: THREE.DoubleSide
 });
 var materialPlane6 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier6.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier6.png'),
     side: THREE.DoubleSide
 });
 var materialPlane7 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier7.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier7.png'),
     side: THREE.DoubleSide
 });
 var materialPlane8 = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load('/assets/img/atelier8.png'),
+    map: new THREE.TextureLoader().load('./assets/img/atelier8.png'),
     side: THREE.DoubleSide
 });
 
