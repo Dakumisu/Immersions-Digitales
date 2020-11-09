@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import * as THREEx from "./libs/threex/threex.domevents.js";
 import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import atelier1 from "../assets/img/atelier1.png";
@@ -35,8 +36,14 @@ window.addEventListener('resize', () => {
 
 })
 
+domEvents = new THREEx.DomEvents(camera, renderer.domElement)
+
+// domEvents.addEventListener(planeMesh1, 'click', function() {
+//     gsap.to(planeMesh1.scale, 1.5, { x: 2, y: 2, z: 2, ease: "power3.inOut" })
+// })
+
 /////// CENTRAL MODEL ///////
-var geometry = new THREE.BoxGeometry(1, 3, 1);
+var geometry = new THREE.BoxGeometry(.8, 2.5, .8);
 var material = new THREE.MeshLambertMaterial({ color: 0x0142AC });
 var mesh = new THREE.Mesh(geometry, material);
 
@@ -44,7 +51,7 @@ scene.add(mesh);
 
 
 /////// PLANES ///////
-var plane = new THREE.PlaneGeometry(1.6, .9, 10, 10);
+var plane = new THREE.PlaneGeometry(1.6 / 1.1, .9 / 1.1, 10, 10);
 
 /////// PLANES MATERIALS ///////
 var materialPlane1 = new THREE.ShaderMaterial({
@@ -134,14 +141,14 @@ var pivot6 = new THREE.Object3D();
 var pivot7 = new THREE.Object3D();
 var pivot8 = new THREE.Object3D();
 
-pivot1.position.z = 2;
-pivot2.position.x = -2;
-pivot3.position.z = -2;
-pivot4.position.x = 2;
-pivot5.position.z = 2;
-pivot6.position.x = -2;
-pivot7.position.z = -2;
-pivot8.position.x = 2;
+pivot1.position.z = 2.25;
+pivot2.position.x = -2.25;
+pivot3.position.z = -2.25;
+pivot4.position.x = 2.25;
+pivot5.position.z = 2.25;
+pivot6.position.x = -2.25;
+pivot7.position.z = -2.25;
+pivot8.position.x = 2.25;
 
 planeAxe.add(pivot1, pivot2, pivot3, pivot4, pivot5, pivot6, pivot7, pivot8);
 
@@ -221,7 +228,7 @@ btnBackHome.addEventListener('click', function() {
     gsap.to(planeAxe.position, 1.5, { y: 0, ease: "power3.inOut" })
     gsap.to(planeAxe.rotation, 1.5, { y: -.5 * Math.PI, ease: "power3.inOut" })
         // gsap.to(mesh.rotation, 1.5, { y: 2 * Math.PI, ease: "power1.inOut" })
-    gsap.to(camera.position, 1.5, { z: 2.7, ease: "power3.inOut" })
+    gsap.to(camera.position, 1.5, { z: 2.7, delay: .25, ease: "power3.inOut" })
     TweenMax.to(h1, .75, { opacity: 1, scale: 1, letterSpacing: '0', delay: .75, ease: "power3.inOut" })
     TweenMax.to(btnWorkShopStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
     TweenMax.to(btnStoryStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
@@ -368,8 +375,7 @@ document.body.addEventListener('wheel', checkScrollDirection);
 function checkScrollDirection(event) {
     if (checkScrollDirectionIsUp(event)) { // SCROLL UP
 
-        console.log("position:" + planeAxe.position.y)
-        console.log("rotation:" + planeAxe.rotation.y)
+        console.log("position up:" + planeAxe.position.y)
 
         if (planeAxe.position.y == -4) {
             gsap.to(planeAxe.position, 1.5, { y: 0, ease: "power3.inOut" })
@@ -458,7 +464,7 @@ function checkScrollDirection(event) {
             gsap.to(planeMesh6.rotation, .75, { z: 0, ease: "power3.inOut" })
             gsap.to(planeMesh7.rotation, .75, { z: -.25, ease: "power3.inOut" })
             gsap.to(planeMesh8.rotation, .75, { z: -.25, ease: "power3.inOut" })
-        } else if (planeAxe.position.y <= -10 && planeAxe.position.y >= -11.1) {
+        } else if (planeAxe.position.y <= -11) {
             gsap.to(planeAxe.position, .75, { y: -10, ease: "power3.inOut" })
             gsap.to(planeAxe.rotation, .75, { y: 5 * Math.PI, ease: "power3.inOut" })
             gsap.to(planeMesh1.rotation, .75, { z: -.25, ease: "power3.inOut" })
@@ -599,11 +605,11 @@ function checkScrollDirection(event) {
 
             gsap.to(planeAxe.position, 0, { y: 0, delay: 1.5 })
             gsap.to(planeAxe.rotation, 0, { y: -.5 * Math.PI, delay: 1.5 })
-            gsap.to(planeAxe.scale, 0, { y: 0, x: 0, z: 0, delay: 1.5 })
+            gsap.to(planeAxe.scale, 0, { y: 0.0001, x: 0.0001, z: 0.0001, delay: 1.5 })
         }
 
-        console.log("position:" + planeAxe.position.y)
-        console.log("rotation:" + planeAxe.rotation.y)
+        console.log("position down:" + planeAxe.position.y)
+
 
         // if (planeAxe.position.y >= 0) {
         //     planeMesh1.rotation.z += .03; // POSITION ROTATION Z
