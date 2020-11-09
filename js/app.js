@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import * as THREEx from "./libs/threex/threex.domevents.js";
+// import * as THREEx from "threex.domevents";
+import { Interaction } from 'three.interaction';
 import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import atelier1 from "../assets/img/atelier1.png";
@@ -20,7 +21,7 @@ camera.position.set(0, 0, 2.7);
 
 /////// MAIN RENDERER ///////
 var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setClearColor("#020659");
+// renderer.setClearColor("#020659");
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
@@ -36,11 +37,13 @@ window.addEventListener('resize', () => {
 
 })
 
-domEvents = new THREEx.DomEvents(camera, renderer.domElement)
+// domEvents = new THREEx.DomEvents(camera, renderer.domElement)
 
 // domEvents.addEventListener(planeMesh1, 'click', function() {
 //     gsap.to(planeMesh1.scale, 1.5, { x: 2, y: 2, z: 2, ease: "power3.inOut" })
 // })
+
+const interaction = new Interaction(renderer, scene, camera);
 
 /////// CENTRAL MODEL ///////
 var geometry = new THREE.BoxGeometry(.8, 2.5, .8);
@@ -48,7 +51,6 @@ var material = new THREE.MeshLambertMaterial({ color: 0x0142AC });
 var mesh = new THREE.Mesh(geometry, material);
 
 scene.add(mesh);
-
 
 /////// PLANES ///////
 var plane = new THREE.PlaneGeometry(1.6 / 1.1, .9 / 1.1, 10, 10);
@@ -63,6 +65,25 @@ var materialPlane1 = new THREE.ShaderMaterial({
     },
     side: THREE.DoubleSide
 });
+
+materialPlane1.cursor = 'pointer';
+materialPlane1.on('click', function(ev) {});
+materialPlane1.on('touchstart', function(ev) {});
+materialPlane1.on('touchend', function(ev) {});
+materialPlane1.on('mousedown', function(ev) {});
+materialPlane1.on('mouseout', function(ev) {});
+materialPlane1.on('mouseover', function(ev) {});
+materialPlane1.on('mousemove', function(ev) {});
+materialPlane1.on('mouseup', function(ev) {});
+
+materialPlane1.on('click', ev => {
+  console.log(ev);
+})
+// scene.on('touchmove', ev => {
+//   console.log(ev);
+// })
+
+
 var materialPlane2 = new THREE.ShaderMaterial({
     vertexShader,
     fragmentShader,
@@ -464,7 +485,7 @@ function checkScrollDirection(event) {
             gsap.to(planeMesh6.rotation, .75, { z: 0, ease: "power3.inOut" })
             gsap.to(planeMesh7.rotation, .75, { z: -.25, ease: "power3.inOut" })
             gsap.to(planeMesh8.rotation, .75, { z: -.25, ease: "power3.inOut" })
-        } else if (planeAxe.position.y <= -11) {
+        } else if (planeAxe.position.y == -11) {
             gsap.to(planeAxe.position, .75, { y: -10, ease: "power3.inOut" })
             gsap.to(planeAxe.rotation, .75, { y: 5 * Math.PI, ease: "power3.inOut" })
             gsap.to(planeMesh1.rotation, .75, { z: -.25, ease: "power3.inOut" })

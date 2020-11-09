@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "glsl-noise": "0.0.0",
-    "three": "0.114.0"
+    "three": "0.114.0",
+    "three.interaction": "^0.2.3",
+    "threex.domevents": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",
