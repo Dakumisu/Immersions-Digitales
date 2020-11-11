@@ -5,12 +5,13 @@ import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import atelier1 from "../assets/img/atelier1.png";
 import atelier2 from "../assets/img/atelier2.png";
-import atelier3 from "../assets/img/atelier3.png";
-import atelier4 from "../assets/img/atelier4.png";
+import atelier3 from "../assets/img/atelier3.jpg";
+import atelier4 from "../assets/img/atelier4.jpg";
 import atelier5 from "../assets/img/atelier5.png";
 import atelier6 from "../assets/img/atelier6.png";
-import atelier7 from "../assets/img/atelier7.png";
+import atelier7 from "../assets/img/atelier7.jpg";
 import atelier8 from "../assets/img/atelier8.png";
+import particle from "../assets/img/particle.png";
 
 ////////// SCENE //////////
 var scene = new THREE.Scene();
@@ -26,8 +27,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
-var clock = new THREE.Clock();
-
 /////// RESIZE EVENT ///////
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -36,12 +35,6 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 
 })
-
-// domEvents = new THREEx.DomEvents(camera, renderer.domElement)
-
-// domEvents.addEventListener(planeMesh1, 'click', function() {
-//     gsap.to(planeMesh1.scale, 1.5, { x: 2, y: 2, z: 2, ease: "power3.inOut" })
-// })
 
 const interaction = new Interaction(renderer, scene, camera);
 
@@ -65,24 +58,6 @@ var materialPlane1 = new THREE.ShaderMaterial({
     },
     side: THREE.DoubleSide
 });
-
-materialPlane1.cursor = 'pointer';
-materialPlane1.on('click', function(ev) {});
-materialPlane1.on('touchstart', function(ev) {});
-materialPlane1.on('touchend', function(ev) {});
-materialPlane1.on('mousedown', function(ev) {});
-materialPlane1.on('mouseout', function(ev) {});
-materialPlane1.on('mouseover', function(ev) {});
-materialPlane1.on('mousemove', function(ev) {});
-materialPlane1.on('mouseup', function(ev) {});
-
-materialPlane1.on('click', ev => {
-  console.log(ev);
-})
-// scene.on('touchmove', ev => {
-//   console.log(ev);
-// })
-
 
 var materialPlane2 = new THREE.ShaderMaterial({
     vertexShader,
@@ -217,6 +192,25 @@ pivot6.add(planeMesh6);
 pivot7.add(planeMesh7);
 pivot8.add(planeMesh8);
 
+/////// PARTICLES ///////
+// particle = new THREE.SphereGeometry(0.002, 0.99, 0.99);
+let particleGeo = new THREE.Geometry();
+for (let i = 0; i < 800; i++) {
+    let particle = new THREE.Vector3(
+        Math.random() * 8 - 2,
+        Math.random() * 8 - 2,
+        Math.random() * 3 - 2)
+    particleGeo.vertices.push(particle);
+}
+
+let particleMaterial = new THREE.PointsMaterial({
+    size: 0.01,
+    map: new THREE.TextureLoader().load(particle)
+});
+
+let particleMesh = new THREE.Points(particleGeo, particleMaterial);
+scene.add(particleMesh);
+
 /////// LIGHT ///////
 const lightBottom = new THREE.PointLight(0xffffff, .5, 500);
 lightBottom.position.set(0, -15, 0);
@@ -243,6 +237,24 @@ let btnWorkShop5 = document.querySelector('.btnWorkShop5');
 let btnWorkShop6 = document.querySelector('.btnWorkShop6');
 let btnWorkShop7 = document.querySelector('.btnWorkShop7');
 let btnWorkShop8 = document.querySelector('.btnWorkShop8');
+let canvas = document.querySelector('canvas');
+
+// materialPlane1.cursor = 'pointer';
+// materialPlane1.on('click', function(ev) {});
+// materialPlane1.on('touchstart', function(ev) {});
+// materialPlane1.on('touchend', function(ev) {});
+// materialPlane1.on('mousedown', function(ev) {});
+// materialPlane1.on('mouseout', function(ev) {});
+// materialPlane1.on('mouseover', function(ev) {});
+// materialPlane1.on('mousemove', function(ev) {});
+// materialPlane1.on('mouseup', function(ev) {});
+
+// planeMesh1.on('mouseover', function() {
+
+// })
+// planeMesh1.on('mouseout', function() {
+
+// })
 
 /////// CLICS EVENTS ///////
 btnBackHome.addEventListener('click', function() {
@@ -258,6 +270,7 @@ btnBackHome.addEventListener('click', function() {
     homeContainer.classList.remove('open');
     btnBackHome.classList.add('close');
     btnBackHome.classList.remove('open');
+    canvas.style.zIndex = -1;
 })
 
 btnWorkShopStart.addEventListener('click', function() {
@@ -283,6 +296,7 @@ btnWorkShopStart.addEventListener('click', function() {
         btnBackHome.classList.remove('close');
         homeContainer.classList.add('open');
         homeContainer.classList.remove('close');
+        canvas.style.zIndex = 1;
     }, 1500)
 })
 
@@ -419,6 +433,7 @@ function checkScrollDirection(event) {
             homeContainer.classList.remove('open');
             btnBackHome.classList.add('close');
             btnBackHome.classList.remove('open');
+            canvas.style.zIndex = -1;
         } else if (planeAxe.position.y <= -4 && planeAxe.position.y >= -5.1) {
             gsap.to(planeAxe.position, .75, { y: -4, ease: "power3.inOut" })
             gsap.to(planeAxe.rotation, .75, { y: 2 * Math.PI, ease: "power3.inOut" })
@@ -623,6 +638,7 @@ function checkScrollDirection(event) {
             homeContainer.classList.remove('open');
             btnBackHome.classList.add('close');
             btnBackHome.classList.remove('open');
+            canvas.style.zIndex = -1;
 
             gsap.to(planeAxe.position, 0, { y: 0, delay: 1.5 })
             gsap.to(planeAxe.rotation, 0, { y: -.5 * Math.PI, delay: 1.5 })
@@ -788,17 +804,29 @@ var render = function() {
 
     mesh.rotation.y += 0.004;
 
+    particleMesh.rotation.y += 0.001;
+
     renderer.render(scene, camera);
 
-    materialPlane1.uniforms.uTime.value = clock.getElapsedTime();
-    materialPlane2.uniforms.uTime.value = clock.getElapsedTime();
-    materialPlane3.uniforms.uTime.value = clock.getElapsedTime();
-    materialPlane4.uniforms.uTime.value = clock.getElapsedTime();
-    materialPlane5.uniforms.uTime.value = clock.getElapsedTime();
-    materialPlane6.uniforms.uTime.value = clock.getElapsedTime();
-    materialPlane7.uniforms.uTime.value = clock.getElapsedTime();
-    materialPlane8.uniforms.uTime.value = clock.getElapsedTime();
-
+    if (materialPlane1.uniforms.uTime.value == 1) {
+        materialPlane1.uniforms.uTime.value -= 0.02;
+        materialPlane2.uniforms.uTime.value -= 0.02;
+        materialPlane3.uniforms.uTime.value -= 0.02;
+        materialPlane4.uniforms.uTime.value -= 0.02;
+        materialPlane5.uniforms.uTime.value -= 0.02;
+        materialPlane6.uniforms.uTime.value -= 0.02;
+        materialPlane7.uniforms.uTime.value -= 0.02;
+        materialPlane8.uniforms.uTime.value -= 0.02;
+    } else {
+        materialPlane1.uniforms.uTime.value += 0.02;
+        materialPlane2.uniforms.uTime.value += 0.02;
+        materialPlane3.uniforms.uTime.value += 0.02;
+        materialPlane4.uniforms.uTime.value += 0.02;
+        materialPlane5.uniforms.uTime.value += 0.02;
+        materialPlane6.uniforms.uTime.value += 0.02;
+        materialPlane7.uniforms.uTime.value += 0.02;
+        materialPlane8.uniforms.uTime.value += 0.02;
+    }
 };
 
 render();

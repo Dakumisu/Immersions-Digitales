@@ -47,6 +47,8 @@ main {
 
 .btnBackHome {
     clip-path: inset(0% 100% 0% 0%);
+    z-index: 2;
+    position: absolute;
 }
 
 .btnBackHome.open {
