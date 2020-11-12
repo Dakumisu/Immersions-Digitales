@@ -1,6 +1,9 @@
 import * as THREE from "three";
-// import * as THREEx from "threex.domevents";
 import { Interaction } from 'three.interaction';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { BloomEffect, EffectComposer, EffectPass, RenderPass } from "postprocessing";
+import { glsl } from 'glslify';
+
 import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import atelier1 from "../assets/img/atelier1.png";
@@ -11,7 +14,7 @@ import atelier5 from "../assets/img/atelier5.png";
 import atelier6 from "../assets/img/atelier6.png";
 import atelier7 from "../assets/img/atelier7.jpg";
 import atelier8 from "../assets/img/atelier8.png";
-import particle from "../assets/img/particle.png";
+// import particle from "../assets/img/particle.png";
 
 ////////// SCENE //////////
 var scene = new THREE.Scene();
@@ -37,6 +40,12 @@ window.addEventListener('resize', () => {
 })
 
 const interaction = new Interaction(renderer, scene, camera);
+
+// const loader = new GLTFLoader();
+
+// const composer = new EffectComposer(renderer);
+// composer.addPass(new RenderPass(scene, camera));
+// composer.addPass(new EffectPass(camera, new BloomEffect()));
 
 /////// CENTRAL MODEL ///////
 var geometry = new THREE.BoxGeometry(.8, 2.5, .8);
@@ -194,22 +203,22 @@ pivot8.add(planeMesh8);
 
 /////// PARTICLES ///////
 // particle = new THREE.SphereGeometry(0.002, 0.99, 0.99);
-let particleGeo = new THREE.Geometry();
-for (let i = 0; i < 800; i++) {
-    let particle = new THREE.Vector3(
-        Math.random() * 8 - 2,
-        Math.random() * 8 - 2,
-        Math.random() * 3 - 2)
-    particleGeo.vertices.push(particle);
-}
+// let particleGeo = new THREE.Geometry();
+// for (let i = 0; i < 800; i++) {
+//     let particle = new THREE.Vector3(
+//         Math.random() * 2 - 2,
+//         Math.random() * 8 - 2,
+//         Math.random() * 2 - 2)
+//     particleGeo.vertices.push(particle);
+// }
 
-let particleMaterial = new THREE.PointsMaterial({
-    size: 0.01,
-    map: new THREE.TextureLoader().load(particle)
-});
+// let particleMaterial = new THREE.PointsMaterial({
+//     size: 0.01,
+//     map: new THREE.TextureLoader().load(particle)
+// });
 
-let particleMesh = new THREE.Points(particleGeo, particleMaterial);
-scene.add(particleMesh);
+// let particleMesh = new THREE.Points(particleGeo, particleMaterial);
+// scene.add(particleMesh);
 
 /////// LIGHT ///////
 const lightBottom = new THREE.PointLight(0xffffff, .5, 500);
@@ -239,22 +248,22 @@ let btnWorkShop7 = document.querySelector('.btnWorkShop7');
 let btnWorkShop8 = document.querySelector('.btnWorkShop8');
 let canvas = document.querySelector('canvas');
 
-// materialPlane1.cursor = 'pointer';
-// materialPlane1.on('click', function(ev) {});
-// materialPlane1.on('touchstart', function(ev) {});
-// materialPlane1.on('touchend', function(ev) {});
-// materialPlane1.on('mousedown', function(ev) {});
-// materialPlane1.on('mouseout', function(ev) {});
-// materialPlane1.on('mouseover', function(ev) {});
-// materialPlane1.on('mousemove', function(ev) {});
-// materialPlane1.on('mouseup', function(ev) {});
+materialPlane1.on('click', function(ev) {});
+materialPlane1.on('touchstart', function(ev) {});
+materialPlane1.on('touchend', function(ev) {});
+materialPlane1.on('mousedown', function(ev) {});
+materialPlane1.on('mouseout', function(ev) {});
+planeMesh1.on('mouseover', function(ev) {});
+materialPlane1.on('mousemove', function(ev) {});
+materialPlane1.on('mouseup', function(ev) {});
 
-// planeMesh1.on('mouseover', function() {
+planeMesh1.on('click', function() {
+    console.log("cyclocouilles")
+})
+planeMesh1.on('mouseover', function() {
+    planeMesh1.cursor = 'pointer';
 
-// })
-// planeMesh1.on('mouseout', function() {
-
-// })
+})
 
 /////// CLICS EVENTS ///////
 btnBackHome.addEventListener('click', function() {
@@ -799,12 +808,12 @@ function checkScrollDirectionIsUp(event) {
 //     }
 // })
 
-var render = function() {
+function render() {
     requestAnimationFrame(render);
 
     mesh.rotation.y += 0.004;
 
-    particleMesh.rotation.y += 0.001;
+    // particleMesh.rotation.y += 0.001;
 
     renderer.render(scene, camera);
 
