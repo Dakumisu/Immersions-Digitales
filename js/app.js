@@ -261,6 +261,34 @@ planeMesh6.rotation.y = -Math.PI / 2;
 planeMesh7.rotation.y = -Math.PI;
 planeMesh8.rotation.y = Math.PI / 2;
 
+/////// 3D TEXT ///////
+var loader = new THREE.FontLoader();
+// var textMesh1
+loader.load('../assets/font/font.json', function(font) {
+
+    var textGeo1 = new THREE.TextGeometry('J\'vous soulève', {
+        font: font,
+        size: 0.05,
+        height: 0.001,
+        curveSegments: 0,
+        bevelEnabled: true,
+        bevelThickness: 0,
+        bevelSize: 0,
+        bevelOffset: 0,
+        bevelSegments: 0
+    });
+    var textMaterial1 = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+    var textMesh1 = new THREE.Mesh(textGeo1, textMaterial1);
+
+    console.log(font);
+    // scene.add(textMesh1);
+    pivot8.add(textMesh1);
+    textMesh1.position.set(0, 10.6, 0.8);
+    textMesh1.rotation.y = Math.PI / 2;
+    console.log(textMesh1.position)
+});
+
 /////// ROTATION AROUND AXIS ///////
 pivot1.add(planeMesh1);
 pivot2.add(planeMesh2);
@@ -271,28 +299,7 @@ pivot6.add(planeMesh6);
 pivot7.add(planeMesh7);
 pivot8.add(planeMesh8);
 
-/////// 3D TEXT ///////
-// const loader = new THREE.FontLoader();
 
-// loader.load('../assets/font/helvetiker_bold.typeface.json', function(font) {
-
-//     const textGeo1 = new THREE.TextGeometry('Hello three.js!', {
-//         font: font,
-//         size: 80,
-//         height: 5,
-//         curveSegments: 12,
-//         bevelEnabled: true,
-//         bevelThickness: 10,
-//         bevelSize: 8,
-//         bevelOffset: 0,
-//         bevelSegments: 5
-//     });
-//     var textMaterial1 = new THREE.MeshPhongMaterial({ color: 0xffffff });
-
-//     var textMesh1 = new THREE.Mesh(textGeo1, textMaterial1);
-
-//     scene.add(textMesh1);
-// });
 
 /////// GRID ///////
 var screenWidth = (window.innerWidth);
@@ -369,10 +376,10 @@ let sm3 = document.querySelector('.sm3');
 
 /////// GRID INTERACTION ///////
 sm1.addEventListener('mouseover', function() { //POINTER SOCIAL MEDIA 1
-    TweenMax.to(".colLine", 1, { height: '98.2vh', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '98.2vh', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '99%', bottom: "6.1%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '99%', bottom: "1.8%", ease: "power3.inOut" })
+    TweenMax.to(".colLine", 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(".colLine2", 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(".rowLine", 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
+    TweenMax.to(".rowLine2", 1, { width: '100%', bottom: "1.8%", ease: "power3.inOut" })
 })
 
 sm1.addEventListener('mouseout', function() {
@@ -383,10 +390,10 @@ sm1.addEventListener('mouseout', function() {
 })
 
 sm2.addEventListener('mouseover', function() { //POINTER SOCIAL MEDIA 2
-    TweenMax.to(".colLine", 1, { height: '93.9vh', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '93.9vh', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '99%', bottom: "10.4%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '99%', bottom: "6.1%", ease: "power3.inOut" })
+    TweenMax.to(".colLine", 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(".colLine2", 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(".rowLine", 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
+    TweenMax.to(".rowLine2", 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
 })
 
 sm2.addEventListener('mouseout', function() {
@@ -397,10 +404,10 @@ sm2.addEventListener('mouseout', function() {
 })
 
 sm3.addEventListener('mouseover', function() { //POINTER SOCIAL MEDIA 3
-    TweenMax.to(".colLine", 1, { height: '89.6vh', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '89.6vh', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '99%', bottom: "14.7%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '99%', bottom: "10.4%", ease: "power3.inOut" })
+    TweenMax.to(".colLine", 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(".colLine2", 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(".rowLine", 1, { width: '100%', bottom: "14.7%", ease: "power3.inOut" })
+    TweenMax.to(".rowLine2", 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
 })
 
 sm3.addEventListener('mouseout', function() {

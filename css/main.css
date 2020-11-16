@@ -110,6 +110,8 @@ main {
     bottom: 10.4%;
     background: #1b355e;
     z-index: -1;
+    mix-blend-mode: luminosity;
+    opacity: 0.5;
 }
 
 .rowLine2 {
@@ -119,6 +121,8 @@ main {
     bottom: 6.1%;
     background: #1b355e;
     z-index: -1;
+    mix-blend-mode: luminosity;
+    opacity: 0.5;
 }
 
 .colLine {
@@ -128,6 +132,8 @@ main {
     position: absolute;
     right: 3.1%;
     z-index: -1;
+    mix-blend-mode: luminosity;
+    opacity: 0.5;
 }
 
 .colLine2 {
@@ -137,6 +143,8 @@ main {
     position: absolute;
     right: .9%;
     z-index: -1;
+    mix-blend-mode: luminosity;
+    opacity: 0.5;
 }
 
 
