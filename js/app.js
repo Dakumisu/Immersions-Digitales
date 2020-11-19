@@ -418,21 +418,31 @@ scene.add(particleMesh);
 /////// VARIABLES EVENTS ///////
 let homeContainer = document.querySelector('.homeContainer');
 let h1 = document.querySelector('h1');
-let btnWorkShopStart = document.querySelector('.btnWorkShopStart');
-let btnStoryStart = document.querySelector('.btnStoryStart');
-let btnBackHome = document.querySelector('.btnBackHome');
-let btnWorkShop1 = document.querySelector('.btnWorkShop1');
-let btnWorkShop2 = document.querySelector('.btnWorkShop2');
-let btnWorkShop3 = document.querySelector('.btnWorkShop3');
-let btnWorkShop4 = document.querySelector('.btnWorkShop4');
-let btnWorkShop5 = document.querySelector('.btnWorkShop5');
-let btnWorkShop6 = document.querySelector('.btnWorkShop6');
-let btnWorkShop7 = document.querySelector('.btnWorkShop7');
-let btnWorkShop8 = document.querySelector('.btnWorkShop8');
+let btnWorkShopStart = document.querySelector('.btn__workShop--Start');
+let btnStoryStart = document.querySelector('.btn__story--Start');
+let btnBackHome = document.querySelector('.btn__backHome');
+let btnWorkShop1 = document.querySelector('.btn__workShop--1');
+let btnWorkShop2 = document.querySelector('.btn__workShop--2');
+let btnWorkShop3 = document.querySelector('.btn__workShop--3');
+let btnWorkShop4 = document.querySelector('.btn__workShop--4');
+let btnWorkShop5 = document.querySelector('.btn__workShop--5');
+let btnWorkShop6 = document.querySelector('.btn__workShop--6');
+let btnWorkShop7 = document.querySelector('.btn__workShop--7');
+let btnWorkShop8 = document.querySelector('.btn__workShop--8');
 let canvas = document.querySelector('canvas');
-let sm1 = document.querySelector('.sm1');
-let sm2 = document.querySelector('.sm2');
-let sm3 = document.querySelector('.sm3');
+let sm1 = document.querySelector('.sm__1');
+let sm2 = document.querySelector('.sm__2');
+let sm3 = document.querySelector('.sm__3');
+
+let colLine1 = document.querySelector('.col.line__1');
+let colLine2 = document.querySelector('.col.line__2');
+let rowLine1 = document.querySelector('.row.line__1');
+let rowLine2 = document.querySelector('.row.line__2');
+
+
+
+
+
 
 // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
@@ -453,45 +463,45 @@ let sm3 = document.querySelector('.sm3');
 
 /////// GRID INTERACTION ///////
 sm1.addEventListener('mouseover', function() { //POINTER SOCIAL MEDIA 1
-    TweenMax.to(".colLine", 1, { height: '100vh', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '100vh', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '100%', bottom: "1.8%", ease: "power3.inOut" })
+    TweenMax.to(colLine1, 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(colLine2, 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
+    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "1.8%", ease: "power3.inOut" })
 })
 
 sm1.addEventListener('mouseout', function() {
-    TweenMax.to(".colLine", 1, { height: '0', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '0', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '0', bottom: "1.8%", ease: "power3.inOut" })
+    TweenMax.to(colLine1, 1, { height: '0', ease: "power3.inOut" })
+    TweenMax.to(colLine2, 1, { height: '0', ease: "power3.inOut" })
+    TweenMax.to(rowLine1, 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
+    TweenMax.to(rowLine2, 1, { width: '0', bottom: "1.8%", ease: "power3.inOut" })
 })
 
 sm2.addEventListener('mouseover', function() { //POINTER SOCIAL MEDIA 2
-    TweenMax.to(".colLine", 1, { height: '100vh', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '100vh', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
+    TweenMax.to(colLine1, 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(colLine2, 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
+    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
 })
 
 sm2.addEventListener('mouseout', function() {
-    TweenMax.to(".colLine", 1, { height: '0', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '0', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
+    TweenMax.to(colLine1, 1, { height: '0', ease: "power3.inOut" })
+    TweenMax.to(colLine2, 1, { height: '0', ease: "power3.inOut" })
+    TweenMax.to(rowLine1, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
+    TweenMax.to(rowLine2, 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
 })
 
 sm3.addEventListener('mouseover', function() { //POINTER SOCIAL MEDIA 3
-    TweenMax.to(".colLine", 1, { height: '100vh', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '100vh', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '100%', bottom: "14.7%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
+    TweenMax.to(colLine1, 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(colLine2, 1, { height: '100vh', ease: "power3.inOut" })
+    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "14.7%", ease: "power3.inOut" })
+    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
 })
 
 sm3.addEventListener('mouseout', function() {
-    TweenMax.to(".colLine", 1, { height: '0', ease: "power3.inOut" })
-    TweenMax.to(".colLine2", 1, { height: '0', ease: "power3.inOut" })
-    TweenMax.to(".rowLine", 1, { width: '0', bottom: "14.7%", ease: "power3.inOut" })
-    TweenMax.to(".rowLine2", 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
+    TweenMax.to(colLine1, 1, { height: '0', ease: "power3.inOut" })
+    TweenMax.to(colLine2, 1, { height: '0', ease: "power3.inOut" })
+    TweenMax.to(rowLine1, 1, { width: '0', bottom: "14.7%", ease: "power3.inOut" })
+    TweenMax.to(rowLine2, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
 })
 
 /////// CLICS EVENTS ///////
