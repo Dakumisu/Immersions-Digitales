@@ -387,7 +387,8 @@ rowContainer = document.querySelector('.rowContainer')
 
 for (let col = 0; col < innerWidth; col++) {
     let drawCol = document.createElement("div");
-    colContainer.appendChild(drawCol).className = "col";
+    colContainer.appendChild(drawCol).classList.add("col");
+    drawCol.classList.add(col);
 };
 for (let row = 0; row < innerHeight; row++) {
     let drawRaw = document.createElement("div");
@@ -433,11 +434,11 @@ let canvas = document.querySelector('canvas');
 let sm1 = document.querySelector('.sm__1');
 let sm2 = document.querySelector('.sm__2');
 let sm3 = document.querySelector('.sm__3');
-
 let colLine1 = document.querySelector('.col.line__1');
 let colLine2 = document.querySelector('.col.line__2');
 let rowLine1 = document.querySelector('.row.line__1');
 let rowLine2 = document.querySelector('.row.line__2');
+let bgCol = document.querySelectorAll('.colContainer .col');
 
 
 
@@ -502,6 +503,12 @@ sm3.addEventListener('mouseout', function() {
     TweenMax.to(colLine2, 1, { height: '0', ease: "power3.inOut" })
     TweenMax.to(rowLine1, 1, { width: '0', bottom: "14.7%", ease: "power3.inOut" })
     TweenMax.to(rowLine2, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
+})
+
+bgCol.forEach(col => {
+
+    const gridTimeline = gsap.timeline({ paused: true });
+    gridTimeline.to(col, { duration: 1, ease: "power3.inOut", stagger: 0.02 });
 })
 
 /////// CLICS EVENTS ///////
