@@ -18,7 +18,7 @@ var scene = new THREE.Scene();
 
 ////////// CAMERA //////////
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 2.7);
+camera.position.set(0, 0, 20);
 
 /////// MAIN RENDERER ///////
 var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -385,14 +385,15 @@ var ScreenHeigth = (window.innerHeight);
 colContainer = document.querySelector('.colContainer')
 rowContainer = document.querySelector('.rowContainer')
 
-for (let col = 0; col < innerWidth; col++) {
+for (let col = 0; col < screenWidth; col++) {
     let drawCol = document.createElement("div");
     colContainer.appendChild(drawCol).classList.add("col");
     drawCol.classList.add(col);
 };
-for (let row = 0; row < innerHeight; row++) {
+for (let row = 0; row < ScreenHeigth; row++) {
     let drawRaw = document.createElement("div");
     rowContainer.appendChild(drawRaw).className = "row";
+    drawRaw.classList.add(row);
 };
 
 /////// PARTICLES ///////
@@ -439,11 +440,7 @@ let colLine2 = document.querySelector('.col.line__2');
 let rowLine1 = document.querySelector('.row.line__1');
 let rowLine2 = document.querySelector('.row.line__2');
 let bgCol = document.querySelectorAll('.colContainer .col');
-
-
-
-
-
+let bgRow = document.querySelectorAll('.rowContainer .row');
 
 // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
@@ -505,10 +502,15 @@ sm3.addEventListener('mouseout', function() {
     TweenMax.to(rowLine2, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
 })
 
-bgCol.forEach(col => {
-
-    const gridTimeline = gsap.timeline({ paused: true });
-    gridTimeline.to(col, { duration: 1, ease: "power3.inOut", stagger: 0.02 });
+window.addEventListener('load', function() {
+    TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02, delay: 3 });
+    TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.02, delay: 4 });
+    TweenMax.to(bgCol, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.02, delay: 4 });
+    TweenMax.to(bgRow, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.0355555, delay: 3 });
+    TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.0355555, delay: 3 });
+    TweenMax.to(bgRow, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.0355555, delay: 4 });
+    TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 6 });
+    TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 6 });
 })
 
 /////// CLICS EVENTS ///////
@@ -1018,8 +1020,7 @@ function checkScrollDirection(event) {
     }
 }
 
-/////// REVERSE SCROLL ///////
-function checkScrollDirectionIsUp(event) {
+function checkScrollDirectionIsUp(event) { //REVERSE SCROLL
     if (event.wheelDeltaY) {
         return event.wheelDeltaY > 0;
     }
@@ -1149,16 +1150,15 @@ let variation = 0;
 var render = function() {
     requestAnimationFrame(render);
 
-    if (camera.position.z > 2.9) {
+    if (camera.position.z > 2.9) { //START LOGO ROTATION ON CLICK
         logo.rotation.y += .01
         if (logo.rotation.y > Math.PI) {
             logo.rotation.y -= Math.PI * 2
-            console.log(logo.rotation.y)
         }
     }
 
-    particleGeo.vertices.forEach(p => {
-        p.y += 0.002;
+    particleGeo.vertices.forEach(p => { //PARTICLES ANIMATION
+        p.y += 0.0025;
         variation += 0.000005;
         p.x += Math.sin(variation) / 1000
         if (p.y > 9) {
@@ -1167,6 +1167,35 @@ var render = function() {
     });
 
     particleGeo.verticesNeedUpdate = true;
+
+    // window.onmousemove = function(e) { //PARTICLES MOUSE EVENT
+
+    //     var resetCenterX = window.innerWidth / 2;
+    //     var resetCenterY = window.innerHeight / 2;
+
+    //     if (camera.position.z < 2.9) { //CANCEL LOGO ROTATION AT HOME
+    //         var particleRotationTolerance = .025;
+    //         var particlePositionTolerance = .05;
+    //         var logoRotationTolerance = .025;
+
+    //         var centerX = window.innerWidth * 0.5;
+    //         var rotCenterY = window.innerHeight * 0.5;
+    //         var posCenterY = window.innerHeight * -0.5;
+
+    //         particleMesh.rotation.y = (e.clientX - centerX) / centerX * particleRotationTolerance;
+    //         particleMesh.rotation.x = (e.clientY - rotCenterY) / rotCenterY * particleRotationTolerance;
+    //         particleMesh.position.x = (e.clientX - centerX) / centerX * particlePositionTolerance;
+    //         particleMesh.position.y = (e.clientY - posCenterY) / posCenterY * particlePositionTolerance;
+
+    //         logo.rotation.y = (e.clientX - centerX) / centerX * logoRotationTolerance;
+    //         logo.rotation.x = (e.clientY - rotCenterY) / rotCenterY * logoRotationTolerance;
+
+    //         if (logo.rotation.y > Math.PI) {
+    //             logo.rotation.y -= Math.PI * 2
+    //         }
+    //     }
+
+    // };
 
     renderer.render(scene, camera);
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100%;
+            margin: 0 auto;
+            background: brown;
+        }
+        
+        .cursorIndication {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            bottom: 2%;
+            left: 50%;
+            transform: scale(.75);
+        }
+        
+        .line {
+            width: 2px;
+            height: 110px;
+            background: white;
+            position: relative;
+        }
+        
+        .line:before {
+            content: " ";
+            width: 8px;
+            height: 8px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            border-top: white solid 2px;
+            border-left: white solid 2px;
+            left: 50%;
+            top: 7%;
+            position: absolute;
+        }
+        
+        .line:after {
+            content: " ";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            border-bottom: white solid 2px;
+            border-right: white solid 2px;
+            left: 50%;
+            top: 93%;
+            position: absolute;
+        }
+        
+        .line .circle {
+            width: 15px;
+            height: 15px;
+            background: brown;
+            border: 2px solid white;
+            position: absolute;
+            transform: translate(-50%, -50%) rotate(45deg);
+            left: 50%;
+            top: 30%;
+            z-index: 2;
+            animation: circle 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes circle {
+            0% {
+                top: 30%;
+            }
+            100% {
+                top: 70%;
+            }
+        }
+        
+        .line .circleMask {
+            width: 22.5px;
+            height: 22.5px;
+            background: brown;
+            position: absolute;
+            transform: translate(-50%, -50%) rotate(45deg);
+            left: 50%;
+            animation: circle 1.5s ease-in-out infinite alternate;
+        }
+        
+        .text {
+            position: absolute;
+            left: 0;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursorIndication">
+        <div class="line">
+            <span class="circle"></span>
+            <span class="circleMask"></span>
+        </div>
+        <span class="text">SCROLL</span>
+    </div>
+</body>
+
+</html>

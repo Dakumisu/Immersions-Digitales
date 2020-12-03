@@ -71,6 +71,9 @@ main {
     width: 100%;
     height: 100vh;
     z-index: -1;
+    .col {
+        clip-path: inset(100% 0% 0% 0%);
+    }
 }
 
 .rowContainer {
@@ -78,14 +81,17 @@ main {
     width: 100%;
     height: 100vh;
     z-index: -1;
+    .row {
+        clip-path: inset(0% 0% 0% 100%);
+    }
 }
 
 .row {
     width: 100%;
     height: 2px;
-    background: #0d0437;
+    background: #0d0437; //4cc9f0
     margin-top: 20px;
-    opacity: .65;
+    opacity: .75;
     &.line {
         width: 0;
         position: absolute;
@@ -109,7 +115,7 @@ main {
     margin-right: 10px;
     margin-left: 10px;
     display: inline-block;
-    opacity: .65;
+    opacity: .75;
     &.line {
         width: 2px;
         height: 0;
