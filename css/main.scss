@@ -2,11 +2,14 @@
     box-sizing: border-box;
 }
 
+$bleu: #09021e;
+$cyan: #4cc9f0;
+$magenta: #f72585;
 body {
     height: 100vh;
     margin: 0;
     overflow: hidden;
-    background: #09021e;
+    background: $bleu;
 }
 
 canvas {
@@ -27,13 +30,18 @@ main {
         height: 100vh;
         width: 100%;
         position: fixed;
-        color: white;
-        font-size: 5vh;
         .open {
             display: none;
         }
         .close {
             display: flex;
+        }
+        h1 {
+            font-family: "main";
+            text-transform: uppercase;
+            letter-spacing: 0.5vw;
+            color: $cyan;
+            font-size: 6vh;
         }
     }
 }
@@ -42,8 +50,25 @@ main {
     width: 150px;
     height: 50px;
     outline: none;
+    border: none;
+    font-family: "littleTitle";
+    font-size: 1.75vh;
+    letter-spacing: .05vw;
+    background: none;
+    color: $cyan;
+    border: 1px solid $cyan;
+    cursor: pointer;
     // &__story {
     // }
+    &__backHome {
+        width: 8.1%;
+        height: 10%;
+        top: 2%;
+        height: 4.3%;
+        left: .5%;
+        position: absolute;
+        z-index: 2;
+    }
     &__workShop {
         color: white;
         font-size: 2vh;
@@ -100,10 +125,10 @@ main {
         z-index: -1;
         opacity: 0.35;
         &__1 {
-            bottom: 10.4%;
+            bottom: 6.1%;
         }
         &__2 {
-            bottom: 6.1%;
+            bottom: 1.8%;
         }
     }
 }
@@ -124,10 +149,10 @@ main {
         z-index: -1;
         opacity: 0.35;
         &__1 {
-            right: 2.6%;
+            right: 0;
         }
         &__2 {
-            right: 0.3%;
+            right: 0;
         }
     }
 }
@@ -138,20 +163,157 @@ main {
     height: 4.3%;
     position: absolute;
     right: .9%;
-    color: white;
-    font-weight: bold;
+    color: $cyan;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2;
     cursor: pointer;
+    font-family: 'littleTitle';
+    letter-spacing: 2px;
+    overflow: hidden;
+    font-weight: 600;
+    &.neonText {
+        text-shadow: 0px;
+        animation: blink 4s infinite alternate;
+    }
+    @keyframes blink {
+        30% {
+            opacity: 1;
+            text-shadow: 0 0 0 $cyan, 0 0 1px $cyan, 0 0 1px $cyan;
+        }
+        32% {
+            opacity: 0;
+        }
+        33% {
+            opacity: 1;
+        }
+        35% {
+            opacity: 0;
+        }
+        40% {
+            opacity: 1;
+        }
+    }
+    @keyframes inSM {
+        to {
+            transform: translateX(0);
+        }
+    }
+    @keyframes outSM {
+        to {
+            transform: translateX(165%);
+        }
+    }
+    @keyframes outImpairSM {
+        to {
+            transform: translateX(-165%);
+        }
+    }
     &__1 {
         bottom: 1.8%;
+        &.mouseover::after {
+            content: "FB";
+            position: absolute;
+            animation: outSM .5s ease forwards;
+        }
+        &.mouseover::before {
+            content: "FB";
+            position: absolute;
+            transform: translateX(-165%);
+            animation: inSM .5s ease forwards;
+        }
+        &.mouseout::after {
+            content: "FB";
+            position: absolute;
+            animation: inSM .5s ease forwards;
+            transform: translateX(-165%);
+        }
+        &.mouseout::before {
+            content: "FB";
+            position: absolute;
+            animation: outSM .5s ease forwards;
+            transform: translateX(0);
+        }
     }
     &__2 {
         bottom: 6.1%;
+        &.mouseover::after {
+            content: "IG";
+            position: absolute;
+            animation: outImpairSM .5s ease forwards;
+        }
+        &.mouseover::before {
+            content: "IG";
+            position: absolute;
+            transform: translateX(165%);
+            animation: inSM .5s ease forwards;
+        }
+        &.mouseout::after {
+            content: "IG";
+            position: absolute;
+            animation: inSM .5s ease forwards;
+            transform: translateX(165%);
+        }
+        &.mouseout::before {
+            content: "IG";
+            position: absolute;
+            animation: outImpairSM .5s ease forwards;
+            transform: translateX(0);
+        }
     }
     &__3 {
         bottom: 10.4%;
+        &.mouseover::after {
+            content: "IN";
+            position: absolute;
+            animation: outSM .5s ease forwards;
+        }
+        &.mouseover::before {
+            content: "IN";
+            position: absolute;
+            transform: translateX(-165%);
+            animation: inSM .5s ease forwards;
+        }
+        &.mouseout::after {
+            content: "IN";
+            position: absolute;
+            animation: inSM .5s ease forwards;
+            transform: translateX(-165%);
+        }
+        &.mouseout::before {
+            content: "IN";
+            position: absolute;
+            animation: outSM .5s ease forwards;
+            transform: translateX(0);
+        }
     }
+}
+
+////MUSIC BUTTON///
+.musicBtn {
+    width: 8.1%;
+    height: 10%;
+    bottom: 1.8%;
+    height: 4.3%;
+    left: .5%;
+    position: absolute;
+    background: $cyan;
+    opacity: .1;
+    z-index: 3;
+}
+
+@font-face {
+    font-family: "main";
+    src: url("/assets/font/margaret-bold.woff2") format("woff2"), url("/assets/font/margaret-bold.woff") format("woff");
+}
+
+@font-face {
+    font-family: "littleTitle";
+    src: url("/assets/font/syn_nova_regular.woff2") format("woff2"), url("/assets/font/syn_nova_regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "text";
+    src: url("/assets/font/titilliumweb-regular.woff2") format("woff2"), url("/assets/font/titilliumweb-regular.woff") format("woff");
 }

@@ -39,8 +39,6 @@ main .homeContainer {
   height: 100vh;
   width: 100%;
   position: fixed;
-  color: white;
-  font-size: 5vh;
 }
 
 main .homeContainer .open {
@@ -53,10 +51,36 @@ main .homeContainer .close {
   display: flex;
 }
 
+main .homeContainer h1 {
+  font-family: "main";
+  text-transform: uppercase;
+  letter-spacing: 0.5vw;
+  color: #4cc9f0;
+  font-size: 6vh;
+}
+
 .btn {
   width: 150px;
   height: 50px;
   outline: none;
+  border: none;
+  font-family: "littleTitle";
+  font-size: 1.75vh;
+  letter-spacing: .05vw;
+  background: none;
+  color: #4cc9f0;
+  border: 1px solid #4cc9f0;
+  cursor: pointer;
+}
+
+.btn__backHome {
+  width: 8.1%;
+  height: 10%;
+  top: 2%;
+  height: 4.3%;
+  left: .5%;
+  position: absolute;
+  z-index: 2;
 }
 
 .btn__workShop {
@@ -112,7 +136,7 @@ main .homeContainer .close {
   height: 2px;
   background: #0d0437;
   margin-top: 20px;
-  opacity: .65;
+  opacity: .75;
 }
 
 .row.line {
@@ -125,11 +149,11 @@ main .homeContainer .close {
 }
 
 .row.line__1 {
-  bottom: 10.4%;
+  bottom: 6.1%;
 }
 
 .row.line__2 {
-  bottom: 6.1%;
+  bottom: 1.8%;
 }
 
 .col {
@@ -139,7 +163,7 @@ main .homeContainer .close {
   margin-right: 10px;
   margin-left: 10px;
   display: inline-block;
-  opacity: .65;
+  opacity: .75;
 }
 
 .col.line {
@@ -152,11 +176,11 @@ main .homeContainer .close {
 }
 
 .col.line__1 {
-  right: 2.6%;
+  right: 0;
 }
 
 .col.line__2 {
-  right: 0.3%;
+  right: 0;
 }
 
 .sm {
@@ -164,8 +188,7 @@ main .homeContainer .close {
   height: 4.3%;
   position: absolute;
   right: .9%;
-  color: white;
-  font-weight: bold;
+  color: #4cc9f0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -177,17 +200,236 @@ main .homeContainer .close {
           align-items: center;
   z-index: 2;
   cursor: pointer;
+  font-family: 'littleTitle';
+  letter-spacing: 2px;
+  overflow: hidden;
+  font-weight: 600;
+}
+
+.sm.neonText {
+  text-shadow: 0px;
+  -webkit-animation: blink 4s infinite alternate;
+          animation: blink 4s infinite alternate;
+}
+
+@-webkit-keyframes blink {
+  30% {
+    opacity: 1;
+    text-shadow: 0 0 0 #4cc9f0, 0 0 1px #4cc9f0, 0 0 1px #4cc9f0;
+  }
+  32% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  30% {
+    opacity: 1;
+    text-shadow: 0 0 0 #4cc9f0, 0 0 1px #4cc9f0, 0 0 1px #4cc9f0;
+  }
+  32% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes inSM {
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes inSM {
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes outSM {
+  to {
+    -webkit-transform: translateX(165%);
+            transform: translateX(165%);
+  }
+}
+
+@keyframes outSM {
+  to {
+    -webkit-transform: translateX(165%);
+            transform: translateX(165%);
+  }
+}
+
+@-webkit-keyframes outImpairSM {
+  to {
+    -webkit-transform: translateX(-165%);
+            transform: translateX(-165%);
+  }
+}
+
+@keyframes outImpairSM {
+  to {
+    -webkit-transform: translateX(-165%);
+            transform: translateX(-165%);
+  }
 }
 
 .sm__1 {
   bottom: 1.8%;
 }
 
+.sm__1.mouseover::after {
+  content: "FB";
+  position: absolute;
+  -webkit-animation: outSM .5s ease forwards;
+          animation: outSM .5s ease forwards;
+}
+
+.sm__1.mouseover::before {
+  content: "FB";
+  position: absolute;
+  -webkit-transform: translateX(-165%);
+          transform: translateX(-165%);
+  -webkit-animation: inSM .5s ease forwards;
+          animation: inSM .5s ease forwards;
+}
+
+.sm__1.mouseout::after {
+  content: "FB";
+  position: absolute;
+  -webkit-animation: inSM .5s ease forwards;
+          animation: inSM .5s ease forwards;
+  -webkit-transform: translateX(-165%);
+          transform: translateX(-165%);
+}
+
+.sm__1.mouseout::before {
+  content: "FB";
+  position: absolute;
+  -webkit-animation: outSM .5s ease forwards;
+          animation: outSM .5s ease forwards;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
 .sm__2 {
   bottom: 6.1%;
 }
 
+.sm__2.mouseover::after {
+  content: "IG";
+  position: absolute;
+  -webkit-animation: outImpairSM .5s ease forwards;
+          animation: outImpairSM .5s ease forwards;
+}
+
+.sm__2.mouseover::before {
+  content: "IG";
+  position: absolute;
+  -webkit-transform: translateX(165%);
+          transform: translateX(165%);
+  -webkit-animation: inSM .5s ease forwards;
+          animation: inSM .5s ease forwards;
+}
+
+.sm__2.mouseout::after {
+  content: "IG";
+  position: absolute;
+  -webkit-animation: inSM .5s ease forwards;
+          animation: inSM .5s ease forwards;
+  -webkit-transform: translateX(165%);
+          transform: translateX(165%);
+}
+
+.sm__2.mouseout::before {
+  content: "IG";
+  position: absolute;
+  -webkit-animation: outImpairSM .5s ease forwards;
+          animation: outImpairSM .5s ease forwards;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
 .sm__3 {
   bottom: 10.4%;
+}
+
+.sm__3.mouseover::after {
+  content: "IN";
+  position: absolute;
+  -webkit-animation: outSM .5s ease forwards;
+          animation: outSM .5s ease forwards;
+}
+
+.sm__3.mouseover::before {
+  content: "IN";
+  position: absolute;
+  -webkit-transform: translateX(-165%);
+          transform: translateX(-165%);
+  -webkit-animation: inSM .5s ease forwards;
+          animation: inSM .5s ease forwards;
+}
+
+.sm__3.mouseout::after {
+  content: "IN";
+  position: absolute;
+  -webkit-animation: inSM .5s ease forwards;
+          animation: inSM .5s ease forwards;
+  -webkit-transform: translateX(-165%);
+          transform: translateX(-165%);
+}
+
+.sm__3.mouseout::before {
+  content: "IN";
+  position: absolute;
+  -webkit-animation: outSM .5s ease forwards;
+          animation: outSM .5s ease forwards;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.musicBtn {
+  width: 8.1%;
+  height: 10%;
+  bottom: 1.8%;
+  height: 4.3%;
+  left: .5%;
+  position: absolute;
+  background: #4cc9f0;
+  opacity: .1;
+  z-index: 3;
+}
+
+@font-face {
+  font-family: "main";
+  src: url("/assets/font/margaret-bold.woff2") format("woff2"), url("/assets/font/margaret-bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "littleTitle";
+  src: url("/assets/font/syn_nova_regular.woff2") format("woff2"), url("/assets/font/syn_nova_regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "text";
+  src: url("/assets/font/titilliumweb-regular.woff2") format("woff2"), url("/assets/font/titilliumweb-regular.woff") format("woff");
 }
 /*# sourceMappingURL=main.css.map */
