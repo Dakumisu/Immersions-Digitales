@@ -1,10 +1,11 @@
+$bleu: #09021e;
+$cyan: #4cc9f0;
+$magenta: #f72585;
+
 * {
     box-sizing: border-box;
 }
 
-$bleu: #09021e;
-$cyan: #4cc9f0;
-$magenta: #f72585;
 body {
     height: 100vh;
     margin: 0;
@@ -47,8 +48,9 @@ main {
 }
 
 .btn {
-    width: 150px;
-    height: 50px;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px 50px;
     outline: none;
     border: none;
     font-family: "littleTitle";
@@ -58,35 +60,28 @@ main {
     color: $cyan;
     border: 1px solid $cyan;
     cursor: pointer;
-    // &__story {
-    // }
     &__backHome {
-        width: 8.1%;
-        height: 10%;
         top: 2%;
-        height: 4.3%;
         left: .5%;
         position: absolute;
         z-index: 2;
-    }
-    &__workShop {
-        color: white;
-        font-size: 2vh;
-        width: 50px;
-        height: 50px;
-        background: red;
-        display: none;
-    }
-    &__backHome {
         clip-path: inset(0% 100% 0% 0%);
-        z-index: 2;
-        position: absolute;
         &.open {
             pointer-events: all;
         }
         &.close {
             pointer-events: none;
         }
+    }
+    &__Start {
+        transition: .5s ease;
+        &.mouseover{
+padding: 50px 50px;
+        }
+    }
+
+    @keyframes  {
+        
     }
 }
 
