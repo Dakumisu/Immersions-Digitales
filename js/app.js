@@ -682,29 +682,33 @@ document.addEventListener("keypress", function(event) {
 
 
 ///// BUTTON START HOVER /////
-let charsTextBtnStart = btnStart.innerHTML.split('')
+let btnStartText = "Découvrir les ateliers"
+let charsTextBtnStart = btnStartText.split('')
+
+// console.log(charsTextBtnStart)
 
 charsTextBtnStart.forEach(letter => {
-    let truc = btnStart.createElement('span')
-    truc.append(letter)
+    let btnStartchar = document.createElement('span')
+    btnStartchar.innerHTML = letter
+    btnStart.append(btnStartchar)
 });
 
 
-colContainer = document.querySelector('.colContainer')
-rowContainer = document.querySelector('.rowContainer')
+// colContainer = document.querySelector('.colContainer')
+// rowContainer = document.querySelector('.rowContainer')
 
-for (let col = 0; col < screenWidth; col++) {
-    let drawCol = document.createElement("div");
-    colContainer.appendChild(drawCol).classList.add("col");
-    drawCol.classList.add(col);
-};
+// for (let col = 0; col < screenWidth; col++) {
+//     let drawCol = document.createElement("div");
+//     colContainer.appendChild(drawCol).classList.add("col");
+//     drawCol.classList.add(col);
+// };
 
-btnStart.addEventListener('mouseover', function(){
-    charsTextBtnStart.forEach(letter => {
+// btnStart.addEventListener('mouseover', function(){
+//     charsTextBtnStart.forEach(letter => {
 
-        letter.classList.add('mouseover')
-    })
-});
+//         letter.classList.add('mouseover')
+//     })
+// });
 
 
 ///// SCROLL FUNCTIONS /////
