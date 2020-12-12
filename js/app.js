@@ -694,23 +694,6 @@ charsTextBtnStart.forEach(letter => {
 });
 
 
-// colContainer = document.querySelector('.colContainer')
-// rowContainer = document.querySelector('.rowContainer')
-
-// for (let col = 0; col < screenWidth; col++) {
-//     let drawCol = document.createElement("div");
-//     colContainer.appendChild(drawCol).classList.add("col");
-//     drawCol.classList.add(col);
-// };
-
-// btnStart.addEventListener('mouseover', function(){
-//     charsTextBtnStart.forEach(letter => {
-
-//         letter.classList.add('mouseover')
-//     })
-// });
-
-
 ///// SCROLL FUNCTIONS /////
 function scrollUp() {
     if (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.1) {
