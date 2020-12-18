@@ -48,9 +48,8 @@ main {
 }
 
 .btn {
-    width: fit-content;
-    height: fit-content;
-    padding: 20px 50px;
+    width:400px;
+    height: 70px;
     outline: none;
     border: none;
     font-family: "littleTitle";
@@ -60,6 +59,28 @@ main {
     color: $cyan;
     border: 1px solid $cyan;
     cursor: pointer;
+    &__start{
+        overflow: hidden;
+        position: relative;
+        span{
+            transition: .5s ease;
+            opacity: 1;
+      
+            &.before{
+                position: relative;
+               
+            }
+            .mouseover{
+                opacity: 0;
+            }
+            
+            &.before:nth-child(2n+2).mouseover{
+                transition-delay: .5s;
+            }
+    
+        
+        }
+    }
     &__backHome {
         top: 2%;
         left: .5%;
@@ -76,12 +97,8 @@ main {
     &__Start {
         transition: .5s ease;
         &.mouseover{
-padding: 50px 50px;
+            padding: 50px 50px;
         }
-    }
-
-    @keyframes  {
-        
     }
 }
 
@@ -206,7 +223,7 @@ padding: 50px 50px;
         }
     }
     &__1 {
-        bottom: 1.8%;
+        bottom: .9%;
         &.mouseover::after {
             content: "FB";
             position: absolute;
@@ -232,7 +249,7 @@ padding: 50px 50px;
         }
     }
     &__2 {
-        bottom: 6.1%;
+        bottom: 5.5%;
         &.mouseover::after {
             content: "IG";
             position: absolute;
@@ -258,7 +275,7 @@ padding: 50px 50px;
         }
     }
     &__3 {
-        bottom: 10.4%;
+        bottom: 10.1%;
         &.mouseover::after {
             content: "IN";
             position: absolute;
