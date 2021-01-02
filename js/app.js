@@ -1103,6 +1103,13 @@ document.onkeydown = function (e) {
                 functionBtnBackHome();
                 console.log("echap")
             }
+            break;
+        case 13:
+            if (camera.position.z == 2.7 || camera.position.z == 20) {
+                functionBtnStart();
+                console.log("enter")
+            }
+            break;
     }
 };
 
