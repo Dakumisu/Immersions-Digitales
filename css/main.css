@@ -23,6 +23,7 @@ canvas {
   left: 0;
   top: 0;
   pointer-events: none;
+  mix-blend-mode: difference;
 }
 
 #cursor-shape {
@@ -31,15 +32,13 @@ canvas {
   margin-top: -50%;
   margin-left: -50%;
   border-radius: 50%;
-  border: 1px solid #4cc9f0;
-  background: transparent;
+  background: #4cc9f0;
   -webkit-transition: padding .5s ease;
   transition: padding .5s ease;
 }
 
 #cursor-shape.mouseover {
-  background: #09021e83;
-  padding: 40px;
+  padding: 30px;
 }
 
 main {
@@ -86,12 +85,12 @@ main .homeContainer h1 {
 }
 
 .btn {
-  width: 17vw;
-  height: 7vh;
+  width: 15vw;
+  height: 6vh;
   outline: none;
   border: none;
   font-family: "littleTitle";
-  font-size: 2.2vh;
+  font-size: 1.85vh;
   letter-spacing: .15vw;
   background: none;
   color: #4cc9f0;
@@ -108,7 +107,8 @@ main .homeContainer h1 {
           animation: blink 4s infinite alternate;
 }
 
-.btn__start .spanContainerMouseover, .btn__start .spanContainerMouseout {
+.btn__start .spanContainerMouseover,
+.btn__start .spanContainerMouseout {
   position: absolute;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -119,13 +119,14 @@ main .homeContainer h1 {
   width: fit-content;
 }
 
-.btn__start .spanContainerMouseover span, .btn__start .spanContainerMouseout span {
+.btn__start .spanContainerMouseover span,
+.btn__start .spanContainerMouseout span {
   display: inline-block;
 }
 
 .btn__start .spanContainerMouseout span {
-  -webkit-transform: translateY(50px);
-          transform: translateY(50px);
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
 }
 
 .btn__backHome {

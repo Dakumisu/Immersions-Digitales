@@ -1,7 +1,6 @@
 $bleu: #09021e;
 $cyan: #4cc9f0;
 $magenta: #f72585;
-
 * {
     box-sizing: border-box;
     cursor: none!important;
@@ -27,24 +26,22 @@ canvas {
     left: 0;
     top: 0;
     pointer-events: none;
-  }
-  
-  #cursor-shape {
+    mix-blend-mode: difference;
+}
+
+#cursor-shape {
     width: 20px;
     height: 20px;
     margin-top: -50%;
     margin-left: -50%;
     border-radius: 50%;
-    border: 1px solid $cyan;
-    background: transparent;
+    background: $cyan;
     transition: padding .5s ease;
-   
-  }
+}
 
-  #cursor-shape.mouseover{
-    background: #09021e83;
-    padding: 40px;
-  }
+#cursor-shape.mouseover {
+    padding: 30px;
+}
 
 main {
     position: fixed;
@@ -75,38 +72,37 @@ main {
 }
 
 .btn {
-    width:17vw;
-    height: 7vh;
+    width: 15vw;
+    height: 6vh;
     outline: none;
     border: none;
     font-family: "littleTitle";
-    font-size: 2.2vh;
+    font-size: 1.85vh;
     letter-spacing: .15vw;
     background: none;
     color: $cyan;
     border: 1px solid $cyan;
-    &__start{
+    &__start {
         overflow: hidden;
         position: relative;
         .spanContainerMouseout.neonText {
             animation: blink 4s infinite alternate;
         }
-        
- .spanContainerMouseover, .spanContainerMouseout{
-     position: absolute;
-     transform: translate(-50%, -50%);
-     top: 50%;
-     left: 50%;
-     width: fit-content;
- }
- .spanContainerMouseover span,  .spanContainerMouseout span{
- display: inline-block;
- }
-
- .spanContainerMouseout span{
-     transform: translateY(50px);
- }
-
+        .spanContainerMouseover,
+        .spanContainerMouseout {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            width: fit-content;
+        }
+        .spanContainerMouseover span,
+        .spanContainerMouseout span {
+            display: inline-block;
+        }
+        .spanContainerMouseout span {
+            transform: translateY(40px);
+        }
     }
     &__backHome {
         top: 2%;
@@ -123,7 +119,7 @@ main {
     }
     &__Start {
         transition: .5s ease;
-        &.mouseover{
+        &.mouseover {
             padding: 50px 50px;
         }
     }
