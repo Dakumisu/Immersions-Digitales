@@ -422,7 +422,7 @@ let homeContainer = document.querySelector('.homeContainer');
 let h1 = document.querySelector('h1');
 let btnStart = document.querySelector('.btn__start');
 let spanContainerMouseOver = document.querySelector('.spanContainerMouseover')
-let spanContainerMouseOut = document.querySelector('.spanContainerMouseout')
+let spanContainerMouseOut = document.querySelector('.spanContainerMouseout') 
 let btnBackHome = document.querySelector('.btn__backHome');
 let canvas = document.querySelector('canvas');
 let sm = document.querySelectorAll('.sm');
@@ -436,6 +436,7 @@ let rowLine1 = document.querySelector('.row.line__1');
 let rowLine2 = document.querySelector('.row.line__2');
 let bgCol = document.querySelectorAll('.colContainer .col');
 let bgRow = document.querySelectorAll('.rowContainer .row');
+let cursorShape = document.querySelector('#cursor-shape');
 
 // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
@@ -460,7 +461,7 @@ sm1.classList.add('mouseout')
 sm2.classList.add('mouseout')
 sm3.classList.add('mouseout')
 ///////////////////////////////////////////////////////////////////////////////////////////////////////// ue /////////////////////////////////////////////////////////////////////////////////
-sm1.addEventListener('mouseover', function () { //POINTER SOCIAL MEDIA 1
+sm1.addEventListener('mouseover', function () { // POINTER SOCIAL MEDIA 1
     TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
     TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
     TweenMax.to(rowLine1, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
@@ -480,7 +481,7 @@ sm1.addEventListener('mouseout', function () {
     sm1.classList.remove('neonText')
 })
 
-sm2.addEventListener('mouseover', function () { //POINTER SOCIAL MEDIA 2
+sm2.addEventListener('mouseover', function () { // POINTER SOCIAL MEDIA 2
     TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
     TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
     TweenMax.to(rowLine1, 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
@@ -500,7 +501,7 @@ sm2.addEventListener('mouseout', function () {
     sm2.classList.remove('neonText')
 })
 
-sm3.addEventListener('mouseover', function () { //POINTER SOCIAL MEDIA 3
+sm3.addEventListener('mouseover', function () { // POINTER SOCIAL MEDIA 3
     TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
     TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
     TweenMax.to(rowLine1, 1, { width: '100%', bottom: "14.7%", ease: "power3.inOut" })
@@ -520,7 +521,7 @@ sm3.addEventListener('mouseout', function () {
     sm3.classList.remove('neonText')
 })
 
-musicBtn.addEventListener('mouseover', function () { //POINTER MUSIC BUTTON
+musicBtn.addEventListener('mouseover', function () { // POINTER MUSIC BUTTON
     TweenMax.to(colLine1, 1, { height: '100vh', right: "90.9%", ease: "power3.inOut" })
     TweenMax.to(colLine2, 1, { height: '100vh', right: "98.8%", ease: "power3.inOut" })
     TweenMax.to(rowLine1, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
@@ -534,7 +535,7 @@ musicBtn.addEventListener('mouseout', function () {
     TweenMax.to(rowLine2, 1, { width: '0%', bottom: "1.8%", ease: "power3.inOut" })
 })
 
-btnBackHome.addEventListener('mouseover', function () { //POINTER MUSIC BUTTON
+btnBackHome.addEventListener('mouseover', function () { // POINTER MUSIC BUTTON
     TweenMax.to(colLine1, 1, { height: '100vh', right: "90.85%", ease: "power3.inOut" })
     TweenMax.to(colLine2, 1, { height: '100vh', right: "98.85%", ease: "power3.inOut" })
     TweenMax.to(rowLine1, 1, { width: '100%', bottom: "97.9%", ease: "power3.inOut" })
@@ -671,12 +672,18 @@ btnStart.addEventListener('click', function () {
 })
 
 btnStart.addEventListener('mouseover', function () {
-    let btnStartSpan = document.querySelectorAll('.btn__start span')
-    btnStartSpan.forEach(span => {
-        span.classList.add('mouseover');
+    TweenMax.to(".spanContainerMouseover span", { duration: .5, translateY: -50, stagger: 0.01, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerMouseout span", { duration: .5, translateY: 0, stagger: 0.01, ease: "power2.inOut" });
+    spanContainerMouseOut.classList.add('neonText');
+    cursorShape.classList.add('mouseover');
+ })
 
-    })
-})
+ btnStart.addEventListener('mouseout', function () {
+    TweenMax.to(".spanContainerMouseover span", { duration: .5, translateY: 0, stagger: 0.01, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerMouseout span", { duration: .5, translateY: 50, stagger: 0.01, ease: "power2.inOut" });
+    spanContainerMouseOut.classList.remove('neonText');
+    cursorShape.classList.remove('mouseover');
+ })
 
 document.addEventListener("keypress", function (event) {
     if (event.keyCode === 13 && camera.position.z == 20) {
@@ -686,22 +693,89 @@ document.addEventListener("keypress", function (event) {
 
 
 ///// BUTTON START HOVER /////
-let btnStartText = "Découvrir les ateliers"
+let btnStartText = "Découvrir les ateliers"
 let charsTextBtnStart = btnStartText.split('')
 
 charsTextBtnStart.forEach(letter => {
     let btnStartchar = document.createElement('span')
-    btnStartchar.classList.add('before')
     btnStartchar.innerHTML = letter
     spanContainerMouseOver.append(btnStartchar)
 });
 
 charsTextBtnStart.forEach(letter => {
     let btnStartchar = document.createElement('span')
-    btnStartchar.classList.add('after')
     btnStartchar.innerHTML = letter
     spanContainerMouseOut.append(btnStartchar)
 });
+
+///// CUSTOM CURSOR /////
+const pixelRatio = window.devicePixelRatio;
+
+Math.dist = (dx, dy) => {
+    return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
+}
+
+class Cursor {
+    constructor() {
+        this.container = window["cursor"];
+        this.shape = window["cursor-shape"];
+        this.translation = {x:1,y:1};
+        this.mouse =  {x:window.innerWidth/2,y:window.innerHeight/2};
+        this.precision = 2;
+        this.scale = 1;
+        this.rotation = 1;
+        this.friction = 0.1;
+        this.animate();
+        this.events();
+    }
+
+    events() {
+        document.addEventListener('mousemove', (e) => {
+					this.mouse.x = e.clientX * pixelRatio;
+					this.mouse.y = e.clientY * pixelRatio;
+				}, false);
+    }
+
+    animate() {
+        requestAnimationFrame(this.animate.bind(this));
+        this.render();
+    }
+
+    speed_morph() {
+        const dist = Math.dist(this.dx, this.dy);
+        const min = 1;
+        const max_distance = 800;
+        const total = dist / max_distance;
+        return Number(Math.min(total, min).toFixed(2));
+    }
+
+    update() {
+        const speed_morph = this.speed_morph(this.dx, this.dy);
+        this.scale += (speed_morph - this.scale) * this.friction;
+
+        this.translation.x += this.dx * this.friction;
+        this.translation.y += this.dy * this.friction;
+
+        this.rotation = Math.atan2(this.dy, this.dx) * 180 / Math.PI;
+
+    }
+
+    render() {
+        this.update();
+        this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
+        this.shape.style.transform = 'rotate(' + this.rotation.toFixed(this.precision) + 'deg) ' + 'scale(' + (1 + this.scale) + ', ' + (1 - this.scale) + ')';
+    }
+
+    get dx() {
+        return this.mouse.x - this.translation.x;
+    }
+
+    get dy() {
+        return this.mouse.y - this.translation.y;
+    }
+}
+
+const _cursor = new Cursor();
 
 
 ///// SCROLL FUNCTIONS /////
@@ -1103,13 +1177,6 @@ document.onkeydown = function (e) {
                 functionBtnBackHome();
                 console.log("echap")
             }
-            break;
-        case 13:
-            if (camera.position.z == 2.7 || camera.position.z == 20) {
-                functionBtnStart();
-                console.log("enter")
-            }
-            break;
     }
 };
 

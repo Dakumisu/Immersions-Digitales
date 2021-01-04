@@ -1,6 +1,7 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  cursor: none !important;
 }
 
 body {
@@ -14,6 +15,31 @@ canvas {
   display: block;
   position: absolute;
   z-index: -1;
+}
+
+#cursor {
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+#cursor-shape {
+  width: 20px;
+  height: 20px;
+  margin-top: -50%;
+  margin-left: -50%;
+  border-radius: 50%;
+  border: 1px solid #4cc9f0;
+  background: transparent;
+  -webkit-transition: padding .5s ease;
+  transition: padding .5s ease;
+}
+
+#cursor-shape.mouseover {
+  background: #09021e83;
+  padding: 40px;
 }
 
 main {
@@ -60,17 +86,16 @@ main .homeContainer h1 {
 }
 
 .btn {
-  width: 400px;
-  height: 70px;
+  width: 17vw;
+  height: 7vh;
   outline: none;
   border: none;
   font-family: "littleTitle";
-  font-size: 1.75vh;
-  letter-spacing: .05vw;
+  font-size: 2.2vh;
+  letter-spacing: .15vw;
   background: none;
   color: #4cc9f0;
   border: 1px solid #4cc9f0;
-  cursor: pointer;
 }
 
 .btn__start {
@@ -78,23 +103,29 @@ main .homeContainer h1 {
   position: relative;
 }
 
-.btn__start span {
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
-  opacity: 1;
+.btn__start .spanContainerMouseout.neonText {
+  -webkit-animation: blink 4s infinite alternate;
+          animation: blink 4s infinite alternate;
 }
 
-.btn__start span.before {
-  position: relative;
+.btn__start .spanContainerMouseover, .btn__start .spanContainerMouseout {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
-.btn__start span .mouseover {
-  opacity: 0;
+.btn__start .spanContainerMouseover span, .btn__start .spanContainerMouseout span {
+  display: inline-block;
 }
 
-.btn__start span.before:nth-child(2n+2).mouseover {
-  -webkit-transition-delay: .5s;
-          transition-delay: .5s;
+.btn__start .spanContainerMouseout span {
+  -webkit-transform: translateY(50px);
+          transform: translateY(50px);
 }
 
 .btn__backHome {
@@ -215,7 +246,6 @@ main .homeContainer h1 {
       -ms-flex-align: center;
           align-items: center;
   z-index: 2;
-  cursor: pointer;
   font-family: 'littleTitle';
   letter-spacing: 2px;
   overflow: hidden;
@@ -231,7 +261,7 @@ main .homeContainer h1 {
 @-webkit-keyframes blink {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #4cc9f0, 0 0 1px #4cc9f0, 0 0 1px #4cc9f0;
+    text-shadow: 0 0 0 #4cc9f0, 0 0 0.1px #4cc9f0, 0 0 0.1px #4cc9f0;
   }
   32% {
     opacity: 0;
@@ -250,7 +280,7 @@ main .homeContainer h1 {
 @keyframes blink {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #4cc9f0, 0 0 1px #4cc9f0, 0 0 1px #4cc9f0;
+    text-shadow: 0 0 0 #4cc9f0, 0 0 0.1px #4cc9f0, 0 0 0.1px #4cc9f0;
   }
   32% {
     opacity: 0;
