@@ -708,6 +708,7 @@ charsTextBtnStart.forEach(letter => {
     spanContainerMouseOut.append(btnStartchar)
 });
 
+
 ///// CUSTOM CURSOR /////
 const pixelRatio = window.devicePixelRatio;
 
@@ -720,11 +721,11 @@ class Cursor {
         this.container = window["cursor"];
         this.shape = window["cursor-shape"];
         this.translation = {x:1,y:1};
-        this.mouse =  {x:window.innerWidth/2,y:window.innerHeight/2};
+        this.mouse = {x:window.innerWidth/2,y:window.innerHeight/2};
         this.precision = 2;
         this.scale = 1;
         this.rotation = 1;
-        this.friction = 0.1;
+        this.friction = .14;
         this.animate();
         this.events();
     }
