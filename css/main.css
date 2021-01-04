@@ -76,12 +76,26 @@ main .homeContainer .close {
   display: flex;
 }
 
-main .homeContainer h1 {
-  font-family: "main";
-  text-transform: uppercase;
-  letter-spacing: 0.5vw;
-  color: #4cc9f0;
-  font-size: 6vh;
+main .homeContainer .title {
+  width: 50vw;
+  position: relative;
+}
+
+main .homeContainer .neon_2020 {
+  position: absolute;
+  width: 50vw;
+  fill: none;
+  stroke: #4cc9f0;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+  opacity: .2;
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+
+main .homeContainer .neon_2020-a {
+  stroke: #f72585;
+  opacity: .7;
 }
 
 .btn {

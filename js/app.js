@@ -438,6 +438,18 @@ let bgCol = document.querySelectorAll('.colContainer .col');
 let bgRow = document.querySelectorAll('.rowContainer .row');
 let cursorShape = document.querySelector('#cursor-shape');
 
+setTimeout(function() {
+    anime({
+        targets: '.path_2020',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 3000,
+        delay: function(el, i) { return i * 300 },
+        direction: 'alternate',
+        loop: true
+    });
+}, 3000)
+
 // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
 // materialPlane1.on('touchstart', function(ev) {});
