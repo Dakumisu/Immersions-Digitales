@@ -419,7 +419,7 @@ scene.add(particleMesh);
 
 /////// VARIABLES EVENTS ///////
 let homeContainer = document.querySelector('.homeContainer');
-let h1 = document.querySelector('h1');
+let h1 = document.querySelector('.title');
 let btnStart = document.querySelector('.btn__start');
 let spanContainerMouseOver = document.querySelector('.spanContainerMouseover')
 let spanContainerMouseOut = document.querySelector('.spanContainerMouseout')
@@ -438,17 +438,17 @@ let bgCol = document.querySelectorAll('.colContainer .col');
 let bgRow = document.querySelectorAll('.rowContainer .row');
 let cursorShape = document.querySelector('#cursor-shape');
 
-setTimeout(function() {
-    anime({
-        targets: '.path_2020',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'easeInOutSine',
-        duration: 3000,
-        delay: function(el, i) { return i * 300 },
-        direction: 'alternate',
-        loop: true
-    });
-}, 3000)
+// setTimeout(function() {
+//     anime({
+//         targets: '.path_2020',
+//         strokeDashoffset: [anime.setDashoffset, 0],
+//         easing: 'easeInOutSine',
+//         duration: 3000,
+//         delay: function(el, i) { return i * 300 },
+//         direction: 'alternate',
+//         loop: true
+//     });
+// }, 3000)
 
 // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
@@ -736,7 +736,7 @@ class Cursor {
         this.precision = 2;
         this.scale = 1;
         this.rotation = 1;
-        this.friction = .14;
+        this.friction = .15;
         this.animate();
         this.events();
     }

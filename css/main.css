@@ -79,6 +79,165 @@ main .homeContainer .close {
 main .homeContainer .title {
   width: 50vw;
   position: relative;
+  -webkit-animation: blink_2 4s infinite alternate;
+          animation: blink_2 4s infinite alternate;
+}
+
+main .homeContainer .title path, main .homeContainer .title circle, main .homeContainer .title line {
+  fill: none;
+  stroke: #4CC9F0;
+  stroke-width: 1;
+  stroke-miterlimit: 10;
+  stroke-dashoffset: -1000;
+  stroke-dasharray: 1000;
+}
+
+main .homeContainer .title path, main .homeContainer .title circle {
+  -webkit-animation: title 8s 1 forwards ease-in-out;
+          animation: title 8s 1 forwards ease-in-out;
+}
+
+main .homeContainer .title line {
+  -webkit-animation: line 7.5s 1 forwards ease-in-out;
+          animation: line 7.5s 1 forwards ease-in-out;
+}
+
+@-webkit-keyframes title {
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1;
+    fill: #4cc9f0;
+  }
+  100% {
+    fill: #4cc9f0;
+    stroke-dashoffset: 0;
+    stroke-width: 0px;
+  }
+}
+
+@keyframes title {
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1;
+    fill: #4cc9f0;
+  }
+  100% {
+    fill: #4cc9f0;
+    stroke-dashoffset: 0;
+    stroke-width: 0px;
+  }
+}
+
+@-webkit-keyframes line {
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
+  }
+}
+
+@keyframes line {
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
+  }
+}
+
+@-webkit-keyframes blink_2 {
+  30% {
+    opacity: 1;
+    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
+            filter: drop-shadow(0 0 5px #4cc9f0);
+  }
+  32% {
+    opacity: .8;
+  }
+  33% {
+    opacity: 1;
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+  }
+  35% {
+    opacity: .8;
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
+            filter: drop-shadow(0 0 5px #4cc9f0);
+  }
+  50% {
+    opacity: .8;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink_2 {
+  30% {
+    opacity: 1;
+    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
+            filter: drop-shadow(0 0 5px #4cc9f0);
+  }
+  32% {
+    opacity: .8;
+  }
+  33% {
+    opacity: 1;
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+  }
+  35% {
+    opacity: .8;
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
+            filter: drop-shadow(0 0 5px #4cc9f0);
+  }
+  50% {
+    opacity: .8;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 main .homeContainer .neon_2020 {

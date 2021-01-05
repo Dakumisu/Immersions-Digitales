@@ -1,6 +1,7 @@
 $bleu: #09021e;
 $cyan: #4cc9f0;
 $magenta: #f72585;
+
 * {
     box-sizing: border-box;
     cursor: none!important;
@@ -67,6 +68,83 @@ main {
         .title {
             width: 50vw;
             position: relative;
+            animation: blink_2 4s infinite alternate;
+            path, circle, line {
+                fill: none;
+                stroke: #4CC9F0;
+                stroke-width: 1;
+                stroke-miterlimit: 10;
+                stroke-dashoffset: -1000;
+                stroke-dasharray: 1000;
+            }
+            path, circle {
+                animation: title 8s 1 forwards ease-in-out;
+            }
+            line {
+                animation: line 7.5s 1 forwards ease-in-out;
+            }
+
+            @keyframes title {
+                80% {
+                    stroke-dashoffset: 0;
+                    fill: transparent;
+                }
+                85% {
+                    fill: transparent;
+                    stroke-width: 1;
+                    fill: $cyan;
+                }
+                100% {
+                    fill: $cyan;
+                    stroke-dashoffset: 0;
+                    stroke-width: 0px;
+                }
+            }
+            @keyframes line {
+                80% {
+                    stroke-dashoffset: 0;
+                    fill: transparent;
+                }
+                85% {
+                    fill: transparent;
+                    stroke-width: 1;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                    stroke-width: 4px;
+                }
+            }
+            @keyframes blink_2 {
+                30% {
+                    opacity: 1;
+                    filter: drop-shadow(0 0 5px $cyan);
+                }
+                32% {
+                    opacity: .8;
+                }
+                33% {
+                    opacity: 1;
+                    filter: blur(2px);
+                }
+                35% {
+                    opacity: .8;
+                    filter: blur(0px);
+                    filter: drop-shadow(0 0 5px $cyan);
+                }
+                50% {
+                    opacity: .8;
+                }
+                60% {
+                    opacity: 1;
+                }
+                80% {
+                    opacity: 1;
+                    filter: drop-shadow(0 0 3px $cyan);
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
         }
         .neon_2020 {
             position: absolute;
@@ -145,6 +223,7 @@ main {
         }
     }
 }
+
 
 ////GRID WITH INTERACTIONS///
 .colContainer {
