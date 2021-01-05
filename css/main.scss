@@ -37,7 +37,7 @@ canvas {
     margin-left: -50%;
     border-radius: 50%;
     background: $cyan;
-    transition: padding .5s ease;
+    transition: padding .75s cubic-bezier(.25, 0, 0, 1);
 }
 
 #cursor-shape.mouseover {
@@ -178,14 +178,20 @@ main {
     font-family: "littleTitle";
     font-size: 1.85vh;
     letter-spacing: .15vw;
-    background: none;
+    background: $bleu;
     color: $cyan;
     border: 1px solid $cyan;
     &__start {
         overflow: hidden;
         position: relative;
+        transition: .75s cubic-bezier(.25, 0, 0, 1);
+        &:hover {
+            background: $cyan;
+            color: $bleu;
+            border: 1px solid $bleu;
+        }
         .spanContainerMouseout.neonText {
-            animation: blink 4s infinite alternate;
+            animation: blinkBtn 4s infinite alternate;
         }
         .spanContainerMouseover,
         .spanContainerMouseout {
@@ -193,11 +199,14 @@ main {
             transform: translate(-50%, -50%);
             top: 50%;
             left: 50%;
-            width: fit-content;
+            width: 100%;
+            height: 100%;
+            clip-path: inset(35% 0 35% 0);
         }
         .spanContainerMouseover span,
         .spanContainerMouseout span {
             display: inline-block;
+            line-height: 6vh;
         }
         .spanContainerMouseout span {
             transform: translateY(40px);
@@ -214,12 +223,6 @@ main {
         }
         &.close {
             pointer-events: none;
-        }
-    }
-    &__Start {
-        transition: .5s ease;
-        &.mouseover {
-            padding: 50px 50px;
         }
     }
 }
@@ -251,7 +254,7 @@ main {
     height: 2px;
     background: #0d0437; //4cc9f0
     margin-top: 20px;
-    opacity: .75;
+    opacity: .65;
     &.line {
         width: 0;
         position: absolute;
@@ -275,7 +278,7 @@ main {
     margin-right: 10px;
     margin-left: 10px;
     display: inline-block;
-    opacity: .75;
+    opacity: .65;
     &.line {
         width: 2px;
         height: 0;
@@ -314,7 +317,25 @@ main {
     @keyframes blink {
         30% {
             opacity: 1;
-            text-shadow: 0 0 0 $cyan, 0 0 .1px $cyan, 0 0 .1px $cyan;
+            text-shadow: 0 0 0 $cyan, 0 0 2px $cyan, 0 0 2px $cyan;
+        }
+        32% {
+            opacity: 0;
+        }
+        33% {
+            opacity: 1;
+        }
+        35% {
+            opacity: 0;
+        }
+        40% {
+            opacity: 1;
+        }
+    }
+    @keyframes blinkBtn {
+        30% {
+            opacity: 1;
+            text-shadow: 0 0 0 $bleu, 0 0 1px $bleu, 0 0 1px $bleu;
         }
         32% {
             opacity: 0;
