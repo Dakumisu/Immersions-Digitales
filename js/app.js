@@ -479,7 +479,7 @@ scene.add(particleMesh);
 
 /////// VARIABLES EVENTS ///////
 let homeContainer = document.querySelector('.homeContainer');
-let h1 = document.querySelector('.title');
+let titlesvg = document.querySelector('.title');
 let btnStart = document.querySelector('.btn__start');
 let spanContainerMouseOver = document.querySelector('.spanContainerMouseover')
 let spanContainerMouseOut = document.querySelector('.spanContainerMouseout')
@@ -640,7 +640,7 @@ function functionBtnBackHome() {
         //CAMERA ANIM
     gsap.to(camera.position, 1.5, { z: 2.7, delay: .25, ease: "power3.inOut" })
         //HTML ELEMENTS ANIM
-    TweenMax.to(h1, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
+    TweenMax.to(titlesvg, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
     TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
     TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
         //PLANE ROTATION Z ANIM
@@ -708,7 +708,7 @@ function functionBtnStart() {
         //CAMERA ANIM
     gsap.to(camera.position, 1.5, { z: 3.7, ease: "power3.inOut" })
         //HTML ELEMENTS ANIM
-    TweenMax.to(h1, 1, { opacity: 0, scale: 1.3, letterSpacing: '1vw', ease: "power3.inOut" })
+    TweenMax.to(titlesvg, 1, { opacity: 0, scale: 1.3, letterSpacing: '1vw', ease: "power3.inOut" })
     TweenMax.to(btnStart, 1, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
     TweenMax.to(btnBackHome, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         //PLANE ROTATION Z ANIM
@@ -865,7 +865,7 @@ function scrollUp() {
             //CAMERA ANIM
         gsap.to(camera.position, 1.5, { z: 2.7, ease: "power3.inOut" })
             //HTML ELEMENTS ANIM
-        TweenMax.to(h1, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
+        TweenMax.to(titlesvg, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
             //PLANES ROTATION Z ANIM
@@ -1565,7 +1565,7 @@ function scrollDown() {
             //CAMERA ANIM
         gsap.to(camera.position, 1.5, { z: 2.7, ease: "power3.inOut" })
             //HTML ELEMENTS ANIM
-        TweenMax.to(h1, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
+        TweenMax.to(titlesvg, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
             //PLANES ROTATION Z ANIM
