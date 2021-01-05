@@ -61,13 +61,34 @@ main {
         .close {
             display: flex;
         }
-        h1 {
-            font-family: "main";
-            text-transform: uppercase;
-            letter-spacing: 0.5vw;
-            color: $cyan;
-            font-size: 6vh;
+        // .titleContainer {
+        //     position: relative;
+        // }
+        .title {
+            width: 50vw;
+            position: relative;
         }
+        .neon_2020 {
+            position: absolute;
+            width: 50vw;
+            fill: none;
+            stroke: $cyan;
+            stroke-miterlimit: 10;
+            stroke-width: 2px;
+            opacity: .2;
+            transform: translateY(-50px);
+            &-a {
+                stroke: $magenta;
+                opacity: .7;
+            }
+        }
+        // h1 {
+        //     font-family: "main";
+        //     text-transform: uppercase;
+        //     letter-spacing: 0.5vw;
+        //     color: $cyan;
+        //     font-size: 6vh;
+        // }
     }
 }
 
