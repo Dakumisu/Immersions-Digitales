@@ -769,12 +769,6 @@ btnStart.addEventListener('mouseout', function() {
     cursorShape.classList.remove('mouseover');
 })
 
-document.addEventListener("keypress", function(event) {
-    if (event.keyCode === 13 && camera.position.z == 20) {
-        functionBtnStart();
-    }
-});
-
 
 ///// BUTTON START HOVER /////
 let btnStartText = "Découvrir les ateliers"
