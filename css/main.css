@@ -83,6 +83,13 @@ main .homeContainer .title {
           animation: blink_2 4s infinite alternate;
 }
 
+main .homeContainer .littleTitle {
+  width: 7vw;
+  position: absolute;
+  right: 2vw;
+  top: 2.2vh;
+}
+
 main .homeContainer .title path, main .homeContainer .title circle, main .homeContainer .title line {
   fill: none;
   stroke: #4CC9F0;
@@ -92,58 +99,88 @@ main .homeContainer .title path, main .homeContainer .title circle, main .homeCo
   stroke-dasharray: 1000;
 }
 
-main .homeContainer .title path, main .homeContainer .title circle {
-  -webkit-animation: title 8s 1 forwards ease-in-out;
-          animation: title 8s 1 forwards ease-in-out;
+main .homeContainer .testPath {
+  -webkit-animation: title 10s forwards ease-in-out;
+          animation: title 10s forwards ease-in-out;
 }
 
-main .homeContainer .title line {
-  -webkit-animation: line 7.5s 1 forwards ease-in-out;
-          animation: line 7.5s 1 forwards ease-in-out;
+main .homeContainer .testLine {
+  -webkit-animation: line 8s forwards ease-in-out;
+          animation: line 8s forwards ease-in-out;
+}
+
+main .homeContainer .testPath2 {
+  -webkit-animation: title2 8s forwards ease-in-out;
+          animation: title2 8s forwards ease-in-out;
+}
+
+main .homeContainer .testLine2 {
+  -webkit-animation: line2 7.5s forwards ease-in-out;
+          animation: line2 7.5s forwards ease-in-out;
 }
 
 @-webkit-keyframes title {
-  80% {
+  0% {
+    stroke-width: 1;
+    stroke-dashoffset: -1000;
+  }
+  40% {
     stroke-dashoffset: 0;
     fill: transparent;
   }
-  85% {
-    fill: transparent;
+  45% {
     stroke-width: 1;
     fill: #4cc9f0;
   }
-  100% {
+  70% {
     fill: #4cc9f0;
     stroke-dashoffset: 0;
     stroke-width: 0px;
+  }
+  100% {
+    fill: #4cc9f0;
   }
 }
 
 @keyframes title {
-  80% {
+  0% {
+    stroke-width: 1;
+    stroke-dashoffset: -1000;
+  }
+  40% {
     stroke-dashoffset: 0;
     fill: transparent;
   }
-  85% {
-    fill: transparent;
+  45% {
     stroke-width: 1;
     fill: #4cc9f0;
   }
-  100% {
+  70% {
     fill: #4cc9f0;
     stroke-dashoffset: 0;
     stroke-width: 0px;
   }
+  100% {
+    fill: #4cc9f0;
+  }
 }
 
 @-webkit-keyframes line {
-  80% {
+  0% {
+    stroke-width: 1;
+    stroke-dashoffset: -1000;
+  }
+  40% {
     stroke-dashoffset: 0;
     fill: transparent;
   }
-  85% {
+  45% {
     fill: transparent;
     stroke-width: 1;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
   }
   100% {
     stroke-dashoffset: 0;
@@ -152,13 +189,21 @@ main .homeContainer .title line {
 }
 
 @keyframes line {
-  80% {
+  0% {
+    stroke-width: 1;
+    stroke-dashoffset: -1000;
+  }
+  40% {
     stroke-dashoffset: 0;
     fill: transparent;
   }
-  85% {
+  45% {
     fill: transparent;
     stroke-width: 1;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
   }
   100% {
     stroke-dashoffset: 0;
@@ -166,32 +211,113 @@ main .homeContainer .title line {
   }
 }
 
+@-webkit-keyframes title2 {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-width: 1px;
+    fill: #4cc9f0;
+  }
+  10% {
+    fill: transparent;
+  }
+  80% {
+    stroke-dashoffset: -1000;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1px;
+  }
+  100% {
+    fill: transparent;
+    stroke-dashoffset: -1000;
+    stroke-width: 0px;
+  }
+}
+
+@keyframes title2 {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-width: 1px;
+    fill: #4cc9f0;
+  }
+  10% {
+    fill: transparent;
+  }
+  80% {
+    stroke-dashoffset: -1000;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1px;
+  }
+  100% {
+    fill: transparent;
+    stroke-dashoffset: -1000;
+    stroke-width: 0px;
+  }
+}
+
+@-webkit-keyframes line2 {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
+  }
+  10% {
+    stroke-width: 1px;
+  }
+  80% {
+    stroke-dashoffset: -1000;
+  }
+  85% {
+    stroke-width: 1px;
+  }
+  100% {
+    stroke-dashoffset: -1000;
+    stroke-width: 0px;
+  }
+}
+
+@keyframes line2 {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
+  }
+  10% {
+    stroke-width: 1px;
+  }
+  80% {
+    stroke-dashoffset: -1000;
+  }
+  85% {
+    stroke-width: 1px;
+  }
+  100% {
+    stroke-dashoffset: -1000;
+    stroke-width: 0px;
+  }
+}
+
 @-webkit-keyframes blink_2 {
   30% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
-            filter: drop-shadow(0 0 5px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 7px #4cc9f0);
+            filter: drop-shadow(0 0 7px #4cc9f0);
   }
   32% {
-    opacity: .8;
+    opacity: .9;
   }
   33% {
     opacity: 1;
-    -webkit-filter: blur(2px);
-            filter: blur(2px);
   }
   35% {
-    opacity: .8;
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
+    opacity: .9;
     -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
             filter: drop-shadow(0 0 5px #4cc9f0);
   }
   50% {
     opacity: .8;
-  }
-  60% {
-    opacity: 1;
   }
   80% {
     opacity: 1;
@@ -206,29 +332,22 @@ main .homeContainer .title line {
 @keyframes blink_2 {
   30% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
-            filter: drop-shadow(0 0 5px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 7px #4cc9f0);
+            filter: drop-shadow(0 0 7px #4cc9f0);
   }
   32% {
-    opacity: .8;
+    opacity: .9;
   }
   33% {
     opacity: 1;
-    -webkit-filter: blur(2px);
-            filter: blur(2px);
   }
   35% {
-    opacity: .8;
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
+    opacity: .9;
     -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
             filter: drop-shadow(0 0 5px #4cc9f0);
   }
   50% {
     opacity: .8;
-  }
-  60% {
-    opacity: 1;
   }
   80% {
     opacity: 1;

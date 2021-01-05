@@ -479,7 +479,14 @@ scene.add(particleMesh);
 
 /////// VARIABLES EVENTS ///////
 let homeContainer = document.querySelector('.homeContainer');
-let titlesvg = document.querySelector('.title');
+let titleSvg = document.querySelector('.title');
+let titleSvgPath = document.querySelectorAll('.title path');
+let titleSvgCircle = document.querySelector('.title circle');
+let titleSvgLine = document.querySelector('.title line');
+let littleTitleSvg = document.querySelector('.littleTitle');
+let littleTitleSvgPath = document.querySelectorAll('.littleTitle path');
+let littleTitleSvgCircle = document.querySelector('.littleTitle circle');
+let littleTitleSvgLine = document.querySelector('.littleTitle line');
 let btnStart = document.querySelector('.btn__start');
 let spanContainerMouseOver = document.querySelector('.spanContainerMouseover')
 let spanContainerMouseOut = document.querySelector('.spanContainerMouseout')
@@ -534,92 +541,92 @@ sm2.classList.add('mouseout')
 sm3.classList.add('mouseout')
 
 sm1.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 1
-    TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "1%", ease: "power3.inOut" })
+    // TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
+    // TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
+    // TweenMax.to(rowLine1, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
+    // TweenMax.to(rowLine2, 1, { width: '100%', bottom: "1%", ease: "power3.inOut" })
     sm1.classList.add('mouseover')
     sm1.classList.remove('mouseout')
     sm1.classList.add('neonText')
 })
 
 sm1.addEventListener('mouseout', function() {
-    TweenMax.to(colLine1, 1, { height: '0', right: '2.6%', ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '0', right: '0.3%', ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '0', bottom: "1.2%", ease: "power3.inOut" })
+    // TweenMax.to(colLine1, 1, { height: '0', right: '2.6%', ease: "power3.inOut" })
+    // TweenMax.to(colLine2, 1, { height: '0', right: '0.3%', ease: "power3.inOut" })
+    // TweenMax.to(rowLine1, 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
+    // TweenMax.to(rowLine2, 1, { width: '0', bottom: "1.2%", ease: "power3.inOut" })
     sm1.classList.add('mouseout')
     sm1.classList.remove('mouseover')
     sm1.classList.remove('neonText')
 })
 
 sm2.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 2
-    TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
+    // TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
+    // TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
+    // TweenMax.to(rowLine1, 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
+    // TweenMax.to(rowLine2, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
     sm2.classList.add('mouseover')
     sm2.classList.remove('mouseout')
     sm2.classList.add('neonText')
 })
 
 sm2.addEventListener('mouseout', function() {
-    TweenMax.to(colLine1, 1, { height: '0', right: '2.6%', ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '0', right: '0.3%', ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
+    // TweenMax.to(colLine1, 1, { height: '0', right: '2.6%', ease: "power3.inOut" })
+    // TweenMax.to(colLine2, 1, { height: '0', right: '0.3%', ease: "power3.inOut" })
+    // TweenMax.to(rowLine1, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
+    // TweenMax.to(rowLine2, 1, { width: '0', bottom: "6.1%", ease: "power3.inOut" })
     sm2.classList.add('mouseout')
     sm2.classList.remove('mouseover')
     sm2.classList.remove('neonText')
 })
 
 sm3.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 3
-    TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "14.7%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
+    // TweenMax.to(colLine1, 1, { height: '100vh', right: '2.6%', ease: "power3.inOut" })
+    // TweenMax.to(colLine2, 1, { height: '100vh', right: '0.3%', ease: "power3.inOut" })
+    // TweenMax.to(rowLine1, 1, { width: '100%', bottom: "14.7%", ease: "power3.inOut" })
+    // TweenMax.to(rowLine2, 1, { width: '100%', bottom: "10.4%", ease: "power3.inOut" })
     sm3.classList.add('mouseover')
     sm3.classList.remove('mouseout')
     sm3.classList.add('neonText')
 })
 
 sm3.addEventListener('mouseout', function() {
-    TweenMax.to(colLine1, 1, { height: '0', right: '2.6%', ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '0', right: '0.3%', ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '0', bottom: "14.7%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
+    // TweenMax.to(colLine1, 1, { height: '0', right: '2.6%', ease: "power3.inOut" })
+    // TweenMax.to(colLine2, 1, { height: '0', right: '0.3%', ease: "power3.inOut" })
+    // TweenMax.to(rowLine1, 1, { width: '0', bottom: "14.7%", ease: "power3.inOut" })
+    // TweenMax.to(rowLine2, 1, { width: '0', bottom: "10.4%", ease: "power3.inOut" })
     sm3.classList.add('mouseout')
     sm3.classList.remove('mouseover')
     sm3.classList.remove('neonText')
 })
 
-musicBtn.addEventListener('mouseover', function() { // POINTER MUSIC BUTTON
-    TweenMax.to(colLine1, 1, { height: '100vh', right: "90.9%", ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '100vh', right: "98.8%", ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "1.8%", ease: "power3.inOut" })
-})
+// musicBtn.addEventListener('mouseover', function() { // POINTER MUSIC BUTTON
+//     TweenMax.to(colLine1, 1, { height: '100vh', right: "90.9%", ease: "power3.inOut" })
+//     TweenMax.to(colLine2, 1, { height: '100vh', right: "98.8%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine1, 1, { width: '100%', bottom: "6.1%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine2, 1, { width: '100%', bottom: "1.8%", ease: "power3.inOut" })
+// })
 
-musicBtn.addEventListener('mouseout', function() {
-    TweenMax.to(colLine1, 1, { height: '0vh', right: "90.85%", ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '0vh', right: "98.85%", ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '0%', bottom: "6.1%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '0%', bottom: "1.8%", ease: "power3.inOut" })
-})
+// musicBtn.addEventListener('mouseout', function() {
+//     TweenMax.to(colLine1, 1, { height: '0vh', right: "90.85%", ease: "power3.inOut" })
+//     TweenMax.to(colLine2, 1, { height: '0vh', right: "98.85%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine1, 1, { width: '0%', bottom: "6.1%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine2, 1, { width: '0%', bottom: "1.8%", ease: "power3.inOut" })
+// })
 
-btnBackHome.addEventListener('mouseover', function() { // POINTER MUSIC BUTTON
-    TweenMax.to(colLine1, 1, { height: '100vh', right: "90.85%", ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '100vh', right: "98.85%", ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '100%', bottom: "97.9%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '100%', bottom: "93.6%", ease: "power3.inOut" })
-})
+// btnBackHome.addEventListener('mouseover', function() { // POINTER MUSIC BUTTON
+//     TweenMax.to(colLine1, 1, { height: '100vh', right: "90.85%", ease: "power3.inOut" })
+//     TweenMax.to(colLine2, 1, { height: '100vh', right: "98.85%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine1, 1, { width: '100%', bottom: "97.9%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine2, 1, { width: '100%', bottom: "93.6%", ease: "power3.inOut" })
+// })
 
-btnBackHome.addEventListener('mouseout', function() {
-    TweenMax.to(colLine1, 1, { height: '0vh', right: "90.85%", ease: "power3.inOut" })
-    TweenMax.to(colLine2, 1, { height: '0vh', right: "98.85%", ease: "power3.inOut" })
-    TweenMax.to(rowLine1, 1, { width: '0%', bottom: "97.9%", ease: "power3.inOut" })
-    TweenMax.to(rowLine2, 1, { width: '0%', bottom: "93.6%", ease: "power3.inOut" })
-})
+// btnBackHome.addEventListener('mouseout', function() {
+//     TweenMax.to(colLine1, 1, { height: '0vh', right: "90.85%", ease: "power3.inOut" })
+//     TweenMax.to(colLine2, 1, { height: '0vh', right: "98.85%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine1, 1, { width: '0%', bottom: "97.9%", ease: "power3.inOut" })
+//     TweenMax.to(rowLine2, 1, { width: '0%', bottom: "93.6%", ease: "power3.inOut" })
+// })
 
 window.addEventListener('load', function() {
     TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
@@ -640,7 +647,24 @@ function functionBtnBackHome() {
         //CAMERA ANIM
     gsap.to(camera.position, 1.5, { z: 2.7, delay: .25, ease: "power3.inOut" })
         //HTML ELEMENTS ANIM
-    TweenMax.to(titlesvg, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
+    titleSvgPath.forEach(e => {
+        e.classList.add("testPath")
+        e.classList.remove("testPath2")
+    });
+    titleSvgCircle.classList.add("testPath")
+    titleSvgLine.classList.add("testLine")
+    titleSvgCircle.classList.remove("testPath2")
+    titleSvgLine.classList.remove("testLine2")
+    
+    littleTitleSvgPath.forEach(e => {
+        e.classList.remove("testPath")
+        e.classList.add("testPath2")
+    });
+    littleTitleSvgCircle.classList.remove("testPath")
+    littleTitleSvgLine.classList.remove("testLine")
+    littleTitleSvgCircle.classList.add("testPath2")
+    littleTitleSvgLine.classList.add("testLine2")
+
     TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
     TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
         //PLANE ROTATION Z ANIM
@@ -708,7 +732,26 @@ function functionBtnStart() {
         //CAMERA ANIM
     gsap.to(camera.position, 1.5, { z: 3.7, ease: "power3.inOut" })
         //HTML ELEMENTS ANIM
-    TweenMax.to(titlesvg, 1, { opacity: 0, scale: 1.3, letterSpacing: '1vw', ease: "power3.inOut" })
+    titleSvgPath.forEach(e => {
+        e.classList.remove("testPath")
+        e.classList.add("testPath2")
+    });
+    titleSvgCircle.classList.remove("testPath")
+    titleSvgLine.classList.remove("testLine")
+    titleSvgCircle.classList.add("testPath2")
+    titleSvgLine.classList.add("testLine2")
+
+    littleTitleSvgPath.forEach(e => {
+        e.classList.add("testPath")
+        e.classList.remove("testPath2")
+    });
+    littleTitleSvgCircle.classList.add("testPath")
+    littleTitleSvgLine.classList.add("testLine")
+    littleTitleSvgCircle.classList.remove("testPath2")
+    littleTitleSvgLine.classList.remove("testLine2")
+
+    // TweenMax.to(titleSvg, 0, { x: window.innerWidth / 2.3, y: -window.innerHeight / 2.35, scale: .2, delay: 5})
+    // TweenMax.to(titleSvg, 0, { opacity: 1 })
     TweenMax.to(btnStart, 1, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
     TweenMax.to(btnBackHome, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         //PLANE ROTATION Z ANIM
@@ -865,7 +908,7 @@ function scrollUp() {
             //CAMERA ANIM
         gsap.to(camera.position, 1.5, { z: 2.7, ease: "power3.inOut" })
             //HTML ELEMENTS ANIM
-        TweenMax.to(titlesvg, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
+        TweenMax.to(titleSvg, .75, { opacity: 1, scale: 1, blur: 0, delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
             //PLANES ROTATION Z ANIM
@@ -1565,7 +1608,7 @@ function scrollDown() {
             //CAMERA ANIM
         gsap.to(camera.position, 1.5, { z: 2.7, ease: "power3.inOut" })
             //HTML ELEMENTS ANIM
-        TweenMax.to(titlesvg, .75, { opacity: 1, scale: 1, letterSpacing: '0.5vw', delay: .75, ease: "power3.inOut" })
+        TweenMax.to(titleSvg, .75, { opacity: 1, scale: 1, blur: 5, delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
             //PLANES ROTATION Z ANIM
