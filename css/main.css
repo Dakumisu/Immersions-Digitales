@@ -33,8 +33,8 @@ canvas {
   margin-left: -50%;
   border-radius: 50%;
   background: #4cc9f0;
-  -webkit-transition: padding .5s ease;
-  transition: padding .5s ease;
+  -webkit-transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 #cursor-shape.mouseover {
@@ -92,7 +92,7 @@ main .homeContainer h1 {
   font-family: "littleTitle";
   font-size: 1.85vh;
   letter-spacing: .15vw;
-  background: none;
+  background: #09021e;
   color: #4cc9f0;
   border: 1px solid #4cc9f0;
 }
@@ -100,11 +100,19 @@ main .homeContainer h1 {
 .btn__start {
   overflow: hidden;
   position: relative;
+  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+}
+
+.btn__start:hover {
+  background: #4cc9f0;
+  color: #09021e;
+  border: 1px solid #09021e;
 }
 
 .btn__start .spanContainerMouseout.neonText {
-  -webkit-animation: blink 4s infinite alternate;
-          animation: blink 4s infinite alternate;
+  -webkit-animation: blinkBtn 4s infinite alternate;
+          animation: blinkBtn 4s infinite alternate;
 }
 
 .btn__start .spanContainerMouseover,
@@ -114,14 +122,16 @@ main .homeContainer h1 {
           transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
+  height: 100%;
+  -webkit-clip-path: inset(35% 0 35% 0);
+          clip-path: inset(35% 0 35% 0);
 }
 
 .btn__start .spanContainerMouseover span,
 .btn__start .spanContainerMouseout span {
   display: inline-block;
+  line-height: 6vh;
 }
 
 .btn__start .spanContainerMouseout span {
@@ -144,15 +154,6 @@ main .homeContainer h1 {
 
 .btn__backHome.close {
   pointer-events: none;
-}
-
-.btn__Start {
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
-}
-
-.btn__Start.mouseover {
-  padding: 50px 50px;
 }
 
 .colContainer {
@@ -184,7 +185,7 @@ main .homeContainer h1 {
   height: 2px;
   background: #0d0437;
   margin-top: 20px;
-  opacity: .75;
+  opacity: .65;
 }
 
 .row.line {
@@ -211,7 +212,7 @@ main .homeContainer h1 {
   margin-right: 10px;
   margin-left: 10px;
   display: inline-block;
-  opacity: .75;
+  opacity: .65;
 }
 
 .col.line {
@@ -262,7 +263,7 @@ main .homeContainer h1 {
 @-webkit-keyframes blink {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #4cc9f0, 0 0 0.1px #4cc9f0, 0 0 0.1px #4cc9f0;
+    text-shadow: 0 0 0 #4cc9f0, 0 0 2px #4cc9f0, 0 0 2px #4cc9f0;
   }
   32% {
     opacity: 0;
@@ -281,7 +282,45 @@ main .homeContainer h1 {
 @keyframes blink {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #4cc9f0, 0 0 0.1px #4cc9f0, 0 0 0.1px #4cc9f0;
+    text-shadow: 0 0 0 #4cc9f0, 0 0 2px #4cc9f0, 0 0 2px #4cc9f0;
+  }
+  32% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes blinkBtn {
+  30% {
+    opacity: 1;
+    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
+  }
+  32% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes blinkBtn {
+  30% {
+    opacity: 1;
+    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
   }
   32% {
     opacity: 0;
