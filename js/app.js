@@ -908,7 +908,23 @@ function scrollUp() {
             //CAMERA ANIM
         gsap.to(camera.position, 1.5, { z: 2.7, ease: "power3.inOut" })
             //HTML ELEMENTS ANIM
-        TweenMax.to(titleSvg, .75, { opacity: 1, scale: 1, blur: 0, delay: .75, ease: "power3.inOut" })
+        titleSvgPath.forEach(e => {
+            e.classList.add("testPath")
+            e.classList.remove("testPath2")
+        });
+        titleSvgCircle.classList.add("testPath")
+        titleSvgLine.classList.add("testLine")
+        titleSvgCircle.classList.remove("testPath2")
+        titleSvgLine.classList.remove("testLine2")
+        
+        littleTitleSvgPath.forEach(e => {
+            e.classList.remove("testPath")
+            e.classList.add("testPath2")
+        });
+        littleTitleSvgCircle.classList.remove("testPath")
+        littleTitleSvgLine.classList.remove("testLine")
+        littleTitleSvgCircle.classList.add("testPath2")
+        littleTitleSvgLine.classList.add("testLine2")
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
             //PLANES ROTATION Z ANIM
@@ -1608,7 +1624,23 @@ function scrollDown() {
             //CAMERA ANIM
         gsap.to(camera.position, 1.5, { z: 2.7, ease: "power3.inOut" })
             //HTML ELEMENTS ANIM
-        TweenMax.to(titleSvg, .75, { opacity: 1, scale: 1, blur: 5, delay: .75, ease: "power3.inOut" })
+        titleSvgPath.forEach(e => {
+            e.classList.add("testPath")
+            e.classList.remove("testPath2")
+        });
+        titleSvgCircle.classList.add("testPath")
+        titleSvgLine.classList.add("testLine")
+        titleSvgCircle.classList.remove("testPath2")
+        titleSvgLine.classList.remove("testLine2")
+            
+        littleTitleSvgPath.forEach(e => {
+            e.classList.remove("testPath")
+            e.classList.add("testPath2")
+        });
+        littleTitleSvgCircle.classList.remove("testPath")
+        littleTitleSvgLine.classList.remove("testLine")
+        littleTitleSvgCircle.classList.add("testPath2")
+        littleTitleSvgLine.classList.add("testLine2")
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
             //PLANES ROTATION Z ANIM
