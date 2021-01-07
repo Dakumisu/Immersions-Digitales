@@ -78,9 +78,6 @@ main .homeContainer .close {
 
 main .homeContainer .title {
   width: 50vw;
-  position: relative;
-  -webkit-animation: blink_2 4s infinite alternate;
-          animation: blink_2 4s infinite alternate;
 }
 
 main .homeContainer .littleTitle {
@@ -90,7 +87,9 @@ main .homeContainer .littleTitle {
   top: 2.2vh;
 }
 
-main .homeContainer .title path, main .homeContainer .title circle, main .homeContainer .title line {
+main .homeContainer .title path,
+main .homeContainer .title circle,
+main .homeContainer .title line {
   fill: none;
   stroke: #4CC9F0;
   stroke-width: 1;
@@ -99,27 +98,27 @@ main .homeContainer .title path, main .homeContainer .title circle, main .homeCo
   stroke-dasharray: 1000;
 }
 
-main .homeContainer .testPath {
-  -webkit-animation: title 10s forwards ease-in-out;
-          animation: title 10s forwards ease-in-out;
+main .homeContainer .pathTitleIn {
+  -webkit-animation: titleIn 10s forwards ease-in-out;
+          animation: titleIn 10s forwards ease-in-out;
 }
 
-main .homeContainer .testLine {
-  -webkit-animation: line 8s forwards ease-in-out;
-          animation: line 8s forwards ease-in-out;
+main .homeContainer .pathLineIn {
+  -webkit-animation: lineIn 8s forwards ease-in-out;
+          animation: lineIn 8s forwards ease-in-out;
 }
 
-main .homeContainer .testPath2 {
-  -webkit-animation: title2 8s forwards ease-in-out;
-          animation: title2 8s forwards ease-in-out;
+main .homeContainer .pathTitleOut {
+  -webkit-animation: titleOut 8s forwards ease-in-out;
+          animation: titleOut 8s forwards ease-in-out;
 }
 
-main .homeContainer .testLine2 {
-  -webkit-animation: line2 7.5s forwards ease-in-out;
-          animation: line2 7.5s forwards ease-in-out;
+main .homeContainer .pathLineOut {
+  -webkit-animation: lineOut 7.5s forwards ease-in-out;
+          animation: lineOut 7.5s forwards ease-in-out;
 }
 
-@-webkit-keyframes title {
+@-webkit-keyframes titleIn {
   0% {
     stroke-width: 1;
     stroke-dashoffset: -1000;
@@ -139,10 +138,11 @@ main .homeContainer .testLine2 {
   }
   100% {
     fill: #4cc9f0;
+    stroke-width: 1;
   }
 }
 
-@keyframes title {
+@keyframes titleIn {
   0% {
     stroke-width: 1;
     stroke-dashoffset: -1000;
@@ -162,10 +162,59 @@ main .homeContainer .testLine2 {
   }
   100% {
     fill: #4cc9f0;
+    stroke-width: 1;
   }
 }
 
-@-webkit-keyframes line {
+@-webkit-keyframes titleOut {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-width: 1px;
+    fill: #4cc9f0;
+  }
+  10% {
+    fill: transparent;
+  }
+  80% {
+    stroke-dashoffset: -1000;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1px;
+  }
+  100% {
+    fill: transparent;
+    stroke-dashoffset: -1000;
+    stroke-width: 1;
+  }
+}
+
+@keyframes titleOut {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-width: 1px;
+    fill: #4cc9f0;
+  }
+  10% {
+    fill: transparent;
+  }
+  80% {
+    stroke-dashoffset: -1000;
+    fill: transparent;
+  }
+  85% {
+    fill: transparent;
+    stroke-width: 1px;
+  }
+  100% {
+    fill: transparent;
+    stroke-dashoffset: -1000;
+    stroke-width: 1;
+  }
+}
+
+@-webkit-keyframes lineIn {
   0% {
     stroke-width: 1;
     stroke-dashoffset: -1000;
@@ -188,7 +237,7 @@ main .homeContainer .testLine2 {
   }
 }
 
-@keyframes line {
+@keyframes lineIn {
   0% {
     stroke-width: 1;
     stroke-dashoffset: -1000;
@@ -211,55 +260,7 @@ main .homeContainer .testLine2 {
   }
 }
 
-@-webkit-keyframes title2 {
-  0% {
-    stroke-dashoffset: 0;
-    stroke-width: 1px;
-    fill: #4cc9f0;
-  }
-  10% {
-    fill: transparent;
-  }
-  80% {
-    stroke-dashoffset: -1000;
-    fill: transparent;
-  }
-  85% {
-    fill: transparent;
-    stroke-width: 1px;
-  }
-  100% {
-    fill: transparent;
-    stroke-dashoffset: -1000;
-    stroke-width: 0px;
-  }
-}
-
-@keyframes title2 {
-  0% {
-    stroke-dashoffset: 0;
-    stroke-width: 1px;
-    fill: #4cc9f0;
-  }
-  10% {
-    fill: transparent;
-  }
-  80% {
-    stroke-dashoffset: -1000;
-    fill: transparent;
-  }
-  85% {
-    fill: transparent;
-    stroke-width: 1px;
-  }
-  100% {
-    fill: transparent;
-    stroke-dashoffset: -1000;
-    stroke-width: 0px;
-  }
-}
-
-@-webkit-keyframes line2 {
+@-webkit-keyframes lineOut {
   0% {
     stroke-dashoffset: 0;
     stroke-width: 4px;
@@ -279,7 +280,7 @@ main .homeContainer .testLine2 {
   }
 }
 
-@keyframes line2 {
+@keyframes lineOut {
   0% {
     stroke-dashoffset: 0;
     stroke-width: 4px;
@@ -299,81 +300,52 @@ main .homeContainer .testLine2 {
   }
 }
 
-@-webkit-keyframes blink_2 {
+@-webkit-keyframes blinkTitle {
   30% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 7px #4cc9f0);
-            filter: drop-shadow(0 0 7px #4cc9f0);
-  }
-  32% {
-    opacity: .9;
+    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
+            filter: drop-shadow(0 0 5px #4cc9f0);
   }
   33% {
     opacity: 1;
   }
   35% {
     opacity: .9;
-    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
-            filter: drop-shadow(0 0 5px #4cc9f0);
-  }
-  50% {
-    opacity: .8;
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
   }
   80% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
-            filter: drop-shadow(0 0 3px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 1px #4cc9f0);
+            filter: drop-shadow(0 0 1px #4cc9f0);
   }
   100% {
     opacity: 1;
   }
 }
 
-@keyframes blink_2 {
+@keyframes blinkTitle {
   30% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 7px #4cc9f0);
-            filter: drop-shadow(0 0 7px #4cc9f0);
-  }
-  32% {
-    opacity: .9;
+    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
+            filter: drop-shadow(0 0 5px #4cc9f0);
   }
   33% {
     opacity: 1;
   }
   35% {
     opacity: .9;
-    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
-            filter: drop-shadow(0 0 5px #4cc9f0);
-  }
-  50% {
-    opacity: .8;
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
   }
   80% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
-            filter: drop-shadow(0 0 3px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 1px #4cc9f0);
+            filter: drop-shadow(0 0 1px #4cc9f0);
   }
   100% {
     opacity: 1;
   }
-}
-
-main .homeContainer .neon_2020 {
-  position: absolute;
-  width: 50vw;
-  fill: none;
-  stroke: #4cc9f0;
-  stroke-miterlimit: 10;
-  stroke-width: 2px;
-  opacity: .2;
-  -webkit-transform: translateY(-50px);
-          transform: translateY(-50px);
-}
-
-main .homeContainer .neon_2020-a {
-  stroke: #f72585;
-  opacity: .7;
 }
 
 .btn {
@@ -558,13 +530,13 @@ main .homeContainer .neon_2020-a {
     text-shadow: 0 0 0 #4cc9f0, 0 0 2px #4cc9f0, 0 0 2px #4cc9f0;
   }
   32% {
-    opacity: 0;
+    opacity: .25;
   }
   33% {
     opacity: 1;
   }
   35% {
-    opacity: 0;
+    opacity: .25;
   }
   40% {
     opacity: 1;
@@ -577,13 +549,13 @@ main .homeContainer .neon_2020-a {
     text-shadow: 0 0 0 #4cc9f0, 0 0 2px #4cc9f0, 0 0 2px #4cc9f0;
   }
   32% {
-    opacity: 0;
+    opacity: .25;
   }
   33% {
     opacity: 1;
   }
   35% {
-    opacity: 0;
+    opacity: .25;
   }
   40% {
     opacity: 1;
@@ -593,16 +565,16 @@ main .homeContainer .neon_2020-a {
 @-webkit-keyframes blinkBtn {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
+    text-shadow: 0 0 0 #09021e, 0 0 2px #09021e, 0 0 1px #09021e;
   }
   32% {
-    opacity: 0;
+    opacity: .25;
   }
   33% {
     opacity: 1;
   }
   35% {
-    opacity: 0;
+    opacity: .25;
   }
   40% {
     opacity: 1;
@@ -612,16 +584,16 @@ main .homeContainer .neon_2020-a {
 @keyframes blinkBtn {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
+    text-shadow: 0 0 0 #09021e, 0 0 2px #09021e, 0 0 1px #09021e;
   }
   32% {
-    opacity: 0;
+    opacity: .25;
   }
   33% {
     opacity: 1;
   }
   35% {
-    opacity: 0;
+    opacity: .25;
   }
   40% {
     opacity: 1;
