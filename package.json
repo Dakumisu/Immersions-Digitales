@@ -8,10 +8,13 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "fonts-loader": "^1.0.11",
     "glsl-noise": "0.0.0",
-    "three": "0.114.0",
-    "three.interaction": "^0.2.3",
-    "threex.domevents": "^1.0.1"
+    "gsap": "^3.5.1",
+    "postprocessing": "^6.19.0",
+    "three": "^0.114.0",
+    "three-gltf-loader": "^1.111.0",
+    "three.interaction": "^0.2.3"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",
