@@ -151,7 +151,7 @@ var materialPlane1 = new THREE.MeshPhongMaterial({
     map: new THREE.TextureLoader().load(atelier1)
     // transparency: true, // TweenLite.to(mesh.material, 2, {opacity: 0}); suppr pas stp
 });
-var materialPlane2 = new THREE.MeshBasicMaterial({
+var materialPlane2 = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide,
     map: new THREE.TextureLoader().load(atelier2)
 });
@@ -836,24 +836,24 @@ function functionBtnBackHome() {
     gsap.to(planeMesh12.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh14.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        //TEXT ROTATION Z ANIM
-    gsap.to(textMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(textMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(textMesh3.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(textMesh4.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(textMesh5.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(textMesh6.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(textMesh7.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(textMesh8.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        //TEXT SCALE ANIM
-    gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-    gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-    gsap.to(textMesh3.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-    gsap.to(textMesh4.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-    gsap.to(textMesh5.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-    gsap.to(textMesh6.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-    gsap.to(textMesh7.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-    gsap.to(textMesh8.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    //     //TEXT ROTATION Z ANIM
+    // gsap.to(textMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    // gsap.to(textMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    // gsap.to(textMesh3.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    // gsap.to(textMesh4.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    // gsap.to(textMesh5.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    // gsap.to(textMesh6.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    // gsap.to(textMesh7.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    // gsap.to(textMesh8.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
+    //     //TEXT SCALE ANIM
+    // gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    // gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    // gsap.to(textMesh3.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    // gsap.to(textMesh4.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    // gsap.to(textMesh5.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    // gsap.to(textMesh6.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    // gsap.to(textMesh7.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+    // gsap.to(textMesh8.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
         //MODELS ANIM
     gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
     gsap.to(logo.scale, 2.25, { z: 0, x: 0, y: 0, ease: "power3.inOut", })
@@ -919,10 +919,10 @@ function functionBtnStart() {
     gsap.to(planeMesh12.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
     gsap.to(planeMesh13.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
     gsap.to(planeMesh14.rotation, 1.5, { z: 0, ease: "power3.inOut" })
-        //TEXT ROTATION Z ANIM
-    gsap.to(textMesh8.rotation, 1.5, { z: 0, ease: "power3.inOut", delay: 1.25 })
-        //TEXT SCALE ANIM    
-    gsap.to(textMesh8.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: 2.35 })
+    //     //TEXT ROTATION Z ANIM
+    // gsap.to(textMesh8.rotation, 1.5, { z: 0, ease: "power3.inOut", delay: 1.25 })
+    //     //TEXT SCALE ANIM    
+    // gsap.to(textMesh8.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: 2.35 })
         //MODELS ANIM
     gsap.to(logo.position, 3, { y: 0, ease: "power3.inOut" })
     gsap.to(logo.scale, 3, { z: .95, x: .95, y: .95, ease: "power3.inOut", delay: .25 })
@@ -1201,544 +1201,154 @@ function scrollUp() {
         canvas.style.zIndex = -1;
     } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -17,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -3.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh8.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh8.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh7.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -17, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -3.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh8.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh8.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh7.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -15 && planeAxe.position.y >= -16.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -16,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -4 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh7.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh7.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh6.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -4 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh7.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh7.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh6.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -14 && planeAxe.position.y >= -15.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -15,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -4.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh6.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh6.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh5.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -15, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -4.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh6.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh6.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh5.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -13 && planeAxe.position.y >= -14.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -14,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh5.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh5.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh4.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -14, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh5.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh5.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh4.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -12 && planeAxe.position.y >= -13.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -13,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -5.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh4.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh4.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh3.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -13, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -5.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh4.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh4.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh3.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -11 && planeAxe.position.y >= -12.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -12,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -6 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh3.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh3.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -12, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -6 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh3.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh3.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -10 && planeAxe.position.y >= -11.1) {
         //AXES ANIM
         gsap.to(planeAxe.position, .75, { y: -11, ease: "power3.inOut" })
@@ -1766,94 +1376,29 @@ function scrollUp() {
         gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -9 && planeAxe.position.y >= -10.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -10,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -7 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -10, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -7 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -8 && planeAxe.position.y >= -9.1) {
         //AXES ANIM
         gsap.to(planeAxe.position, .75, { y: -9, ease: "power3.inOut" })
@@ -1931,1358 +1476,383 @@ function scrollUp() {
         gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -5 && planeAxe.position.y >= -6.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -6,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -9 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -6, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -9 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     } else if (planeAxe.position.y <= -4 && planeAxe.position.y >= -5.1) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -5,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -9.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut",
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut",
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
+        gsap.to(planeAxe.position, .75, { y: -5, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -9.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: 0, ease: "power3.inOut", })
+        gsap.to(textMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut", })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
+        gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
     }
 }
 
 function scrollDown() {
     if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -16,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -4 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANE ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh7.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh8.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh7.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -4 * Math.PI, ease: "power3.inOut" })
+            //PLANE ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh7.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh8.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh7.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -15.01 && planeAxe.position.y >= -16) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -15,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -4.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANE ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh6.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh7.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh6.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -15, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -4.5 * Math.PI, ease: "power3.inOut" })
+            //PLANE ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh6.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh7.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh6.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -14.01 && planeAxe.position.y >= -15) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -14,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh5.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh6.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh5.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -14, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh5.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh6.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh5.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -13.01 && planeAxe.position.y >= -14) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -13,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -5.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh4.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh5.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh4.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -13, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -5.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh4.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh5.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh4.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -12.01 && planeAxe.position.y >= -13) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -12,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -6 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh3.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh4.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh3.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -12, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -6 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh3.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh4.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh3.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -11.01 && planeAxe.position.y >= -12) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -11,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -6.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh2.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh3.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh2.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -11, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -6.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh2.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh3.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh2.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -10.01 && planeAxe.position.y >= -11) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -10,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -7 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -10, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -7 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -9.01 && planeAxe.position.y >= -10) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -9,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -7.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -9, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -7.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -8.01 && planeAxe.position.y >= -9) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -8,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -8 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -8, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -8 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -7.01 && planeAxe.position.y >= -8) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -7,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -8.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -7, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -8.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -6.01 && planeAxe.position.y >= -7) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -6,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -9 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -6, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -9 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -5.01 && planeAxe.position.y >= -6) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -5,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -9.5 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -5, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -9.5 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y <= -4.01 && planeAxe.position.y >= -5) {
         //AXES ANIM
-        gsap.to(planeAxe.position, .75, {
-            y: -4,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeAxe.rotation, .75, {
-            y: -10 * Math.PI,
-            ease: "power3.inOut"
-        })
-        //PLANES ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh3.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh4.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh5.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh6.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh7.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh8.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh9.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh10.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh11.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh12.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh13.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(planeMesh14.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        //TEXT ROTATION Z ANIM
-        gsap.to(textMesh2.rotation, .75, {
-            z: rotateZ,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.rotation, .75, {
-            z: 0,
-            ease: "power3.inOut"
-        })
-        //TEXT SCALE ANIM
-        gsap.to(textMesh2.scale, .75, {
-            z: 0,
-            x: 0,
-            y: 0,
-            ease: "power3.inOut"
-        })
-        gsap.to(textMesh1.scale, .75, {
-            z: 1,
-            x: 1,
-            y: 1,
-            ease: "power3.inOut",
-            delay: .15
-        })
+        gsap.to(planeAxe.position, .75, { y: -4, ease: "power3.inOut" })
+        gsap.to(planeAxe.rotation, .75, { y: -10 * Math.PI, ease: "power3.inOut" })
+            //PLANES ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+            //TEXT ROTATION Z ANIM
+        gsap.to(textMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        gsap.to(textMesh1.rotation, .75, { z: 0, ease: "power3.inOut" })
+            //TEXT SCALE ANIM
+        gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
+        gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y == -4) {
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: 4.2, ease: "power3.inOut" })
@@ -3373,7 +1943,7 @@ function checkScrollDirectionIsUp(event) { //REVERSE SCROLL
 }
 
 ///// ARROWS SCROLL + KEY ECHAP ///////
-document.onkeydown = function (e) {
+document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 37:
             console.log('left');
@@ -3394,6 +1964,13 @@ document.onkeydown = function (e) {
                 functionBtnBackHome();
                 console.log("echap")
             }
+	break;
+	case 13:
+            if (camera.position.z == 10) {
+                functionBtnStart();
+                console.log("enter")
+            }
+            break;
     }
 };
 
