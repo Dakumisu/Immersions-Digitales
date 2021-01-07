@@ -1,7 +1,6 @@
 $bleu: #09021e;
 $cyan: #4cc9f0;
 $magenta: #f72585;
-
 * {
     box-sizing: border-box;
     cursor: none!important;
@@ -64,8 +63,6 @@ main {
         }
         .title {
             width: 50vw;
-            position: relative;
-            animation: blink_2 4s infinite alternate;
         }
         .littleTitle {
             width: 7vw;
@@ -74,7 +71,9 @@ main {
             top: 2.2vh;
         }
         .title {
-            path, circle, line {
+            path,
+            circle,
+            line {
                 fill: none;
                 stroke: #4CC9F0;
                 stroke-width: 1;
@@ -83,19 +82,19 @@ main {
                 stroke-dasharray: 1000;
             }
         }
-        .testPath {
-            animation: title 10s forwards ease-in-out;
+        .pathTitleIn {
+            animation: titleIn 10s forwards ease-in-out;
         }
-        .testLine {
-            animation: line 8s forwards ease-in-out;
+        .pathLineIn {
+            animation: lineIn 8s forwards ease-in-out;
         }
-        .testPath2 {
-            animation: title2 8s forwards ease-in-out;
+        .pathTitleOut {
+            animation: titleOut 8s forwards ease-in-out;
         }
-        .testLine2 {
-            animation: line2 7.5s forwards ease-in-out;
+        .pathLineOut {
+            animation: lineOut 7.5s forwards ease-in-out;
         }
-        @keyframes title {
+        @keyframes titleIn {
             0% {
                 stroke-width: 1;
                 stroke-dashoffset: -1000;
@@ -115,9 +114,33 @@ main {
             }
             100% {
                 fill: $cyan;
+                stroke-width: 1;
             }
         }
-        @keyframes line {
+        @keyframes titleOut {
+            0% {
+                stroke-dashoffset: 0;
+                stroke-width: 1px;
+                fill: $cyan;
+            }
+            10% {
+                fill: transparent;
+            }
+            80% {
+                stroke-dashoffset: -1000;
+                fill: transparent;
+            }
+            85% {
+                fill: transparent;
+                stroke-width: 1px;
+            }
+            100% {
+                fill: transparent;
+                stroke-dashoffset: -1000;
+                stroke-width: 1;
+            }
+        }
+        @keyframes lineIn {
             0% {
                 stroke-width: 1;
                 stroke-dashoffset: -1000;
@@ -139,30 +162,7 @@ main {
                 stroke-width: 4px;
             }
         }
-        @keyframes title2 {
-            0% {
-                stroke-dashoffset: 0;
-                stroke-width: 1px;
-                fill: $cyan;
-            }
-            10% {
-                fill: transparent;
-            }
-            80% {
-                stroke-dashoffset: -1000;
-                fill: transparent;
-            }
-            85% {
-                fill: transparent;
-                stroke-width: 1px;
-            }
-            100% {
-                fill: transparent;
-                stroke-dashoffset: -1000;
-                stroke-width: 0px;
-            }
-        }
-        @keyframes line2 {
+        @keyframes lineOut {
             0% {
                 stroke-dashoffset: 0;
                 stroke-width: 4px;
@@ -181,14 +181,11 @@ main {
                 stroke-width: 0px;
             }
         }
-        @keyframes blink_2 {
+        @keyframes blinkTitle {
             30% {
                 opacity: 1;
-                filter: drop-shadow(0 0 7px $cyan);
+                filter: drop-shadow(0 0 5px $cyan);
                 // filter: blur(5px);
-            }
-            32% {
-                opacity: .9;
             }
             33% {
                 opacity: 1;
@@ -196,41 +193,16 @@ main {
             }
             35% {
                 opacity: .9;
-                filter: drop-shadow(0 0 5px $cyan);
-            }
-            50% {
-                opacity: .8;
-                // filter: blur(1px);
+                filter: drop-shadow(0 0 3px $cyan);
             }
             80% {
                 opacity: 1;
-                filter: drop-shadow(0 0 3px $cyan);
+                filter: drop-shadow(0 0 1px $cyan);
             }
             100% {
                 opacity: 1;
             }
         }
-        .neon_2020 {
-            position: absolute;
-            width: 50vw;
-            fill: none;
-            stroke: $cyan;
-            stroke-miterlimit: 10;
-            stroke-width: 2px;
-            opacity: .2;
-            transform: translateY(-50px);
-            &-a {
-                stroke: $magenta;
-                opacity: .7;
-            }
-        }
-        // h1 {
-        //     font-family: "main";
-        //     text-transform: uppercase;
-        //     letter-spacing: 0.5vw;
-        //     color: $cyan;
-        //     font-size: 6vh;
-        // }
     }
 }
 
@@ -290,7 +262,6 @@ main {
         }
     }
 }
-
 
 ////GRID WITH INTERACTIONS///
 .colContainer {
@@ -384,13 +355,13 @@ main {
             text-shadow: 0 0 0 $cyan, 0 0 2px $cyan, 0 0 2px $cyan;
         }
         32% {
-            opacity: 0;
+            opacity: .25;
         }
         33% {
             opacity: 1;
         }
         35% {
-            opacity: 0;
+            opacity: .25;
         }
         40% {
             opacity: 1;
@@ -399,16 +370,16 @@ main {
     @keyframes blinkBtn {
         30% {
             opacity: 1;
-            text-shadow: 0 0 0 $bleu, 0 0 1px $bleu, 0 0 1px $bleu;
+            text-shadow: 0 0 0 $bleu, 0 0 2px $bleu, 0 0 1px $bleu;
         }
         32% {
-            opacity: 0;
+            opacity: .25;
         }
         33% {
             opacity: 1;
         }
         35% {
-            opacity: 0;
+            opacity: .25;
         }
         40% {
             opacity: 1;
