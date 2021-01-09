@@ -29,9 +29,10 @@
     <img src="./assets/img/atelier2.png" class="tile__image2" alt="image" style="display: none"/> -->
 
     <!--//////////CURSOR//////////-->
-    <div id="cursor">
-        <div id="cursor-shape"></div>
+    <div class="cursor">
+        <div class="cursor-shape_in"></div>
     </div>
+    <div class="cursor-shape_out"></div>
 
     <!--//////////GRID//////////-->
     <div class="colContainer"></div>
@@ -45,7 +46,11 @@
     <!--//////////MUSIC BUTTON//////////-->
     <div class="musicBtn"></div>
 
-    <button class="btn btn__backHome">Retour</button>
+    <button class="btn btn__backHome">
+        <!-- Retour -->
+        <div class="spanContainerBackMouseover"></div>
+        <div class="spanContainerBackMouseout"></div>
+    </button>
 
     <!--//////////MAIN//////////-->
     <main>
@@ -180,8 +185,8 @@
                 <line x1="53.2" y1="158" x2="102.9" y2="158" />
             </svg>
             <button class="btn btn__start">
-                    <div class="spanContainerMouseover"></div>
-                    <div class="spanContainerMouseout"></div>
+                    <div class="spanContainerStartMouseover"></div>
+                    <div class="spanContainerStartMouseout"></div>
             </button>
         </section>
     </main>

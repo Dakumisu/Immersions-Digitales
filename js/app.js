@@ -739,10 +739,13 @@ let littleTitleSvg = document.querySelector('.littleTitle');
 let littleTitleSvgPath = document.querySelectorAll('.littleTitle path');
 let littleTitleSvgCircle = document.querySelector('.littleTitle circle');
 let littleTitleSvgLine = document.querySelector('.littleTitle line');
+let buttons = document.querySelectorAll('button');
 let btnStart = document.querySelector('.btn__start');
-let spanContainerMouseOver = document.querySelector('.spanContainerMouseover')
-let spanContainerMouseOut = document.querySelector('.spanContainerMouseout')
+let spanContainerStartMouseOver = document.querySelector('.spanContainerStartMouseover')
+let spanContainerStartMouseOut = document.querySelector('.spanContainerStartMouseout')
 let btnBackHome = document.querySelector('.btn__backHome');
+let spanContainerBackMouseOver = document.querySelector('.spanContainerBackMouseover')
+let spanContainerBackMouseOut = document.querySelector('.spanContainerBackMouseout')
 let canvas = document.querySelector('canvas');
 let sm = document.querySelectorAll('.sm');
 let sm1 = document.querySelector('.sm__1');
@@ -751,7 +754,9 @@ let sm3 = document.querySelector('.sm__3');
 let musicBtn = document.querySelector('.musicBtn');
 let bgCol = document.querySelectorAll('.colContainer .col');
 let bgRow = document.querySelectorAll('.rowContainer .row');
-let cursorShape = document.querySelector('#cursor-shape');
+let cursor = document.querySelector('.cursor');
+let cursorShapeIn = document.querySelector('.cursor-shape_in');
+let cursorShapeOut = document.querySelector('.cursor-shape_out');
 
 // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
@@ -949,7 +954,7 @@ btnStart.addEventListener('click', function () {
 })
 
 btnStart.addEventListener('mouseover', function () {
-    TweenMax.to(".spanContainerMouseover span", {
+    TweenMax.to(".spanContainerStartMouseover span", {
         duration: .5,
         translateY: -40,
         stagger: {
@@ -958,7 +963,7 @@ btnStart.addEventListener('mouseover', function () {
         },
         ease: "power2.inOut"
     });
-    TweenMax.to(".spanContainerMouseout span", {
+    TweenMax.to(".spanContainerStartMouseout span", {
         duration: .5,
         translateY: 0,
         stagger: {
@@ -967,12 +972,12 @@ btnStart.addEventListener('mouseover', function () {
         },
         ease: "power2.inOut"
     });
-    spanContainerMouseOut.classList.add('neonText');
-    cursorShape.classList.add('mouseover');
+    spanContainerStartMouseOut.classList.add('neonText');
+    cursorShapeIn.classList.add('mouseover');
 })
 
 btnStart.addEventListener('mouseout', function () {
-    TweenMax.to(".spanContainerMouseover span", {
+    TweenMax.to(".spanContainerStartMouseover span", {
         duration: .5,
         translateY: 0,
         stagger: {
@@ -981,7 +986,7 @@ btnStart.addEventListener('mouseout', function () {
         },
         ease: "power2.inOut"
     });
-    TweenMax.to(".spanContainerMouseout span", {
+    TweenMax.to(".spanContainerStartMouseout span", {
         duration: .5,
         translateY: 40,
         stagger: {
@@ -990,8 +995,54 @@ btnStart.addEventListener('mouseout', function () {
         },
         ease: "power2.inOut"
     });
-    spanContainerMouseOut.classList.remove('neonText');
-    cursorShape.classList.remove('mouseover');
+    spanContainerStartMouseOut.classList.remove('neonText');
+    cursorShapeIn.classList.remove('mouseover');
+})
+
+btnBackHome.addEventListener('mouseover', function () {
+    TweenMax.to(".spanContainerBackMouseover span", {
+        duration: .5,
+        translateY: -40,
+        stagger: {
+            each: 0.01,
+            from: "center"
+        },
+        ease: "power2.inOut"
+    });
+    TweenMax.to(".spanContainerBackMouseout span", {
+        duration: .5,
+        translateY: 0,
+        stagger: {
+            each: 0.01,
+            from: "center"
+        },
+        ease: "power2.inOut"
+    });
+    spanContainerBackMouseOut.classList.add('neonText');
+    cursorShapeIn.classList.add('mouseover');
+})
+
+btnBackHome.addEventListener('mouseout', function () {
+    TweenMax.to(".spanContainerBackMouseover span", {
+        duration: .5,
+        translateY: 0,
+        stagger: {
+            each: 0.01,
+            from: "center"
+        },
+        ease: "power2.inOut"
+    });
+    TweenMax.to(".spanContainerBackMouseout span", {
+        duration: .5,
+        translateY: 40,
+        stagger: {
+            each: 0.01,
+            from: "center"
+        },
+        ease: "power2.inOut"
+    });
+    spanContainerBackMouseOut.classList.remove('neonText');
+    cursorShapeIn.classList.remove('mouseover');
 })
 
 document.addEventListener("keypress", function(event) {
@@ -1008,13 +1059,29 @@ let charsTextBtnStart = btnStartText.split('')
 charsTextBtnStart.forEach(letter => {
     let btnStartchar = document.createElement('span')
     btnStartchar.innerHTML = letter
-    spanContainerMouseOver.append(btnStartchar)
+    spanContainerStartMouseOver.append(btnStartchar)
 });
 
 charsTextBtnStart.forEach(letter => {
     let btnStartchar = document.createElement('span')
     btnStartchar.innerHTML = letter
-    spanContainerMouseOut.append(btnStartchar)
+    spanContainerStartMouseOut.append(btnStartchar)
+});
+
+///// BUTTON BACK HOVER /////
+let btnBackText = "Retour"
+let charsTextBtnBack = btnBackText.split('')
+
+charsTextBtnBack.forEach(letter => {
+    let btnBackchar = document.createElement('span')
+    btnBackchar.innerHTML = letter
+    spanContainerBackMouseOver.append(btnBackchar)
+});
+
+charsTextBtnBack.forEach(letter => {
+    let btnBackchar = document.createElement('span')
+    btnBackchar.innerHTML = letter
+    spanContainerBackMouseOut.append(btnBackchar)
 });
 
 
@@ -1067,9 +1134,10 @@ Math.dist = (dx, dy) => {
 }
 
 class Cursor {
-    constructor() {
-        this.container = window["cursor"];
-        this.shape = window["cursor-shape"];
+    constructor(cursorTest) {
+        // this.container = window["cursor"];
+        this.shape = cursorShapeIn;
+        // console.log(this.shape)
         this.translation = {
             x: 1,
             y: 1
@@ -1081,23 +1149,23 @@ class Cursor {
         this.precision = 2;
         this.scale = 1;
         this.rotation = 1;
-        this.friction = .200;
+        this.friction = .500;
         this.animate();
         this.events();
     }
-
+    
     events() {
         document.addEventListener('mousemove', (e) => {
             this.mouse.x = e.clientX * pixelRatio;
             this.mouse.y = e.clientY * pixelRatio;
         }, false);
     }
-
+    
     animate() {
         requestAnimationFrame(this.animate.bind(this));
         this.render();
     }
-
+    
     speed_morph() {
         const dist = Math.dist(this.dx, this.dy);
         const min = 1;
@@ -1105,21 +1173,21 @@ class Cursor {
         const total = dist / max_distance;
         return Number(Math.min(total, min).toFixed(2));
     }
-
+    
     update() {
         const speed_morph = this.speed_morph(this.dx, this.dy);
         this.scale += (speed_morph - this.scale) * this.friction;
-
+        
         this.translation.x += this.dx * this.friction;
         this.translation.y += this.dy * this.friction;
-
+        
         this.rotation = Math.atan2(this.dy, this.dx) * 180 / Math.PI;
-
+        
     }
-
+    
     render() {
         this.update();
-        this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
+        // this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
         this.shape.style.transform = 'rotate(' + this.rotation.toFixed(this.precision) + 'deg) ' + 'scale(' + (1 + this.scale) + ', ' + (1 - this.scale) + ')';
     }
 
@@ -1132,7 +1200,90 @@ class Cursor {
     }
 }
 
-const _cursor = new Cursor();
+const _cursorIn = new Cursor("cursor-shape_in");
+// const _cursorOut = new Cursor("cursor-shape_out");
+
+// document.addEventListener('mousemove', e => {
+//     cursorShapeOut.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
+// })
+
+let isStuck = false;
+let mouse = {
+	x: -100,
+	y: -100,
+};
+
+// Just in case you need to scroll
+let scrollHeight = 0;
+window.addEventListener('scroll', function(e) {
+	scrollHeight = window.scrollY
+})
+
+let cursorOuterOriginalState = {
+	width: cursorShapeOut.getBoundingClientRect().width,
+	height: cursorShapeOut.getBoundingClientRect().height,
+};
+
+buttons.forEach((button) => {
+	button.addEventListener("pointerenter", handleMouseEnter);
+	button.addEventListener("pointerleave", handleMouseLeave);
+});
+
+sm.forEach((reseau) => {
+	reseau.addEventListener("pointerenter", handleMouseEnter);
+	reseau.addEventListener("pointerleave", handleMouseLeave);
+});
+
+document.body.addEventListener("pointermove", updateCursorPosition);
+
+function updateCursorPosition(e) {
+	mouse.x = e.pageX;
+	mouse.y = e.pageY;
+}
+
+function updateCursor() {
+	gsap.set(cursor, {
+		x: mouse.x,
+		y: mouse.y,
+	});
+
+	if (!isStuck) {
+		gsap.to(cursorShapeOut, {
+			duration: 0.15,
+			x: mouse.x - cursorOuterOriginalState.width/2,
+			y: mouse.y - cursorOuterOriginalState.height/2,
+		});
+	}
+
+	requestAnimationFrame(updateCursor);
+}
+
+updateCursor();
+
+	function handleMouseEnter(e) {
+		isStuck = true;
+        const targetBox = e.currentTarget.getBoundingClientRect();
+        // console.log(targetBox)
+		gsap.to(cursorShapeOut, 0.2, {
+			x: targetBox.left, 
+			y: targetBox.top + scrollHeight,
+			width: targetBox.width,
+			height: targetBox.height,
+			borderRadius: 0,
+			backgroundColor: "rgba(255, 255, 255, 0.1)",
+		});
+	}
+
+	function handleMouseLeave(e) {
+		isStuck = false;
+		gsap.to(cursorShapeOut, 0.5, {
+			width: cursorOuterOriginalState.width,
+			height: cursorOuterOriginalState.width,
+			borderRadius: "50px",
+			backgroundColor: "transparent",
+		});
+	}
+
 
 
 ///// SCROLL FUNCTIONS /////
