@@ -5,10 +5,11 @@
 }
 
 body {
-  height: 100vh;
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+  width: 100%;
   background: #09021e;
+  overflow: hidden;
 }
 
 canvas {
@@ -95,14 +96,8 @@ canvas.hologramDefault {
 .cursor {
   position: fixed;
   pointer-events: none;
-  z-index: 999;
+  z-index: 100;
   mix-blend-mode: difference;
-}
-
-.cursor.mouseover {
-  -webkit-transition: mix-blend-mode 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: mix-blend-mode 0.75s cubic-bezier(0.25, 0, 0, 1);
-  mix-blend-mode: normal;
 }
 
 .cursor-shape_in {
@@ -114,19 +109,14 @@ canvas.hologramDefault {
   width: 20px;
   height: 20px;
   background: #4cc9f0;
-  -webkit-transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1), -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 .cursor-shape_in.mouseover {
-  -webkit-transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1), -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
-  -webkit-filter: blur(20px);
-          filter: blur(20px);
+  -webkit-transition: opacity 0.5s cubic-bezier(0.25, 0, 0, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 0, 0, 1);
+  opacity: 0;
 }
 
 .cursor-shape_out {
@@ -449,20 +439,27 @@ main .homeContainer .pathLineOut {
 }
 
 .btn {
-  height: 6vh;
   outline: none;
   border: none;
   font-family: "littleTitle";
-  font-size: 1.85vh;
-  letter-spacing: .15vw;
+  font-size: 17px;
+  letter-spacing: 1px;
   background: #09021e;
   color: #4cc9f0;
   border: 1px solid #4cc9f0;
+  width: 235px;
+  height: 57px;
+}
+
+@media screen and (max-width: 600px) {
+  .btn {
+    width: 54vw;
+    font-size: 4.1vw;
+    height: 6.5vh;
+  }
 }
 
 .btn__start {
-  width: 300px;
-  height: 57px;
   overflow: hidden;
   position: relative;
   -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
@@ -496,7 +493,14 @@ main .homeContainer .pathLineOut {
 .btn__start .spanContainerStartMouseover span,
 .btn__start .spanContainerStartMouseout span {
   display: inline-block;
-  line-height: 6vh;
+  line-height: 55px;
+}
+
+@media screen and (max-width: 600px) {
+  .btn__start .spanContainerStartMouseover span,
+  .btn__start .spanContainerStartMouseout span {
+    line-height: 6.3vh;
+  }
 }
 
 .btn__start .spanContainerStartMouseout span {
@@ -505,16 +509,17 @@ main .homeContainer .pathLineOut {
 }
 
 .btn__backHome {
-  width: 8vw;
-  top: 2%;
-  left: .5%;
+  width: 107px;
+  height: 57px;
+  top: 25px;
+  left: 24px;
   position: absolute;
   z-index: 2;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
-  overflow: hidden;
   -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
   transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  overflow: hidden;
 }
 
 .btn__backHome.open {
@@ -558,6 +563,15 @@ main .homeContainer .pathLineOut {
 .btn__backHome .spanContainerBackMouseout span {
   -webkit-transform: translateY(40px);
           transform: translateY(40px);
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backHome {
+    width: 22.5vw;
+    height: 6.5vh;
+    left: 2%;
+    top: 1.2%;
+  }
 }
 
 .colContainer {
@@ -637,10 +651,10 @@ main .homeContainer .pathLineOut {
 }
 
 .sm {
-  width: 40px;
-  height: 4.3%;
+  width: 42px;
+  height: 42px;
   position: absolute;
-  right: .9%;
+  right: 18px;
   color: #4cc9f0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -654,8 +668,18 @@ main .homeContainer .pathLineOut {
   z-index: 2;
   font-family: 'littleTitle';
   letter-spacing: 2px;
+  font-size: 15px;
   overflow: hidden;
   font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+  .sm {
+    right: .8%;
+    font-size: 3.3vw;
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .sm.neonText {
@@ -783,7 +807,19 @@ main .homeContainer .pathLineOut {
 }
 
 .sm__1 {
-  bottom: .9%;
+  bottom: 21px;
+}
+
+@media screen and (max-width: 600px) {
+  .sm__1 {
+    bottom: .5%;
+  }
+}
+
+@media (orientation: (max-width: 1024px)) {
+  .sm__1 {
+    background: green;
+  }
 }
 
 .sm__1.mouseover::after {
@@ -821,7 +857,13 @@ main .homeContainer .pathLineOut {
 }
 
 .sm__2 {
-  bottom: 5.5%;
+  bottom: 63px;
+}
+
+@media screen and (max-width: 600px) {
+  .sm__2 {
+    bottom: 5.5%;
+  }
 }
 
 .sm__2.mouseover::after {
@@ -859,7 +901,13 @@ main .homeContainer .pathLineOut {
 }
 
 .sm__3 {
-  bottom: 10.1%;
+  bottom: 105px;
+}
+
+@media screen and (max-width: 600px) {
+  .sm__3 {
+    bottom: 10.5%;
+  }
 }
 
 .sm__3.mouseover::after {
@@ -906,6 +954,7 @@ main .homeContainer .pathLineOut {
   background: #4cc9f0;
   opacity: .1;
   z-index: 3;
+  display: none;
 }
 
 @font-face {

@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,23 +32462,15 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  
-  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  
-  var d = light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.scale.set( d, d, d );
-  
-  }
-  
-  this.add( this.lightDistance );
+  	var d = light.distance;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.scale.set( d, d, d );
+  	}
+  	this.add( this.lightDistance );
   */
 }
 
@@ -32498,17 +32490,12 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.visible = true;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  
-  }
+  	}
   */
 
 };
@@ -32939,8 +32926,7 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  
-  0: max.x, max.y, max.z
+  	0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -53799,6 +53785,8 @@ module.exports = "/socle.4736dd33.gltf";
 module.exports = "/logo.b39e20a6.glb";
 },{}],"assets/model/home.gltf":[function(require,module,exports) {
 module.exports = "/home.200158f1.gltf";
+},{}],"assets/model/street.gltf":[function(require,module,exports) {
+module.exports = "/street.466c19e3.gltf";
 },{}],"assets/img/atelier1.png":[function(require,module,exports) {
 module.exports = "/atelier1.25e2fcb4.png";
 },{}],"assets/img/atelier2.png":[function(require,module,exports) {
@@ -53840,6 +53828,8 @@ var _logo = _interopRequireDefault(require("../assets/model/logo.glb"));
 
 var _home = _interopRequireDefault(require("../assets/model/home.gltf"));
 
+var _street = _interopRequireDefault(require("../assets/model/street.gltf"));
+
 var _atelier = _interopRequireDefault(require("../assets/img/atelier1.png"));
 
 var _atelier2 = _interopRequireDefault(require("../assets/img/atelier2.png"));
@@ -53874,7 +53864,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 10); /////// MAIN RENDERER ///////
+
+if (window.matchMedia("(max-width: 600px)").matches) {
+  camera.position.set(0, 0, 11.3);
+} else {
+  camera.position.set(0, 0, 10);
+} /////// MAIN RENDERER ///////
+
 
 var renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -53959,7 +53955,17 @@ loaderLogo.load(_logo.default, function (addLogo) {
   logo.position.set(0, -9.8, 0);
   logo.rotation.z = -.725;
   logo.scale.set(0, 0, 0);
-}); /////// PLANES ///////
+}); // var street;
+// var loaderStreet = new GLTFLoader;
+// loaderStreet.crossOrigin = true;
+// loaderStreet.load(streetModel, function(addStreet) {
+//     street = addStreet.scene;
+//     scene.add(street);
+//     street.position.set(.6, -5, -30)
+//     street.rotation.y = -.5 * Math.PI
+//     street.scale.set(110, 110, 110)
+// });
+/////// PLANES ///////
 
 var plane = new THREE.PlaneGeometry(1.6 / 1.2, .9 / 1.2);
 plane.receiveShadow = true;
@@ -54587,6 +54593,8 @@ window.addEventListener('load', function () {
 function functionBtnBackHome() {
   canvas.classList.remove('hologramDefault');
   canvas.classList.add('hologramActive');
+  btnBackHome.disabled = true;
+  btnStart.disabled = false;
 
   if (planeAxe.position.y <= -11) {
     //AXES ANIM
@@ -54634,10 +54642,18 @@ function functionBtnBackHome() {
   } //CAMERA ANIM
 
 
-  gsap.to(camera.position, 3, {
-    z: 10,
-    ease: "power3.inOut"
-  }); //HTML ELEMENTS ANIM
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    gsap.to(camera.position, 3, {
+      z: 11.3,
+      ease: "power3.inOut"
+    });
+  } else {
+    gsap.to(camera.position, 3, {
+      z: 10,
+      ease: "power3.inOut"
+    });
+  } //HTML ELEMENTS ANIM
+
 
   titleSvgPath.forEach(function (e) {
     e.classList.add("pathTitleIn");
@@ -54794,13 +54810,13 @@ function functionBtnBackHome() {
 
 btnBackHome.addEventListener('click', function () {
   functionBtnBackHome();
-  btnBackHome.disabled = true;
-  btnStart.disabled = false;
 }); ///// START BUTTON EVENTS /////
 
 function functionBtnStart() {
   canvas.classList.add('hologramDefault');
-  canvas.classList.remove('hologramActive'); //AXES ANIM
+  canvas.classList.remove('hologramActive');
+  btnBackHome.disabled = false;
+  btnStart.disabled = true; //AXES ANIM
 
   gsap.to(planeAxe.position, 1.5, {
     y: -17,
@@ -54813,10 +54829,18 @@ function functionBtnStart() {
     delay: 1.25
   }); //CAMERA ANIM
 
-  gsap.to(camera.position, 3, {
-    z: 3.7,
-    ease: "power3.inOut"
-  }); //HTML ELEMENTS ANIM
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    gsap.to(camera.position, 3, {
+      z: 4.5,
+      ease: "power3.inOut"
+    });
+  } else {
+    gsap.to(camera.position, 3, {
+      z: 3.7,
+      ease: "power3.inOut"
+    });
+  } //HTML ELEMENTS ANIM
+
 
   titleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleIn");
@@ -54974,8 +54998,6 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function () {
   functionBtnStart();
-  btnBackHome.disabled = false;
-  btnStart.disabled = true;
 });
 btnStart.addEventListener('mouseover', function () {
   TweenMax.to(".spanContainerStartMouseover span", {
@@ -54998,7 +55020,6 @@ btnStart.addEventListener('mouseover', function () {
   });
   spanContainerStartMouseOut.classList.add('neonText');
   cursorShapeIn.classList.add('mouseover');
-  cursor.classList.add('mouseover');
 });
 btnStart.addEventListener('mouseout', function () {
   TweenMax.to(".spanContainerStartMouseover span", {
@@ -55021,7 +55042,6 @@ btnStart.addEventListener('mouseout', function () {
   });
   spanContainerStartMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
-  cursor.classList.remove('mouseover');
 });
 btnBackHome.addEventListener('mouseover', function () {
   TweenMax.to(".spanContainerBackMouseover span", {
@@ -55044,7 +55064,6 @@ btnBackHome.addEventListener('mouseover', function () {
   });
   spanContainerBackMouseOut.classList.add('neonText');
   cursorShapeIn.classList.add('mouseover');
-  cursor.classList.add('mouseover');
 });
 btnBackHome.addEventListener('mouseout', function () {
   TweenMax.to(".spanContainerBackMouseover span", {
@@ -55067,12 +55086,6 @@ btnBackHome.addEventListener('mouseout', function () {
   });
   spanContainerBackMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
-  cursor.classList.remove('mouseover');
-});
-document.addEventListener("keypress", function (event) {
-  if (event.keyCode === 13 && camera.position.z == 20) {
-    functionBtnStart();
-  }
 }); ///// BUTTON START HOVER /////
 
 var btnStartText = "Découvrir les ateliers";
@@ -55197,7 +55210,7 @@ var Cursor = /*#__PURE__*/function () {
     value: function speed_morph() {
       var dist = Math.dist(this.dx, this.dy);
       var min = 1;
-      var max_distance = 150;
+      var max_distance = 200;
       var total = dist / max_distance;
       return Number(Math.min(total, min).toFixed(2));
     }
@@ -55326,10 +55339,18 @@ function scrollUp() {
       ease: "power3.inOut"
     }); //CAMERA ANIM
 
-    gsap.to(camera.position, 3, {
-      z: 10,
-      ease: "power3.inOut"
-    }); //HTML ELEMENTS ANIM
+    if (window.matchMedia("(max-width: 600px)").matches) {
+      gsap.to(camera.position, 3, {
+        z: 11.3,
+        ease: "power3.inOut"
+      });
+    } else {
+      gsap.to(camera.position, 3, {
+        z: 10,
+        ease: "power3.inOut"
+      });
+    } //HTML ELEMENTS ANIM
+
 
     titleSvgPath.forEach(function (e) {
       e.classList.add("pathTitleIn");
@@ -57355,10 +57376,18 @@ function scrollDown() {
       ease: "power3.inOut"
     }); //CAMERA ANIM
 
-    gsap.to(camera.position, 3, {
-      z: 10,
-      ease: "power3.inOut"
-    }); //HTML ELEMENTS ANIM
+    if (window.matchMedia("(max-width: 600px)").matches) {
+      gsap.to(camera.position, 3, {
+        z: 11.3,
+        ease: "power3.inOut"
+      });
+    } else {
+      gsap.to(camera.position, 3, {
+        z: 10,
+        ease: "power3.inOut"
+      });
+    } //HTML ELEMENTS ANIM
+
 
     titleSvgPath.forEach(function (e) {
       e.classList.add("pathTitleIn");
@@ -57716,7 +57745,7 @@ var render = function render() {
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","gsap":"node_modules/gsap/index.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertexShader.glsl":"js/libs/glsl/vertexShader.glsl","./libs/glsl/fragmentShader.glsl":"js/libs/glsl/fragmentShader.glsl","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","gsap":"node_modules/gsap/index.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertexShader.glsl":"js/libs/glsl/vertexShader.glsl","./libs/glsl/fragmentShader.glsl":"js/libs/glsl/fragmentShader.glsl","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -57744,7 +57773,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "20194" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53247" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

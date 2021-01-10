@@ -2,7 +2,6 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   cursor: none !important;
-  overflow: hidden !important;
 }
 
 body {
@@ -10,48 +9,131 @@ body {
   padding: 0;
   width: 100%;
   background: #09021e;
+  overflow: hidden;
 }
 
 canvas {
   display: block;
-  z-index: -1;
   position: absolute;
+  z-index: -1;
 }
 
-#cursor {
+canvas.hologramActive {
+  -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-animation: blinkCanvas 6s infinite;
+          animation: blinkCanvas 6s infinite;
+}
+
+canvas.hologramDefault {
+  -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  mix-blend-mode: normal;
+  -webkit-animation: none;
+          animation: none;
+}
+
+@-webkit-keyframes blinkCanvas {
+  30% {
+    opacity: 1;
+  }
+  32% {
+    opacity: .7;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: .7;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: .7;
+  }
+  82% {
+    opacity: 1;
+  }
+  85% {
+    opacity: .8;
+  }
+  87% {
+    opacity: 1;
+  }
+}
+
+@keyframes blinkCanvas {
+  30% {
+    opacity: 1;
+  }
+  32% {
+    opacity: .7;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: .7;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: .7;
+  }
+  82% {
+    opacity: 1;
+  }
+  85% {
+    opacity: .8;
+  }
+  87% {
+    opacity: 1;
+  }
+}
+
+.cursor {
   position: fixed;
-  z-index: 99;
-  left: 0;
-  top: 0;
   pointer-events: none;
+  z-index: 100;
   mix-blend-mode: difference;
 }
 
-@media screen and (max-width: 1024px) {
-  #cursor {
-    display: none;
-  }
-  #cursor-shape {
-    display: none;
-  }
-  #cursor-shape.mouseover {
-    display: none;
-  }
-}
-
-#cursor-shape {
+.cursor-shape_in {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50px;
+  left: -10px;
+  top: -10px;
   width: 20px;
   height: 20px;
-  margin-top: -50%;
-  margin-left: -50%;
-  border-radius: 50%;
   background: #4cc9f0;
-  -webkit-transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
-#cursor-shape.mouseover {
-  padding: 30px;
+.cursor-shape_in.mouseover {
+  -webkit-transition: opacity 0.5s cubic-bezier(0.25, 0, 0, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 0, 0, 1);
+  opacity: 0;
+}
+
+.cursor-shape_out {
+  mix-blend-mode: difference;
+  z-index: 99;
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50px;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border: #4cc9f0 solid 1px;
+  -webkit-transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
+          animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
 main {
@@ -91,6 +173,8 @@ main .homeContainer .close {
 
 main .homeContainer .title {
   width: 50vw;
+  -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
+          animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
 main .homeContainer .littleTitle {
@@ -101,11 +185,10 @@ main .homeContainer .littleTitle {
 }
 
 main .homeContainer .title path,
-main .homeContainer .title circle,
 main .homeContainer .title line {
   fill: none;
   stroke: #4CC9F0;
-  stroke-width: 1;
+  stroke-width: 0.5;
   stroke-miterlimit: 10;
   stroke-dashoffset: -1000;
   stroke-dasharray: 1000;
@@ -133,7 +216,6 @@ main .homeContainer .pathLineOut {
 
 @-webkit-keyframes titleIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
   }
   40% {
@@ -141,23 +223,19 @@ main .homeContainer .pathLineOut {
     fill: transparent;
   }
   45% {
-    stroke-width: 1;
     fill: #4cc9f0;
   }
   70% {
     fill: #4cc9f0;
-    stroke-dashoffset: 0;
-    stroke-width: 0px;
   }
   100% {
     fill: #4cc9f0;
-    stroke-width: 1;
+    stroke-dashoffset: 0;
   }
 }
 
 @keyframes titleIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
   }
   40% {
@@ -165,24 +243,20 @@ main .homeContainer .pathLineOut {
     fill: transparent;
   }
   45% {
-    stroke-width: 1;
     fill: #4cc9f0;
   }
   70% {
     fill: #4cc9f0;
-    stroke-dashoffset: 0;
-    stroke-width: 0px;
   }
   100% {
     fill: #4cc9f0;
-    stroke-width: 1;
+    stroke-dashoffset: 0;
   }
 }
 
 @-webkit-keyframes titleOut {
   0% {
     stroke-dashoffset: 0;
-    stroke-width: 1px;
     fill: #4cc9f0;
   }
   10% {
@@ -194,19 +268,16 @@ main .homeContainer .pathLineOut {
   }
   85% {
     fill: transparent;
-    stroke-width: 1px;
   }
   100% {
     fill: transparent;
     stroke-dashoffset: -1000;
-    stroke-width: 1;
   }
 }
 
 @keyframes titleOut {
   0% {
     stroke-dashoffset: 0;
-    stroke-width: 1px;
     fill: #4cc9f0;
   }
   10% {
@@ -218,58 +289,58 @@ main .homeContainer .pathLineOut {
   }
   85% {
     fill: transparent;
-    stroke-width: 1px;
   }
   100% {
     fill: transparent;
     stroke-dashoffset: -1000;
-    stroke-width: 1;
   }
 }
 
 @-webkit-keyframes lineIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   40% {
     stroke-dashoffset: 0;
     fill: transparent;
+    stroke-width: 0.5px;
   }
   45% {
     fill: transparent;
-    stroke-width: 1;
+    stroke-width: 0.5px;
   }
   70% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
   100% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
 }
 
 @keyframes lineIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   40% {
     stroke-dashoffset: 0;
     fill: transparent;
+    stroke-width: 0.5px;
   }
   45% {
     fill: transparent;
-    stroke-width: 1;
+    stroke-width: 0.5px;
   }
   70% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
   100% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -279,17 +350,18 @@ main .homeContainer .pathLineOut {
     stroke-width: 4px;
   }
   10% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   80% {
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   85% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   100% {
+    stroke-width: 0.5px;
     stroke-dashoffset: -1000;
-    stroke-width: 0px;
   }
 }
 
@@ -299,17 +371,18 @@ main .homeContainer .pathLineOut {
     stroke-width: 4px;
   }
   10% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   80% {
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   85% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   100% {
+    stroke-width: 0.5px;
     stroke-dashoffset: -1000;
-    stroke-width: 0px;
   }
 }
 
@@ -321,9 +394,11 @@ main .homeContainer .pathLineOut {
   }
   33% {
     opacity: 1;
+    -webkit-filter: drop-shadow(0 0 2px #4cc9f0);
+            filter: drop-shadow(0 0 2px #4cc9f0);
   }
   35% {
-    opacity: .9;
+    opacity: 1;
     -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
             filter: drop-shadow(0 0 3px #4cc9f0);
   }
@@ -345,9 +420,11 @@ main .homeContainer .pathLineOut {
   }
   33% {
     opacity: 1;
+    -webkit-filter: drop-shadow(0 0 2px #4cc9f0);
+            filter: drop-shadow(0 0 2px #4cc9f0);
   }
   35% {
-    opacity: .9;
+    opacity: 1;
     -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
             filter: drop-shadow(0 0 3px #4cc9f0);
   }
@@ -395,13 +472,13 @@ main .homeContainer .pathLineOut {
   border: 1px solid #09021e;
 }
 
-.btn__start .spanContainerMouseout.neonText {
+.btn__start .spanContainerStartMouseout.neonText {
   -webkit-animation: blinkBtn 4s infinite alternate;
           animation: blinkBtn 4s infinite alternate;
 }
 
-.btn__start .spanContainerMouseover,
-.btn__start .spanContainerMouseout {
+.btn__start .spanContainerStartMouseover,
+.btn__start .spanContainerStartMouseout {
   position: absolute;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -413,20 +490,20 @@ main .homeContainer .pathLineOut {
           clip-path: inset(35% 0 35% 0);
 }
 
-.btn__start .spanContainerMouseover span,
-.btn__start .spanContainerMouseout span {
+.btn__start .spanContainerStartMouseover span,
+.btn__start .spanContainerStartMouseout span {
   display: inline-block;
   line-height: 55px;
 }
 
 @media screen and (max-width: 600px) {
-  .btn__start .spanContainerMouseover span,
-  .btn__start .spanContainerMouseout span {
+  .btn__start .spanContainerStartMouseover span,
+  .btn__start .spanContainerStartMouseout span {
     line-height: 6.3vh;
   }
 }
 
-.btn__start .spanContainerMouseout span {
+.btn__start .spanContainerStartMouseout span {
   -webkit-transform: translateY(40px);
           transform: translateY(40px);
 }
@@ -440,6 +517,52 @@ main .homeContainer .pathLineOut {
   z-index: 2;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
+  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  overflow: hidden;
+}
+
+.btn__backHome.open {
+  pointer-events: all;
+}
+
+.btn__backHome.close {
+  pointer-events: none;
+}
+
+.btn__backHome:hover {
+  background: #4cc9f0;
+  color: #09021e;
+  border: 1px solid #09021e;
+}
+
+.btn__backHome .spanContainerBackMouseout.neonText {
+  -webkit-animation: blinkBtn 4s infinite alternate;
+          animation: blinkBtn 4s infinite alternate;
+}
+
+.btn__backHome .spanContainerBackMouseover,
+.btn__backHome .spanContainerBackMouseout {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-clip-path: inset(35% 0 35% 0);
+          clip-path: inset(35% 0 35% 0);
+}
+
+.btn__backHome .spanContainerBackMouseover span,
+.btn__backHome .spanContainerBackMouseout span {
+  display: inline-block;
+  line-height: 6vh;
+}
+
+.btn__backHome .spanContainerBackMouseout span {
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
 }
 
 @media screen and (max-width: 600px) {
@@ -449,14 +572,6 @@ main .homeContainer .pathLineOut {
     left: 2%;
     top: 1.2%;
   }
-}
-
-.btn__backHome.open {
-  pointer-events: all;
-}
-
-.btn__backHome.close {
-  pointer-events: none;
 }
 
 .colContainer {
