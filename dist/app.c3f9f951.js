@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,23 +32462,15 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  
-  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  
-  var d = light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.scale.set( d, d, d );
-  
-  }
-  
-  this.add( this.lightDistance );
+  	var d = light.distance;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.scale.set( d, d, d );
+  	}
+  	this.add( this.lightDistance );
   */
 }
 
@@ -32498,17 +32490,12 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.visible = true;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  
-  }
+  	}
   */
 
 };
@@ -32939,8 +32926,7 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  
-  0: max.x, max.y, max.z
+  	0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -53793,10 +53779,10 @@ exports.Interaction = Interaction;
 module.exports = "#define GLSLIFY 1\nvarying vec2 v_uv;\n\nvoid main() {\n    v_uv = uv;\n\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}";
 },{}],"js/libs/glsl/fragmentShader.glsl":[function(require,module,exports) {
 module.exports = "#define GLSLIFY 1\nuniform vec2 u_mouse;\nuniform vec2 u_res;\n\nuniform sampler2D u_image;\nuniform sampler2D u_imagehover;\n\nuniform float u_time;\n\nvarying vec2 v_uv;\n\nfloat circle(in vec2 _st, in float _radius, in float blurriness){\n    vec2 dist = _st;\n    return 1.-smoothstep(_radius-(_radius*blurriness), _radius+(_radius*blurriness), dot(dist,dist)*4.0);\n}\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n     return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise3(vec3 v)\n  {\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n             i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n           + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n           + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n  }\n\nvoid main() {\n\t// We manage the device ratio by passing PR constant\n\tvec2 res = u_res * PR;\n\tvec2 st = gl_FragCoord.xy / res.xy - vec2(0.5);\n\t// tip: use the following formula to keep the good ratio of your coordinates\n\tst.y *= u_res.y / u_res.x;\n\n\t// We readjust the mouse coordinates\n\tvec2 mouse = u_mouse * -0.5;\n\t\n\tvec2 circlePos = st + mouse;\n\tfloat c = circle(circlePos, 0.08, 2.) * 2.5;\n\n\tfloat offx = v_uv.x + sin(v_uv.y + u_time * .1);\n\tfloat offy = v_uv.y - u_time * 0.1 - cos(u_time * .001) * .01;\n\n\tfloat n = snoise3(vec3(offx, offy, u_time * .1) * 8.) - 1.;\n\n\tfloat finalMask = smoothstep(0.4, 0.5, n + pow(c, 2.));\n\n\tvec4 image = texture2D(u_image, v_uv);\n\tvec4 hover = texture2D(u_imagehover, v_uv);\n\n\tvec4 finalImage = mix(image, hover, finalMask);\n\n\tgl_FragColor = finalImage;\n}";
-},{}],"assets/model/base.gltf":[function(require,module,exports) {
-module.exports = "/base.0252a199.gltf";
-},{}],"assets/model/logo.gltf":[function(require,module,exports) {
-module.exports = "/logo.69b5abe8.gltf";
+},{}],"assets/model/socle.gltf":[function(require,module,exports) {
+module.exports = "/socle.4736dd33.gltf";
+},{}],"assets/model/logo.glb":[function(require,module,exports) {
+module.exports = "/logo.b39e20a6.glb";
 },{}],"assets/model/home.gltf":[function(require,module,exports) {
 module.exports = "/home.200158f1.gltf";
 },{}],"assets/img/atelier1.png":[function(require,module,exports) {
@@ -53834,9 +53820,9 @@ var _vertexShader = _interopRequireDefault(require("./libs/glsl/vertexShader.gls
 
 var _fragmentShader = _interopRequireDefault(require("./libs/glsl/fragmentShader.glsl"));
 
-var _base = _interopRequireDefault(require("../assets/model/base.gltf"));
+var _socle = _interopRequireDefault(require("../assets/model/socle.gltf"));
 
-var _logo = _interopRequireDefault(require("../assets/model/logo.gltf"));
+var _logo = _interopRequireDefault(require("../assets/model/logo.glb"));
 
 var _home = _interopRequireDefault(require("../assets/model/home.gltf"));
 
@@ -53943,7 +53929,7 @@ loaderHome.load(_home.default, function (addHome) {
 var socle;
 var loaderSocle = new _GLTFLoader.GLTFLoader();
 loaderSocle.crossOrigin = true;
-loaderSocle.load(_base.default, function (addSocle) {
+loaderSocle.load(_socle.default, function (addSocle) {
   socle = addSocle.scene;
   scene.add(socle);
   socle.position.set(0, -10.7, 0);
@@ -54493,16 +54479,17 @@ scene.add(particleMesh); /////// VARIABLES EVENTS ///////
 var homeContainer = document.querySelector('.homeContainer');
 var titleSvg = document.querySelector('.title');
 var titleSvgPath = document.querySelectorAll('.title path');
-var titleSvgCircle = document.querySelector('.title circle');
 var titleSvgLine = document.querySelector('.title line');
 var littleTitleSvg = document.querySelector('.littleTitle');
 var littleTitleSvgPath = document.querySelectorAll('.littleTitle path');
-var littleTitleSvgCircle = document.querySelector('.littleTitle circle');
 var littleTitleSvgLine = document.querySelector('.littleTitle line');
+var buttons = document.querySelectorAll('button');
 var btnStart = document.querySelector('.btn__start');
-var spanContainerMouseOver = document.querySelector('.spanContainerMouseover');
-var spanContainerMouseOut = document.querySelector('.spanContainerMouseout');
+var spanContainerStartMouseOver = document.querySelector('.spanContainerStartMouseover');
+var spanContainerStartMouseOut = document.querySelector('.spanContainerStartMouseout');
 var btnBackHome = document.querySelector('.btn__backHome');
+var spanContainerBackMouseOver = document.querySelector('.spanContainerBackMouseover');
+var spanContainerBackMouseOut = document.querySelector('.spanContainerBackMouseout');
 var canvas = document.querySelector('canvas');
 var sm = document.querySelectorAll('.sm');
 var sm1 = document.querySelector('.sm__1');
@@ -54511,7 +54498,9 @@ var sm3 = document.querySelector('.sm__3');
 var musicBtn = document.querySelector('.musicBtn');
 var bgCol = document.querySelectorAll('.colContainer .col');
 var bgRow = document.querySelectorAll('.rowContainer .row');
-var cursorShape = document.querySelector('#cursor-shape'); // materialPlane1.cursor = 'pointer';
+var cursor = document.querySelector('.cursor');
+var cursorShapeIn = document.querySelector('.cursor-shape_in');
+var cursorShapeOut = document.querySelector('.cursor-shape_out'); // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
 // materialPlane1.on('touchstart', function(ev) {});
 // materialPlane1.on('touchend', function(ev) {});
@@ -54578,9 +54567,13 @@ window.addEventListener('load', function () {
     yoyo: true,
     delay: 2
   });
+  canvas.classList.add('hologramActive');
 }); /////// BACKHOME BUTTON EVENTS ///////
 
 function functionBtnBackHome() {
+  canvas.classList.remove('hologramDefault');
+  canvas.classList.add('hologramActive');
+
   if (planeAxe.position.y <= -11) {
     //AXES ANIM
     gsap.to(planeAxe.position, 2.25, {
@@ -54636,16 +54629,12 @@ function functionBtnBackHome() {
     e.classList.add("pathTitleIn");
     e.classList.remove("pathTitleOut");
   });
-  titleSvgCircle.classList.add("pathTitleIn");
-  titleSvgCircle.classList.remove("pathTitleOut");
   titleSvgLine.classList.add("pathLineIn");
   titleSvgLine.classList.remove("pathLineOut");
   littleTitleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleIn");
     e.classList.add("pathTitleOut");
   });
-  littleTitleSvgCircle.classList.remove("pathTitleIn");
-  littleTitleSvgCircle.classList.add("pathTitleOut");
   littleTitleSvgLine.classList.remove("pathLineIn");
   littleTitleSvgLine.classList.add("pathLineOut");
   TweenMax.to(btnStart, .75, {
@@ -54791,10 +54780,14 @@ function functionBtnBackHome() {
 
 btnBackHome.addEventListener('click', function () {
   functionBtnBackHome();
+  btnBackHome.disabled = true;
+  btnStart.disabled = false;
 }); ///// START BUTTON EVENTS /////
 
 function functionBtnStart() {
-  //AXES ANIM
+  canvas.classList.add('hologramDefault');
+  canvas.classList.remove('hologramActive'); //AXES ANIM
+
   gsap.to(planeAxe.position, 1.5, {
     y: -17,
     ease: "power3.inOut",
@@ -54815,16 +54808,12 @@ function functionBtnStart() {
     e.classList.remove("pathTitleIn");
     e.classList.add("pathTitleOut");
   });
-  titleSvgCircle.classList.remove("pathTitleIn");
-  titleSvgCircle.classList.add("pathTitleOut");
   titleSvgLine.classList.remove("pathLineIn");
   titleSvgLine.classList.add("pathLineOut");
   littleTitleSvgPath.forEach(function (e) {
     e.classList.add("pathTitleIn");
     e.classList.remove("pathTitleOut");
   });
-  littleTitleSvgCircle.classList.add("pathTitleIn");
-  littleTitleSvgCircle.classList.remove("pathTitleOut");
   littleTitleSvgLine.classList.add("pathLineIn");
   littleTitleSvgLine.classList.remove("pathLineOut");
   TweenMax.to(btnStart, 1, {
@@ -54971,9 +54960,11 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function () {
   functionBtnStart();
+  btnBackHome.disabled = false;
+  btnStart.disabled = true;
 });
 btnStart.addEventListener('mouseover', function () {
-  TweenMax.to(".spanContainerMouseover span", {
+  TweenMax.to(".spanContainerStartMouseover span", {
     duration: .5,
     translateY: -40,
     stagger: {
@@ -54982,7 +54973,7 @@ btnStart.addEventListener('mouseover', function () {
     },
     ease: "power2.inOut"
   });
-  TweenMax.to(".spanContainerMouseout span", {
+  TweenMax.to(".spanContainerStartMouseout span", {
     duration: .5,
     translateY: 0,
     stagger: {
@@ -54991,11 +54982,12 @@ btnStart.addEventListener('mouseover', function () {
     },
     ease: "power2.inOut"
   });
-  spanContainerMouseOut.classList.add('neonText');
-  cursorShape.classList.add('mouseover');
+  spanContainerStartMouseOut.classList.add('neonText');
+  cursorShapeIn.classList.add('mouseover');
+  cursor.classList.add('mouseover');
 });
 btnStart.addEventListener('mouseout', function () {
-  TweenMax.to(".spanContainerMouseover span", {
+  TweenMax.to(".spanContainerStartMouseover span", {
     duration: .5,
     translateY: 0,
     stagger: {
@@ -55004,7 +54996,7 @@ btnStart.addEventListener('mouseout', function () {
     },
     ease: "power2.inOut"
   });
-  TweenMax.to(".spanContainerMouseout span", {
+  TweenMax.to(".spanContainerStartMouseout span", {
     duration: .5,
     translateY: 40,
     stagger: {
@@ -55013,8 +55005,55 @@ btnStart.addEventListener('mouseout', function () {
     },
     ease: "power2.inOut"
   });
-  spanContainerMouseOut.classList.remove('neonText');
-  cursorShape.classList.remove('mouseover');
+  spanContainerStartMouseOut.classList.remove('neonText');
+  cursorShapeIn.classList.remove('mouseover');
+  cursor.classList.remove('mouseover');
+});
+btnBackHome.addEventListener('mouseover', function () {
+  TweenMax.to(".spanContainerBackMouseover span", {
+    duration: .5,
+    translateY: -40,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackMouseout span", {
+    duration: .5,
+    translateY: 0,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  spanContainerBackMouseOut.classList.add('neonText');
+  cursorShapeIn.classList.add('mouseover');
+  cursor.classList.add('mouseover');
+});
+btnBackHome.addEventListener('mouseout', function () {
+  TweenMax.to(".spanContainerBackMouseover span", {
+    duration: .5,
+    translateY: 0,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackMouseout span", {
+    duration: .5,
+    translateY: 40,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  spanContainerBackMouseOut.classList.remove('neonText');
+  cursorShapeIn.classList.remove('mouseover');
+  cursor.classList.remove('mouseover');
 });
 document.addEventListener("keypress", function (event) {
   if (event.keyCode === 13 && camera.position.z == 20) {
@@ -55027,12 +55066,25 @@ var charsTextBtnStart = btnStartText.split('');
 charsTextBtnStart.forEach(function (letter) {
   var btnStartchar = document.createElement('span');
   btnStartchar.innerHTML = letter;
-  spanContainerMouseOver.append(btnStartchar);
+  spanContainerStartMouseOver.append(btnStartchar);
 });
 charsTextBtnStart.forEach(function (letter) {
   var btnStartchar = document.createElement('span');
   btnStartchar.innerHTML = letter;
-  spanContainerMouseOut.append(btnStartchar);
+  spanContainerStartMouseOut.append(btnStartchar);
+}); ///// BUTTON BACK HOVER /////
+
+var btnBackText = "Retour";
+var charsTextBtnBack = btnBackText.split('');
+charsTextBtnBack.forEach(function (letter) {
+  var btnBackchar = document.createElement('span');
+  btnBackchar.innerHTML = letter;
+  spanContainerBackMouseOver.append(btnBackchar);
+});
+charsTextBtnBack.forEach(function (letter) {
+  var btnBackchar = document.createElement('span');
+  btnBackchar.innerHTML = letter;
+  spanContainerBackMouseOut.append(btnBackchar);
 }); /////// SM HOVER ///////
 
 sm1.classList.add('mouseout');
@@ -55049,6 +55101,9 @@ sm1.addEventListener('mouseout', function () {
   sm1.classList.remove('mouseover');
   sm1.classList.remove('neonText');
 });
+sm1.addEventListener('click', function () {
+  window.open('https://www.facebook.com/mmi.tarbes.jpo', '_blank');
+});
 sm2.addEventListener('mouseover', function () {
   // POINTER SOCIAL MEDIA 2
   sm2.classList.add('mouseover');
@@ -55060,6 +55115,9 @@ sm2.addEventListener('mouseout', function () {
   sm2.classList.remove('mouseover');
   sm2.classList.remove('neonText');
 });
+sm2.addEventListener('click', function () {
+  window.open('https://www.instagram.com/immersions_digitales_tarbes/', '_blank');
+});
 sm3.addEventListener('mouseover', function () {
   // POINTER SOCIAL MEDIA 3
   sm3.classList.add('mouseover');
@@ -55070,6 +55128,9 @@ sm3.addEventListener('mouseout', function () {
   sm3.classList.add('mouseout');
   sm3.classList.remove('mouseover');
   sm3.classList.remove('neonText');
+});
+sm3.addEventListener('click', function () {
+  window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
 }); ///// CUSTOM CURSOR /////
 
 var pixelRatio = window.devicePixelRatio;
@@ -55079,11 +55140,12 @@ Math.dist = function (dx, dy) {
 };
 
 var Cursor = /*#__PURE__*/function () {
-  function Cursor() {
+  function Cursor(cursor) {
     _classCallCheck(this, Cursor);
 
-    this.container = window["cursor"];
-    this.shape = window["cursor-shape"];
+    // this.container = window["cursor"];
+    this.shape = cursor; // console.log(this.shape)
+
     this.translation = {
       x: 1,
       y: 1
@@ -55095,7 +55157,7 @@ var Cursor = /*#__PURE__*/function () {
     this.precision = 2;
     this.scale = 1;
     this.rotation = 1;
-    this.friction = .200;
+    this.friction = .500;
     this.animate();
     this.events();
   }
@@ -55121,7 +55183,7 @@ var Cursor = /*#__PURE__*/function () {
     value: function speed_morph() {
       var dist = Math.dist(this.dx, this.dy);
       var min = 1;
-      var max_distance = 700;
+      var max_distance = 150;
       var total = dist / max_distance;
       return Number(Math.min(total, min).toFixed(2));
     }
@@ -55137,8 +55199,8 @@ var Cursor = /*#__PURE__*/function () {
   }, {
     key: "render",
     value: function render() {
-      this.update();
-      this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
+      this.update(); // this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
+
       this.shape.style.transform = 'rotate(' + this.rotation.toFixed(this.precision) + 'deg) ' + 'scale(' + (1 + this.scale) + ', ' + (1 - this.scale) + ')';
     }
   }, {
@@ -55156,7 +55218,86 @@ var Cursor = /*#__PURE__*/function () {
   return Cursor;
 }();
 
-var _cursor = new Cursor(); ///// SCROLL FUNCTIONS /////
+var _cursorIn = new Cursor(cursorShapeIn); // const _cursorOut = new Cursor("cursor-shape_out");
+// document.addEventListener('mousemove', e => {
+//     cursorShapeOut.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
+// })
+
+
+var isStuck = false;
+var mouse = {
+  x: -100,
+  y: -100
+}; // Just in case you need to scroll
+
+var scrollHeight = 0;
+window.addEventListener('scroll', function (e) {
+  scrollHeight = window.scrollY;
+});
+var cursorOuterOriginalState = {
+  width: cursorShapeOut.getBoundingClientRect().width,
+  height: cursorShapeOut.getBoundingClientRect().height
+};
+buttons.forEach(function (button) {
+  button.addEventListener("pointerenter", handleMouseEnter);
+  button.addEventListener("pointerleave", handleMouseLeave);
+});
+sm.forEach(function (reseau) {
+  reseau.addEventListener("pointerenter", handleMouseEnter);
+  reseau.addEventListener("pointerleave", handleMouseLeave);
+});
+document.body.addEventListener("pointermove", updateCursorPosition);
+
+function updateCursorPosition(e) {
+  mouse.x = e.pageX;
+  mouse.y = e.pageY;
+}
+
+function updateCursor() {
+  gsap.set(cursor, {
+    x: mouse.x,
+    y: mouse.y
+  });
+
+  if (!isStuck) {
+    gsap.to(cursorShapeOut, {
+      duration: 0.15,
+      x: mouse.x - cursorOuterOriginalState.width / 2,
+      y: mouse.y - cursorOuterOriginalState.height / 2
+    });
+  }
+
+  requestAnimationFrame(updateCursor);
+}
+
+updateCursor();
+
+function handleMouseEnter(e) {
+  isStuck = true;
+  var targetBox = e.currentTarget.getBoundingClientRect();
+  console.log(targetBox);
+  gsap.to(cursorShapeOut, 0.2, {
+    x: targetBox.left,
+    y: targetBox.top + scrollHeight,
+    width: targetBox.width,
+    height: targetBox.height,
+    borderRadius: 0,
+    backgroundColor: "transparent"
+  });
+  cursorShapeIn.classList.add('mouseover');
+}
+
+function handleMouseLeave(e) {
+  isStuck = false; // updateCursor();
+
+  gsap.to(cursorShapeOut, 0.2, {
+    width: cursorOuterOriginalState.width,
+    height: cursorOuterOriginalState.height,
+    borderRadius: "50px",
+    backgroundColor: "transparent"
+  });
+  cursorShapeIn.classList.remove('mouseover');
+} ///// SCROLL FUNCTIONS /////
 
 
 function scrollUp() {
@@ -55180,16 +55321,12 @@ function scrollUp() {
       e.classList.add("pathTitleIn");
       e.classList.remove("pathTitleOut");
     });
-    titleSvgCircle.classList.add("pathTitleIn");
-    titleSvgCircle.classList.remove("pathTitleOut");
     titleSvgLine.classList.add("pathLineIn");
     titleSvgLine.classList.remove("pathLineOut");
     littleTitleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleIn");
       e.classList.add("pathTitleOut");
     });
-    littleTitleSvgCircle.classList.remove("pathTitleIn");
-    littleTitleSvgCircle.classList.add("pathTitleOut");
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
     TweenMax.to(btnStart, .75, {
@@ -57213,16 +57350,12 @@ function scrollDown() {
       e.classList.add("pathTitleIn");
       e.classList.remove("pathTitleOut");
     });
-    titleSvgCircle.classList.add("pathTitleIn");
-    titleSvgCircle.classList.remove("pathTitleOut");
     titleSvgLine.classList.add("pathLineIn");
     titleSvgLine.classList.remove("pathLineOut");
     littleTitleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleIn");
       e.classList.add("pathTitleOut");
     });
-    littleTitleSvgCircle.classList.remove("pathTitleIn");
-    littleTitleSvgCircle.classList.add("pathTitleOut");
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
     TweenMax.to(btnStart, .75, {
@@ -57569,7 +57702,7 @@ var render = function render() {
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","gsap":"node_modules/gsap/index.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertexShader.glsl":"js/libs/glsl/vertexShader.glsl","./libs/glsl/fragmentShader.glsl":"js/libs/glsl/fragmentShader.glsl","../assets/model/base.gltf":"assets/model/base.gltf","../assets/model/logo.gltf":"assets/model/logo.gltf","../assets/model/home.gltf":"assets/model/home.gltf","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","gsap":"node_modules/gsap/index.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertexShader.glsl":"js/libs/glsl/vertexShader.glsl","./libs/glsl/fragmentShader.glsl":"js/libs/glsl/fragmentShader.glsl","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -57597,7 +57730,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55761" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61934" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

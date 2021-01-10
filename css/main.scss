@@ -1,6 +1,7 @@
 $bleu: #09021e;
 $cyan: #4cc9f0;
 $magenta: #f72585;
+
 * {
     box-sizing: border-box;
     cursor: none!important;
@@ -17,50 +18,92 @@ canvas {
     display: block;
     position: absolute;
     z-index: -1;
+    &.hologramActive {
+        transition: mix-blend-mode 2s cubic-bezier(.25, 0, 0, 1);
+        // mix-blend-mode: difference;
+        // opacity: 0.5;
+        animation: blinkCanvas 6s infinite;
+    }
+    &.hologramDefault {
+        transition: mix-blend-mode 2s cubic-bezier(.25, 0, 0, 1);
+        mix-blend-mode: normal;
+        // opacity: 1;
+        animation: none;
+    }
+    @keyframes blinkCanvas {
+        30% {
+            opacity: 1;
+        }
+        32% {
+            opacity: .7;
+        }
+        33% {
+            opacity: 1;
+        }
+        35% {
+            opacity: .7;
+        }
+        40% {
+            opacity: 1;
+        }
+        80% {
+            opacity: .7;
+        }
+        82% {
+            opacity: 1;
+        }
+        85% {
+            opacity: .8;
+        }
+        87% {
+            opacity: 1;
+        }
+    }
 }
 
-////CURSOR CUSTOM///
-// .cursor {
-//     position: fixed;
-//     z-index: 99;
-//     left: 0;
-//     top: 0;
-//     pointer-events: none;
-// }
+//CURSOR CUSTOM///
+.cursor {
+    position: fixed;
+    // top: 0;
+    // left: 0;
+    pointer-events: none;
+    z-index: 999;   
+    mix-blend-mode: difference;
+    &.mouseover {
+        transition: mix-blend-mode .75s cubic-bezier(.25, 0, 0, 1);
+        mix-blend-mode: normal;
+    }
+}
 
 .cursor-shape_in {
-    mix-blend-mode: difference;
 	position: absolute;
-	border-radius: 50%;
+	pointer-events: none;
+	border-radius: 50px;
 	left: -10px;
     top: -10px;
-    // transform: translate(-50%, -50%);
-	pointer-events: none;
     width: 20px;
     height: 20px;
-	z-index: 100;   
     background: $cyan;
-    transition: all .75s cubic-bezier(.25, 0, 0, 1);
+    transition: filter .75s cubic-bezier(.25, 0, 0, 1);
     &.mouseover {
         // padding: 30px;
-        transition: all .75s cubic-bezier(.25, 0, 0, 1);
-        opacity: 0;
-        filter: blur(10px);
+        transition: filter .75s cubic-bezier(.25, 0, 0, 1);
+        // opacity: 0;
+        filter: blur(20px);
     }
 }
 
 .cursor-shape_out {
+    mix-blend-mode: difference;
+	z-index: 99;
 	position: absolute;
+	pointer-events: none;
     border-radius: 50px;
 	left: 0;
 	top: 0;
-	pointer-events: none;
-	z-index: 99;
-    border: $cyan solid 1px;
     width: 50px;
     height: 50px;
-    // margin-top: -75%;
-    // margin-left: -75%;
+    border: $cyan solid 1px;
     transition: padding .75s cubic-bezier(.25, 0, 0, 1);
     animation: blinkTitle 8s infinite ease-in-out alternate;
 }
@@ -95,11 +138,10 @@ main {
         }
         .title {
             path,
-            circle,
             line {
                 fill: none;
                 stroke: #4CC9F0;
-                stroke-width: 1;
+                stroke-width: 0.5;
                 stroke-miterlimit: 10;
                 stroke-dashoffset: -1000;
                 stroke-dasharray: 1000;
@@ -119,7 +161,6 @@ main {
         }
         @keyframes titleIn {
             0% {
-                stroke-width: 1;
                 stroke-dashoffset: -1000;
             }
             40% {
@@ -127,22 +168,19 @@ main {
                 fill: transparent;
             }
             45% {
-                stroke-width: 1;
                 fill: $cyan;
             }
             70% {
                 fill: $cyan;
-                stroke-dashoffset: 0;
             }
             100% {
                 fill: $cyan;
-                stroke-width: 1;
+                stroke-dashoffset: 0;
             }
         }
         @keyframes titleOut {
             0% {
                 stroke-dashoffset: 0;
-                stroke-width: 1px;
                 fill: $cyan;
             }
             10% {
@@ -154,54 +192,54 @@ main {
             }
             85% {
                 fill: transparent;
-                stroke-width: 1px;
             }
             100% {
                 fill: transparent;
                 stroke-dashoffset: -1000;
-                stroke-width: 1;
             }
         }
         @keyframes lineIn {
             0% {
-                stroke-width: 1;
                 stroke-dashoffset: -1000;
+                stroke-width: 0.5px;
             }
             40% {
                 stroke-dashoffset: 0;
                 fill: transparent;
+                stroke-width: 0.5px;
             }
             45% {
                 fill: transparent;
-                stroke-width: 1;
+                stroke-width: 0.5px;
             }
             70% {
-                stroke-dashoffset: 0;
                 stroke-width: 4px;
+                stroke-dashoffset: 0;
             }
             100% {
-                stroke-dashoffset: 0;
                 stroke-width: 4px;
+                stroke-dashoffset: 0;
             }
         }
         @keyframes lineOut {
             0% {
                 stroke-dashoffset: 0;
-                stroke-width: 1px;
+                stroke-width: 4px;
             }
             10% {
-                stroke-width: 1px;
+                stroke-width: 0.5px;
             }
             80% {
                 stroke-dashoffset: -1000;
+                stroke-width: 0.5px;
             }
             85% {
-                stroke-width: 1px;
+                stroke-width: 0.5px;
             }
             100% {
+                stroke-width: 0.5px;
                 stroke-dashoffset: -1000;
-                stroke-width: 0px;
-            }
+            } 
         }
         @keyframes blinkTitle {
             30% {

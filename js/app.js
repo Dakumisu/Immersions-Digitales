@@ -9,8 +9,8 @@ import { Interaction } from 'three.interaction';
 import vertexShader from "./libs/glsl/vertexShader.glsl";
 import fragmentShader from "./libs/glsl/fragmentShader.glsl";
 
-import socleModel from "../assets/model/base.gltf";
-import logoModel from "../assets/model/logo.gltf";
+import socleModel from "../assets/model/socle.gltf";
+import logoModel from "../assets/model/logo.glb";
 import homeModel from "../assets/model/home.gltf";
 
 import atelier1 from "../assets/img/atelier1.png";
@@ -488,6 +488,7 @@ var materialPlane14 = new THREE.MeshPhongMaterial({
 
 
 /////// PLANE AXES ///////
+
 var planeAxe = new THREE.Object3D();
 planeAxe.position.set(0, -26.5, 0);
 scene.add(planeAxe);
@@ -733,11 +734,9 @@ scene.add(particleMesh);
 let homeContainer = document.querySelector('.homeContainer');
 let titleSvg = document.querySelector('.title');
 let titleSvgPath = document.querySelectorAll('.title path');
-let titleSvgCircle = document.querySelector('.title circle');
 let titleSvgLine = document.querySelector('.title line');
 let littleTitleSvg = document.querySelector('.littleTitle');
 let littleTitleSvgPath = document.querySelectorAll('.littleTitle path');
-let littleTitleSvgCircle = document.querySelector('.littleTitle circle');
 let littleTitleSvgLine = document.querySelector('.littleTitle line');
 let buttons = document.querySelectorAll('button');
 let btnStart = document.querySelector('.btn__start');
@@ -784,11 +783,13 @@ window.addEventListener('load', function() {
     TweenMax.to(bgRow, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.0355555 });
     TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 2 });
     TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 2 });
+    canvas.classList.add('hologramActive')
 })
 
 /////// BACKHOME BUTTON EVENTS ///////
 function functionBtnBackHome() {
-
+    canvas.classList.remove('hologramDefault')
+    canvas.classList.add('hologramActive')
     if (planeAxe.position.y <= -11) {
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
@@ -811,8 +812,6 @@ function functionBtnBackHome() {
         e.classList.add("pathTitleIn")
         e.classList.remove("pathTitleOut")
     });
-    titleSvgCircle.classList.add("pathTitleIn")
-    titleSvgCircle.classList.remove("pathTitleOut")
     titleSvgLine.classList.add("pathLineIn")
     titleSvgLine.classList.remove("pathLineOut")
 
@@ -820,8 +819,6 @@ function functionBtnBackHome() {
         e.classList.remove("pathTitleIn")
         e.classList.add("pathTitleOut")
     });
-    littleTitleSvgCircle.classList.remove("pathTitleIn")
-    littleTitleSvgCircle.classList.add("pathTitleOut")
     littleTitleSvgLine.classList.remove("pathLineIn")
     littleTitleSvgLine.classList.add("pathLineOut")
     TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
@@ -880,10 +877,14 @@ function functionBtnBackHome() {
 
 btnBackHome.addEventListener('click', function () {
     functionBtnBackHome();
+    btnBackHome.disabled = true;
+    btnStart.disabled = false;
 })
 
 ///// START BUTTON EVENTS /////
 function functionBtnStart() {
+    canvas.classList.add('hologramDefault')
+    canvas.classList.remove('hologramActive')
     //AXES ANIM
     gsap.to(planeAxe.position, 1.5, { y: -17, ease: "power3.inOut", delay: 1.25 })
     gsap.to(planeAxe.rotation, 1.5, { y: -3.5 * Math.PI, ease: "power3.inOut", delay: 1.25 })
@@ -894,8 +895,6 @@ function functionBtnStart() {
         e.classList.remove("pathTitleIn")
         e.classList.add("pathTitleOut")
     });
-    titleSvgCircle.classList.remove("pathTitleIn")
-    titleSvgCircle.classList.add("pathTitleOut")
     titleSvgLine.classList.remove("pathLineIn")
     titleSvgLine.classList.add("pathLineOut")
 
@@ -903,8 +902,6 @@ function functionBtnStart() {
         e.classList.add("pathTitleIn")
         e.classList.remove("pathTitleOut")
     });
-    littleTitleSvgCircle.classList.add("pathTitleIn")
-    littleTitleSvgCircle.classList.remove("pathTitleOut")
     littleTitleSvgLine.classList.add("pathLineIn")
     littleTitleSvgLine.classList.remove("pathLineOut")
     TweenMax.to(btnStart, 1, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
@@ -951,6 +948,8 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function () {
     functionBtnStart();
+    btnBackHome.disabled = false;
+    btnStart.disabled = true;
 })
 
 btnStart.addEventListener('mouseover', function () {
@@ -974,6 +973,7 @@ btnStart.addEventListener('mouseover', function () {
     });
     spanContainerStartMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
+    cursor.classList.add('mouseover');
 })
 
 btnStart.addEventListener('mouseout', function () {
@@ -997,6 +997,7 @@ btnStart.addEventListener('mouseout', function () {
     });
     spanContainerStartMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
+    cursor.classList.remove('mouseover');
 })
 
 btnBackHome.addEventListener('mouseover', function () {
@@ -1020,6 +1021,7 @@ btnBackHome.addEventListener('mouseover', function () {
     });
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
+    cursor.classList.add('mouseover');
 })
 
 btnBackHome.addEventListener('mouseout', function () {
@@ -1043,6 +1045,7 @@ btnBackHome.addEventListener('mouseout', function () {
     });
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
+    cursor.classList.remove('mouseover');
 })
 
 document.addEventListener("keypress", function(event) {
@@ -1102,6 +1105,11 @@ sm1.addEventListener('mouseout', function() {
     sm1.classList.remove('neonText')
 })
 
+sm1.addEventListener('click', function() {
+    window.open('https://www.facebook.com/mmi.tarbes.jpo', '_blank');
+
+})
+
 sm2.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 2
     sm2.classList.add('mouseover')
     sm2.classList.remove('mouseout')
@@ -1112,6 +1120,11 @@ sm2.addEventListener('mouseout', function() {
     sm2.classList.add('mouseout')
     sm2.classList.remove('mouseover')
     sm2.classList.remove('neonText')
+})
+
+sm2.addEventListener('click', function() {
+    window.open('https://www.instagram.com/immersions_digitales_tarbes/', '_blank');
+
 })
 
 sm3.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 3
@@ -1126,6 +1139,10 @@ sm3.addEventListener('mouseout', function() {
     sm3.classList.remove('neonText')
 })
 
+sm3.addEventListener('click', function() {
+    window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
+})
+
 ///// CUSTOM CURSOR /////
 const pixelRatio = window.devicePixelRatio;
 
@@ -1134,9 +1151,9 @@ Math.dist = (dx, dy) => {
 }
 
 class Cursor {
-    constructor(cursorTest) {
+    constructor(cursor) {
         // this.container = window["cursor"];
-        this.shape = cursorShapeIn;
+        this.shape = cursor;
         // console.log(this.shape)
         this.translation = {
             x: 1,
@@ -1169,7 +1186,7 @@ class Cursor {
     speed_morph() {
         const dist = Math.dist(this.dx, this.dy);
         const min = 1;
-        const max_distance = 700;
+        const max_distance = 150;
         const total = dist / max_distance;
         return Number(Math.min(total, min).toFixed(2));
     }
@@ -1200,7 +1217,7 @@ class Cursor {
     }
 }
 
-const _cursorIn = new Cursor("cursor-shape_in");
+const _cursorIn = new Cursor(cursorShapeIn);
 // const _cursorOut = new Cursor("cursor-shape_out");
 
 // document.addEventListener('mousemove', e => {
@@ -1263,31 +1280,34 @@ updateCursor();
 	function handleMouseEnter(e) {
 		isStuck = true;
         const targetBox = e.currentTarget.getBoundingClientRect();
-        // console.log(targetBox)
+        console.log(targetBox)
 		gsap.to(cursorShapeOut, 0.2, {
 			x: targetBox.left, 
 			y: targetBox.top + scrollHeight,
 			width: targetBox.width,
 			height: targetBox.height,
 			borderRadius: 0,
-			backgroundColor: "rgba(255, 255, 255, 0.1)",
-		});
+			backgroundColor: "transparent",
+        });
+        cursorShapeIn.classList.add('mouseover');
 	}
 
 	function handleMouseLeave(e) {
-		isStuck = false;
-		gsap.to(cursorShapeOut, 0.5, {
+        isStuck = false;
+        // updateCursor();
+		gsap.to(cursorShapeOut, 0.2, {
 			width: cursorOuterOriginalState.width,
-			height: cursorOuterOriginalState.width,
+			height: cursorOuterOriginalState.height,
 			borderRadius: "50px",
 			backgroundColor: "transparent",
-		});
+        });
+        cursorShapeIn.classList.remove('mouseover');
 	}
 
 
 
 ///// SCROLL FUNCTIONS /////
-function scrollUp() {
+function scrollUp() { 
     if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
@@ -1299,8 +1319,6 @@ function scrollUp() {
             e.classList.add("pathTitleIn")
             e.classList.remove("pathTitleOut")
         });
-        titleSvgCircle.classList.add("pathTitleIn")
-        titleSvgCircle.classList.remove("pathTitleOut")
         titleSvgLine.classList.add("pathLineIn")
         titleSvgLine.classList.remove("pathLineOut")
 
@@ -1308,8 +1326,6 @@ function scrollUp() {
             e.classList.remove("pathTitleIn")
             e.classList.add("pathTitleOut")
         });
-        littleTitleSvgCircle.classList.remove("pathTitleIn")
-        littleTitleSvgCircle.classList.add("pathTitleOut")
         littleTitleSvgLine.classList.remove("pathLineIn")
         littleTitleSvgLine.classList.add("pathLineOut")
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
@@ -2015,8 +2031,6 @@ function scrollDown() {
             e.classList.add("pathTitleIn")
             e.classList.remove("pathTitleOut")
         });
-        titleSvgCircle.classList.add("pathTitleIn")
-        titleSvgCircle.classList.remove("pathTitleOut")
         titleSvgLine.classList.add("pathLineIn")
         titleSvgLine.classList.remove("pathLineOut")
 
@@ -2024,8 +2038,6 @@ function scrollDown() {
             e.classList.remove("pathTitleIn")
             e.classList.add("pathTitleOut")
         });
-        littleTitleSvgCircle.classList.remove("pathTitleIn")
-        littleTitleSvgCircle.classList.add("pathTitleOut")
         littleTitleSvgLine.classList.remove("pathLineIn")
         littleTitleSvgLine.classList.add("pathLineOut")
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })

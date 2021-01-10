@@ -17,39 +17,129 @@ canvas {
   z-index: -1;
 }
 
-.cursor-shape_in {
+canvas.hologramActive {
+  -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-animation: blinkCanvas 6s infinite;
+          animation: blinkCanvas 6s infinite;
+}
+
+canvas.hologramDefault {
+  -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
+  mix-blend-mode: normal;
+  -webkit-animation: none;
+          animation: none;
+}
+
+@-webkit-keyframes blinkCanvas {
+  30% {
+    opacity: 1;
+  }
+  32% {
+    opacity: .7;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: .7;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: .7;
+  }
+  82% {
+    opacity: 1;
+  }
+  85% {
+    opacity: .8;
+  }
+  87% {
+    opacity: 1;
+  }
+}
+
+@keyframes blinkCanvas {
+  30% {
+    opacity: 1;
+  }
+  32% {
+    opacity: .7;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: .7;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: .7;
+  }
+  82% {
+    opacity: 1;
+  }
+  85% {
+    opacity: .8;
+  }
+  87% {
+    opacity: 1;
+  }
+}
+
+.cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
   mix-blend-mode: difference;
+}
+
+.cursor.mouseover {
+  -webkit-transition: mix-blend-mode 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: mix-blend-mode 0.75s cubic-bezier(0.25, 0, 0, 1);
+  mix-blend-mode: normal;
+}
+
+.cursor-shape_in {
   position: absolute;
-  border-radius: 50%;
+  pointer-events: none;
+  border-radius: 50px;
   left: -10px;
   top: -10px;
-  pointer-events: none;
   width: 20px;
   height: 20px;
-  z-index: 100;
   background: #4cc9f0;
-  -webkit-transition: all 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: all 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1), -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 .cursor-shape_in.mouseover {
-  -webkit-transition: all 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: all 0.75s cubic-bezier(0.25, 0, 0, 1);
-  opacity: 0;
-  -webkit-filter: blur(10px);
-          filter: blur(10px);
+  -webkit-transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: filter 0.75s cubic-bezier(0.25, 0, 0, 1), -webkit-filter 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-filter: blur(20px);
+          filter: blur(20px);
 }
 
 .cursor-shape_out {
+  mix-blend-mode: difference;
+  z-index: 99;
   position: absolute;
+  pointer-events: none;
   border-radius: 50px;
   left: 0;
   top: 0;
-  pointer-events: none;
-  z-index: 99;
-  border: #4cc9f0 solid 1px;
   width: 50px;
   height: 50px;
+  border: #4cc9f0 solid 1px;
   -webkit-transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
   transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
   -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
@@ -105,11 +195,10 @@ main .homeContainer .littleTitle {
 }
 
 main .homeContainer .title path,
-main .homeContainer .title circle,
 main .homeContainer .title line {
   fill: none;
   stroke: #4CC9F0;
-  stroke-width: 1;
+  stroke-width: 0.5;
   stroke-miterlimit: 10;
   stroke-dashoffset: -1000;
   stroke-dasharray: 1000;
@@ -137,7 +226,6 @@ main .homeContainer .pathLineOut {
 
 @-webkit-keyframes titleIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
   }
   40% {
@@ -145,22 +233,19 @@ main .homeContainer .pathLineOut {
     fill: transparent;
   }
   45% {
-    stroke-width: 1;
     fill: #4cc9f0;
   }
   70% {
     fill: #4cc9f0;
-    stroke-dashoffset: 0;
   }
   100% {
     fill: #4cc9f0;
-    stroke-width: 1;
+    stroke-dashoffset: 0;
   }
 }
 
 @keyframes titleIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
   }
   40% {
@@ -168,23 +253,20 @@ main .homeContainer .pathLineOut {
     fill: transparent;
   }
   45% {
-    stroke-width: 1;
     fill: #4cc9f0;
   }
   70% {
     fill: #4cc9f0;
-    stroke-dashoffset: 0;
   }
   100% {
     fill: #4cc9f0;
-    stroke-width: 1;
+    stroke-dashoffset: 0;
   }
 }
 
 @-webkit-keyframes titleOut {
   0% {
     stroke-dashoffset: 0;
-    stroke-width: 1px;
     fill: #4cc9f0;
   }
   10% {
@@ -196,19 +278,16 @@ main .homeContainer .pathLineOut {
   }
   85% {
     fill: transparent;
-    stroke-width: 1px;
   }
   100% {
     fill: transparent;
     stroke-dashoffset: -1000;
-    stroke-width: 1;
   }
 }
 
 @keyframes titleOut {
   0% {
     stroke-dashoffset: 0;
-    stroke-width: 1px;
     fill: #4cc9f0;
   }
   10% {
@@ -220,98 +299,100 @@ main .homeContainer .pathLineOut {
   }
   85% {
     fill: transparent;
-    stroke-width: 1px;
   }
   100% {
     fill: transparent;
     stroke-dashoffset: -1000;
-    stroke-width: 1;
   }
 }
 
 @-webkit-keyframes lineIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   40% {
     stroke-dashoffset: 0;
     fill: transparent;
+    stroke-width: 0.5px;
   }
   45% {
     fill: transparent;
-    stroke-width: 1;
+    stroke-width: 0.5px;
   }
   70% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
   100% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
 }
 
 @keyframes lineIn {
   0% {
-    stroke-width: 1;
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   40% {
     stroke-dashoffset: 0;
     fill: transparent;
+    stroke-width: 0.5px;
   }
   45% {
     fill: transparent;
-    stroke-width: 1;
+    stroke-width: 0.5px;
   }
   70% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
   100% {
-    stroke-dashoffset: 0;
     stroke-width: 4px;
+    stroke-dashoffset: 0;
   }
 }
 
 @-webkit-keyframes lineOut {
   0% {
     stroke-dashoffset: 0;
-    stroke-width: 1px;
+    stroke-width: 4px;
   }
   10% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   80% {
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   85% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   100% {
+    stroke-width: 0.5px;
     stroke-dashoffset: -1000;
-    stroke-width: 0px;
   }
 }
 
 @keyframes lineOut {
   0% {
     stroke-dashoffset: 0;
-    stroke-width: 1px;
+    stroke-width: 4px;
   }
   10% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   80% {
     stroke-dashoffset: -1000;
+    stroke-width: 0.5px;
   }
   85% {
-    stroke-width: 1px;
+    stroke-width: 0.5px;
   }
   100% {
+    stroke-width: 0.5px;
     stroke-dashoffset: -1000;
-    stroke-width: 0px;
   }
 }
 
