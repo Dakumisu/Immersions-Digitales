@@ -53785,8 +53785,6 @@ module.exports = "/socle.4736dd33.gltf";
 module.exports = "/logo.b39e20a6.glb";
 },{}],"assets/model/home.gltf":[function(require,module,exports) {
 module.exports = "/home.200158f1.gltf";
-},{}],"assets/model/street.gltf":[function(require,module,exports) {
-module.exports = "/street.466c19e3.gltf";
 },{}],"assets/img/atelier1.png":[function(require,module,exports) {
 module.exports = "/atelier1.25e2fcb4.png";
 },{}],"assets/img/atelier2.png":[function(require,module,exports) {
@@ -53828,8 +53826,6 @@ var _logo = _interopRequireDefault(require("../assets/model/logo.glb"));
 
 var _home = _interopRequireDefault(require("../assets/model/home.gltf"));
 
-var _street = _interopRequireDefault(require("../assets/model/street.gltf"));
-
 var _atelier = _interopRequireDefault(require("../assets/img/atelier1.png"));
 
 var _atelier2 = _interopRequireDefault(require("../assets/img/atelier2.png"));
@@ -53864,13 +53860,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-if (window.matchMedia("(max-width: 600px)").matches) {
-  camera.position.set(0, 0, 11.3);
-} else {
-  camera.position.set(0, 0, 10);
-} /////// MAIN RENDERER ///////
-
+camera.position.set(0, 0, 10); /////// MAIN RENDERER ///////
 
 var renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -53898,23 +53888,23 @@ var rotateZ = -.2; // PLANES ROTATION
 var targetLogo = new THREE.Object3D();
 targetLogo.position.set(0, 0, 0);
 scene.add(targetLogo);
-var light1 = new THREE.PointLight(cyanColor, .1);
+var light1 = new THREE.PointLight(0x4cc9f0, .1);
 light1.position.set(0, 1000, 1000);
 scene.add(light1);
-var light2 = new THREE.PointLight(cyanColor, .6);
+var light2 = new THREE.PointLight(0x4cc9f0, .6);
 light2.position.set(1000, 0, 0);
 scene.add(light2);
-var light3 = new THREE.PointLight(cyanColor, .1);
+var light3 = new THREE.PointLight(0x4cc9f0, .1);
 light3.position.set(0, 0, -1000);
 scene.add(light3);
-var light4 = new THREE.PointLight(cyanColor, .1);
+var light4 = new THREE.PointLight(0x4cc9f0, .1);
 light4.position.set(-1000, 1000, 0);
 scene.add(light4);
-var lightCenterPlane = new THREE.PointLight(cyanColor, 1.75, 12);
+var lightCenterPlane = new THREE.PointLight(0x4cc9f0, 1.5, 14);
 lightCenterPlane.position.set(0, 0, 10);
 scene.add(lightCenterPlane);
-var lightCenter = new THREE.DirectionalLight(0x000000, 5);
-lightCenter.position.set(0, -10, 1);
+var lightCenter = new THREE.DirectionalLight(0x000000, 15);
+lightCenter.position.set(0, -1.5, 0);
 lightCenter.target = targetLogo;
 scene.add(lightCenter);
 var lightCenterSocle = new THREE.PointLight(0x000000, 120, .75);
@@ -53955,17 +53945,7 @@ loaderLogo.load(_logo.default, function (addLogo) {
   logo.position.set(0, -9.8, 0);
   logo.rotation.z = -.725;
   logo.scale.set(0, 0, 0);
-}); // var street;
-// var loaderStreet = new GLTFLoader;
-// loaderStreet.crossOrigin = true;
-// loaderStreet.load(streetModel, function(addStreet) {
-//     street = addStreet.scene;
-//     scene.add(street);
-//     street.position.set(.6, -5, -30)
-//     street.rotation.y = -.5 * Math.PI
-//     street.scale.set(110, 110, 110)
-// });
-/////// PLANES ///////
+}); /////// PLANES ///////
 
 var plane = new THREE.PlaneGeometry(1.6 / 1.2, .9 / 1.2);
 plane.receiveShadow = true;
@@ -54499,16 +54479,17 @@ scene.add(particleMesh); /////// VARIABLES EVENTS ///////
 var homeContainer = document.querySelector('.homeContainer');
 var titleSvg = document.querySelector('.title');
 var titleSvgPath = document.querySelectorAll('.title path');
-var titleSvgCircle = document.querySelector('.title circle');
 var titleSvgLine = document.querySelector('.title line');
 var littleTitleSvg = document.querySelector('.littleTitle');
 var littleTitleSvgPath = document.querySelectorAll('.littleTitle path');
-var littleTitleSvgCircle = document.querySelector('.littleTitle circle');
 var littleTitleSvgLine = document.querySelector('.littleTitle line');
+var buttons = document.querySelectorAll('button');
 var btnStart = document.querySelector('.btn__start');
-var spanContainerMouseOver = document.querySelector('.spanContainerMouseover');
-var spanContainerMouseOut = document.querySelector('.spanContainerMouseout');
+var spanContainerStartMouseOver = document.querySelector('.spanContainerStartMouseover');
+var spanContainerStartMouseOut = document.querySelector('.spanContainerStartMouseout');
 var btnBackHome = document.querySelector('.btn__backHome');
+var spanContainerBackMouseOver = document.querySelector('.spanContainerBackMouseover');
+var spanContainerBackMouseOut = document.querySelector('.spanContainerBackMouseout');
 var canvas = document.querySelector('canvas');
 var sm = document.querySelectorAll('.sm');
 var sm1 = document.querySelector('.sm__1');
@@ -54517,7 +54498,9 @@ var sm3 = document.querySelector('.sm__3');
 var musicBtn = document.querySelector('.musicBtn');
 var bgCol = document.querySelectorAll('.colContainer .col');
 var bgRow = document.querySelectorAll('.rowContainer .row');
-var cursorShape = document.querySelector('#cursor-shape'); // materialPlane1.cursor = 'pointer';
+var cursor = document.querySelector('.cursor');
+var cursorShapeIn = document.querySelector('.cursor-shape_in');
+var cursorShapeOut = document.querySelector('.cursor-shape_out'); // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
 // materialPlane1.on('touchstart', function(ev) {});
 // materialPlane1.on('touchend', function(ev) {});
@@ -54584,9 +54567,13 @@ window.addEventListener('load', function () {
     yoyo: true,
     delay: 2
   });
+  canvas.classList.add('hologramActive');
 }); /////// BACKHOME BUTTON EVENTS ///////
 
 function functionBtnBackHome() {
+  canvas.classList.remove('hologramDefault');
+  canvas.classList.add('hologramActive');
+
   if (planeAxe.position.y <= -11) {
     //AXES ANIM
     gsap.to(planeAxe.position, 2.25, {
@@ -54633,33 +54620,21 @@ function functionBtnBackHome() {
   } //CAMERA ANIM
 
 
-  if (window.matchMedia("(max-width: 600px)").matches) {
-    gsap.to(camera.position, 3, {
-      z: 11.3,
-      ease: "power3.inOut"
-    });
-  } else {
-    gsap.to(camera.position, 3, {
-      z: 10,
-      ease: "power3.inOut"
-    });
-  } //HTML ELEMENTS ANIM
-
+  gsap.to(camera.position, 3, {
+    z: 10,
+    ease: "power3.inOut"
+  }); //HTML ELEMENTS ANIM
 
   titleSvgPath.forEach(function (e) {
     e.classList.add("pathTitleIn");
     e.classList.remove("pathTitleOut");
   });
-  titleSvgCircle.classList.add("pathTitleIn");
-  titleSvgCircle.classList.remove("pathTitleOut");
   titleSvgLine.classList.add("pathLineIn");
   titleSvgLine.classList.remove("pathLineOut");
   littleTitleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleIn");
     e.classList.add("pathTitleOut");
   });
-  littleTitleSvgCircle.classList.remove("pathTitleIn");
-  littleTitleSvgCircle.classList.add("pathTitleOut");
   littleTitleSvgLine.classList.remove("pathLineIn");
   littleTitleSvgLine.classList.add("pathLineOut");
   TweenMax.to(btnStart, .75, {
@@ -54805,10 +54780,14 @@ function functionBtnBackHome() {
 
 btnBackHome.addEventListener('click', function () {
   functionBtnBackHome();
+  btnBackHome.disabled = true;
+  btnStart.disabled = false;
 }); ///// START BUTTON EVENTS /////
 
 function functionBtnStart() {
-  //AXES ANIM
+  canvas.classList.add('hologramDefault');
+  canvas.classList.remove('hologramActive'); //AXES ANIM
+
   gsap.to(planeAxe.position, 1.5, {
     y: -17,
     ease: "power3.inOut",
@@ -54820,33 +54799,21 @@ function functionBtnStart() {
     delay: 1.25
   }); //CAMERA ANIM
 
-  if (window.matchMedia("(max-width: 600px)").matches) {
-    gsap.to(camera.position, 3, {
-      z: 4.5,
-      ease: "power3.inOut"
-    });
-  } else {
-    gsap.to(camera.position, 3, {
-      z: 3.7,
-      ease: "power3.inOut"
-    });
-  } //HTML ELEMENTS ANIM
-
+  gsap.to(camera.position, 3, {
+    z: 3.7,
+    ease: "power3.inOut"
+  }); //HTML ELEMENTS ANIM
 
   titleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleIn");
     e.classList.add("pathTitleOut");
   });
-  titleSvgCircle.classList.remove("pathTitleIn");
-  titleSvgCircle.classList.add("pathTitleOut");
   titleSvgLine.classList.remove("pathLineIn");
   titleSvgLine.classList.add("pathLineOut");
   littleTitleSvgPath.forEach(function (e) {
     e.classList.add("pathTitleIn");
     e.classList.remove("pathTitleOut");
   });
-  littleTitleSvgCircle.classList.add("pathTitleIn");
-  littleTitleSvgCircle.classList.remove("pathTitleOut");
   littleTitleSvgLine.classList.add("pathLineIn");
   littleTitleSvgLine.classList.remove("pathLineOut");
   TweenMax.to(btnStart, 1, {
@@ -54993,9 +54960,11 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function () {
   functionBtnStart();
+  btnBackHome.disabled = false;
+  btnStart.disabled = true;
 });
 btnStart.addEventListener('mouseover', function () {
-  TweenMax.to(".spanContainerMouseover span", {
+  TweenMax.to(".spanContainerStartMouseover span", {
     duration: .5,
     translateY: -40,
     stagger: {
@@ -55004,7 +54973,7 @@ btnStart.addEventListener('mouseover', function () {
     },
     ease: "power2.inOut"
   });
-  TweenMax.to(".spanContainerMouseout span", {
+  TweenMax.to(".spanContainerStartMouseout span", {
     duration: .5,
     translateY: 0,
     stagger: {
@@ -55013,11 +54982,12 @@ btnStart.addEventListener('mouseover', function () {
     },
     ease: "power2.inOut"
   });
-  spanContainerMouseOut.classList.add('neonText');
-  cursorShape.classList.add('mouseover');
+  spanContainerStartMouseOut.classList.add('neonText');
+  cursorShapeIn.classList.add('mouseover');
+  cursor.classList.add('mouseover');
 });
 btnStart.addEventListener('mouseout', function () {
-  TweenMax.to(".spanContainerMouseover span", {
+  TweenMax.to(".spanContainerStartMouseover span", {
     duration: .5,
     translateY: 0,
     stagger: {
@@ -55026,7 +54996,7 @@ btnStart.addEventListener('mouseout', function () {
     },
     ease: "power2.inOut"
   });
-  TweenMax.to(".spanContainerMouseout span", {
+  TweenMax.to(".spanContainerStartMouseout span", {
     duration: .5,
     translateY: 40,
     stagger: {
@@ -55035,8 +55005,55 @@ btnStart.addEventListener('mouseout', function () {
     },
     ease: "power2.inOut"
   });
-  spanContainerMouseOut.classList.remove('neonText');
-  cursorShape.classList.remove('mouseover');
+  spanContainerStartMouseOut.classList.remove('neonText');
+  cursorShapeIn.classList.remove('mouseover');
+  cursor.classList.remove('mouseover');
+});
+btnBackHome.addEventListener('mouseover', function () {
+  TweenMax.to(".spanContainerBackMouseover span", {
+    duration: .5,
+    translateY: -40,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackMouseout span", {
+    duration: .5,
+    translateY: 0,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  spanContainerBackMouseOut.classList.add('neonText');
+  cursorShapeIn.classList.add('mouseover');
+  cursor.classList.add('mouseover');
+});
+btnBackHome.addEventListener('mouseout', function () {
+  TweenMax.to(".spanContainerBackMouseover span", {
+    duration: .5,
+    translateY: 0,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackMouseout span", {
+    duration: .5,
+    translateY: 40,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  spanContainerBackMouseOut.classList.remove('neonText');
+  cursorShapeIn.classList.remove('mouseover');
+  cursor.classList.remove('mouseover');
 });
 document.addEventListener("keypress", function (event) {
   if (event.keyCode === 13 && camera.position.z == 20) {
@@ -55049,12 +55066,25 @@ var charsTextBtnStart = btnStartText.split('');
 charsTextBtnStart.forEach(function (letter) {
   var btnStartchar = document.createElement('span');
   btnStartchar.innerHTML = letter;
-  spanContainerMouseOver.append(btnStartchar);
+  spanContainerStartMouseOver.append(btnStartchar);
 });
 charsTextBtnStart.forEach(function (letter) {
   var btnStartchar = document.createElement('span');
   btnStartchar.innerHTML = letter;
-  spanContainerMouseOut.append(btnStartchar);
+  spanContainerStartMouseOut.append(btnStartchar);
+}); ///// BUTTON BACK HOVER /////
+
+var btnBackText = "Retour";
+var charsTextBtnBack = btnBackText.split('');
+charsTextBtnBack.forEach(function (letter) {
+  var btnBackchar = document.createElement('span');
+  btnBackchar.innerHTML = letter;
+  spanContainerBackMouseOver.append(btnBackchar);
+});
+charsTextBtnBack.forEach(function (letter) {
+  var btnBackchar = document.createElement('span');
+  btnBackchar.innerHTML = letter;
+  spanContainerBackMouseOut.append(btnBackchar);
 }); /////// SM HOVER ///////
 
 sm1.classList.add('mouseout');
@@ -55071,6 +55101,9 @@ sm1.addEventListener('mouseout', function () {
   sm1.classList.remove('mouseover');
   sm1.classList.remove('neonText');
 });
+sm1.addEventListener('click', function () {
+  window.open('https://www.facebook.com/mmi.tarbes.jpo', '_blank');
+});
 sm2.addEventListener('mouseover', function () {
   // POINTER SOCIAL MEDIA 2
   sm2.classList.add('mouseover');
@@ -55082,6 +55115,9 @@ sm2.addEventListener('mouseout', function () {
   sm2.classList.remove('mouseover');
   sm2.classList.remove('neonText');
 });
+sm2.addEventListener('click', function () {
+  window.open('https://www.instagram.com/immersions_digitales_tarbes/', '_blank');
+});
 sm3.addEventListener('mouseover', function () {
   // POINTER SOCIAL MEDIA 3
   sm3.classList.add('mouseover');
@@ -55092,6 +55128,9 @@ sm3.addEventListener('mouseout', function () {
   sm3.classList.add('mouseout');
   sm3.classList.remove('mouseover');
   sm3.classList.remove('neonText');
+});
+sm3.addEventListener('click', function () {
+  window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
 }); ///// CUSTOM CURSOR /////
 
 var pixelRatio = window.devicePixelRatio;
@@ -55101,11 +55140,12 @@ Math.dist = function (dx, dy) {
 };
 
 var Cursor = /*#__PURE__*/function () {
-  function Cursor() {
+  function Cursor(cursor) {
     _classCallCheck(this, Cursor);
 
-    this.container = window["cursor"];
-    this.shape = window["cursor-shape"];
+    // this.container = window["cursor"];
+    this.shape = cursor; // console.log(this.shape)
+
     this.translation = {
       x: 1,
       y: 1
@@ -55117,7 +55157,7 @@ var Cursor = /*#__PURE__*/function () {
     this.precision = 2;
     this.scale = 1;
     this.rotation = 1;
-    this.friction = .200;
+    this.friction = .500;
     this.animate();
     this.events();
   }
@@ -55143,7 +55183,7 @@ var Cursor = /*#__PURE__*/function () {
     value: function speed_morph() {
       var dist = Math.dist(this.dx, this.dy);
       var min = 1;
-      var max_distance = 700;
+      var max_distance = 150;
       var total = dist / max_distance;
       return Number(Math.min(total, min).toFixed(2));
     }
@@ -55159,8 +55199,8 @@ var Cursor = /*#__PURE__*/function () {
   }, {
     key: "render",
     value: function render() {
-      this.update();
-      this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
+      this.update(); // this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
+
       this.shape.style.transform = 'rotate(' + this.rotation.toFixed(this.precision) + 'deg) ' + 'scale(' + (1 + this.scale) + ', ' + (1 - this.scale) + ')';
     }
   }, {
@@ -55178,7 +55218,86 @@ var Cursor = /*#__PURE__*/function () {
   return Cursor;
 }();
 
-var _cursor = new Cursor(); ///// SCROLL FUNCTIONS /////
+var _cursorIn = new Cursor(cursorShapeIn); // const _cursorOut = new Cursor("cursor-shape_out");
+// document.addEventListener('mousemove', e => {
+//     cursorShapeOut.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
+// })
+
+
+var isStuck = false;
+var mouse = {
+  x: -100,
+  y: -100
+}; // Just in case you need to scroll
+
+var scrollHeight = 0;
+window.addEventListener('scroll', function (e) {
+  scrollHeight = window.scrollY;
+});
+var cursorOuterOriginalState = {
+  width: cursorShapeOut.getBoundingClientRect().width,
+  height: cursorShapeOut.getBoundingClientRect().height
+};
+buttons.forEach(function (button) {
+  button.addEventListener("pointerenter", handleMouseEnter);
+  button.addEventListener("pointerleave", handleMouseLeave);
+});
+sm.forEach(function (reseau) {
+  reseau.addEventListener("pointerenter", handleMouseEnter);
+  reseau.addEventListener("pointerleave", handleMouseLeave);
+});
+document.body.addEventListener("pointermove", updateCursorPosition);
+
+function updateCursorPosition(e) {
+  mouse.x = e.pageX;
+  mouse.y = e.pageY;
+}
+
+function updateCursor() {
+  gsap.set(cursor, {
+    x: mouse.x,
+    y: mouse.y
+  });
+
+  if (!isStuck) {
+    gsap.to(cursorShapeOut, {
+      duration: 0.15,
+      x: mouse.x - cursorOuterOriginalState.width / 2,
+      y: mouse.y - cursorOuterOriginalState.height / 2
+    });
+  }
+
+  requestAnimationFrame(updateCursor);
+}
+
+updateCursor();
+
+function handleMouseEnter(e) {
+  isStuck = true;
+  var targetBox = e.currentTarget.getBoundingClientRect();
+  console.log(targetBox);
+  gsap.to(cursorShapeOut, 0.2, {
+    x: targetBox.left,
+    y: targetBox.top + scrollHeight,
+    width: targetBox.width,
+    height: targetBox.height,
+    borderRadius: 0,
+    backgroundColor: "transparent"
+  });
+  cursorShapeIn.classList.add('mouseover');
+}
+
+function handleMouseLeave(e) {
+  isStuck = false; // updateCursor();
+
+  gsap.to(cursorShapeOut, 0.2, {
+    width: cursorOuterOriginalState.width,
+    height: cursorOuterOriginalState.height,
+    borderRadius: "50px",
+    backgroundColor: "transparent"
+  });
+  cursorShapeIn.classList.remove('mouseover');
+} ///// SCROLL FUNCTIONS /////
 
 
 function scrollUp() {
@@ -55193,33 +55312,21 @@ function scrollUp() {
       ease: "power3.inOut"
     }); //CAMERA ANIM
 
-    if (window.matchMedia("(max-width: 600px)").matches) {
-      gsap.to(camera.position, 3, {
-        z: 11.3,
-        ease: "power3.inOut"
-      });
-    } else {
-      gsap.to(camera.position, 3, {
-        z: 10,
-        ease: "power3.inOut"
-      });
-    } //HTML ELEMENTS ANIM
-
+    gsap.to(camera.position, 3, {
+      z: 10,
+      ease: "power3.inOut"
+    }); //HTML ELEMENTS ANIM
 
     titleSvgPath.forEach(function (e) {
       e.classList.add("pathTitleIn");
       e.classList.remove("pathTitleOut");
     });
-    titleSvgCircle.classList.add("pathTitleIn");
-    titleSvgCircle.classList.remove("pathTitleOut");
     titleSvgLine.classList.add("pathLineIn");
     titleSvgLine.classList.remove("pathLineOut");
     littleTitleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleIn");
       e.classList.add("pathTitleOut");
     });
-    littleTitleSvgCircle.classList.remove("pathTitleIn");
-    littleTitleSvgCircle.classList.add("pathTitleOut");
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
     TweenMax.to(btnStart, .75, {
@@ -57234,33 +57341,21 @@ function scrollDown() {
       ease: "power3.inOut"
     }); //CAMERA ANIM
 
-    if (window.matchMedia("(max-width: 600px)").matches) {
-      gsap.to(camera.position, 3, {
-        z: 11.3,
-        ease: "power3.inOut"
-      });
-    } else {
-      gsap.to(camera.position, 3, {
-        z: 10,
-        ease: "power3.inOut"
-      });
-    } //HTML ELEMENTS ANIM
-
+    gsap.to(camera.position, 3, {
+      z: 10,
+      ease: "power3.inOut"
+    }); //HTML ELEMENTS ANIM
 
     titleSvgPath.forEach(function (e) {
       e.classList.add("pathTitleIn");
       e.classList.remove("pathTitleOut");
     });
-    titleSvgCircle.classList.add("pathTitleIn");
-    titleSvgCircle.classList.remove("pathTitleOut");
     titleSvgLine.classList.add("pathLineIn");
     titleSvgLine.classList.remove("pathLineOut");
     littleTitleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleIn");
       e.classList.add("pathTitleOut");
     });
-    littleTitleSvgCircle.classList.remove("pathTitleIn");
-    littleTitleSvgCircle.classList.add("pathTitleOut");
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
     TweenMax.to(btnStart, .75, {
@@ -57607,7 +57702,7 @@ var render = function render() {
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","gsap":"node_modules/gsap/index.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertexShader.glsl":"js/libs/glsl/vertexShader.glsl","./libs/glsl/fragmentShader.glsl":"js/libs/glsl/fragmentShader.glsl","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","gsap":"node_modules/gsap/index.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertexShader.glsl":"js/libs/glsl/vertexShader.glsl","./libs/glsl/fragmentShader.glsl":"js/libs/glsl/fragmentShader.glsl","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -57635,7 +57730,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61934" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62491" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

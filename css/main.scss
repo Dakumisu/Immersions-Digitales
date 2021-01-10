@@ -1,59 +1,111 @@
 $bleu: #09021e;
 $cyan: #4cc9f0;
 $magenta: #f72585;
+
 * {
     box-sizing: border-box;
     cursor: none!important;
-    overflow: hidden!important;
 }
 
 body {
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    width: 100%;
+    overflow: hidden;
     background: $bleu;
 }
 
 canvas {
     display: block;
-    z-index: -1;
     position: absolute;
+    z-index: -1;
+    &.hologramActive {
+        transition: mix-blend-mode 2s cubic-bezier(.25, 0, 0, 1);
+        // mix-blend-mode: difference;
+        // opacity: 0.5;
+        animation: blinkCanvas 6s infinite;
+    }
+    &.hologramDefault {
+        transition: mix-blend-mode 2s cubic-bezier(.25, 0, 0, 1);
+        mix-blend-mode: normal;
+        // opacity: 1;
+        animation: none;
+    }
+    @keyframes blinkCanvas {
+        30% {
+            opacity: 1;
+        }
+        32% {
+            opacity: .7;
+        }
+        33% {
+            opacity: 1;
+        }
+        35% {
+            opacity: .7;
+        }
+        40% {
+            opacity: 1;
+        }
+        80% {
+            opacity: .7;
+        }
+        82% {
+            opacity: 1;
+        }
+        85% {
+            opacity: .8;
+        }
+        87% {
+            opacity: 1;
+        }
+    }
 }
 
-////CURSOR CUSTOM///
-#cursor {
+//CURSOR CUSTOM///
+.cursor {
     position: fixed;
-    z-index: 99;
-    left: 0;
-    top: 0;
+    // top: 0;
+    // left: 0;
     pointer-events: none;
+    z-index: 999;   
     mix-blend-mode: difference;
-}
-
-@media screen and (max-width: 1024px) {
-    #cursor {
-        display: none;
-    }
-    #cursor-shape {
-        display: none;
-    }
-    #cursor-shape.mouseover {
-        display: none;
+    &.mouseover {
+        transition: mix-blend-mode .75s cubic-bezier(.25, 0, 0, 1);
+        mix-blend-mode: normal;
     }
 }
 
-#cursor-shape {
+.cursor-shape_in {
+	position: absolute;
+	pointer-events: none;
+	border-radius: 50px;
+	left: -10px;
+    top: -10px;
     width: 20px;
     height: 20px;
-    margin-top: -50%;
-    margin-left: -50%;
-    border-radius: 50%;
     background: $cyan;
-    transition: padding .75s cubic-bezier(.25, 0, 0, 1);
+    transition: filter .75s cubic-bezier(.25, 0, 0, 1);
+    &.mouseover {
+        // padding: 30px;
+        transition: filter .75s cubic-bezier(.25, 0, 0, 1);
+        // opacity: 0;
+        filter: blur(20px);
+    }
 }
 
-#cursor-shape.mouseover {
-    padding: 30px;
+.cursor-shape_out {
+    mix-blend-mode: difference;
+	z-index: 99;
+	position: absolute;
+	pointer-events: none;
+    border-radius: 50px;
+	left: 0;
+	top: 0;
+    width: 50px;
+    height: 50px;
+    border: $cyan solid 1px;
+    transition: padding .75s cubic-bezier(.25, 0, 0, 1);
+    animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
 main {
@@ -76,6 +128,7 @@ main {
         }
         .title {
             width: 50vw;
+            animation: blinkTitle 8s infinite ease-in-out alternate;
         }
         .littleTitle {
             width: 7vw;
@@ -85,11 +138,10 @@ main {
         }
         .title {
             path,
-            circle,
             line {
                 fill: none;
                 stroke: #4CC9F0;
-                stroke-width: 1;
+                stroke-width: 0.5;
                 stroke-miterlimit: 10;
                 stroke-dashoffset: -1000;
                 stroke-dasharray: 1000;
@@ -109,7 +161,6 @@ main {
         }
         @keyframes titleIn {
             0% {
-                stroke-width: 1;
                 stroke-dashoffset: -1000;
             }
             40% {
@@ -117,23 +168,19 @@ main {
                 fill: transparent;
             }
             45% {
-                stroke-width: 1;
                 fill: $cyan;
             }
             70% {
                 fill: $cyan;
-                stroke-dashoffset: 0;
-                stroke-width: 0px;
             }
             100% {
                 fill: $cyan;
-                stroke-width: 1;
+                stroke-dashoffset: 0;
             }
         }
         @keyframes titleOut {
             0% {
                 stroke-dashoffset: 0;
-                stroke-width: 1px;
                 fill: $cyan;
             }
             10% {
@@ -145,34 +192,33 @@ main {
             }
             85% {
                 fill: transparent;
-                stroke-width: 1px;
             }
             100% {
                 fill: transparent;
                 stroke-dashoffset: -1000;
-                stroke-width: 1;
             }
         }
         @keyframes lineIn {
             0% {
-                stroke-width: 1;
                 stroke-dashoffset: -1000;
+                stroke-width: 0.5px;
             }
             40% {
                 stroke-dashoffset: 0;
                 fill: transparent;
+                stroke-width: 0.5px;
             }
             45% {
                 fill: transparent;
-                stroke-width: 1;
+                stroke-width: 0.5px;
             }
             70% {
-                stroke-dashoffset: 0;
                 stroke-width: 4px;
+                stroke-dashoffset: 0;
             }
             100% {
-                stroke-dashoffset: 0;
                 stroke-width: 4px;
+                stroke-dashoffset: 0;
             }
         }
         @keyframes lineOut {
@@ -181,18 +227,19 @@ main {
                 stroke-width: 4px;
             }
             10% {
-                stroke-width: 1px;
+                stroke-width: 0.5px;
             }
             80% {
                 stroke-dashoffset: -1000;
+                stroke-width: 0.5px;
             }
             85% {
-                stroke-width: 1px;
+                stroke-width: 0.5px;
             }
             100% {
+                stroke-width: 0.5px;
                 stroke-dashoffset: -1000;
-                stroke-width: 0px;
-            }
+            } 
         }
         @keyframes blinkTitle {
             30% {
@@ -202,10 +249,11 @@ main {
             }
             33% {
                 opacity: 1;
+                filter: drop-shadow(0 0 2px $cyan);
                 // filter: blur(2px);
             }
             35% {
-                opacity: .9;
+                opacity: 1;
                 filter: drop-shadow(0 0 3px $cyan);
             }
             80% {
@@ -220,22 +268,18 @@ main {
 }
 
 .btn {
+    height: 6vh;
     outline: none;
     border: none;
     font-family: "littleTitle";
-    font-size: 17px;
-    letter-spacing: 1px;
+    font-size: 1.85vh;
+    letter-spacing: .15vw;
     background: $bleu;
     color: $cyan;
     border: 1px solid $cyan;
-    width: 235px;
-    height: 57px;
-    @media screen and (max-width: 600px) {
-        width: 54vw;
-        font-size: 4.1vw;
-        height: 6.5vh;
-    }
     &__start {
+        width: 300px;
+        height: 57px;
         overflow: hidden;
         position: relative;
         transition: .75s cubic-bezier(.25, 0, 0, 1);
@@ -244,11 +288,11 @@ main {
             color: $bleu;
             border: 1px solid $bleu;
         }
-        .spanContainerMouseout.neonText {
+        .spanContainerStartMouseout.neonText {
             animation: blinkBtn 4s infinite alternate;
         }
-        .spanContainerMouseover,
-        .spanContainerMouseout {
+        .spanContainerStartMouseover,
+        .spanContainerStartMouseout {
             position: absolute;
             transform: translate(-50%, -50%);
             top: 50%;
@@ -257,29 +301,19 @@ main {
             height: 100%;
             clip-path: inset(35% 0 35% 0);
         }
-        .spanContainerMouseover span,
-        .spanContainerMouseout span {
+        .spanContainerStartMouseover span,
+        .spanContainerStartMouseout span {
             display: inline-block;
-            line-height: 55px;
-            @media screen and (max-width: 600px) {
-                line-height: 6.3vh;
-            }
+            line-height: 6vh;
         }
-        .spanContainerMouseout span {
+        .spanContainerStartMouseout span {
             transform: translateY(40px);
         }
     }
     &__backHome {
-        width: 107px;
-        height: 57px;
-        @media screen and (max-width: 600px) {
-            width: 22.5vw;
-            height: 6.5vh;
-            left: 2%;
-            top: 1.2%;
-        }
-        top: 25px;
-        left: 24px;
+        width: 8vw;
+        top: 2%;
+        left: .5%;
         position: absolute;
         z-index: 2;
         clip-path: inset(0% 100% 0% 0%);
@@ -289,10 +323,38 @@ main {
         &.close {
             pointer-events: none;
         }
+        overflow: hidden;
+        transition: .75s cubic-bezier(.25, 0, 0, 1);
+        &:hover {
+            background: $cyan;
+            color: $bleu;
+            border: 1px solid $bleu;
+        }
+        .spanContainerBackMouseout.neonText {
+            animation: blinkBtn 4s infinite alternate;
+        }
+        .spanContainerBackMouseover,
+        .spanContainerBackMouseout {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            clip-path: inset(35% 0 35% 0);
+        }
+        .spanContainerBackMouseover span,
+        .spanContainerBackMouseout span {
+            display: inline-block;
+            line-height: 6vh;
+        }
+        .spanContainerBackMouseout span {
+            transform: translateY(40px);
+        }
     }
 }
 
-////GRID///
+////GRID WITH INTERACTIONS///
 .colContainer {
     position: absolute;
     width: 100%;
@@ -361,10 +423,10 @@ main {
 
 ////SOCIALS MEDIA///
 .sm {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 4.3%;
     position: absolute;
-    right: 18px;
+    right: .9%;
     color: $cyan;
     display: flex;
     justify-content: center;
@@ -372,15 +434,8 @@ main {
     z-index: 2;
     font-family: 'littleTitle';
     letter-spacing: 2px;
-    font-size: 15px;
     overflow: hidden;
     font-weight: 600;
-    @media screen and (max-width: 600px) {
-        right: .8%;
-        font-size: 3.3vw;
-        width: 30px;
-        height: 30px;
-    }
     &.neonText {
         text-shadow: 0px;
         animation: blink 4s infinite alternate;
@@ -437,13 +492,7 @@ main {
         }
     }
     &__1 {
-        bottom: 21px;
-        @media screen and (max-width: 600px) {
-            bottom: .5%;
-        }
-        @media (orientation: landscape and (max-width: 1024px)) {
-            background: green;
-        }
+        bottom: .9%;
         &.mouseover::after {
             content: "FB";
             position: absolute;
@@ -469,10 +518,7 @@ main {
         }
     }
     &__2 {
-        bottom: 63px;
-        @media screen and (max-width: 600px) {
-            bottom: 5.5%;
-        }
+        bottom: 5.5%;
         &.mouseover::after {
             content: "IG";
             position: absolute;
@@ -498,10 +544,7 @@ main {
         }
     }
     &__3 {
-        bottom: 105px;
-        @media screen and (max-width: 600px) {
-            bottom: 10.5%;
-        }
+        bottom: 10.1%;
         &.mouseover::after {
             content: "IN";
             position: absolute;
@@ -539,7 +582,6 @@ main {
     background: $cyan;
     opacity: .1;
     z-index: 3;
-    display: none;
 }
 
 @font-face {
