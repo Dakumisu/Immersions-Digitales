@@ -1,7 +1,12 @@
+@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   cursor: none !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -16,21 +21,17 @@ canvas {
   display: block;
   position: absolute;
   z-index: -1;
+  opacity: 1;
 }
 
 canvas.hologramActive {
   -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
   transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
-  -webkit-animation: blinkCanvas 6s infinite;
-          animation: blinkCanvas 6s infinite;
 }
 
 canvas.hologramDefault {
   -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
   transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
-  mix-blend-mode: normal;
-  -webkit-animation: none;
-          animation: none;
 }
 
 @-webkit-keyframes blinkCanvas {
@@ -90,6 +91,18 @@ canvas.hologramDefault {
   }
   87% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cursor {
+    display: none;
+  }
+  .cursor-shape_out {
+    display: none;
+  }
+  .cursor-shape_out.mouseover {
+    display: none;
   }
 }
 
@@ -195,13 +208,13 @@ main .homeContainer .title line {
 }
 
 main .homeContainer .pathTitleIn {
-  -webkit-animation: titleIn 10s forwards ease-in-out;
-          animation: titleIn 10s forwards ease-in-out;
+  -webkit-animation: titleIn 8s forwards ease-in-out;
+          animation: titleIn 8s forwards ease-in-out;
 }
 
 main .homeContainer .pathLineIn {
-  -webkit-animation: lineIn 8s forwards ease-in-out;
-          animation: lineIn 8s forwards ease-in-out;
+  -webkit-animation: lineIn 6.5s forwards ease-in-out;
+          animation: lineIn 6.5s forwards ease-in-out;
 }
 
 main .homeContainer .pathTitleOut {
@@ -210,8 +223,8 @@ main .homeContainer .pathTitleOut {
 }
 
 main .homeContainer .pathLineOut {
-  -webkit-animation: lineOut 7.5s forwards ease-in-out;
-          animation: lineOut 7.5s forwards ease-in-out;
+  -webkit-animation: lineOut 6.5s forwards ease-in-out;
+          animation: lineOut 6.5s forwards ease-in-out;
 }
 
 @-webkit-keyframes titleIn {
@@ -387,54 +400,68 @@ main .homeContainer .pathLineOut {
 }
 
 @-webkit-keyframes blinkTitle {
-  30% {
+  0% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
-            filter: drop-shadow(0 0 5px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 1.5px #4cc9f0);
+            filter: drop-shadow(0 0 1.5px #4cc9f0);
   }
-  33% {
+  20% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 2px #4cc9f0);
-            filter: drop-shadow(0 0 2px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
   }
-  35% {
+  40% {
+    opacity: 1;
+    -webkit-filter: drop-shadow(0 0 1.5px #4cc9f0);
+            filter: drop-shadow(0 0 1.5px #4cc9f0);
+  }
+  60% {
     opacity: 1;
     -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
             filter: drop-shadow(0 0 3px #4cc9f0);
   }
   80% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 1px #4cc9f0);
-            filter: drop-shadow(0 0 1px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 1.5px #4cc9f0);
+            filter: drop-shadow(0 0 1.5px #4cc9f0);
   }
   100% {
     opacity: 1;
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
   }
 }
 
 @keyframes blinkTitle {
-  30% {
+  0% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 5px #4cc9f0);
-            filter: drop-shadow(0 0 5px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 1.5px #4cc9f0);
+            filter: drop-shadow(0 0 1.5px #4cc9f0);
   }
-  33% {
+  20% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 2px #4cc9f0);
-            filter: drop-shadow(0 0 2px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
   }
-  35% {
+  40% {
+    opacity: 1;
+    -webkit-filter: drop-shadow(0 0 1.5px #4cc9f0);
+            filter: drop-shadow(0 0 1.5px #4cc9f0);
+  }
+  60% {
     opacity: 1;
     -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
             filter: drop-shadow(0 0 3px #4cc9f0);
   }
   80% {
     opacity: 1;
-    -webkit-filter: drop-shadow(0 0 1px #4cc9f0);
-            filter: drop-shadow(0 0 1px #4cc9f0);
+    -webkit-filter: drop-shadow(0 0 1.5px #4cc9f0);
+            filter: drop-shadow(0 0 1.5px #4cc9f0);
   }
   100% {
     opacity: 1;
+    -webkit-filter: drop-shadow(0 0 3px #4cc9f0);
+            filter: drop-shadow(0 0 3px #4cc9f0);
   }
 }
 
@@ -449,6 +476,10 @@ main .homeContainer .pathLineOut {
   border: 1px solid #4cc9f0;
   width: 235px;
   height: 57px;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {
@@ -457,13 +488,6 @@ main .homeContainer .pathLineOut {
     font-size: 4.1vw;
     height: 6.5vh;
   }
-}
-
-.btn__start {
-  overflow: hidden;
-  position: relative;
-  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 .btn__start:hover {
@@ -511,7 +535,7 @@ main .homeContainer .pathLineOut {
 .btn__backHome {
   width: 107px;
   height: 57px;
-  top: 25px;
+  top: 2.5%;
   left: 24px;
   position: absolute;
   z-index: 2;
@@ -519,7 +543,15 @@ main .homeContainer .pathLineOut {
           clip-path: inset(0% 100% 0% 0%);
   -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
   transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backHome {
+    width: 22.5vw;
+    height: 6.5vh;
+    left: 2%;
+    top: 1.2%;
+  }
 }
 
 .btn__backHome.open {
@@ -557,7 +589,14 @@ main .homeContainer .pathLineOut {
 .btn__backHome .spanContainerBackMouseover span,
 .btn__backHome .spanContainerBackMouseout span {
   display: inline-block;
-  line-height: 6vh;
+  line-height: 55px;
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backHome .spanContainerBackMouseover span,
+  .btn__backHome .spanContainerBackMouseout span {
+    line-height: 6.3vh;
+  }
 }
 
 .btn__backHome .spanContainerBackMouseout span {
@@ -807,7 +846,7 @@ main .homeContainer .pathLineOut {
 }
 
 .sm__1 {
-  bottom: 21px;
+  bottom: 1.8%;
 }
 
 @media screen and (max-width: 600px) {
@@ -816,17 +855,11 @@ main .homeContainer .pathLineOut {
   }
 }
 
-@media (orientation: (max-width: 1024px)) {
-  .sm__1 {
-    background: green;
-  }
-}
-
 .sm__1.mouseover::after {
   content: "FB";
   position: absolute;
-  -webkit-animation: outSM .5s ease forwards;
-          animation: outSM .5s ease forwards;
+  -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
 .sm__1.mouseover::before {
@@ -834,15 +867,15 @@ main .homeContainer .pathLineOut {
   position: absolute;
   -webkit-transform: translateX(-165%);
           transform: translateX(-165%);
-  -webkit-animation: inSM .5s ease forwards;
-          animation: inSM .5s ease forwards;
+  -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
 .sm__1.mouseout::after {
   content: "FB";
   position: absolute;
-  -webkit-animation: inSM .5s ease forwards;
-          animation: inSM .5s ease forwards;
+  -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
   -webkit-transform: translateX(-165%);
           transform: translateX(-165%);
 }
@@ -850,14 +883,14 @@ main .homeContainer .pathLineOut {
 .sm__1.mouseout::before {
   content: "FB";
   position: absolute;
-  -webkit-animation: outSM .5s ease forwards;
-          animation: outSM .5s ease forwards;
+  -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
 
 .sm__2 {
-  bottom: 63px;
+  bottom: 6.2%;
 }
 
 @media screen and (max-width: 600px) {
@@ -869,8 +902,8 @@ main .homeContainer .pathLineOut {
 .sm__2.mouseover::after {
   content: "IG";
   position: absolute;
-  -webkit-animation: outImpairSM .5s ease forwards;
-          animation: outImpairSM .5s ease forwards;
+  -webkit-animation: outImpairSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: outImpairSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
 .sm__2.mouseover::before {
@@ -878,15 +911,15 @@ main .homeContainer .pathLineOut {
   position: absolute;
   -webkit-transform: translateX(165%);
           transform: translateX(165%);
-  -webkit-animation: inSM .5s ease forwards;
-          animation: inSM .5s ease forwards;
+  -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
 .sm__2.mouseout::after {
   content: "IG";
   position: absolute;
-  -webkit-animation: inSM .5s ease forwards;
-          animation: inSM .5s ease forwards;
+  -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
   -webkit-transform: translateX(165%);
           transform: translateX(165%);
 }
@@ -894,14 +927,14 @@ main .homeContainer .pathLineOut {
 .sm__2.mouseout::before {
   content: "IG";
   position: absolute;
-  -webkit-animation: outImpairSM .5s ease forwards;
-          animation: outImpairSM .5s ease forwards;
+  -webkit-animation: outImpairSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: outImpairSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
 
 .sm__3 {
-  bottom: 105px;
+  bottom: 10.6%;
 }
 
 @media screen and (max-width: 600px) {
@@ -913,8 +946,8 @@ main .homeContainer .pathLineOut {
 .sm__3.mouseover::after {
   content: "IN";
   position: absolute;
-  -webkit-animation: outSM .5s ease forwards;
-          animation: outSM .5s ease forwards;
+  -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
 .sm__3.mouseover::before {
@@ -922,15 +955,15 @@ main .homeContainer .pathLineOut {
   position: absolute;
   -webkit-transform: translateX(-165%);
           transform: translateX(-165%);
-  -webkit-animation: inSM .5s ease forwards;
-          animation: inSM .5s ease forwards;
+  -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
 .sm__3.mouseout::after {
   content: "IN";
   position: absolute;
-  -webkit-animation: inSM .5s ease forwards;
-          animation: inSM .5s ease forwards;
+  -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
   -webkit-transform: translateX(-165%);
           transform: translateX(-165%);
 }
@@ -938,10 +971,137 @@ main .homeContainer .pathLineOut {
 .sm__3.mouseout::before {
   content: "IN";
   position: absolute;
-  -webkit-animation: outSM .5s ease forwards;
-          animation: outSM .5s ease forwards;
+  -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+          animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
   -webkit-transform: translateX(0);
           transform: translateX(0);
+}
+
+.containerTimeline {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 27.7vh;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  right: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding: 0 18px 0 25px;
+  overflow: hidden;
+  -webkit-transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
+  transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
+  -webkit-clip-path: inset(0 0 0 70%);
+          clip-path: inset(0 0 0 70%);
+  text-align: center;
+}
+
+.containerTimeline .timelineIndication .indication {
+  color: #4cc9f0;
+  font-family: "littleTitle";
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  right: 22px;
+  top: 50%;
+  opacity: 1;
+  -webkit-transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  -webkit-filter: blur(0);
+          filter: blur(0);
+}
+
+.containerTimeline .timelineIndication .indication.switch {
+  opacity: 0;
+  letter-spacing: 25px;
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+}
+
+.containerTimeline .workShopButton {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: .6vh 0 .6vh 0;
+  padding: 0 10px 0 10px;
+  font-family: "littleTitle";
+  overflow: hidden;
+  color: #4cc9f0;
+  font-size: 17px;
+  letter-spacing: .5px;
+  position: relative;
+  -webkit-transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  -webkit-clip-path: inset(0 0 0 99%);
+          clip-path: inset(0 0 0 99%);
+  font-weight: normal;
+}
+
+.containerTimeline .workShopButton:hover {
+  color: #09021e;
+  font-weight: bold;
+}
+
+.containerTimeline .workShopButton::before {
+  content: " ";
+  width: 2px;
+  right: 0;
+  position: absolute;
+  background: #4cc9f0;
+  -webkit-transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  z-index: -1;
+}
+
+.containerTimeline .workShopButton:hover::before {
+  width: 100%;
+  background: #4cc9f0;
+  right: 0;
+}
+
+.containerTimeline .workShopButton__1::after, .containerTimeline .workShopButton__2::after, .containerTimeline .workShopButton__3::after, .containerTimeline .workShopButton__4::after, .containerTimeline .workShopButton__5::after, .containerTimeline .workShopButton__6::after, .containerTimeline .workShopButton__7::after, .containerTimeline .workShopButton__8::after, .containerTimeline .workShopButton__9::after, .containerTimeline .workShopButton__10::after, .containerTimeline .workShopButton__11::after, .containerTimeline .workShopButton__12::after, .containerTimeline .workShopButton__13::after, .containerTimeline .workShopButton__14::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  padding: 0 20px 0 20px;
+  -webkit-transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
+  width: 100%;
+  height: 100%;
+  background: #4cc9f0;
+  -webkit-clip-path: inset(0 100% 0 0);
+          clip-path: inset(0 100% 0 0);
+  z-index: -1;
+}
+
+.containerTimeline .workShopButton__1:hover::after, .containerTimeline .workShopButton__2:hover::after, .containerTimeline .workShopButton__3:hover::after, .containerTimeline .workShopButton__4:hover::after, .containerTimeline .workShopButton__5:hover::after, .containerTimeline .workShopButton__6:hover::after, .containerTimeline .workShopButton__7:hover::after, .containerTimeline .workShopButton__8:hover::after, .containerTimeline .workShopButton__9:hover::after, .containerTimeline .workShopButton__10:hover::after, .containerTimeline .workShopButton__11:hover::after, .containerTimeline .workShopButton__12:hover::after, .containerTimeline .workShopButton__13:hover::after, .containerTimeline .workShopButton__14:hover::after {
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+}
+
+.containerTimeline .workShopButton .mask {
+  position: absolute;
+  width: 100%;
+  right: 0;
+  background: #4cc9f0;
 }
 
 .musicBtn {

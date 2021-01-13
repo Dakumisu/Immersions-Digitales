@@ -33,6 +33,19 @@ import socleModel from "../assets/model/socle.gltf";
 import logoModel from "../assets/model/logo.glb";
 import homeModel from "../assets/model/home.gltf";
 import streetModel from "../assets/model/street.gltf";
+// import pyloneModel from "../assets/model/navigation/pylone.gltf";
+// import gridModel from "../assets/model/navigation/grid.gltf";
+// import tableModel from "../assets/model/navigation/tableModel.gltf";
+// import leftWallModel from "../assets/model/navigation/leftWall.gltf";
+// import rightWallModel from "../assets/model/navigation/rightWall.gltf";
+// import fieldModel from "../assets/model/navigation/fieldModel.gltf";
+// import signModel from "../assets/model/navigation/sign.gltf";
+// import greenScreenModel from "../assets/model/navigation/greenScreen.gltf";
+// import tvModel from "../assets/model/navigation/tv.gltf";
+// import tv2Model from "../assets/model/navigation/tv2.gltf";
+// import fieldModel from "../assets/model/navigation/fieldModel.gltf";
+import rightDoorModel from "../assets/model/rightDoor.gltf";
+import leftDoorModel from "../assets/model/leftDoor.gltf";
 
 import particle from "../assets/img/particle.png";
 
@@ -66,10 +79,8 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 })
 
-
-/////// INTERACTION CURSOR AVEC THREE ///////
+/////// MESH INTERACTION ///////
 const interaction = new Interaction(renderer, scene, camera);
-
 
 /////// POSTPROCESSING ///////
 let composer = new POSTPROCESSING.EffectComposer(renderer);
@@ -96,40 +107,42 @@ var targetLogo = new THREE.Object3D();
 targetLogo.position.set(0, 0, 0)
 scene.add(targetLogo);
 
-let light1 = new THREE.PointLight(0x4cc9f0, .1);
-light1.position.set(0, 1000, 1000);
+let light1 = new THREE.PointLight(0x4cc9f0, .3);
+light1.position.set(-2000, 1000, -2000);
 scene.add(light1);
-let light2 = new THREE.PointLight(0x4cc9f0, .6);
-light2.position.set(1000, 0, 0);
+let light2 = new THREE.PointLight(0x4cc9f0, .3);
+light2.position.set(2000, 0, 0);
 scene.add(light2);
-let light3 = new THREE.PointLight(0x4cc9f0, .1);
-light3.position.set(0, 0, -1000);
+let light3 = new THREE.PointLight(0x4cc9f0, .3);
+light3.position.set(-2000, 0, 0);
 scene.add(light3);
-let light4 = new THREE.PointLight(0x4cc9f0, .1);
-light4.position.set(-1000, 1000, 0);
+let light4 = new THREE.PointLight(0x4cc9f0, .3);
+light4.position.set(2000, 1000, -2000);
 scene.add(light4);
 
 // let lightCenterPlane = new THREE.PointLight(0x4cc9f0, 1.5, 14);
 // lightCenterPlane.position.set(0, 0, 10)
 // scene.add(lightCenterPlane);
 
-let lightCenter = new THREE.DirectionalLight(0x000000, 15);
+let lightCenter = new THREE.DirectionalLight(0x000000, 10);
 lightCenter.position.set(0, -1.5, 0)
 lightCenter.target = targetLogo;
 scene.add(lightCenter);
 
-let lightCenterSocle = new THREE.PointLight(0x000000, 120, .75);
+let lightCenterSocle = new THREE.PointLight(0x000000, 150, .6);
 lightCenterSocle.position.set(0, -1.5, 0)
 scene.add(lightCenterSocle);
 
 const cyanColor = new THREE.Color(0x4cc9f0);
 const cyanColorReset = new THREE.Color(0x000000);
 
-let ambientLight = new THREE.AmbientLight(0x09021e, 9);
+let ambientLight = new THREE.AmbientLight(0x09021e, 8);
 ambientLight.position.set(0, -1000, 0)
 scene.add(ambientLight);
 
 /////// 3D MODEL ///////
+
+// HOME MODEL
 var home;
 
 var loaderHome = new GLTFLoader();
@@ -143,6 +156,7 @@ loaderHome.load(homeModel, function(addHome) {
     home.rotation.y = -.35;
 });
 
+// SOCLE MODEL
 var socle;
 
 var loaderSocle = new GLTFLoader;
@@ -156,6 +170,7 @@ loaderSocle.load(socleModel, function(addSocle) {
     socle.rotation.y = 0;
 });
 
+// LOGO MODEL
 var logo;
 
 var loaderLogo = new GLTFLoader;
@@ -168,23 +183,78 @@ loaderLogo.load(logoModel, function(addLogo) {
     scene.add(logo);
     logo.position.set(0, -9.8, 0)
     logo.rotation.z = -.725;
-    logo.scale.set(0, 0, 0)
+    logo.scale.set(0.00001, 0.00001, 0.00001)
 });
 
-console.log(loaderLogo)
+// // FIELD MODEL
+// var field;
 
-// var street;
+// var loaderField = new GLTFLoader;
+// loaderField.crossOrigin = true;
 
-// var loaderStreet = new GLTFLoader;
-// loaderStreet.crossOrigin = true;
+// loaderField.load(fieldModel, function(addField) {
+//     field = addField.scene;
+//     scene.add(field);
+//     field.position.set(-1.2, -3, -48)
+//     field.rotation.y = -.5 * Math.PI
+//     field.scale.set(110, 110, 110)
+// })
 
-// loaderStreet.load(streetModel, function(addStreet) {
-//     street = addStreet.scene;
-//     scene.add(street);
-//     street.position.set(.6, -5, -30)
-//     street.rotation.y = -.5 * Math.PI
-//     street.scale.set(110, 110, 110)
-// });
+// // PYLONE MODEL
+// var pylone;
+
+// var loaderPylone = new GLTFLoader;
+// loaderPylone.crossOrigin = true;
+
+// loaderPylone.load(pyloneModel, function(addPylone) {
+//     pylone = addPylone.scene;
+//     scene.add(pylone);
+//     pylone.position.set(-1.2, -3, -48)
+//     pylone.rotation.y = -.5 * Math.PI
+//     pylone.scale.set(110, 110, 110)
+// })
+
+// RIGHT DOOR MODEL
+var rightDoor;
+
+var loaderRightDoor = new GLTFLoader;
+loaderRightDoor.crossOrigin = true;
+
+loaderRightDoor.load(rightDoorModel, function(addRightDoor) {
+    rightDoor = addRightDoor.scene;
+    scene.add(rightDoor);
+    rightDoor.position.set(.3, -5.8, -48)
+    rightDoor.rotation.y = -.5 * Math.PI
+    rightDoor.scale.set(110, 110, 110)
+});
+
+// LEFT DOOR MODEL
+var leftDoor;
+
+var loaderLeftDoor = new GLTFLoader;
+loaderLeftDoor.crossOrigin = true;
+
+loaderLeftDoor.load(leftDoorModel, function(addLeftDoor) {
+    leftDoor = addLeftDoor.scene;
+    scene.add(leftDoor);
+    leftDoor.position.set(.3, -5.8, -48)
+    leftDoor.rotation.y = -.5 * Math.PI
+    leftDoor.scale.set(110, 110, 110)
+});
+
+// STREET MODEL
+var street;
+
+var loaderStreet = new GLTFLoader;
+loaderStreet.crossOrigin = true;
+
+loaderStreet.load(streetModel, function(addStreet) {
+    street = addStreet.scene;
+    scene.add(street);
+    street.position.set(.7, -5.8, -48)
+    street.rotation.y = -.5 * Math.PI
+    street.scale.set(110, 110, 110)
+});
 
 /////// PLANES ///////
 var plane = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30);
@@ -747,18 +817,18 @@ for (let row = 0; row < ScreenHeigth; row++) {
 let particleGeo = new THREE.Geometry();
 for (let i = 0; i < 800; i++) {
     let particle = new THREE.Vector3(
-            Math.random() * 50 - 25,
             Math.random() * 50 - 40,
-            Math.random() * 40 - 20) //3.4 - 1.7
+            Math.random() * 50 - 40,
+            Math.random() * 3.4 - 1.7) //20-10
     particleGeo.vertices.push(particle);
 }
 
 let particleMaterial = new THREE.PointsMaterial({
-    size: 0.05, //0.018
+    size: 0.08, //0.018
     map: new THREE.TextureLoader().load(particle),
     blending: THREE.AdditiveBlending,
     transparent: true,
-    opacity: .5
+    opacity: .35
 });
 
 let particleMesh = new THREE.Points(particleGeo, particleMaterial);
@@ -792,7 +862,24 @@ let bgRow = document.querySelectorAll('.rowContainer .row');
 let cursor = document.querySelector('.cursor');
 let cursorShapeIn = document.querySelector('.cursor-shape_in');
 let cursorShapeOut = document.querySelector('.cursor-shape_out');
-
+let containerTimeline = document.querySelector('.containerTimeline');
+let workShopButton = document.querySelectorAll('.workShopButton');
+let workShopButtonMask = document.querySelectorAll('.mask');
+let timelineIndication = document.querySelector('.indication');
+let workShopButton1 = document.querySelector('.workShopButton__1');
+let workShopButton2 = document.querySelector('.workShopButton__2');
+let workShopButton3 = document.querySelector('.workShopButton__3');
+let workShopButton4 = document.querySelector('.workShopButton__4');
+let workShopButton5 = document.querySelector('.workShopButton__5');
+let workShopButton6 = document.querySelector('.workShopButton__6');
+let workShopButton7 = document.querySelector('.workShopButton__7');
+let workShopButton8 = document.querySelector('.workShopButton__8');
+let workShopButton9 = document.querySelector('.workShopButton__9');
+let workShopButton10 = document.querySelector('.workShopButton__10');
+let workShopButton11 = document.querySelector('.workShopButton__11');
+let workShopButton12 = document.querySelector('.workShopButton__12');
+let workShopButton13 = document.querySelector('.workShopButton__13');
+let workShopButton14 = document.querySelector('.workShopButton__14');
 
 window.addEventListener('load', function() {
     TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
@@ -1083,7 +1170,7 @@ function functionBtnBackHome() {
         // gsap.to(textMesh8.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
         //MODELS ANIM
     gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
-    gsap.to(logo.scale, 2.25, { z: 0, x: 0, y: 0, ease: "power3.inOut", })
+    gsap.to(logo.scale, 2.25, { z: 0.00001, x: 0.00001, y: 0.00001, ease: "power3.inOut", })
     gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
     gsap.to(home.position, 3, { z: 0, x: -1.45, ease: "power3.inOut" })
     gsap.to(home.rotation, 3, { y: -.35, z: 0, ease: "power3.inOut" })
@@ -1099,10 +1186,6 @@ function functionBtnBackHome() {
     btnBackHome.classList.remove('open');
     canvas.style.zIndex = -1;
 }
-
-btnBackHome.addEventListener('click', function() {
-    functionBtnBackHome();
-})
 
 ///// START BUTTON EVENTS /////
 function functionBtnStart() {
@@ -1173,107 +1256,99 @@ function functionBtnStart() {
     TweenMax.to(lightCenterSocle.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
     TweenMax.to(lightCenter.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
     //SWITCH ELEMENTS ON CLICK  
+    
     setTimeout(function() {
-        btnBackHome.classList.add('open');
-        btnBackHome.classList.remove('close');
-        homeContainer.classList.add('open');
-        homeContainer.classList.remove('close');
-        canvas.style.zIndex = 1;
-    }, 1500)
+
+        //AXES ANIM
+        gsap.to(planeAxe.position, 1.5, { y: -17, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeAxe.rotation, 1.5, { y: -3.5 * Math.PI, ease: "power3.inOut", delay: 1.25 })
+            //CAMERA ANIM
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            gsap.to(camera.position, 3, { z: 4.5, ease: "power3.inOut" })
+        } else {
+            gsap.to(camera.position, 3, { z: 3.7, ease: "power3.inOut" })
+        }
+        TweenMax.to(btnStart, 1, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
+        TweenMax.to(btnBackHome, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
+            //PLANE ROTATION Z ANIM
+        gsap.to(planeMesh1.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh2.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh3.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh4.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh5.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh6.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh7.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh8.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh9.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh10.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh11.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh12.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh13.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
+        gsap.to(planeMesh14.rotation, 1.5, { z: 0, ease: "power3.inOut" })
+            //     //TEXT ROTATION Z ANIM
+            // gsap.to(textMesh8.rotation, 1.5, { z: 0, ease: "power3.inOut", delay: 1.25 })
+            //     //TEXT SCALE ANIM    
+            // gsap.to(textMesh8.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: 2.35 })
+            //MODELS ANIM
+        gsap.to(logo.position, 3, { y: 0, ease: "power3.inOut" })
+        gsap.to(logo.scale, 3, { z: .95, x: .95, y: .95, ease: "power3.inOut", delay: .25 })
+        gsap.to(logo.rotation, 3, { z: 0.25, ease: "power3.inOut" })
+        gsap.to(home.position, 3, { z: 105, x: 20, ease: "power3.inOut" })
+        gsap.to(home.rotation, 3, { y: -Math.PI, z: Math.PI, ease: "power3.inOut" })
+        gsap.to(socle.position, 3, { y: -2.5, ease: "power3.inOut" })
+        gsap.to(socle.rotation, 3, { y: -Math.PI, ease: "power3.inOut" })
+            //LIGHTS ANIM
+        TweenMax.to(lightCenterSocle.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
+        TweenMax.to(lightCenter.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
+        //SWITCH ELEMENTS ON CLICK  
+        setTimeout(function() {
+            btnBackHome.classList.add('open');
+            btnBackHome.classList.remove('close');
+            homeContainer.classList.add('open');
+            homeContainer.classList.remove('close');
+            canvas.style.zIndex = 1;
+        }, 1500)
+    }, 1000)
 }
 
 btnStart.addEventListener('click', function() {
     functionBtnStart();
+    setTimeout(function() {
+        spanContainerStartMouseOut.classList.remove('neonText');
+    }, 750)
 })
 
-btnStart.addEventListener('mouseover', function() {
-    TweenMax.to(".spanContainerStartMouseover span", {
-        duration: .5,
-        translateY: -40,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
-    TweenMax.to(".spanContainerStartMouseout span", {
-        duration: .5,
-        translateY: 0,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
+btnStart.addEventListener('mouseenter', function() {
+    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: -40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     spanContainerStartMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
 
-btnStart.addEventListener('mouseout', function() {
-    TweenMax.to(".spanContainerStartMouseover span", {
-        duration: .5,
-        translateY: 0,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
-    TweenMax.to(".spanContainerStartMouseout span", {
-        duration: .5,
-        translateY: 40,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
+btnStart.addEventListener('mouseleave', function() {
+    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     spanContainerStartMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
 })
 
-btnBackHome.addEventListener('mouseover', function () {
-    TweenMax.to(".spanContainerBackMouseover span", {
-        duration: .5,
-        translateY: -40,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
-    TweenMax.to(".spanContainerBackMouseout span", {
-        duration: .5,
-        translateY: 0,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
+btnBackHome.addEventListener('click', function() {
+    functionBtnBackHome();
+    setTimeout(function() {
+        spanContainerBackMouseOut.classList.remove('neonText');
+    }, 750)
+})
+
+btnBackHome.addEventListener('mouseenter', function() {
+    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
 
-btnBackHome.addEventListener('mouseout', function () {
-    TweenMax.to(".spanContainerBackMouseover span", {
-        duration: .5,
-        translateY: 0,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
-    TweenMax.to(".spanContainerBackMouseout span", {
-        duration: .5,
-        translateY: 40,
-        stagger: {
-            each: 0.01,
-            from: "center"
-        },
-        ease: "power2.inOut"
-    });
+btnBackHome.addEventListener('mouseleave', function() {
+    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power2.inOut" });
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
 })
@@ -1310,19 +1385,107 @@ charsTextBtnBack.forEach(letter => {
     spanContainerBackMouseOut.append(btnBackchar)
 });
 
+///// PLANES CLICK /////
+planeMesh14.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut" })
+    gsap.to(leftDoor.position, 1.5, { x: -13, ease: "power3.inOut", delay: .75 })
+    gsap.to(rightDoor.position, 1.5, { x: 13, ease: "power3.inOut", delay: .75 })
+})
+
+console.log(logo)
+
+///// TIMELINE /////
+containerTimeline.addEventListener('mouseenter', function() {
+    TweenMax.to(workShopButton, { duration: .25, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "100%", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.02, ease: "power3.inOut", delay: .5 });
+    TweenMax.to(containerTimeline, { duration: 0, clipPath: "inset(0% 0% 0% 0%)", ease: "power3.inOut" });
+    timelineIndication.classList.add('switch');
+})
+
+containerTimeline.addEventListener('mouseleave', function() {
+    TweenMax.to(workShopButton, { duration: .25, clipPath: "inset(0% 0% 0% 99%)", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "100%", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.02, ease: "power3.inOut", delay: .5 });
+    TweenMax.to(containerTimeline, { duration: .25, clipPath: "inset(0% 0% 0% 70%)", ease: "power3.inOut" });
+    setTimeout(function() {
+        timelineIndication.classList.remove('switch');
+    }, 500)
+
+})
+
+/////// TIMELINE BUTTONS HOVER ///////
+workShopButton1.addEventListener('click', function() { // WORKSHOP 1
+})
+
+workShopButton2.addEventListener('click', function() { // WORKSHOP 2
+})
+
+workShopButton3.addEventListener('click', function() { // WORKSHOP 3
+
+})
+
+workShopButton4.addEventListener('click', function() { // WORKSHOP 4
+})
+
+
+workShopButton5.addEventListener('click', function() { // WORKSHOP 5
+
+})
+
+workShopButton6.addEventListener('click', function() { // WORKSHOP 6
+
+})
+
+workShopButton7.addEventListener('click', function() { // WORKSHOP 7
+
+})
+
+workShopButton8.addEventListener('click', function() { // WORKSHOP 8
+
+})
+
+workShopButton9.addEventListener('click', function() { // WORKSHOP 9
+
+})
+
+workShopButton10.addEventListener('click', function() { // WORKSHOP 10
+
+})
+
+workShopButton11.addEventListener('click', function() { // WORKSHOP 11
+
+})
+
+workShopButton12.addEventListener('click', function() { // WORKSHOP 12
+
+})
+
+workShopButton13.addEventListener('click', function() { // WORKSHOP 13
+
+})
+
+workShopButton14.addEventListener('click', function() { // WORKSHOP 14
+
+})
+
+workShopButton14.addEventListener('mouseleave', function() {
+    workShopButton14.classList.add('mouseout')
+    workShopButton14.classList.remove('mouseover')
+})
 
 /////// SM HOVER ///////
 sm1.classList.add('mouseout')
 sm2.classList.add('mouseout')
 sm3.classList.add('mouseout')
 
-sm1.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 1
+sm1.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 6
     sm1.classList.add('mouseover')
     sm1.classList.remove('mouseout')
     sm1.classList.add('neonText')
 })
 
-sm1.addEventListener('mouseout', function() {
+sm1.addEventListener('mouseleave', function() {
     sm1.classList.add('mouseout')
     sm1.classList.remove('mouseover')
     sm1.classList.remove('neonText')
@@ -1333,13 +1496,13 @@ sm1.addEventListener('click', function() {
 
 })
 
-sm2.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 2
+sm2.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 2
     sm2.classList.add('mouseover')
     sm2.classList.remove('mouseout')
     sm2.classList.add('neonText')
 })
 
-sm2.addEventListener('mouseout', function() {
+sm2.addEventListener('mouseleave', function() {
     sm2.classList.add('mouseout')
     sm2.classList.remove('mouseover')
     sm2.classList.remove('neonText')
@@ -1350,13 +1513,13 @@ sm2.addEventListener('click', function() {
 
 })
 
-sm3.addEventListener('mouseover', function() { // POINTER SOCIAL MEDIA 3
+sm3.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 3
     sm3.classList.add('mouseover')
     sm3.classList.remove('mouseout')
     sm3.classList.add('neonText')
 })
 
-sm3.addEventListener('mouseout', function() {
+sm3.addEventListener('mouseleave', function() {
     sm3.classList.add('mouseout')
     sm3.classList.remove('mouseover')
     sm3.classList.remove('neonText')
@@ -1389,42 +1552,42 @@ class Cursor {
         this.precision = 2;
         this.scale = 1;
         this.rotation = 1;
-        this.friction = .500;
+        this.friction = .5;
         this.animate();
         this.events();
     }
-    
+
     events() {
         document.addEventListener('mousemove', (e) => {
             this.mouse.x = e.clientX * pixelRatio;
             this.mouse.y = e.clientY * pixelRatio;
         }, false);
     }
-    
+
     animate() {
         requestAnimationFrame(this.animate.bind(this));
         this.render();
     }
-    
+
     speed_morph() {
         const dist = Math.dist(this.dx, this.dy);
         const min = 1;
-        const max_distance = 200;
+        const max_distance = 700;
         const total = dist / max_distance;
         return Number(Math.min(total, min).toFixed(2));
     }
-    
+
     update() {
         const speed_morph = this.speed_morph(this.dx, this.dy);
         this.scale += (speed_morph - this.scale) * this.friction;
-        
+
         this.translation.x += this.dx * this.friction;
         this.translation.y += this.dy * this.friction;
-        
+
         this.rotation = Math.atan2(this.dy, this.dx) * 180 / Math.PI;
-        
+
     }
-    
+
     render() {
         this.update();
         // this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
@@ -1449,87 +1612,93 @@ const _cursorIn = new Cursor(cursorShapeIn);
 
 let isStuck = false;
 let mouse = {
-	x: -100,
-	y: -100,
+    x: -100,
+    y: -100,
 };
 
 // Just in case you need to scroll
 let scrollHeight = 0;
 window.addEventListener('scroll', function(e) {
-	scrollHeight = window.scrollY
+    scrollHeight = window.scrollY
 })
 
 let cursorOuterOriginalState = {
-	width: cursorShapeOut.getBoundingClientRect().width,
-	height: cursorShapeOut.getBoundingClientRect().height,
+    width: cursorShapeOut.getBoundingClientRect().width,
+    height: cursorShapeOut.getBoundingClientRect().height,
 };
 
-buttons.forEach((button) => {
-	button.addEventListener("pointerenter", handleMouseEnter);
-	button.addEventListener("pointerleave", handleMouseLeave);
+buttons.forEach(button => {
+    button.addEventListener("pointerenter", handleMouseEnter);
+    button.addEventListener("pointerleave", handleMouseLeave);
 });
 
-sm.forEach((reseau) => {
-	reseau.addEventListener("pointerenter", handleMouseEnter);
-	reseau.addEventListener("pointerleave", handleMouseLeave);
+sm.forEach(media => {
+    media.addEventListener("pointerenter", handleMouseEnter);
+    media.addEventListener("pointerleave", handleMouseLeave);
 });
+
+workShopButton.forEach(button => {
+    button.addEventListener("pointerenter", handleMouseEnter);
+    button.addEventListener("pointerleave", handleMouseLeave);
+})
 
 document.body.addEventListener("pointermove", updateCursorPosition);
 
 function updateCursorPosition(e) {
-	mouse.x = e.pageX;
-	mouse.y = e.pageY;
+    mouse.x = e.pageX;
+    mouse.y = e.pageY;
 }
 
 function updateCursor() {
-	gsap.set(cursor, {
-		x: mouse.x,
-		y: mouse.y,
-	});
+    gsap.set(cursor, {
+        x: mouse.x,
+        y: mouse.y,
+    });
 
-	if (!isStuck) {
-		gsap.to(cursorShapeOut, {
-			duration: 0.15,
-			x: mouse.x - cursorOuterOriginalState.width/2,
-			y: mouse.y - cursorOuterOriginalState.height/2,
-		});
-	}
+    if (!isStuck) {
+        gsap.to(cursorShapeOut, {
+            duration: 0.15,
+            x: mouse.x - cursorOuterOriginalState.width / 2,
+            y: mouse.y - cursorOuterOriginalState.height / 2,
+        });
+    }
 
-	requestAnimationFrame(updateCursor);
+    requestAnimationFrame(updateCursor);
 }
 
 updateCursor();
 
-	function handleMouseEnter(e) {
-		isStuck = true;
-        const targetBox = e.currentTarget.getBoundingClientRect();
-        console.log(targetBox)
-		gsap.to(cursorShapeOut, 0.2, {
-			x: targetBox.left, 
-			y: targetBox.top + scrollHeight,
-			width: targetBox.width,
-			height: targetBox.height,
-			borderRadius: 0,
-			backgroundColor: "transparent",
-        });
-        cursorShapeIn.classList.add('mouseover');
-	}
+function handleMouseEnter(e) {
+    isStuck = true;
+    const targetBox = e.currentTarget.getBoundingClientRect();
+    console.log(targetBox)
+    gsap.to(cursorShapeOut, 0.2, {
+        x: targetBox.left,
+        y: targetBox.top + scrollHeight,
+        width: targetBox.width,
+        height: targetBox.height,
+        borderRadius: 0,
+        backgroundColor: "transparent",
+    });
+    cursorShapeIn.classList.add('mouseover');
+}
 
-	function handleMouseLeave(e) {
-        isStuck = false;
-        // updateCursor();
-		gsap.to(cursorShapeOut, 0.2, {
-			width: cursorOuterOriginalState.width,
-			height: cursorOuterOriginalState.height,
-			borderRadius: "50px",
-			backgroundColor: "transparent",
-        });
-        cursorShapeIn.classList.remove('mouseover');
-	}
+function handleMouseLeave(e) {
+    isStuck = false;
+    // updateCursor();
+    gsap.to(cursorShapeOut, 0.2, {
+        width: cursorOuterOriginalState.width,
+        height: cursorOuterOriginalState.height,
+        borderRadius: "50px",
+        backgroundColor: "transparent",
+    });
+    cursorShapeIn.classList.remove('mouseover');
+}
 
 
 ///// SCROLL FUNCTIONS /////
 function scrollUp() {
+    camera.position.z += 1;
     if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
         scene.add(particleMesh);
         //AXES ANIM
@@ -1542,6 +1711,10 @@ function scrollUp() {
             gsap.to(camera.position, 3, { z: 10, ease: "power3.inOut" })
         }
         //HTML ELEMENTS ANIM
+        canvas.classList.remove('hologramDefault')
+        canvas.classList.add('hologramActive')
+        btnBackHome.disabled = true;
+        btnStart.disabled = false;
         titleSvgPath.forEach(e => {
             e.classList.add("pathTitleIn")
             e.classList.remove("pathTitleOut")
@@ -1922,6 +2095,7 @@ function scrollUp() {
 }
 
 function scrollDown() {
+    camera.position.z -= 1;
     if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
         //AXES ANIM
         gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
@@ -2259,6 +2433,10 @@ function scrollDown() {
             gsap.to(camera.position, 3, { z: 10, ease: "power3.inOut" })
         }
         //HTML ELEMENTS ANIM
+        canvas.classList.remove('hologramDefault')
+        canvas.classList.add('hologramActive')
+        btnBackHome.disabled = true;
+        btnStart.disabled = false;
         titleSvgPath.forEach(e => {
             e.classList.add("pathTitleIn")
             e.classList.remove("pathTitleOut")
@@ -2295,7 +2473,7 @@ function scrollDown() {
             // gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
             //MODELS ANIM
         gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
-        gsap.to(logo.scale, 2.25, { z: 0, x: 0, y: 0, ease: "power3.inOut", })
+        gsap.to(logo.scale, 2.25, { z: 0.00001, x: 0.00001, y: 0.00001, ease: "power3.inOut", })
         gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(home.position, 3, { z: 0, x: -1.45, ease: "power3.inOut" })
         gsap.to(home.rotation, 3, { y: -.35, z: 0, ease: "power3.inOut" })
@@ -2368,6 +2546,7 @@ document.onkeydown = function(e) {
             break;
     }
 };
+
 
 // /////// DRAG EVENT ///////
 // let isDown = false;
