@@ -1093,7 +1093,9 @@ planeMesh14.on('mouseout', function(ev) {
 
 /////// BACKHOME BUTTON EVENTS ///////
 function functionBtnBackHome() {
+    // Rajout des particules
     scene.add(particleMesh);
+
     canvas.classList.remove('hologramDefault')
     canvas.classList.add('hologramActive')
     btnBackHome.disabled = true;
@@ -1192,21 +1194,6 @@ function functionBtnStart() {
     // Supression des particules
     scene.remove(scene.getObjectByName("ParticleObjects"));
 
-    canvas.classList.add('hologramDefault')
-    canvas.classList.remove('hologramActive')
-    btnBackHome.disabled = false;
-    btnStart.disabled = true;
-    //AXES ANIM
-    gsap.to(planeAxe.position, 1.5, { y: -17, ease: "power3.inOut", delay: 1.25 })
-    console.log(planeAxe.position)
-    gsap.to(planeAxe.rotation, 1.5, { y: -3.5 * Math.PI, ease: "power3.inOut", delay: 1.25 })
-        //CAMERA ANIM
-    if (window.matchMedia("(max-width: 600px)").matches) {
-        gsap.to(camera.position, 3, { z: 4.5, ease: "power3.inOut" })
-    } else {
-        gsap.to(camera.position, 3, { z: 3.7, ease: "power3.inOut" })
-    }
-
     //HTML ELEMENTS ANIM
     titleSvgPath.forEach(e => {
         e.classList.remove("pathTitleIn")
@@ -1221,44 +1208,12 @@ function functionBtnStart() {
     });
     littleTitleSvgLine.classList.add("pathLineIn")
     littleTitleSvgLine.classList.remove("pathLineOut")
-    TweenMax.to(btnStart, 1, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
-    TweenMax.to(btnBackHome, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
-        //PLANE ROTATION Z ANIM
-    gsap.to(planeMesh1.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh2.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh3.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh4.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh5.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh6.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh7.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh8.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh9.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh10.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh11.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh12.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh13.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
-    gsap.to(planeMesh14.rotation, 1.5, { z: 0, ease: "power3.inOut" })
-    gsap.to(planeMesh14.material, 2, {opacity: 0.3});
+    canvas.classList.add('hologramDefault')
+    canvas.classList.remove('hologramActive')
+    btnBackHome.disabled = false;
+    btnStart.disabled = true;
 
-        //     //TEXT ROTATION Z ANIM
-        // gsap.to(textMesh8.rotation, 1.5, { z: 0, ease: "power3.inOut", delay: 1.25 })
-        //     //TEXT SCALE ANIM    
-        // gsap.to(textMesh8.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: 2.35 })
-        //MODELS ANIM
-    gsap.to(logo.position, 3, { y: 0, ease: "power3.inOut" })
-    gsap.to(logo.scale, 3, { z: .95, x: .95, y: .95, ease: "power3.inOut", delay: .25 })
-    gsap.to(logo.rotation, 3, { z: 0.25, ease: "power3.inOut" })
-    gsap.to(home.position, 3, { z: 105, x: 20, ease: "power3.inOut" })
-    gsap.to(home.rotation, 3, { y: -Math.PI, z: Math.PI, ease: "power3.inOut" })
-    gsap.to(socle.position, 3, { y: -2.5, ease: "power3.inOut" })
-    gsap.to(socle.rotation, 3, { y: -Math.PI, ease: "power3.inOut" })
-        //LIGHTS ANIM
-    TweenMax.to(lightCenterSocle.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
-    TweenMax.to(lightCenter.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
-    //SWITCH ELEMENTS ON CLICK  
-    
     setTimeout(function() {
-
         //AXES ANIM
         gsap.to(planeAxe.position, 1.5, { y: -17, ease: "power3.inOut", delay: 1.25 })
         gsap.to(planeAxe.rotation, 1.5, { y: -3.5 * Math.PI, ease: "power3.inOut", delay: 1.25 })
@@ -1698,7 +1653,7 @@ function handleMouseLeave(e) {
 
 ///// SCROLL FUNCTIONS /////
 function scrollUp() {
-    camera.position.z += 1;
+    // camera.position.z += 1;
     if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
         scene.add(particleMesh);
         //AXES ANIM
@@ -2095,7 +2050,7 @@ function scrollUp() {
 }
 
 function scrollDown() {
-    camera.position.z -= 1;
+    // camera.position.z -= 1;
     if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
         //AXES ANIM
         gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
