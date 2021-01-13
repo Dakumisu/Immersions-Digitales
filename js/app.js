@@ -3,16 +3,22 @@ import * as THREE from "three";
 // import { GLTFLoader } from 'three-gltf-loader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as POSTPROCESSING from "postprocessing";
-import { TweenMax as TM } from "gsap";
+// import { TweenMax as TM } from "gsap";
 import { Interaction } from 'three.interaction';
 
-import vertexShader from "./libs/glsl/vertexShader.glsl";
-import fragmentShader from "./libs/glsl/fragmentShader.glsl";
+import vertexShader from "./libs/glsl/vertex.glsl";
+import fragmentShader from "./libs/glsl/fragment.glsl";
 
-import socleModel from "../assets/model/socle.gltf";
-import logoModel from "../assets/model/logo.glb";
-import homeModel from "../assets/model/home.gltf";
-import streetModel from "../assets/model/street.gltf";
+import displacement from "../assets/img/displace.jpg";
+import displacement1 from "../assets/img/displace.png";
+import displacement2 from "../assets/img/displace2.png";
+import displacement3 from "../assets/img/displace3.png";
+import displacement4 from "../assets/img/displace4.png"; //c le bon
+import displacement5 from "../assets/img/displace5.jpg";
+import displacement6 from "../assets/img/displace6.jpg";
+import displacement7 from "../assets/img/displace7.jpg";
+import displacement8 from "../assets/img/displace8.jpg";
+import displacement9 from "../assets/img/displace9.png";
 
 import atelier1 from "../assets/img/atelier1.png";
 import atelier2 from "../assets/img/atelier2.png";
@@ -23,6 +29,11 @@ import atelier6 from "../assets/img/atelier6.png";
 import atelier7 from "../assets/img/atelier7.jpg";
 import atelier8 from "../assets/img/atelier8.png";
 
+import socleModel from "../assets/model/socle.gltf";
+import logoModel from "../assets/model/logo.glb";
+import homeModel from "../assets/model/home.gltf";
+import streetModel from "../assets/model/street.gltf";
+
 import particle from "../assets/img/particle.png";
 
 ////////// SCENE //////////
@@ -31,6 +42,8 @@ var scene = new THREE.Scene();
 ////////// CAMERA //////////
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
+/////// HORLOGE ///////
+var clock = new THREE.Clock();
 
 if (window.matchMedia("(max-width: 600px)").matches) {
     camera.position.set(0, 0, 11.3);
@@ -44,16 +57,19 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
+
 /////// RESIZE EVENT ///////
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-
 })
 
-// const interaction = new Interaction(renderer, scene, camera);
+
+/////// INTERACTION CURSOR AVEC THREE ///////
+const interaction = new Interaction(renderer, scene, camera);
+
 
 /////// POSTPROCESSING ///////
 let composer = new POSTPROCESSING.EffectComposer(renderer);
@@ -67,6 +83,11 @@ const effectPass = new POSTPROCESSING.EffectPass(
 effectPass.renderToScreen = true;
 
 composer.addPass(effectPass);
+
+//POUR LES SHADERS
+let customPass = new POSTPROCESSING.ShaderPass({vertexShader,fragmentShader});
+customPass.renderToScreen = true;
+composer.addPass(customPass);
 
 let rotateZ = -.2; // PLANES ROTATION
 
@@ -88,9 +109,9 @@ let light4 = new THREE.PointLight(0x4cc9f0, .1);
 light4.position.set(-1000, 1000, 0);
 scene.add(light4);
 
-let lightCenterPlane = new THREE.PointLight(0x4cc9f0, 1.5, 14);
-lightCenterPlane.position.set(0, 0, 10)
-scene.add(lightCenterPlane);
+// let lightCenterPlane = new THREE.PointLight(0x4cc9f0, 1.5, 14);
+// lightCenterPlane.position.set(0, 0, 10)
+// scene.add(lightCenterPlane);
 
 let lightCenter = new THREE.DirectionalLight(0x000000, 15);
 lightCenter.position.set(0, -1.5, 0)
@@ -139,6 +160,8 @@ var logo;
 
 var loaderLogo = new GLTFLoader;
 loaderLogo.crossOrigin = true;
+loaderLogo.transparent = true;
+loaderLogo.opacity = 0.1;
 
 loaderLogo.load(logoModel, function(addLogo) {
     logo = addLogo.scene;
@@ -147,6 +170,8 @@ loaderLogo.load(logoModel, function(addLogo) {
     logo.rotation.z = -.725;
     logo.scale.set(0, 0, 0)
 });
+
+console.log(loaderLogo)
 
 // var street;
 
@@ -162,355 +187,343 @@ loaderLogo.load(logoModel, function(addLogo) {
 // });
 
 /////// PLANES ///////
-var plane = new THREE.PlaneGeometry(1.6 / 1.2, .9 / 1.2);
+var plane = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30);
 
 plane.receiveShadow = true;
 
-var materialPlane1 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier1)
-        // transparency: true, // TweenLite.to(mesh.material, 2, {opacity: 0}); suppr pas stp
-});
-var materialPlane2 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier2)
-});
-var materialPlane3 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier3)
-});
-var materialPlane4 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier4)
-});
-var materialPlane5 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier5)
-});
-var materialPlane6 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier6)
-});
-var materialPlane7 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier7)
-});
-var materialPlane8 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier8)
-});
-var materialPlane9 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier8)
-});
-var materialPlane10 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier8)
-});
-var materialPlane11 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier8)
-});
-var materialPlane12 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier8)
-});
-var materialPlane13 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier8)
-});
-var materialPlane14 = new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    map: new THREE.TextureLoader().load(atelier8)
-});
+// var materialPlane1 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier1)
+// });
+// var materialPlane2 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier2)
+// });
+// var materialPlane3 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier3)
+// });
+// var materialPlane4 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier4)
+// });
+// var materialPlane5 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier5)
+// });
+// var materialPlane6 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier6)
+// });
+// var materialPlane7 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier7)
+// });
+// var materialPlane8 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier8)
+// });
+// var materialPlane9 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier8)
+// });
+// var materialPlane10 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier8)
+// });
+// var materialPlane11 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier8)
+// });
+// var materialPlane12 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier8)
+// });
+// var materialPlane13 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier8),
+// });
+// var materialPlane14 = new THREE.MeshPhongMaterial({
+//     side: THREE.DoubleSide,
+//     map: new THREE.TextureLoader().load(atelier8),
+//     transparent: true
+// });
 
+
+/////// INITIATION DES TEXTURES ///////
+
+let texture1 = new THREE.TextureLoader().load(atelier1)
+let texture2 = new THREE.TextureLoader().load(atelier2)
+let texture3 = new THREE.TextureLoader().load(atelier3)
+let texture4 = new THREE.TextureLoader().load(atelier4)
+let texture5 = new THREE.TextureLoader().load(atelier5)
+let texture6 = new THREE.TextureLoader().load(atelier6)
+let texture7 = new THREE.TextureLoader().load(atelier7)
+let texture8 = new THREE.TextureLoader().load(atelier8)
 
 /////// PLANES MATERIALS ///////
-// var materialPlane1 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: { value: 0.0 },
-//         uTexture: { value: new THREE.TextureLoader().load(atelier1) }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane2 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier2)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane3 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier3)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane4 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier4)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane5 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier5)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane6 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier6)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane7 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier7)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane8 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier8)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane9 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier8)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane10 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier8)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane11 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier8)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane12 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier8)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane13 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier8)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
-// var materialPlane14 = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//     uniforms: {
-//         uTime: {
-//             value: 0.0
-//         },
-//         uTexture: {
-//             value: new THREE.TextureLoader().load(atelier8)
-//         }
-//     },
-//     side: THREE.DoubleSide
-// });
 
-// let loader1 = new THREE.TextureLoader();
-// var image = loader1.load(atelier1, () => {
-//     start();
-// });
-// var hover = loader1.load(atelier2);
-// atelier1.style.opacity = 0;
-// sizes = new THREE.Vector2(0, 0);
-// offset = new THREE.Vector2(0, 0);
+let planeOpacityDefault = 0.95;
 
-// var mouse = new THREE.Vector2(0, 0);
-// window.addEventListener("mousemove", (ev) => {
-//     onMouseMove(ev);
-// });
-
-// function start() {
-//     getSizes();
-//     createMesh();
-// }
-
-// function getSizes() {
-//     const { width, height, top, left } = atelier1.getBoundingClientRect();
-
-//     sizes.set(width, height);
-
-//     offset.set(
-//       left - window.innerWidth / 2 + width / 2,
-//       -top + window.innerHeight / 2 - height / 2
-//     );
-//   }
-
-// function createMesh() {
-//     var uniforms = {
-//         u_image: {
-//             type: "t",
-//             value: image
-//         },
-//         u_imagehover: {
-//             type: "t",
-//             value: hover
-//         },
-//         u_mouse: {
-//             value: mouse
-//         },
-//         u_time: {
-//             value: 0
-//         },
-//         u_res: {
-//             value: new THREE.Vector2(window.innerWidth, window.innerHeight)
-//         }
-//     };
-
-//     var materialPlane1 = new THREE.ShaderMaterial({
-//         uniforms: uniforms,
-//         vertexShader: vertexShader,
-//         fragmentShader: fragmentShader,
-//         //   defines: {
-//         //     PR: window.devicePixelRatio.toFixed(1)
-//         //   },
-//         side: THREE.DoubleSide
-//     });
-
-//     // mesh = new THREE.Mesh(geometry, material);
-
-//     // mesh.position.set(offset.x, offset.y, 0);
-//     // mesh.scale.set(sizes.x, sizes.y, 1);
-
-//     // scene.add(mesh);
-// }
-
-// function onMouseMove(event) {
-//     TM.to(mouse, 0.5, {
-//         x: (event.clientX / window.innerWidth) * 2 - 1,
-//         y: -(event.clientY / window.innerHeight) * 2 + 1
-//     });
-
-//     TM.to(mesh.rotation, 0.2, {
-//         x: -mouse.y * 0.1,
-//         y: mouse.x * (Math.PI / 15)
-//     });
-// }
-
-
-
-
-
-
-// let figure = new PlaneWorkshop(scene, () => {
-//     this.update()
-// })
-
-// console.log(PlaneWorkshop.$image, PlaneWorkshop.$image2)
-
-// let image = document.querySelector(".tile__image");
-// let image2 = document.querySelector(".tile__image2");
-
-// console.log(image.src, image2.src)
-
-
-
-
+var materialPlane1 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane2 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane3 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane4 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane5 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane6 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane7 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane8 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane9 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane10 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane11 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane12 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane13 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
+var materialPlane14 = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        time: { type: "f", value: 0.0 },
+        alpha: { value: planeOpacityDefault },
+        displaceHover: { type: "f", value: 0.0 },
+        
+        imagebw: { type: "t", value: texture7 },
+        imagergb: { type: "t", value: texture5 },
+        displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
+        dispFactor: { type: "f", value: 0.0 },
+        effectFactor: { type: "f", value: 1 }, //intensity
+    },
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 1.0
+});
 
 
 /////// PLANE AXES ///////
 var planeAxe = new THREE.Object3D();
 planeAxe.position.set(0, -26.5, 0);
 scene.add(planeAxe);
+
 
 /////// PLANES PIVOTS ///////
 var pivot1 = new THREE.Object3D();
@@ -694,6 +707,7 @@ planeMesh14.rotation.y = -Math.PI / 2;
 //     textMesh8.scale.set(0, 0, 0);
 // });
 
+
 /////// ROTATION AROUND AXIS ///////
 pivot1.add(planeMesh1);
 pivot2.add(planeMesh2);
@@ -709,6 +723,7 @@ pivot11.add(planeMesh11);
 pivot12.add(planeMesh12);
 pivot13.add(planeMesh13);
 pivot14.add(planeMesh14);
+
 
 /////// GRID ///////
 var screenWidth = (window.innerWidth);
@@ -747,7 +762,9 @@ let particleMaterial = new THREE.PointsMaterial({
 });
 
 let particleMesh = new THREE.Points(particleGeo, particleMaterial);
+particleMesh.name = 'ParticleObjects';
 scene.add(particleMesh);
+
 
 /////// VARIABLES EVENTS ///////
 let homeContainer = document.querySelector('.homeContainer');
@@ -776,22 +793,6 @@ let cursor = document.querySelector('.cursor');
 let cursorShapeIn = document.querySelector('.cursor-shape_in');
 let cursorShapeOut = document.querySelector('.cursor-shape_out');
 
-// materialPlane1.cursor = 'pointer';
-// materialPlane1.on('click', function(ev) {});
-// materialPlane1.on('touchstart', function(ev) {});
-// materialPlane1.on('touchend', function(ev) {});
-// materialPlane1.on('mousedown', function(ev) {});
-// materialPlane1.on('mouseout', function(ev) {});
-// materialPlane1.on('mouseover', function(ev) {});
-// materialPlane1.on('mousemove', function(ev) {});
-// materialPlane1.on('mouseup', function(ev) {});
-
-// planeMesh1.on('mouseover', function() {
-
-// })
-// planeMesh1.on('mouseout', function() {
-
-// })
 
 window.addEventListener('load', function() {
     TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
@@ -805,8 +806,207 @@ window.addEventListener('load', function() {
     canvas.classList.add('hologramActive')
 })
 
+
+/////// PLANE HOVER SHADERS EFFECT ///////
+planeMesh1.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -4) {
+        console.log(ev)
+        gsap.to(materialPlane1.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane1.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh1.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane1.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane1.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh2.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -5) {
+        console.log(ev)
+        gsap.to(materialPlane2.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane2.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh2.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane2.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane2.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh3.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -6) {
+        console.log(ev)
+        gsap.to(materialPlane3.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane3.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh3.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane3.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane3.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh4.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -7) {
+        console.log(ev)
+        gsap.to(materialPlane4.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane4.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh4.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane4.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane4.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh5.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -8) {
+        console.log(ev)
+        gsap.to(materialPlane5.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane5.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh5.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane5.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane5.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh6.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -9) {
+        console.log(ev)
+        gsap.to(materialPlane6.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane6.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh6.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane6.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane6.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh7.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -10) {
+        console.log(ev)
+        gsap.to(materialPlane7.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane7.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh7.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane7.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane7.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh8.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -11) {
+        console.log(ev)
+        gsap.to(materialPlane8.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane8.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh8.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane8.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane8.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh9.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -12) {
+        console.log(ev)
+        gsap.to(materialPlane9.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane9.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh9.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane9.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane9.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh10.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -13) {
+        console.log(ev)
+        gsap.to(materialPlane10.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane10.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh10.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane10.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane10.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh11.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -14) {
+        console.log(ev)
+        gsap.to(materialPlane11.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane11.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh11.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane11.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane11.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh12.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -15) {
+        console.log(ev)
+        gsap.to(materialPlane12.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane12.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh12.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane12.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane12.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh13.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -16) {
+        console.log(ev)
+        gsap.to(materialPlane13.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane13.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh13.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane13.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane13.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
+planeMesh14.on('mouseover', function(ev) {
+    if (ev && planeAxe.position.y == -17) {
+        console.log(ev)
+        gsap.to(materialPlane14.uniforms.alpha, 1, { value: 1.0, ease: Power2.easeOut })
+        gsap.to(materialPlane14.uniforms.dispFactor, .9, { value: 1.0, ease: Power3.easeOut });
+    }
+});
+planeMesh14.on('mouseout', function(ev) {
+    if (ev) {
+        gsap.to(materialPlane14.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
+        gsap.to(materialPlane14.uniforms.dispFactor, .9, { value: 0.0, ease: Power3.easeOut });
+    }
+});
+
 /////// BACKHOME BUTTON EVENTS ///////
 function functionBtnBackHome() {
+    scene.add(particleMesh);
     canvas.classList.remove('hologramDefault')
     canvas.classList.add('hologramActive')
     btnBackHome.disabled = true;
@@ -906,12 +1106,16 @@ btnBackHome.addEventListener('click', function() {
 
 ///// START BUTTON EVENTS /////
 function functionBtnStart() {
+    // Supression des particules
+    scene.remove(scene.getObjectByName("ParticleObjects"));
+
     canvas.classList.add('hologramDefault')
     canvas.classList.remove('hologramActive')
     btnBackHome.disabled = false;
     btnStart.disabled = true;
     //AXES ANIM
     gsap.to(planeAxe.position, 1.5, { y: -17, ease: "power3.inOut", delay: 1.25 })
+    console.log(planeAxe.position)
     gsap.to(planeAxe.rotation, 1.5, { y: -3.5 * Math.PI, ease: "power3.inOut", delay: 1.25 })
         //CAMERA ANIM
     if (window.matchMedia("(max-width: 600px)").matches) {
@@ -951,6 +1155,8 @@ function functionBtnStart() {
     gsap.to(planeMesh12.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
     gsap.to(planeMesh13.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
     gsap.to(planeMesh14.rotation, 1.5, { z: 0, ease: "power3.inOut" })
+    gsap.to(planeMesh14.material, 2, {opacity: 0.3});
+
         //     //TEXT ROTATION Z ANIM
         // gsap.to(textMesh8.rotation, 1.5, { z: 0, ease: "power3.inOut", delay: 1.25 })
         //     //TEXT SCALE ANIM    
@@ -1325,6 +1531,7 @@ updateCursor();
 ///// SCROLL FUNCTIONS /////
 function scrollUp() {
     if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
+        scene.add(particleMesh);
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
         gsap.to(planeAxe.rotation, 2.25, { y: 0, ease: "power3.inOut" })
@@ -2041,6 +2248,7 @@ function scrollDown() {
             // gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
             // gsap.to(textMesh1.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: .15 })
     } else if (planeAxe.position.y == -4) {
+        scene.add(particleMesh);
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: 4.2, ease: "power3.inOut" })
         gsap.to(planeAxe.rotation, 2.25, { y: -13.5 * Math.PI, ease: "power3.inOut" })
@@ -2280,6 +2488,7 @@ document.onkeydown = function(e) {
 // })
 
 let variation = 0;
+let variationShaders = 0;
 
 var render = function() {
 
@@ -2325,22 +2534,21 @@ var render = function() {
     // };
 
     renderer.render(scene, camera);
-
-    // PlaneWorkshop.materialPlane1.uniforms.u_time.value += 0.02;
-    // materialPlane2.uniforms.uTime.value += 0.02;
-    // materialPlane3.uniforms.uTime.value += 0.02;
-    // materialPlane4.uniforms.uTime.value += 0.02;
-    // materialPlane5.uniforms.uTime.value += 0.02;
-    // materialPlane6.uniforms.uTime.value += 0.02;
-    // materialPlane7.uniforms.uTime.value += 0.02;
-    // materialPlane8.uniforms.uTime.value += 0.02;
-    // materialPlane9.uniforms.uTime.value += 0.02;
-    // materialPlane10.uniforms.uTime.value += 0.02;
-    // materialPlane11.uniforms.uTime.value += 0.02;
-    // materialPlane12.uniforms.uTime.value += 0.02;
-    // materialPlane13.uniforms.uTime.value += 0.02;
-    // materialPlane14.uniforms.uTime.value += 0.02;
-
+    
+    materialPlane1.uniforms.time.value = clock.getElapsedTime();
+    materialPlane2.uniforms.time.value = clock.getElapsedTime();
+    materialPlane3.uniforms.time.value = clock.getElapsedTime();
+    materialPlane4.uniforms.time.value = clock.getElapsedTime();
+    materialPlane5.uniforms.time.value = clock.getElapsedTime();
+    materialPlane6.uniforms.time.value = clock.getElapsedTime();
+    materialPlane7.uniforms.time.value = clock.getElapsedTime();
+    materialPlane8.uniforms.time.value = clock.getElapsedTime();
+    materialPlane9.uniforms.time.value = clock.getElapsedTime();
+    materialPlane10.uniforms.time.value = clock.getElapsedTime();
+    materialPlane11.uniforms.time.value = clock.getElapsedTime();
+    materialPlane12.uniforms.time.value = clock.getElapsedTime();
+    materialPlane13.uniforms.time.value = clock.getElapsedTime();
+    materialPlane14.uniforms.time.value = clock.getElapsedTime();
 };
 
 render();
