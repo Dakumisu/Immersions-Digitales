@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,15 +32462,23 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  
+  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  	var d = light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.scale.set( d, d, d );
-  	}
-  	this.add( this.lightDistance );
+  
+  var d = light.distance;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.scale.set( d, d, d );
+  
+  }
+  
+  this.add( this.lightDistance );
   */
 }
 
@@ -32490,12 +32498,17 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.visible = true;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  	}
+  
+  }
   */
 
 };
@@ -32926,7 +32939,8 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  	0: max.x, max.y, max.z
+  
+  0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -53917,12 +53931,12 @@ var lightCenter = new THREE.DirectionalLight(0x000000, 15);
 lightCenter.position.set(0, -1.5, 0);
 lightCenter.target = targetLogo;
 scene.add(lightCenter);
-var lightCenterSocle = new THREE.PointLight(0x000000, 120, .75);
+var lightCenterSocle = new THREE.PointLight(0x000000, 150, .6);
 lightCenterSocle.position.set(0, -1.5, 0);
 scene.add(lightCenterSocle);
 var cyanColor = new THREE.Color(0x4cc9f0);
 var cyanColorReset = new THREE.Color(0x000000);
-var ambientLight = new THREE.AmbientLight(0x09021e, 9);
+var ambientLight = new THREE.AmbientLight(0x09021e, 12);
 ambientLight.position.set(0, -1000, 0);
 scene.add(ambientLight); /////// 3D MODEL ///////
 
@@ -54520,7 +54534,23 @@ var bgCol = document.querySelectorAll('.colContainer .col');
 var bgRow = document.querySelectorAll('.rowContainer .row');
 var cursor = document.querySelector('.cursor');
 var cursorShapeIn = document.querySelector('.cursor-shape_in');
-var cursorShapeOut = document.querySelector('.cursor-shape_out'); // materialPlane1.cursor = 'pointer';
+var cursorShapeOut = document.querySelector('.cursor-shape_out');
+var containerTimeline = document.querySelector('.containerTimeline');
+var workShopButton = document.querySelectorAll('.workShopButton');
+var workShopButton1 = document.querySelector('.workShopButton__1');
+var workShopButton2 = document.querySelector('.workShopButton__2');
+var workShopButton3 = document.querySelector('.workShopButton__3');
+var workShopButton4 = document.querySelector('.workShopButton__4');
+var workShopButton5 = document.querySelector('.workShopButton__5');
+var workShopButton6 = document.querySelector('.workShopButton__6');
+var workShopButton7 = document.querySelector('.workShopButton__7');
+var workShopButton8 = document.querySelector('.workShopButton__8');
+var workShopButton9 = document.querySelector('.workShopButton__9');
+var workShopButton10 = document.querySelector('.workShopButton__10');
+var workShopButton11 = document.querySelector('.workShopButton__11');
+var workShopButton12 = document.querySelector('.workShopButton__12');
+var workShopButton13 = document.querySelector('.workShopButton__13');
+var workShopButton14 = document.querySelector('.workShopButton__14'); // materialPlane1.cursor = 'pointer';
 // materialPlane1.on('click', function(ev) {});
 // materialPlane1.on('touchstart', function(ev) {});
 // materialPlane1.on('touchend', function(ev) {});
@@ -54806,11 +54836,8 @@ function functionBtnBackHome() {
   btnBackHome.classList.add('close');
   btnBackHome.classList.remove('open');
   canvas.style.zIndex = -1;
-}
+} ///// START BUTTON EVENTS /////
 
-btnBackHome.addEventListener('click', function () {
-  functionBtnBackHome();
-}); ///// START BUTTON EVENTS /////
 
 function functionBtnStart() {
   canvas.classList.add('hologramDefault');
@@ -54998,6 +55025,9 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function () {
   functionBtnStart();
+  setTimeout(function () {
+    spanContainerStartMouseOut.classList.remove('neonText');
+  }, 750);
 });
 btnStart.addEventListener('mouseover', function () {
   TweenMax.to(".spanContainerStartMouseover span", {
@@ -55042,6 +55072,12 @@ btnStart.addEventListener('mouseout', function () {
   });
   spanContainerStartMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
+});
+btnBackHome.addEventListener('click', function () {
+  functionBtnBackHome();
+  setTimeout(function () {
+    spanContainerBackMouseOut.classList.remove('neonText');
+  }, 750);
 });
 btnBackHome.addEventListener('mouseover', function () {
   TweenMax.to(".spanContainerBackMouseover span", {
@@ -55112,6 +55148,13 @@ charsTextBtnBack.forEach(function (letter) {
   var btnBackchar = document.createElement('span');
   btnBackchar.innerHTML = letter;
   spanContainerBackMouseOut.append(btnBackchar);
+}); ///// TIMELINE /////
+
+containerTimeline.addEventListener('mouseover', function () {
+  containerTimeline.classList.add('switch'); // TweenMax.to(workShopButton, { duration: .5, clipPath: "inset(0% 0% 0% 0%)", stagger: { each: 0.03, from: "edge" }, ease: "power3.inOut" });
+});
+containerTimeline.addEventListener('mouseleave', function () {
+  containerTimeline.classList.remove('switch'); // TweenMax.to(workShopButton, { duration: .5, clipPath: "inset(0% 0% 0% 95%)", stagger: { each: 0.03, from: "center" }, ease: "power3.inOut" });
 }); /////// SM HOVER ///////
 
 sm1.classList.add('mouseout');
@@ -55184,7 +55227,7 @@ var Cursor = /*#__PURE__*/function () {
     this.precision = 2;
     this.scale = 1;
     this.rotation = 1;
-    this.friction = .500;
+    this.friction = .5;
     this.animate();
     this.events();
   }
@@ -55210,7 +55253,7 @@ var Cursor = /*#__PURE__*/function () {
     value: function speed_morph() {
       var dist = Math.dist(this.dx, this.dy);
       var min = 1;
-      var max_distance = 200;
+      var max_distance = 700;
       var total = dist / max_distance;
       return Number(Math.min(total, min).toFixed(2));
     }
@@ -57773,7 +57816,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53247" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "31504" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

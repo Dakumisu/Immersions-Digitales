@@ -1,7 +1,12 @@
+@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   cursor: none !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -16,21 +21,17 @@ canvas {
   display: block;
   position: absolute;
   z-index: -1;
+  opacity: 1;
 }
 
 canvas.hologramActive {
   -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
   transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
-  -webkit-animation: blinkCanvas 6s infinite;
-          animation: blinkCanvas 6s infinite;
 }
 
 canvas.hologramDefault {
   -webkit-transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
   transition: mix-blend-mode 2s cubic-bezier(0.25, 0, 0, 1);
-  mix-blend-mode: normal;
-  -webkit-animation: none;
-          animation: none;
 }
 
 @-webkit-keyframes blinkCanvas {
@@ -90,6 +91,18 @@ canvas.hologramDefault {
   }
   87% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cursor {
+    display: none;
+  }
+  .cursor-shape_out {
+    display: none;
+  }
+  .cursor-shape_out.mouseover {
+    display: none;
   }
 }
 
@@ -449,6 +462,10 @@ main .homeContainer .pathLineOut {
   border: 1px solid #4cc9f0;
   width: 235px;
   height: 57px;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {
@@ -457,13 +474,6 @@ main .homeContainer .pathLineOut {
     font-size: 4.1vw;
     height: 6.5vh;
   }
-}
-
-.btn__start {
-  overflow: hidden;
-  position: relative;
-  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 .btn__start:hover {
@@ -511,7 +521,7 @@ main .homeContainer .pathLineOut {
 .btn__backHome {
   width: 107px;
   height: 57px;
-  top: 25px;
+  top: 2.5%;
   left: 24px;
   position: absolute;
   z-index: 2;
@@ -519,7 +529,15 @@ main .homeContainer .pathLineOut {
           clip-path: inset(0% 100% 0% 0%);
   -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
   transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backHome {
+    width: 22.5vw;
+    height: 6.5vh;
+    left: 2%;
+    top: 1.2%;
+  }
 }
 
 .btn__backHome.open {
@@ -557,7 +575,14 @@ main .homeContainer .pathLineOut {
 .btn__backHome .spanContainerBackMouseover span,
 .btn__backHome .spanContainerBackMouseout span {
   display: inline-block;
-  line-height: 6vh;
+  line-height: 55px;
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backHome .spanContainerBackMouseover span,
+  .btn__backHome .spanContainerBackMouseout span {
+    line-height: 6.3vh;
+  }
 }
 
 .btn__backHome .spanContainerBackMouseout span {
@@ -807,18 +832,12 @@ main .homeContainer .pathLineOut {
 }
 
 .sm__1 {
-  bottom: 21px;
+  bottom: 1.8%;
 }
 
 @media screen and (max-width: 600px) {
   .sm__1 {
     bottom: .5%;
-  }
-}
-
-@media (orientation: (max-width: 1024px)) {
-  .sm__1 {
-    background: green;
   }
 }
 
@@ -857,7 +876,7 @@ main .homeContainer .pathLineOut {
 }
 
 .sm__2 {
-  bottom: 63px;
+  bottom: 6.2%;
 }
 
 @media screen and (max-width: 600px) {
@@ -901,7 +920,7 @@ main .homeContainer .pathLineOut {
 }
 
 .sm__3 {
-  bottom: 105px;
+  bottom: 10.6%;
 }
 
 @media screen and (max-width: 600px) {
@@ -942,6 +961,63 @@ main .homeContainer .pathLineOut {
           animation: outSM .5s ease forwards;
   -webkit-transform: translateX(0);
           transform: translateX(0);
+}
+
+.containerTimeline {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 27.7vh;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  right: 18px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  overflow: hidden;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  -webkit-clip-path: inset(0 0 0 80%);
+          clip-path: inset(0 0 0 80%);
+}
+
+.containerTimeline.switch {
+  -webkit-clip-path: inset(0 0 0 0%);
+          clip-path: inset(0 0 0 0%);
+}
+
+.containerTimeline .workShopButton {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: .6vh 0px .6vh 0;
+  padding: 0 15px 0 0;
+  -webkit-clip-path: inset(0 0 0 95%);
+          clip-path: inset(0 0 0 95%);
+  font-family: "littleTitle";
+  color: #4cc9f0;
+  font-size: 15px;
+  letter-spacing: .5px;
+  position: relative;
+  opacity: 0.4;
+}
+
+.containerTimeline .workShopButton::after {
+  content: " ";
+  width: 2px;
+  position: absolute;
+  right: 0;
+  background: #4cc9f0;
 }
 
 .musicBtn {

@@ -4,6 +4,10 @@ $magenta: #f72585;
 * {
     box-sizing: border-box;
     cursor: none!important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -18,17 +22,16 @@ canvas {
     display: block;
     position: absolute;
     z-index: -1;
+    opacity: 1;
     &.hologramActive {
         transition: mix-blend-mode 2s cubic-bezier(.25, 0, 0, 1);
-        // mix-blend-mode: difference;
-        // opacity: 0.5;
-        animation: blinkCanvas 6s infinite;
+        //animation: blinkCanvas 6s infinite;
     }
     &.hologramDefault {
         transition: mix-blend-mode 2s cubic-bezier(.25, 0, 0, 1);
-        mix-blend-mode: normal;
-        // opacity: 1;
-        animation: none;
+        //mix-blend-mode: normal;
+        //opacity: 1;
+        // animation: none;
     }
     @keyframes blinkCanvas {
         30% {
@@ -62,24 +65,24 @@ canvas {
 }
 
 ////CURSOR CUSTOM///
-// @media screen and (max-width: 1024px) {
-//     .cursor {
-//         display: none;
-//     }
-//     .cursor-shape_out {
-//         display: none;
-//     }
-//     .cursor-shape_out.mouseover {
-//         display: none;
-//     }
-// }
+@media screen and (max-width: 1024px) {
+    .cursor {
+        display: none;
+    }
+    .cursor-shape_out {
+        display: none;
+    }
+    .cursor-shape_out.mouseover {
+        display: none;
+    }
+}
 
 .cursor {
     position: fixed;
     // top: 0;
     // left: 0;
     pointer-events: none;
-    z-index: 100;   
+    z-index: 100;
     mix-blend-mode: difference;
     // &.mouseover {
     //     transition: mix-blend-mode .75s cubic-bezier(.25, 0, 0, 1);
@@ -88,10 +91,10 @@ canvas {
 }
 
 .cursor-shape_in {
-	position: absolute;
-	pointer-events: none;
-	border-radius: 50px;
-	left: -10px;
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50px;
+    left: -10px;
     top: -10px;
     width: 20px;
     height: 20px;
@@ -107,12 +110,12 @@ canvas {
 
 .cursor-shape_out {
     mix-blend-mode: difference;
-	z-index: 99;
-	position: absolute;
-	pointer-events: none;
+    z-index: 99;
+    position: absolute;
+    pointer-events: none;
     border-radius: 50px;
-	left: 0;
-	top: 0;
+    left: 0;
+    top: 0;
     width: 50px;
     height: 50px;
     border: $cyan solid 1px;
@@ -120,6 +123,7 @@ canvas {
     animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
+////MAIN///
 main {
     position: fixed;
     width: 100%;
@@ -160,16 +164,16 @@ main {
             }
         }
         .pathTitleIn {
-            animation: titleIn 10s forwards ease-in-out;
+            animation: titleIn 8s forwards ease-in-out;
         }
         .pathLineIn {
-            animation: lineIn 8s forwards ease-in-out;
+            animation: lineIn 6.5s forwards ease-in-out;
         }
         .pathTitleOut {
             animation: titleOut 8s forwards ease-in-out;
         }
         .pathLineOut {
-            animation: lineOut 7.5s forwards ease-in-out;
+            animation: lineOut 6.5s forwards ease-in-out;
         }
         @keyframes titleIn {
             0% {
@@ -251,34 +255,38 @@ main {
             100% {
                 stroke-width: 0.5px;
                 stroke-dashoffset: -1000;
-            } 
+            }
         }
         @keyframes blinkTitle {
-            30% {
+            0% {
                 opacity: 1;
-                filter: drop-shadow(0 0 5px $cyan);
-                // filter: blur(5px);
+                filter: drop-shadow(0 0 1.5px $cyan);
             }
-            33% {
+            20% {
                 opacity: 1;
-                filter: drop-shadow(0 0 2px $cyan);
-                // filter: blur(2px);
+                filter: drop-shadow(0 0 3px $cyan);
             }
-            35% {
+            40% {
+                opacity: 1;
+                filter: drop-shadow(0 0 1.5px $cyan);
+            }
+            60% {
                 opacity: 1;
                 filter: drop-shadow(0 0 3px $cyan);
             }
             80% {
                 opacity: 1;
-                filter: drop-shadow(0 0 1px $cyan);
+                filter: drop-shadow(0 0 1.5px $cyan);
             }
             100% {
                 opacity: 1;
+                filter: drop-shadow(0 0 3px $cyan);
             }
         }
     }
 }
 
+////BUTTONS///
 .btn {
     outline: none;
     border: none;
@@ -290,15 +298,15 @@ main {
     border: 1px solid $cyan;
     width: 235px;
     height: 57px;
+    overflow: hidden;
+    position: relative;
+    transition: .75s cubic-bezier(.25, 0, 0, 1);
     @media screen and (max-width: 600px) {
         width: 54vw;
         font-size: 4.1vw;
         height: 6.5vh;
     }
     &__start {
-        overflow: hidden;
-        position: relative;
-        transition: .75s cubic-bezier(.25, 0, 0, 1);
         &:hover {
             background: $cyan;
             color: $bleu;
@@ -332,13 +340,18 @@ main {
     &__backHome {
         width: 107px;
         height: 57px;
-        top: 25px;
+        top: 2.5%;
         left: 24px;
         position: absolute;
         z-index: 2;
         clip-path: inset(0% 100% 0% 0%);
         transition: .75s cubic-bezier(.25, 0, 0, 1);
-        overflow: hidden;
+        @media screen and (max-width: 600px) {
+            width: 22.5vw;
+            height: 6.5vh;
+            left: 2%;
+            top: 1.2%;
+        }
         &.open {
             pointer-events: all;
         }
@@ -366,7 +379,10 @@ main {
         .spanContainerBackMouseover span,
         .spanContainerBackMouseout span {
             display: inline-block;
-            line-height: 6vh;
+            line-height: 55px;
+            @media screen and (max-width: 600px) {
+                line-height: 6.3vh;
+            }
         }
         .spanContainerBackMouseout span {
             transform: translateY(40px);
@@ -525,93 +541,199 @@ main {
         }
     }
     &__1 {
-        bottom: 21px;
+        bottom: 1.8%;
         @media screen and (max-width: 600px) {
             bottom: .5%;
-        }
-        @media (orientation: landscape and (max-width: 1024px)) {
-            background: green;
         }
         &.mouseover::after {
             content: "FB";
             position: absolute;
-            animation: outSM .5s ease forwards;
+            animation: outSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
         }
         &.mouseover::before {
             content: "FB";
             position: absolute;
             transform: translateX(-165%);
-            animation: inSM .5s ease forwards;
+            animation: inSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
         }
         &.mouseout::after {
             content: "FB";
             position: absolute;
-            animation: inSM .5s ease forwards;
+            animation: inSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
             transform: translateX(-165%);
         }
         &.mouseout::before {
             content: "FB";
             position: absolute;
-            animation: outSM .5s ease forwards;
+            animation: outSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
             transform: translateX(0);
         }
     }
     &__2 {
-        bottom: 63px;
+        bottom: 6.2%;
         @media screen and (max-width: 600px) {
             bottom: 5.5%;
         }
         &.mouseover::after {
             content: "IG";
             position: absolute;
-            animation: outImpairSM .5s ease forwards;
+            animation: outImpairSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
         }
         &.mouseover::before {
             content: "IG";
             position: absolute;
             transform: translateX(165%);
-            animation: inSM .5s ease forwards;
+            animation: inSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
         }
         &.mouseout::after {
             content: "IG";
             position: absolute;
-            animation: inSM .5s ease forwards;
+            animation: inSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
             transform: translateX(165%);
         }
         &.mouseout::before {
             content: "IG";
             position: absolute;
-            animation: outImpairSM .5s ease forwards;
+            animation: outImpairSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
             transform: translateX(0);
         }
     }
     &__3 {
-        bottom: 105px;
+        bottom: 10.6%;
         @media screen and (max-width: 600px) {
             bottom: 10.5%;
         }
         &.mouseover::after {
             content: "IN";
             position: absolute;
-            animation: outSM .5s ease forwards;
+            animation: outSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
         }
         &.mouseover::before {
             content: "IN";
             position: absolute;
             transform: translateX(-165%);
-            animation: inSM .5s ease forwards;
+            animation: inSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
         }
         &.mouseout::after {
             content: "IN";
             position: absolute;
-            animation: inSM .5s ease forwards;
+            animation: inSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
             transform: translateX(-165%);
         }
         &.mouseout::before {
             content: "IN";
             position: absolute;
-            animation: outSM .5s ease forwards;
+            animation: outSM .5s cubic-bezier(.75, 0, 0, 1) forwards;
             transform: translateX(0);
+        }
+    }
+}
+
+////TIMELINE///
+.containerTimeline {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 27.7vh;
+    z-index: 3;
+    display: flex;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0 18px 0 25px;
+    overflow: hidden;
+    transition: .75s cubic-bezier(.75, 0, 0, 1);
+    clip-path: inset(0 0 0 70%);
+    text-align: center;
+    .timelineIndication {
+        .indication {
+            color: $cyan;
+            font-family: "littleTitle";
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            letter-spacing: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            right: 22px;
+            top: 50%;
+            opacity: 1;
+            transition: .5s cubic-bezier(.75, 0, 0, 1);
+            filter: blur(0);
+            &.switch {
+                opacity: 0;
+                letter-spacing: 25px;
+                filter: blur(2px)
+            }
+        }
+    }
+    .workShopButton {
+        width: fit-content;
+        margin: .6vh 0 .6vh 0;
+        padding: 0 10px 0 10px;
+        font-family: "littleTitle";
+        overflow: hidden;
+        color: $cyan;
+        font-size: 17px;
+        letter-spacing: .5px;
+        position: relative;
+        transition: .5s cubic-bezier(.75, 0, 0, 1);
+        clip-path: inset(0 0 0 99%);
+        font-weight: normal;
+        &:hover {
+            color: $bleu;
+            font-weight: bold;
+        }
+        &::before {
+            content: " ";
+            width: 2px;
+            right: 0;
+            position: absolute;
+            background: $cyan;
+            transition: .5s cubic-bezier(.75, 0, 0, 1);
+            z-index: -1;
+        }
+        &:hover::before {
+            width: 100%;
+            background: $cyan;
+            right: 0;
+        }
+        &__1,
+        &__2,
+        &__3,
+        &__4,
+        &__5,
+        &__6,
+        &__7,
+        &__8,
+        &__9,
+        &__10,
+        &__11,
+        &__12,
+        &__13,
+        &__14 {
+            &::after {
+                content: " ";
+                position: absolute;
+                left: 0;
+                padding: 0 20px 0 20px;
+                transition: .5s cubic-bezier(.75, 0, 0, 1);
+                width: 100%;
+                height: 100%;
+                background: $cyan;
+                clip-path: inset(0 100% 0 0);
+                z-index: -1;
+            }
+            &:hover::after {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+        .mask {
+            position: absolute;
+            width: 100%;
+            right: 0;
+            background: $cyan;
         }
     }
 }
