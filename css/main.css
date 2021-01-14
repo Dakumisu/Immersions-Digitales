@@ -539,6 +539,7 @@ main .homeContainer .pathLineOut {
   left: 24px;
   position: absolute;
   z-index: 2;
+  background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
   -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);

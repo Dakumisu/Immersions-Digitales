@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,15 +32462,23 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  
+  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  	var d = light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.scale.set( d, d, d );
-  	}
-  	this.add( this.lightDistance );
+  
+  var d = light.distance;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.scale.set( d, d, d );
+  
+  }
+  
+  this.add( this.lightDistance );
   */
 }
 
@@ -32490,12 +32498,17 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.visible = true;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  	}
+  
+  }
   */
 
 };
@@ -32926,7 +32939,8 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  	0: max.x, max.y, max.z
+  
+  0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -48413,6 +48427,20 @@ module.exports = "/street.466c19e3.gltf";
 module.exports = "/rightDoor.b1f96daa.gltf";
 },{}],"assets/model/leftDoor.gltf":[function(require,module,exports) {
 module.exports = "/leftDoor.5899d111.gltf";
+},{}],"assets/model/navigation/pylone.gltf":[function(require,module,exports) {
+module.exports = "/581e21a4f68736513a530d89206a826a.gltf";
+},{}],"assets/model/navigation/grid.gltf":[function(require,module,exports) {
+module.exports = "/grid.5fd5d4c8.gltf";
+},{}],"assets/model/navigation/table.gltf":[function(require,module,exports) {
+module.exports = "/table.ab80ece0.gltf";
+},{}],"assets/model/navigation/leftWall.gltf":[function(require,module,exports) {
+module.exports = "/leftWall.52c1a5dd.gltf";
+},{}],"assets/model/navigation/rightWall.gltf":[function(require,module,exports) {
+module.exports = "/rightWall.873f03ed.gltf";
+},{}],"assets/model/navigation/field.gltf":[function(require,module,exports) {
+module.exports = "/field.4048f86c.gltf";
+},{}],"assets/model/navigation/sign.gltf":[function(require,module,exports) {
+module.exports = "/sign.0dce5908.gltf";
 },{}],"assets/img/particle.png":[function(require,module,exports) {
 module.exports = "/particle.8e4cb102.png";
 },{}],"js/app.js":[function(require,module,exports) {
@@ -48478,6 +48506,20 @@ var _rightDoor = _interopRequireDefault(require("../assets/model/rightDoor.gltf"
 
 var _leftDoor = _interopRequireDefault(require("../assets/model/leftDoor.gltf"));
 
+var _pylone = _interopRequireDefault(require("../assets/model/navigation/pylone.gltf"));
+
+var _grid = _interopRequireDefault(require("../assets/model/navigation/grid.gltf"));
+
+var _table = _interopRequireDefault(require("../assets/model/navigation/table.gltf"));
+
+var _leftWall = _interopRequireDefault(require("../assets/model/navigation/leftWall.gltf"));
+
+var _rightWall = _interopRequireDefault(require("../assets/model/navigation/rightWall.gltf"));
+
+var _field = _interopRequireDefault(require("../assets/model/navigation/field.gltf"));
+
+var _sign = _interopRequireDefault(require("../assets/model/navigation/sign.gltf"));
+
 var _particle2 = _interopRequireDefault(require("../assets/img/particle.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -48495,7 +48537,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 ////////// SCENE //////////
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); /////// HORLOGE ///////
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); /////// CLOCK ///////
 
 var clock = new THREE.Clock();
 
@@ -48551,10 +48593,7 @@ light3.position.set(-2000, 0, 0);
 scene.add(light3);
 var light4 = new THREE.PointLight(0x4cc9f0, .3);
 light4.position.set(2000, 1000, -2000);
-scene.add(light4); // let lightCenterPlane = new THREE.PointLight(0x4cc9f0, 1.5, 14);
-// lightCenterPlane.position.set(0, 0, 10)
-// scene.add(lightCenterPlane);
-
+scene.add(light4);
 var lightCenter = new THREE.DirectionalLight(0x000000, 10);
 lightCenter.position.set(0, -1.5, 0);
 lightCenter.target = targetLogo;
@@ -48567,7 +48606,7 @@ var cyanColorReset = new THREE.Color(0x000000);
 var ambientLight = new THREE.AmbientLight(0x09021e, 8);
 ambientLight.position.set(0, -1000, 0);
 scene.add(ambientLight); /////// 3D MODEL ///////
-// HOME MODEL
+//HOME MODEL
 
 var home;
 var loaderHome = new _GLTFLoader.GLTFLoader();
@@ -48602,29 +48641,84 @@ loaderLogo.load(_logo.default, function (addLogo) {
   logo.position.set(0, -9.8, 0);
   logo.rotation.z = -.725;
   logo.scale.set(0.00001, 0.00001, 0.00001);
-}); // // FIELD MODEL
-// var field;
-// var loaderField = new GLTFLoader;
-// loaderField.crossOrigin = true;
-// loaderField.load(fieldModel, function(addField) {
-//     field = addField.scene;
-//     scene.add(field);
-//     field.position.set(-1.2, -3, -48)
-//     field.rotation.y = -.5 * Math.PI
-//     field.scale.set(110, 110, 110)
-// })
-// // PYLONE MODEL
-// var pylone;
-// var loaderPylone = new GLTFLoader;
-// loaderPylone.crossOrigin = true;
-// loaderPylone.load(pyloneModel, function(addPylone) {
-//     pylone = addPylone.scene;
-//     scene.add(pylone);
-//     pylone.position.set(-1.2, -3, -48)
-//     pylone.rotation.y = -.5 * Math.PI
-//     pylone.scale.set(110, 110, 110)
-// })
-// RIGHT DOOR MODEL
+}); // FIELD MODEL
+
+var field;
+var loaderField = new _GLTFLoader.GLTFLoader();
+loaderField.crossOrigin = true;
+loaderField.load(_field.default, function (addField) {
+  field = addField.scene;
+  scene.add(field);
+  field.position.set(-1.2, -53, -48);
+  field.rotation.y = -.5 * Math.PI;
+  field.scale.set(110, 0.0001, 0.0001);
+}); // LEFT WALL MODEL
+
+var leftWall;
+var loaderleftWall = new _GLTFLoader.GLTFLoader();
+loaderleftWall.crossOrigin = true;
+loaderleftWall.load(_leftWall.default, function (addleftWall) {
+  leftWall = addleftWall.scene;
+  scene.add(leftWall);
+  leftWall.position.set(-51.2, -4.8, -48);
+  leftWall.rotation.y = -.5 * Math.PI;
+  leftWall.scale.set(110, 0.0001, 0.0001);
+}); // RIGHT WALL MODEL
+
+var rightWall;
+var loaderRightWall = new _GLTFLoader.GLTFLoader();
+loaderRightWall.crossOrigin = true;
+loaderRightWall.load(_rightWall.default, function (addRightWall) {
+  rightWall = addRightWall.scene;
+  scene.add(rightWall);
+  rightWall.position.set(58.8, -4.8, -48);
+  rightWall.rotation.y = -.5 * Math.PI;
+  rightWall.scale.set(110, 0.0001, 0.0001);
+}); // TABLE MODEL
+
+var table;
+var loaderTable = new _GLTFLoader.GLTFLoader();
+loaderTable.crossOrigin = true;
+loaderTable.load(_table.default, function (addTable) {
+  table = addTable.scene;
+  scene.add(table);
+  table.position.set(-8, -4.9, -8);
+  table.rotation.y = -.5 * Math.PI;
+  table.scale.set(0.0001, 110, 0.0001);
+}); // PYLONE MODEL
+
+var pylone;
+var loaderPylone = new _GLTFLoader.GLTFLoader();
+loaderPylone.crossOrigin = true;
+loaderPylone.load(_pylone.default, function (addPylone) {
+  pylone = addPylone.scene;
+  scene.add(pylone);
+  pylone.position.set(-8, -1.5, -4.5);
+  pylone.rotation.y = -.5 * Math.PI;
+  pylone.scale.set(110, 80, 110);
+}); // GRID MODEL
+
+var grid;
+var loaderGrid = new _GLTFLoader.GLTFLoader();
+loaderGrid.crossOrigin = true;
+loaderGrid.load(_grid.default, function (addGrid) {
+  grid = addGrid.scene;
+  scene.add(grid);
+  grid.position.set(-1.2, -3, -48);
+  grid.rotation.y = -.5 * Math.PI;
+  grid.scale.set(0.0001, 0.0001, 0.0001);
+}); // SIGN MODEL
+
+var sign;
+var loaderSign = new _GLTFLoader.GLTFLoader();
+loaderSign.crossOrigin = true;
+loaderSign.load(_sign.default, function (addSign) {
+  sign = addSign.scene;
+  scene.add(sign);
+  sign.position.set(7.8, -3.05, -4);
+  sign.rotation.y = -.5 * Math.PI;
+  sign.scale.set(0.0001, 0.0001, 0.0001);
+}); // RIGHT DOOR MODEL
 
 var rightDoor;
 var loaderRightDoor = new _GLTFLoader.GLTFLoader();
@@ -48632,9 +48726,9 @@ loaderRightDoor.crossOrigin = true;
 loaderRightDoor.load(_rightDoor.default, function (addRightDoor) {
   rightDoor = addRightDoor.scene;
   scene.add(rightDoor);
-  rightDoor.position.set(.3, -5.8, -48);
+  rightDoor.position.set(30, -5.8, -48);
   rightDoor.rotation.y = -.5 * Math.PI;
-  rightDoor.scale.set(110, 110, 110);
+  rightDoor.scale.set(0.0001, 0.0001, 0.0001);
 }); // LEFT DOOR MODEL
 
 var leftDoor;
@@ -48643,9 +48737,9 @@ loaderLeftDoor.crossOrigin = true;
 loaderLeftDoor.load(_leftDoor.default, function (addLeftDoor) {
   leftDoor = addLeftDoor.scene;
   scene.add(leftDoor);
-  leftDoor.position.set(.3, -5.8, -48);
+  leftDoor.position.set(-30, -5.8, -48);
   leftDoor.rotation.y = -.5 * Math.PI;
-  leftDoor.scale.set(110, 110, 110);
+  leftDoor.scale.set(0.0001, 0.0001, 0.0001);
 }); // STREET MODEL
 
 var street;
@@ -48654,9 +48748,9 @@ loaderStreet.crossOrigin = true;
 loaderStreet.load(_street.default, function (addStreet) {
   street = addStreet.scene;
   scene.add(street);
-  street.position.set(.7, -5.8, -48);
+  street.position.set(.5, -7.8, -48);
   street.rotation.y = -.5 * Math.PI;
-  street.scale.set(110, 110, 110);
+  street.scale.set(0.0001, 0.0001, 0.0001);
 }); /////// PLANES ///////
 
 var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30);
@@ -50354,6 +50448,68 @@ function functionBtnStart() {
     gsap.to(socle.rotation, 3, {
       y: -Math.PI,
       ease: "power3.inOut"
+    });
+    gsap.to(field.scale, 3, {
+      y: 110,
+      x: 110,
+      z: 110,
+      ease: "power3.inOut"
+    });
+    gsap.to(field.position, 3, {
+      y: -5,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftWall.position, 3, {
+      x: -1.2,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftWall.scale, 3, {
+      y: 140,
+      x: 110,
+      z: 110,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightWall.position, 3, {
+      x: -1.2,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightWall.scale, 3, {
+      y: 140,
+      x: 110,
+      z: 110,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftDoor.position, 3, {
+      x: .3,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightDoor.position, 3, {
+      x: .3,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftDoor.scale, 3, {
+      x: 110,
+      y: 110,
+      z: 110,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightDoor.scale, 3, {
+      x: 110,
+      y: 110,
+      z: 110,
+      ease: "power3.inOut"
+    });
+    gsap.to(sign.scale, 3, {
+      x: 100,
+      y: 100,
+      z: 100,
+      ease: "power3.inOut"
+    });
+    gsap.to(table.scale, 3, {
+      x: 110,
+      y: 110,
+      z: 110,
+      ease: "power3.inOut"
     }); //LIGHTS ANIM
 
     TweenMax.to(lightCenterSocle.color, .75, {
@@ -50500,12 +50656,12 @@ planeMesh14.on('click', function () {
     ease: "power3.inOut"
   });
   gsap.to(leftDoor.position, 1.5, {
-    x: -13,
+    x: -15,
     ease: "power3.inOut",
     delay: .75
   });
   gsap.to(rightDoor.position, 1.5, {
-    x: 13,
+    x: 15,
     ease: "power3.inOut",
     delay: .75
   });
@@ -53251,7 +53407,7 @@ var render = function render() {
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","../assets/img/displace.jpg":"assets/img/displace.jpg","../assets/img/displace.png":"assets/img/displace.png","../assets/img/displace2.png":"assets/img/displace2.png","../assets/img/displace3.png":"assets/img/displace3.png","../assets/img/displace4.png":"assets/img/displace4.png","../assets/img/displace5.jpg":"assets/img/displace5.jpg","../assets/img/displace6.jpg":"assets/img/displace6.jpg","../assets/img/displace7.jpg":"assets/img/displace7.jpg","../assets/img/displace8.jpg":"assets/img/displace8.jpg","../assets/img/displace9.png":"assets/img/displace9.png","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","../assets/img/displace.jpg":"assets/img/displace.jpg","../assets/img/displace.png":"assets/img/displace.png","../assets/img/displace2.png":"assets/img/displace2.png","../assets/img/displace3.png":"assets/img/displace3.png","../assets/img/displace4.png":"assets/img/displace4.png","../assets/img/displace5.jpg":"assets/img/displace5.jpg","../assets/img/displace6.jpg":"assets/img/displace6.jpg","../assets/img/displace7.jpg":"assets/img/displace7.jpg","../assets/img/displace8.jpg":"assets/img/displace8.jpg","../assets/img/displace9.png":"assets/img/displace9.png","../assets/img/atelier1.png":"assets/img/atelier1.png","../assets/img/atelier2.png":"assets/img/atelier2.png","../assets/img/atelier3.jpg":"assets/img/atelier3.jpg","../assets/img/atelier4.jpg":"assets/img/atelier4.jpg","../assets/img/atelier5.png":"assets/img/atelier5.png","../assets/img/atelier6.png":"assets/img/atelier6.png","../assets/img/atelier7.jpg":"assets/img/atelier7.jpg","../assets/img/atelier8.png":"assets/img/atelier8.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -53279,7 +53435,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59130" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13000" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
