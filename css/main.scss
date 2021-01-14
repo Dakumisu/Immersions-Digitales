@@ -361,6 +361,7 @@ main {
         left: 24px;
         position: absolute;
         z-index: 2;
+        background: none;
         clip-path: inset(0% 100% 0% 0%);
         transition: .75s cubic-bezier(.25, 0, 0, 1);
         @media screen and (max-width: 600px) {

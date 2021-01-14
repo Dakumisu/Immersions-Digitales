@@ -11,116 +11,86 @@
                 0,
                 1,
                 2,
-                3,
-                4,
-                5
+                3
             ]
         }
     ],
     "nodes" : [
         {
-            "name" : "Light",
+            "name" : "back",
             "rotation" : [
-                0.16907575726509094,
-                0.7558803558349609,
-                -0.27217137813568115,
-                0.570947527885437
-            ],
-            "translation" : [
-                4.076245307922363,
-                5.903861999511719,
-                -1.0054539442062378
-            ]
-        },
-        {
-            "name" : "Camera",
-            "rotation" : [
-                0.483536034822464,
-                0.33687159419059753,
-                -0.20870360732078552,
-                0.7804827094078064
-            ],
-            "translation" : [
-                7.358891487121582,
-                4.958309173583984,
-                6.925790786743164
-            ]
-        },
-        {
-            "name" : "polySurface65",
-            "rotation" : [
-                0.7071068286895752,
+                1,
                 0,
                 0,
-                0.7071067094802856
+                -1.3435885648505064e-07
             ],
             "scale" : [
-                0.006969959009438753,
-                0.006969959009438753,
-                0.006969959009438753
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
             ],
             "translation" : [
-                0.03129920735955238,
-                0.026180243119597435,
-                -0.00015745912969578058
+                0,
+                0,
+                -10.00100040435791
             ]
         },
         {
-            "name" : "polySurface65.001",
+            "name" : "back.001",
             "rotation" : [
-                0.7071068286895752,
+                1,
                 0,
                 0,
-                0.7071067094802856
+                -1.3435885648505064e-07
             ],
             "scale" : [
-                0.006969959009438753,
-                0.006969959009438753,
-                0.006969959009438753
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
             ],
             "translation" : [
-                0.03129920735955238,
-                0.026180243119597435,
-                -0.00015745912969578058
+                0,
+                0,
+                -10.00100040435791
             ]
         },
         {
-            "name" : "polySurface65.002",
+            "name" : "back.002",
             "rotation" : [
-                0.7071068286895752,
+                1,
                 0,
                 0,
-                0.7071067094802856
+                -1.3435885648505064e-07
             ],
             "scale" : [
-                0.006969959009438753,
-                0.006969959009438753,
-                0.006969959009438753
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
             ],
             "translation" : [
-                0.03129920735955238,
-                0.026180243119597435,
-                -0.00015745912969578058
+                0,
+                0,
+                -10.00100040435791
             ]
         },
         {
             "mesh" : 0,
-            "name" : "pCube83",
+            "name" : "pCube83.002",
             "rotation" : [
-                0.7071068286895752,
+                -0.7071067094802856,
                 0,
                 0,
-                0.7071067094802856
+                0.70710688829422
             ],
             "scale" : [
                 0.22736141085624695,
-                0.17222249507904053,
-                0.0042272526770830154
+                0.003102181712165475,
+                0.09718672186136246
             ],
             "translation" : [
                 0.40380799770355225,
-                -0.008358899503946304,
-                -0.010072623379528522
+                0.038156475871801376,
+                0.07761546224355698
             ]
         }
     ],
@@ -132,7 +102,7 @@
                 0,
                 0
             ],
-            "name" : "lambert1.004",
+            "name" : "lambert1.006",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.23076923191547394,
@@ -147,7 +117,7 @@
     ],
     "meshes" : [
         {
-            "name" : "Mesh.020",
+            "name" : "Mesh.025",
             "primitives" : [
                 {
                     "attributes" : {
@@ -222,7 +192,7 @@
     "buffers" : [
         {
             "byteLength" : 840,
-            "uri" : "data:application/octet-stream;base64,AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAC/AAAAvwAAAD8AAAC/AAAAvwAAAD8AAAA/AAAAPwAAAD8AAAC/AAAAPwAAAL8AAAC/AAAAvwAAAL8AAAC/AAAAvwAAAD8AAAC/AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAC/AAAAPwAAAL8AAAC/AAAAPwAAAL8AAAA/AAAAvwAAAD8AAAA/AAAAvwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAPwAAAD8AAAC/AAAAvwAAAD8AAAC/AAAAvwAAAL8AAAC/AAAAvwAAAL8AAAA/AAAAvwAAAD8AAAA/AAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAAAgPwAAgD8AACA/AABAPwAAwD4AAEA/AADAPgAAgD8AACA/AABAPwAAID8AAAA/AADAPgAAAD8AAMA+AABAPwAAwD4AAIA+AADAPgAAAD8AACA/AAAAPwAAID8AAIA+AADAPgAAAAAAAMA+AACAPgAAID8AAIA+AAAgPwAAAAAAACA/AACAPwAAYD8AAIA/AABgPwAAQD8AACA/AABAPwAAwD4AAEA/AAAAPgAAQD8AAAA+AACAPwAAwD4AAIA/AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"
+            "uri" : "data:application/octet-stream;base64,AAAAPwAAAD8AAAC/AAAAPwAAAL8AAAC/AAAAvwAAAL8AAAC/AAAAvwAAAD8AAAC/AAAAPwAAAL8AAAC/AAAAPwAAAL8AAAA/AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAC/AAAAvwAAAD8AAAA/AAAAvwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAD8AAAA/AAAAvwAAAD8AAAC/AAAAvwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAC/AAAAPwAAAD8AAAC/AAAAPwAAAD8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAvwAAAL8AAAC/AAAAvwAAAL8AAAA/AAAAvwAAAD8AAAA/AAAAvwAAAD8AAAC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAAAgPwAAgD8AACA/AABAPwAAwD4AAEA/AADAPgAAgD8AACA/AABAPwAAID8AAAA/AADAPgAAAD8AAMA+AABAPwAAwD4AAIA+AADAPgAAAD8AACA/AAAAPwAAID8AAIA+AADAPgAAAAAAAMA+AACAPgAAID8AAIA+AAAgPwAAAAAAACA/AACAPwAAYD8AAIA/AABgPwAAQD8AACA/AABAPwAAwD4AAEA/AAAAPgAAQD8AAAA+AACAPwAAwD4AAIA/AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"
         }
     ]
 }

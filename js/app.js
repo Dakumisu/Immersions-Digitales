@@ -59,19 +59,31 @@ import socleModel from "../assets/model/socle.gltf";
 import logoModel from "../assets/model/logo.glb";
 import homeModel from "../assets/model/home.gltf";
 import streetModel from "../assets/model/street.gltf";
-// import pyloneModel from "../assets/model/navigation/pylone.gltf";
-// import gridModel from "../assets/model/navigation/grid.gltf";
-// import tableModel from "../assets/model/navigation/tableModel.gltf";
-// import leftWallModel from "../assets/model/navigation/leftWall.gltf";
-// import rightWallModel from "../assets/model/navigation/rightWall.gltf";
-// import fieldModel from "../assets/model/navigation/fieldModel.gltf";
-// import signModel from "../assets/model/navigation/sign.gltf";
-// import greenScreenModel from "../assets/model/navigation/greenScreen.gltf";
-// import tvModel from "../assets/model/navigation/tv.gltf";
-// import tv2Model from "../assets/model/navigation/tv2.gltf";
-// import fieldModel from "../assets/model/navigation/fieldModel.gltf";
 import rightDoorModel from "../assets/model/rightDoor.gltf";
 import leftDoorModel from "../assets/model/leftDoor.gltf";
+
+import pyloneModel from "../assets/model/navigation/pylone.gltf";
+import pylone2Model from "../assets/model/navigation/pylone2.gltf";
+import pylone3Model from "../assets/model/navigation/pylone3.gltf";
+import pylone4Model from "../assets/model/navigation/pylone4.gltf";
+import pylone5Model from "../assets/model/navigation/pylone5.gltf";
+import gridModel from "../assets/model/navigation/grid.gltf";
+import grid2Model from "../assets/model/navigation/grid2.gltf";
+import grid3Model from "../assets/model/navigation/grid3.gltf";
+import grid4Model from "../assets/model/navigation/grid4.gltf";
+import grid5Model from "../assets/model/navigation/grid5.gltf";
+import tableModel from "../assets/model/navigation/table.gltf";
+import poutreModel from "../assets/model/navigation/poutre.gltf";
+import leftWallModel from "../assets/model/navigation/leftWall.gltf";
+import rightWallModel from "../assets/model/navigation/rightWall.gltf";
+import fieldModel from "../assets/model/navigation/field.gltf";
+import signModel from "../assets/model/navigation/sign.gltf";
+
+// import greenScreenModel from "../assets/model/fondVert/greenScreen.gltf";
+// import tvModel from "../assets/model/fondVert/tv.gltf";
+// import tv2Model from "../assets/model/fondVert/tv2.gltf";
+// import tvLineModel from "../assets/model/fondVert/tvLine.gltf";
+
 
 import particle from "../assets/img/particle.png";
 
@@ -81,7 +93,7 @@ var scene = new THREE.Scene();
 ////////// CAMERA //////////
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-/////// HORLOGE ///////
+/////// CLOCK ///////
 var clock = new THREE.Clock();
 
 if (window.matchMedia("(max-width: 600px)").matches) {
@@ -141,7 +153,7 @@ effectPass.renderToScreen = true;
 composer.addPass(effectPass);
 
 //POUR LES SHADERS
-let customPass = new POSTPROCESSING.ShaderPass({vertexShader,fragmentShader});
+let customPass = new POSTPROCESSING.ShaderPass({ vertexShader, fragmentShader });
 customPass.renderToScreen = true;
 composer.addPass(customPass);
 
@@ -165,10 +177,6 @@ let light4 = new THREE.PointLight(0x4cc9f0, .3);
 light4.position.set(2000, 1000, -2000);
 scene.add(light4);
 
-// let lightCenterPlane = new THREE.PointLight(0x4cc9f0, 1.5, 14);
-// lightCenterPlane.position.set(0, 0, 10)
-// scene.add(lightCenterPlane);
-
 let lightCenter = new THREE.DirectionalLight(0x000000, 10);
 lightCenter.position.set(0, -1.5, 0)
 lightCenter.target = targetLogo;
@@ -187,7 +195,7 @@ scene.add(ambientLight);
 
 /////// 3D MODEL ///////
 
-// HOME MODEL
+//HOME MODEL
 var home;
 
 var loaderHome = new GLTFLoader();
@@ -228,36 +236,232 @@ loaderLogo.load(logoModel, function(addLogo) {
     scene.add(logo);
     logo.position.set(0, -9.8, 0)
     logo.rotation.z = -.725;
-    logo.scale.set(0.00001, 0.00001, 0.00001)
+    logo.scale.set(0.0001, 0.0001, 0.0001)
 });
 
-// // FIELD MODEL
-// var field;
+// FIELD MODEL
+var field;
 
-// var loaderField = new GLTFLoader;
-// loaderField.crossOrigin = true;
+var loaderField = new GLTFLoader;
+loaderField.crossOrigin = true;
 
-// loaderField.load(fieldModel, function(addField) {
-//     field = addField.scene;
-//     scene.add(field);
-//     field.position.set(-1.2, -3, -48)
-//     field.rotation.y = -.5 * Math.PI
-//     field.scale.set(110, 110, 110)
-// })
+loaderField.load(fieldModel, function(addField) {
+    field = addField.scene;
+    scene.add(field);
+    field.position.set(-1.2, -53, -48)
+    field.rotation.y = -.5 * Math.PI
+    field.scale.set(0.0001, 0.0001, 0.0001)
+})
 
-// // PYLONE MODEL
-// var pylone;
+// LEFT WALL MODEL
+var leftWall;
 
-// var loaderPylone = new GLTFLoader;
-// loaderPylone.crossOrigin = true;
+var loaderleftWall = new GLTFLoader;
+loaderleftWall.crossOrigin = true;
 
-// loaderPylone.load(pyloneModel, function(addPylone) {
-//     pylone = addPylone.scene;
-//     scene.add(pylone);
-//     pylone.position.set(-1.2, -3, -48)
-//     pylone.rotation.y = -.5 * Math.PI
-//     pylone.scale.set(110, 110, 110)
-// })
+loaderleftWall.load(leftWallModel, function(addleftWall) {
+    leftWall = addleftWall.scene;
+    scene.add(leftWall);
+    leftWall.position.set(-51.2, -4.8, -48)
+    leftWall.rotation.y = -.5 * Math.PI
+    leftWall.scale.set(0.0001, 0.0001, 0.0001)
+})
+
+// RIGHT WALL MODEL
+var rightWall;
+
+var loaderRightWall = new GLTFLoader;
+loaderRightWall.crossOrigin = true;
+
+loaderRightWall.load(rightWallModel, function(addRightWall) {
+    rightWall = addRightWall.scene;
+    scene.add(rightWall);
+    rightWall.position.set(58.8, -4.8, -48)
+    rightWall.rotation.y = -.5 * Math.PI
+    rightWall.scale.set(0.0001, 0.0001, 0.0001)
+})
+
+// TABLE MODEL
+var table;
+
+var loaderTable = new GLTFLoader;
+loaderTable.crossOrigin = true;
+
+loaderTable.load(tableModel, function(addTable) {
+    table = addTable.scene;
+    scene.add(table);
+    table.position.set(-8, -4.9, -8.5)
+    table.rotation.y = -.5 * Math.PI
+    table.scale.set(110, 0.0001, 0.0001)
+})
+
+// PYLONE MODEL
+var pylone;
+
+var loaderPylone = new GLTFLoader;
+loaderPylone.crossOrigin = true;
+
+loaderPylone.load(pyloneModel, function(addPylone) {
+    pylone = addPylone.scene;
+    scene.add(pylone);
+    pylone.position.set(-8.5, -1.5, -5)
+    pylone.rotation.y = -.5 * Math.PI
+    pylone.scale.set(110, 0.0001, 0.0001)
+})
+
+// PYLONE2 MODEL
+var pylone2;
+
+var loaderPylone2 = new GLTFLoader;
+loaderPylone2.crossOrigin = true;
+
+loaderPylone2.load(pylone2Model, function(addPylone2) {
+    pylone2 = addPylone2.scene;
+    scene.add(pylone2);
+    pylone2.position.set(-8.5, -1.5, -6.5)
+    pylone2.rotation.y = -.5 * Math.PI
+    pylone2.scale.set(110, 0.0001, 0.0001)
+})
+
+// PYLONE3 MODEL
+var pylone3;
+
+var loaderPylone3 = new GLTFLoader;
+loaderPylone3.crossOrigin = true;
+
+loaderPylone3.load(pylone3Model, function(addPylone3) {
+    pylone3 = addPylone3.scene;
+    scene.add(pylone3);
+    pylone3.position.set(-8.5, -1.5, -8)
+    pylone3.rotation.y = -.5 * Math.PI
+    pylone3.scale.set(110, 0.0001, 0.0001)
+})
+
+// PYLONE4 MODEL
+var pylone4;
+
+var loaderPylone4 = new GLTFLoader;
+loaderPylone4.crossOrigin = true;
+
+loaderPylone.load(pylone4Model, function(addPylone4) {
+    pylone4 = addPylone4.scene;
+    scene.add(pylone4);
+    pylone4.position.set(-8.5, -1.5, -9.5)
+    pylone4.rotation.y = -.5 * Math.PI
+    pylone4.scale.set(110, 0.0001, 0.0001)
+})
+
+// PYLONE5 MODEL
+var pylone5;
+
+var loaderPylone5 = new GLTFLoader;
+loaderPylone5.crossOrigin = true;
+
+loaderPylone.load(pylone5Model, function(addPylone5) {
+    pylone5 = addPylone5.scene;
+    scene.add(pylone5);
+    pylone5.position.set(-8.5, -1.5, -11)
+    pylone5.rotation.y = -.5 * Math.PI
+    pylone5.scale.set(110, 0.0001, 0.0001)
+})
+
+// GRID MODEL
+var grid;
+
+var loaderGrid = new GLTFLoader;
+loaderGrid.crossOrigin = true;
+
+loaderGrid.load(gridModel, function(addGrid) {
+    grid = addGrid.scene;
+    scene.add(grid);
+    grid.position.set(-7.5, -3.8, -7.5)
+    grid.rotation.y = -.5 * Math.PI
+    grid.scale.set(0.0001, 110, 0.0001)
+})
+
+// GRID2 MODEL
+var grid2;
+
+var loaderGrid2 = new GLTFLoader;
+loaderGrid2.crossOrigin = true;
+
+loaderGrid2.load(grid2Model, function(addGrid2) {
+    grid2 = addGrid2.scene;
+    scene.add(grid2);
+    grid2.position.set(-7.5, -3.2, -7.5)
+    grid2.rotation.y = -.5 * Math.PI
+    grid2.scale.set(0.0001, 110, 0.0001)
+})
+
+// GRID3 MODEL
+var grid3;
+
+var loaderGrid3 = new GLTFLoader;
+loaderGrid3.crossOrigin = true;
+
+loaderGrid3.load(grid3Model, function(addGrid3) {
+    grid3 = addGrid3.scene;
+    scene.add(grid3);
+    grid3.position.set(-7.5, -2.6, -7.5)
+    grid3.rotation.y = -.5 * Math.PI
+    grid3.scale.set(0.0001, 110, 0.0001)
+})
+
+// GRID4 MODEL
+var grid4;
+
+var loaderGrid4 = new GLTFLoader;
+loaderGrid4.crossOrigin = true;
+
+loaderGrid4.load(grid4Model, function(addGrid4) {
+    grid4 = addGrid4.scene;
+    scene.add(grid4);
+    grid4.position.set(-7.5, -2, -7.5)
+    grid4.rotation.y = -.5 * Math.PI
+    grid4.scale.set(0.0001, 110, 0.0001)
+})
+
+// GRID5 MODEL
+var grid5;
+
+var loaderGrid5 = new GLTFLoader;
+loaderGrid5.crossOrigin = true;
+
+loaderGrid5.load(grid5Model, function(addGrid5) {
+    grid5 = addGrid5.scene;
+    scene.add(grid5);
+    grid5.position.set(-7.5, -1.4, -7.5)
+    grid5.rotation.y = -.5 * Math.PI
+    grid5.scale.set(0.0001, 110, 0.0001)
+})
+
+// POUTRE MODEL
+var poutre;
+
+var loaderPoutre = new GLTFLoader;
+loaderPoutre.crossOrigin = true;
+
+loaderPoutre.load(poutreModel, function(addPoutre) {
+    poutre = addPoutre.scene;
+    scene.add(poutre);
+    poutre.position.set(-9, 4, -9)
+    poutre.rotation.y = -.5 * Math.PI
+    poutre.scale.set(0.0001, 100, 0.0001)
+})
+
+// SIGN MODEL
+var sign;
+
+var loaderSign = new GLTFLoader;
+loaderSign.crossOrigin = true;
+
+loaderSign.load(signModel, function(addSign) {
+    sign = addSign.scene;
+    scene.add(sign);
+    sign.position.set(7.8, -3.05, -4)
+    sign.rotation.y = -.5 * Math.PI
+    sign.scale.set(0.0001, 0.0001, 0.0001)
+});
 
 // RIGHT DOOR MODEL
 var rightDoor;
@@ -268,9 +472,9 @@ loaderRightDoor.crossOrigin = true;
 loaderRightDoor.load(rightDoorModel, function(addRightDoor) {
     rightDoor = addRightDoor.scene;
     scene.add(rightDoor);
-    rightDoor.position.set(.3, -5.8, -48)
+    rightDoor.position.set(.35, -55.8, -48)
     rightDoor.rotation.y = -.5 * Math.PI
-    rightDoor.scale.set(110, 110, 110)
+    rightDoor.scale.set(0.0001, 0.0001, 0.0001)
 });
 
 // LEFT DOOR MODEL
@@ -282,9 +486,9 @@ loaderLeftDoor.crossOrigin = true;
 loaderLeftDoor.load(leftDoorModel, function(addLeftDoor) {
     leftDoor = addLeftDoor.scene;
     scene.add(leftDoor);
-    leftDoor.position.set(.3, -5.8, -48)
+    leftDoor.position.set(.35, -55.8, -48)
     leftDoor.rotation.y = -.5 * Math.PI
-    leftDoor.scale.set(110, 110, 110)
+    leftDoor.scale.set(0.0001, 0.0001, 0.0001)
 });
 
 // STREET MODEL
@@ -296,9 +500,9 @@ loaderStreet.crossOrigin = true;
 loaderStreet.load(streetModel, function(addStreet) {
     street = addStreet.scene;
     scene.add(street);
-    street.position.set(.7, -5.8, -48)
+    street.position.set(.5, -5.83, -48.75)
     street.rotation.y = -.5 * Math.PI
-    street.scale.set(110, 110, 110)
+    street.scale.set(0.0001, 0.0001, 0.0001)
 });
 
 /////// PLANES ///////
@@ -352,8 +556,7 @@ let texture14Hover = new THREE.TextureLoader().load(atelier14Hover)
 
 
 /////// PLANES MATERIALS ///////
-
-let planeOpacityDefault = 0.95;
+let planeOpacityDefault = 0.925;
 
 var materialPlane1 = new THREE.ShaderMaterial({
     vertexShader,
@@ -714,114 +917,6 @@ planeMesh10.rotation.y = -Math.PI / 2;
 planeMesh11.rotation.y = -Math.PI;
 planeMesh12.rotation.y = Math.PI / 2;
 planeMesh14.rotation.y = -Math.PI / 2;
-
-/////// 3D TEXTS ///////
-// var textMesh1, textMesh2, textMesh3, textMesh4, textMesh5, textMesh6, textMesh7, textMesh8;
-
-// var loader = new THREE.FontLoader();
-
-// loader.load('../assets/font/font.json', function(font) {
-
-//     var textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-
-//     var textGeo1 = new THREE.TextGeometry('INSIDE THE TEUCH', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     var textGeo2 = new THREE.TextGeometry('ESCAPE GAME', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     var textGeo3 = new THREE.TextGeometry('BIG BROTHER', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     var textGeo4 = new THREE.TextGeometry('FOND VERT', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     var textGeo5 = new THREE.TextGeometry('MAPPING', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     var textGeo6 = new THREE.TextGeometry('MUSÉE MMI', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     var textGeo7 = new THREE.TextGeometry('RÉALITÉ VIRTUELLE', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     var textGeo8 = new THREE.TextGeometry('MUR INTERACTIF', {
-//         font: font,
-//         size: 0.05,
-//         height: 0.001
-//     });
-
-//     /////// 3D TEXTS MESHS ///////
-//     textMesh1 = new THREE.Mesh(textGeo1, textMaterial);
-//     textMesh2 = new THREE.Mesh(textGeo2, textMaterial);
-//     textMesh3 = new THREE.Mesh(textGeo3, textMaterial);
-//     textMesh4 = new THREE.Mesh(textGeo4, textMaterial);
-//     textMesh5 = new THREE.Mesh(textGeo5, textMaterial);
-//     textMesh6 = new THREE.Mesh(textGeo6, textMaterial);
-//     textMesh7 = new THREE.Mesh(textGeo7, textMaterial);
-//     textMesh8 = new THREE.Mesh(textGeo8, textMaterial);
-
-//     pivot1.add(textMesh1);
-//     textMesh1.position.set(-.8, 4, 0);
-//     textMesh1.scale.set(0, 0, 0);
-
-//     pivot2.add(textMesh2);
-//     textMesh2.position.set(0, 5, -.8);
-//     textMesh2.rotation.y = -Math.PI / 2;
-//     textMesh2.scale.set(0, 0, 0);
-
-//     pivot3.add(textMesh3);
-//     textMesh3.position.set(.8, 6, 0);
-//     textMesh3.rotation.y = -Math.PI;
-//     textMesh3.scale.set(0, 0, 0);
-
-//     pivot4.add(textMesh4);
-//     textMesh4.position.set(0, 7, .8);
-//     textMesh4.rotation.y = Math.PI / 2;
-//     textMesh4.scale.set(0, 0, 0);
-
-//     pivot5.add(textMesh5);
-//     textMesh5.position.set(-.8, 8, 0);
-//     textMesh5.scale.set(0, 0, 0);
-
-//     pivot6.add(textMesh6);
-//     textMesh6.position.set(0, 9, -.8);
-//     textMesh6.rotation.y = -Math.PI / 2;
-//     textMesh6.scale.set(0, 0, 0);
-
-//     pivot7.add(textMesh7);
-//     textMesh7.position.set(.8, 10, 0);
-//     textMesh7.rotation.y = -Math.PI;
-//     textMesh7.scale.set(0, 0, 0);
-
-//     pivot8.add(textMesh8);
-//     textMesh8.position.set(0, 11, .8);
-//     textMesh8.rotation.y = Math.PI / 2;
-//     textMesh8.rotation.z = rotateZ;
-//     textMesh8.scale.set(0, 0, 0);
-// });
-
 
 /////// ROTATION AROUND AXIS ///////
 pivot1.add(planeMesh1);
@@ -1248,6 +1343,7 @@ planeMesh14.on('mouseover', function(ev) {
         indicClickOnPlane.classList.add("planeHover")
     }
 });
+
 planeMesh14.on('mouseout', function(ev) {
     if (ev && workshopActive == false) {
         gsap.to(materialPlane14.uniforms.alpha, 1, { value: planeOpacityDefault, ease: Power2.easeOut })
@@ -1258,6 +1354,167 @@ planeMesh14.on('mouseout', function(ev) {
         indicClickOnPlane.classList.remove("planeHover")
     }
 });
+
+
+
+///// PLANES CLICK /////
+planeMesh14.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh14.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+    gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: Power3.easeOut})
+    gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: Power3.easeOut})
+    gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: Power2.easeOut})
+    indicClickOnPlane.classList.remove("planeHover")
+})
+
+planeMesh13.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh13.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh12.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh12.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh11.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh11.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh10.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh10.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh9.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh9.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh8.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh8.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh7.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh7.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh6.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh6.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh5.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh5.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh4.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh4.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh3.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh3.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh2.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh2.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
+
+planeMesh1.on('click', function() {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
+    gsap.to(planeMesh1.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
+})
 
 /////// BACKHOME BUTTON EVENTS ///////
 function functionBtnBackHome() {
@@ -1280,14 +1537,14 @@ function functionBtnBackHome() {
             //RESET AXES POSITION 
         gsap.to(planeAxe.position, 0, { y: -26.5, delay: 3 })
         gsap.to(planeAxe.rotation, 0, { y: 0, delay: 3 })
-        gsap.to(planeAxe.scale, 0, { y: 0.0001, x: 0.0001, z: 0.0001, delay: 3 })
+        gsap.to(planeAxe.scale, 0, { y: 0.0001, x: 0.0001, z: 0.0001, delay: 2 })
         gsap.to(planeAxe.scale, 0, { y: 1, x: 1, z: 1, delay: 3.1 })
     }
     //CAMERA ANIM
     if (window.matchMedia("(max-width: 600px)").matches) {
-        gsap.to(camera.position, 3, { z: 11.3, ease: "power3.inOut" })
+        gsap.to(camera.position, 2.95, { z: 11.3, ease: "power3.inOut" })
     } else {
-        gsap.to(camera.position, 3, { z: 10, ease: "power3.inOut" })
+        gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
     }
     //HTML ELEMENTS ANIM
     titleSvgPath.forEach(e => {
@@ -1320,32 +1577,37 @@ function functionBtnBackHome() {
     gsap.to(planeMesh12.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh14.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        //     //TEXT ROTATION Z ANIM
-        // gsap.to(textMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        // gsap.to(textMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        // gsap.to(textMesh3.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        // gsap.to(textMesh4.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        // gsap.to(textMesh5.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        // gsap.to(textMesh6.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        // gsap.to(textMesh7.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        // gsap.to(textMesh8.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-        //     //TEXT SCALE ANIM
-        // gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-        // gsap.to(textMesh2.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-        // gsap.to(textMesh3.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-        // gsap.to(textMesh4.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-        // gsap.to(textMesh5.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-        // gsap.to(textMesh6.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-        // gsap.to(textMesh7.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
-        // gsap.to(textMesh8.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
         //MODELS ANIM
     gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
-    gsap.to(logo.scale, 2.25, { z: 0.00001, x: 0.00001, y: 0.00001, ease: "power3.inOut", })
+    gsap.to(logo.scale, 2.25, { z: 0.0001, x: 0.0001, y: 0.0001, ease: "power3.inOut", })
     gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
-    gsap.to(home.position, 3, { z: 0, x: -1.45, ease: "power3.inOut" })
-    gsap.to(home.rotation, 3, { y: -.35, z: 0, ease: "power3.inOut" })
+    gsap.to(home.position, 2.95, { z: 0, x: -1.45, ease: "power3.inOut" })
+    gsap.to(home.rotation, 2.95, { y: -.35, z: 0, ease: "power3.inOut" })
     gsap.to(socle.position, 2.25, { y: -10.7, ease: "power3.inOut" })
     gsap.to(socle.rotation, 2.25, { y: 0, ease: "power3.inOut" })
+    gsap.to(field.scale, 2.25, { y: 0.0001, x: 0.0001, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(field.position, 2.25, { y: -53, ease: "power3.inOut" })
+    gsap.to(leftWall.position, 2.25, { x: -51.2, ease: "power3.inOut" })
+    gsap.to(leftWall.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(rightWall.position, 2.25, { x: 58.8, ease: "power3.inOut" })
+    gsap.to(rightWall.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(leftDoor.position, 2.25, { y: -55.8, ease: "power3.inOut" })
+    gsap.to(rightDoor.position, 2.25, { y: -55.8, ease: "power3.inOut" })
+    gsap.to(leftDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(rightDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(sign.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(table.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(pylone5.scale, 2.25, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(pylone4.scale, 2.1, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
+    gsap.to(pylone3.scale, 1.95, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
+    gsap.to(pylone2.scale, 1.8, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
+    gsap.to(pylone.scale, 1.65, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
+    gsap.to(grid.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+    gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .15 })
+    gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .3 })
+    gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .45 })
+    gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .6 })
+    gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 100, z: 0.0001, ease: "power3.inOut" })
         //LIGHTS ANIM
     TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
     TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
@@ -1408,10 +1670,6 @@ function functionBtnStart() {
         gsap.to(planeMesh12.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
         gsap.to(planeMesh13.rotation, 1.5, { z: rotateZ, ease: "power3.inOut", delay: 1.25 })
         gsap.to(planeMesh14.rotation, 1.5, { z: 0, ease: "power3.inOut" })
-            //     //TEXT ROTATION Z ANIM
-            // gsap.to(textMesh8.rotation, 1.5, { z: 0, ease: "power3.inOut", delay: 1.25 })
-            //     //TEXT SCALE ANIM    
-            // gsap.to(textMesh8.scale, .75, { z: 1, x: 1, y: 1, ease: "power3.inOut", delay: 2.35 })
             //MODELS ANIM
         gsap.to(logo.position, 3, { y: 0, ease: "power3.inOut" })
         gsap.to(logo.scale, 3, { z: .95, x: .95, y: .95, ease: "power3.inOut", delay: .25 })
@@ -1420,6 +1678,30 @@ function functionBtnStart() {
         gsap.to(home.rotation, 3, { y: -Math.PI, z: Math.PI, ease: "power3.inOut" })
         gsap.to(socle.position, 3, { y: -2.5, ease: "power3.inOut" })
         gsap.to(socle.rotation, 3, { y: -Math.PI, ease: "power3.inOut" })
+        gsap.to(field.scale, 3, { y: 110, x: 110, z: 110, ease: "power3.inOut" })
+        gsap.to(field.position, 3, { y: -5.1, ease: "power3.inOut" })
+        gsap.to(leftWall.position, 3, { x: -1.2, ease: "power3.inOut" })
+        gsap.to(leftWall.scale, 3, { y: 140, x: 110, z: 110, ease: "power3.inOut" })
+        gsap.to(rightWall.position, 3, { x: -1.2, ease: "power3.inOut" })
+        gsap.to(rightWall.scale, 3, { y: 140, x: 110, z: 110, ease: "power3.inOut" })
+        gsap.to(leftDoor.position, 3, { y: -5.8, ease: "power3.inOut" })
+        gsap.to(rightDoor.position, 3, { y: -5.8, ease: "power3.inOut" })
+        gsap.to(leftDoor.scale, 3, { x: 110, y: 110, z: 110, ease: "power3.inOut" })
+        gsap.to(rightDoor.scale, 3, { x: 110, y: 110, z: 110, ease: "power3.inOut" })
+        gsap.to(sign.scale, 3, { x: 100, y: 100, z: 100, ease: "power3.inOut" })
+        gsap.to(table.scale, 3, { x: 110, y: 110, z: 110, ease: "power3.inOut" })
+        gsap.to(pylone.scale, 3, { x: 110, y: 80, z: 110, ease: "power3.inOut" })
+        gsap.to(pylone2.scale, 2.85, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .15 })
+        gsap.to(pylone3.scale, 2.7, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .3 })
+        gsap.to(pylone4.scale, 2.55, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .45 })
+        gsap.to(pylone5.scale, 2.4, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .6 })
+        gsap.to(grid5.scale, 3, { x: 110, y: 80, z: 110, ease: "power3.inOut" })
+        gsap.to(grid4.scale, 2.85, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .15 })
+        gsap.to(grid3.scale, 2.7, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .3 })
+        gsap.to(grid2.scale, 2.55, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .45 })
+        gsap.to(grid.scale, 2.4, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .6 })
+        gsap.to(poutre.scale, 3, { x: 90, y: 100, z: 100, ease: "power3.inOut" })
+        gsap.to(street.scale, 0, { x: 110, y: 110, z: 110, delay: 3.1 })
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
@@ -1508,17 +1790,6 @@ charsTextBtnBack.forEach(letter => {
     spanContainerBackMouseOut.append(btnBackchar)
 });
 
-///// PLANES CLICK /////
-planeMesh14.on('click', function() {
-    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut" })
-    gsap.to(leftDoor.position, 1.5, { x: -13, ease: "power3.inOut", delay: .75 })
-    gsap.to(rightDoor.position, 1.5, { x: 13, ease: "power3.inOut", delay: .75 })
-    workshopActive = true;
-    gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: Power3.easeOut})
-    gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: Power3.easeOut})
-    gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: Power2.easeOut})
-    indicClickOnPlane.classList.remove("planeHover")
-})
 
 ///// WORKSHOP TIMELINE /////
 containerTimeline.addEventListener('mouseenter', function() {
@@ -2227,9 +2498,9 @@ function scrollUp() {
         gsap.to(planeAxe.rotation, 2.25, { y: 0, ease: "power3.inOut" })
             //CAMERA ANIM
         if (window.matchMedia("(max-width: 600px)").matches) {
-            gsap.to(camera.position, 3, { z: 11.3, ease: "power3.inOut" })
+            gsap.to(camera.position, 2.95, { z: 11.3, ease: "power3.inOut" })
         } else {
-            gsap.to(camera.position, 3, { z: 10, ease: "power3.inOut" })
+            gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
         }
         //HTML ELEMENTS ANIM
         canvas.classList.remove('hologramDefault')
@@ -2266,18 +2537,37 @@ function scrollUp() {
         gsap.to(planeMesh12.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh13.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh14.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-            //     //TEXT ROTATION Z ANIM
-            // gsap.to(textMesh8.rotation, 3, { z: rotateZ, ease: "power3.inOut" })
-            //     //TEXT SCALE ANIM
-            // gsap.to(textMesh8.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
             //MODELS ANIM
         gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
         gsap.to(logo.scale, 2.25, { z: 0, x: 0, y: 0, ease: "power3.inOut", })
         gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(home.position, 3, { z: 0, x: -1.45, ease: "power3.inOut" })
-        gsap.to(home.rotation, 3, { y: -.35, z: 0, ease: "power3.inOut" })
+        gsap.to(home.position, 2.95, { z: 0, x: -1.45, ease: "power3.inOut" })
+        gsap.to(home.rotation, 2.95, { y: -.35, z: 0, ease: "power3.inOut" })
         gsap.to(socle.position, 2.25, { y: -10.7, ease: "power3.inOut" })
         gsap.to(socle.rotation, 2.25, { y: 0, ease: "power3.inOut" })
+        gsap.to(field.scale, 2.25, { y: 0.0001, x: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(field.position, 2.25, { y: -53, ease: "power3.inOut" })
+        gsap.to(leftWall.position, 2.25, { x: -51.2, ease: "power3.inOut" })
+        gsap.to(leftWall.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(rightWall.position, 2.25, { x: 58.8, ease: "power3.inOut" })
+        gsap.to(rightWall.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(leftDoor.position, 2.25, { y: -55.8, ease: "power3.inOut" })
+        gsap.to(rightDoor.position, 2.25, { y: -55.8, ease: "power3.inOut" })
+        gsap.to(leftDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(rightDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(sign.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(table.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone5.scale, 2.25, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone4.scale, 2.1, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(pylone3.scale, 1.95, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(pylone2.scale, 1.8, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(pylone.scale, 1.65, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 100, z: 0.0001, ease: "power3.inOut" })
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
@@ -2534,9 +2824,9 @@ function scrollDown() {
         gsap.to(planeAxe.rotation, 2.25, { y: -13.5 * Math.PI, ease: "power3.inOut" })
             //CAMERA ANIM
         if (window.matchMedia("(max-width: 600px)").matches) {
-            gsap.to(camera.position, 3, { z: 11.3, ease: "power3.inOut" })
+            gsap.to(camera.position, 2.95, { z: 11.3, ease: "power3.inOut" })
         } else {
-            gsap.to(camera.position, 3, { z: 10, ease: "power3.inOut" })
+            gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
         }
         //HTML ELEMENTS ANIM
         canvas.classList.remove('hologramDefault')
@@ -2573,18 +2863,37 @@ function scrollDown() {
         gsap.to(planeMesh12.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh13.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh14.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
-            //     //TEXT ROTATION Z ANIM
-            // gsap.to(textMesh1.rotation, 3, { z: rotateZ, ease: "power3.inOut" })
-            //     //TEXT SCALE ANIM
-            // gsap.to(textMesh1.scale, .75, { z: 0, x: 0, y: 0, ease: "power3.inOut" })
             //MODELS ANIM
         gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
-        gsap.to(logo.scale, 2.25, { z: 0.00001, x: 0.00001, y: 0.00001, ease: "power3.inOut", })
+        gsap.to(logo.scale, 2.25, { z: 0.0001, x: 0.0001, y: 0.0001, ease: "power3.inOut", })
         gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(home.position, 3, { z: 0, x: -1.45, ease: "power3.inOut" })
-        gsap.to(home.rotation, 3, { y: -.35, z: 0, ease: "power3.inOut" })
+        gsap.to(home.position, 2.95, { z: 0, x: -1.45, ease: "power3.inOut" })
+        gsap.to(home.rotation, 2.95, { y: -.35, z: 0, ease: "power3.inOut" })
         gsap.to(socle.position, 2.25, { y: -10.7, ease: "power3.inOut" })
         gsap.to(socle.rotation, 2.25, { y: 0, ease: "power3.inOut" })
+        gsap.to(field.scale, 2.25, { y: 0.0001, x: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(field.position, 2.25, { y: -53, ease: "power3.inOut" })
+        gsap.to(leftWall.position, 2.25, { x: -51.2, ease: "power3.inOut" })
+        gsap.to(leftWall.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(rightWall.position, 2.25, { x: 58.8, ease: "power3.inOut" })
+        gsap.to(rightWall.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(leftDoor.position, 2.25, { y: -55.8, ease: "power3.inOut" })
+        gsap.to(rightDoor.position, 2.25, { y: -55.8, ease: "power3.inOut" })
+        gsap.to(leftDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(rightDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(sign.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(table.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone5.scale, 2.25, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone4.scale, 2.1, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(pylone3.scale, 1.95, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(pylone2.scale, 1.8, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(pylone.scale, 1.65, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 100, z: 0.0001, ease: "power3.inOut" })
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
@@ -2597,7 +2906,7 @@ function scrollDown() {
         //RESET AXES POSITION 
         gsap.to(planeAxe.position, 0, { y: -26.5, delay: 3 })
         gsap.to(planeAxe.rotation, 0, { y: 0, delay: 3 })
-        gsap.to(planeAxe.scale, 0, { y: 0.0001, x: 0.0001, z: 0.0001, delay: 3 })
+        gsap.to(planeAxe.scale, 0, { y: 0.0001, x: 0.0001, z: 0.0001, delay: 2 })
         gsap.to(planeAxe.scale, 0, { y: 1, x: 1, z: 1, delay: 3.1 })
     }
 }
@@ -2781,7 +3090,7 @@ var render = function() {
 
     requestAnimationFrame(render);
 
-    if (camera.position.z < 6) {
+    if (camera.position.z < 6 && materialPlane1.uniforms.alpha.value > 0.0) {
         logo.rotation.y += .01
         if (logo.rotation.y > Math.PI) {
             logo.rotation.y -= Math.PI * 2
@@ -2819,7 +3128,7 @@ var render = function() {
     // };
 
     renderer.render(scene, camera);
-    
+
     materialPlane1.uniforms.time.value = clock.getElapsedTime();
     materialPlane2.uniforms.time.value = clock.getElapsedTime();
     materialPlane3.uniforms.time.value = clock.getElapsedTime();
