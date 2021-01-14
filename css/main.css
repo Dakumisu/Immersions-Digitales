@@ -4,9 +4,9 @@
           box-sizing: border-box;
   cursor: none !important;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body {
@@ -132,6 +132,36 @@ canvas.hologramDefault {
   opacity: 0;
 }
 
+.indicClickOnPlane {
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-38%, 15%);
+          transform: translate(-38%, 15%);
+  color: #4cc9f0;
+  pointer-events: none;
+  font-family: littleTitle;
+  font-size: 11px;
+  font-weight: bold;
+  -webkit-transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1), -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+
+.indicClickOnPlane.planeHover {
+  letter-spacing: 1.5px;
+  -webkit-transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1), -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+}
+
 .cursor-shape_out {
   mix-blend-mode: difference;
   z-index: 99;
@@ -145,8 +175,6 @@ canvas.hologramDefault {
   border: #4cc9f0 solid 1px;
   -webkit-transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
   transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
-  -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
-          animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
 main {

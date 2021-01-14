@@ -1,12 +1,10 @@
 $bleu: #09021e;
 $cyan: #4cc9f0;
 $magenta: #f72585;
+
 * {
     box-sizing: border-box;
-    cursor: none!important;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    cursor: none !important;
     user-select: none;
 }
 
@@ -79,15 +77,9 @@ canvas {
 
 .cursor {
     position: fixed;
-    // top: 0;
-    // left: 0;
     pointer-events: none;
     z-index: 100;
     mix-blend-mode: difference;
-    // &.mouseover {
-    //     transition: mix-blend-mode .75s cubic-bezier(.25, 0, 0, 1);
-    //     mix-blend-mode: normal;
-    // }
 }
 
 .cursor-shape_in {
@@ -101,10 +93,35 @@ canvas {
     background: $cyan;
     transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
     &.mouseover {
-        // padding: 30px;
         transition: opacity .5s cubic-bezier(.25, 0, 0, 1);
         opacity: 0;
-        // filter: blur(20px);
+    }
+    // &:after {
+    //     content: "chips au falafel";
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    // }
+}
+
+.indicClickOnPlane {
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-38%, 15%);
+    color: $cyan;
+    pointer-events: none;
+    font-family: littleTitle;
+    font-size: 11px;
+    font-weight: bold;
+    transition: filter .5s cubic-bezier(.75, 0, 0, 1);
+    filter: blur(5px);
+    &.planeHover {
+        letter-spacing: 1.5px;
+        transition: filter .5s cubic-bezier(.75, 0, 0, 1);
+        filter: blur(0px);
     }
 }
 
@@ -120,7 +137,7 @@ canvas {
     height: 50px;
     border: $cyan solid 1px;
     transition: padding .75s cubic-bezier(.25, 0, 0, 1);
-    animation: blinkTitle 8s infinite ease-in-out alternate;
+    // animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
 ////MAIN///
