@@ -497,7 +497,7 @@ main .homeContainer .pathLineOut {
   outline: none;
   border: none;
   font-family: "littleTitle";
-  font-size: 17px;
+  font-size: 16px;
   letter-spacing: 1px;
   background: #09021e;
   color: #4cc9f0;
@@ -736,7 +736,7 @@ main .homeContainer .pathLineOut {
   z-index: 2;
   font-family: 'littleTitle';
   letter-spacing: 2px;
-  font-size: 15px;
+  font-size: 13.2px;
   overflow: hidden;
   font-weight: 600;
 }
@@ -1044,7 +1044,7 @@ main .homeContainer .pathLineOut {
           writing-mode: vertical-rl;
   text-orientation: mixed;
   letter-spacing: 8px;
-  font-size: 15px;
+  font-size: 13.2px;
   font-weight: 600;
   position: absolute;
   -webkit-transform: translate(-50%, -50%);
@@ -1074,7 +1074,7 @@ main .homeContainer .pathLineOut {
   font-family: "littleTitle";
   overflow: hidden;
   color: #4cc9f0;
-  font-size: 17px;
+  font-size: 14.5px;
   letter-spacing: .5px;
   position: relative;
   -webkit-transition: 0.5s cubic-bezier(0.75, 0, 0, 1);

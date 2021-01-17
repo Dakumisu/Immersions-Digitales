@@ -10,6 +10,7 @@ import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import fragmentShaderVertical from "./libs/glsl/fragmentVertical.glsl";
 
+
 import displacement from "../assets/img/displaces/displace.jpg";
 import displacement1 from "../assets/img/displaces/displace.png";
 import displacement2 from "../assets/img/displaces/displace2.png"; // Pour le panneau
@@ -56,7 +57,9 @@ import logoModel from "../assets/model/logo.glb";
 import homeModel from "../assets/model/home.gltf";
 import streetModel from "../assets/model/street.gltf";
 import rightDoorModel from "../assets/model/rightDoor.gltf";
+import rightDoor2Model from "../assets/model/rightDoor2.gltf";
 import leftDoorModel from "../assets/model/leftDoor.gltf";
+import leftDoor2Model from "../assets/model/leftDoor2.gltf";
 
 import pyloneModel from "../assets/model/navigation/pylone.gltf";
 import pylone2Model from "../assets/model/navigation/pylone2.gltf";
@@ -82,6 +85,8 @@ import signModel from "../assets/model/navigation/sign.gltf";
 
 
 import particle from "../assets/img/particle.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 ////////// SCENE //////////
 var scene = new THREE.Scene();
@@ -507,6 +512,34 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     });
 }
 
+// RIGHT DOOR 2 MODEL
+var rightDoor2;
+
+var loaderRight2Door = new GLTFLoader;
+loaderRight2Door.crossOrigin = true;
+
+loaderRight2Door.load(rightDoor2Model, function(addRightDoor2) {
+    rightDoor2 = addRightDoor2.scene;
+    scene.add(rightDoor2);
+    rightDoor2.position.set(.35, -5.8, -197)
+    rightDoor2.rotation.y = -.5 * Math.PI
+    rightDoor2.scale.set(0.0001, 0.0001, 0.0001)
+});
+
+// LEFT DOOR 2 MODEL
+var leftDoor2;
+
+var loaderLeftDoor2 = new GLTFLoader;
+loaderLeftDoor2.crossOrigin = true;
+
+loaderLeftDoor2.load(leftDoor2Model, function(addLeftDoor2) {
+    leftDoor2 = addLeftDoor2.scene;
+    scene.add(leftDoor2);
+    leftDoor2.position.set(.35, -5.8, -197)
+    leftDoor2.rotation.y = -.5 * Math.PI
+    leftDoor2.scale.set(0.0001, 0.0001, 0.0001)
+});
+
 // STREET MODEL
 var street;
 
@@ -524,7 +557,7 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 }
 
 /////// PLANES ///////
-var plane = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30); //WorkShops
+var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30); //WorkShops
 // var planeTrombi = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30); //Trombi ateliers
 
 var planePanneau = new THREE.PlaneGeometry(1.2, 1.2, 1, 1);
@@ -584,7 +617,7 @@ var materialPlane1 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture1Default },
         imagergb: { type: "t", value: texture1Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -602,7 +635,7 @@ var materialPlane2 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture2Default },
         imagergb: { type: "t", value: texture2Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -620,7 +653,7 @@ var materialPlane3 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture3Default },
         imagergb: { type: "t", value: texture3Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -638,7 +671,7 @@ var materialPlane4 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture4Default },
         imagergb: { type: "t", value: texture4Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -656,7 +689,7 @@ var materialPlane5 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture5Default },
         imagergb: { type: "t", value: texture5Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -674,7 +707,7 @@ var materialPlane6 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture6Default },
         imagergb: { type: "t", value: texture6Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -692,7 +725,7 @@ var materialPlane7 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture7Default },
         imagergb: { type: "t", value: texture7Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -710,7 +743,7 @@ var materialPlane8 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture8Default },
         imagergb: { type: "t", value: texture8Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -728,7 +761,7 @@ var materialPlane9 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture9Default },
         imagergb: { type: "t", value: texture9Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -746,7 +779,7 @@ var materialPlane10 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture10Default },
         imagergb: { type: "t", value: texture10Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -764,7 +797,7 @@ var materialPlane11 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture11Default },
         imagergb: { type: "t", value: texture11Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -782,7 +815,7 @@ var materialPlane12 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture12Default },
         imagergb: { type: "t", value: texture12Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -800,7 +833,7 @@ var materialPlane13 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture13Default },
         imagergb: { type: "t", value: texture13Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -818,7 +851,7 @@ var materialPlane14 = new THREE.ShaderMaterial({
         time: { type: "f", value: 0.0 },
         alpha: { value: planeOpacityDefault },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture14Default },
         imagergb: { type: "t", value: texture14Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement4) },
@@ -830,15 +863,15 @@ var materialPlane14 = new THREE.ShaderMaterial({
     opacity: 1.0
 });
 
-// Panneau
+/////// PLANE PANEL ///////
 var materialPlanePanneau = new THREE.ShaderMaterial({
     vertexShader,
-    fragmentShader : fragmentShaderVertical,
+    fragmentShader: fragmentShaderVertical,
     uniforms: {
         time: { type: "f", value: 0.0 },
         alpha: { value: 1.0 },
         displaceHover: { type: "f", value: 0.0 },
-        
+
         imagebw: { type: "t", value: texture1Hover },
         imagergb: { type: "t", value: texture2Hover },
         displacement: { type: "t", value: new THREE.TextureLoader().load(displacement2) },
@@ -924,7 +957,10 @@ planeMesh13.position.y = 16;
 planeMesh14.position.y = 17;
 
 // scene.add(planeMeshPanneau)
-planeMeshPanneau.position.set(0, 2, 0)
+planeMeshPanneau.position.set(7.2, -3.05, -3)
+planeMeshPanneau.rotation.y = -.9;
+
+// sign.position.set(7.8, -3.05, -4)
 
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
@@ -1043,6 +1079,161 @@ let workShopButton12 = document.querySelector('.workShopButton__12');
 let workShopButton13 = document.querySelector('.workShopButton__13');
 let workShopButton14 = document.querySelector('.workShopButton__14');
 let indicClickOnPlane = document.querySelector('.indicClickOnPlane');
+let contentContainer = document.querySelector('.contentContainer');
+
+let workShopContainer1 = document.querySelector('.workShopContainer__1');
+let creditContainer1 = document.querySelector('.creditContainer__1');
+let prenom__1 = document.querySelector('.prenom__1')
+let nom__1 = document.querySelector('.nom__1')
+let r1__1 = document.querySelector('.r1__1')
+let r2__1 = document.querySelector('.r2__1')
+let screenMask__1 = document.querySelector('.screenMask__1')
+let faceImgPath__1 = document.querySelector('.content__1')
+let faceImgZoom__1 = document.querySelector('.faceImg__1')
+let prenom__2 = document.querySelector('.prenom__2')
+let nom__2 = document.querySelector('.nom__2')
+let r1__2 = document.querySelector('.r1__2')
+let r2__2 = document.querySelector('.r2__2')
+let screenMask__2 = document.querySelector('.screenMask__2')
+let faceImgPath__2 = document.querySelector('.content__2')
+let faceImgZoom__2 = document.querySelector('.faceImg__2')
+let prenom__3 = document.querySelector('.prenom__3')
+let nom__3 = document.querySelector('.nom__3')
+let r1__3 = document.querySelector('.r1__3')
+let r2__3 = document.querySelector('.r2__3')
+let screenMask__3 = document.querySelector('.screenMask__3')
+let faceImgPath__3 = document.querySelector('.content__3')
+let faceImgZoom__3 = document.querySelector('.faceImg__3')
+let prenom__4 = document.querySelector('.prenom__4')
+let nom__4 = document.querySelector('.nom__4')
+let r1__4 = document.querySelector('.r1__4')
+let r2__4 = document.querySelector('.r2__4')
+let faceImgPath__4 = document.querySelector('.content__4')
+let faceImgZoom__4 = document.querySelector('.faceImg__4')
+let prenom__5 = document.querySelector('.prenom__5')
+let nom__5 = document.querySelector('.nom__5')
+let r1__5 = document.querySelector('.r1__5')
+let r2__5 = document.querySelector('.r2__5')
+let faceImgPath__5 = document.querySelector('.content__5')
+let faceImgZoom__5 = document.querySelector('.faceImg__5')
+let prenom__6 = document.querySelector('.prenom__6')
+let nom__6 = document.querySelector('.nom__6')
+let r1__6 = document.querySelector('.r1__6')
+let r2__6 = document.querySelector('.r2__6')
+let faceImgPath__6 = document.querySelector('.content__6')
+let faceImgZoom__6 = document.querySelector('.faceImg__6')
+
+gsap.to(screenMask__1, 5, { scrollTrigger: screenMask__1, clipPath: "inset(0% 0% 0% 0%)", ease: "Power3.easeOut"})
+
+/////// IMAGES HOVER ///////
+faceImgPath__1.addEventListener('mouseenter', function(){
+        faceImgPath__1.classList.add('switch');
+        faceImgZoom__1.classList.add('switch');
+        prenom__1.classList.add('switch')
+        nom__1.classList.add('switch')
+        r1__1.classList.add('switch')
+        r2__1.classList.add('switch')
+})
+
+faceImgPath__1.addEventListener('mouseleave', function(){
+    faceImgPath__1.classList.remove('switch');
+    faceImgZoom__1.classList.remove('switch');
+    prenom__1.classList.remove('switch')
+    nom__1.classList.remove('switch')
+    r1__1.classList.remove('switch')
+    r2__1.classList.remove('switch')
+})
+
+faceImgPath__2.addEventListener('mouseenter', function(){
+    faceImgPath__2.classList.add('switch');
+    faceImgZoom__2.classList.add('switch');
+    prenom__2.classList.add('switch')
+    nom__2.classList.add('switch')
+    r1__2.classList.add('switch')
+    r2__2.classList.add('switch')
+})
+
+faceImgPath__2.addEventListener('mouseleave', function(){
+faceImgPath__2.classList.remove('switch');
+faceImgZoom__2.classList.remove('switch');
+prenom__2.classList.remove('switch')
+nom__2.classList.remove('switch')
+r1__2.classList.remove('switch')
+r2__2.classList.remove('switch')
+})
+
+faceImgPath__3.addEventListener('mouseenter', function(){
+    faceImgPath__3.classList.add('switch');
+    faceImgZoom__3.classList.add('switch');
+    prenom__3.classList.add('switch')
+    nom__3.classList.add('switch')
+    r1__3.classList.add('switch')
+    r2__3.classList.add('switch')
+})
+
+faceImgPath__3.addEventListener('mouseleave', function(){
+faceImgPath__3.classList.remove('switch');
+faceImgZoom__3.classList.remove('switch');
+prenom__3.classList.remove('switch')
+nom__3.classList.remove('switch')
+r1__3.classList.remove('switch')
+r2__3.classList.remove('switch')
+})
+
+faceImgPath__4.addEventListener('mouseenter', function(){
+    faceImgPath__4.classList.add('switch');
+    faceImgZoom__4.classList.add('switch');
+    prenom__4.classList.add('switch')
+    nom__4.classList.add('switch')
+    r1__4.classList.add('switch')
+    r2__4.classList.add('switch')
+})
+
+faceImgPath__4.addEventListener('mouseleave', function(){
+faceImgPath__4.classList.remove('switch');
+faceImgZoom__4.classList.remove('switch');
+prenom__4.classList.remove('switch')
+nom__4.classList.remove('switch')
+r1__4.classList.remove('switch')
+r2__4.classList.remove('switch')
+})
+
+faceImgPath__5.addEventListener('mouseenter', function(){
+    faceImgPath__5.classList.add('switch');
+    faceImgZoom__5.classList.add('switch');
+    prenom__5.classList.add('switch')
+    nom__5.classList.add('switch')
+    r1__5.classList.add('switch')
+    r2__5.classList.add('switch')
+})
+
+faceImgPath__5.addEventListener('mouseleave', function(){
+faceImgPath__5.classList.remove('switch');
+faceImgZoom__5.classList.remove('switch');
+prenom__5.classList.remove('switch')
+nom__5.classList.remove('switch')
+r1__5.classList.remove('switch')
+r2__5.classList.remove('switch')
+})
+
+faceImgPath__6.addEventListener('mouseenter', function(){
+    faceImgPath__6.classList.add('switch');
+    faceImgZoom__6.classList.add('switch');
+    prenom__6.classList.add('switch')
+    nom__6.classList.add('switch')
+    r1__6.classList.add('switch')
+    r2__6.classList.add('switch')
+})
+
+faceImgPath__6.addEventListener('mouseleave', function(){
+faceImgPath__6.classList.remove('switch');
+faceImgZoom__6.classList.remove('switch');
+prenom__6.classList.remove('switch')
+nom__6.classList.remove('switch')
+r1__6.classList.remove('switch')
+r2__6.classList.remove('switch')
+})
+
 
 let workshopActive = false;
 let homeActive = true;
@@ -1068,6 +1259,7 @@ window.addEventListener('load', function() {
     }
 })
 
+let workshopActive = false;
 
 /////// PLANE HOVER SHADERS EFFECT ///////
 let colorCursorHover = "#f72585";
@@ -1492,6 +1684,12 @@ planeMesh14.on('click', function() {
             gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
+
+        gsap.to(workShopContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2.75 })
+        setTimeout(function() {
+            workShopContainer1.classList.add('switchPlane');
+        }, 3750)
+        
         workshopActive = true
     }
 })
@@ -1926,10 +2124,6 @@ function functionBtnBackHome() {
     TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
     TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
     //SWITCH ELEMENTS ON CLICK
-    homeContainer.classList.add('close');
-    homeContainer.classList.remove('open');
-    btnBackHome.classList.add('close');
-    btnBackHome.classList.remove('open');
     canvas.style.zIndex = -1;
 }
 
@@ -2029,10 +2223,6 @@ function functionBtnStart() {
         TweenMax.to(lightCenter.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
         //SWITCH ELEMENTS ON CLICK  
         setTimeout(function() {
-            btnBackHome.classList.add('open');
-            btnBackHome.classList.remove('close');
-            homeContainer.classList.add('open');
-            homeContainer.classList.remove('close');
             canvas.style.zIndex = 1;
         }, 1500)
     }, 1000)
@@ -2358,19 +2548,19 @@ class Cursor {
         this.animate();
         this.events();
     }
-    
+
     events() {
         document.addEventListener('mousemove', (e) => {
             this.mouse.x = e.clientX * pixelRatio;
             this.mouse.y = e.clientY * pixelRatio;
         }, false);
     }
-    
+
     animate() {
         requestAnimationFrame(this.animate.bind(this));
         this.render();
     }
-    
+
     speed_morph() {
         const dist = Math.dist(this.dx, this.dy);
         const min = 1;
@@ -2378,18 +2568,18 @@ class Cursor {
         const total = dist / max_distance;
         return Number(Math.min(total, min).toFixed(2));
     }
-    
+
     update() {
         const speed_morph = this.speed_morph(this.dx, this.dy);
         this.scale += (speed_morph - this.scale) * this.friction;
-        
+
         this.translation.x += this.dx * this.friction;
         this.translation.y += this.dy * this.friction;
-        
+
         this.rotation = Math.atan2(this.dy, this.dx) * 180 / Math.PI;
-        
+
     }
-    
+
     render() {
         this.update();
         // this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
@@ -2406,8 +2596,8 @@ class Cursor {
 }
 
 document.addEventListener('mousemove', e => {
-    indicClickOnPlane.style.top = e.pageY - 10 +"px"
-    indicClickOnPlane.style.left = e.pageX - 10 +"px"
+    indicClickOnPlane.style.top = e.pageY - 10 + "px"
+    indicClickOnPlane.style.left = e.pageX - 10 + "px"
 })
 
 let isStuck = false;
@@ -2712,25 +2902,25 @@ function scrollPlane14() {
 
 function scrollPlane13() {
     // if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
-        //AXES ANIM
-        gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
-        gsap.to(planeAxe.rotation, .75, { y: -4 * Math.PI, ease: "power3.inOut" })
-            //PLANE ROTATION Z ANIM
-        gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-        gsap.to(planeMesh13.rotation, .75, { z: 0, ease: "power3.inOut" })
-        gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    // }
+    //AXES ANIM
+    gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
+    gsap.to(planeAxe.rotation, .75, { y: -4 * Math.PI, ease: "power3.inOut" })
+        //PLANE ROTATION Z ANIM
+    gsap.to(planeMesh1.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh2.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh3.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh4.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh5.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh6.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh7.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh8.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh9.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh10.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+    gsap.to(planeMesh13.rotation, .75, { z: 0, ease: "power3.inOut" })
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        // }
 }
 
 function scrollPlane12() {
@@ -2772,7 +2962,7 @@ function scrollPlane11() {
     gsap.to(planeMesh11.rotation, .75, { z: 0, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })    
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane10() {
@@ -2987,7 +3177,6 @@ function scrollPlane1() {
 
 ///// SCROLL FUNCTIONS /////
 function scrollUp() {
-    // console.log(materialPlanePanneau.uniforms.dispFactor.value)
     // camera.position.z += 1;
     if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
         scene.add(particleMesh);
@@ -3070,10 +3259,6 @@ function scrollUp() {
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         //SWITCH ELEMENTS ON CLICK
-        homeContainer.classList.add('close');
-        homeContainer.classList.remove('open');
-        btnBackHome.classList.add('close');
-        btnBackHome.classList.remove('open');
         canvas.style.zIndex = -1;
     } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
         scrollPlane14();
@@ -3197,7 +3382,7 @@ function scrollUp() {
 
 function scrollDown() {
     // console.log(materialPlanePanneau.uniforms.dispFactor.value)
-    // camera.position.z -= 1;
+        // camera.position.z -= 1;
     if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
         scrollPlane13();
         if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
@@ -3396,10 +3581,6 @@ function scrollDown() {
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         //SWITCH ELEMENTS ON CLICK
-        homeContainer.classList.add('close');
-        homeContainer.classList.remove('open');
-        btnBackHome.classList.add('close');
-        btnBackHome.classList.remove('open');
         canvas.style.zIndex = -1;
         //RESET AXES POSITION 
         gsap.to(planeAxe.position, 0, { y: -26.5, delay: 3 })
@@ -3429,6 +3610,29 @@ function checkScrollDirectionIsUp(event) { //REVERSE SCROLL
     }
     return event.deltaY < 0;
 }
+
+///// WORKSHOP SCROLL /////
+contentContainer.addEventListener('scroll', function() {
+    scrollWorkshop(contentContainer)
+    if (camera.position.z <= -106) {
+            creditContainer1.classList.add('switchStreet')
+            gsap.to(creditContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut" })
+        workShopContainer1.classList.remove('switchPlane');
+        gsap.to(workShopContainer1, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+        gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+        gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
+        gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
+    } else {
+        gsap.to(workShopContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut" })
+    }
+})
+
+function scrollWorkshop(el) {
+    camera.position.z = -20 + (el.scrollTop / el.scrollHeight) * -120
+    console.log(camera.position.z)
+}
+
+
 
 ///// ARROWS SCROLL + KEY ECHAP ///////
 document.onkeydown = function(e) {
