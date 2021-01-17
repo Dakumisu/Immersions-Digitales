@@ -2,7 +2,7 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  cursor: none !important;
+  cursor: auto;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -20,8 +20,12 @@ body {
 canvas {
   display: block;
   position: absolute;
+  height: 100vh;
+  width: 100vw;
   z-index: -1;
   opacity: 1;
+  top: 0;
+  left: 0;
 }
 
 canvas.hologramActive {
@@ -133,6 +137,7 @@ canvas.hologramDefault {
 }
 
 .indicClickOnPlane {
+  opacity: 0;
   z-index: 100;
   position: absolute;
   top: 50%;
@@ -212,21 +217,22 @@ main .homeContainer .close {
   display: flex;
 }
 
-main .homeContainer .title {
+.title {
   width: 50vw;
   -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
           animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
-main .homeContainer .littleTitle {
+.littleTitle {
+  z-index: 3;
   width: 7vw;
   position: absolute;
   right: 2vw;
   top: 2.2vh;
 }
 
-main .homeContainer .title path,
-main .homeContainer .title line {
+.title path,
+.title line {
   fill: none;
   stroke: #4CC9F0;
   stroke-width: 0.5;
@@ -235,22 +241,22 @@ main .homeContainer .title line {
   stroke-dasharray: 1000;
 }
 
-main .homeContainer .pathTitleIn {
+.pathTitleIn {
   -webkit-animation: titleIn 8s forwards ease-in-out;
           animation: titleIn 8s forwards ease-in-out;
 }
 
-main .homeContainer .pathLineIn {
+.pathLineIn {
   -webkit-animation: lineIn 6.5s forwards ease-in-out;
           animation: lineIn 6.5s forwards ease-in-out;
 }
 
-main .homeContainer .pathTitleOut {
+.pathTitleOut {
   -webkit-animation: titleOut 8s forwards ease-in-out;
           animation: titleOut 8s forwards ease-in-out;
 }
 
-main .homeContainer .pathLineOut {
+.pathLineOut {
   -webkit-animation: lineOut 6.5s forwards ease-in-out;
           animation: lineOut 6.5s forwards ease-in-out;
 }
@@ -506,8 +512,10 @@ main .homeContainer .pathLineOut {
   height: 57px;
   overflow: hidden;
   position: relative;
-  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-clip-path: inset(0% 0% 0% 0%);
+          clip-path: inset(0% 0% 0% 0%);
+  -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {
@@ -519,8 +527,6 @@ main .homeContainer .pathLineOut {
 }
 
 .btn__start:hover {
-  background: #4cc9f0;
-  color: #09021e;
   border: 1px solid #09021e;
 }
 
@@ -570,8 +576,6 @@ main .homeContainer .pathLineOut {
   background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
-  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {
@@ -592,8 +596,6 @@ main .homeContainer .pathLineOut {
 }
 
 .btn__backHome:hover {
-  background: #4cc9f0;
-  color: #09021e;
   border: 1px solid #09021e;
 }
 
@@ -635,6 +637,84 @@ main .homeContainer .pathLineOut {
 
 @media screen and (max-width: 600px) {
   .btn__backHome {
+    width: 22.5vw;
+    height: 6.5vh;
+    left: 2%;
+    top: 1.2%;
+  }
+}
+
+.btn__backWorkshop {
+  width: 107px;
+  height: 57px;
+  top: 2.5%;
+  left: 24px;
+  position: absolute;
+  z-index: 2;
+  background: none;
+  -webkit-clip-path: inset(0% 100% 0% 0%);
+          clip-path: inset(0% 100% 0% 0%);
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backWorkshop {
+    width: 22.5vw;
+    height: 6.5vh;
+    left: 2%;
+    top: 1.2%;
+  }
+}
+
+.btn__backWorkshop.open {
+  pointer-events: all;
+}
+
+.btn__backWorkshop.close {
+  pointer-events: none;
+}
+
+.btn__backWorkshop:hover {
+  border: 1px solid #09021e;
+}
+
+.btn__backWorkshop .spanContainerBackWorkshopMouseout.neonText {
+  -webkit-animation: blinkBtn 4s infinite alternate;
+          animation: blinkBtn 4s infinite alternate;
+}
+
+.btn__backWorkshop .spanContainerBackWorkshopMouseover,
+.btn__backWorkshop .spanContainerBackWorkshopMouseout {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-clip-path: inset(35% 0 35% 0);
+          clip-path: inset(35% 0 35% 0);
+}
+
+.btn__backWorkshop .spanContainerBackWorkshopMouseover span,
+.btn__backWorkshop .spanContainerBackWorkshopMouseout span {
+  display: inline-block;
+  line-height: 55px;
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backWorkshop .spanContainerBackWorkshopMouseover span,
+  .btn__backWorkshop .spanContainerBackWorkshopMouseout span {
+    line-height: 6.3vh;
+  }
+}
+
+.btn__backWorkshop .spanContainerBackWorkshopMouseout span {
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+}
+
+@media screen and (max-width: 600px) {
+  .btn__backWorkshop {
     width: 22.5vw;
     height: 6.5vh;
     left: 2%;
@@ -695,9 +775,12 @@ main .homeContainer .pathLineOut {
   width: 2px;
   height: 100vh;
   background: #0d0437;
-  margin-right: 10px;
-  margin-left: 10px;
-  display: inline-block;
+  margin-left: 20px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   opacity: .65;
 }
 
@@ -797,38 +880,40 @@ main .homeContainer .pathLineOut {
 @-webkit-keyframes blinkBtn {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #09021e, 0 0 2px #09021e, 0 0 1px #09021e;
+    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
   }
   32% {
-    opacity: .25;
+    opacity: .65;
   }
   33% {
     opacity: 1;
   }
   35% {
-    opacity: .25;
+    opacity: .65;
   }
   40% {
     opacity: 1;
+    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
   }
 }
 
 @keyframes blinkBtn {
   30% {
     opacity: 1;
-    text-shadow: 0 0 0 #09021e, 0 0 2px #09021e, 0 0 1px #09021e;
+    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
   }
   32% {
-    opacity: .25;
+    opacity: .65;
   }
   33% {
     opacity: 1;
   }
   35% {
-    opacity: .25;
+    opacity: .65;
   }
   40% {
     opacity: 1;
+    text-shadow: 0 0 0 #09021e, 0 0 1px #09021e, 0 0 1px #09021e;
   }
 }
 

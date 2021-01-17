@@ -4,7 +4,8 @@ $magenta: #f72585;
 
 * {
     box-sizing: border-box;
-    cursor: none !important;
+    // cursor: none !important;
+    cursor: auto;
     user-select: none;
 }
 
@@ -19,8 +20,12 @@ body {
 canvas {
     display: block;
     position: absolute;
+    height: 100vh;
+    width: 100vw;
     z-index: -1;
     opacity: 1;
+    top: 0;
+    left: 0;
     &.hologramActive {
         transition: mix-blend-mode 2s cubic-bezier(.25, 0, 0, 1);
         //animation: blinkCanvas 6s infinite;
@@ -96,16 +101,10 @@ canvas {
         transition: opacity .5s cubic-bezier(.25, 0, 0, 1);
         opacity: 0;
     }
-    // &:after {
-    //     content: "chips au falafel";
-    //     position: absolute;
-    //     top: 50%;
-    //     left: 50%;
-    //     transform: translate(-50%, -50%);
-    // }
 }
 
 .indicClickOnPlane {
+    opacity: 0;
     z-index: 100;
     position: absolute;
     top: 50%;
@@ -140,7 +139,7 @@ canvas {
     // animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
-////MAIN///
+//// MAIN ///
 main {
     position: fixed;
     width: 100%;
@@ -159,147 +158,150 @@ main {
         .close {
             display: flex;
         }
-        .title {
-            width: 50vw;
-            animation: blinkTitle 8s infinite ease-in-out alternate;
-        }
-        .littleTitle {
-            width: 7vw;
-            position: absolute;
-            right: 2vw;
-            top: 2.2vh;
-        }
-        .title {
-            path,
-            line {
-                fill: none;
-                stroke: #4CC9F0;
-                stroke-width: 0.5;
-                stroke-miterlimit: 10;
-                stroke-dashoffset: -1000;
-                stroke-dasharray: 1000;
-            }
-        }
-        .pathTitleIn {
-            animation: titleIn 8s forwards ease-in-out;
-        }
-        .pathLineIn {
-            animation: lineIn 6.5s forwards ease-in-out;
-        }
-        .pathTitleOut {
-            animation: titleOut 8s forwards ease-in-out;
-        }
-        .pathLineOut {
-            animation: lineOut 6.5s forwards ease-in-out;
-        }
-        @keyframes titleIn {
-            0% {
-                stroke-dashoffset: -1000;
-            }
-            40% {
-                stroke-dashoffset: 0;
-                fill: transparent;
-            }
-            45% {
-                fill: $cyan;
-            }
-            70% {
-                fill: $cyan;
-            }
-            100% {
-                fill: $cyan;
-                stroke-dashoffset: 0;
-            }
-        }
-        @keyframes titleOut {
-            0% {
-                stroke-dashoffset: 0;
-                fill: $cyan;
-            }
-            10% {
-                fill: transparent;
-            }
-            80% {
-                stroke-dashoffset: -1000;
-                fill: transparent;
-            }
-            85% {
-                fill: transparent;
-            }
-            100% {
-                fill: transparent;
-                stroke-dashoffset: -1000;
-            }
-        }
-        @keyframes lineIn {
-            0% {
-                stroke-dashoffset: -1000;
-                stroke-width: 0.5px;
-            }
-            40% {
-                stroke-dashoffset: 0;
-                fill: transparent;
-                stroke-width: 0.5px;
-            }
-            45% {
-                fill: transparent;
-                stroke-width: 0.5px;
-            }
-            70% {
-                stroke-width: 4px;
-                stroke-dashoffset: 0;
-            }
-            100% {
-                stroke-width: 4px;
-                stroke-dashoffset: 0;
-            }
-        }
-        @keyframes lineOut {
-            0% {
-                stroke-dashoffset: 0;
-                stroke-width: 4px;
-            }
-            10% {
-                stroke-width: 0.5px;
-            }
-            80% {
-                stroke-dashoffset: -1000;
-                stroke-width: 0.5px;
-            }
-            85% {
-                stroke-width: 0.5px;
-            }
-            100% {
-                stroke-width: 0.5px;
-                stroke-dashoffset: -1000;
-            }
-        }
-        @keyframes blinkTitle {
-            0% {
-                opacity: 1;
-                filter: drop-shadow(0 0 1.5px $cyan);
-            }
-            20% {
-                opacity: 1;
-                filter: drop-shadow(0 0 3px $cyan);
-            }
-            40% {
-                opacity: 1;
-                filter: drop-shadow(0 0 1.5px $cyan);
-            }
-            60% {
-                opacity: 1;
-                filter: drop-shadow(0 0 3px $cyan);
-            }
-            80% {
-                opacity: 1;
-                filter: drop-shadow(0 0 1.5px $cyan);
-            }
-            100% {
-                opacity: 1;
-                filter: drop-shadow(0 0 3px $cyan);
-            }
-        }
+    }
+}
+
+//// TITRE ////
+.title {
+    width: 50vw;
+    animation: blinkTitle 8s infinite ease-in-out alternate;
+}
+.littleTitle {
+    z-index: 3;
+    width: 7vw;
+    position: absolute;
+    right: 2vw;
+    top: 2.2vh;
+}
+.title {
+    path,
+    line {
+        fill: none;
+        stroke: #4CC9F0;
+        stroke-width: 0.5;
+        stroke-miterlimit: 10;
+        stroke-dashoffset: -1000;
+        stroke-dasharray: 1000;
+    }
+}
+.pathTitleIn {
+    animation: titleIn 8s forwards ease-in-out;
+}
+.pathLineIn {
+    animation: lineIn 6.5s forwards ease-in-out;
+}
+.pathTitleOut {
+    animation: titleOut 8s forwards ease-in-out;
+}
+.pathLineOut {
+    animation: lineOut 6.5s forwards ease-in-out;
+}
+@keyframes titleIn {
+    0% {
+        stroke-dashoffset: -1000;
+    }
+    40% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+    45% {
+        fill: $cyan;
+    }
+    70% {
+        fill: $cyan;
+    }
+    100% {
+        fill: $cyan;
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes titleOut {
+    0% {
+        stroke-dashoffset: 0;
+        fill: $cyan;
+    }
+    10% {
+        fill: transparent;
+    }
+    80% {
+        stroke-dashoffset: -1000;
+        fill: transparent;
+    }
+    85% {
+        fill: transparent;
+    }
+    100% {
+        fill: transparent;
+        stroke-dashoffset: -1000;
+    }
+}
+@keyframes lineIn {
+    0% {
+        stroke-dashoffset: -1000;
+        stroke-width: 0.5px;
+    }
+    40% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+        stroke-width: 0.5px;
+    }
+    45% {
+        fill: transparent;
+        stroke-width: 0.5px;
+    }
+    70% {
+        stroke-width: 4px;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-width: 4px;
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes lineOut {
+    0% {
+        stroke-dashoffset: 0;
+        stroke-width: 4px;
+    }
+    10% {
+        stroke-width: 0.5px;
+    }
+    80% {
+        stroke-dashoffset: -1000;
+        stroke-width: 0.5px;
+    }
+    85% {
+        stroke-width: 0.5px;
+    }
+    100% {
+        stroke-width: 0.5px;
+        stroke-dashoffset: -1000;
+    }
+}
+@keyframes blinkTitle {
+    0% {
+        opacity: 1;
+        filter: drop-shadow(0 0 1.5px $cyan);
+    }
+    20% {
+        opacity: 1;
+        filter: drop-shadow(0 0 3px $cyan);
+    }
+    40% {
+        opacity: 1;
+        filter: drop-shadow(0 0 1.5px $cyan);
+    }
+    60% {
+        opacity: 1;
+        filter: drop-shadow(0 0 3px $cyan);
+    }
+    80% {
+        opacity: 1;
+        filter: drop-shadow(0 0 1.5px $cyan);
+    }
+    100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 3px $cyan);
     }
 }
 
@@ -317,7 +319,8 @@ main {
     height: 57px;
     overflow: hidden;
     position: relative;
-    transition: .75s cubic-bezier(.25, 0, 0, 1);
+    clip-path: inset(0% 0% 0% 0%);
+    transition: border .75s cubic-bezier(.25, 0, 0, 1);
     @media screen and (max-width: 600px) {
         width: 54vw;
         font-size: 4.1vw;
@@ -325,8 +328,8 @@ main {
     }
     &__start {
         &:hover {
-            background: $cyan;
-            color: $bleu;
+            // background: $cyan;
+            // color: $bleu;
             border: 1px solid $bleu;
         }
         .spanContainerStartMouseout.neonText {
@@ -363,7 +366,7 @@ main {
         z-index: 2;
         background: none;
         clip-path: inset(0% 100% 0% 0%);
-        transition: .75s cubic-bezier(.25, 0, 0, 1);
+        // transition: .75s cubic-bezier(.25, 0, 0, 1);
         @media screen and (max-width: 600px) {
             width: 22.5vw;
             height: 6.5vh;
@@ -377,8 +380,8 @@ main {
             pointer-events: none;
         }
         &:hover {
-            background: $cyan;
-            color: $bleu;
+            // background: $cyan;
+            // color: $bleu;
             border: 1px solid $bleu;
         }
         .spanContainerBackMouseout.neonText {
@@ -403,6 +406,64 @@ main {
             }
         }
         .spanContainerBackMouseout span {
+            transform: translateY(40px);
+        }
+        @media screen and (max-width: 600px) {
+            width: 22.5vw;
+            height: 6.5vh;
+            left: 2%;
+            top: 1.2%;
+        }
+    }
+    &__backWorkshop {
+        width: 107px;
+        height: 57px;
+        top: 2.5%;
+        left: 24px;
+        position: absolute;
+        z-index: 2;
+        background: none;
+        clip-path: inset(0% 100% 0% 0%);
+        // transition: .75s cubic-bezier(.25, 0, 0, 1);
+        @media screen and (max-width: 600px) {
+            width: 22.5vw;
+            height: 6.5vh;
+            left: 2%;
+            top: 1.2%;
+        }
+        &.open {
+            pointer-events: all;
+        }
+        &.close {
+            pointer-events: none;
+        }
+        &:hover {
+            // background: $cyan;
+            // color: $bleu;
+            border: 1px solid $bleu;
+        }
+        .spanContainerBackWorkshopMouseout.neonText {
+            animation: blinkBtn 4s infinite alternate;
+        }
+        .spanContainerBackWorkshopMouseover,
+        .spanContainerBackWorkshopMouseout {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            clip-path: inset(35% 0 35% 0);
+        }
+        .spanContainerBackWorkshopMouseover span,
+        .spanContainerBackWorkshopMouseout span {
+            display: inline-block;
+            line-height: 55px;
+            @media screen and (max-width: 600px) {
+                line-height: 6.3vh;
+            }
+        }
+        .spanContainerBackWorkshopMouseout span {
             transform: translateY(40px);
         }
         @media screen and (max-width: 600px) {
@@ -461,9 +522,10 @@ main {
     width: 2px;
     height: 100vh;
     background: #0d0437;
-    margin-right: 10px;
-    margin-left: 10px;
-    display: inline-block;
+    // margin-right: 10px;
+    margin-left: 20px;
+    display: inline-flex;
+    flex-wrap: nowrap;
     opacity: .65;
     &.line {
         width: 2px;
@@ -528,19 +590,20 @@ main {
     @keyframes blinkBtn {
         30% {
             opacity: 1;
-            text-shadow: 0 0 0 $bleu, 0 0 2px $bleu, 0 0 1px $bleu;
+            text-shadow: 0 0 0 $bleu, 0 0 1px $bleu, 0 0 1px $bleu;
         }
         32% {
-            opacity: .25;
+            opacity: .65;
         }
         33% {
             opacity: 1;
         }
         35% {
-            opacity: .25;
+            opacity: .65;
         }
         40% {
             opacity: 1;
+            text-shadow: 0 0 0 $bleu, 0 0 1px $bleu, 0 0 1px $bleu;
         }
     }
     @keyframes inSM {
