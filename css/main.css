@@ -224,7 +224,7 @@ canvas.hologramDefault {
   text-align: center;
   font-family: "main";
   font-size: 6vw;
-  margin: 43vh 0 25vh 0;
+  margin: 43vh auto 25vh auto;
   color: #4cc9f0;
 }
 
@@ -630,41 +630,23 @@ canvas.hologramDefault {
   opacity: 0.5;
 }
 
-.homeContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  position: fixed;
-  display: flex;
-}
-
-.homeContainer .title {
+.title, .littleTitle {
   width: 50vw;
   -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
           animation: blinkTitle 8s infinite ease-in-out alternate;
 }
 
-.homeContainer .littleTitle {
+.littleTitle {
+  z-index: 3;
   width: 7vw;
   position: absolute;
   right: 2vw;
   top: 2.2vh;
 }
 
-.homeContainer .title path,
-.homeContainer .title line {
+.title path,
+.title line, .littleTitle path,
+.littleTitle line {
   fill: none;
   stroke: #4CC9F0;
   stroke-width: 0.5;
@@ -673,22 +655,22 @@ canvas.hologramDefault {
   stroke-dasharray: 1000;
 }
 
-.homeContainer .pathTitleIn {
+.pathTitleIn {
   -webkit-animation: titleIn 8s forwards ease-in-out;
           animation: titleIn 8s forwards ease-in-out;
 }
 
-.homeContainer .pathLineIn {
+.pathLineIn {
   -webkit-animation: lineIn 6.5s forwards ease-in-out;
           animation: lineIn 6.5s forwards ease-in-out;
 }
 
-.homeContainer .pathTitleOut {
+.pathTitleOut {
   -webkit-animation: titleOut 8s forwards ease-in-out;
           animation: titleOut 8s forwards ease-in-out;
 }
 
-.homeContainer .pathLineOut {
+.pathLineOut {
   -webkit-animation: lineOut 6.5s forwards ease-in-out;
           animation: lineOut 6.5s forwards ease-in-out;
 }
@@ -931,6 +913,26 @@ canvas.hologramDefault {
   }
 }
 
+.homeContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  display: flex;
+}
+
 .btn {
   outline: none;
   border: none;
@@ -944,8 +946,11 @@ canvas.hologramDefault {
   height: 57px;
   overflow: hidden;
   position: relative;
-  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-clip-path: inset(0% 0% 0% 0%);
+          clip-path: inset(0% 0% 0% 0%);
+  -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  z-index: 10;
 }
 
 @media screen and (max-width: 600px) {
@@ -957,8 +962,6 @@ canvas.hologramDefault {
 }
 
 .btn__start:hover {
-  background: #4cc9f0;
-  color: #09021e;
   border: 1px solid #09021e;
 }
 
@@ -1004,12 +1007,9 @@ canvas.hologramDefault {
   top: 2.5%;
   left: 24px;
   position: absolute;
-  z-index: 10;
   background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
-  -webkit-transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {
@@ -1030,8 +1030,6 @@ canvas.hologramDefault {
 }
 
 .btn__backHome:hover {
-  background: #4cc9f0;
-  color: #09021e;
   border: 1px solid #09021e;
 }
 
@@ -1080,27 +1078,12 @@ canvas.hologramDefault {
   }
 }
 
-.btn .spanContainerBackMouseout span {
-  -webkit-transform: translateY(40px);
-          transform: translateY(40px);
-}
-
-@media screen and (max-width: 600px) {
-  .btn {
-    width: 22.5vw;
-    height: 6.5vh;
-    left: 2%;
-    top: 1.2%;
-  }
-}
-
 .btn__backWorkshop {
   width: 107px;
   height: 57px;
   top: 2.5%;
   left: 24px;
   position: absolute;
-  z-index: 2;
   background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
@@ -1251,7 +1234,7 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  z-index: 2;
+  z-index: 10;
   font-family: 'littleTitle';
   letter-spacing: 2px;
   font-size: 15px;
@@ -1423,180 +1406,13 @@ canvas.hologramDefault {
 .sm__1.mouseout::after {
   content: "FB";
   position: absolute;
-  height: 2px;
-  background: #1b355e;
-  z-index: -1;
-  opacity: 0.35;
-}
-
-.sm__1.mouseout::after__1 {
-  bottom: 6.1%;
-}
-
-.sm__1.mouseout::after__2 {
-  bottom: 1.8%;
-}
-
-.sm .col {
-  width: 2px;
-  height: 100vh;
-  background: #0d0437;
-  margin-right: 10px;
-  margin-left: 10px;
-  display: inline-block;
-  opacity: .65;
-}
-
-.sm .col.line {
-  width: 2px;
-  height: 0;
-  background: #1b355e;
-  position: absolute;
-  z-index: -1;
-  opacity: 0.35;
-}
-
-.sm .col.line__1 {
-  right: 0;
-}
-
-.sm .col.line__2 {
-  right: 0;
-}
-
-.sm .sm {
-  width: 42px;
-  height: 42px;
-  position: absolute;
-  right: 18px;
-  color: #4cc9f0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  z-index: 10;
-  font-family: 'littleTitle';
-  letter-spacing: 2px;
-  font-size: 15px;
-  overflow: hidden;
-  font-weight: 600;
-}
-
-@media screen and (max-width: 600px) {
-  .sm .sm {
-    right: .8%;
-    font-size: 3.3vw;
-    width: 30px;
-    height: 30px;
-  }
-}
-
-.sm .sm.neonText {
-  text-shadow: 0px;
-  -webkit-animation: blink 4s infinite alternate;
-          animation: blink 4s infinite alternate;
-}
-
-@keyframes blink {
-  30% {
-    opacity: 1;
-    text-shadow: 0 0 0 #4cc9f0, 0 0 2px #4cc9f0, 0 0 2px #4cc9f0;
-  }
-  32% {
-    opacity: .25;
-  }
-  33% {
-    opacity: 1;
-  }
-  35% {
-    opacity: .25;
-  }
-  40% {
-    opacity: 1;
-  }
-}
-
-@keyframes blinkBtn {
-  30% {
-    opacity: 1;
-    text-shadow: 0 0 0 #09021e, 0 0 2px #09021e, 0 0 1px #09021e;
-  }
-  32% {
-    opacity: .25;
-  }
-  33% {
-    opacity: 1;
-  }
-  35% {
-    opacity: .25;
-  }
-  40% {
-    opacity: 1;
-  }
-}
-
-@keyframes inSM {
-  to {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
-@keyframes outSM {
-  to {
-    -webkit-transform: translateX(165%);
-            transform: translateX(165%);
-  }
-}
-
-@keyframes outImpairSM {
-  to {
-    -webkit-transform: translateX(-165%);
-            transform: translateX(-165%);
-  }
-}
-
-.sm .sm__1 {
-  bottom: 1.8%;
-}
-
-@media screen and (max-width: 600px) {
-  .sm .sm__1 {
-    bottom: .5%;
-  }
-}
-
-.sm .sm__1.mouseover::after {
-  content: "FB";
-  position: absolute;
-  -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
-          animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
-}
-
-.sm .sm__1.mouseover::before {
-  content: "FB";
-  position: absolute;
-  -webkit-transform: translateX(-165%);
-          transform: translateX(-165%);
-  -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
-          animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
-}
-
-.sm .sm__1.mouseout::after {
-  content: "FB";
-  position: absolute;
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
   -webkit-transform: translateX(-165%);
           transform: translateX(-165%);
 }
 
-.sm .sm__1.mouseout::before {
+.sm__1.mouseout::before {
   content: "FB";
   position: absolute;
   -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
@@ -1605,24 +1421,24 @@ canvas.hologramDefault {
           transform: translateX(0);
 }
 
-.sm .sm__2 {
+.sm__2 {
   bottom: 6.2%;
 }
 
 @media screen and (max-width: 600px) {
-  .sm .sm__2 {
+  .sm__2 {
     bottom: 5.5%;
   }
 }
 
-.sm .sm__2.mouseover::after {
+.sm__2.mouseover::after {
   content: "IG";
   position: absolute;
   -webkit-animation: outImpairSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: outImpairSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
-.sm .sm__2.mouseover::before {
+.sm__2.mouseover::before {
   content: "IG";
   position: absolute;
   -webkit-transform: translateX(165%);
@@ -1631,7 +1447,7 @@ canvas.hologramDefault {
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
-.sm .sm__2.mouseout::after {
+.sm__2.mouseout::after {
   content: "IG";
   position: absolute;
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
@@ -1640,7 +1456,7 @@ canvas.hologramDefault {
           transform: translateX(165%);
 }
 
-.sm .sm__2.mouseout::before {
+.sm__2.mouseout::before {
   content: "IG";
   position: absolute;
   -webkit-animation: outImpairSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
@@ -1649,24 +1465,24 @@ canvas.hologramDefault {
           transform: translateX(0);
 }
 
-.sm .sm__3 {
+.sm__3 {
   bottom: 10.6%;
 }
 
 @media screen and (max-width: 600px) {
-  .sm .sm__3 {
+  .sm__3 {
     bottom: 10.5%;
   }
 }
 
-.sm .sm__3.mouseover::after {
+.sm__3.mouseover::after {
   content: "IN";
   position: absolute;
   -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
-.sm .sm__3.mouseover::before {
+.sm__3.mouseover::before {
   content: "IN";
   position: absolute;
   -webkit-transform: translateX(-165%);
@@ -1675,7 +1491,7 @@ canvas.hologramDefault {
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
 
-.sm .sm__3.mouseout::after {
+.sm__3.mouseout::after {
   content: "IN";
   position: absolute;
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
@@ -1684,7 +1500,7 @@ canvas.hologramDefault {
           transform: translateX(-165%);
 }
 
-.sm .sm__3.mouseout::before {
+.sm__3.mouseout::before {
   content: "IN";
   position: absolute;
   -webkit-animation: outSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
@@ -1693,7 +1509,7 @@ canvas.hologramDefault {
           transform: translateX(0);
 }
 
-.sm .containerTimeline {
+.containerTimeline {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1702,7 +1518,7 @@ canvas.hologramDefault {
   height: fit-content;
   position: absolute;
   top: 27.7vh;
-  z-index: 3;
+  z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1723,7 +1539,7 @@ canvas.hologramDefault {
   text-align: center;
 }
 
-.sm .containerTimeline .timelineIndication .indication {
+.containerTimeline .timelineIndication .indication {
   color: #4cc9f0;
   font-family: "littleTitle";
   -webkit-writing-mode: vertical-rl;
@@ -1745,14 +1561,14 @@ canvas.hologramDefault {
           filter: blur(0);
 }
 
-.sm .containerTimeline .timelineIndication .indication.switch {
+.containerTimeline .timelineIndication .indication.switch {
   opacity: 0;
   letter-spacing: 25px;
   -webkit-filter: blur(2px);
           filter: blur(2px);
 }
 
-.sm .containerTimeline .workShopButton {
+.containerTimeline .workShopButton {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1771,12 +1587,12 @@ canvas.hologramDefault {
   font-weight: normal;
 }
 
-.sm .containerTimeline .workShopButton:hover {
+.containerTimeline .workShopButton:hover {
   color: #09021e;
   font-weight: bold;
 }
 
-.sm .containerTimeline .workShopButton::before {
+.containerTimeline .workShopButton::before {
   content: " ";
   width: 2px;
   right: 0;
@@ -1787,13 +1603,13 @@ canvas.hologramDefault {
   z-index: -1;
 }
 
-.sm .containerTimeline .workShopButton:hover::before {
+.containerTimeline .workShopButton:hover::before {
   width: 100%;
   background: #4cc9f0;
   right: 0;
 }
 
-.sm .containerTimeline .workShopButton__1::after, .sm .containerTimeline .workShopButton__2::after, .sm .containerTimeline .workShopButton__3::after, .sm .containerTimeline .workShopButton__4::after, .sm .containerTimeline .workShopButton__5::after, .sm .containerTimeline .workShopButton__6::after, .sm .containerTimeline .workShopButton__7::after, .sm .containerTimeline .workShopButton__8::after, .sm .containerTimeline .workShopButton__9::after, .sm .containerTimeline .workShopButton__10::after, .sm .containerTimeline .workShopButton__11::after, .sm .containerTimeline .workShopButton__12::after, .sm .containerTimeline .workShopButton__13::after, .sm .containerTimeline .workShopButton__14::after {
+.containerTimeline .workShopButton__1::after, .containerTimeline .workShopButton__2::after, .containerTimeline .workShopButton__3::after, .containerTimeline .workShopButton__4::after, .containerTimeline .workShopButton__5::after, .containerTimeline .workShopButton__6::after, .containerTimeline .workShopButton__7::after, .containerTimeline .workShopButton__8::after, .containerTimeline .workShopButton__9::after, .containerTimeline .workShopButton__10::after, .containerTimeline .workShopButton__11::after, .containerTimeline .workShopButton__12::after, .containerTimeline .workShopButton__13::after, .containerTimeline .workShopButton__14::after {
   content: " ";
   position: absolute;
   left: 0;
@@ -1808,12 +1624,12 @@ canvas.hologramDefault {
   z-index: -1;
 }
 
-.sm .containerTimeline .workShopButton__1:hover::after, .sm .containerTimeline .workShopButton__2:hover::after, .sm .containerTimeline .workShopButton__3:hover::after, .sm .containerTimeline .workShopButton__4:hover::after, .sm .containerTimeline .workShopButton__5:hover::after, .sm .containerTimeline .workShopButton__6:hover::after, .sm .containerTimeline .workShopButton__7:hover::after, .sm .containerTimeline .workShopButton__8:hover::after, .sm .containerTimeline .workShopButton__9:hover::after, .sm .containerTimeline .workShopButton__10:hover::after, .sm .containerTimeline .workShopButton__11:hover::after, .sm .containerTimeline .workShopButton__12:hover::after, .sm .containerTimeline .workShopButton__13:hover::after, .sm .containerTimeline .workShopButton__14:hover::after {
+.containerTimeline .workShopButton__1:hover::after, .containerTimeline .workShopButton__2:hover::after, .containerTimeline .workShopButton__3:hover::after, .containerTimeline .workShopButton__4:hover::after, .containerTimeline .workShopButton__5:hover::after, .containerTimeline .workShopButton__6:hover::after, .containerTimeline .workShopButton__7:hover::after, .containerTimeline .workShopButton__8:hover::after, .containerTimeline .workShopButton__9:hover::after, .containerTimeline .workShopButton__10:hover::after, .containerTimeline .workShopButton__11:hover::after, .containerTimeline .workShopButton__12:hover::after, .containerTimeline .workShopButton__13:hover::after, .containerTimeline .workShopButton__14:hover::after {
   -webkit-clip-path: inset(0 0 0 0);
           clip-path: inset(0 0 0 0);
 }
 
-.sm .containerTimeline .workShopButton .mask {
+.containerTimeline .workShopButton .mask {
   position: absolute;
   width: 100%;
   right: 0;

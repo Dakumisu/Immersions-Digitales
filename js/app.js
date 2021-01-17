@@ -515,30 +515,34 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 // RIGHT DOOR 2 MODEL
 var rightDoor2;
 
-var loaderRight2Door = new GLTFLoader;
-loaderRight2Door.crossOrigin = true;
-
-loaderRight2Door.load(rightDoor2Model, function(addRightDoor2) {
-    rightDoor2 = addRightDoor2.scene;
-    scene.add(rightDoor2);
-    rightDoor2.position.set(.35, -5.8, -197)
-    rightDoor2.rotation.y = -.5 * Math.PI
-    rightDoor2.scale.set(0.0001, 0.0001, 0.0001)
-});
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+    var loaderRight2Door = new GLTFLoader;
+    loaderRight2Door.crossOrigin = true;
+    
+    loaderRight2Door.load(rightDoor2Model, function(addRightDoor2) {
+        rightDoor2 = addRightDoor2.scene;
+        scene.add(rightDoor2);
+        rightDoor2.position.set(.35, -5.8, -197)
+        rightDoor2.rotation.y = -.5 * Math.PI
+        rightDoor2.scale.set(0.0001, 0.0001, 0.0001)
+    });
+}
 
 // LEFT DOOR 2 MODEL
 var leftDoor2;
 
-var loaderLeftDoor2 = new GLTFLoader;
-loaderLeftDoor2.crossOrigin = true;
-
-loaderLeftDoor2.load(leftDoor2Model, function(addLeftDoor2) {
-    leftDoor2 = addLeftDoor2.scene;
-    scene.add(leftDoor2);
-    leftDoor2.position.set(.35, -5.8, -197)
-    leftDoor2.rotation.y = -.5 * Math.PI
-    leftDoor2.scale.set(0.0001, 0.0001, 0.0001)
-});
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+    var loaderLeftDoor2 = new GLTFLoader;
+    loaderLeftDoor2.crossOrigin = true;
+    
+    loaderLeftDoor2.load(leftDoor2Model, function(addLeftDoor2) {
+        leftDoor2 = addLeftDoor2.scene;
+        scene.add(leftDoor2);
+        leftDoor2.position.set(.35, -5.8, -197)
+        leftDoor2.rotation.y = -.5 * Math.PI
+        leftDoor2.scale.set(0.0001, 0.0001, 0.0001)
+    });
+}
 
 // STREET MODEL
 var street;
@@ -1258,8 +1262,6 @@ window.addEventListener('load', function() {
         }, 4000)
     }
 })
-
-let workshopActive = false;
 
 /////// PLANE HOVER SHADERS EFFECT ///////
 let colorCursorHover = "#f72585";
@@ -2006,6 +2008,7 @@ planeMesh1.on('click', function() {
     }
 })
 
+console.log(titleSvgLine)
 
 /////// BACKHOME BUTTON EVENTS ///////
 function functionBtnBackHome() {
@@ -2217,6 +2220,8 @@ function functionBtnStart() {
             gsap.to(grid.scale, 2.4, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .6 })
             gsap.to(poutre.scale, 3, { x: 90, y: 100, z: 100, ease: "power3.inOut" })
             gsap.to(street.scale, 0, { x: 110, y: 110, z: 110, delay: 3.1 })
+            gsap.to(leftDoor2.scale, 0, { x: 110, y: 110, z: 110, ease: "power3.inOut", delay: 3.1 })
+            gsap.to(rightDoor2.scale, 0, { x: 110, y: 110, z: 110, ease: "power3.inOut", delay: 3.1 })
         }
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
@@ -2372,6 +2377,12 @@ btnBackWorkshop.addEventListener('click', function() {
     setTimeout(function() {
         spanContainerBackMouseOut.classList.remove('neonText');
     }, 750)
+
+    gsap.to(workShopContainer1, 1.5, { opacity: 0, ease: "Power3.easeOut", delay: 0.5 })
+    setTimeout(function() {
+        workShopContainer1.classList.add('switchPlane');
+    }, 3750)
+
     workshopActive = false;
 })
 

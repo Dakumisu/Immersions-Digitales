@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"C:\\Users\\EraStorm\\Documents\\GitHub\\Site-ID\\assets\\font\\margaret-bold.woff2":[["margaret-bold.f98a18ad.woff2","assets/font/margaret-bold.woff2"],"assets/font/margaret-bold.woff2"],"C:\\Users\\EraStorm\\Documents\\GitHub\\Site-ID\\assets\\font\\margaret-bold.woff":[["margaret-bold.8c5828b4.woff","assets/font/margaret-bold.woff"],"assets/font/margaret-bold.woff"],"C:\\Users\\EraStorm\\Documents\\GitHub\\Site-ID\\assets\\font\\syn_nova_regular.woff2":[["syn_nova_regular.f2f5ab6f.woff2","assets/font/syn_nova_regular.woff2"],"assets/font/syn_nova_regular.woff2"],"C:\\Users\\EraStorm\\Documents\\GitHub\\Site-ID\\assets\\font\\syn_nova_regular.woff":[["syn_nova_regular.e57ec370.woff","assets/font/syn_nova_regular.woff"],"assets/font/syn_nova_regular.woff"],"C:\\Users\\EraStorm\\Documents\\GitHub\\Site-ID\\assets\\font\\titilliumweb-regular.woff2":[["titilliumweb-regular.4e1bdae8.woff2","assets/font/titilliumweb-regular.woff2"],"assets/font/titilliumweb-regular.woff2"],"C:\\Users\\EraStorm\\Documents\\GitHub\\Site-ID\\assets\\font\\titilliumweb-regular.woff":[["titilliumweb-regular.8708fcca.woff","assets/font/titilliumweb-regular.woff"],"assets/font/titilliumweb-regular.woff"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"E:\\MMI\\PTUT\\Site-ID\\assets\\font\\margaret-bold.woff2":[["margaret-bold.f98a18ad.woff2","assets/font/margaret-bold.woff2"],"assets/font/margaret-bold.woff2"],"E:\\MMI\\PTUT\\Site-ID\\assets\\font\\margaret-bold.woff":[["margaret-bold.8c5828b4.woff","assets/font/margaret-bold.woff"],"assets/font/margaret-bold.woff"],"E:\\MMI\\PTUT\\Site-ID\\assets\\font\\syn_nova_regular.woff2":[["syn_nova_regular.f2f5ab6f.woff2","assets/font/syn_nova_regular.woff2"],"assets/font/syn_nova_regular.woff2"],"E:\\MMI\\PTUT\\Site-ID\\assets\\font\\syn_nova_regular.woff":[["syn_nova_regular.e57ec370.woff","assets/font/syn_nova_regular.woff"],"assets/font/syn_nova_regular.woff"],"E:\\MMI\\PTUT\\Site-ID\\assets\\font\\titilliumweb-regular.woff2":[["titilliumweb-regular.4e1bdae8.woff2","assets/font/titilliumweb-regular.woff2"],"assets/font/titilliumweb-regular.woff2"],"E:\\MMI\\PTUT\\Site-ID\\assets\\font\\titilliumweb-regular.woff":[["titilliumweb-regular.8708fcca.woff","assets/font/titilliumweb-regular.woff"],"assets/font/titilliumweb-regular.woff"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10571" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52761" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

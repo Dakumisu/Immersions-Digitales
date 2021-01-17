@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,23 +32462,15 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  
-  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  
-  var d = light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.scale.set( d, d, d );
-  
-  }
-  
-  this.add( this.lightDistance );
+  	var d = light.distance;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.scale.set( d, d, d );
+  	}
+  	this.add( this.lightDistance );
   */
 }
 
@@ -32498,17 +32490,12 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.visible = true;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  
-  }
+  	}
   */
 
 };
@@ -32939,8 +32926,7 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  
-  0: max.x, max.y, max.z
+  	0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -48375,6349 +48361,139 @@ var Interaction = function (_InteractionManager) {
 }(InteractionManager);
 
 exports.Interaction = Interaction;
-},{"three":"node_modules/three/build/three.module.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
-
-// shim for using process in browser
-var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-  throw new Error('setTimeout has not been defined');
-}
-
-function defaultClearTimeout() {
-  throw new Error('clearTimeout has not been defined');
-}
-
-(function () {
-  try {
-    if (typeof setTimeout === 'function') {
-      cachedSetTimeout = setTimeout;
-    } else {
-      cachedSetTimeout = defaultSetTimout;
-    }
-  } catch (e) {
-    cachedSetTimeout = defaultSetTimout;
-  }
-
-  try {
-    if (typeof clearTimeout === 'function') {
-      cachedClearTimeout = clearTimeout;
-    } else {
-      cachedClearTimeout = defaultClearTimeout;
-    }
-  } catch (e) {
-    cachedClearTimeout = defaultClearTimeout;
-  }
-})();
-
-function runTimeout(fun) {
-  if (cachedSetTimeout === setTimeout) {
-    //normal enviroments in sane situations
-    return setTimeout(fun, 0);
-  } // if setTimeout wasn't available but was latter defined
-
-
-  if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-    cachedSetTimeout = setTimeout;
-    return setTimeout(fun, 0);
-  }
-
-  try {
-    // when when somebody has screwed with setTimeout but no I.E. maddness
-    return cachedSetTimeout(fun, 0);
-  } catch (e) {
-    try {
-      // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-      return cachedSetTimeout.call(null, fun, 0);
-    } catch (e) {
-      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-      return cachedSetTimeout.call(this, fun, 0);
-    }
-  }
-}
-
-function runClearTimeout(marker) {
-  if (cachedClearTimeout === clearTimeout) {
-    //normal enviroments in sane situations
-    return clearTimeout(marker);
-  } // if clearTimeout wasn't available but was latter defined
-
-
-  if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-    cachedClearTimeout = clearTimeout;
-    return clearTimeout(marker);
-  }
-
-  try {
-    // when when somebody has screwed with setTimeout but no I.E. maddness
-    return cachedClearTimeout(marker);
-  } catch (e) {
-    try {
-      // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-      return cachedClearTimeout.call(null, marker);
-    } catch (e) {
-      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-      // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-      return cachedClearTimeout.call(this, marker);
-    }
-  }
-}
-
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-  if (!draining || !currentQueue) {
-    return;
-  }
-
-  draining = false;
-
-  if (currentQueue.length) {
-    queue = currentQueue.concat(queue);
+},{"three":"node_modules/three/build/three.module.js"}],"node_modules/touchsweep/dist/touchsweep.js":[function(require,module,exports) {
+var define;
+var global = arguments[3];
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define(["exports"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
   } else {
-    queueIndex = -1;
-  }
-
-  if (queue.length) {
-    drainQueue();
-  }
-}
-
-function drainQueue() {
-  if (draining) {
-    return;
-  }
-
-  var timeout = runTimeout(cleanUpNextTick);
-  draining = true;
-  var len = queue.length;
-
-  while (len) {
-    currentQueue = queue;
-    queue = [];
-
-    while (++queueIndex < len) {
-      if (currentQueue) {
-        currentQueue[queueIndex].run();
-      }
-    }
-
-    queueIndex = -1;
-    len = queue.length;
-  }
-
-  currentQueue = null;
-  draining = false;
-  runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-  var args = new Array(arguments.length - 1);
-
-  if (arguments.length > 1) {
-    for (var i = 1; i < arguments.length; i++) {
-      args[i - 1] = arguments[i];
-    }
-  }
-
-  queue.push(new Item(fun, args));
-
-  if (queue.length === 1 && !draining) {
-    runTimeout(drainQueue);
-  }
-}; // v8 likes predictible objects
-
-
-function Item(fun, array) {
-  this.fun = fun;
-  this.array = array;
-}
-
-Item.prototype.run = function () {
-  this.fun.apply(null, this.array);
-};
-
-process.title = 'browser';
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) {
-  return [];
-};
-
-process.binding = function (name) {
-  throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () {
-  return '/';
-};
-
-process.chdir = function (dir) {
-  throw new Error('process.chdir is not supported');
-};
-
-process.umask = function () {
-  return 0;
-};
-},{}],"node_modules/troika-worker-utils/dist/troika-worker-utils.esm.js":[function(require,module,exports) {
-var process = require("process");
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.defineWorkerModule = defineWorkerModule;
-exports.stringifyFunction = stringifyFunction;
-exports.ThenableWorkerModule = exports.Thenable = void 0;
-
-/**
- * Lightweight thenable implementation that is entirely self-contained within a single
- * function with no external dependencies so it can be easily shipped across to a WorkerModule.
- *
- * This implementation conforms fully to the Promises/A+ spec so it can safely interoperate
- * with other thenable implementations. https://github.com/promises-aplus/promises-spec
- *
- * *However*, it is _not_ a full implementation of ES2015 Promises, e.g. it does not
- * have the same constructor signature and does not expose a `catch` method or the static
- * `resolve`/`reject`/`all`/`race` initializer methods. If you need to hand a Thenable
- * instance off to consuming code that may expect a true Promise, you'll want to wrap it
- * in a native-or-polyfilled Promise first.
- *
- * (Why yet another Promises/A+ implementation? Great question. We needed a polyfill-like
- * thing that was (a) wrapped in a single function for easy serialization across to a Worker,
- * and (b) was as small as possible -- at ~900B minified (~500B gzipped) this is the smallest
- * implementation I've found. And also, exercises like this are challenging and fun.)
- */
-function BespokeThenable() {
-  var state = 0; // 0=pending, 1=fulfilled, -1=rejected
-
-  var queue = [];
-  var value;
-  var scheduled = 0;
-  var completeCalled = 0;
-
-  function then(onResolve, onReject) {
-    var nextThenable = BespokeThenable();
-
-    function handleNext() {
-      var cb = state > 0 ? onResolve : onReject;
-
-      if (isFn(cb)) {
-        try {
-          var result = cb(value);
-
-          if (result === nextThenable) {
-            recursiveError();
-          }
-
-          var resultThen = getThenableThen(result);
-
-          if (resultThen) {
-            resultThen.call(result, nextThenable.resolve, nextThenable.reject);
-          } else {
-            nextThenable.resolve(result);
-          }
-        } catch (err) {
-          nextThenable.reject(err);
-        }
-      } else {
-        nextThenable[state > 0 ? 'resolve' : 'reject'](value);
-      }
-    }
-
-    queue.push(handleNext);
-
-    if (state) {
-      scheduleQueueFlush();
-    }
-
-    return nextThenable;
-  }
-
-  var resolve = oneTime(function (val) {
-    if (!completeCalled) {
-      complete(1, val);
-    }
-  });
-  var reject = oneTime(function (reason) {
-    if (!completeCalled) {
-      complete(-1, reason);
-    }
-  });
-
-  function complete(st, val) {
-    completeCalled++;
-    var ignoreThrow = 0;
-
-    try {
-      if (val === thenableObj) {
-        recursiveError();
-      }
-
-      var valThen = st > 0 && getThenableThen(val);
-
-      if (valThen) {
-        valThen.call(val, oneTime(function (v) {
-          ignoreThrow++;
-          complete(1, v);
-        }), oneTime(function (v) {
-          ignoreThrow++;
-          complete(-1, v);
-        }));
-      } else {
-        state = st;
-        value = val;
-        scheduleQueueFlush();
-      }
-    } catch (e) {
-      if (!state && !ignoreThrow) {
-        complete(-1, e);
-      }
-    }
-  }
-
-  function scheduleQueueFlush() {
-    if (!scheduled) {
-      setTimeout(flushQueue, 0); //TODO setImmediate or postMessage approach if available?
-
-      scheduled = 1;
-    }
-  }
-
-  function flushQueue() {
-    var q = queue;
-    scheduled = 0;
-    queue = [];
-    q.forEach(callIt);
-  }
-
-  function callIt(fn) {
-    fn();
-  }
-
-  function getThenableThen(val) {
-    var valThen = val && (isFn(val) || typeof val === 'object') && val.then;
-    return isFn(valThen) && valThen;
-  }
-
-  function oneTime(fn) {
-    var called = 0;
-    return function () {
-      var args = [],
-          len = arguments.length;
-
-      while (len--) args[len] = arguments[len];
-
-      if (!called++) {
-        fn.apply(this, args);
-      }
+    var mod = {
+      exports: {}
     };
+    factory(mod.exports);
+    global.touchsweep = mod.exports;
   }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
 
-  function recursiveError() {
-    throw new TypeError('Chaining cycle detected');
-  }
-
-  var isFn = function (v) {
-    return typeof v === 'function';
-  };
-
-  var thenableObj = {
-    then: then,
-    resolve: resolve,
-    reject: reject
-  };
-  return thenableObj;
-}
-/**
- * Thenable implementation that uses a native Promise under the covers. This implementation
- * is preferred if Promise is available, for better performance and dev tools integration.
- * @constructor
- */
-
-
-function NativePromiseThenable() {
-  var resolve, reject;
-  var promise = new Promise(function (res, rej) {
-    resolve = res;
-    reject = rej;
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
   });
-  return {
-    then: promise.then.bind(promise),
-    resolve: resolve,
-    reject: reject
-  };
-}
-/**
- * Promise.all() impl:
- */
+  _exports["default"] = void 0;
 
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-BespokeThenable.all = NativePromiseThenable.all = function (items) {
-  var resultCount = 0;
-  var results = [];
-  var out = DefaultThenable();
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  if (items.length === 0) {
-    out.resolve([]);
-  } else {
-    items.forEach(function (item, i) {
-      var itemThenable = DefaultThenable();
-      itemThenable.resolve(item);
-      itemThenable.then(function (res) {
-        resultCount++;
-        results[i] = res;
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-        if (resultCount === items.length) {
-          out.resolve(results);
-        }
-      }, out.reject);
-    });
-  }
+  var TouchSweep = /*#__PURE__*/function () {
+    function TouchSweep() {
+      var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.body;
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var threshold = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 40;
 
-  return out;
-};
-/**
- * Choose the best Thenable implementation and export it as the default.
- */
+      _classCallCheck(this, TouchSweep);
 
-
-var DefaultThenable = typeof Promise === 'function' ? NativePromiseThenable : BespokeThenable;
-/**
- * Main content for the worker that handles the loading and execution of
- * modules within it.
- */
-
-exports.Thenable = DefaultThenable;
-
-function workerBootstrap() {
-  var modules = Object.create(null); // Handle messages for registering a module
-
-  function registerModule(ref, callback) {
-    var id = ref.id;
-    var name = ref.name;
-    var dependencies = ref.dependencies;
-    if (dependencies === void 0) dependencies = [];
-    var init = ref.init;
-    if (init === void 0) init = function () {};
-    var getTransferables = ref.getTransferables;
-    if (getTransferables === void 0) getTransferables = null; // Only register once
-
-    if (modules[id]) {
-      return;
-    }
-
-    try {
-      // If any dependencies are modules, ensure they're registered and grab their value
-      dependencies = dependencies.map(function (dep) {
-        if (dep && dep.isWorkerModule) {
-          registerModule(dep, function (depResult) {
-            if (depResult instanceof Error) {
-              throw depResult;
-            }
-          });
-          dep = modules[dep.id].value;
-        }
-
-        return dep;
-      }); // Rehydrate functions
-
-      init = rehydrate("<" + name + ">.init", init);
-
-      if (getTransferables) {
-        getTransferables = rehydrate("<" + name + ">.getTransferables", getTransferables);
-      } // Initialize the module and store its value
-
-
-      var value = null;
-
-      if (typeof init === 'function') {
-        value = init.apply(void 0, dependencies);
-      } else {
-        console.error('worker module init function failed to rehydrate');
-      }
-
-      modules[id] = {
-        id: id,
-        value: value,
-        getTransferables: getTransferables
+      this.element = element;
+      this.eventData = data;
+      this.threshold = threshold;
+      this.coords = {
+        startX: 0,
+        startY: 0,
+        endX: 0,
+        endY: 0
       };
-      callback(value);
-    } catch (err) {
-      if (!(err && err.noLog)) {
-        console.error(err);
-      }
-
-      callback(err);
-    }
-  } // Handle messages for calling a registered module's result function
-
-
-  function callModule(ref, callback) {
-    var ref$1;
-    var id = ref.id;
-    var args = ref.args;
-
-    if (!modules[id] || typeof modules[id].value !== 'function') {
-      callback(new Error("Worker module " + id + ": not found or its 'init' did not return a function"));
+      this.onStart = this.onStart.bind(this);
+      this.onEnd = this.onEnd.bind(this);
+      this.bind();
+      return this;
     }
 
-    try {
-      var result = (ref$1 = modules[id]).value.apply(ref$1, args);
-
-      if (result && typeof result.then === 'function') {
-        result.then(handleResult, function (rej) {
-          return callback(rej instanceof Error ? rej : new Error('' + rej));
-        });
-      } else {
-        handleResult(result);
+    _createClass(TouchSweep, [{
+      key: "onStart",
+      value: function onStart(event) {
+        this.coords.startX = event.changedTouches[0].screenX;
+        this.coords.startY = event.changedTouches[0].screenY;
       }
-    } catch (err) {
-      callback(err);
-    }
-
-    function handleResult(result) {
-      try {
-        var tx = modules[id].getTransferables && modules[id].getTransferables(result);
-
-        if (!tx || !Array.isArray(tx) || !tx.length) {
-          tx = undefined; //postMessage is very picky about not passing null or empty transferables
-        }
-
-        callback(result, tx);
-      } catch (err) {
-        console.error(err);
-        callback(err);
-      }
-    }
-  }
-
-  function rehydrate(name, str) {
-    var result = void 0;
-
-    self.troikaDefine = function (r) {
-      return result = r;
-    };
-
-    var url = URL.createObjectURL(new Blob(["/** " + name.replace(/\*/g, '') + " **/\n\ntroikaDefine(\n" + str + "\n)"], {
-      type: 'application/javascript'
-    }));
-
-    try {
-      importScripts(url);
-    } catch (err) {
-      console.error(err);
-    }
-
-    URL.revokeObjectURL(url);
-    delete self.troikaDefine;
-    return result;
-  } // Handler for all messages within the worker
-
-
-  self.addEventListener('message', function (e) {
-    var ref = e.data;
-    var messageId = ref.messageId;
-    var action = ref.action;
-    var data = ref.data;
-
-    try {
-      // Module registration
-      if (action === 'registerModule') {
-        registerModule(data, function (result) {
-          if (result instanceof Error) {
-            postMessage({
-              messageId: messageId,
-              success: false,
-              error: result.message
-            });
-          } else {
-            postMessage({
-              messageId: messageId,
-              success: true,
-              result: {
-                isCallable: typeof result === 'function'
-              }
-            });
-          }
-        });
-      } // Invocation
-
-
-      if (action === 'callModule') {
-        callModule(data, function (result, transferables) {
-          if (result instanceof Error) {
-            postMessage({
-              messageId: messageId,
-              success: false,
-              error: result.message
-            });
-          } else {
-            postMessage({
-              messageId: messageId,
-              success: true,
-              result: result
-            }, transferables || undefined);
-          }
-        });
-      }
-    } catch (err) {
-      postMessage({
-        messageId: messageId,
-        success: false,
-        error: err.stack
-      });
-    }
-  });
-}
-/**
- * Fallback for `defineWorkerModule` that behaves identically but runs in the main
- * thread, for when the execution environment doesn't support web workers or they
- * are disallowed due to e.g. CSP security restrictions.
- */
-
-
-function defineMainThreadModule(options) {
-  var moduleFunc = function () {
-    var args = [],
-        len = arguments.length;
-
-    while (len--) args[len] = arguments[len];
-
-    return moduleFunc._getInitResult().then(function (initResult) {
-      if (typeof initResult === 'function') {
-        return initResult.apply(void 0, args);
-      } else {
-        throw new Error('Worker module function was called but `init` did not return a callable function');
-      }
-    });
-  };
-
-  moduleFunc._getInitResult = function () {
-    // We can ignore getTransferables in main thread. TODO workerId?
-    var dependencies = options.dependencies;
-    var init = options.init; // Resolve dependencies
-
-    dependencies = Array.isArray(dependencies) ? dependencies.map(function (dep) {
-      return dep && dep._getInitResult ? dep._getInitResult() : dep;
-    }) : []; // Invoke init with the resolved dependencies
-
-    var initThenable = DefaultThenable.all(dependencies).then(function (deps) {
-      return init.apply(null, deps);
-    }); // Cache the resolved promise for subsequent calls
-
-    moduleFunc._getInitResult = function () {
-      return initThenable;
-    };
-
-    return initThenable;
-  };
-
-  return moduleFunc;
-}
-
-var supportsWorkers = function () {
-  var supported = false; // Only attempt worker initialization in browsers; elsewhere it would just be
-  // noise e.g. loading into a Node environment for SSR.
-
-  if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
-    try {
-      // TODO additional checks for things like importScripts within the worker?
-      //  Would need to be an async check.
-      var worker = new Worker(URL.createObjectURL(new Blob([''], {
-        type: 'application/javascript'
-      })));
-      worker.terminate();
-      supported = true;
-    } catch (err) {
-      if (typeof process !== 'undefined' && "development" === 'test') ;else {
-        console.log("Troika createWorkerModule: web workers not allowed; falling back to main thread execution. Cause: [" + err.message + "]");
-      }
-    }
-  } // Cached result
-
-
-  supportsWorkers = function () {
-    return supported;
-  };
-
-  return supported;
-};
-
-var _workerModuleId = 0;
-var _messageId = 0;
-var _allowInitAsString = false;
-var workers = Object.create(null);
-
-var openRequests = /*#__PURE__*/function () {
-  var obj = Object.create(null);
-  obj._count = 0;
-  return obj;
-}();
-/**
- * Define a module of code that will be executed with a web worker. This provides a simple
- * interface for moving chunks of logic off the main thread, and managing their dependencies
- * among one another.
- *
- * @param {object} options
- * @param {function} options.init - The main function that initializes the module. This will be run
- *        within the worker, and will be passed the resolved dependencies as arguments. Its
- *        return value becomes the module's content, which can then be used by other modules
- *        that depend on it. This function can perform any logic using those dependencies, but
- *        must not depend on anything from its parent closures.
- * @param {array} [options.dependencies] - Provides any dependencies required by the init function:
- *        - Primitives like strings, numbers, booleans
- *        - Raw functions; these will be stringified and rehydrated within the worker so they
- *          must not depend on anything from their parent closures
- *        - Other worker modules; these will be resolved within the worker, and therefore modules
- *          that provide functions can be called without having to cross the worker/main thread
- *          boundary.
- * @param {function} [options.getTransferables] - An optional function that will be run in the worker
- *        just before posting the response value from a module call back to the main thread.
- *        It will be passed that response value, and if it returns an array then that will be
- *        used as the "transferables" parameter to `postMessage`. Use this if there are values
- *        in the response that can/should be transfered rather than cloned.
- * @param {string} [options.name] - A descriptive name for this module; this can be useful for
- *        debugging but is not currently used for anything else.
- * @param {string} [options.workerId] - By default all modules will run in the same dedicated worker,
- *        but if you want to use multiple workers you can pass a `workerId` to indicate a specific
- *        worker to spawn. Note that each worker is completely standalone and no data or state will
- *        be shared between them. If a worker module is used as a dependency by worker modules
- *        using different `workerId`s, then that dependency will be re-registered in each worker.
- * @return {function(...[*]): {then}}
- */
-
-
-function defineWorkerModule(options) {
-  if ((!options || typeof options.init !== 'function') && !_allowInitAsString) {
-    throw new Error('requires `options.init` function');
-  }
-
-  var dependencies = options.dependencies;
-  var init = options.init;
-  var getTransferables = options.getTransferables;
-  var workerId = options.workerId;
-
-  if (!supportsWorkers()) {
-    return defineMainThreadModule(options);
-  }
-
-  if (workerId == null) {
-    workerId = '#default';
-  }
-
-  var id = "workerModule" + ++_workerModuleId;
-  var name = options.name || id;
-  var registrationThenable = null;
-  dependencies = dependencies && dependencies.map(function (dep) {
-    // Wrap raw functions as worker modules with no dependencies
-    if (typeof dep === 'function' && !dep.workerModuleData) {
-      _allowInitAsString = true;
-      dep = defineWorkerModule({
-        workerId: workerId,
-        name: "<" + name + "> function dependency: " + dep.name,
-        init: "function(){return (\n" + stringifyFunction(dep) + "\n)}"
-      });
-      _allowInitAsString = false;
-    } // Grab postable data for worker modules
-
-
-    if (dep && dep.workerModuleData) {
-      dep = dep.workerModuleData;
-    }
-
-    return dep;
-  });
-
-  function moduleFunc() {
-    var args = [],
-        len = arguments.length;
-
-    while (len--) args[len] = arguments[len]; // Register this module if needed
-
-
-    if (!registrationThenable) {
-      registrationThenable = callWorker(workerId, 'registerModule', moduleFunc.workerModuleData);
-    } // Invoke the module, returning a thenable
-
-
-    return registrationThenable.then(function (ref) {
-      var isCallable = ref.isCallable;
-
-      if (isCallable) {
-        return callWorker(workerId, 'callModule', {
-          id: id,
-          args: args
-        });
-      } else {
-        throw new Error('Worker module function was called but `init` did not return a callable function');
-      }
-    });
-  }
-
-  moduleFunc.workerModuleData = {
-    isWorkerModule: true,
-    id: id,
-    name: name,
-    dependencies: dependencies,
-    init: stringifyFunction(init),
-    getTransferables: getTransferables && stringifyFunction(getTransferables)
-  };
-  return moduleFunc;
-}
-/**
- * Stringifies a function into a form that can be deserialized in the worker
- * @param fn
- */
-
-
-function stringifyFunction(fn) {
-  var str = fn.toString(); // If it was defined in object method/property format, it needs to be modified
-
-  if (!/^function/.test(str) && /^\w+\s*\(/.test(str)) {
-    str = 'function ' + str;
-  }
-
-  return str;
-}
-
-function getWorker(workerId) {
-  var worker = workers[workerId];
-
-  if (!worker) {
-    // Bootstrap the worker's content
-    var bootstrap = stringifyFunction(workerBootstrap); // Create the worker from the bootstrap function content
-
-    worker = workers[workerId] = new Worker(URL.createObjectURL(new Blob(["/** Worker Module Bootstrap: " + workerId.replace(/\*/g, '') + " **/\n\n;(" + bootstrap + ")()"], {
-      type: 'application/javascript'
-    }))); // Single handler for response messages from the worker
-
-    worker.onmessage = function (e) {
-      var response = e.data;
-      var msgId = response.messageId;
-      var callback = openRequests[msgId];
-
-      if (!callback) {
-        throw new Error('WorkerModule response with empty or unknown messageId');
-      }
-
-      delete openRequests[msgId];
-      openRequests.count--;
-      callback(response);
-    };
-  }
-
-  return worker;
-} // Issue a call to the worker with a callback to handle the response
-
-
-function callWorker(workerId, action, data) {
-  var thenable = DefaultThenable();
-  var messageId = ++_messageId;
-
-  openRequests[messageId] = function (response) {
-    if (response.success) {
-      thenable.resolve(response.result);
-    } else {
-      thenable.reject(new Error("Error in worker " + action + " call: " + response.error));
-    }
-  };
-
-  openRequests._count++;
-
-  if (openRequests.count > 1000) {
-    //detect leaks
-    console.warn('Large number of open WorkerModule requests, some may not be returning');
-  }
-
-  getWorker(workerId).postMessage({
-    messageId: messageId,
-    action: action,
-    data: data
-  });
-  return thenable;
-}
-/**
- * Just the {@link Thenable} function wrapped as a worker module. If another worker
- * module needs Thenable as a dependency, it's better to pass this module rather than
- * the raw function in its `dependencies` array so it only gets registered once.
- */
-
-
-var ThenableWorkerModule = /*#__PURE__*/defineWorkerModule({
-  name: 'Thenable',
-  dependencies: [DefaultThenable],
-  init: function (Thenable) {
-    return Thenable;
-  }
-});
-exports.ThenableWorkerModule = ThenableWorkerModule;
-},{"process":"node_modules/process/browser.js"}],"node_modules/troika-three-utils/dist/troika-three-utils.esm.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.createDerivedMaterial = createDerivedMaterial;
-exports.expandShaderIncludes = expandShaderIncludes;
-exports.getShaderUniformTypes = getShaderUniformTypes;
-exports.getShadersForMaterial = getShadersForMaterial;
-exports.voidMainRegExp = exports.ShaderFloatArray = exports.BezierMesh = void 0;
-
-var _three = require("three");
-
-/**
- * Regular expression for matching the `void main() {` opener line in GLSL.
- * @type {RegExp}
- */
-const voidMainRegExp = /\bvoid\s+main\s*\(\s*\)\s*{/g;
-/**
- * Recursively expands all `#include <xyz>` statements within string of shader code.
- * Copied from three's WebGLProgram#parseIncludes for external use.
- *
- * @param {string} source - The GLSL source code to evaluate
- * @return {string} The GLSL code with all includes expanded
- */
-
-exports.voidMainRegExp = voidMainRegExp;
-
-function expandShaderIncludes(source) {
-  const pattern = /^[ \t]*#include +<([\w\d./]+)>/gm;
-
-  function replace(match, include) {
-    let chunk = _three.ShaderChunk[include];
-    return chunk ? expandShaderIncludes(chunk) : match;
-  }
-
-  return source.replace(pattern, replace);
-} // Local assign polyfill to avoid importing troika-core
-
-
-const assign = Object.assign || function ()
-/*target, ...sources*/
-{
-  let target = arguments[0];
-
-  for (let i = 1, len = arguments.length; i < len; i++) {
-    let source = arguments[i];
-
-    if (source) {
-      for (let prop in source) {
-        if (source.hasOwnProperty(prop)) {
-          target[prop] = source[prop];
-        }
-      }
-    }
-  }
-
-  return target;
-};
-
-const epoch = Date.now();
-const CONSTRUCTOR_CACHE = new WeakMap();
-const SHADER_UPGRADE_CACHE = new Map(); // Material ids must be integers, but we can't access the increment from Three's `Material` module,
-// so let's choose a sufficiently large starting value that should theoretically never collide.
-
-let materialInstanceId = 1e10;
-/**
- * A utility for creating a custom shader material derived from another material's
- * shaders. This allows you to inject custom shader logic and transforms into the
- * builtin ThreeJS materials without having to recreate them from scratch.
- *
- * @param {THREE.Material} baseMaterial - the original material to derive from
- *
- * @param {Object} options - How the base material should be modified.
- * @param {Object} options.defines - Custom `defines` for the material
- * @param {Object} options.extensions - Custom `extensions` for the material, e.g. `{derivatives: true}`
- * @param {Object} options.uniforms - Custom `uniforms` for use in the modified shader. These can
- *        be accessed and manipulated via the resulting material's `uniforms` property, just like
- *        in a ShaderMaterial. You do not need to repeat the base material's own uniforms here.
- * @param {String} options.timeUniform - If specified, a uniform of this name will be injected into
- *        both shaders, and it will automatically be updated on each render frame with a number of
- *        elapsed milliseconds. The "zero" epoch time is not significant so don't rely on this as a
- *        true calendar time.
- * @param {String} options.vertexDefs - Custom GLSL code to inject into the vertex shader's top-level
- *        definitions, above the `void main()` function.
- * @param {String} options.vertexMainIntro - Custom GLSL code to inject at the top of the vertex
- *        shader's `void main` function.
- * @param {String} options.vertexMainOutro - Custom GLSL code to inject at the end of the vertex
- *        shader's `void main` function.
- * @param {String} options.vertexTransform - Custom GLSL code to manipulate the `position`, `normal`,
- *        and/or `uv` vertex attributes. This code will be wrapped within a standalone function with
- *        those attributes exposed by their normal names as read/write values.
- * @param {String} options.fragmentDefs - Custom GLSL code to inject into the fragment shader's top-level
- *        definitions, above the `void main()` function.
- * @param {String} options.fragmentMainIntro - Custom GLSL code to inject at the top of the fragment
- *        shader's `void main` function.
- * @param {String} options.fragmentMainOutro - Custom GLSL code to inject at the end of the fragment
- *        shader's `void main` function. You can manipulate `gl_FragColor` here but keep in mind it goes
- *        after any of ThreeJS's color postprocessing shader chunks (tonemapping, fog, etc.), so if you
- *        want those to apply to your changes use `fragmentColorTransform` instead.
- * @param {String} options.fragmentColorTransform - Custom GLSL code to manipulate the `gl_FragColor`
- *        output value. Will be injected near the end of the `void main` function, but before any
- *        of ThreeJS's color postprocessing shader chunks (tonemapping, fog, etc.), and before the
- *        `fragmentMainOutro`.
- * @param {function<{vertexShader,fragmentShader}>:{vertexShader,fragmentShader}} options.customRewriter - A function
- *        for performing custom rewrites of the full shader code. Useful if you need to do something
- *        special that's not covered by the other builtin options. This function will be executed before
- *        any other transforms are applied.
- * @param {boolean} options.chained - Set to `true` to prototype-chain the derived material to the base
- *        material, rather than the default behavior of copying it. This allows the derived material to
- *        automatically pick up changes made to the base material and its properties. This can be useful
- *        where the derived material is hidden from the user as an implementation detail, allowing them
- *        to work with the original material like normal. But it can result in unexpected behavior if not
- *        handled carefully.
- *
- * @return {THREE.Material}
- *
- * The returned material will also have two new methods, `getDepthMaterial()` and `getDistanceMaterial()`,
- * which can be called to get a variant of the derived material for use in shadow casting. If the
- * target mesh is expected to cast shadows, then you can assign these to the mesh's `customDepthMaterial`
- * (for directional and spot lights) and/or `customDistanceMaterial` (for point lights) properties to
- * allow the cast shadow to honor your derived shader's vertex transforms and discarded fragments. These
- * will also set a custom `#define IS_DEPTH_MATERIAL` or `#define IS_DISTANCE_MATERIAL` that you can look
- * for in your derived shaders with `#ifdef` to customize their behavior for the depth or distance
- * scenarios, e.g. skipping antialiasing or expensive shader logic.
- */
-
-function createDerivedMaterial(baseMaterial, options) {
-  // Generate a key that is unique to the content of these `options`. We'll use this
-  // throughout for caching and for generating the upgraded shader code. This increases
-  // the likelihood that the resulting shaders will line up across multiple calls so
-  // their GL programs can be shared and cached.
-  const optionsKey = getKeyForOptions(options); // First check to see if we've already derived from this baseMaterial using this
-  // unique set of options, and if so reuse the constructor to avoid some allocations.
-
-  let ctorsByDerivation = CONSTRUCTOR_CACHE.get(baseMaterial);
-
-  if (!ctorsByDerivation) {
-    CONSTRUCTOR_CACHE.set(baseMaterial, ctorsByDerivation = Object.create(null));
-  }
-
-  if (ctorsByDerivation[optionsKey]) {
-    return new ctorsByDerivation[optionsKey]();
-  }
-
-  const privateBeforeCompileProp = `_onBeforeCompile${optionsKey}`; // Private onBeforeCompile handler that injects the modified shaders and uniforms when
-  // the renderer switches to this material's program
-
-  const onBeforeCompile = function (shaderInfo) {
-    baseMaterial.onBeforeCompile.call(this, shaderInfo); // Upgrade the shaders, caching the result by incoming source code
-
-    const cacheKey = optionsKey + '|||' + shaderInfo.vertexShader + '|||' + shaderInfo.fragmentShader;
-    let upgradedShaders = SHADER_UPGRADE_CACHE[cacheKey];
-
-    if (!upgradedShaders) {
-      const upgraded = upgradeShaders(shaderInfo, options, optionsKey);
-      upgradedShaders = SHADER_UPGRADE_CACHE[cacheKey] = upgraded;
-    } // Inject upgraded shaders and uniforms into the program
-
-
-    shaderInfo.vertexShader = upgradedShaders.vertexShader;
-    shaderInfo.fragmentShader = upgradedShaders.fragmentShader;
-    assign(shaderInfo.uniforms, this.uniforms); // Inject auto-updating time uniform if requested
-
-    if (options.timeUniform) {
-      shaderInfo.uniforms[options.timeUniform] = {
-        get value() {
-          return Date.now() - epoch;
-        }
-
-      };
-    } // Users can still add their own handlers on top of ours
-
-
-    if (this[privateBeforeCompileProp]) {
-      this[privateBeforeCompileProp](shaderInfo);
-    }
-  };
-
-  const DerivedMaterial = function DerivedMaterial() {
-    return derive(options.chained ? baseMaterial : baseMaterial.clone());
-  };
-
-  const derive = function (base) {
-    // Prototype chain to the base material
-    const derived = Object.create(base, descriptor); // Store the baseMaterial for reference; this is always the original even when cloning
-
-    Object.defineProperty(derived, 'baseMaterial', {
-      value: baseMaterial
-    }); // Needs its own ids
-
-    Object.defineProperty(derived, 'id', {
-      value: materialInstanceId++
-    });
-    derived.uuid = _three.MathUtils.generateUUID(); // Merge uniforms, defines, and extensions
-
-    derived.uniforms = assign({}, base.uniforms, options.uniforms);
-    derived.defines = assign({}, base.defines, options.defines);
-    derived.defines[`TROIKA_DERIVED_MATERIAL_${optionsKey}`] = ''; //force a program change from the base material
-
-    derived.extensions = assign({}, base.extensions, options.extensions); // Don't inherit EventDispatcher listeners
-
-    derived._listeners = undefined;
-    return derived;
-  };
-
-  const descriptor = {
-    constructor: {
-      value: DerivedMaterial
-    },
-    isDerivedMaterial: {
-      value: true
-    },
-    customProgramCacheKey: {
-      value: function () {
-        return optionsKey;
-      }
-    },
-    onBeforeCompile: {
-      get() {
-        return onBeforeCompile;
-      },
-
-      set(fn) {
-        this[privateBeforeCompileProp] = fn;
-      }
-
-    },
-    copy: {
-      writable: true,
-      configurable: true,
-      value: function (source) {
-        baseMaterial.copy.call(this, source);
-
-        if (!baseMaterial.isShaderMaterial && !baseMaterial.isDerivedMaterial) {
-          assign(this.extensions, source.extensions);
-          assign(this.defines, source.defines);
-          assign(this.uniforms, _three.UniformsUtils.clone(source.uniforms));
-        }
-
-        return this;
-      }
-    },
-    clone: {
-      writable: true,
-      configurable: true,
-      value: function () {
-        const newBase = new baseMaterial.constructor();
-        return derive(newBase).copy(this);
-      }
-    },
-
-    /**
-     * Utility to get a MeshDepthMaterial that will honor this derived material's vertex
-     * transformations and discarded fragments.
-     */
-    getDepthMaterial: {
-      writable: true,
-      configurable: true,
-      value: function () {
-        let depthMaterial = this._depthMaterial;
-
-        if (!depthMaterial) {
-          depthMaterial = this._depthMaterial = createDerivedMaterial(baseMaterial.isDerivedMaterial ? baseMaterial.getDepthMaterial() : new _three.MeshDepthMaterial({
-            depthPacking: _three.RGBADepthPacking
-          }), options);
-          depthMaterial.defines.IS_DEPTH_MATERIAL = '';
-          depthMaterial.uniforms = this.uniforms; //automatically recieve same uniform values
-        }
-
-        return depthMaterial;
-      }
-    },
-
-    /**
-     * Utility to get a MeshDistanceMaterial that will honor this derived material's vertex
-     * transformations and discarded fragments.
-     */
-    getDistanceMaterial: {
-      writable: true,
-      configurable: true,
-      value: function () {
-        let distanceMaterial = this._distanceMaterial;
-
-        if (!distanceMaterial) {
-          distanceMaterial = this._distanceMaterial = createDerivedMaterial(baseMaterial.isDerivedMaterial ? baseMaterial.getDistanceMaterial() : new _three.MeshDistanceMaterial(), options);
-          distanceMaterial.defines.IS_DISTANCE_MATERIAL = '';
-          distanceMaterial.uniforms = this.uniforms; //automatically recieve same uniform values
-        }
-
-        return distanceMaterial;
-      }
-    },
-    dispose: {
-      writable: true,
-      configurable: true,
-
-      value() {
-        const {
-          _depthMaterial,
-          _distanceMaterial
-        } = this;
-        if (_depthMaterial) _depthMaterial.dispose();
-        if (_distanceMaterial) _distanceMaterial.dispose();
-        baseMaterial.dispose.call(this);
-      }
-
-    }
-  };
-  ctorsByDerivation[optionsKey] = DerivedMaterial;
-  return new DerivedMaterial();
-}
-
-function upgradeShaders({
-  vertexShader,
-  fragmentShader
-}, options, key) {
-  let {
-    vertexDefs,
-    vertexMainIntro,
-    vertexMainOutro,
-    vertexTransform,
-    fragmentDefs,
-    fragmentMainIntro,
-    fragmentMainOutro,
-    fragmentColorTransform,
-    customRewriter,
-    timeUniform
-  } = options;
-  vertexDefs = vertexDefs || '';
-  vertexMainIntro = vertexMainIntro || '';
-  vertexMainOutro = vertexMainOutro || '';
-  fragmentDefs = fragmentDefs || '';
-  fragmentMainIntro = fragmentMainIntro || '';
-  fragmentMainOutro = fragmentMainOutro || ''; // Expand includes if needed
-
-  if (vertexTransform || customRewriter) {
-    vertexShader = expandShaderIncludes(vertexShader);
-  }
-
-  if (fragmentColorTransform || customRewriter) {
-    // We need to be able to find postprocessing chunks after include expansion in order to
-    // put them after the fragmentColorTransform, so mark them with comments first. Even if
-    // this particular derivation doesn't have a fragmentColorTransform, other derivations may,
-    // so we still mark them.
-    fragmentShader = fragmentShader.replace(/^[ \t]*#include <((?:tonemapping|encodings|fog|premultiplied_alpha|dithering)_fragment)>/gm, '\n//!BEGIN_POST_CHUNK $1\n$&\n//!END_POST_CHUNK\n');
-    fragmentShader = expandShaderIncludes(fragmentShader);
-  } // Apply custom rewriter function
-
-
-  if (customRewriter) {
-    let res = customRewriter({
-      vertexShader,
-      fragmentShader
-    });
-    vertexShader = res.vertexShader;
-    fragmentShader = res.fragmentShader;
-  } // The fragmentColorTransform needs to go before any postprocessing chunks, so extract
-  // those and re-insert them into the outro in the correct place:
-
-
-  if (fragmentColorTransform) {
-    let postChunks = [];
-    fragmentShader = fragmentShader.replace(/^\/\/!BEGIN_POST_CHUNK[^]+?^\/\/!END_POST_CHUNK/gm, // [^]+? = non-greedy match of any chars including newlines
-    match => {
-      postChunks.push(match);
-      return '';
-    });
-    fragmentMainOutro = `${fragmentColorTransform}\n${postChunks.join('\n')}\n${fragmentMainOutro}`;
-  } // Inject auto-updating time uniform if requested
-
-
-  if (timeUniform) {
-    const code = `\nuniform float ${timeUniform};\n`;
-    vertexDefs = code + vertexDefs;
-    fragmentDefs = code + fragmentDefs;
-  } // Inject a function for the vertexTransform and rename all usages of position/normal/uv
-
-
-  if (vertexTransform) {
-    vertexDefs = `${vertexDefs}
-vec3 troika_position_${key};
-vec3 troika_normal_${key};
-vec2 troika_uv_${key};
-void troikaVertexTransform${key}(inout vec3 position, inout vec3 normal, inout vec2 uv) {
-  ${vertexTransform}
-}
-`;
-    vertexMainIntro = `
-troika_position_${key} = vec3(position);
-troika_normal_${key} = vec3(normal);
-troika_uv_${key} = vec2(uv);
-troikaVertexTransform${key}(troika_position_${key}, troika_normal_${key}, troika_uv_${key});
-${vertexMainIntro}
-`;
-    vertexShader = vertexShader.replace(/\b(position|normal|uv)\b/g, (match, match1, index, fullStr) => {
-      return /\battribute\s+vec[23]\s+$/.test(fullStr.substr(0, index)) ? match1 : `troika_${match1}_${key}`;
-    });
-  } // Inject defs and intro/outro snippets
-
-
-  vertexShader = injectIntoShaderCode(vertexShader, key, vertexDefs, vertexMainIntro, vertexMainOutro);
-  fragmentShader = injectIntoShaderCode(fragmentShader, key, fragmentDefs, fragmentMainIntro, fragmentMainOutro);
-  return {
-    vertexShader,
-    fragmentShader
-  };
-}
-
-function injectIntoShaderCode(shaderCode, id, defs, intro, outro) {
-  if (intro || outro || defs) {
-    shaderCode = shaderCode.replace(voidMainRegExp, `
-${defs}
-void troikaOrigMain${id}() {`);
-    shaderCode += `
-void main() {
-  ${intro}
-  troikaOrigMain${id}();
-  ${outro}
-}`;
-  }
-
-  return shaderCode;
-}
-
-function optionsJsonReplacer(key, value) {
-  return key === 'uniforms' ? undefined : typeof value === 'function' ? value.toString() : value;
-}
-
-let _idCtr = 0;
-const optionsHashesToIds = new Map();
-
-function getKeyForOptions(options) {
-  const optionsHash = JSON.stringify(options, optionsJsonReplacer);
-  let id = optionsHashesToIds.get(optionsHash);
-
-  if (id == null) {
-    optionsHashesToIds.set(optionsHash, id = ++_idCtr);
-  }
-
-  return id;
-} // Copied from threejs WebGLPrograms.js so we can resolve builtin materials to their shaders
-// TODO how can we keep this from getting stale?
-
-
-const MATERIAL_TYPES_TO_SHADERS = {
-  MeshDepthMaterial: 'depth',
-  MeshDistanceMaterial: 'distanceRGBA',
-  MeshNormalMaterial: 'normal',
-  MeshBasicMaterial: 'basic',
-  MeshLambertMaterial: 'lambert',
-  MeshPhongMaterial: 'phong',
-  MeshToonMaterial: 'phong',
-  MeshStandardMaterial: 'physical',
-  MeshPhysicalMaterial: 'physical',
-  MeshMatcapMaterial: 'matcap',
-  LineBasicMaterial: 'basic',
-  LineDashedMaterial: 'dashed',
-  PointsMaterial: 'points',
-  ShadowMaterial: 'shadow',
-  SpriteMaterial: 'sprite'
-};
-/**
- * Given a Three.js `Material` instance, find the shaders/uniforms that will be
- * used to render that material.
- *
- * @param material - the Material instance
- * @return {object} - the material's shader info: `{uniforms:{}, fragmentShader:'', vertexShader:''}`
- */
-
-function getShadersForMaterial(material) {
-  let builtinType = MATERIAL_TYPES_TO_SHADERS[material.type];
-  return builtinType ? _three.ShaderLib[builtinType] : material; //TODO fallback for unknown type?
-}
-/**
- * Find all uniforms and their types within a shader code string.
- *
- * @param {string} shader - The shader code to parse
- * @return {object} mapping of uniform names to their glsl type
- */
-
-
-function getShaderUniformTypes(shader) {
-  let uniformRE = /\buniform\s+(int|float|vec[234])\s+([A-Za-z_][\w]*)/g;
-  let uniforms = Object.create(null);
-  let match;
-
-  while ((match = uniformRE.exec(shader)) !== null) {
-    uniforms[match[2]] = match[1];
-  }
-
-  return uniforms;
-}
-/**
- * @class ShaderFloatArray
- *
- * When writing a custom WebGL shader, sometimes you need to pass it an array of floating
- * point numbers that it can read from. Unfortunately this is very difficult to do in WebGL,
- * because:
- *
- *   - GLSL "array" uniforms can only be of a constant length.
- *   - Textures can only hold floating point numbers in WebGL1 if the `OES_texture_float`
- *     extension is available.
- *
- * ShaderFloatArray is an array-like abstraction that encodes its floating point data into
- * an RGBA texture's four Uint8 components, and provides the corresponding ThreeJS uniforms
- * and GLSL code for you to put in your custom shader to query the float values by array index.
- *
- * This should generally only be used within a fragment shader, as some environments (e.g. iOS)
- * only allow texture lookups in fragment shaders.
- *
- * TODO:
- *   - Fix texture to fill both dimensions so we don't easily hit max texture size limits
- *   - Use a float texture if the extension is available so we can skip the encoding process
- */
-
-
-class ShaderFloatArray {
-  constructor(name) {
-    this.name = name;
-    this.textureUniform = `dataTex_${name}`;
-    this.textureSizeUniform = `dataTexSize_${name}`;
-    this.multiplierUniform = `dataMultiplier_${name}`;
-    /**
-     * @property dataSizeUniform - the name of the GLSL uniform that will hold the
-     * length of the data array.
-     * @type {string}
-     */
-
-    this.dataSizeUniform = `dataSize_${name}`;
-    /**
-     * @property readFunction - the name of the GLSL function that should be called to
-     * read data out of the array by index.
-     * @type {string}
-     */
-
-    this.readFunction = `readData_${name}`;
-    this._raw = new Float32Array(0);
-    this._texture = new _three.DataTexture(new Uint8Array(0), 0, 1);
-    this._length = 0;
-    this._multiplier = 1;
-  }
-  /**
-   * @property length - the current length of the data array
-   * @type {number}
-   */
-
-
-  set length(value) {
-    if (value !== this._length) {
-      // Find nearest power-of-2 that holds the new length
-      const size = Math.pow(2, Math.ceil(Math.log2(value)));
-      const raw = this._raw;
-
-      if (size < raw.length) {
-        this._raw = raw.subarray(0, size);
-      } else if (size > raw.length) {
-        this._raw = new Float32Array(size);
-
-        this._raw.set(raw);
-      }
-
-      this._length = value;
-    }
-  }
-
-  get length() {
-    return this._length;
-  }
-  /**
-   * Add a value to the end of the data array
-   * @param {number} value
-   */
-
-
-  push(value) {
-    return this.set(this.length++, value);
-  }
-  /**
-   * Replace the existing data with that from a new array
-   * @param {ArrayLike<number>} array
-   */
-
-
-  setArray(array) {
-    this.length = array.length;
-
-    this._raw.set(array);
-
-    this._needsRepack = true;
-  }
-  /**
-   * Get the current value at index
-   * @param {number} index
-   * @return {number}
-   */
-
-
-  get(index) {
-    return this._raw[index];
-  }
-
-  set(index, value) {
-    if (index + 1 > this._length) {
-      this.length = index + 1;
-    }
-
-    if (value !== this._raw[index]) {
-      this._raw[index] = value;
-      encodeFloatToFourInts(value / this._multiplier, this._texture.image.data, index * 4);
-      this._needsMultCheck = true;
-    }
-  }
-  /**
-   * Make a copy of this ShaderFloatArray
-   * @return {ShaderFloatArray}
-   */
-
-
-  clone() {
-    const clone = new ShaderFloatArray(this.name);
-    clone.setArray(this._raw);
-    return clone;
-  }
-  /**
-   * Retrieve the set of Uniforms that must to be added to the target ShaderMaterial or
-   * DerivedMaterial, to feed the GLSL code generated by {@link #getShaderHeaderCode}.
-   * @return {Object}
-   */
-
-
-  getShaderUniforms() {
-    const me = this;
-    return {
-      [this.textureUniform]: {
-        get value() {
-          me._sync();
-
-          return me._texture;
-        }
-
-      },
-      [this.textureSizeUniform]: {
-        get value() {
-          me._sync();
-
-          return me._texture.image.width;
-        }
-
-      },
-      [this.dataSizeUniform]: {
-        get value() {
-          me._sync();
-
-          return me.length;
-        }
-
-      },
-      [this.multiplierUniform]: {
-        get value() {
-          me._sync();
-
-          return me._multiplier;
-        }
-
-      }
-    };
-  }
-  /**
-   * Retrieve the GLSL code that must be injected into the shader's definitions area to
-   * enable reading from the data array. This exposes a function with a name matching
-   * the {@link #readFunction} property, which other shader code can call to read values
-   * from the array by their index.
-   * @return {string}
-   */
-
-
-  getShaderHeaderCode() {
-    const {
-      textureUniform,
-      textureSizeUniform,
-      dataSizeUniform,
-      multiplierUniform,
-      readFunction
-    } = this;
-    return `
-uniform sampler2D ${textureUniform};
-uniform float ${textureSizeUniform};
-uniform float ${dataSizeUniform};
-uniform float ${multiplierUniform};
-
-float ${readFunction}(float index) {
-  vec2 texUV = vec2((index + 0.5) / ${textureSizeUniform}, 0.5);
-  vec4 pixel = texture2D(${textureUniform}, texUV);
-  return dot(pixel, 1.0 / vec4(1.0, 255.0, 65025.0, 16581375.0)) * ${multiplierUniform};
-}
-`;
-  }
-  /**
-   * @private Synchronize any pending changes to the underlying DataTexture
-   */
-
-
-  _sync() {
-    const tex = this._texture;
-    const raw = this._raw;
-    let needsRepack = this._needsRepack; // If the size of the raw array changed, resize the texture to match
-
-    if (raw.length !== tex.image.width) {
-      tex.image = {
-        data: new Uint8Array(raw.length * 4),
-        width: raw.length,
-        height: 1
-      };
-      needsRepack = true;
-    } // If the values changed, check the multiplier. This should be a value by which
-    // all the values are divided to constrain them to the [0,1] range required by
-    // the Uint8 packing algorithm. We pick the nearest power of 2 that holds the
-    // maximum value for greatest accuracy.
-
-
-    if (needsRepack || this._needsMultCheck) {
-      const maxVal = this._raw.reduce((a, b) => Math.max(a, b), 0);
-
-      const mult = Math.pow(2, Math.ceil(Math.log2(maxVal)));
-
-      if (mult !== this._multiplier) {
-        this._multiplier = mult;
-        needsRepack = true;
-      }
-
-      tex.needsUpdate = true;
-      this._needsMultCheck = false;
-    } // If things changed in a way we need to repack, do so
-
-
-    if (needsRepack) {
-      for (let i = 0, len = raw.length, mult = this._multiplier; i < len; i++) {
-        encodeFloatToFourInts(raw[i] / mult, tex.image.data, i * 4);
-      }
-
-      this._needsRepack = false;
-    }
-  }
-
-}
-/**
- * Encode a floating point number into a set of four 8-bit integers.
- * Also see the companion decoder function #decodeFloatFromFourInts.
- *
- * This is adapted to JavaScript from the basic approach at
- * http://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/
- * but writes out integers in the range 0-255 instead of floats in the range 0-1
- * so they can be more easily used in a Uint8Array for standard WebGL rgba textures.
- *
- * Some precision will necessarily be lost during the encoding and decoding process.
- * Testing shows that the maximum precision error is ~1.18e-10 which should be good
- * enough for most cases.
- *
- * @param {Number} value - the floating point number to encode. Must be in the range [0, 1]
- *        otherwise the results will be incorrect.
- * @param {Array|Uint8Array} array - an array into which the four ints should be written
- * @param {Number} startIndex - index in the output array at which to start writing the ints
- * @return {Array|Uint8Array}
- */
-
-
-exports.ShaderFloatArray = ShaderFloatArray;
-
-function encodeFloatToFourInts(value, array, startIndex) {
-  // This is adapted to JS from the basic approach at
-  // http://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/
-  // but writes to a Uint8Array instead of floats. Input values must be in
-  // the range [0, 1]. The maximum error after encoding and decoding is ~1.18e-10
-  let enc0 = 255 * value;
-  let enc1 = 255 * (enc0 % 1);
-  let enc2 = 255 * (enc1 % 1);
-  let enc3 = 255 * (enc2 % 1);
-  enc0 = enc0 & 255;
-  enc1 = enc1 & 255;
-  enc2 = enc2 & 255;
-  enc3 = Math.round(enc3) & 255;
-  array[startIndex] = enc0;
-  array[startIndex + 1] = enc1;
-  array[startIndex + 2] = enc2;
-  array[startIndex + 3] = enc3;
-  return array;
-}
-/*
-Input geometry is a cylinder with r=1, height in y dimension from 0 to 1,
-divided into a reasonable number of height segments.
-*/
-
-
-const vertexDefs = `
-uniform vec3 pointA;
-uniform vec3 controlA;
-uniform vec3 controlB;
-uniform vec3 pointB;
-uniform float radius;
-varying float bezierT;
-
-vec3 cubicBezier(vec3 p1, vec3 c1, vec3 c2, vec3 p2, float t) {
-  float t2 = 1.0 - t;
-  float b0 = t2 * t2 * t2;
-  float b1 = 3.0 * t * t2 * t2;
-  float b2 = 3.0 * t * t * t2;
-  float b3 = t * t * t;
-  return b0 * p1 + b1 * c1 + b2 * c2 + b3 * p2;
-}
-
-vec3 cubicBezierDerivative(vec3 p1, vec3 c1, vec3 c2, vec3 p2, float t) {
-  float t2 = 1.0 - t;
-  return -3.0 * p1 * t2 * t2 +
-    c1 * (3.0 * t2 * t2 - 6.0 * t2 * t) +
-    c2 * (6.0 * t2 * t - 3.0 * t * t) +
-    3.0 * p2 * t * t;
-}
-`;
-const vertexTransform = `
-float t = position.y;
-bezierT = t;
-vec3 bezierCenterPos = cubicBezier(pointA, controlA, controlB, pointB, t);
-vec3 bezierDir = normalize(cubicBezierDerivative(pointA, controlA, controlB, pointB, t));
-
-// Make "sideways" always perpendicular to the camera ray; this ensures that any twists
-// in the cylinder occur where you won't see them: 
-vec3 viewDirection = normalMatrix * vec3(0.0, 0.0, 1.0);
-if (bezierDir == viewDirection) {
-  bezierDir = normalize(cubicBezierDerivative(pointA, controlA, controlB, pointB, t == 1.0 ? t - 0.0001 : t + 0.0001));
-}
-vec3 sideways = normalize(cross(bezierDir, viewDirection));
-vec3 upish = normalize(cross(sideways, bezierDir));
-
-// Build a matrix for transforming this disc in the cylinder:
-mat4 discTx;
-discTx[0].xyz = sideways * radius;
-discTx[1].xyz = bezierDir * radius;
-discTx[2].xyz = upish * radius;
-discTx[3].xyz = bezierCenterPos;
-discTx[3][3] = 1.0;
-
-// Apply transform, ignoring original y
-position = (discTx * vec4(position.x, 0.0, position.z, 1.0)).xyz;
-normal = normalize(mat3(discTx) * normal);
-`;
-const fragmentDefs = `
-uniform vec3 dashing;
-varying float bezierT;
-`;
-const fragmentMainIntro = `
-if (dashing.x + dashing.y > 0.0) {
-  float dashFrac = mod(bezierT - dashing.z, dashing.x + dashing.y);
-  if (dashFrac > dashing.x) {
-    discard;
-  }
-}
-`; // Debugging: separate color for each of the 6 sides:
-// const fragmentColorTransform = `
-// float sideNum = floor(vUV.x * 6.0);
-// vec3 mixColor = sideNum < 1.0 ? vec3(1.0, 0.0, 0.0) :
-//   sideNum < 2.0 ? vec3(0.0, 1.0, 1.0) :
-//   sideNum < 3.0 ? vec3(1.0, 1.0, 0.0) :
-//   sideNum < 4.0 ? vec3(0.0, 0.0, 1.0) :
-//   sideNum < 5.0 ? vec3(0.0, 1.0, 0.0) :
-//   vec3(1.0, 0.0, 1.0);
-// gl_FragColor.xyz = mix(gl_FragColor.xyz, mixColor, 0.5);
-// `
-
-function createBezierMeshMaterial(baseMaterial) {
-  return createDerivedMaterial(baseMaterial, {
-    chained: true,
-    uniforms: {
-      pointA: {
-        value: new _three.Vector3()
-      },
-      controlA: {
-        value: new _three.Vector3()
-      },
-      controlB: {
-        value: new _three.Vector3()
-      },
-      pointB: {
-        value: new _three.Vector3()
-      },
-      radius: {
-        value: 0.01
-      },
-      dashing: {
-        value: new _three.Vector3()
-      } //on, off, offset
-
-    },
-    vertexDefs,
-    vertexTransform,
-    fragmentDefs,
-    fragmentMainIntro
-  });
-}
-
-let geometry = null;
-const defaultBaseMaterial = /*#__PURE__*/new _three.MeshStandardMaterial({
-  color: 0xffffff,
-  side: _three.DoubleSide
-});
-/**
- * A ThreeJS `Mesh` that bends a tube shape along a 3D cubic bezier path. The bending is done
- * by deforming a straight cylindrical geometry in the vertex shader based on a set of four
- * control point uniforms. It patches the necessary GLSL into the mesh's assigned `material`
- * automatically.
- *
- * The cubiz bezier path is determined by its four `Vector3` properties:
- * - `pointA`
- * - `controlA`
- * - `controlB`
- * - `pointB`
- *
- * The tube's radius is controlled by its `radius` property, which defaults to `0.01`.
- *
- * You can also give the tube a dashed appearance with two properties:
- *
- * - `dashArray` - an array of two numbers, defining the length of "on" and "off" parts of
- *   the dash. Each is a 0-1 ratio of the entire path's length. (Actually this is the `t` length
- *   used as input to the cubic bezier function, not its visible length.)
- * - `dashOffset` - offset of where the dash starts. You can animate this to make the dashes move.
- *
- * Note that the dashes will appear like a hollow tube, not solid. This will be more apparent on
- * thicker tubes.
- *
- * TODO: proper geometry bounding sphere and raycasting
- * TODO: allow control of the geometry's segment counts
- */
-
-class BezierMesh extends _three.Mesh {
-  static getGeometry() {
-    return geometry || (geometry = new _three.CylinderBufferGeometry(1, 1, 1, 6, 64).translate(0, 0.5, 0));
-  }
-
-  constructor() {
-    super(BezierMesh.getGeometry(), defaultBaseMaterial);
-    this.pointA = new _three.Vector3();
-    this.controlA = new _three.Vector3();
-    this.controlB = new _three.Vector3();
-    this.pointB = new _three.Vector3();
-    this.radius = 0.01;
-    this.dashArray = new _three.Vector2();
-    this.dashOffset = 0; // TODO - disabling frustum culling until I figure out how to customize the
-    //  geometry's bounding sphere that gets used
-
-    this.frustumCulled = false;
-  } // Handler for automatically wrapping the base material with our upgrades. We do the wrapping
-  // lazily on _read_ rather than write to avoid unnecessary wrapping on transient values.
-
-
-  get material() {
-    let derivedMaterial = this._derivedMaterial;
-    const baseMaterial = this._baseMaterial || this._defaultMaterial || (this._defaultMaterial = defaultBaseMaterial.clone());
-
-    if (!derivedMaterial || derivedMaterial.baseMaterial !== baseMaterial) {
-      derivedMaterial = this._derivedMaterial = createBezierMeshMaterial(baseMaterial); // dispose the derived material when its base material is disposed:
-
-      baseMaterial.addEventListener('dispose', function onDispose() {
-        baseMaterial.removeEventListener('dispose', onDispose);
-        derivedMaterial.dispose();
-      });
-    }
-
-    return derivedMaterial;
-  }
-
-  set material(baseMaterial) {
-    this._baseMaterial = baseMaterial;
-  } // Create and update material for shadows upon request:
-
-
-  get customDepthMaterial() {
-    return this.material.getDepthMaterial();
-  }
-
-  get customDistanceMaterial() {
-    return this.material.getDistanceMaterial();
-  }
-
-  onBeforeRender(shaderInfo) {
-    const {
-      uniforms
-    } = this.material;
-    const {
-      pointA,
-      controlA,
-      controlB,
-      pointB,
-      radius,
-      dashArray,
-      dashOffset
-    } = this;
-    uniforms.pointA.value.copy(pointA);
-    uniforms.controlA.value.copy(controlA);
-    uniforms.controlB.value.copy(controlB);
-    uniforms.pointB.value.copy(pointB);
-    uniforms.radius.value = radius;
-    uniforms.dashing.value.set(dashArray.x, dashArray.y, dashOffset || 0);
-  }
-
-  raycast(raycaster, intersects) {// TODO - just fail for now
-  }
-
-}
-
-exports.BezierMesh = BezierMesh;
-},{"three":"node_modules/three/build/three.module.js"}],"node_modules/troika-three-text/dist/troika-three-text.esm.js":[function(require,module,exports) {
-var process = require("process");
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.configureTextBuilder = configureTextBuilder;
-exports.createTextDerivedMaterial = createTextDerivedMaterial;
-exports.getCaretAtPoint = getCaretAtPoint;
-exports.getSelectionRects = getSelectionRects;
-exports.preloadFont = preloadFont;
-exports.fontProcessorWorkerModule = exports.Text = exports.GlyphsGeometry = void 0;
-
-var _three = require("three");
-
-var _troikaWorkerUtils = require("troika-worker-utils");
-
-var _troikaThreeUtils = require("troika-three-utils");
-
-/**
- * Initializes and returns a function to generate an SDF texture for a given glyph.
- * @param {function} createGlyphSegmentsIndex - factory for a GlyphSegmentsIndex implementation.
- * @param {number} config.sdfExponent
- * @param {number} config.sdfMargin
- *
- * @return {function(Object): {renderingBounds: [minX, minY, maxX, maxY], textureData: Uint8Array}}
- */
-function createSDFGenerator(createGlyphSegmentsIndex, config) {
-  const {
-    sdfExponent,
-    sdfMargin
-  } = config;
-  /**
-   * How many straight line segments to use when approximating a glyph's quadratic/cubic bezier curves.
-   */
-
-  const CURVE_POINTS = 16;
-  /**
-   * Find the point on a quadratic bezier curve at t where t is in the range [0, 1]
-   */
-
-  function pointOnQuadraticBezier(x0, y0, x1, y1, x2, y2, t) {
-    const t2 = 1 - t;
-    return {
-      x: t2 * t2 * x0 + 2 * t2 * t * x1 + t * t * x2,
-      y: t2 * t2 * y0 + 2 * t2 * t * y1 + t * t * y2
-    };
-  }
-  /**
-   * Find the point on a cubic bezier curve at t where t is in the range [0, 1]
-   */
-
-
-  function pointOnCubicBezier(x0, y0, x1, y1, x2, y2, x3, y3, t) {
-    const t2 = 1 - t;
-    return {
-      x: t2 * t2 * t2 * x0 + 3 * t2 * t2 * t * x1 + 3 * t2 * t * t * x2 + t * t * t * x3,
-      y: t2 * t2 * t2 * y0 + 3 * t2 * t2 * t * y1 + 3 * t2 * t * t * y2 + t * t * t * y3
-    };
-  }
-  /**
-   * Generate an SDF texture segment for a single glyph.
-   * @param {object} glyphObj
-   * @param {number} sdfSize - the length of one side of the SDF image.
-   *        Larger images encode more details. Must be a power of 2.
-   * @return {{textureData: Uint8Array, renderingBounds: *[]}}
-   */
-
-
-  function generateSDF(glyphObj, sdfSize) {
-    //console.time('glyphSDF')
-    const textureData = new Uint8Array(sdfSize * sdfSize); // Determine mapping between glyph grid coords and sdf grid coords
-
-    const glyphW = glyphObj.xMax - glyphObj.xMin;
-    const glyphH = glyphObj.yMax - glyphObj.yMin; // Choose a maximum search distance radius in font units, based on the glyph's max dimensions
-
-    const fontUnitsMaxSearchDist = Math.max(glyphW, glyphH); // Margin - add an extra 0.5 over the configured value because the outer 0.5 doesn't contain
-    // useful interpolated values and will be ignored anyway.
-
-    const fontUnitsMargin = Math.max(glyphW, glyphH) / sdfSize * (sdfMargin * sdfSize + 0.5); // Metrics of the texture/quad in font units
-
-    const textureMinFontX = glyphObj.xMin - fontUnitsMargin;
-    const textureMinFontY = glyphObj.yMin - fontUnitsMargin;
-    const textureMaxFontX = glyphObj.xMax + fontUnitsMargin;
-    const textureMaxFontY = glyphObj.yMax + fontUnitsMargin;
-    const fontUnitsTextureWidth = textureMaxFontX - textureMinFontX;
-    const fontUnitsTextureHeight = textureMaxFontY - textureMinFontY;
-    const fontUnitsTextureMaxDim = Math.max(fontUnitsTextureWidth, fontUnitsTextureHeight);
-
-    function textureXToFontX(x) {
-      return textureMinFontX + fontUnitsTextureWidth * x / sdfSize;
-    }
-
-    function textureYToFontY(y) {
-      return textureMinFontY + fontUnitsTextureHeight * y / sdfSize;
-    }
-
-    if (glyphObj.pathCommandCount) {
-      //whitespace chars will have no commands, so we can skip all this
-      // Decompose all paths into straight line segments and add them to a quadtree
-      const lineSegmentsIndex = createGlyphSegmentsIndex(glyphObj);
-      let firstX, firstY, prevX, prevY;
-      glyphObj.forEachPathCommand((type, x0, y0, x1, y1, x2, y2) => {
-        switch (type) {
-          case 'M':
-            prevX = firstX = x0;
-            prevY = firstY = y0;
-            break;
-
-          case 'L':
-            if (x0 !== prevX || y0 !== prevY) {
-              //yup, some fonts have zero-length line commands
-              lineSegmentsIndex.addLineSegment(prevX, prevY, prevX = x0, prevY = y0);
-            }
-
-            break;
-
-          case 'Q':
-            {
-              let prevPoint = {
-                x: prevX,
-                y: prevY
-              };
-
-              for (let i = 1; i < CURVE_POINTS; i++) {
-                let nextPoint = pointOnQuadraticBezier(prevX, prevY, x0, y0, x1, y1, i / (CURVE_POINTS - 1));
-                lineSegmentsIndex.addLineSegment(prevPoint.x, prevPoint.y, nextPoint.x, nextPoint.y);
-                prevPoint = nextPoint;
-              }
-
-              prevX = x1;
-              prevY = y1;
-              break;
-            }
-
-          case 'C':
-            {
-              let prevPoint = {
-                x: prevX,
-                y: prevY
-              };
-
-              for (let i = 1; i < CURVE_POINTS; i++) {
-                let nextPoint = pointOnCubicBezier(prevX, prevY, x0, y0, x1, y1, x2, y2, i / (CURVE_POINTS - 1));
-                lineSegmentsIndex.addLineSegment(prevPoint.x, prevPoint.y, nextPoint.x, nextPoint.y);
-                prevPoint = nextPoint;
-              }
-
-              prevX = x2;
-              prevY = y2;
-              break;
-            }
-
-          case 'Z':
-            if (prevX !== firstX || prevY !== firstY) {
-              lineSegmentsIndex.addLineSegment(prevX, prevY, firstX, firstY);
-            }
-
-            break;
-        }
-      }); // For each target SDF texel, find the distance from its center to its nearest line segment,
-      // map that distance to an alpha value, and write that alpha to the texel
-
-      for (let sdfX = 0; sdfX < sdfSize; sdfX++) {
-        for (let sdfY = 0; sdfY < sdfSize; sdfY++) {
-          const signedDist = lineSegmentsIndex.findNearestSignedDistance(textureXToFontX(sdfX + 0.5), textureYToFontY(sdfY + 0.5), fontUnitsMaxSearchDist); // Use an exponential scale to ensure the texels very near the glyph path have adequate
-          // precision, while allowing the distance field to cover the entire texture, given that
-          // there are only 8 bits available. Formula visualized: https://www.desmos.com/calculator/uiaq5aqiam
-
-          let alpha = Math.pow(1 - Math.abs(signedDist) / fontUnitsTextureMaxDim, sdfExponent) / 2;
-
-          if (signedDist < 0) {
-            alpha = 1 - alpha;
-          }
-
-          alpha = Math.max(0, Math.min(255, Math.round(alpha * 255))); //clamp
-
-          textureData[sdfY * sdfSize + sdfX] = alpha;
-        }
-      }
-    } //console.timeEnd('glyphSDF')
-
-
-    return {
-      textureData: textureData,
-      renderingBounds: [textureMinFontX, textureMinFontY, textureMaxFontX, textureMaxFontY]
-    };
-  }
-
-  return generateSDF;
-}
-/**
- * Creates a self-contained environment for processing text rendering requests.
- *
- * It is important that this function has no closure dependencies, so that it can be easily injected
- * into the source for a Worker without requiring a build step or complex dependency loading. All its
- * dependencies must be passed in at initialization.
- *
- * @param {function} fontParser - a function that accepts an ArrayBuffer of the font data and returns
- * a standardized structure giving access to the font and its glyphs:
- *   {
- *     unitsPerEm: number,
- *     ascender: number,
- *     descender: number,
- *     forEachGlyph(string, fontSize, letterSpacing, callback) {
- *       //invokes callback for each glyph to render, passing it an object:
- *       callback({
- *         index: number,
- *         advanceWidth: number,
- *         xMin: number,
- *         yMin: number,
- *         xMax: number,
- *         yMax: number,
- *         pathCommandCount: number,
- *         forEachPathCommand(callback) {
- *           //invokes callback for each path command, with args:
- *           callback(
- *             type: 'M|L|C|Q|Z',
- *             ...args //0 to 6 args depending on the type
- *           )
- *         }
- *       })
- *     }
- *   }
- * @param {function} sdfGenerator - a function that accepts a glyph object and generates an SDF texture
- * from it.
- * @param {Object} config
- * @return {Object}
- */
-
-
-function createFontProcessor(fontParser, sdfGenerator, config) {
-  const {
-    defaultFontURL
-  } = config;
-  /**
-   * @private
-   * Holds data about font glyphs and how they relate to SDF atlases
-   *
-   * {
-   *   'fontUrl@sdfSize': {
-   *     fontObj: {}, //result of the fontParser
-   *     glyphs: {
-   *       [glyphIndex]: {
-   *         atlasIndex: 0,
-   *         glyphObj: {}, //glyph object from the fontParser
-   *         renderingBounds: [x0, y0, x1, y1]
-   *       },
-   *       ...
-   *     },
-   *     glyphCount: 123
-   *   }
-   * }
-   */
-
-  const fontAtlases = Object.create(null);
-  /**
-   * Holds parsed font objects by url
-   */
-
-  const fonts = Object.create(null);
-  const INF = Infinity;
-  /**
-   * Load a given font url
-   */
-
-  function doLoadFont(url, callback) {
-    function tryLoad() {
-      const onError = err => {
-        console.error(`Failure loading font ${url}${url === defaultFontURL ? '' : '; trying fallback'}`, err);
-
-        if (url !== defaultFontURL) {
-          url = defaultFontURL;
-          tryLoad();
-        }
-      };
-
-      try {
-        const request = new XMLHttpRequest();
-        request.open('get', url, true);
-        request.responseType = 'arraybuffer';
-
-        request.onload = function () {
-          if (request.status >= 400) {
-            onError(new Error(request.statusText));
-          } else if (request.status > 0) {
-            try {
-              const fontObj = fontParser(request.response);
-              callback(fontObj);
-            } catch (e) {
-              onError(e);
-            }
-          }
-        };
-
-        request.onerror = onError;
-        request.send();
-      } catch (err) {
-        onError(err);
-      }
-    }
-
-    tryLoad();
-  }
-  /**
-   * Load a given font url if needed, invoking a callback when it's loaded. If already
-   * loaded, the callback will be called synchronously.
-   */
-
-
-  function loadFont(fontUrl, callback) {
-    if (!fontUrl) fontUrl = defaultFontURL;
-    let font = fonts[fontUrl];
-
-    if (font) {
-      // if currently loading font, add to callbacks, otherwise execute immediately
-      if (font.pending) {
-        font.pending.push(callback);
-      } else {
-        callback(font);
-      }
-    } else {
-      fonts[fontUrl] = {
-        pending: [callback]
-      };
-      doLoadFont(fontUrl, fontObj => {
-        let callbacks = fonts[fontUrl].pending;
-        fonts[fontUrl] = fontObj;
-        callbacks.forEach(cb => cb(fontObj));
-      });
-    }
-  }
-  /**
-   * Get the atlas data for a given font url, loading it from the network and initializing
-   * its atlas data objects if necessary.
-   */
-
-
-  function getSdfAtlas(fontUrl, sdfGlyphSize, callback) {
-    if (!fontUrl) fontUrl = defaultFontURL;
-    let atlasKey = `${fontUrl}@${sdfGlyphSize}`;
-    let atlas = fontAtlases[atlasKey];
-
-    if (atlas) {
-      callback(atlas);
-    } else {
-      loadFont(fontUrl, fontObj => {
-        atlas = fontAtlases[atlasKey] || (fontAtlases[atlasKey] = {
-          fontObj: fontObj,
-          glyphs: {},
-          glyphCount: 0
-        });
-        callback(atlas);
-      });
-    }
-  }
-  /**
-   * Main entry point.
-   * Process a text string with given font and formatting parameters, and return all info
-   * necessary to render all its glyphs.
-   */
-
-
-  function process({
-    text = '',
-    font = defaultFontURL,
-    sdfGlyphSize = 64,
-    fontSize = 1,
-    letterSpacing = 0,
-    lineHeight = 'normal',
-    maxWidth = INF,
-    textAlign = 'left',
-    textIndent = 0,
-    whiteSpace = 'normal',
-    overflowWrap = 'normal',
-    anchorX = 0,
-    anchorY = 0,
-    includeCaretPositions = false,
-    chunkedBoundsSize = 8192,
-    colorRanges = null
-  }, callback, metricsOnly = false) {
-    const mainStart = now();
-    const timings = {
-      total: 0,
-      fontLoad: 0,
-      layout: 0,
-      sdf: {},
-      sdfTotal: 0
-    }; // Ensure newlines are normalized
-
-    if (text.indexOf('\r') > -1) {
-      console.warn('FontProcessor.process: got text with \\r chars; normalizing to \\n');
-      text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    } // Ensure we've got numbers not strings
-
-
-    fontSize = +fontSize;
-    letterSpacing = +letterSpacing;
-    maxWidth = +maxWidth;
-    lineHeight = lineHeight || 'normal';
-    textIndent = +textIndent;
-    getSdfAtlas(font, sdfGlyphSize, atlas => {
-      const fontObj = atlas.fontObj;
-      const hasMaxWidth = isFinite(maxWidth);
-      let newGlyphs = null;
-      let glyphBounds = null;
-      let glyphAtlasIndices = null;
-      let glyphColors = null;
-      let caretPositions = null;
-      let visibleBounds = null;
-      let chunkedBounds = null;
-      let maxLineWidth = 0;
-      let renderableGlyphCount = 0;
-      let canWrap = whiteSpace !== 'nowrap';
-      const {
-        ascender,
-        descender,
-        unitsPerEm
-      } = fontObj;
-      timings.fontLoad = now() - mainStart;
-      const layoutStart = now(); // Find conversion between native font units and fontSize units; this will already be done
-      // for the gx/gy values below but everything else we'll need to convert
-
-      const fontSizeMult = fontSize / unitsPerEm; // Determine appropriate value for 'normal' line height based on the font's actual metrics
-      // TODO this does not guarantee individual glyphs won't exceed the line height, e.g. Roboto; should we use yMin/Max instead?
-
-      if (lineHeight === 'normal') {
-        lineHeight = (ascender - descender) / unitsPerEm;
-      } // Determine line height and leading adjustments
-
-
-      lineHeight = lineHeight * fontSize;
-      const halfLeading = (lineHeight - (ascender - descender) * fontSizeMult) / 2;
-      const topBaseline = -(ascender * fontSizeMult + halfLeading);
-      const caretHeight = Math.min(lineHeight, (ascender - descender) * fontSizeMult);
-      const caretBottomOffset = (ascender + descender) / 2 * fontSizeMult - caretHeight / 2; // Distribute glyphs into lines based on wrapping
-
-      let lineXOffset = textIndent;
-      let currentLine = new TextLine();
-      const lines = [currentLine];
-      fontObj.forEachGlyph(text, fontSize, letterSpacing, (glyphObj, glyphX, charIndex) => {
-        const char = text.charAt(charIndex);
-        const glyphWidth = glyphObj.advanceWidth * fontSizeMult;
-        const curLineCount = currentLine.count;
-        let nextLine; // Calc isWhitespace and isEmpty once per glyphObj
-
-        if (!('isEmpty' in glyphObj)) {
-          glyphObj.isWhitespace = !!char && /\s/.test(char);
-          glyphObj.isEmpty = glyphObj.xMin === glyphObj.xMax || glyphObj.yMin === glyphObj.yMax;
-        }
-
-        if (!glyphObj.isWhitespace && !glyphObj.isEmpty) {
-          renderableGlyphCount++;
-        } // If a non-whitespace character overflows the max width, we need to soft-wrap
-
-
-        if (canWrap && hasMaxWidth && !glyphObj.isWhitespace && glyphX + glyphWidth + lineXOffset > maxWidth && curLineCount) {
-          // If it's the first char after a whitespace, start a new line
-          if (currentLine.glyphAt(curLineCount - 1).glyphObj.isWhitespace) {
-            nextLine = new TextLine();
-            lineXOffset = -glyphX;
-          } else {
-            // Back up looking for a whitespace character to wrap at
-            for (let i = curLineCount; i--;) {
-              // If we got the start of the line there's no soft break point; make hard break if overflowWrap='break-word'
-              if (i === 0 && overflowWrap === 'break-word') {
-                nextLine = new TextLine();
-                lineXOffset = -glyphX;
-                break;
-              } // Found a soft break point; move all chars since it to a new line
-              else if (currentLine.glyphAt(i).glyphObj.isWhitespace) {
-                  nextLine = currentLine.splitAt(i + 1);
-                  const adjustX = nextLine.glyphAt(0).x;
-                  lineXOffset -= adjustX;
-
-                  for (let j = nextLine.count; j--;) {
-                    nextLine.glyphAt(j).x -= adjustX;
-                  }
-
-                  break;
-                }
-            }
-          }
-
-          if (nextLine) {
-            currentLine.isSoftWrapped = true;
-            currentLine = nextLine;
-            lines.push(currentLine);
-            maxLineWidth = maxWidth; //after soft wrapping use maxWidth as calculated width
-          }
-        }
-
-        let fly = currentLine.glyphAt(currentLine.count);
-        fly.glyphObj = glyphObj;
-        fly.x = glyphX + lineXOffset;
-        fly.width = glyphWidth;
-        fly.charIndex = charIndex; // Handle hard line breaks
-
-        if (char === '\n') {
-          currentLine = new TextLine();
-          lines.push(currentLine);
-          lineXOffset = -(glyphX + glyphWidth + letterSpacing * fontSize) + textIndent;
-        }
-      }); // Calculate width of each line (excluding trailing whitespace) and maximum block width
-
-      lines.forEach(line => {
-        for (let i = line.count; i--;) {
-          let {
-            glyphObj,
-            x,
-            width
-          } = line.glyphAt(i);
-
-          if (!glyphObj.isWhitespace) {
-            line.width = x + width;
-
-            if (line.width > maxLineWidth) {
-              maxLineWidth = line.width;
-            }
-
-            return;
-          }
-        }
-      }); // Find overall position adjustments for anchoring
-
-      let anchorXOffset = 0;
-      let anchorYOffset = 0;
-
-      if (anchorX) {
-        if (typeof anchorX === 'number') {
-          anchorXOffset = -anchorX;
-        } else if (typeof anchorX === 'string') {
-          anchorXOffset = -maxLineWidth * (anchorX === 'left' ? 0 : anchorX === 'center' ? 0.5 : anchorX === 'right' ? 1 : parsePercent(anchorX));
-        }
-      }
-
-      if (anchorY) {
-        if (typeof anchorY === 'number') {
-          anchorYOffset = -anchorY;
-        } else if (typeof anchorY === 'string') {
-          let height = lines.length * lineHeight;
-          anchorYOffset = anchorY === 'top' ? 0 : anchorY === 'top-baseline' ? -topBaseline : anchorY === 'middle' ? height / 2 : anchorY === 'bottom' ? height : anchorY === 'bottom-baseline' ? height - halfLeading + descender * fontSizeMult : parsePercent(anchorY) * height;
-        }
-      }
-
-      if (!metricsOnly) {
-        // Process each line, applying alignment offsets, adding each glyph to the atlas, and
-        // collecting all renderable glyphs into a single collection.
-        glyphBounds = new Float32Array(renderableGlyphCount * 4);
-        glyphAtlasIndices = new Float32Array(renderableGlyphCount);
-        visibleBounds = [INF, INF, -INF, -INF];
-        chunkedBounds = [];
-        let lineYOffset = topBaseline;
-
-        if (includeCaretPositions) {
-          caretPositions = new Float32Array(text.length * 3);
-        }
-
-        if (colorRanges) {
-          glyphColors = new Uint8Array(renderableGlyphCount * 3);
-        }
-
-        let renderableGlyphIndex = 0;
-        let prevCharIndex = -1;
-        let colorCharIndex = -1;
-        let chunk;
-        let currentColor;
-        lines.forEach(line => {
-          const {
-            count: lineGlyphCount,
-            width: lineWidth
-          } = line; // Ignore empty lines
-
-          if (lineGlyphCount > 0) {
-            // Find x offset for horizontal alignment
-            let lineXOffset = 0;
-            let justifyAdjust = 0;
-
-            if (textAlign === 'center') {
-              lineXOffset = (maxLineWidth - lineWidth) / 2;
-            } else if (textAlign === 'right') {
-              lineXOffset = maxLineWidth - lineWidth;
-            } else if (textAlign === 'justify' && line.isSoftWrapped) {
-              // just count the non-trailing whitespace characters, and we'll adjust the offsets per
-              // character in the next loop
-              let whitespaceCount = 0;
-
-              for (let i = lineGlyphCount; i--;) {
-                if (!line.glyphAt(i).glyphObj.isWhitespace) {
-                  while (i--) {
-                    if (!line.glyphAt(i).glyphObj) {
-                      debugger;
-                    }
-
-                    if (line.glyphAt(i).glyphObj.isWhitespace) {
-                      whitespaceCount++;
-                    }
-                  }
-
-                  break;
-                }
-              }
-
-              justifyAdjust = (maxLineWidth - lineWidth) / whitespaceCount;
-            }
-
-            for (let i = 0; i < lineGlyphCount; i++) {
-              const glyphInfo = line.glyphAt(i);
-              const glyphObj = glyphInfo.glyphObj; // Apply position adjustments
-
-              if (lineXOffset) glyphInfo.x += lineXOffset; // Expand whitespaces for justify alignment
-
-              if (justifyAdjust !== 0 && glyphObj.isWhitespace) {
-                lineXOffset += justifyAdjust;
-                glyphInfo.width += justifyAdjust;
-              } // Add caret positions
-
-
-              if (includeCaretPositions) {
-                const {
-                  charIndex
-                } = glyphInfo;
-                caretPositions[charIndex * 3] = glyphInfo.x + anchorXOffset; //left edge x
-
-                caretPositions[charIndex * 3 + 1] = glyphInfo.x + glyphInfo.width + anchorXOffset; //right edge x
-
-                caretPositions[charIndex * 3 + 2] = lineYOffset + caretBottomOffset + anchorYOffset; //common bottom y
-                // If we skipped any chars from the previous glyph (due to ligature subs), copy the
-                // previous glyph's info to those missing char indices. In the future we may try to
-                // use the font's LigatureCaretList table to get interior caret positions.
-
-                while (charIndex - prevCharIndex > 1) {
-                  caretPositions[(prevCharIndex + 1) * 3] = caretPositions[prevCharIndex * 3];
-                  caretPositions[(prevCharIndex + 1) * 3 + 1] = caretPositions[prevCharIndex * 3 + 1];
-                  caretPositions[(prevCharIndex + 1) * 3 + 2] = caretPositions[prevCharIndex * 3 + 2];
-                  prevCharIndex++;
-                }
-
-                prevCharIndex = charIndex;
-              } // Track current color range
-
-
-              if (colorRanges) {
-                const {
-                  charIndex
-                } = glyphInfo;
-
-                while (charIndex > colorCharIndex) {
-                  colorCharIndex++;
-
-                  if (colorRanges.hasOwnProperty(colorCharIndex)) {
-                    currentColor = colorRanges[colorCharIndex];
-                  }
-                }
-              } // Get atlas data for renderable glyphs
-
-
-              if (!glyphObj.isWhitespace && !glyphObj.isEmpty) {
-                const idx = renderableGlyphIndex++; // If we haven't seen this glyph yet, generate its SDF
-
-                let glyphAtlasInfo = atlas.glyphs[glyphObj.index];
-
-                if (!glyphAtlasInfo) {
-                  const sdfStart = now();
-                  const glyphSDFData = sdfGenerator(glyphObj, sdfGlyphSize);
-                  timings.sdf[text.charAt(glyphInfo.charIndex)] = now() - sdfStart; // Assign this glyph the next available atlas index
-
-                  glyphSDFData.atlasIndex = atlas.glyphCount++; // Queue it up in the response's newGlyphs list
-
-                  if (!newGlyphs) newGlyphs = [];
-                  newGlyphs.push(glyphSDFData); // Store its metadata (not the texture) in our atlas info
-
-                  glyphAtlasInfo = atlas.glyphs[glyphObj.index] = {
-                    atlasIndex: glyphSDFData.atlasIndex,
-                    glyphObj: glyphObj,
-                    renderingBounds: glyphSDFData.renderingBounds
-                  };
-                } // Determine final glyph quad bounds and add them to the glyphBounds array
-
-
-                const bounds = glyphAtlasInfo.renderingBounds;
-                const startIdx = idx * 4;
-                const xStart = glyphInfo.x + anchorXOffset;
-                const yStart = lineYOffset + anchorYOffset;
-                glyphBounds[startIdx] = xStart + bounds[0] * fontSizeMult;
-                glyphBounds[startIdx + 1] = yStart + bounds[1] * fontSizeMult;
-                glyphBounds[startIdx + 2] = xStart + bounds[2] * fontSizeMult;
-                glyphBounds[startIdx + 3] = yStart + bounds[3] * fontSizeMult; // Track total visible bounds
-
-                const visX0 = xStart + glyphObj.xMin * fontSizeMult;
-                const visY0 = yStart + glyphObj.yMin * fontSizeMult;
-                const visX1 = xStart + glyphObj.xMax * fontSizeMult;
-                const visY1 = yStart + glyphObj.yMax * fontSizeMult;
-                if (visX0 < visibleBounds[0]) visibleBounds[0] = visX0;
-                if (visY0 < visibleBounds[1]) visibleBounds[1] = visY0;
-                if (visX1 > visibleBounds[2]) visibleBounds[2] = visX1;
-                if (visY1 > visibleBounds[3]) visibleBounds[3] = visY1; // Track bounding rects for each chunk of N glyphs
-
-                if (idx % chunkedBoundsSize === 0) {
-                  chunk = {
-                    start: idx,
-                    end: idx,
-                    rect: [INF, INF, -INF, -INF]
-                  };
-                  chunkedBounds.push(chunk);
-                }
-
-                chunk.end++;
-                const chunkRect = chunk.rect;
-                if (visX0 < chunkRect[0]) chunkRect[0] = visX0;
-                if (visY0 < chunkRect[1]) chunkRect[1] = visY0;
-                if (visX1 > chunkRect[2]) chunkRect[2] = visX1;
-                if (visY1 > chunkRect[3]) chunkRect[3] = visY1; // Add to atlas indices array
-
-                glyphAtlasIndices[idx] = glyphAtlasInfo.atlasIndex; // Add colors
-
-                if (colorRanges) {
-                  const start = idx * 3;
-                  glyphColors[start] = currentColor >> 16 & 255;
-                  glyphColors[start + 1] = currentColor >> 8 & 255;
-                  glyphColors[start + 2] = currentColor & 255;
-                }
-              }
-            }
-          } // Increment y offset for next line
-
-
-          lineYOffset -= lineHeight;
-        });
-      } // Timing stats
-
-
-      for (let ch in timings.sdf) {
-        timings.sdfTotal += timings.sdf[ch];
-      }
-
-      timings.layout = now() - layoutStart - timings.sdfTotal;
-      timings.total = now() - mainStart;
-      callback({
-        glyphBounds,
-        //rendering quad bounds for each glyph [x1, y1, x2, y2]
-        glyphAtlasIndices,
-        //atlas indices for each glyph
-        caretPositions,
-        //x,y of bottom of cursor position before each char, plus one after last char
-        caretHeight,
-        //height of cursor from bottom to top
-        glyphColors,
-        //color for each glyph, if color ranges supplied
-        chunkedBounds,
-        //total rects per (n=chunkedBoundsSize) consecutive glyphs
-        ascender: ascender * fontSizeMult,
-        //font ascender
-        descender: descender * fontSizeMult,
-        //font descender
-        lineHeight,
-        //computed line height
-        topBaseline,
-        //y coordinate of the top line's baseline
-        blockBounds: [//bounds for the whole block of text, including vertical padding for lineHeight
-        anchorXOffset, anchorYOffset - lines.length * lineHeight, anchorXOffset + maxLineWidth, anchorYOffset],
-        visibleBounds,
-        //total bounds of visible text paths, may be larger or smaller than totalBounds
-        newGlyphSDFs: newGlyphs,
-        //if this request included any new SDFs for the atlas, they'll be included here
-        timings
-      });
-    });
-  }
-  /**
-   * For a given text string and font parameters, determine the resulting block dimensions
-   * after wrapping for the given maxWidth.
-   * @param args
-   * @param callback
-   */
-
-
-  function measure(args, callback) {
-    process(args, result => {
-      const [x0, y0, x1, y1] = result.blockBounds;
-      callback({
-        width: x1 - x0,
-        height: y1 - y0
-      });
     }, {
-      metricsOnly: true
-    });
-  }
-
-  function parsePercent(str) {
-    let match = str.match(/^([\d.]+)%$/);
-    let pct = match ? parseFloat(match[1]) : NaN;
-    return isNaN(pct) ? 0 : pct / 100;
-  }
-
-  function now() {
-    return (self.performance || Date).now();
-  } // Array-backed structure for a single line's glyphs data
-
-
-  function TextLine() {
-    this.data = [];
-  }
-
-  TextLine.prototype = {
-    width: 0,
-    isSoftWrapped: false,
-
-    get count() {
-      return Math.ceil(this.data.length / 4);
-    },
-
-    glyphAt(i) {
-      let fly = TextLine.flyweight;
-      fly.data = this.data;
-      fly.index = i;
-      return fly;
-    },
-
-    splitAt(i) {
-      let newLine = new TextLine();
-      newLine.data = this.data.splice(i * 4);
-      return newLine;
-    }
-
-  };
-  TextLine.flyweight = ['glyphObj', 'x', 'width', 'charIndex'].reduce((obj, prop, i, all) => {
-    Object.defineProperty(obj, prop, {
-      get() {
-        return this.data[this.index * 4 + i];
-      },
-
-      set(val) {
-        this.data[this.index * 4 + i] = val;
+      key: "onEnd",
+      value: function onEnd(event) {
+        this.coords.endX = event.changedTouches[0].screenX;
+        this.coords.endY = event.changedTouches[0].screenY;
+        this.dispatch();
       }
-
-    });
-    return obj;
-  }, {
-    data: null,
-    index: 0
-  });
-  return {
-    process,
-    measure,
-    loadFont
-  };
-}
-/**
- * Index for performing fast spatial searches of a glyph's line segments.
- * @return {{addLineSegment:function, findNearestSignedDistance:function}}
- */
-
-
-function createGlyphSegmentsIndex() {
-  let needsSort = false;
-  const segments = [];
-
-  function sortSegments() {
-    if (needsSort) {
-      // sort by maxX, this will let us short-circuit some loops below
-      segments.sort(function (a, b) {
-        return a.maxX - b.maxX;
-      });
-      needsSort = false;
-    }
-  }
-  /**
-   * Add a line segment to the index.
-   * @param x0
-   * @param y0
-   * @param x1
-   * @param y1
-   */
-
-
-  function addLineSegment(x0, y0, x1, y1) {
-    const segment = {
-      x0,
-      y0,
-      x1,
-      y1,
-      minX: Math.min(x0, x1),
-      minY: Math.min(y0, y1),
-      maxX: Math.max(x0, x1),
-      maxY: Math.max(y0, y1)
-    };
-    segments.push(segment);
-    needsSort = true;
-  }
-  /**
-   * For a given x/y, search the index for the closest line segment and return
-   * its signed distance. Negative = inside, positive = outside, zero = on edge
-   * @param x
-   * @param y
-   * @returns {number}
-   */
-
-
-  function findNearestSignedDistance(x, y) {
-    sortSegments();
-    let closestDistSq = Infinity;
-    let closestDist = Infinity;
-
-    for (let i = segments.length; i--;) {
-      const seg = segments[i];
-      if (seg.maxX + closestDist <= x) break; //sorting by maxX means no more can be closer, so we can short-circuit
-
-      if (x + closestDist > seg.minX && y - closestDist < seg.maxY && y + closestDist > seg.minY) {
-        const distSq = absSquareDistanceToLineSegment(x, y, seg.x0, seg.y0, seg.x1, seg.y1);
-
-        if (distSq < closestDistSq) {
-          closestDistSq = distSq;
-          closestDist = Math.sqrt(closestDistSq);
-        }
+    }, {
+      key: "bind",
+      value: function bind() {
+        this.element.addEventListener('touchstart', this.onStart, false);
+        this.element.addEventListener('touchend', this.onEnd, false);
       }
-    } // Flip to negative distance if inside the poly
-
-
-    if (isPointInPoly(x, y)) {
-      closestDist = -closestDist;
-    }
-
-    return closestDist;
-  } // Determine whether the given point lies inside or outside the glyph. Uses a simple
-  // ray casting algorithm using a ray pointing east from the point.
-
-
-  function isPointInPoly(x, y) {
-    sortSegments();
-    let inside = false;
-
-    for (let i = segments.length; i--;) {
-      const seg = segments[i];
-      if (seg.maxX <= x) break; //sorting by maxX means no more can cross, so we can short-circuit
-
-      if (seg.minY < y && seg.maxY > y) {
-        const intersects = seg.y0 > y !== seg.y1 > y && x < (seg.x1 - seg.x0) * (y - seg.y0) / (seg.y1 - seg.y0) + seg.x0;
-
-        if (intersects) {
-          inside = !inside;
-        }
+    }, {
+      key: "unbind",
+      value: function unbind() {
+        this.element.removeEventListener('touchstart', this.onStart, false);
+        this.element.removeEventListener('touchend', this.onEnd, false);
       }
-    }
+    }, {
+      key: "getEventName",
+      value: function getEventName() {
+        var threshold = this.threshold;
+        var _this$coords = this.coords,
+            startX = _this$coords.startX,
+            startY = _this$coords.startY,
+            endX = _this$coords.endX,
+            endY = _this$coords.endY;
 
-    return inside;
-  } // Find the absolute distance from a point to a line segment at closest approach
-
-
-  function absSquareDistanceToLineSegment(x, y, lineX0, lineY0, lineX1, lineY1) {
-    const ldx = lineX1 - lineX0;
-    const ldy = lineY1 - lineY0;
-    const lengthSq = ldx * ldx + ldy * ldy;
-    const t = lengthSq ? Math.max(0, Math.min(1, ((x - lineX0) * ldx + (y - lineY0) * ldy) / lengthSq)) : 0;
-    const dx = x - (lineX0 + t * ldx);
-    const dy = y - (lineY0 + t * ldy);
-    return dx * dx + dy * dy;
-  }
-
-  return {
-    addLineSegment,
-    findNearestSignedDistance
-  };
-}
-/*!
-Custom build of Typr.ts (https://github.com/fredli74/Typr.ts) for use in Troika text rendering.
-Original MIT license applies: https://github.com/fredli74/Typr.ts/blob/master/LICENSE
-*/
-
-
-function typrFactory() {
-  return "undefined" == typeof window && (self.window = self), function (r) {
-    var e = {
-      parse: function (r) {
-        var t = e._bin,
-            a = new Uint8Array(r);
-
-        if ("ttcf" == t.readASCII(a, 0, 4)) {
-          var n = 4;
-          t.readUshort(a, n);
-          n += 2;
-          t.readUshort(a, n);
-          n += 2;
-          var o = t.readUint(a, n);
-          n += 4;
-
-          for (var s = [], i = 0; i < o; i++) {
-            var h = t.readUint(a, n);
-            n += 4, s.push(e._readFont(a, h));
-          }
-
-          return s;
+        if (endX < startX && Math.abs(endX - startX) > threshold) {
+          return 'swipeleft';
         }
 
-        return [e._readFont(a, 0)];
-      },
-      _readFont: function (r, t) {
-        var a = e._bin,
-            n = t;
-        a.readFixed(r, t);
-        t += 4;
-        var o = a.readUshort(r, t);
-        t += 2;
-        a.readUshort(r, t);
-        t += 2;
-        a.readUshort(r, t);
-        t += 2;
-        a.readUshort(r, t);
-        t += 2;
-
-        for (var s = ["cmap", "head", "hhea", "maxp", "hmtx", "name", "OS/2", "post", "loca", "glyf", "kern", "CFF ", "GPOS", "GSUB", "SVG "], i = {
-          _data: r,
-          _offset: n
-        }, h = {}, f = 0; f < o; f++) {
-          var d = a.readASCII(r, t, 4);
-          t += 4;
-          a.readUint(r, t);
-          t += 4;
-          var u = a.readUint(r, t);
-          t += 4;
-          var l = a.readUint(r, t);
-          t += 4, h[d] = {
-            offset: u,
-            length: l
-          };
+        if (endX > startX && Math.abs(endX - startX) > threshold) {
+          return 'swiperight';
         }
 
-        for (f = 0; f < s.length; f++) {
-          var v = s[f];
-          h[v] && (i[v.trim()] = e[v.trim()].parse(r, h[v].offset, h[v].length, i));
+        if (endY < startY && Math.abs(endY - startY) > threshold) {
+          return 'swipeup';
         }
 
-        return i;
-      },
-      _tabOffset: function (r, t, a) {
-        for (var n = e._bin, o = n.readUshort(r, a + 4), s = a + 12, i = 0; i < o; i++) {
-          var h = n.readASCII(r, s, 4);
-          s += 4;
-          n.readUint(r, s);
-          s += 4;
-          var f = n.readUint(r, s);
-          s += 4;
-          n.readUint(r, s);
-          if (s += 4, h == t) return f;
+        if (endY > startY && Math.abs(endY - startY) > threshold) {
+          return 'swipedown';
         }
 
-        return 0;
-      }
-    };
-    e._bin = {
-      readFixed: function (r, e) {
-        return (r[e] << 8 | r[e + 1]) + (r[e + 2] << 8 | r[e + 3]) / 65540;
-      },
-      readF2dot14: function (r, t) {
-        return e._bin.readShort(r, t) / 16384;
-      },
-      readInt: function (r, t) {
-        var a = e._bin.t.uint8;
-        return a[0] = r[t + 3], a[1] = r[t + 2], a[2] = r[t + 1], a[3] = r[t], e._bin.t.int32[0];
-      },
-      readInt8: function (r, t) {
-        return e._bin.t.uint8[0] = r[t], e._bin.t.int8[0];
-      },
-      readShort: function (r, t) {
-        var a = e._bin.t.uint8;
-        return a[1] = r[t], a[0] = r[t + 1], e._bin.t.int16[0];
-      },
-      readUshort: function (r, e) {
-        return r[e] << 8 | r[e + 1];
-      },
-      readUshorts: function (r, t, a) {
-        for (var n = [], o = 0; o < a; o++) n.push(e._bin.readUshort(r, t + 2 * o));
-
-        return n;
-      },
-      readUint: function (r, t) {
-        var a = e._bin.t.uint8;
-        return a[3] = r[t], a[2] = r[t + 1], a[1] = r[t + 2], a[0] = r[t + 3], e._bin.t.uint32[0];
-      },
-      readUint64: function (r, t) {
-        return 4294967296 * e._bin.readUint(r, t) + e._bin.readUint(r, t + 4);
-      },
-      readASCII: function (r, e, t) {
-        for (var a = "", n = 0; n < t; n++) a += String.fromCharCode(r[e + n]);
-
-        return a;
-      },
-      readUnicode: function (r, e, t) {
-        for (var a = "", n = 0; n < t; n++) {
-          var o = r[e++] << 8 | r[e++];
-          a += String.fromCharCode(o);
+        if (endY === startY && endX === startX) {
+          return 'tap';
         }
 
-        return a;
-      },
-      _tdec: "undefined" != typeof window && window.TextDecoder ? new window.TextDecoder() : null,
-      readUTF8: function (r, t, a) {
-        var n = e._bin._tdec;
-        return n && 0 == t && a == r.length ? n.decode(r) : e._bin.readASCII(r, t, a);
-      },
-      readBytes: function (r, e, t) {
-        for (var a = [], n = 0; n < t; n++) a.push(r[e + n]);
-
-        return a;
-      },
-      readASCIIArray: function (r, e, t) {
-        for (var a = [], n = 0; n < t; n++) a.push(String.fromCharCode(r[e + n]));
-
-        return a;
+        return '';
       }
-    }, e._bin.t = {
-      buff: new ArrayBuffer(8)
-    }, e._bin.t.int8 = new Int8Array(e._bin.t.buff), e._bin.t.uint8 = new Uint8Array(e._bin.t.buff), e._bin.t.int16 = new Int16Array(e._bin.t.buff), e._bin.t.uint16 = new Uint16Array(e._bin.t.buff), e._bin.t.int32 = new Int32Array(e._bin.t.buff), e._bin.t.uint32 = new Uint32Array(e._bin.t.buff), e._lctf = {}, e._lctf.parse = function (r, t, a, n, o) {
-      var s = e._bin,
-          i = {},
-          h = t;
-      s.readFixed(r, t);
-      t += 4;
-      var f = s.readUshort(r, t);
-      t += 2;
-      var d = s.readUshort(r, t);
-      t += 2;
-      var u = s.readUshort(r, t);
-      return t += 2, i.scriptList = e._lctf.readScriptList(r, h + f), i.featureList = e._lctf.readFeatureList(r, h + d), i.lookupList = e._lctf.readLookupList(r, h + u, o), i;
-    }, e._lctf.readLookupList = function (r, t, a) {
-      var n = e._bin,
-          o = t,
-          s = [],
-          i = n.readUshort(r, t);
-      t += 2;
+    }, {
+      key: "dispatch",
+      value: function dispatch() {
+        var eventName = this.getEventName();
 
-      for (var h = 0; h < i; h++) {
-        var f = n.readUshort(r, t);
-        t += 2;
+        if (!eventName) {
+          return;
+        } // TODO: Check browser support
 
-        var d = e._lctf.readLookupTable(r, o + f, a);
 
-        s.push(d);
-      }
-
-      return s;
-    }, e._lctf.readLookupTable = function (r, t, a) {
-      var n = e._bin,
-          o = t,
-          s = {
-        tabs: []
-      };
-      s.ltype = n.readUshort(r, t), t += 2, s.flag = n.readUshort(r, t), t += 2;
-      var i = n.readUshort(r, t);
-      t += 2;
-
-      for (var h = s.ltype, f = 0; f < i; f++) {
-        var d = n.readUshort(r, t);
-        t += 2;
-        var u = a(r, h, o + d, s);
-        s.tabs.push(u);
-      }
-
-      return s;
-    }, e._lctf.numOfOnes = function (r) {
-      for (var e = 0, t = 0; t < 32; t++) 0 != (r >>> t & 1) && e++;
-
-      return e;
-    }, e._lctf.readClassDef = function (r, t) {
-      var a = e._bin,
-          n = [],
-          o = a.readUshort(r, t);
-
-      if (t += 2, 1 == o) {
-        var s = a.readUshort(r, t);
-        t += 2;
-        var i = a.readUshort(r, t);
-        t += 2;
-
-        for (var h = 0; h < i; h++) n.push(s + h), n.push(s + h), n.push(a.readUshort(r, t)), t += 2;
-      }
-
-      if (2 == o) {
-        var f = a.readUshort(r, t);
-        t += 2;
-
-        for (h = 0; h < f; h++) n.push(a.readUshort(r, t)), t += 2, n.push(a.readUshort(r, t)), t += 2, n.push(a.readUshort(r, t)), t += 2;
-      }
-
-      return n;
-    }, e._lctf.getInterval = function (r, e) {
-      for (var t = 0; t < r.length; t += 3) {
-        var a = r[t],
-            n = r[t + 1];
-        r[t + 2];
-        if (a <= e && e <= n) return t;
-      }
-
-      return -1;
-    }, e._lctf.readCoverage = function (r, t) {
-      var a = e._bin,
-          n = {};
-      n.fmt = a.readUshort(r, t), t += 2;
-      var o = a.readUshort(r, t);
-      return t += 2, 1 == n.fmt && (n.tab = a.readUshorts(r, t, o)), 2 == n.fmt && (n.tab = a.readUshorts(r, t, 3 * o)), n;
-    }, e._lctf.coverageIndex = function (r, t) {
-      var a = r.tab;
-      if (1 == r.fmt) return a.indexOf(t);
-
-      if (2 == r.fmt) {
-        var n = e._lctf.getInterval(a, t);
-
-        if (-1 != n) return a[n + 2] + (t - a[n]);
-      }
-
-      return -1;
-    }, e._lctf.readFeatureList = function (r, t) {
-      var a = e._bin,
-          n = t,
-          o = [],
-          s = a.readUshort(r, t);
-      t += 2;
-
-      for (var i = 0; i < s; i++) {
-        var h = a.readASCII(r, t, 4);
-        t += 4;
-        var f = a.readUshort(r, t);
-        t += 2;
-
-        var d = e._lctf.readFeatureTable(r, n + f);
-
-        d.tag = h.trim(), o.push(d);
-      }
-
-      return o;
-    }, e._lctf.readFeatureTable = function (r, t) {
-      var a = e._bin,
-          n = t,
-          o = {},
-          s = a.readUshort(r, t);
-      t += 2, s > 0 && (o.featureParams = n + s);
-      var i = a.readUshort(r, t);
-      t += 2, o.tab = [];
-
-      for (var h = 0; h < i; h++) o.tab.push(a.readUshort(r, t + 2 * h));
-
-      return o;
-    }, e._lctf.readScriptList = function (r, t) {
-      var a = e._bin,
-          n = t,
-          o = {},
-          s = a.readUshort(r, t);
-      t += 2;
-
-      for (var i = 0; i < s; i++) {
-        var h = a.readASCII(r, t, 4);
-        t += 4;
-        var f = a.readUshort(r, t);
-        t += 2, o[h.trim()] = e._lctf.readScriptTable(r, n + f);
-      }
-
-      return o;
-    }, e._lctf.readScriptTable = function (r, t) {
-      var a = e._bin,
-          n = t,
-          o = {},
-          s = a.readUshort(r, t);
-      t += 2, o.default = e._lctf.readLangSysTable(r, n + s);
-      var i = a.readUshort(r, t);
-      t += 2;
-
-      for (var h = 0; h < i; h++) {
-        var f = a.readASCII(r, t, 4);
-        t += 4;
-        var d = a.readUshort(r, t);
-        t += 2, o[f.trim()] = e._lctf.readLangSysTable(r, n + d);
-      }
-
-      return o;
-    }, e._lctf.readLangSysTable = function (r, t) {
-      var a = e._bin,
-          n = {};
-      a.readUshort(r, t);
-      t += 2, n.reqFeature = a.readUshort(r, t), t += 2;
-      var o = a.readUshort(r, t);
-      return t += 2, n.features = a.readUshorts(r, t, o), n;
-    }, e.CFF = {}, e.CFF.parse = function (r, t, a) {
-      var n = e._bin;
-      (r = new Uint8Array(r.buffer, t, a))[t = 0], r[++t], r[++t], r[++t];
-      t++;
-      var o = [];
-      t = e.CFF.readIndex(r, t, o);
-
-      for (var s = [], i = 0; i < o.length - 1; i++) s.push(n.readASCII(r, t + o[i], o[i + 1] - o[i]));
-
-      t += o[o.length - 1];
-      var h = [];
-      t = e.CFF.readIndex(r, t, h);
-      var f = [];
-
-      for (i = 0; i < h.length - 1; i++) f.push(e.CFF.readDict(r, t + h[i], t + h[i + 1]));
-
-      t += h[h.length - 1];
-      var d = f[0],
-          u = [];
-      t = e.CFF.readIndex(r, t, u);
-      var l = [];
-
-      for (i = 0; i < u.length - 1; i++) l.push(n.readASCII(r, t + u[i], u[i + 1] - u[i]));
-
-      if (t += u[u.length - 1], e.CFF.readSubrs(r, t, d), d.CharStrings) {
-        t = d.CharStrings;
-        u = [];
-        t = e.CFF.readIndex(r, t, u);
-        var v = [];
-
-        for (i = 0; i < u.length - 1; i++) v.push(n.readBytes(r, t + u[i], u[i + 1] - u[i]));
-
-        d.CharStrings = v;
-      }
-
-      if (d.ROS) {
-        t = d.FDArray;
-        var c = [];
-        t = e.CFF.readIndex(r, t, c), d.FDArray = [];
-
-        for (i = 0; i < c.length - 1; i++) {
-          var p = e.CFF.readDict(r, t + c[i], t + c[i + 1]);
-          e.CFF._readFDict(r, p, l), d.FDArray.push(p);
-        }
-
-        t += c[c.length - 1], t = d.FDSelect, d.FDSelect = [];
-        var U = r[t];
-        if (t++, 3 != U) throw U;
-        var g = n.readUshort(r, t);
-        t += 2;
-
-        for (i = 0; i < g + 1; i++) d.FDSelect.push(n.readUshort(r, t), r[t + 2]), t += 3;
-      }
-
-      return d.Encoding && (d.Encoding = e.CFF.readEncoding(r, d.Encoding, d.CharStrings.length)), d.charset && (d.charset = e.CFF.readCharset(r, d.charset, d.CharStrings.length)), e.CFF._readFDict(r, d, l), d;
-    }, e.CFF._readFDict = function (r, t, a) {
-      var n;
-
-      for (var o in t.Private && (n = t.Private[1], t.Private = e.CFF.readDict(r, n, n + t.Private[0]), t.Private.Subrs && e.CFF.readSubrs(r, n + t.Private.Subrs, t.Private)), t) -1 != ["FamilyName", "FontName", "FullName", "Notice", "version", "Copyright"].indexOf(o) && (t[o] = a[t[o] - 426 + 35]);
-    }, e.CFF.readSubrs = function (r, t, a) {
-      var n = e._bin,
-          o = [];
-      t = e.CFF.readIndex(r, t, o);
-      var s,
-          i = o.length;
-      s = i < 1240 ? 107 : i < 33900 ? 1131 : 32768, a.Bias = s, a.Subrs = [];
-
-      for (var h = 0; h < o.length - 1; h++) a.Subrs.push(n.readBytes(r, t + o[h], o[h + 1] - o[h]));
-    }, e.CFF.tableSE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 0, 111, 112, 113, 114, 0, 115, 116, 117, 118, 119, 120, 121, 122, 0, 123, 0, 124, 125, 126, 127, 128, 129, 130, 131, 0, 132, 133, 0, 134, 135, 136, 137, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 138, 0, 139, 0, 0, 0, 0, 140, 141, 142, 143, 0, 0, 0, 0, 0, 144, 0, 0, 0, 145, 0, 0, 146, 147, 148, 149, 0, 0, 0, 0], e.CFF.glyphByUnicode = function (r, e) {
-      for (var t = 0; t < r.charset.length; t++) if (r.charset[t] == e) return t;
-
-      return -1;
-    }, e.CFF.glyphBySE = function (r, t) {
-      return t < 0 || t > 255 ? -1 : e.CFF.glyphByUnicode(r, e.CFF.tableSE[t]);
-    }, e.CFF.readEncoding = function (r, t, a) {
-      e._bin;
-      var n = [".notdef"],
-          o = r[t];
-      if (t++, 0 != o) throw "error: unknown encoding format: " + o;
-      var s = r[t];
-      t++;
-
-      for (var i = 0; i < s; i++) n.push(r[t + i]);
-
-      return n;
-    }, e.CFF.readCharset = function (r, t, a) {
-      var n = e._bin,
-          o = [".notdef"],
-          s = r[t];
-      if (t++, 0 == s) for (var i = 0; i < a; i++) {
-        var h = n.readUshort(r, t);
-        t += 2, o.push(h);
-      } else {
-        if (1 != s && 2 != s) throw "error: format: " + s;
-
-        for (; o.length < a;) {
-          h = n.readUshort(r, t);
-          t += 2;
-          var f = 0;
-          1 == s ? (f = r[t], t++) : (f = n.readUshort(r, t), t += 2);
-
-          for (i = 0; i <= f; i++) o.push(h), h++;
-        }
-      }
-      return o;
-    }, e.CFF.readIndex = function (r, t, a) {
-      var n = e._bin,
-          o = n.readUshort(r, t) + 1,
-          s = r[t += 2];
-      if (t++, 1 == s) for (var i = 0; i < o; i++) a.push(r[t + i]);else if (2 == s) for (i = 0; i < o; i++) a.push(n.readUshort(r, t + 2 * i));else if (3 == s) for (i = 0; i < o; i++) a.push(16777215 & n.readUint(r, t + 3 * i - 1));else if (1 != o) throw "unsupported offset size: " + s + ", count: " + o;
-      return (t += o * s) - 1;
-    }, e.CFF.getCharString = function (r, t, a) {
-      var n = e._bin,
-          o = r[t],
-          s = r[t + 1],
-          i = (r[t + 2], r[t + 3], r[t + 4], 1),
-          h = null,
-          f = null;
-      o <= 20 && (h = o, i = 1), 12 == o && (h = 100 * o + s, i = 2), 21 <= o && o <= 27 && (h = o, i = 1), 28 == o && (f = n.readShort(r, t + 1), i = 3), 29 <= o && o <= 31 && (h = o, i = 1), 32 <= o && o <= 246 && (f = o - 139, i = 1), 247 <= o && o <= 250 && (f = 256 * (o - 247) + s + 108, i = 2), 251 <= o && o <= 254 && (f = 256 * -(o - 251) - s - 108, i = 2), 255 == o && (f = n.readInt(r, t + 1) / 65535, i = 5), a.val = null != f ? f : "o" + h, a.size = i;
-    }, e.CFF.readCharString = function (r, t, a) {
-      for (var n = t + a, o = e._bin, s = []; t < n;) {
-        var i = r[t],
-            h = r[t + 1],
-            f = (r[t + 2], r[t + 3], r[t + 4], 1),
-            d = null,
-            u = null;
-        i <= 20 && (d = i, f = 1), 12 == i && (d = 100 * i + h, f = 2), 19 != i && 20 != i || (d = i, f = 2), 21 <= i && i <= 27 && (d = i, f = 1), 28 == i && (u = o.readShort(r, t + 1), f = 3), 29 <= i && i <= 31 && (d = i, f = 1), 32 <= i && i <= 246 && (u = i - 139, f = 1), 247 <= i && i <= 250 && (u = 256 * (i - 247) + h + 108, f = 2), 251 <= i && i <= 254 && (u = 256 * -(i - 251) - h - 108, f = 2), 255 == i && (u = o.readInt(r, t + 1) / 65535, f = 5), s.push(null != u ? u : "o" + d), t += f;
-      }
-
-      return s;
-    }, e.CFF.readDict = function (r, t, a) {
-      for (var n = e._bin, o = {}, s = []; t < a;) {
-        var i = r[t],
-            h = r[t + 1],
-            f = (r[t + 2], r[t + 3], r[t + 4], 1),
-            d = null,
-            u = null;
-        if (28 == i && (u = n.readShort(r, t + 1), f = 3), 29 == i && (u = n.readInt(r, t + 1), f = 5), 32 <= i && i <= 246 && (u = i - 139, f = 1), 247 <= i && i <= 250 && (u = 256 * (i - 247) + h + 108, f = 2), 251 <= i && i <= 254 && (u = 256 * -(i - 251) - h - 108, f = 2), 255 == i) throw u = n.readInt(r, t + 1) / 65535, f = 5, "unknown number";
-
-        if (30 == i) {
-          var l = [];
-
-          for (f = 1;;) {
-            var v = r[t + f];
-            f++;
-            var c = v >> 4,
-                p = 15 & v;
-            if (15 != c && l.push(c), 15 != p && l.push(p), 15 == p) break;
-          }
-
-          for (var U = "", g = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "e", "e-", "reserved", "-", "endOfNumber"], S = 0; S < l.length; S++) U += g[l[S]];
-
-          u = parseFloat(U);
-        }
-
-        if (i <= 21) if (d = ["version", "Notice", "FullName", "FamilyName", "Weight", "FontBBox", "BlueValues", "OtherBlues", "FamilyBlues", "FamilyOtherBlues", "StdHW", "StdVW", "escape", "UniqueID", "XUID", "charset", "Encoding", "CharStrings", "Private", "Subrs", "defaultWidthX", "nominalWidthX"][i], f = 1, 12 == i) d = ["Copyright", "isFixedPitch", "ItalicAngle", "UnderlinePosition", "UnderlineThickness", "PaintType", "CharstringType", "FontMatrix", "StrokeWidth", "BlueScale", "BlueShift", "BlueFuzz", "StemSnapH", "StemSnapV", "ForceBold", 0, 0, "LanguageGroup", "ExpansionFactor", "initialRandomSeed", "SyntheticBase", "PostScript", "BaseFontName", "BaseFontBlend", 0, 0, 0, 0, 0, 0, "ROS", "CIDFontVersion", "CIDFontRevision", "CIDFontType", "CIDCount", "UIDBase", "FDArray", "FDSelect", "FontName"][h], f = 2;
-        null != d ? (o[d] = 1 == s.length ? s[0] : s, s = []) : s.push(u), t += f;
-      }
-
-      return o;
-    }, e.cmap = {}, e.cmap.parse = function (r, t, a) {
-      r = new Uint8Array(r.buffer, t, a), t = 0;
-      var n = e._bin,
-          o = {};
-      n.readUshort(r, t);
-      t += 2;
-      var s = n.readUshort(r, t);
-      t += 2;
-      var i = [];
-      o.tables = [];
-
-      for (var h = 0; h < s; h++) {
-        var f = n.readUshort(r, t);
-        t += 2;
-        var d = n.readUshort(r, t);
-        t += 2;
-        var u = n.readUint(r, t);
-        t += 4;
-        var l = "p" + f + "e" + d,
-            v = i.indexOf(u);
-
-        if (-1 == v) {
-          var c;
-          v = o.tables.length, i.push(u);
-          var p = n.readUshort(r, u);
-          0 == p ? c = e.cmap.parse0(r, u) : 4 == p ? c = e.cmap.parse4(r, u) : 6 == p ? c = e.cmap.parse6(r, u) : 12 == p ? c = e.cmap.parse12(r, u) : console.debug("unknown format: " + p, f, d, u), o.tables.push(c);
-        }
-
-        if (null != o[l]) throw "multiple tables for one platform+encoding";
-        o[l] = v;
-      }
-
-      return o;
-    }, e.cmap.parse0 = function (r, t) {
-      var a = e._bin,
-          n = {};
-      n.format = a.readUshort(r, t), t += 2;
-      var o = a.readUshort(r, t);
-      t += 2;
-      a.readUshort(r, t);
-      t += 2, n.map = [];
-
-      for (var s = 0; s < o - 6; s++) n.map.push(r[t + s]);
-
-      return n;
-    }, e.cmap.parse4 = function (r, t) {
-      var a = e._bin,
-          n = t,
-          o = {};
-      o.format = a.readUshort(r, t), t += 2;
-      var s = a.readUshort(r, t);
-      t += 2;
-      a.readUshort(r, t);
-      t += 2;
-      var i = a.readUshort(r, t);
-      t += 2;
-      var h = i / 2;
-      o.searchRange = a.readUshort(r, t), t += 2, o.entrySelector = a.readUshort(r, t), t += 2, o.rangeShift = a.readUshort(r, t), t += 2, o.endCount = a.readUshorts(r, t, h), t += 2 * h, t += 2, o.startCount = a.readUshorts(r, t, h), t += 2 * h, o.idDelta = [];
-
-      for (var f = 0; f < h; f++) o.idDelta.push(a.readShort(r, t)), t += 2;
-
-      for (o.idRangeOffset = a.readUshorts(r, t, h), t += 2 * h, o.glyphIdArray = []; t < n + s;) o.glyphIdArray.push(a.readUshort(r, t)), t += 2;
-
-      return o;
-    }, e.cmap.parse6 = function (r, t) {
-      var a = e._bin,
-          n = {};
-      n.format = a.readUshort(r, t), t += 2;
-      a.readUshort(r, t);
-      t += 2;
-      a.readUshort(r, t);
-      t += 2, n.firstCode = a.readUshort(r, t), t += 2;
-      var o = a.readUshort(r, t);
-      t += 2, n.glyphIdArray = [];
-
-      for (var s = 0; s < o; s++) n.glyphIdArray.push(a.readUshort(r, t)), t += 2;
-
-      return n;
-    }, e.cmap.parse12 = function (r, t) {
-      var a = e._bin,
-          n = {};
-      n.format = a.readUshort(r, t), t += 2, t += 2;
-      a.readUint(r, t);
-      t += 4;
-      a.readUint(r, t);
-      t += 4;
-      var o = a.readUint(r, t);
-      t += 4, n.groups = [];
-
-      for (var s = 0; s < o; s++) {
-        var i = t + 12 * s,
-            h = a.readUint(r, i + 0),
-            f = a.readUint(r, i + 4),
-            d = a.readUint(r, i + 8);
-        n.groups.push([h, f, d]);
-      }
-
-      return n;
-    }, e.glyf = {}, e.glyf.parse = function (r, e, t, a) {
-      for (var n = [], o = 0; o < a.maxp.numGlyphs; o++) n.push(null);
-
-      return n;
-    }, e.glyf._parseGlyf = function (r, t) {
-      var a = e._bin,
-          n = r._data,
-          o = e._tabOffset(n, "glyf", r._offset) + r.loca[t];
-      if (r.loca[t] == r.loca[t + 1]) return null;
-      var s = {};
-      if (s.noc = a.readShort(n, o), o += 2, s.xMin = a.readShort(n, o), o += 2, s.yMin = a.readShort(n, o), o += 2, s.xMax = a.readShort(n, o), o += 2, s.yMax = a.readShort(n, o), o += 2, s.xMin >= s.xMax || s.yMin >= s.yMax) return null;
-
-      if (s.noc > 0) {
-        s.endPts = [];
-
-        for (var i = 0; i < s.noc; i++) s.endPts.push(a.readUshort(n, o)), o += 2;
-
-        var h = a.readUshort(n, o);
-        if (o += 2, n.length - o < h) return null;
-        s.instructions = a.readBytes(n, o, h), o += h;
-        var f = s.endPts[s.noc - 1] + 1;
-        s.flags = [];
-
-        for (i = 0; i < f; i++) {
-          var d = n[o];
-
-          if (o++, s.flags.push(d), 0 != (8 & d)) {
-            var u = n[o];
-            o++;
-
-            for (var l = 0; l < u; l++) s.flags.push(d), i++;
-          }
-        }
-
-        s.xs = [];
-
-        for (i = 0; i < f; i++) {
-          var v = 0 != (2 & s.flags[i]),
-              c = 0 != (16 & s.flags[i]);
-          v ? (s.xs.push(c ? n[o] : -n[o]), o++) : c ? s.xs.push(0) : (s.xs.push(a.readShort(n, o)), o += 2);
-        }
-
-        s.ys = [];
-
-        for (i = 0; i < f; i++) {
-          v = 0 != (4 & s.flags[i]), c = 0 != (32 & s.flags[i]);
-          v ? (s.ys.push(c ? n[o] : -n[o]), o++) : c ? s.ys.push(0) : (s.ys.push(a.readShort(n, o)), o += 2);
-        }
-
-        var p = 0,
-            U = 0;
-
-        for (i = 0; i < f; i++) p += s.xs[i], U += s.ys[i], s.xs[i] = p, s.ys[i] = U;
-      } else {
-        var g;
-        s.parts = [];
-
-        do {
-          g = a.readUshort(n, o), o += 2;
-          var S = {
-            m: {
-              a: 1,
-              b: 0,
-              c: 0,
-              d: 1,
-              tx: 0,
-              ty: 0
-            },
-            p1: -1,
-            p2: -1
-          };
-
-          if (s.parts.push(S), S.glyphIndex = a.readUshort(n, o), o += 2, 1 & g) {
-            var m = a.readShort(n, o);
-            o += 2;
-            var b = a.readShort(n, o);
-            o += 2;
-          } else {
-            m = a.readInt8(n, o);
-            o++;
-            b = a.readInt8(n, o);
-            o++;
-          }
-
-          2 & g ? (S.m.tx = m, S.m.ty = b) : (S.p1 = m, S.p2 = b), 8 & g ? (S.m.a = S.m.d = a.readF2dot14(n, o), o += 2) : 64 & g ? (S.m.a = a.readF2dot14(n, o), o += 2, S.m.d = a.readF2dot14(n, o), o += 2) : 128 & g && (S.m.a = a.readF2dot14(n, o), o += 2, S.m.b = a.readF2dot14(n, o), o += 2, S.m.c = a.readF2dot14(n, o), o += 2, S.m.d = a.readF2dot14(n, o), o += 2);
-        } while (32 & g);
-
-        if (256 & g) {
-          var y = a.readUshort(n, o);
-          o += 2, s.instr = [];
-
-          for (i = 0; i < y; i++) s.instr.push(n[o]), o++;
-        }
-      }
-
-      return s;
-    }, e.GPOS = {}, e.GPOS.parse = function (r, t, a, n) {
-      return e._lctf.parse(r, t, a, n, e.GPOS.subt);
-    }, e.GPOS.subt = function (r, t, a, n) {
-      var o = e._bin,
-          s = a,
-          i = {};
-
-      if (i.fmt = o.readUshort(r, a), a += 2, 1 == t || 2 == t || 3 == t || 7 == t || 8 == t && i.fmt <= 2) {
-        var h = o.readUshort(r, a);
-        a += 2, i.coverage = e._lctf.readCoverage(r, h + s);
-      }
-
-      if (1 == t && 1 == i.fmt) {
-        var f = o.readUshort(r, a);
-        a += 2;
-
-        var d = e._lctf.numOfOnes(f);
-
-        0 != f && (i.pos = e.GPOS.readValueRecord(r, a, f));
-      } else if (2 == t && i.fmt >= 1 && i.fmt <= 2) {
-        f = o.readUshort(r, a);
-        a += 2;
-        var u = o.readUshort(r, a);
-        a += 2;
-        d = e._lctf.numOfOnes(f);
-
-        var l = e._lctf.numOfOnes(u);
-
-        if (1 == i.fmt) {
-          i.pairsets = [];
-          var v = o.readUshort(r, a);
-          a += 2;
-
-          for (var c = 0; c < v; c++) {
-            var p = s + o.readUshort(r, a);
-            a += 2;
-            var U = o.readUshort(r, p);
-            p += 2;
-
-            for (var g = [], S = 0; S < U; S++) {
-              var m = o.readUshort(r, p);
-              p += 2, 0 != f && (x = e.GPOS.readValueRecord(r, p, f), p += 2 * d), 0 != u && (P = e.GPOS.readValueRecord(r, p, u), p += 2 * l), g.push({
-                gid2: m,
-                val1: x,
-                val2: P
-              });
-            }
-
-            i.pairsets.push(g);
-          }
-        }
-
-        if (2 == i.fmt) {
-          var b = o.readUshort(r, a);
-          a += 2;
-          var y = o.readUshort(r, a);
-          a += 2;
-
-          var _ = o.readUshort(r, a);
-
-          a += 2;
-          var F = o.readUshort(r, a);
-          a += 2, i.classDef1 = e._lctf.readClassDef(r, s + b), i.classDef2 = e._lctf.readClassDef(r, s + y), i.matrix = [];
-
-          for (c = 0; c < _; c++) {
-            var C = [];
-
-            for (S = 0; S < F; S++) {
-              var x = null,
-                  P = null;
-              0 != f && (x = e.GPOS.readValueRecord(r, a, f), a += 2 * d), 0 != u && (P = e.GPOS.readValueRecord(r, a, u), a += 2 * l), C.push({
-                val1: x,
-                val2: P
-              });
-            }
-
-            i.matrix.push(C);
-          }
-        }
-      } else {
-        if (9 == t && 1 == i.fmt) {
-          var I = o.readUshort(r, a);
-          a += 2;
-          var G = o.readUint(r, a);
-          if (a += 4, 9 == n.ltype) n.ltype = I;else if (n.ltype != I) throw "invalid extension substitution";
-          return e.GPOS.subt(r, n.ltype, s + G);
-        }
-
-        console.debug("unsupported GPOS table LookupType", t, "format", i.fmt);
-      }
-
-      return i;
-    }, e.GPOS.readValueRecord = function (r, t, a) {
-      var n = e._bin,
-          o = [];
-      return o.push(1 & a ? n.readShort(r, t) : 0), t += 1 & a ? 2 : 0, o.push(2 & a ? n.readShort(r, t) : 0), t += 2 & a ? 2 : 0, o.push(4 & a ? n.readShort(r, t) : 0), t += 4 & a ? 2 : 0, o.push(8 & a ? n.readShort(r, t) : 0), t += 8 & a ? 2 : 0, o;
-    }, e.GSUB = {}, e.GSUB.parse = function (r, t, a, n) {
-      return e._lctf.parse(r, t, a, n, e.GSUB.subt);
-    }, e.GSUB.subt = function (r, t, a, n) {
-      var o = e._bin,
-          s = a,
-          i = {};
-      if (i.fmt = o.readUshort(r, a), a += 2, 1 != t && 4 != t && 5 != t && 6 != t) return null;
-
-      if (1 == t || 4 == t || 5 == t && i.fmt <= 2 || 6 == t && i.fmt <= 2) {
-        var h = o.readUshort(r, a);
-        a += 2, i.coverage = e._lctf.readCoverage(r, s + h);
-      }
-
-      if (1 == t && i.fmt >= 1 && i.fmt <= 2) {
-        if (1 == i.fmt) i.delta = o.readShort(r, a), a += 2;else if (2 == i.fmt) {
-          var f = o.readUshort(r, a);
-          a += 2, i.newg = o.readUshorts(r, a, f), a += 2 * i.newg.length;
-        }
-      } else if (4 == t) {
-        i.vals = [];
-        f = o.readUshort(r, a);
-        a += 2;
-
-        for (var d = 0; d < f; d++) {
-          var u = o.readUshort(r, a);
-          a += 2, i.vals.push(e.GSUB.readLigatureSet(r, s + u));
-        }
-      } else if (5 == t && 2 == i.fmt) {
-        if (2 == i.fmt) {
-          var l = o.readUshort(r, a);
-          a += 2, i.cDef = e._lctf.readClassDef(r, s + l), i.scset = [];
-          var v = o.readUshort(r, a);
-          a += 2;
-
-          for (d = 0; d < v; d++) {
-            var c = o.readUshort(r, a);
-            a += 2, i.scset.push(0 == c ? null : e.GSUB.readSubClassSet(r, s + c));
-          }
-        }
-      } else if (6 == t && 3 == i.fmt) {
-        if (3 == i.fmt) {
-          for (d = 0; d < 3; d++) {
-            f = o.readUshort(r, a);
-            a += 2;
-
-            for (var p = [], U = 0; U < f; U++) p.push(e._lctf.readCoverage(r, s + o.readUshort(r, a + 2 * U)));
-
-            a += 2 * f, 0 == d && (i.backCvg = p), 1 == d && (i.inptCvg = p), 2 == d && (i.ahedCvg = p);
-          }
-
-          f = o.readUshort(r, a);
-          a += 2, i.lookupRec = e.GSUB.readSubstLookupRecords(r, a, f);
-        }
-      } else {
-        if (7 == t && 1 == i.fmt) {
-          var g = o.readUshort(r, a);
-          a += 2;
-          var S = o.readUint(r, a);
-          if (a += 4, 9 == n.ltype) n.ltype = g;else if (n.ltype != g) throw "invalid extension substitution";
-          return e.GSUB.subt(r, n.ltype, s + S);
-        }
-
-        console.debug("unsupported GSUB table LookupType", t, "format", i.fmt);
-      }
-
-      return i;
-    }, e.GSUB.readSubClassSet = function (r, t) {
-      var a = e._bin.readUshort,
-          n = t,
-          o = [],
-          s = a(r, t);
-      t += 2;
-
-      for (var i = 0; i < s; i++) {
-        var h = a(r, t);
-        t += 2, o.push(e.GSUB.readSubClassRule(r, n + h));
-      }
-
-      return o;
-    }, e.GSUB.readSubClassRule = function (r, t) {
-      var a = e._bin.readUshort,
-          n = {},
-          o = a(r, t),
-          s = a(r, t += 2);
-      t += 2, n.input = [];
-
-      for (var i = 0; i < o - 1; i++) n.input.push(a(r, t)), t += 2;
-
-      return n.substLookupRecords = e.GSUB.readSubstLookupRecords(r, t, s), n;
-    }, e.GSUB.readSubstLookupRecords = function (r, t, a) {
-      for (var n = e._bin.readUshort, o = [], s = 0; s < a; s++) o.push(n(r, t), n(r, t + 2)), t += 4;
-
-      return o;
-    }, e.GSUB.readChainSubClassSet = function (r, t) {
-      var a = e._bin,
-          n = t,
-          o = [],
-          s = a.readUshort(r, t);
-      t += 2;
-
-      for (var i = 0; i < s; i++) {
-        var h = a.readUshort(r, t);
-        t += 2, o.push(e.GSUB.readChainSubClassRule(r, n + h));
-      }
-
-      return o;
-    }, e.GSUB.readChainSubClassRule = function (r, t) {
-      for (var a = e._bin, n = {}, o = ["backtrack", "input", "lookahead"], s = 0; s < o.length; s++) {
-        var i = a.readUshort(r, t);
-        t += 2, 1 == s && i--, n[o[s]] = a.readUshorts(r, t, i), t += 2 * n[o[s]].length;
-      }
-
-      i = a.readUshort(r, t);
-      return t += 2, n.subst = a.readUshorts(r, t, 2 * i), t += 2 * n.subst.length, n;
-    }, e.GSUB.readLigatureSet = function (r, t) {
-      var a = e._bin,
-          n = t,
-          o = [],
-          s = a.readUshort(r, t);
-      t += 2;
-
-      for (var i = 0; i < s; i++) {
-        var h = a.readUshort(r, t);
-        t += 2, o.push(e.GSUB.readLigature(r, n + h));
-      }
-
-      return o;
-    }, e.GSUB.readLigature = function (r, t) {
-      var a = e._bin,
-          n = {
-        chain: []
-      };
-      n.nglyph = a.readUshort(r, t), t += 2;
-      var o = a.readUshort(r, t);
-      t += 2;
-
-      for (var s = 0; s < o - 1; s++) n.chain.push(a.readUshort(r, t)), t += 2;
-
-      return n;
-    }, e.head = {}, e.head.parse = function (r, t, a) {
-      var n = e._bin,
-          o = {};
-      n.readFixed(r, t);
-      t += 4, o.fontRevision = n.readFixed(r, t), t += 4;
-      n.readUint(r, t);
-      t += 4;
-      n.readUint(r, t);
-      return t += 4, o.flags = n.readUshort(r, t), t += 2, o.unitsPerEm = n.readUshort(r, t), t += 2, o.created = n.readUint64(r, t), t += 8, o.modified = n.readUint64(r, t), t += 8, o.xMin = n.readShort(r, t), t += 2, o.yMin = n.readShort(r, t), t += 2, o.xMax = n.readShort(r, t), t += 2, o.yMax = n.readShort(r, t), t += 2, o.macStyle = n.readUshort(r, t), t += 2, o.lowestRecPPEM = n.readUshort(r, t), t += 2, o.fontDirectionHint = n.readShort(r, t), t += 2, o.indexToLocFormat = n.readShort(r, t), t += 2, o.glyphDataFormat = n.readShort(r, t), t += 2, o;
-    }, e.hhea = {}, e.hhea.parse = function (r, t, a) {
-      var n = e._bin,
-          o = {};
-      n.readFixed(r, t);
-      return t += 4, o.ascender = n.readShort(r, t), t += 2, o.descender = n.readShort(r, t), t += 2, o.lineGap = n.readShort(r, t), t += 2, o.advanceWidthMax = n.readUshort(r, t), t += 2, o.minLeftSideBearing = n.readShort(r, t), t += 2, o.minRightSideBearing = n.readShort(r, t), t += 2, o.xMaxExtent = n.readShort(r, t), t += 2, o.caretSlopeRise = n.readShort(r, t), t += 2, o.caretSlopeRun = n.readShort(r, t), t += 2, o.caretOffset = n.readShort(r, t), t += 2, t += 8, o.metricDataFormat = n.readShort(r, t), t += 2, o.numberOfHMetrics = n.readUshort(r, t), t += 2, o;
-    }, e.hmtx = {}, e.hmtx.parse = function (r, t, a, n) {
-      for (var o = e._bin, s = {
-        aWidth: [],
-        lsBearing: []
-      }, i = 0, h = 0, f = 0; f < n.maxp.numGlyphs; f++) f < n.hhea.numberOfHMetrics && (i = o.readUshort(r, t), t += 2, h = o.readShort(r, t), t += 2), s.aWidth.push(i), s.lsBearing.push(h);
-
-      return s;
-    }, e.kern = {}, e.kern.parse = function (r, t, a, n) {
-      var o = e._bin,
-          s = o.readUshort(r, t);
-      if (t += 2, 1 == s) return e.kern.parseV1(r, t - 2, a, n);
-      var i = o.readUshort(r, t);
-      t += 2;
-
-      for (var h = {
-        glyph1: [],
-        rval: []
-      }, f = 0; f < i; f++) {
-        t += 2;
-        a = o.readUshort(r, t);
-        t += 2;
-        var d = o.readUshort(r, t);
-        t += 2;
-        var u = d >>> 8;
-        if (0 != (u &= 15)) throw "unknown kern table format: " + u;
-        t = e.kern.readFormat0(r, t, h);
-      }
-
-      return h;
-    }, e.kern.parseV1 = function (r, t, a, n) {
-      var o = e._bin;
-      o.readFixed(r, t);
-      t += 4;
-      var s = o.readUint(r, t);
-      t += 4;
-
-      for (var i = {
-        glyph1: [],
-        rval: []
-      }, h = 0; h < s; h++) {
-        o.readUint(r, t);
-        t += 4;
-        var f = o.readUshort(r, t);
-        t += 2;
-        o.readUshort(r, t);
-        t += 2;
-        var d = f >>> 8;
-        if (0 != (d &= 15)) throw "unknown kern table format: " + d;
-        t = e.kern.readFormat0(r, t, i);
-      }
-
-      return i;
-    }, e.kern.readFormat0 = function (r, t, a) {
-      var n = e._bin,
-          o = -1,
-          s = n.readUshort(r, t);
-      t += 2;
-      n.readUshort(r, t);
-      t += 2;
-      n.readUshort(r, t);
-      t += 2;
-      n.readUshort(r, t);
-      t += 2;
-
-      for (var i = 0; i < s; i++) {
-        var h = n.readUshort(r, t);
-        t += 2;
-        var f = n.readUshort(r, t);
-        t += 2;
-        var d = n.readShort(r, t);
-        t += 2, h != o && (a.glyph1.push(h), a.rval.push({
-          glyph2: [],
-          vals: []
-        }));
-        var u = a.rval[a.rval.length - 1];
-        u.glyph2.push(f), u.vals.push(d), o = h;
-      }
-
-      return t;
-    }, e.loca = {}, e.loca.parse = function (r, t, a, n) {
-      var o = e._bin,
-          s = [],
-          i = n.head.indexToLocFormat,
-          h = n.maxp.numGlyphs + 1;
-      if (0 == i) for (var f = 0; f < h; f++) s.push(o.readUshort(r, t + (f << 1)) << 1);
-      if (1 == i) for (f = 0; f < h; f++) s.push(o.readUint(r, t + (f << 2)));
-      return s;
-    }, e.maxp = {}, e.maxp.parse = function (r, t, a) {
-      var n = e._bin,
-          o = {},
-          s = n.readUint(r, t);
-      return t += 4, o.numGlyphs = n.readUshort(r, t), t += 2, 65536 == s && (o.maxPoints = n.readUshort(r, t), t += 2, o.maxContours = n.readUshort(r, t), t += 2, o.maxCompositePoints = n.readUshort(r, t), t += 2, o.maxCompositeContours = n.readUshort(r, t), t += 2, o.maxZones = n.readUshort(r, t), t += 2, o.maxTwilightPoints = n.readUshort(r, t), t += 2, o.maxStorage = n.readUshort(r, t), t += 2, o.maxFunctionDefs = n.readUshort(r, t), t += 2, o.maxInstructionDefs = n.readUshort(r, t), t += 2, o.maxStackElements = n.readUshort(r, t), t += 2, o.maxSizeOfInstructions = n.readUshort(r, t), t += 2, o.maxComponentElements = n.readUshort(r, t), t += 2, o.maxComponentDepth = n.readUshort(r, t), t += 2), o;
-    }, e.name = {}, e.name.parse = function (r, t, a) {
-      var n = e._bin,
-          o = {};
-      n.readUshort(r, t);
-      t += 2;
-      var s = n.readUshort(r, t);
-      t += 2;
-      n.readUshort(r, t);
-
-      for (var i, h = ["copyright", "fontFamily", "fontSubfamily", "ID", "fullName", "version", "postScriptName", "trademark", "manufacturer", "designer", "description", "urlVendor", "urlDesigner", "licence", "licenceURL", "---", "typoFamilyName", "typoSubfamilyName", "compatibleFull", "sampleText", "postScriptCID", "wwsFamilyName", "wwsSubfamilyName", "lightPalette", "darkPalette"], f = t += 2, d = 0; d < s; d++) {
-        var u = n.readUshort(r, t);
-        t += 2;
-        var l = n.readUshort(r, t);
-        t += 2;
-        var v = n.readUshort(r, t);
-        t += 2;
-        var c = n.readUshort(r, t);
-        t += 2;
-        var p = n.readUshort(r, t);
-        t += 2;
-        var U = n.readUshort(r, t);
-        t += 2;
-        var g,
-            S = h[c],
-            m = f + 12 * s + U;
-        if (0 == u) g = n.readUnicode(r, m, p / 2);else if (3 == u && 0 == l) g = n.readUnicode(r, m, p / 2);else if (0 == l) g = n.readASCII(r, m, p);else if (1 == l) g = n.readUnicode(r, m, p / 2);else if (3 == l) g = n.readUnicode(r, m, p / 2);else {
-          if (1 != u) throw "unknown encoding " + l + ", platformID: " + u;
-          g = n.readASCII(r, m, p), console.debug("reading unknown MAC encoding " + l + " as ASCII");
-        }
-        var b = "p" + u + "," + v.toString(16);
-        null == o[b] && (o[b] = {}), o[b][void 0 !== S ? S : c] = g, o[b]._lang = v;
-      }
-
-      for (var y in o) if (null != o[y].postScriptName && 1033 == o[y]._lang) return o[y];
-
-      for (var y in o) if (null != o[y].postScriptName && 0 == o[y]._lang) return o[y];
-
-      for (var y in o) if (null != o[y].postScriptName && 3084 == o[y]._lang) return o[y];
-
-      for (var y in o) if (null != o[y].postScriptName) return o[y];
-
-      for (var y in o) {
-        i = y;
-        break;
-      }
-
-      return console.debug("returning name table with languageID " + o[i]._lang), o[i];
-    }, e["OS/2"] = {}, e["OS/2"].parse = function (r, t, a) {
-      var n = e._bin.readUshort(r, t);
-
-      t += 2;
-      var o = {};
-      if (0 == n) e["OS/2"].version0(r, t, o);else if (1 == n) e["OS/2"].version1(r, t, o);else if (2 == n || 3 == n || 4 == n) e["OS/2"].version2(r, t, o);else {
-        if (5 != n) throw "unknown OS/2 table version: " + n;
-        e["OS/2"].version5(r, t, o);
-      }
-      return o;
-    }, e["OS/2"].version0 = function (r, t, a) {
-      var n = e._bin;
-      return a.xAvgCharWidth = n.readShort(r, t), t += 2, a.usWeightClass = n.readUshort(r, t), t += 2, a.usWidthClass = n.readUshort(r, t), t += 2, a.fsType = n.readUshort(r, t), t += 2, a.ySubscriptXSize = n.readShort(r, t), t += 2, a.ySubscriptYSize = n.readShort(r, t), t += 2, a.ySubscriptXOffset = n.readShort(r, t), t += 2, a.ySubscriptYOffset = n.readShort(r, t), t += 2, a.ySuperscriptXSize = n.readShort(r, t), t += 2, a.ySuperscriptYSize = n.readShort(r, t), t += 2, a.ySuperscriptXOffset = n.readShort(r, t), t += 2, a.ySuperscriptYOffset = n.readShort(r, t), t += 2, a.yStrikeoutSize = n.readShort(r, t), t += 2, a.yStrikeoutPosition = n.readShort(r, t), t += 2, a.sFamilyClass = n.readShort(r, t), t += 2, a.panose = n.readBytes(r, t, 10), t += 10, a.ulUnicodeRange1 = n.readUint(r, t), t += 4, a.ulUnicodeRange2 = n.readUint(r, t), t += 4, a.ulUnicodeRange3 = n.readUint(r, t), t += 4, a.ulUnicodeRange4 = n.readUint(r, t), t += 4, a.achVendID = [n.readInt8(r, t), n.readInt8(r, t + 1), n.readInt8(r, t + 2), n.readInt8(r, t + 3)], t += 4, a.fsSelection = n.readUshort(r, t), t += 2, a.usFirstCharIndex = n.readUshort(r, t), t += 2, a.usLastCharIndex = n.readUshort(r, t), t += 2, a.sTypoAscender = n.readShort(r, t), t += 2, a.sTypoDescender = n.readShort(r, t), t += 2, a.sTypoLineGap = n.readShort(r, t), t += 2, a.usWinAscent = n.readUshort(r, t), t += 2, a.usWinDescent = n.readUshort(r, t), t += 2;
-    }, e["OS/2"].version1 = function (r, t, a) {
-      var n = e._bin;
-      return t = e["OS/2"].version0(r, t, a), a.ulCodePageRange1 = n.readUint(r, t), t += 4, a.ulCodePageRange2 = n.readUint(r, t), t += 4;
-    }, e["OS/2"].version2 = function (r, t, a) {
-      var n = e._bin;
-      return t = e["OS/2"].version1(r, t, a), a.sxHeight = n.readShort(r, t), t += 2, a.sCapHeight = n.readShort(r, t), t += 2, a.usDefault = n.readUshort(r, t), t += 2, a.usBreak = n.readUshort(r, t), t += 2, a.usMaxContext = n.readUshort(r, t), t += 2;
-    }, e["OS/2"].version5 = function (r, t, a) {
-      var n = e._bin;
-      return t = e["OS/2"].version2(r, t, a), a.usLowerOpticalPointSize = n.readUshort(r, t), t += 2, a.usUpperOpticalPointSize = n.readUshort(r, t), t += 2;
-    }, e.post = {}, e.post.parse = function (r, t, a) {
-      var n = e._bin,
-          o = {};
-      return o.version = n.readFixed(r, t), t += 4, o.italicAngle = n.readFixed(r, t), t += 4, o.underlinePosition = n.readShort(r, t), t += 2, o.underlineThickness = n.readShort(r, t), t += 2, o;
-    }, e.SVG = {}, e.SVG.parse = function (r, t, a) {
-      var n = e._bin,
-          o = {
-        entries: []
-      },
-          s = t;
-      n.readUshort(r, t);
-      t += 2;
-      var i = n.readUint(r, t);
-      t += 4;
-      n.readUint(r, t);
-      t += 4, t = i + s;
-      var h = n.readUshort(r, t);
-      t += 2;
-
-      for (var f = 0; f < h; f++) {
-        var d = n.readUshort(r, t);
-        t += 2;
-        var u = n.readUshort(r, t);
-        t += 2;
-        var l = n.readUint(r, t);
-        t += 4;
-        var v = n.readUint(r, t);
-        t += 4;
-
-        for (var c = new Uint8Array(r.buffer, s + l + i, v), p = n.readUTF8(c, 0, c.length), U = d; U <= u; U++) o.entries[U] = p;
-      }
-
-      return o;
-    }, e.SVG.toPath = function (r) {
-      var t = {
-        cmds: [],
-        crds: []
-      };
-      if (null == r) return t;
-
-      for (var a = new DOMParser().parseFromString(r, "image/svg+xml").firstChild; "svg" != a.tagName;) a = a.nextSibling;
-
-      var n = a.getAttribute("viewBox");
-      n = n ? n.trim().split(" ").map(parseFloat) : [0, 0, 1e3, 1e3], e.SVG._toPath(a.children, t);
-
-      for (var o = 0; o < t.crds.length; o += 2) {
-        var s = t.crds[o],
-            i = t.crds[o + 1];
-        s -= n[0], i = -(i -= n[1]), t.crds[o] = s, t.crds[o + 1] = i;
-      }
-
-      return t;
-    }, e.SVG._toPath = function (r, t, a) {
-      for (var n = 0; n < r.length; n++) {
-        var o = r[n],
-            s = o.tagName,
-            i = o.getAttribute("fill");
-        if (null == i && (i = a), "g" == s) e.SVG._toPath(o.children, t, i);else if ("path" == s) {
-          t.cmds.push(i || "#000000");
-
-          var h = o.getAttribute("d"),
-              f = e.SVG._tokens(h);
-
-          e.SVG._toksToPath(f, t), t.cmds.push("X");
-        } else "defs" == s || console.debug(s, o);
-      }
-    }, e.SVG._tokens = function (r) {
-      for (var e = [], t = 0, a = !1, n = ""; t < r.length;) {
-        var o = r.charCodeAt(t),
-            s = r.charAt(t);
-        t++;
-        var i = 48 <= o && o <= 57 || "." == s || "-" == s;
-        a ? "-" == s ? (e.push(parseFloat(n)), n = s) : i ? n += s : (e.push(parseFloat(n)), "," != s && " " != s && e.push(s), a = !1) : i ? (n = s, a = !0) : "," != s && " " != s && e.push(s);
-      }
-
-      return a && e.push(parseFloat(n)), e;
-    }, e.SVG._toksToPath = function (r, t) {
-      for (var a = 0, n = 0, o = 0, s = 0, i = 0, h = {
-        M: 2,
-        L: 2,
-        H: 1,
-        V: 1,
-        S: 4,
-        C: 6
-      }, f = t.cmds, d = t.crds; a < r.length;) {
-        var u = r[a];
-        if (a++, "z" == u) f.push("Z"), n = s, o = i;else for (var l = u.toUpperCase(), v = h[l], c = e.SVG._reps(r, a, v), p = 0; p < c; p++) {
-          var U = 0,
-              g = 0;
-          if (u != l && (U = n, g = o), "M" == l) n = U + r[a++], o = g + r[a++], f.push("M"), d.push(n, o), s = n, i = o;else if ("L" == l) n = U + r[a++], o = g + r[a++], f.push("L"), d.push(n, o);else if ("H" == l) n = U + r[a++], f.push("L"), d.push(n, o);else if ("V" == l) o = g + r[a++], f.push("L"), d.push(n, o);else if ("C" == l) {
-            var S = U + r[a++],
-                m = g + r[a++],
-                b = U + r[a++],
-                y = g + r[a++],
-                _ = U + r[a++],
-                F = g + r[a++];
-
-            f.push("C"), d.push(S, m, b, y, _, F), n = _, o = F;
-          } else if ("S" == l) {
-            var C = Math.max(d.length - 4, 0);
-            S = n + n - d[C], m = o + o - d[C + 1], b = U + r[a++], y = g + r[a++], _ = U + r[a++], F = g + r[a++];
-            f.push("C"), d.push(S, m, b, y, _, F), n = _, o = F;
-          } else console.debug("Unknown SVG command " + u);
-        }
-      }
-    }, e.SVG._reps = function (r, e, t) {
-      for (var a = e; a < r.length && "string" != typeof r[a];) a += t;
-
-      return (a - e) / t;
-    }, null == e && (e = {}), null == e.U && (e.U = {}), e.U.codeToGlyph = function (r, e) {
-      var t = r.cmap,
-          a = -1;
-      if (null != t.p0e4 ? a = t.p0e4 : null != t.p3e1 ? a = t.p3e1 : null != t.p1e0 ? a = t.p1e0 : null != t.p0e3 && (a = t.p0e3), -1 == a) throw "no familiar platform and encoding!";
-      var n = t.tables[a];
-      if (0 == n.format) return e >= n.map.length ? 0 : n.map[e];
-
-      if (4 == n.format) {
-        for (var o = -1, s = 0; s < n.endCount.length; s++) if (e <= n.endCount[s]) {
-          o = s;
-          break;
-        }
-
-        if (-1 == o) return 0;
-        if (n.startCount[o] > e) return 0;
-        return 65535 & (0 != n.idRangeOffset[o] ? n.glyphIdArray[e - n.startCount[o] + (n.idRangeOffset[o] >> 1) - (n.idRangeOffset.length - o)] : e + n.idDelta[o]);
-      }
-
-      if (12 == n.format) {
-        if (e > n.groups[n.groups.length - 1][1]) return 0;
-
-        for (s = 0; s < n.groups.length; s++) {
-          var i = n.groups[s];
-          if (i[0] <= e && e <= i[1]) return i[2] + (e - i[0]);
-        }
-
-        return 0;
-      }
-
-      throw "unknown cmap table format " + n.format;
-    }, e.U.glyphToPath = function (r, t) {
-      var a = {
-        cmds: [],
-        crds: []
-      };
-
-      if (r.SVG && r.SVG.entries[t]) {
-        var n = r.SVG.entries[t];
-        return null == n ? a : ("string" == typeof n && (n = e.SVG.toPath(n), r.SVG.entries[t] = n), n);
-      }
-
-      if (r.CFF) {
-        var o = {
-          x: 0,
-          y: 0,
-          stack: [],
-          nStems: 0,
-          haveWidth: !1,
-          width: r.CFF.Private ? r.CFF.Private.defaultWidthX : 0,
-          open: !1
-        },
-            s = r.CFF,
-            i = r.CFF.Private;
-
-        if (s.ROS) {
-          for (var h = 0; s.FDSelect[h + 2] <= t;) h += 2;
-
-          i = s.FDArray[s.FDSelect[h + 1]].Private;
-        }
-
-        e.U._drawCFF(r.CFF.CharStrings[t], o, s, i, a);
-      } else r.glyf && e.U._drawGlyf(t, r, a);
-
-      return a;
-    }, e.U._drawGlyf = function (r, t, a) {
-      var n = t.glyf[r];
-      null == n && (n = t.glyf[r] = e.glyf._parseGlyf(t, r)), null != n && (n.noc > -1 ? e.U._simpleGlyph(n, a) : e.U._compoGlyph(n, t, a));
-    }, e.U._simpleGlyph = function (r, t) {
-      for (var a = 0; a < r.noc; a++) {
-        for (var n = 0 == a ? 0 : r.endPts[a - 1] + 1, o = r.endPts[a], s = n; s <= o; s++) {
-          var i = s == n ? o : s - 1,
-              h = s == o ? n : s + 1,
-              f = 1 & r.flags[s],
-              d = 1 & r.flags[i],
-              u = 1 & r.flags[h],
-              l = r.xs[s],
-              v = r.ys[s];
-          if (s == n) if (f) {
-            if (!d) {
-              e.U.P.moveTo(t, l, v);
-              continue;
-            }
-
-            e.U.P.moveTo(t, r.xs[i], r.ys[i]);
-          } else d ? e.U.P.moveTo(t, r.xs[i], r.ys[i]) : e.U.P.moveTo(t, (r.xs[i] + l) / 2, (r.ys[i] + v) / 2);
-          f ? d && e.U.P.lineTo(t, l, v) : u ? e.U.P.qcurveTo(t, l, v, r.xs[h], r.ys[h]) : e.U.P.qcurveTo(t, l, v, (l + r.xs[h]) / 2, (v + r.ys[h]) / 2);
-        }
-
-        e.U.P.closePath(t);
-      }
-    }, e.U._compoGlyph = function (r, t, a) {
-      for (var n = 0; n < r.parts.length; n++) {
-        var o = {
-          cmds: [],
-          crds: []
-        },
-            s = r.parts[n];
-
-        e.U._drawGlyf(s.glyphIndex, t, o);
-
-        for (var i = s.m, h = 0; h < o.crds.length; h += 2) {
-          var f = o.crds[h],
-              d = o.crds[h + 1];
-          a.crds.push(f * i.a + d * i.b + i.tx), a.crds.push(f * i.c + d * i.d + i.ty);
-        }
-
-        for (h = 0; h < o.cmds.length; h++) a.cmds.push(o.cmds[h]);
-      }
-    }, e.U._getGlyphClass = function (r, t) {
-      var a = e._lctf.getInterval(t, r);
-
-      return -1 == a ? 0 : t[a + 2];
-    }, e.U.getPairAdjustment = function (r, t, a) {
-      var n = 0;
-      if (r.GPOS) for (var o = r.GPOS, s = o.lookupList, i = o.featureList, h = [], f = 0; f < i.length; f++) {
-        var d = i[f];
-        if ("kern" == d.tag) for (var u = 0; u < d.tab.length; u++) if (!h[d.tab[u]]) {
-          h[d.tab[u]] = !0;
-
-          for (var l = s[d.tab[u]], v = 0; v < l.tabs.length; v++) if (null != l.tabs[v]) {
-            var c,
-                p = l.tabs[v];
-            if (!p.coverage || -1 != (c = e._lctf.coverageIndex(p.coverage, t))) if (1 == l.ltype) ;else if (2 == l.ltype) {
-              var U;
-
-              if (1 == p.fmt) {
-                var g = p.pairsets[c];
-
-                for (f = 0; f < g.length; f++) g[f].gid2 == a && (U = g[f]);
-              } else if (2 == p.fmt) {
-                var S = e.U._getGlyphClass(t, p.classDef1),
-                    m = e.U._getGlyphClass(a, p.classDef2);
-
-                U = p.matrix[S][m];
-              }
-
-              U && U.val1 && U.val1[2] && (n += U.val1[2]), U && U.val2 && U.val2[0] && (n += U.val2[0]);
-            }
-          }
-        }
-      }
-
-      if (r.kern) {
-        var b = r.kern.glyph1.indexOf(t);
-
-        if (-1 != b) {
-          var y = r.kern.rval[b].glyph2.indexOf(a);
-          -1 != y && (n += r.kern.rval[b].vals[y]);
-        }
-      }
-
-      return n;
-    }, e.U.stringToGlyphs = function (r, t) {
-      for (var a = [], n = 0; n < t.length; n++) {
-        (o = t.codePointAt(n)) > 65535 && n++, a.push(e.U.codeToGlyph(r, o));
-      }
-
-      for (n = 0; n < t.length; n++) {
-        var o;
-
-        if (2367 == (o = t.codePointAt(n))) {
-          var s = a[n - 1];
-          a[n - 1] = a[n], a[n] = s;
-        }
-
-        o > 65535 && n++;
-      }
-
-      var i = r.GSUB;
-      if (null == i) return a;
-
-      for (var h = i.lookupList, f = i.featureList, d = ["rlig", "liga", "mset", "isol", "init", "fina", "medi", "half", "pres", "blws"], u = [], l = 0; l < f.length; l++) {
-        var v = f[l];
-        if (-1 != d.indexOf(v.tag)) for (var c = 0; c < v.tab.length; c++) if (!u[v.tab[c]]) {
-          u[v.tab[c]] = !0;
-
-          for (var p = h[v.tab[c]], U = 0; U < a.length; U++) {
-            var g = e.U._getWPfeature(t, U);
-
-            -1 != "isol,init,fina,medi".indexOf(v.tag) && v.tag != g || e.U._applySubs(a, U, p, h);
-          }
-        }
-      }
-
-      return a;
-    }, e.U._getWPfeature = function (r, e) {
-      var t = '\n\t" ,.:;!?()  ،',
-          a = "آأؤإاةدذرزوٱٲٳٵٶٷڈډڊڋڌڍڎڏڐڑڒړڔڕږڗژڙۀۃۄۅۆۇۈۉۊۋۍۏےۓەۮۯܐܕܖܗܘܙܞܨܪܬܯݍݙݚݛݫݬݱݳݴݸݹࡀࡆࡇࡉࡔࡧࡩࡪࢪࢫࢬࢮࢱࢲࢹૅેૉ૊૎૏ૐ૑૒૝ૡ૤૯஁ஃ஄அஉ஌எஏ஑னப஫஬",
-          n = 0 == e || -1 != t.indexOf(r[e - 1]),
-          o = e == r.length - 1 || -1 != t.indexOf(r[e + 1]);
-      n || -1 == a.indexOf(r[e - 1]) || (n = !0), o || -1 == a.indexOf(r[e]) || (o = !0), o || -1 == "ꡲ્૗".indexOf(r[e + 1]) || (o = !0), n || -1 == "ꡲ્૗".indexOf(r[e]) || (n = !0);
-      return n ? o ? "isol" : "init" : o ? "fina" : "medi";
-    }, e.U._applySubs = function (r, t, a, n) {
-      for (var o = r.length - t - 1, s = 0; s < a.tabs.length; s++) if (null != a.tabs[s]) {
-        var i,
-            h = a.tabs[s];
-        if (!h.coverage || -1 != (i = e._lctf.coverageIndex(h.coverage, r[t]))) if (1 == a.ltype) {
-          r[t];
-          1 == h.fmt ? r[t] = r[t] + h.delta : r[t] = h.newg[i];
-        } else if (4 == a.ltype) for (var f = h.vals[i], d = 0; d < f.length; d++) {
-          var u = f[d],
-              l = u.chain.length;
-
-          if (!(l > o)) {
-            for (var v = !0, c = 0, p = 0; p < l; p++) {
-              for (; -1 == r[t + c + (1 + p)];) c++;
-
-              u.chain[p] != r[t + c + (1 + p)] && (v = !1);
-            }
-
-            if (v) {
-              r[t] = u.nglyph;
-
-              for (p = 0; p < l + c; p++) r[t + p + 1] = -1;
-
-              break;
-            }
-          }
-        } else if (5 == a.ltype && 2 == h.fmt) for (var U = e._lctf.getInterval(h.cDef, r[t]), g = h.cDef[U + 2], S = h.scset[g], m = 0; m < S.length; m++) {
-          var b = S[m],
-              y = b.input;
-
-          if (!(y.length > o)) {
-            for (v = !0, p = 0; p < y.length; p++) {
-              var _ = e._lctf.getInterval(h.cDef, r[t + 1 + p]);
-
-              if (-1 == U && h.cDef[_ + 2] != y[p]) {
-                v = !1;
-                break;
-              }
-            }
-
-            if (v) {
-              var F = b.substLookupRecords;
-
-              for (d = 0; d < F.length; d += 2) F[d], F[d + 1];
-            }
-          }
-        } else if (6 == a.ltype && 3 == h.fmt) {
-          if (!e.U._glsCovered(r, h.backCvg, t - h.backCvg.length)) continue;
-          if (!e.U._glsCovered(r, h.inptCvg, t)) continue;
-          if (!e.U._glsCovered(r, h.ahedCvg, t + h.inptCvg.length)) continue;
-          var C = h.lookupRec;
-
-          for (m = 0; m < C.length; m += 2) {
-            U = C[m];
-            var x = n[C[m + 1]];
-
-            e.U._applySubs(r, t + U, x, n);
-          }
-        }
-      }
-    }, e.U._glsCovered = function (r, t, a) {
-      for (var n = 0; n < t.length; n++) {
-        if (-1 == e._lctf.coverageIndex(t[n], r[a + n])) return !1;
-      }
-
-      return !0;
-    }, e.U.glyphsToPath = function (r, t, a) {
-      for (var n = {
-        cmds: [],
-        crds: []
-      }, o = 0, s = 0; s < t.length; s++) {
-        var i = t[s];
-
-        if (-1 != i) {
-          for (var h = s < t.length - 1 && -1 != t[s + 1] ? t[s + 1] : 0, f = e.U.glyphToPath(r, i), d = 0; d < f.crds.length; d += 2) n.crds.push(f.crds[d] + o), n.crds.push(f.crds[d + 1]);
-
-          a && n.cmds.push(a);
-
-          for (d = 0; d < f.cmds.length; d++) n.cmds.push(f.cmds[d]);
-
-          a && n.cmds.push("X"), o += r.hmtx.aWidth[i], s < t.length - 1 && (o += e.U.getPairAdjustment(r, i, h));
-        }
-      }
-
-      return n;
-    }, e.U.pathToSVG = function (r, e) {
-      null == e && (e = 5);
-
-      for (var t = [], a = 0, n = {
-        M: 2,
-        L: 2,
-        Q: 4,
-        C: 6
-      }, o = 0; o < r.cmds.length; o++) {
-        var s = r.cmds[o],
-            i = a + (n[s] ? n[s] : 0);
-
-        for (t.push(s); a < i;) {
-          var h = r.crds[a++];
-          t.push(parseFloat(h.toFixed(e)) + (a == i ? "" : " "));
-        }
-      }
-
-      return t.join("");
-    }, e.U.pathToContext = function (r, e) {
-      for (var t = 0, a = r.crds, n = 0; n < r.cmds.length; n++) {
-        var o = r.cmds[n];
-        "M" == o ? (e.moveTo(a[t], a[t + 1]), t += 2) : "L" == o ? (e.lineTo(a[t], a[t + 1]), t += 2) : "C" == o ? (e.bezierCurveTo(a[t], a[t + 1], a[t + 2], a[t + 3], a[t + 4], a[t + 5]), t += 6) : "Q" == o ? (e.quadraticCurveTo(a[t], a[t + 1], a[t + 2], a[t + 3]), t += 4) : "#" == o.charAt(0) ? (e.beginPath(), e.fillStyle = o) : "Z" == o ? e.closePath() : "X" == o && e.fill();
-      }
-    }, e.U.P = {}, e.U.P.moveTo = function (r, e, t) {
-      r.cmds.push("M"), r.crds.push(e, t);
-    }, e.U.P.lineTo = function (r, e, t) {
-      r.cmds.push("L"), r.crds.push(e, t);
-    }, e.U.P.curveTo = function (r, e, t, a, n, o, s) {
-      r.cmds.push("C"), r.crds.push(e, t, a, n, o, s);
-    }, e.U.P.qcurveTo = function (r, e, t, a, n) {
-      r.cmds.push("Q"), r.crds.push(e, t, a, n);
-    }, e.U.P.closePath = function (r) {
-      r.cmds.push("Z");
-    }, e.U._drawCFF = function (r, t, a, n, o) {
-      for (var s = t.stack, i = t.nStems, h = t.haveWidth, f = t.width, d = t.open, u = 0, l = t.x, v = t.y, c = 0, p = 0, U = 0, g = 0, S = 0, m = 0, b = 0, y = 0, _ = 0, F = 0, C = {
-        val: 0,
-        size: 0
-      }; u < r.length;) {
-        e.CFF.getCharString(r, u, C);
-        var x = C.val;
-        if (u += C.size, "o1" == x || "o18" == x) s.length % 2 != 0 && !h && (f = s.shift() + n.nominalWidthX), i += s.length >> 1, s.length = 0, h = !0;else if ("o3" == x || "o23" == x) {
-          s.length % 2 != 0 && !h && (f = s.shift() + n.nominalWidthX), i += s.length >> 1, s.length = 0, h = !0;
-        } else if ("o4" == x) s.length > 1 && !h && (f = s.shift() + n.nominalWidthX, h = !0), d && e.U.P.closePath(o), v += s.pop(), e.U.P.moveTo(o, l, v), d = !0;else if ("o5" == x) for (; s.length > 0;) l += s.shift(), v += s.shift(), e.U.P.lineTo(o, l, v);else if ("o6" == x || "o7" == x) for (var P = s.length, I = "o6" == x, G = 0; G < P; G++) {
-          var w = s.shift();
-          I ? l += w : v += w, I = !I, e.U.P.lineTo(o, l, v);
-        } else if ("o8" == x || "o24" == x) {
-          P = s.length;
-
-          for (var T = 0; T + 6 <= P;) c = l + s.shift(), p = v + s.shift(), U = c + s.shift(), g = p + s.shift(), l = U + s.shift(), v = g + s.shift(), e.U.P.curveTo(o, c, p, U, g, l, v), T += 6;
-
-          "o24" == x && (l += s.shift(), v += s.shift(), e.U.P.lineTo(o, l, v));
-        } else {
-          if ("o11" == x) break;
-          if ("o1234" == x || "o1235" == x || "o1236" == x || "o1237" == x) "o1234" == x && (p = v, U = (c = l + s.shift()) + s.shift(), F = g = p + s.shift(), m = g, y = v, l = (b = (S = (_ = U + s.shift()) + s.shift()) + s.shift()) + s.shift(), e.U.P.curveTo(o, c, p, U, g, _, F), e.U.P.curveTo(o, S, m, b, y, l, v)), "o1235" == x && (c = l + s.shift(), p = v + s.shift(), U = c + s.shift(), g = p + s.shift(), _ = U + s.shift(), F = g + s.shift(), S = _ + s.shift(), m = F + s.shift(), b = S + s.shift(), y = m + s.shift(), l = b + s.shift(), v = y + s.shift(), s.shift(), e.U.P.curveTo(o, c, p, U, g, _, F), e.U.P.curveTo(o, S, m, b, y, l, v)), "o1236" == x && (c = l + s.shift(), p = v + s.shift(), U = c + s.shift(), F = g = p + s.shift(), m = g, b = (S = (_ = U + s.shift()) + s.shift()) + s.shift(), y = m + s.shift(), l = b + s.shift(), e.U.P.curveTo(o, c, p, U, g, _, F), e.U.P.curveTo(o, S, m, b, y, l, v)), "o1237" == x && (c = l + s.shift(), p = v + s.shift(), U = c + s.shift(), g = p + s.shift(), _ = U + s.shift(), F = g + s.shift(), S = _ + s.shift(), m = F + s.shift(), b = S + s.shift(), y = m + s.shift(), Math.abs(b - l) > Math.abs(y - v) ? l = b + s.shift() : v = y + s.shift(), e.U.P.curveTo(o, c, p, U, g, _, F), e.U.P.curveTo(o, S, m, b, y, l, v));else if ("o14" == x) {
-            if (s.length > 0 && !h && (f = s.shift() + a.nominalWidthX, h = !0), 4 == s.length) {
-              var O = s.shift(),
-                  k = s.shift(),
-                  D = s.shift(),
-                  B = s.shift(),
-                  A = e.CFF.glyphBySE(a, D),
-                  L = e.CFF.glyphBySE(a, B);
-              e.U._drawCFF(a.CharStrings[A], t, a, n, o), t.x = O, t.y = k, e.U._drawCFF(a.CharStrings[L], t, a, n, o);
-            }
-
-            d && (e.U.P.closePath(o), d = !1);
-          } else if ("o19" == x || "o20" == x) {
-            s.length % 2 != 0 && !h && (f = s.shift() + n.nominalWidthX), i += s.length >> 1, s.length = 0, h = !0, u += i + 7 >> 3;
-          } else if ("o21" == x) s.length > 2 && !h && (f = s.shift() + n.nominalWidthX, h = !0), v += s.pop(), l += s.pop(), d && e.U.P.closePath(o), e.U.P.moveTo(o, l, v), d = !0;else if ("o22" == x) s.length > 1 && !h && (f = s.shift() + n.nominalWidthX, h = !0), l += s.pop(), d && e.U.P.closePath(o), e.U.P.moveTo(o, l, v), d = !0;else if ("o25" == x) {
-            for (; s.length > 6;) l += s.shift(), v += s.shift(), e.U.P.lineTo(o, l, v);
-
-            c = l + s.shift(), p = v + s.shift(), U = c + s.shift(), g = p + s.shift(), l = U + s.shift(), v = g + s.shift(), e.U.P.curveTo(o, c, p, U, g, l, v);
-          } else if ("o26" == x) for (s.length % 2 && (l += s.shift()); s.length > 0;) c = l, p = v + s.shift(), l = U = c + s.shift(), v = (g = p + s.shift()) + s.shift(), e.U.P.curveTo(o, c, p, U, g, l, v);else if ("o27" == x) for (s.length % 2 && (v += s.shift()); s.length > 0;) p = v, U = (c = l + s.shift()) + s.shift(), g = p + s.shift(), l = U + s.shift(), v = g, e.U.P.curveTo(o, c, p, U, g, l, v);else if ("o10" == x || "o29" == x) {
-            var R = "o10" == x ? n : a;
-            if (0 == s.length) console.debug("error: empty stack");else {
-              var V = s.pop(),
-                  M = R.Subrs[V + R.Bias];
-              t.x = l, t.y = v, t.nStems = i, t.haveWidth = h, t.width = f, t.open = d, e.U._drawCFF(M, t, a, n, o), l = t.x, v = t.y, i = t.nStems, h = t.haveWidth, f = t.width, d = t.open;
-            }
-          } else if ("o30" == x || "o31" == x) {
-            var W = s.length,
-                N = (T = 0, "o31" == x);
-
-            for (T += W - (P = -3 & W); T < P;) N ? (p = v, U = (c = l + s.shift()) + s.shift(), v = (g = p + s.shift()) + s.shift(), P - T == 5 ? (l = U + s.shift(), T++) : l = U, N = !1) : (c = l, p = v + s.shift(), U = c + s.shift(), g = p + s.shift(), l = U + s.shift(), P - T == 5 ? (v = g + s.shift(), T++) : v = g, N = !0), e.U.P.curveTo(o, c, p, U, g, l, v), T += 4;
-          } else {
-            if ("o" == (x + "").charAt(0)) throw console.debug("Unknown operation: " + x, r), x;
-            s.push(x);
-          }
-        }
-      }
-
-      t.x = l, t.y = v, t.nStems = i, t.haveWidth = h, t.width = f, t.open = d;
-    };
-    var t = e,
-        a = {
-      Typr: t
-    };
-    return r.Typr = t, r.default = a, r;
-  }({}).Typr;
-}
-/*!
-Custom bundle of woff2otf (https://github.com/arty-name/woff2otf) with tiny-inflate 
-(https://github.com/foliojs/tiny-inflate) for use in Troika text rendering. 
-Original licenses apply: 
-- tiny-inflate: https://github.com/foliojs/tiny-inflate/blob/master/LICENSE (MIT)
-- woff2otf.js: https://github.com/arty-name/woff2otf/blob/master/woff2otf.js (Apache2)
-*/
-
-
-function woff2otfFactory() {
-  return function (t) {
-    function e() {
-      this.table = new Uint16Array(16), this.trans = new Uint16Array(288);
-    }
-
-    function r(t, r) {
-      this.source = t, this.sourceIndex = 0, this.tag = 0, this.bitcount = 0, this.dest = r, this.destLen = 0, this.ltree = new e(), this.dtree = new e();
-    }
-
-    var n = new e(),
-        o = new e(),
-        a = new Uint8Array(30),
-        s = new Uint16Array(30),
-        i = new Uint8Array(30),
-        u = new Uint16Array(30),
-        f = new Uint8Array([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]),
-        c = new e(),
-        g = new Uint8Array(320);
-
-    function b(t, e, r, n) {
-      var o, a;
-
-      for (o = 0; o < r; ++o) t[o] = 0;
-
-      for (o = 0; o < 30 - r; ++o) t[o + r] = o / r | 0;
-
-      for (a = n, o = 0; o < 30; ++o) e[o] = a, a += 1 << t[o];
-    }
-
-    var d = new Uint16Array(16);
-
-    function h(t, e, r, n) {
-      var o, a;
-
-      for (o = 0; o < 16; ++o) t.table[o] = 0;
-
-      for (o = 0; o < n; ++o) t.table[e[r + o]]++;
-
-      for (t.table[0] = 0, a = 0, o = 0; o < 16; ++o) d[o] = a, a += t.table[o];
-
-      for (o = 0; o < n; ++o) e[r + o] && (t.trans[d[e[r + o]]++] = o);
-    }
-
-    function l(t) {
-      t.bitcount-- || (t.tag = t.source[t.sourceIndex++], t.bitcount = 7);
-      var e = 1 & t.tag;
-      return t.tag >>>= 1, e;
-    }
-
-    function v(t, e, r) {
-      if (!e) return r;
-
-      for (; t.bitcount < 24;) t.tag |= t.source[t.sourceIndex++] << t.bitcount, t.bitcount += 8;
-
-      var n = t.tag & 65535 >>> 16 - e;
-      return t.tag >>>= e, t.bitcount -= e, n + r;
-    }
-
-    function w(t, e) {
-      for (; t.bitcount < 24;) t.tag |= t.source[t.sourceIndex++] << t.bitcount, t.bitcount += 8;
-
-      var r = 0,
-          n = 0,
-          o = 0,
-          a = t.tag;
-
-      do {
-        n = 2 * n + (1 & a), a >>>= 1, ++o, r += e.table[o], n -= e.table[o];
-      } while (n >= 0);
-
-      return t.tag = a, t.bitcount -= o, e.trans[r + n];
-    }
-
-    function L(t, e, r) {
-      var n, o, a, s, i, u;
-
-      for (n = v(t, 5, 257), o = v(t, 5, 1), a = v(t, 4, 4), s = 0; s < 19; ++s) g[s] = 0;
-
-      for (s = 0; s < a; ++s) {
-        var b = v(t, 3, 0);
-        g[f[s]] = b;
-      }
-
-      for (h(c, g, 0, 19), i = 0; i < n + o;) {
-        var d = w(t, c);
-
-        switch (d) {
-          case 16:
-            var l = g[i - 1];
-
-            for (u = v(t, 2, 3); u; --u) g[i++] = l;
-
-            break;
-
-          case 17:
-            for (u = v(t, 3, 3); u; --u) g[i++] = 0;
-
-            break;
-
-          case 18:
-            for (u = v(t, 7, 11); u; --u) g[i++] = 0;
-
-            break;
-
-          default:
-            g[i++] = d;
-        }
-      }
-
-      h(e, g, 0, n), h(r, g, n, o);
-    }
-
-    function U(t, e, r) {
-      for (;;) {
-        var n,
-            o,
-            f,
-            c,
-            g = w(t, e);
-        if (256 === g) return 0;
-        if (g < 256) t.dest[t.destLen++] = g;else for (n = v(t, a[g -= 257], s[g]), o = w(t, r), c = f = t.destLen - v(t, i[o], u[o]); c < f + n; ++c) t.dest[t.destLen++] = t.dest[c];
-      }
-    }
-
-    function m(t) {
-      for (var e, r; t.bitcount > 8;) t.sourceIndex--, t.bitcount -= 8;
-
-      if ((e = 256 * (e = t.source[t.sourceIndex + 1]) + t.source[t.sourceIndex]) !== (65535 & ~(256 * t.source[t.sourceIndex + 3] + t.source[t.sourceIndex + 2]))) return -3;
-
-      for (t.sourceIndex += 4, r = e; r; --r) t.dest[t.destLen++] = t.source[t.sourceIndex++];
-
-      return t.bitcount = 0, 0;
-    }
-
-    !function (t, e) {
-      var r;
-
-      for (r = 0; r < 7; ++r) t.table[r] = 0;
-
-      for (t.table[7] = 24, t.table[8] = 152, t.table[9] = 112, r = 0; r < 24; ++r) t.trans[r] = 256 + r;
-
-      for (r = 0; r < 144; ++r) t.trans[24 + r] = r;
-
-      for (r = 0; r < 8; ++r) t.trans[168 + r] = 280 + r;
-
-      for (r = 0; r < 112; ++r) t.trans[176 + r] = 144 + r;
-
-      for (r = 0; r < 5; ++r) e.table[r] = 0;
-
-      for (e.table[5] = 32, r = 0; r < 32; ++r) e.trans[r] = r;
-    }(n, o), b(a, s, 4, 3), b(i, u, 2, 1), a[28] = 0, s[28] = 258;
-
-    var y = function (t, e) {
-      var a,
-          s,
-          i = new r(t, e);
-
-      do {
-        switch (a = l(i), v(i, 2, 0)) {
-          case 0:
-            s = m(i);
-            break;
-
-          case 1:
-            s = U(i, n, o);
-            break;
-
-          case 2:
-            L(i, i.ltree, i.dtree), s = U(i, i.ltree, i.dtree);
-            break;
-
-          default:
-            s = -3;
-        }
-
-        if (0 !== s) throw new Error("Data error");
-      } while (!a);
-
-      return i.destLen < i.dest.length ? "function" == typeof i.dest.slice ? i.dest.slice(0, i.destLen) : i.dest.subarray(0, i.destLen) : i.dest;
-    };
-
-    return t.convert_streams = function (t) {
-      var e = new DataView(t),
-          r = 0;
-
-      function n() {
-        var t = e.getUint16(r);
-        return r += 2, t;
-      }
-
-      function o() {
-        var t = e.getUint32(r);
-        return r += 4, t;
-      }
-
-      function a(t) {
-        w.setUint16(L, t), L += 2;
-      }
-
-      function s(t) {
-        w.setUint32(L, t), L += 4;
-      }
-
-      for (var i = {
-        signature: o(),
-        flavor: o(),
-        length: o(),
-        numTables: n(),
-        reserved: n(),
-        totalSfntSize: o(),
-        majorVersion: n(),
-        minorVersion: n(),
-        metaOffset: o(),
-        metaLength: o(),
-        metaOrigLength: o(),
-        privOffset: o(),
-        privLength: o()
-      }, u = 0; Math.pow(2, u) <= i.numTables;) u++;
-
-      u--;
-
-      for (var f = 16 * Math.pow(2, u), c = 16 * i.numTables - f, g = 12, b = [], d = 0; d < i.numTables; d++) b.push({
-        tag: o(),
-        offset: o(),
-        compLength: o(),
-        origLength: o(),
-        origChecksum: o()
-      }), g += 16;
-
-      var h,
-          l = new Uint8Array(12 + 16 * b.length + b.reduce(function (t, e) {
-        return t + e.origLength + 4;
-      }, 0)),
-          v = l.buffer,
-          w = new DataView(v),
-          L = 0;
-      return s(i.flavor), a(i.numTables), a(f), a(u), a(c), b.forEach(function (t) {
-        s(t.tag), s(t.origChecksum), s(g), s(t.origLength), t.outOffset = g, (g += t.origLength) % 4 != 0 && (g += 4 - g % 4);
-      }), b.forEach(function (e) {
-        var r = t.slice(e.offset, e.offset + e.compLength);
-
-        if (e.compLength != e.origLength) {
-          var n = new Uint8Array(e.origLength);
-          y(new Uint8Array(r, 2), n);
-        } else n = new Uint8Array(r);
-
-        l.set(n, e.outOffset);
-        var o = 0;
-        (g = e.outOffset + e.origLength) % 4 != 0 && (o = 4 - g % 4), l.set(new Uint8Array(o).buffer, e.outOffset + e.origLength), h = g + o;
-      }), v.slice(0, h);
-    }, t;
-  }({}).convert_streams;
-}
-/**
- * An adapter that allows Typr.js to be used as if it were (a subset of) the OpenType.js API.
- * Also adds support for WOFF files (not WOFF2).
- */
-
-
-function parserFactory(Typr, woff2otf) {
-  const cmdArgLengths = {
-    M: 2,
-    L: 2,
-    Q: 4,
-    C: 6,
-    Z: 0
-  };
-
-  function wrapFontObj(typrFont) {
-    const glyphMap = Object.create(null);
-    const fontObj = {
-      unitsPerEm: typrFont.head.unitsPerEm,
-      ascender: typrFont.hhea.ascender,
-      descender: typrFont.hhea.descender,
-
-      forEachGlyph(text, fontSize, letterSpacing, callback) {
-        let glyphX = 0;
-        const fontScale = 1 / fontObj.unitsPerEm * fontSize;
-        const glyphIndices = Typr.U.stringToGlyphs(typrFont, text);
-        let charIndex = 0;
-        let prevGlyphIndex = -1;
-        glyphIndices.forEach((glyphIndex, i) => {
-          // Typr returns a glyph index per string codepoint, with -1s in place of those that
-          // were omitted due to ligature substitution. So we can track original index in the
-          // string via simple increment, and skip everything else when seeing a -1.
-          if (glyphIndex !== -1) {
-            let glyphObj = glyphMap[glyphIndex];
-
-            if (!glyphObj) {
-              const {
-                cmds,
-                crds
-              } = Typr.U.glyphToPath(typrFont, glyphIndex); // Find extents - Glyf gives this in metadata but not CFF, and Typr doesn't
-              // normalize the two, so it's simplest just to iterate ourselves.
-
-              let xMin, yMin, xMax, yMax;
-
-              if (crds.length) {
-                xMin = yMin = Infinity;
-                xMax = yMax = -Infinity;
-
-                for (let i = 0, len = crds.length; i < len; i += 2) {
-                  let x = crds[i];
-                  let y = crds[i + 1];
-                  if (x < xMin) xMin = x;
-                  if (y < yMin) yMin = y;
-                  if (x > xMax) xMax = x;
-                  if (y > yMax) yMax = y;
-                }
-              } else {
-                xMin = xMax = yMin = yMax = 0;
-              }
-
-              glyphObj = glyphMap[glyphIndex] = {
-                index: glyphIndex,
-                advanceWidth: typrFont.hmtx.aWidth[glyphIndex],
-                xMin,
-                yMin,
-                xMax,
-                yMax,
-                pathCommandCount: cmds.length,
-
-                forEachPathCommand(callback) {
-                  let argsIndex = 0;
-                  const argsArray = [];
-
-                  for (let i = 0, len = cmds.length; i < len; i++) {
-                    const numArgs = cmdArgLengths[cmds[i]];
-                    argsArray.length = 1 + numArgs;
-                    argsArray[0] = cmds[i];
-
-                    for (let j = 1; j <= numArgs; j++) {
-                      argsArray[j] = crds[argsIndex++];
-                    }
-
-                    callback.apply(null, argsArray);
-                  }
-                }
-
-              };
-            } // Kerning
-
-
-            if (prevGlyphIndex !== -1) {
-              glyphX += Typr.U.getPairAdjustment(typrFont, prevGlyphIndex, glyphIndex) * fontScale;
-            }
-
-            callback.call(null, glyphObj, glyphX, charIndex);
-
-            if (glyphObj.advanceWidth) {
-              glyphX += glyphObj.advanceWidth * fontScale;
-            }
-
-            if (letterSpacing) {
-              glyphX += letterSpacing * fontSize;
-            }
-
-            prevGlyphIndex = glyphIndex;
-          }
-
-          charIndex += text.codePointAt(charIndex) > 0xffff ? 2 : 1;
+        var event = new CustomEvent(eventName, {
+          detail: this.eventData
         });
-        return glyphX;
+        this.element.dispatchEvent(event);
       }
+    }]);
 
-    };
-    return fontObj;
-  }
+    return TouchSweep;
+  }();
 
-  return function parse(buffer) {
-    // Look to see if we have a WOFF file and convert it if so:
-    const peek = new Uint8Array(buffer, 0, 4);
-
-    const tag = Typr._bin.readASCII(peek, 0, 4);
-
-    if (tag === 'wOFF') {
-      buffer = woff2otf(buffer);
-    } else if (tag === 'wOF2') {
-      throw new Error('woff2 fonts not supported');
-    }
-
-    return wrapFontObj(Typr.parse(buffer)[0]);
-  };
-}
-
-const workerModule = /*#__PURE__*/(0, _troikaWorkerUtils.defineWorkerModule)({
-  name: 'Typr Font Parser',
-  dependencies: [typrFactory, woff2otfFactory, parserFactory],
-
-  init(typrFactory, woff2otfFactory, parserFactory) {
-    const Typr = typrFactory();
-    const woff2otf = woff2otfFactory();
-    return parserFactory(Typr, woff2otf);
-  }
-
-}); // import fontParser from './worker/FontParser_OpenType.js'
-
-const CONFIG = {
-  defaultFontURL: 'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff',
-  //Roboto Regular
-  sdfGlyphSize: 64,
-  sdfMargin: 1 / 16,
-  sdfExponent: 9,
-  textureWidth: 2048
-};
-const tempColor = /*#__PURE__*/new _three.Color();
-let hasRequested = false;
-/**
- * Customizes the text builder configuration. This must be called prior to the first font processing
- * request, and applies to all fonts.
- *
- * @param {String} config.defaultFontURL - The URL of the default font to use for text processing
- *                 requests, in case none is specified or the specifiede font fails to load or parse.
- *                 Defaults to "Roboto Regular" from Google Fonts.
- * @param {Number} config.sdfGlyphSize - The default size of each glyph's SDF (signed distance field)
- *                 texture used for rendering. Must be a power-of-two number, and applies to all fonts,
- *                 but note that this can also be overridden per call to `getTextRenderInfo()`.
- *                 Larger sizes can improve the quality of glyph rendering by increasing the sharpness
- *                 of corners and preventing loss of very thin lines, at the expense of memory. Defaults
- *                 to 64 which is generally a good balance of size and quality.
- * @param {Number} config.sdfExponent - The exponent used when encoding the SDF values. A higher exponent
- *                 shifts the encoded 8-bit values to achieve higher precision/accuracy at texels nearer
- *                 the glyph's path, with lower precision further away. Defaults to 9.
- * @param {Number} config.sdfMargin - How much space to reserve in the SDF as margin outside the glyph's
- *                 path, as a percentage of the SDF width. A larger margin increases the quality of
- *                 extruded glyph outlines, but decreases the precision available for the glyph itself.
- *                 Defaults to 1/16th of the glyph size.
- * @param {Number} config.textureWidth - The width of the SDF texture; must be a power of 2. Defaults to
- *                 2048 which is a safe maximum texture dimension according to the stats at
- *                 https://webglstats.com/webgl/parameter/MAX_TEXTURE_SIZE and should allow for a
- *                 reasonably large number of glyphs (default glyph size of 64 and safe texture size of
- *                 2048^2 allows for 1024 glyphs.) This can be increased if you need to increase the
- *                 glyph size and/or have an extraordinary number of glyphs.
- */
-
-function configureTextBuilder(config) {
-  if (hasRequested) {
-    console.warn('configureTextBuilder called after first font request; will be ignored.');
-  } else {
-    assign(CONFIG, config);
-  }
-}
-/**
- * Repository for all font SDF atlas textures
- *
- *   {
- *     [font]: {
- *       sdfTexture: DataTexture
- *     }
- *   }
- */
-
-
-const atlases = Object.create(null);
-/**
- * @typedef {object} TroikaTextRenderInfo - Format of the result from `getTextRenderInfo`.
- * @property {object} parameters - The normalized input arguments to the render call.
- * @property {DataTexture} sdfTexture - The SDF atlas texture.
- * @property {number} sdfGlyphSize - The size of each glyph's SDF; see `configureTextBuilder`.
- * @property {number} sdfExponent - The exponent used in encoding the SDF's values; see `configureTextBuilder`.
- * @property {Float32Array} glyphBounds - List of [minX, minY, maxX, maxY] quad bounds for each glyph.
- * @property {Float32Array} glyphAtlasIndices - List holding each glyph's index in the SDF atlas.
- * @property {Uint8Array} [glyphColors] - List holding each glyph's [r, g, b] color, if `colorRanges` was supplied.
- * @property {Float32Array} [caretPositions] - A list of caret positions for all glyphs; this is
- *           the bottom [x,y] of the cursor position before each char, plus one after the last char.
- * @property {number} [caretHeight] - An appropriate height for all selection carets.
- * @property {number} ascender - The font's ascender metric.
- * @property {number} descender - The font's descender metric.
- * @property {number} lineHeight - The final computed lineHeight measurement.
- * @property {number} topBaseline - The y position of the top line's baseline.
- * @property {Array<number>} blockBounds - The total [minX, minY, maxX, maxY] rect of the whole text block;
- *           this can include extra vertical space beyond the visible glyphs due to lineHeight, and is
- *           equivalent to the dimensions of a block-level text element in CSS.
- * @property {Array<number>} visibleBounds -
- * @property {Array<number>} totalBounds - DEPRECATED; use blockBounds instead.
- * @property {Array<number>} totalBlockSize - DEPRECATED; use blockBounds instead
- * @property {Array<number>} chunkedBounds - List of bounding rects for each consecutive set of N glyphs,
- *           in the format `{start:N, end:N, rect:[minX, minY, maxX, maxY]}`.
- * @property {object} timings - Timing info for various parts of the rendering logic including SDF
- *           generation, layout, etc.
- * @frozen
- */
-
-/**
- * @callback getTextRenderInfo~callback
- * @param {TroikaTextRenderInfo} textRenderInfo
- */
-
-/**
- * Main entry point for requesting the data needed to render a text string with given font parameters.
- * This is an asynchronous call, performing most of the logic in a web worker thread.
- * @param {object} args
- * @param {getTextRenderInfo~callback} callback
- */
-
-function getTextRenderInfo(args, callback) {
-  hasRequested = true;
-  args = assign({}, args); // Apply default font here to avoid a 'null' atlas, and convert relative
-  // URLs to absolute so they can be resolved in the worker
-
-  args.font = toAbsoluteURL(args.font || CONFIG.defaultFontURL); // Normalize text to a string
-
-  args.text = '' + args.text;
-  args.sdfGlyphSize = args.sdfGlyphSize || CONFIG.sdfGlyphSize; // Normalize colors
-
-  if (args.colorRanges != null) {
-    let colors = {};
-
-    for (let key in args.colorRanges) {
-      if (args.colorRanges.hasOwnProperty(key)) {
-        let val = args.colorRanges[key];
-
-        if (typeof val !== 'number') {
-          val = tempColor.set(val).getHex();
-        }
-
-        colors[key] = val;
-      }
-    }
-
-    args.colorRanges = colors;
-  }
-
-  Object.freeze(args); // Init the atlas for this font if needed
-
-  const {
-    textureWidth,
-    sdfExponent
-  } = CONFIG;
-  const {
-    sdfGlyphSize
-  } = args;
-  let atlasKey = `${args.font}@${sdfGlyphSize}`;
-  let atlas = atlases[atlasKey];
-
-  if (!atlas) {
-    atlas = atlases[atlasKey] = {
-      sdfTexture: new _three.DataTexture(new Uint8Array(sdfGlyphSize * textureWidth), textureWidth, sdfGlyphSize, _three.LuminanceFormat, undefined, undefined, undefined, undefined, _three.LinearFilter, _three.LinearFilter)
-    };
-    atlas.sdfTexture.font = args.font;
-  } // Issue request to the FontProcessor in the worker
-
-
-  processInWorker(args).then(result => {
-    // If the response has newGlyphs, copy them into the atlas texture at the specified indices
-    if (result.newGlyphSDFs) {
-      result.newGlyphSDFs.forEach(({
-        textureData,
-        atlasIndex
-      }) => {
-        const texImg = atlas.sdfTexture.image; // Grow the texture by power of 2 if needed
-
-        while (texImg.data.length < (atlasIndex + 1) * sdfGlyphSize * sdfGlyphSize) {
-          const biggerArray = new Uint8Array(texImg.data.length * 2);
-          biggerArray.set(texImg.data);
-          texImg.data = biggerArray;
-          texImg.height *= 2;
-        } // Insert the new glyph's data into the full texture image at the correct offsets
-
-
-        const cols = texImg.width / sdfGlyphSize;
-        const baseStartIndex = texImg.width * sdfGlyphSize * Math.floor(atlasIndex / cols) //full rows
-        + atlasIndex % cols * sdfGlyphSize; //partial row
-
-        for (let y = 0; y < sdfGlyphSize; y++) {
-          const srcStartIndex = y * sdfGlyphSize;
-          const rowStartIndex = baseStartIndex + y * texImg.width;
-
-          for (let x = 0; x < sdfGlyphSize; x++) {
-            texImg.data[rowStartIndex + x] = textureData[srcStartIndex + x];
-          }
-        }
-      });
-      atlas.sdfTexture.needsUpdate = true;
-    } // Invoke callback with the text layout arrays and updated texture
-
-
-    callback(Object.freeze({
-      parameters: args,
-      sdfTexture: atlas.sdfTexture,
-      sdfGlyphSize,
-      sdfExponent,
-      glyphBounds: result.glyphBounds,
-      glyphAtlasIndices: result.glyphAtlasIndices,
-      glyphColors: result.glyphColors,
-      caretPositions: result.caretPositions,
-      caretHeight: result.caretHeight,
-      chunkedBounds: result.chunkedBounds,
-      ascender: result.ascender,
-      descender: result.descender,
-      lineHeight: result.lineHeight,
-      topBaseline: result.topBaseline,
-      blockBounds: result.blockBounds,
-      visibleBounds: result.visibleBounds,
-      timings: result.timings,
-
-      get totalBounds() {
-        console.log('totalBounds deprecated, use blockBounds instead');
-        return result.blockBounds;
-      },
-
-      get totalBlockSize() {
-        console.log('totalBlockSize deprecated, use blockBounds instead');
-        const [x0, y0, x1, y1] = result.blockBounds;
-        return [x1 - x0, y1 - y0];
-      }
-
-    }));
-  });
-}
-/**
- * Preload a given font and optionally pre-generate glyph SDFs for one or more character sequences.
- * This can be useful to avoid long pauses when first showing text in a scene, by preloading the
- * needed fonts and glyphs up front along with other assets.
- *
- * @param {object} options
- * @param {string} options.font - URL of the font file to preload. If not given, the default font will
- *        be loaded.
- * @param {string|string[]} options.characters - One or more character sequences for which to pre-
- *        generate glyph SDFs. Note that this will honor ligature substitution, so you may need
- *        to specify ligature sequences in addition to their individual characters to get all
- *        possible glyphs, e.g. `["t", "h", "th"]` to get the "t" and "h" glyphs plus the "th" ligature.
- * @param {number} options.sdfGlyphSize - The size at which to prerender the SDF textures for the
- *        specified `characters`.
- * @param {function} callback - A function that will be called when the preloading is complete.
- */
-
-
-function preloadFont({
-  font,
-  characters,
-  sdfGlyphSize
-}, callback) {
-  let text = Array.isArray(characters) ? characters.join('\n') : '' + characters;
-  getTextRenderInfo({
-    font,
-    sdfGlyphSize,
-    text
-  }, callback);
-} // Local assign impl so we don't have to import troika-core
-
-
-function assign(toObj, fromObj) {
-  for (let key in fromObj) {
-    if (fromObj.hasOwnProperty(key)) {
-      toObj[key] = fromObj[key];
-    }
-  }
-
-  return toObj;
-} // Utility for making URLs absolute
-
-
-let linkEl;
-
-function toAbsoluteURL(path) {
-  if (!linkEl) {
-    linkEl = typeof document === 'undefined' ? {} : document.createElement('a');
-  }
-
-  linkEl.href = path;
-  return linkEl.href;
-}
-
-const fontProcessorWorkerModule = /*#__PURE__*/(0, _troikaWorkerUtils.defineWorkerModule)({
-  name: 'FontProcessor',
-  dependencies: [CONFIG, workerModule, createGlyphSegmentsIndex, createSDFGenerator, createFontProcessor],
-
-  init(config, fontParser, createGlyphSegmentsIndex, createSDFGenerator, createFontProcessor) {
-    const {
-      sdfExponent,
-      sdfMargin,
-      defaultFontURL
-    } = config;
-    const sdfGenerator = createSDFGenerator(createGlyphSegmentsIndex, {
-      sdfExponent,
-      sdfMargin
-    });
-    return createFontProcessor(fontParser, sdfGenerator, {
-      defaultFontURL
-    });
-  }
-
-});
-exports.fontProcessorWorkerModule = fontProcessorWorkerModule;
-const processInWorker = /*#__PURE__*/(0, _troikaWorkerUtils.defineWorkerModule)({
-  name: 'TextBuilder',
-  dependencies: [fontProcessorWorkerModule, _troikaWorkerUtils.ThenableWorkerModule],
-
-  init(fontProcessor, Thenable) {
-    return function (args) {
-      const thenable = new Thenable();
-      fontProcessor.process(args, thenable.resolve);
-      return thenable;
-    };
-  },
-
-  getTransferables(result) {
-    // Mark array buffers as transferable to avoid cloning during postMessage
-    const transferables = [result.glyphBounds.buffer, result.glyphAtlasIndices.buffer];
-
-    if (result.caretPositions) {
-      transferables.push(result.caretPositions.buffer);
-    }
-
-    if (result.newGlyphSDFs) {
-      result.newGlyphSDFs.forEach(d => {
-        transferables.push(d.textureData.buffer);
-      });
-    }
-
-    return transferables;
-  }
-
+  _exports["default"] = TouchSweep;
 });
 
-const GlyphsGeometry = /*#__PURE__*/(() => {
-  const templateGeometries = {};
-
-  function getTemplateGeometry(detail) {
-    let geom = templateGeometries[detail];
-
-    if (!geom) {
-      geom = templateGeometries[detail] = new _three.PlaneBufferGeometry(1, 1, detail, detail).translate(0.5, 0.5, 0);
-    }
-
-    return geom;
-  }
-
-  const tempVec3 = new _three.Vector3();
-  const glyphBoundsAttrName = 'aTroikaGlyphBounds';
-  const glyphIndexAttrName = 'aTroikaGlyphIndex';
-  const glyphColorAttrName = 'aTroikaGlyphColor';
-  /**
-  @class GlyphsGeometry
-    A specialized Geometry for rendering a set of text glyphs. Uses InstancedBufferGeometry to
-  render the glyphs using GPU instancing of a single quad, rather than constructing a whole
-  geometry with vertices, for much smaller attribute arraybuffers according to this math:
-      Where N = number of glyphs...
-      Instanced:
-    - position: 4 * 3
-    - index: 2 * 3
-    - normal: 4 * 3
-    - uv: 4 * 2
-    - glyph x/y bounds: N * 4
-    - glyph indices: N * 1
-    = 5N + 38
-      Non-instanced:
-    - position: N * 4 * 3
-    - index: N * 2 * 3
-    - normal: N * 4 * 3
-    - uv: N * 4 * 2
-    - glyph indices: N * 1
-    = 39N
-    A downside of this is the rare-but-possible lack of the instanced arrays extension,
-  which we could potentially work around with a fallback non-instanced implementation.
-    */
-
-  class GlyphsGeometry extends _three.InstancedBufferGeometry {
-    constructor() {
-      super();
-      this.detail = 1; // Define groups for rendering text outline as a separate pass; these will only
-      // be used when the `material` getter returns an array, i.e. outlineWidth > 0.
-
-      this.groups = [{
-        start: 0,
-        count: Infinity,
-        materialIndex: 0
-      }, {
-        start: 0,
-        count: Infinity,
-        materialIndex: 1
-      }]; // Preallocate zero-radius bounding sphere
-
-      this.boundingSphere = new _three.Sphere();
-      this.boundingBox = new _three.Box3();
-    }
-
-    computeBoundingSphere() {// No-op; we'll sync the boundingSphere proactively in `updateGlyphs`.
-    }
-
-    computeBoundingBox() {// No-op; we'll sync the boundingBox proactively in `updateGlyphs`.
-    }
-
-    set detail(detail) {
-      if (detail !== this._detail) {
-        this._detail = detail;
-
-        if (typeof detail !== 'number' || detail < 1) {
-          detail = 1;
-        }
-
-        let tpl = getTemplateGeometry(detail);
-        ['position', 'normal', 'uv'].forEach(attr => {
-          this.attributes[attr] = tpl.attributes[attr].clone();
-        });
-        this.setIndex(tpl.getIndex().clone());
-      }
-    }
-
-    get detail() {
-      return this._detail;
-    }
-    /**
-     * Update the geometry for a new set of glyphs.
-     * @param {Float32Array} glyphBounds - An array holding the planar bounds for all glyphs
-     *        to be rendered, 4 entries for each glyph: x1,x2,y1,y1
-     * @param {Float32Array} glyphAtlasIndices - An array holding the index of each glyph within
-     *        the SDF atlas texture.
-     * @param {Array} blockBounds - An array holding the [minX, minY, maxX, maxY] across all glyphs
-     * @param {Array} [chunkedBounds] - An array of objects describing bounds for each chunk of N
-     *        consecutive glyphs: `{start:N, end:N, rect:[minX, minY, maxX, maxY]}`. This can be
-     *        used with `applyClipRect` to choose an optimized `instanceCount`.
-     * @param {Uint8Array} [glyphColors] - An array holding r,g,b values for each glyph.
-     */
-
-
-    updateGlyphs(glyphBounds, glyphAtlasIndices, blockBounds, chunkedBounds, glyphColors) {
-      // Update the instance attributes
-      updateBufferAttr(this, glyphBoundsAttrName, glyphBounds, 4);
-      updateBufferAttr(this, glyphIndexAttrName, glyphAtlasIndices, 1);
-      updateBufferAttr(this, glyphColorAttrName, glyphColors, 3);
-      this._chunkedBounds = chunkedBounds;
-      setInstanceCount(this, glyphAtlasIndices.length); // Update the boundingSphere based on the total bounds
-
-      const sphere = this.boundingSphere;
-      sphere.center.set((blockBounds[0] + blockBounds[2]) / 2, (blockBounds[1] + blockBounds[3]) / 2, 0);
-      sphere.radius = sphere.center.distanceTo(tempVec3.set(blockBounds[0], blockBounds[1], 0)); // Update the boundingBox based on the total bounds
-
-      const box = this.boundingBox;
-      box.min.set(blockBounds[0], blockBounds[1], 0);
-      box.max.set(blockBounds[2], blockBounds[3], 0);
-    }
-    /**
-     * Given a clipping rect, and the chunkedBounds from the last updateGlyphs call, choose the lowest
-     * `instanceCount` that will show all glyphs within the clipped view. This is an optimization
-     * for long blocks of text that are clipped, to skip vertex shader evaluation for glyphs that would
-     * be clipped anyway.
-     *
-     * Note that since `drawElementsInstanced[ANGLE]` only accepts an instance count and not a starting
-     * offset, this optimization becomes less effective as the clipRect moves closer to the end of the
-     * text block. We could fix that by switching from instancing to a full geometry with a drawRange,
-     * but at the expense of much larger attribute buffers (see classdoc above.)
-     *
-     * @param {Vector4} clipRect
-     */
-
-
-    applyClipRect(clipRect) {
-      let count = this.getAttribute(glyphIndexAttrName).count;
-      let chunks = this._chunkedBounds;
-
-      if (chunks) {
-        for (let i = chunks.length; i--;) {
-          count = chunks[i].end;
-          let rect = chunks[i].rect; // note: both rects are l-b-r-t
-
-          if (rect[1] < clipRect.w && rect[3] > clipRect.y && rect[0] < clipRect.z && rect[2] > clipRect.x) {
-            break;
-          }
-        }
-      }
-
-      setInstanceCount(this, count);
-    }
-
-  } // Compat for pre r109:
-
-
-  if (!GlyphsGeometry.prototype.setAttribute) {
-    GlyphsGeometry.prototype.setAttribute = function (name, attribute) {
-      this.attributes[name] = attribute;
-      return this;
-    };
-  }
-
-  function updateBufferAttr(geom, attrName, newArray, itemSize) {
-    const attr = geom.getAttribute(attrName);
-
-    if (newArray) {
-      // If length isn't changing, just update the attribute's array data
-      if (attr && attr.array.length === newArray.length) {
-        attr.array.set(newArray);
-        attr.needsUpdate = true;
-      } else {
-        geom.setAttribute(attrName, new _three.InstancedBufferAttribute(newArray, itemSize)); // If the new attribute has a different size, we also have to (as of r117) manually clear the
-        // internal cached max instance count. See https://github.com/mrdoob/three.js/issues/19706
-        // It's unclear if this is a threejs bug or a truly unsupported scenario; discussion in
-        // that ticket is ambiguous as to whether replacing a BufferAttribute with one of a
-        // different size is supported, but https://github.com/mrdoob/three.js/pull/17418 strongly
-        // implies it should be supported. It's possible we need to
-
-        delete geom._maxInstanceCount; //for r117+, could be fragile
-
-        geom.dispose(); //for r118+, more robust feeling, but more heavy-handed than I'd like
-      }
-    } else if (attr) {
-      geom.deleteAttribute(attrName);
-    }
-  } // Handle maxInstancedCount -> instanceCount rename that happened in three r117
-
-
-  function setInstanceCount(geom, count) {
-    geom[geom.hasOwnProperty('instanceCount') ? 'instanceCount' : 'maxInstancedCount'] = count;
-  }
-
-  return GlyphsGeometry;
-})(); // language=GLSL
-
-
-exports.GlyphsGeometry = GlyphsGeometry;
-const VERTEX_DEFS = `
-uniform vec2 uTroikaSDFTextureSize;
-uniform float uTroikaSDFGlyphSize;
-uniform vec4 uTroikaTotalBounds;
-uniform vec4 uTroikaClipRect;
-uniform mat3 uTroikaOrient;
-uniform bool uTroikaUseGlyphColors;
-uniform float uTroikaDistanceOffset;
-attribute vec4 aTroikaGlyphBounds;
-attribute float aTroikaGlyphIndex;
-attribute vec3 aTroikaGlyphColor;
-varying vec2 vTroikaGlyphUV;
-varying vec4 vTroikaTextureUVBounds;
-varying vec3 vTroikaGlyphColor;
-varying vec2 vTroikaGlyphDimensions;
-`; // language=GLSL prefix="void main() {" suffix="}"
-
-const VERTEX_TRANSFORM = `
-vec4 bounds = aTroikaGlyphBounds;
-vec4 outlineBounds = vec4(bounds.xy - uTroikaDistanceOffset, bounds.zw + uTroikaDistanceOffset);
-vec4 clippedBounds = vec4(
-  clamp(outlineBounds.xy, uTroikaClipRect.xy, uTroikaClipRect.zw),
-  clamp(outlineBounds.zw, uTroikaClipRect.xy, uTroikaClipRect.zw)
-);
-vec2 clippedXY = (mix(clippedBounds.xy, clippedBounds.zw, position.xy) - bounds.xy) / (bounds.zw - bounds.xy);
-
-position.xy = mix(bounds.xy, bounds.zw, clippedXY);
-
-uv = (position.xy - uTroikaTotalBounds.xy) / (uTroikaTotalBounds.zw - uTroikaTotalBounds.xy);
-
-position = uTroikaOrient * position;
-normal = uTroikaOrient * normal;
-
-vTroikaGlyphUV = clippedXY.xy;
-vTroikaGlyphDimensions = vec2(bounds[2] - bounds[0], bounds[3] - bounds[1]);
-
-${''
-/* NOTE: it seems important to calculate the glyph's bounding texture UVs here in the
-vertex shader, rather than in the fragment shader, as the latter gives strange artifacts
-on some glyphs (those in the leftmost texture column) on some systems. The exact reason
-isn't understood but doing this here, then mix()-ing in the fragment shader, seems to work. */
-}
-float txCols = uTroikaSDFTextureSize.x / uTroikaSDFGlyphSize;
-vec2 txUvPerGlyph = uTroikaSDFGlyphSize / uTroikaSDFTextureSize;
-vec2 txStartUV = txUvPerGlyph * vec2(
-  mod(aTroikaGlyphIndex, txCols),
-  floor(aTroikaGlyphIndex / txCols)
-);
-vTroikaTextureUVBounds = vec4(txStartUV, vec2(txStartUV) + txUvPerGlyph);
-`; // language=GLSL
-
-const FRAGMENT_DEFS = `
-uniform sampler2D uTroikaSDFTexture;
-uniform vec2 uTroikaSDFTextureSize;
-uniform float uTroikaSDFGlyphSize;
-uniform float uTroikaSDFExponent;
-uniform float uTroikaDistanceOffset;
-uniform bool uTroikaSDFDebug;
-varying vec2 vTroikaGlyphUV;
-varying vec4 vTroikaTextureUVBounds;
-varying vec2 vTroikaGlyphDimensions;
-
-float troikaSdfValueToSignedDistance(float alpha) {
-  // Inverse of encoding in SDFGenerator.js
-  ${''
-/* TODO - there's some slight inaccuracy here when dealing with interpolated alpha values; those
-are linearly interpolated where the encoding is exponential. Look into improving this by rounding
-to nearest 2 whole texels, decoding those exponential values, and linearly interpolating the result.
-*/
-}
-  float maxDimension = max(vTroikaGlyphDimensions.x, vTroikaGlyphDimensions.y);
-  float absDist = (1.0 - pow(2.0 * (alpha > 0.5 ? 1.0 - alpha : alpha), 1.0 / uTroikaSDFExponent)) * maxDimension;
-  float signedDist = absDist * (alpha > 0.5 ? -1.0 : 1.0);
-  return signedDist;
-}
-
-float troikaGlyphUvToSdfValue(vec2 glyphUV) {
-  vec2 textureUV = mix(vTroikaTextureUVBounds.xy, vTroikaTextureUVBounds.zw, glyphUV);
-  return texture2D(uTroikaSDFTexture, textureUV).r;
-}
-
-float troikaGlyphUvToDistance(vec2 uv) {
-  return troikaSdfValueToSignedDistance(troikaGlyphUvToSdfValue(uv));
-}
-
-float troikaGetTextAlpha(float distanceOffset) {
-  vec2 clampedGlyphUV = clamp(vTroikaGlyphUV, 0.5 / uTroikaSDFGlyphSize, 1.0 - 0.5 / uTroikaSDFGlyphSize);
-  float distance = troikaGlyphUvToDistance(clampedGlyphUV);
-    
-  // Extrapolate distance when outside bounds:
-  distance += clampedGlyphUV == vTroikaGlyphUV ? 0.0 : 
-    length((vTroikaGlyphUV - clampedGlyphUV) * vTroikaGlyphDimensions);
-
-  ${''
-/* 
-// TODO more refined extrapolated distance by adjusting for angle of gradient at edge...
-// This has potential but currently gives very jagged extensions, maybe due to precision issues?
-float uvStep = 1.0 / uTroikaSDFGlyphSize;
-vec2 neighbor1UV = clampedGlyphUV + (
-vTroikaGlyphUV.x != clampedGlyphUV.x ? vec2(0.0, uvStep * sign(0.5 - vTroikaGlyphUV.y)) :
-vTroikaGlyphUV.y != clampedGlyphUV.y ? vec2(uvStep * sign(0.5 - vTroikaGlyphUV.x), 0.0) :
-vec2(0.0)
-);
-vec2 neighbor2UV = clampedGlyphUV + (
-vTroikaGlyphUV.x != clampedGlyphUV.x ? vec2(0.0, uvStep * -sign(0.5 - vTroikaGlyphUV.y)) :
-vTroikaGlyphUV.y != clampedGlyphUV.y ? vec2(uvStep * -sign(0.5 - vTroikaGlyphUV.x), 0.0) :
-vec2(0.0)
-);
-float neighbor1Distance = troikaGlyphUvToDistance(neighbor1UV);
-float neighbor2Distance = troikaGlyphUvToDistance(neighbor2UV);
-float distToUnclamped = length((vTroikaGlyphUV - clampedGlyphUV) * vTroikaGlyphDimensions);
-float distToNeighbor = length((clampedGlyphUV - neighbor1UV) * vTroikaGlyphDimensions);
-float gradientAngle1 = min(asin(abs(neighbor1Distance - distance) / distToNeighbor), PI / 2.0);
-float gradientAngle2 = min(asin(abs(neighbor2Distance - distance) / distToNeighbor), PI / 2.0);
-distance += (cos(gradientAngle1) + cos(gradientAngle2)) / 2.0 * distToUnclamped;
-*/
-}
-  
-  #if defined(IS_DEPTH_MATERIAL) || defined(IS_DISTANCE_MATERIAL)
-  float alpha = step(-distanceOffset, -distance);
-  #else
-  ${''
-/*
-When the standard derivatives extension is available, we choose an antialiasing alpha threshold based
-on the potential change in the SDF's alpha from this fragment to its neighbor. This strategy maximizes 
-readability and edge crispness at all sizes and screen resolutions.
-*/
-}
-  #if defined(GL_OES_standard_derivatives) || __VERSION__ >= 300
-  float aaDist = length(fwidth(vTroikaGlyphUV * vTroikaGlyphDimensions)) * 0.5;
-  #else
-  float aaDist = vTroikaGlyphDimensions.x / 64.0;
-  #endif
-  
-  float alpha = smoothstep(
-    distanceOffset + aaDist,
-    distanceOffset - aaDist,
-    distance
-  );
-  #endif
-  
-  return alpha;
-}
-`; // language=GLSL prefix="void main() {" suffix="}"
-
-const FRAGMENT_TRANSFORM = `
-float alpha = uTroikaSDFDebug ?
-  troikaGlyphUvToSdfValue(vTroikaGlyphUV) :
-  troikaGetTextAlpha(uTroikaDistanceOffset);
-
-#if !defined(IS_DEPTH_MATERIAL) && !defined(IS_DISTANCE_MATERIAL)
-gl_FragColor.a *= alpha;
-#endif
-  
-if (alpha == 0.0) {
-  discard;
-}
-`;
-/**
- * Create a material for rendering text, derived from a baseMaterial
- */
-
-function createTextDerivedMaterial(baseMaterial) {
-  const textMaterial = (0, _troikaThreeUtils.createDerivedMaterial)(baseMaterial, {
-    chained: true,
-    extensions: {
-      derivatives: true
-    },
-    uniforms: {
-      uTroikaSDFTexture: {
-        value: null
-      },
-      uTroikaSDFTextureSize: {
-        value: new _three.Vector2()
-      },
-      uTroikaSDFGlyphSize: {
-        value: 0
-      },
-      uTroikaSDFExponent: {
-        value: 0
-      },
-      uTroikaTotalBounds: {
-        value: new _three.Vector4(0, 0, 0, 0)
-      },
-      uTroikaClipRect: {
-        value: new _three.Vector4(0, 0, 0, 0)
-      },
-      uTroikaDistanceOffset: {
-        value: 0
-      },
-      uTroikaOrient: {
-        value: new _three.Matrix3()
-      },
-      uTroikaUseGlyphColors: {
-        value: true
-      },
-      uTroikaSDFDebug: {
-        value: false
-      }
-    },
-    vertexDefs: VERTEX_DEFS,
-    vertexTransform: VERTEX_TRANSFORM,
-    fragmentDefs: FRAGMENT_DEFS,
-    fragmentColorTransform: FRAGMENT_TRANSFORM,
-
-    customRewriter({
-      vertexShader,
-      fragmentShader
-    }) {
-      let uDiffuseRE = /\buniform\s+vec3\s+diffuse\b/;
-
-      if (uDiffuseRE.test(fragmentShader)) {
-        // Replace all instances of `diffuse` with our varying
-        fragmentShader = fragmentShader.replace(uDiffuseRE, 'varying vec3 vTroikaGlyphColor').replace(/\bdiffuse\b/g, 'vTroikaGlyphColor'); // Make sure the vertex shader declares the uniform so we can grab it as a fallback
-
-        if (!uDiffuseRE.test(vertexShader)) {
-          vertexShader = vertexShader.replace(_troikaThreeUtils.voidMainRegExp, 'uniform vec3 diffuse;\n$&\nvTroikaGlyphColor = uTroikaUseGlyphColors ? aTroikaGlyphColor / 255.0 : diffuse;\n');
-        }
-      }
-
-      return {
-        vertexShader,
-        fragmentShader
-      };
-    }
-
-  }); // Force transparency - TODO is this reasonable?
-
-  textMaterial.transparent = true;
-  Object.defineProperties(textMaterial, {
-    isTroikaTextMaterial: {
-      value: true
-    },
-    // WebGLShadowMap reverses the side of the shadow material by default, which fails
-    // for planes, so here we force the `shadowSide` to always match the main side.
-    shadowSide: {
-      get() {
-        return this.side;
-      },
-
-      set() {//no-op
-      }
-
-    }
-  });
-  return textMaterial;
-}
-
-const Text = /*#__PURE__*/(() => {
-  const defaultMaterial = new _three.MeshBasicMaterial({
-    color: 0xffffff,
-    side: _three.DoubleSide,
-    transparent: true
-  });
-  const tempMat4 = new _three.Matrix4();
-  const tempVec3a = new _three.Vector3();
-  const tempVec3b = new _three.Vector3();
-  const tempArray = [];
-  const origin = new _three.Vector3();
-  const defaultOrient = '+x+y';
-
-  function first(o) {
-    return Array.isArray(o) ? o[0] : o;
-  }
-
-  const raycastMesh = new _three.Mesh(new _three.PlaneBufferGeometry(1, 1).translate(0.5, 0.5, 0), defaultMaterial);
-  const syncStartEvent = {
-    type: 'syncstart'
-  };
-  const syncCompleteEvent = {
-    type: 'synccomplete'
-  };
-  const SYNCABLE_PROPS = ['font', 'fontSize', 'letterSpacing', 'lineHeight', 'maxWidth', 'overflowWrap', 'text', 'textAlign', 'textIndent', 'whiteSpace', 'anchorX', 'anchorY', 'colorRanges', 'sdfGlyphSize'];
-  const COPYABLE_PROPS = SYNCABLE_PROPS.concat('material', 'color', 'depthOffset', 'clipRect', 'orientation', 'glyphGeometryDetail');
-  /**
-   * @class Text
-   *
-   * A ThreeJS Mesh that renders a string of text on a plane in 3D space using signed distance
-   * fields (SDF).
-   */
-
-  class Text extends _three.Mesh {
-    constructor() {
-      const geometry = new GlyphsGeometry();
-      super(geometry, null); // === Text layout properties: === //
-
-      /**
-       * @member {string} text
-       * The string of text to be rendered.
-       */
-
-      this.text = '';
-      /**
-       * @deprecated Use `anchorX` and `anchorY` instead
-       * @member {Array<number>} anchor
-       * Defines where in the text block should correspond to the mesh's local position, as a set
-       * of horizontal and vertical percentages from 0 to 1. A value of `[0, 0]` (the default)
-       * anchors at the top-left, `[1, 1]` at the bottom-right, and `[0.5, 0.5]` centers the
-       * block at the mesh's position.
-       */
-      //this.anchor = null
-
-      /**
-       * @member {number|string} anchorX
-       * Defines the horizontal position in the text block that should line up with the local origin.
-       * Can be specified as a numeric x position in local units, a string percentage of the total
-       * text block width e.g. `'25%'`, or one of the following keyword strings: 'left', 'center',
-       * or 'right'.
-       */
-
-      this.anchorX = 0;
-      /**
-       * @member {number|string} anchorX
-       * Defines the vertical position in the text block that should line up with the local origin.
-       * Can be specified as a numeric y position in local units (note: down is negative y), a string
-       * percentage of the total text block height e.g. `'25%'`, or one of the following keyword strings:
-       * 'top', 'top-baseline', 'middle', 'bottom-baseline', or 'bottom'.
-       */
-
-      this.anchorY = 0;
-      /**
-       * @member {string} font
-       * URL of a custom font to be used. Font files can be any of the formats supported by
-       * OpenType (see https://github.com/opentypejs/opentype.js).
-       * Defaults to the Roboto font loaded from Google Fonts.
-       */
-
-      this.font = null; //will use default from TextBuilder
-
-      /**
-       * @member {number} fontSize
-       * The size at which to render the font in local units; corresponds to the em-box height
-       * of the chosen `font`.
-       */
-
-      this.fontSize = 0.1;
-      /**
-       * @member {number} letterSpacing
-       * Sets a uniform adjustment to spacing between letters after kerning is applied. Positive
-       * numbers increase spacing and negative numbers decrease it.
-       */
-
-      this.letterSpacing = 0;
-      /**
-       * @member {number|string} lineHeight
-       * Sets the height of each line of text, as a multiple of the `fontSize`. Defaults to 'normal'
-       * which chooses a reasonable height based on the chosen font's ascender/descender metrics.
-       */
-
-      this.lineHeight = 'normal';
-      /**
-       * @member {number} maxWidth
-       * The maximum width of the text block, above which text may start wrapping according to the
-       * `whiteSpace` and `overflowWrap` properties.
-       */
-
-      this.maxWidth = Infinity;
-      /**
-       * @member {string} overflowWrap
-       * Defines how text wraps if the `whiteSpace` property is `normal`. Can be either `'normal'`
-       * to break at whitespace characters, or `'break-word'` to allow breaking within words.
-       * Defaults to `'normal'`.
-       */
-
-      this.overflowWrap = 'normal';
-      /**
-       * @member {string} textAlign
-       * The horizontal alignment of each line of text within the overall text bounding box.
-       */
-
-      this.textAlign = 'left';
-      /**
-       * @member {number} textIndent
-       * Indentation for the first character of a line; see CSS `text-indent`.
-       */
-
-      this.textIndent = 0;
-      /**
-       * @member {string} whiteSpace
-       * Defines whether text should wrap when a line reaches the `maxWidth`. Can
-       * be either `'normal'` (the default), to allow wrapping according to the `overflowWrap` property,
-       * or `'nowrap'` to prevent wrapping. Note that `'normal'` here honors newline characters to
-       * manually break lines, making it behave more like `'pre-wrap'` does in CSS.
-       */
-
-      this.whiteSpace = 'normal'; // === Presentation properties: === //
-
-      /**
-       * @member {THREE.Material} material
-       * Defines a _base_ material to be used when rendering the text. This material will be
-       * automatically replaced with a material derived from it, that adds shader code to
-       * decrease the alpha for each fragment (pixel) outside the text glyphs, with antialiasing.
-       * By default it will derive from a simple white MeshBasicMaterial, but you can use any
-       * of the other mesh materials to gain other features like lighting, texture maps, etc.
-       *
-       * Also see the `color` shortcut property.
-       */
-
-      this.material = null;
-      /**
-       * @member {string|number|THREE.Color} color
-       * This is a shortcut for setting the `color` of the text's material. You can use this
-       * if you don't want to specify a whole custom `material`. Also, if you do use a custom
-       * `material`, this color will only be used for this particuar Text instance, even if
-       * that same material instance is shared across multiple Text objects.
-       */
-
-      this.color = null;
-      /**
-       * @member {object|null} colorRanges
-       * WARNING: This API is experimental and may change.
-       * This allows more fine-grained control of colors for individual or ranges of characters,
-       * taking precedence over the material's `color`. Its format is an Object whose keys each
-       * define a starting character index for a range, and whose values are the color for each
-       * range. The color value can be a numeric hex color value, a `THREE.Color` object, or
-       * any of the strings accepted by `THREE.Color`.
-       */
-
-      this.colorRanges = null;
-      /**
-       * @member {number|string} outlineWidth
-       * WARNING: This API is experimental and may change.
-       * The width of an outline drawn around each text glyph using the `outlineColor`. Can be
-       * specified as either an absolute number in local units, or as a percentage string e.g.
-       * `"12%"` which is treated as a percentage of the `fontSize`. Defaults to `0`.
-       */
-
-      this.outlineWidth = 0;
-      /**
-       * @member {string|number|THREE.Color} outlineColor
-       * WARNING: This API is experimental and may change.
-       * The color of the text outline, if `outlineWidth` is greater than zero. Defaults to black.
-       */
-
-      this.outlineColor = 0;
-      /**
-       * @member {number} depthOffset
-       * This is a shortcut for setting the material's `polygonOffset` and related properties,
-       * which can be useful in preventing z-fighting when this text is laid on top of another
-       * plane in the scene. Positive numbers are further from the camera, negatives closer.
-       */
-
-      this.depthOffset = 0;
-      /**
-       * @member {Array<number>} clipRect
-       * If specified, defines a `[minX, minY, maxX, maxY]` of a rectangle outside of which all
-       * pixels will be discarded. This can be used for example to clip overflowing text when
-       * `whiteSpace='nowrap'`.
-       */
-
-      this.clipRect = null;
-      /**
-       * @member {string} orientation
-       * Defines the axis plane on which the text should be laid out when the mesh has no extra
-       * rotation transform. It is specified as a string with two axes: the horizontal axis with
-       * positive pointing right, and the vertical axis with positive pointing up. By default this
-       * is '+x+y', meaning the text sits on the xy plane with the text's top toward positive y
-       * and facing positive z. A value of '+x-z' would place it on the xz plane with the text's
-       * top toward negative z and facing positive y.
-       */
-
-      this.orientation = defaultOrient;
-      /**
-       * @member {number} glyphGeometryDetail
-       * Controls number of vertical/horizontal segments that make up each glyph's rectangular
-       * plane. Defaults to 1. This can be increased to provide more geometrical detail for custom
-       * vertex shader effects, for example.
-       */
-
-      this.glyphGeometryDetail = 1;
-      /**
-       * @member {number|null} sdfGlyphSize
-       * The size of each glyph's SDF (signed distance field) used for rendering. This must be a
-       * power-of-two number. Defaults to 64 which is generally a good balance of size and quality
-       * for most fonts. Larger sizes can improve the quality of glyph rendering by increasing
-       * the sharpness of corners and preventing loss of very thin lines, at the expense of
-       * increased memory footprint and longer SDF generation time.
-       */
-
-      this.sdfGlyphSize = null;
-      this.debugSDF = false;
-    }
-    /**
-     * Updates the text rendering according to the current text-related configuration properties.
-     * This is an async process, so you can pass in a callback function to be executed when it
-     * finishes.
-     * @param {function} [callback]
-     */
-
-
-    sync(callback) {
-      if (this._needsSync) {
-        this._needsSync = false; // If there's another sync still in progress, queue
-
-        if (this._isSyncing) {
-          (this._queuedSyncs || (this._queuedSyncs = [])).push(callback);
-        } else {
-          this._isSyncing = true;
-          this.dispatchEvent(syncStartEvent);
-          getTextRenderInfo({
-            text: this.text,
-            font: this.font,
-            fontSize: this.fontSize || 0.1,
-            letterSpacing: this.letterSpacing || 0,
-            lineHeight: this.lineHeight || 'normal',
-            maxWidth: this.maxWidth,
-            textAlign: this.textAlign,
-            textIndent: this.textIndent,
-            whiteSpace: this.whiteSpace,
-            overflowWrap: this.overflowWrap,
-            anchorX: this.anchorX,
-            anchorY: this.anchorY,
-            colorRanges: this.colorRanges,
-            includeCaretPositions: true,
-            //TODO parameterize
-            sdfGlyphSize: this.sdfGlyphSize
-          }, textRenderInfo => {
-            this._isSyncing = false; // Save result for later use in onBeforeRender
-
-            this._textRenderInfo = textRenderInfo; // Update the geometry attributes
-
-            this.geometry.updateGlyphs(textRenderInfo.glyphBounds, textRenderInfo.glyphAtlasIndices, textRenderInfo.blockBounds, textRenderInfo.chunkedBounds, textRenderInfo.glyphColors); // If we had extra sync requests queued up, kick it off
-
-            const queued = this._queuedSyncs;
-
-            if (queued) {
-              this._queuedSyncs = null;
-              this._needsSync = true;
-              this.sync(() => {
-                queued.forEach(fn => fn && fn());
-              });
-            }
-
-            this.dispatchEvent(syncCompleteEvent);
-
-            if (callback) {
-              callback();
-            }
-          });
-        }
-      }
-    }
-    /**
-     * Initiate a sync if needed - note it won't complete until next frame at the
-     * earliest so if possible it's a good idea to call sync() manually as soon as
-     * all the properties have been set.
-     * @override
-     */
-
-
-    onBeforeRender(renderer, scene, camera, geometry, material, group) {
-      this.sync(); // This may not always be a text material, e.g. if there's a scene.overrideMaterial present
-
-      if (material.isTroikaTextMaterial) {
-        this._prepareForRender(material);
-      }
-    }
-    /**
-     * Shortcut to dispose the geometry specific to this instance.
-     * Note: we don't also dispose the derived material here because if anything else is
-     * sharing the same base material it will result in a pause next frame as the program
-     * is recompiled. Instead users can dispose the base material manually, like normal,
-     * and we'll also dispose the derived material at that time.
-     */
-
-
-    dispose() {
-      this.geometry.dispose();
-    }
-    /**
-     * @property {TroikaTextRenderInfo|null} textRenderInfo
-     * @readonly
-     * The current processed rendering data for this TextMesh, returned by the TextBuilder after
-     * a `sync()` call. This will be `null` initially, and may be stale for a short period until
-     * the asynchrous `sync()` process completes.
-     */
-
-
-    get textRenderInfo() {
-      return this._textRenderInfo || null;
-    } // Handler for automatically wrapping the base material with our upgrades. We do the wrapping
-    // lazily on _read_ rather than write to avoid unnecessary wrapping on transient values.
-
-
-    get material() {
-      let derivedMaterial = this._derivedMaterial;
-      const baseMaterial = this._baseMaterial || this._defaultMaterial || (this._defaultMaterial = defaultMaterial.clone());
-
-      if (!derivedMaterial || derivedMaterial.baseMaterial !== baseMaterial) {
-        derivedMaterial = this._derivedMaterial = createTextDerivedMaterial(baseMaterial); // dispose the derived material when its base material is disposed:
-
-        baseMaterial.addEventListener('dispose', function onDispose() {
-          baseMaterial.removeEventListener('dispose', onDispose);
-          derivedMaterial.dispose();
-        });
-      } // If text outline is present, render it as a preliminary draw using Three's multi-material
-      // feature (see GlyphsGeometry which sets up `groups` for this purpose) Doing it with multi
-      // materials ensures the layers are always rendered consecutively in a consistent order.
-      // Each layer will trigger onBeforeRender with the appropriate material.
-
-
-      if (this.outlineWidth) {
-        let outlineMaterial = derivedMaterial._outlineMtl;
-
-        if (!outlineMaterial) {
-          outlineMaterial = derivedMaterial._outlineMtl = Object.create(derivedMaterial, {
-            id: {
-              value: derivedMaterial.id + 0.1
-            }
-          });
-          outlineMaterial.isTextOutlineMaterial = true;
-          outlineMaterial.depthWrite = false;
-          outlineMaterial.map = null; //???
-
-          derivedMaterial.addEventListener('dispose', function onDispose() {
-            derivedMaterial.removeEventListener('dispose', onDispose);
-            outlineMaterial.dispose();
-          });
-        }
-
-        return [outlineMaterial, derivedMaterial];
-      } else {
-        return derivedMaterial;
-      }
-    }
-
-    set material(baseMaterial) {
-      if (baseMaterial && baseMaterial.isTroikaTextMaterial) {
-        //prevent double-derivation
-        this._derivedMaterial = baseMaterial;
-        this._baseMaterial = baseMaterial.baseMaterial;
-      } else {
-        this._baseMaterial = baseMaterial;
-      }
-    }
-
-    get glyphGeometryDetail() {
-      return this.geometry.detail;
-    }
-
-    set glyphGeometryDetail(detail) {
-      this.geometry.detail = detail;
-    } // Create and update material for shadows upon request:
-
-
-    get customDepthMaterial() {
-      return first(this.material).getDepthMaterial();
-    }
-
-    get customDistanceMaterial() {
-      return first(this.material).getDistanceMaterial();
-    }
-
-    _prepareForRender(material) {
-      const isOutline = material.isTextOutlineMaterial;
-      const uniforms = material.uniforms;
-      const textInfo = this.textRenderInfo;
-
-      if (textInfo) {
-        const {
-          sdfTexture,
-          blockBounds
-        } = textInfo;
-        uniforms.uTroikaSDFTexture.value = sdfTexture;
-        uniforms.uTroikaSDFTextureSize.value.set(sdfTexture.image.width, sdfTexture.image.height);
-        uniforms.uTroikaSDFGlyphSize.value = textInfo.sdfGlyphSize;
-        uniforms.uTroikaSDFExponent.value = textInfo.sdfExponent;
-        uniforms.uTroikaTotalBounds.value.fromArray(blockBounds);
-        uniforms.uTroikaUseGlyphColors.value = !!textInfo.glyphColors;
-        let distanceOffset = 0;
-
-        if (isOutline) {
-          let {
-            outlineWidth
-          } = this;
-
-          if (typeof outlineWidth === 'string') {
-            let match = outlineWidth.match(/^([\d.]+)%$/);
-            let pct = match ? parseFloat(match[1]) : NaN;
-            outlineWidth = (isNaN(pct) ? 0 : pct / 100) * this.fontSize;
-          }
-
-          distanceOffset = outlineWidth;
-        }
-
-        uniforms.uTroikaDistanceOffset.value = distanceOffset;
-        let clipRect = this.clipRect;
-
-        if (clipRect && Array.isArray(clipRect) && clipRect.length === 4) {
-          uniforms.uTroikaClipRect.value.fromArray(clipRect);
-        } else {
-          // no clipping - choose a finite rect that shouldn't ever be reached by overflowing glyphs or outlines
-          const pad = (this.fontSize || 0.1) * 100;
-          uniforms.uTroikaClipRect.value.set(blockBounds[0] - pad, blockBounds[1] - pad, blockBounds[2] + pad, blockBounds[3] + pad);
-        }
-
-        this.geometry.applyClipRect(uniforms.uTroikaClipRect.value);
-      }
-
-      uniforms.uTroikaSDFDebug.value = !!this.debugSDF;
-      material.polygonOffset = !!this.depthOffset;
-      material.polygonOffsetFactor = material.polygonOffsetUnits = this.depthOffset || 0; // Shortcut for setting material color via `color` prop on the mesh; this is
-      // applied only to the derived material to avoid mutating a shared base material.
-
-      const color = isOutline ? this.outlineColor || 0 : this.color;
-
-      if (color == null) {
-        delete material.color; //inherit from base
-      } else {
-        const colorObj = material.hasOwnProperty('color') ? material.color : material.color = new _three.Color();
-
-        if (color !== colorObj._input || typeof color === 'object') {
-          colorObj.set(colorObj._input = color);
-        }
-      } // base orientation
-
-
-      let orient = this.orientation || defaultOrient;
-
-      if (orient !== material._orientation) {
-        let rotMat = uniforms.uTroikaOrient.value;
-        orient = orient.replace(/[^-+xyz]/g, '');
-        let match = orient !== defaultOrient && orient.match(/^([-+])([xyz])([-+])([xyz])$/);
-
-        if (match) {
-          let [, hSign, hAxis, vSign, vAxis] = match;
-          tempVec3a.set(0, 0, 0)[hAxis] = hSign === '-' ? 1 : -1;
-          tempVec3b.set(0, 0, 0)[vAxis] = vSign === '-' ? -1 : 1;
-          tempMat4.lookAt(origin, tempVec3a.cross(tempVec3b), tempVec3b);
-          rotMat.setFromMatrix4(tempMat4);
-        } else {
-          rotMat.identity();
-        }
-
-        material._orientation = orient;
-      }
-    }
-    /**
-     * @override Custom raycasting to test against the whole text block's max rectangular bounds
-     * TODO is there any reason to make this more granular, like within individual line or glyph rects?
-     */
-
-
-    raycast(raycaster, intersects) {
-      const textInfo = this.textRenderInfo;
-
-      if (textInfo) {
-        const bounds = textInfo.blockBounds;
-        raycastMesh.matrixWorld.multiplyMatrices(this.matrixWorld, tempMat4.set(bounds[2] - bounds[0], 0, 0, bounds[0], 0, bounds[3] - bounds[1], 0, bounds[1], 0, 0, 1, 0, 0, 0, 0, 1));
-        tempArray.length = 0;
-        raycastMesh.raycast(raycaster, tempArray);
-
-        for (let i = 0; i < tempArray.length; i++) {
-          tempArray[i].object = this;
-          intersects.push(tempArray[i]);
-        }
-      }
-    }
-
-    copy(source) {
-      super.copy(source);
-      COPYABLE_PROPS.forEach(prop => {
-        this[prop] = source[prop];
-      });
-      return this;
-    }
-
-    clone() {
-      return new this.constructor().copy(this);
-    }
-
-  } // Create setters for properties that affect text layout:
-
-
-  SYNCABLE_PROPS.forEach(prop => {
-    const privateKey = '_private_' + prop;
-    Object.defineProperty(Text.prototype, prop, {
-      get() {
-        return this[privateKey];
-      },
-
-      set(value) {
-        if (value !== this[privateKey]) {
-          this[privateKey] = value;
-          this._needsSync = true;
-        }
-      }
-
-    });
-  }); // Deprecation handler for `anchor` array:
-
-  let deprMsgShown = false;
-  Object.defineProperty(Text.prototype, 'anchor', {
-    get() {
-      return this._deprecated_anchor;
-    },
-
-    set(val) {
-      this._deprecated_anchor = val;
-
-      if (!deprMsgShown) {
-        console.warn('TextMesh: `anchor` has been deprecated; use `anchorX` and `anchorY` instead.');
-        deprMsgShown = true;
-      }
-
-      if (Array.isArray(val)) {
-        this.anchorX = `${(+val[0] || 0) * 100}%`;
-        this.anchorY = `${(+val[1] || 0) * 100}%`;
-      } else {
-        this.anchorX = this.anchorY = 0;
-      }
-    }
-
-  });
-  return Text;
-})(); //=== Utility functions for dealing with carets and selection ranges ===//
-
-/**
- * @typedef {object} TextCaret
- * @property {number} x - x position of the caret
- * @property {number} y - y position of the caret's bottom
- * @property {number} height - height of the caret
- * @property {number} charIndex - the index in the original input string of this caret's target
- *   character; the caret will be for the position _before_ that character.
- */
-
-/**
- * Given a local x/y coordinate in the text block plane, find the nearest caret position.
- * @param {TroikaTextRenderInfo} textRenderInfo - a result object from TextBuilder#getTextRenderInfo
- * @param {number} x
- * @param {number} y
- * @return {TextCaret | null}
- */
-
-
-exports.Text = Text;
-
-function getCaretAtPoint(textRenderInfo, x, y) {
-  let closestCaret = null;
-  const {
-    caretHeight
-  } = textRenderInfo;
-  const caretsByRow = groupCaretsByRow(textRenderInfo); // Find nearest row by y first
-
-  let closestRowY = Infinity;
-  caretsByRow.forEach((carets, rowY) => {
-    if (Math.abs(y - (rowY + caretHeight / 2)) < Math.abs(y - (closestRowY + caretHeight / 2))) {
-      closestRowY = rowY;
-    }
-  }); // Then find closest caret by x within that row
-
-  caretsByRow.get(closestRowY).forEach(caret => {
-    if (!closestCaret || Math.abs(x - caret.x) < Math.abs(x - closestCaret.x)) {
-      closestCaret = caret;
-    }
-  });
-  return closestCaret;
-}
-
-const _rectsCache = new WeakMap();
-/**
- * Given start and end character indexes, return a list of rectangles covering all the
- * characters within that selection.
- * @param {TroikaTextRenderInfo} textRenderInfo
- * @param {number} start - index of the first char in the selection
- * @param {number} end - index of the first char after the selection
- * @return {Array<{left, top, right, bottom}> | null}
- */
-
-
-function getSelectionRects(textRenderInfo, start, end) {
-  let rects;
-
-  if (textRenderInfo) {
-    // Check cache - textRenderInfo is frozen so it's safe to cache based on it
-    let prevResult = _rectsCache.get(textRenderInfo);
-
-    if (prevResult && prevResult.start === start && prevResult.end === end) {
-      return prevResult.rects;
-    }
-
-    const {
-      caretPositions,
-      caretHeight,
-      blockBounds
-    } = textRenderInfo; // Normalize
-
-    if (end < start) {
-      const s = start;
-      start = end;
-      end = s;
-    }
-
-    start = Math.max(start, 0);
-    end = Math.min(end, caretPositions.length + 1); // Collect into one rect per row
-
-    let rows = new Map();
-
-    for (let i = start; i < end; i++) {
-      const x1 = caretPositions[i * 3];
-      const x2 = caretPositions[i * 3 + 1];
-      const y = caretPositions[i * 3 + 2];
-      let row = rows.get(y);
-
-      if (!row) {
-        row = {
-          left: x1,
-          right: x2,
-          bottom: y,
-          top: y + caretHeight
-        };
-        rows.set(y, row);
-      } else {
-        row.left = Math.max(Math.min(row.left, x1), blockBounds[0]);
-        row.right = Math.min(Math.max(row.right, x2), blockBounds[2]);
-      }
-    }
-
-    rects = [];
-    rows.forEach(rect => {
-      rects.push(rect);
-    });
-
-    _rectsCache.set(textRenderInfo, {
-      start,
-      end,
-      rects
-    });
-  }
-
-  return rects;
-}
-
-const _caretsByRowCache = new WeakMap();
-
-function groupCaretsByRow(textRenderInfo) {
-  // textRenderInfo is frozen so it's safe to cache based on it
-  let caretsByRow = _caretsByRowCache.get(textRenderInfo);
-
-  if (!caretsByRow) {
-    const {
-      caretPositions,
-      caretHeight
-    } = textRenderInfo;
-    caretsByRow = new Map();
-
-    for (let i = 0; i < caretPositions.length; i += 3) {
-      const rowY = caretPositions[i + 2];
-      let rowCarets = caretsByRow.get(rowY);
-
-      if (!rowCarets) {
-        caretsByRow.set(rowY, rowCarets = []);
-      }
-
-      rowCarets.push({
-        x: caretPositions[i],
-        y: rowY,
-        height: caretHeight,
-        charIndex: i / 3
-      }); // Add one more caret after the final char
-
-      if (i + 3 >= caretPositions.length) {
-        rowCarets.push({
-          x: caretPositions[i + 1],
-          y: rowY,
-          height: caretHeight,
-          charIndex: i / 3 + 1
-        });
-      }
-    }
-  }
-
-  _caretsByRowCache.set(textRenderInfo, caretsByRow);
-
-  return caretsByRow;
-}
-},{"three":"node_modules/three/build/three.module.js","troika-worker-utils":"node_modules/troika-worker-utils/dist/troika-worker-utils.esm.js","troika-three-utils":"node_modules/troika-three-utils/dist/troika-three-utils.esm.js","process":"node_modules/process/browser.js"}],"js/libs/glsl/vertex.glsl":[function(require,module,exports) {
+},{}],"js/libs/glsl/vertex.glsl":[function(require,module,exports) {
 module.exports = "varying vec2 vUv;\n\nuniform float time;\n\n// const float pi = 3.1415925;\n\n// void main() {\n  //   uv = vUv;\n  //   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );\n// }\n\nprecision mediump float;\n#define GLSLIFY 1\n\n// varying vec2 vUv;\n// uniform float time;\n\nvec3 mod289(vec3 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 mod289(vec4 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 permute(vec4 x){\n  return mod289(((x*34.)+1.)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159-.85373472095314*r;\n}\n\nfloat snoise(vec3 v){\n  const vec2 C=vec2(1./6.,1./3.);\n  const vec4 D=vec4(0.,.5,1.,2.);\n  \n  // First corner\n  vec3 i=floor(v+dot(v,C.yyy));\n  vec3 x0=v-i+dot(i,C.xxx);\n  \n  // Other corners\n  vec3 g=step(x0.yzx,x0.xyz);\n  vec3 l=1.-g;\n  vec3 i1=min(g.xyz,l.zxy);\n  vec3 i2=max(g.xyz,l.zxy);\n  \n  vec3 x1=x0-i1+C.xxx;\n  vec3 x2=x0-i2+C.yyy;\n  vec3 x3=x0-D.yyy;\n  \n  // Permutations\n  i=mod289(i);\n  vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));\n  // Gradients: 7x7 points over a square, mapped onto an octahedron.\n  // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_=.142857142857;\n  vec3 ns=n_*D.wyz-D.xzx;\n  \n  vec4 j=p-49.*floor(p*ns.z*ns.z);\n  \n  vec4 x_=floor(j*ns.z);\n  vec4 y_=floor(j-7.*x_);\n  \n  vec4 x=x_*ns.x+ns.yyyy;\n  vec4 y=y_*ns.x+ns.yyyy;\n  vec4 h=1.-abs(x)-abs(y);\n  \n  vec4 b0=vec4(x.xy,y.xy);\n  vec4 b1=vec4(x.zw,y.zw);\n  \n  vec4 s0=floor(b0)*2.+1.;\n  vec4 s1=floor(b1)*2.+1.;\n  vec4 sh=-step(h,vec4(0.));\n  \n  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;\n  vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;\n  \n  vec3 p0=vec3(a0.xy,h.x);\n  vec3 p1=vec3(a0.zw,h.y);\n  vec3 p2=vec3(a1.xy,h.z);\n  vec3 p3=vec3(a1.zw,h.w);\n  \n  // Normalise gradients\n  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));\n  p0*=norm.x;\n  p1*=norm.y;\n  p2*=norm.z;\n  p3*=norm.w;\n  \n  // Mix final noise value\n  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);\n  m=m*m;\n  return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),\n  dot(p2,x2),dot(p3,x3)));\n}\n\nvoid main(){\n  vUv=uv;\n  \n  vec3 pos=position;\n  float noiseFreq=.5;\n  float noiseAmp=.03;\n  vec3 noisePos=vec3(pos.x*noiseFreq+time,pos.y,pos.z);\n  pos.z+=snoise(noisePos)*noiseAmp;\n  \n  gl_Position=projectionMatrix*modelViewMatrix*vec4(pos,1.);\n}";
 },{}],"js/libs/glsl/fragment.glsl":[function(require,module,exports) {
 module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\n// uniform float _rot;\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\n// vec2 rotate(vec2 v, float a) {\n  //  float s = sin(a);\n  //  float c = cos(a);\n  //  mat2 m = mat2(c, -s, s, c);\n  //  return m * v;\n// }\n\nvoid main(){\n  \n  vec2 uv=vUv;\n  \n  // uv -= 0.5;\n  // vec2 rotUV = rotate(uv, _rot);\n  // uv += 0.5;\n\n  //   vec4 displace = texture2D(displacement, vUv.yx);\n  \n  vec4 disp=texture2D(displacement,uv);\n  // vec2 displacedUV = vec2(vUv.x, vUv.y + disp.r);\n\n  // displacedUV.y = mix(vUv.y, disp.r, 0.1);\n  \n  //   vec4 color = texture2D(image, displacedUV);\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n  \n  // finalTexture.r = texture2D(imagergb, disp + vec2(.0, .0)).r;\n  // finalTexture.g = texture2D(imagergb, disp + vec2(.0, -0.01)).g;\n  // finalTexture.b = texture2D(imagergb, disp + vec2(.0, 0.02)).b;\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n  // gl_FragColor = disp;\n\n}\n\n// void main() {\n//   vUv = uv;\n\n//   vec3 pos = position;\n//   float noiseFreq = 3.5;\n//   float noiseAmp = 0.15; \n//   vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);\n//   pos.z += snoise(noisePos) * noiseAmp;\n\n//   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.);\n// }\n\n// =================================================================================\n// =================================================================================\n\n// uniform float time;\n// uniform float alpha;\n// uniform float displaceHover;\n// // uniform float progress;\n// uniform sampler2D image;\n// uniform sampler2D displacement;\n// uniform sampler2D tDiffuse;\n\n// uniform vec2 resolution;\n// uniform vec2 mouse;\n// // uniform float u_Velo;\n// // uniform int u_Type;\n\n// varying vec2 vUv;\n// // varying vec4 vPosition;\n\n// void main(){\n//   vec4 displace = texture2D(displacement, vUv.yx);\n//   vec2 displacedUV = vec2(vUv.x, vUv.y + displace.r);\n  \n//   displacedUV.y = mix(vUv.y, displace.r, displaceHover);\n  \n//   vec4 color = texture2D(imagebw, displacedUV);\n  \n//   // color.r = texture2D(image, displacedUV + vec2(time*.002, time*0.03)).r;\n//   // color.g = 0.;\n//   // color.b = texture2D(image, displacedUV + vec2(time*.002, time*0.07)).b;\n//   float activeRGB = displaceHover * 10.0;\n//   // color.r = texture2D(imagebw, displacedUV + vec2(.0, 0.5)*activeRGB).r;\n//   color.r = texture2D(imagebw, displacedUV + vec2(.0, -0.2) + vec2(.3, 0.)*activeRGB).r;\n//   // color.r = texture2D(imagebw, displacedUV + vec2(.3, 0.)*activeRGB).r;\n//   color.g = texture2D(imagebw, displacedUV + vec2(.0, -0.01)*activeRGB).g;\n//   color.b = texture2D(imagebw, displacedUV + vec2(.0, 0.02)*activeRGB).b;\n  \n//   color.a = alpha;\n  \n// //   // // get small circle around mouse, with distances to it\n// //   // float c=circle(uv,mouse,0.,.2);\n// //   // // get texture 3 times, each time with a different offset, depending on mouse speed:\n\n// //   // float r=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.5)).x;\n// //   // float g=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.525)).y;\n// //   // float b=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.55)).z;\n// //   // // combine it all to final output\n// //   // color=vec4(r,g,b,1.);\n  \n// //   // vec2 newUV = mix(uv, mouse, circle); \n// //   // color = texture2D(tDiffuse,newUV);\n  \n//   gl_FragColor=color;\n// }\n\n// =================================================================================\n// =================================================================================\n\n// float circle(vec2 uv,vec2 disc_center,float disc_radius,float border_size){\n//   uv-=disc_center;\n//   uv*=resolution;\n//   float dist=sqrt(dot(uv,uv));\n//   return smoothstep(disc_radius+border_size,disc_radius-border_size,dist);\n// }\n\n// void main(){\n//   vec2 newUV=vUv;\n//   float c = circle(vUv,uMouse,0.,.2);\n//   float r = texture2D(tDiffuse,newUV.xy+=c*(.1*.5)).x;\n//   float g = texture2D(tDiffuse,newUV.xy+=c*(.1*.525)).y;\n//   float b = texture2D(tDiffuse,newUV.xy+=c*(.1*.55)).z;\n//   vec4 color = vec4(r,g,b,1.);\n//   gl_FragColor = color;\n// }\n\n// =================================================================================\n// =================================================================================\n\n// float circle(vec2 uv,vec2 disc_center,float disc_radius,float border_size){\n//   uv-=disc_center;\n//   uv*=resolution;\n//   float dist=sqrt(dot(uv,uv));\n//   return smoothstep(disc_radius+border_size,disc_radius-border_size,dist);\n// }\n\n// float map(float value,float min1,float max1,float min2,float max2){\n//   return min2+(value-min1)*(max2-min2)/(max1-min1);\n// }\n\n// float remap(float value,float inMin,float inMax,float outMin,float outMax){\n//   return outMin+(outMax-outMin)*(value-inMin)/(inMax-inMin);\n// }\n\n// float hash12(vec2 p){\n//   float h=dot(p,vec2(127.1,311.7));\n//   return fract(sin(h)*43758.5453123);\n// }\n\n// // #define HASHSCALE3 vec3(.1031, .1030, .0973)\n// vec2 hash2d(vec2 p)\n// {\n//   vec3 p3=fract(vec3(p.xyx)*vec3(.1031,.1030,.0973));\n//   p3+=dot(p3,p3.yzx+19.19);\n//   return fract((p3.xx+p3.yz)*p3.zy);\n// }\n\n// void main(){\n//   vec2 newUV=v_uv;\n//   vec4 color=vec4(1.,0.,0.,1.);\n  \n//   // colorful\n//   // if(uType==0){\n//     float c=circle(newUV,uMouse,0.,.2);\n//     float r=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.5)).x;\n//     float g=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.525)).y;\n//     float b=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.55)).z;\n//     color=vec4(r,g,b,1.);\n//   // }\n  \n//   // zoom\n//   // if(uType==1){\n//     // \tfloat c = circle(newUV, uMouse, 0.0, 0.1+uVelo*2.)*40.*uVelo;\n//     // \tvec2 offsetVector = normalize(uMouse - v_uv);\n//     // \tvec2 warpedUV = mix(v_uv, uMouse, c * 0.99); //power\n//     // \tcolor = texture2D(tDiffuse,warpedUV) + texture2D(tDiffuse,warpedUV)*vec4(vec3(c),1.);\n//   // }\n  \n//   // // zoom\n//   // if(uType==2){\n//     // \tfloat hash = hash12(v_uv*10.);\n//     // \t// float c = -circle(newUV, uMouse, 0.0, 0.1+uVelo*2.)*40.*uVelo;\n//     // \t// vec2 offsetVector = -normalize(uMouse - v_uv);\n//     // \t// vec2 warpedUV = mix(v_uv, uMouse, c * 0.6); //power\n//     // \t// vec2 warpedUV1 = mix(v_uv, uMouse, c * 0.3); //power\n//     // \t// vec2 warpedUV2 = mix(v_uv, uMouse, c * 0.1); //power\n//     // \t// color = vec4(\n//       // \t// \ttexture2D(tDiffuse,warpedUV ).r,\n//       // \t// \ttexture2D(tDiffuse,warpedUV1 ).g,\n//       // \t// \ttexture2D(tDiffuse,warpedUV2 ).b,\n//     // \t// \t1.);\n//     // \t// color = vec4(,0.,0.,1.);\n//     // \tfloat c = circle(newUV, uMouse, 0.0, 0.1+uVelo*0.01)*10.*uVelo;\n//     // \tvec2 offsetVector = normalize(uMouse - v_uv);\n//     // \t// vec2 warpedUV = mix(v_uv, uMouse,  20.*hash*c); //power\n//     // \tvec2 warpedUV = v_uv + vec2(hash - 0.5)*c; //power\n//     // \tcolor = texture2D(tDiffuse,warpedUV) + texture2D(tDiffuse,warpedUV)*vec4(vec3(c),1.);\n//   // }\n  \n//   gl_FragColor=color;\n// }";
@@ -54743,6 +48519,10 @@ module.exports = "/displace7.bbc0120c.jpg";
 module.exports = "/displace8.d60461ed.jpg";
 },{}],"assets/img/displaces/displace9.png":[function(require,module,exports) {
 module.exports = "/displace9.a0897a7d.png";
+},{}],"assets/img/ateliers/atelier1Default.png":[function(require,module,exports) {
+module.exports = "/atelier1Default.083cf2f9.png";
+},{}],"assets/img/ateliers/atelier2Default.png":[function(require,module,exports) {
+module.exports = "/atelier2Default.31e4411d.png";
 },{}],"assets/img/ateliers/atelier3Default.png":[function(require,module,exports) {
 module.exports = "/atelier3Default.a47c79c8.png";
 },{}],"assets/img/ateliers/atelier4Default.png":[function(require,module,exports) {
@@ -54767,6 +48547,10 @@ module.exports = "/atelier12Default.e738f7c2.png";
 module.exports = "/atelier13Default.ec9069df.png";
 },{}],"assets/img/ateliers/atelier14Default.png":[function(require,module,exports) {
 module.exports = "/atelier14Default.89291e58.png";
+},{}],"assets/img/ateliers/atelier1Hover.png":[function(require,module,exports) {
+module.exports = "/atelier1Hover.ec3259e4.png";
+},{}],"assets/img/ateliers/atelier2Hover.png":[function(require,module,exports) {
+module.exports = "/atelier2Hover.112e2299.png";
 },{}],"assets/img/ateliers/atelier3Hover.png":[function(require,module,exports) {
 module.exports = "/atelier3Hover.53d4bd3d.png";
 },{}],"assets/img/ateliers/atelier4Hover.png":[function(require,module,exports) {
@@ -54791,8 +48575,6 @@ module.exports = "/atelier12Hover.8ae78073.png";
 module.exports = "/atelier13Hover.37f453a6.png";
 },{}],"assets/img/ateliers/atelier14Hover.png":[function(require,module,exports) {
 module.exports = "/atelier14Hover.cf4e0176.png";
-},{}],"assets/img/ateliers/Site_web.png":[function(require,module,exports) {
-module.exports = "/Site_web.11334d8e.png";
 },{}],"assets/model/socle.gltf":[function(require,module,exports) {
 module.exports = "/socle.4736dd33.gltf";
 },{}],"assets/model/logo.glb":[function(require,module,exports) {
@@ -54803,8 +48585,12 @@ module.exports = "/home.200158f1.gltf";
 module.exports = "/street.466c19e3.gltf";
 },{}],"assets/model/rightDoor.gltf":[function(require,module,exports) {
 module.exports = "/rightDoor.b1f96daa.gltf";
+},{}],"assets/model/rightDoor2.gltf":[function(require,module,exports) {
+module.exports = "/rightDoor2.33b87bbd.gltf";
 },{}],"assets/model/leftDoor.gltf":[function(require,module,exports) {
 module.exports = "/leftDoor.5899d111.gltf";
+},{}],"assets/model/leftDoor2.gltf":[function(require,module,exports) {
+module.exports = "/leftDoor2.1d2889d7.gltf";
 },{}],"assets/model/navigation/pylone.gltf":[function(require,module,exports) {
 module.exports = "/pylone.206a826a.gltf";
 },{}],"assets/model/navigation/pylone2.gltf":[function(require,module,exports) {
@@ -54850,7 +48636,7 @@ var POSTPROCESSING = _interopRequireWildcard(require("postprocessing"));
 
 var _three2 = require("three.interaction");
 
-var _troikaThreeText = require("troika-three-text");
+var _touchsweep = _interopRequireDefault(require("touchsweep"));
 
 var _vertex = _interopRequireDefault(require("./libs/glsl/vertex.glsl"));
 
@@ -54878,6 +48664,10 @@ var _displace9 = _interopRequireDefault(require("../assets/img/displaces/displac
 
 var _displace10 = _interopRequireDefault(require("../assets/img/displaces/displace9.png"));
 
+var _atelier1Default = _interopRequireDefault(require("../assets/img/ateliers/atelier1Default.png"));
+
+var _atelier2Default = _interopRequireDefault(require("../assets/img/ateliers/atelier2Default.png"));
+
 var _atelier3Default = _interopRequireDefault(require("../assets/img/ateliers/atelier3Default.png"));
 
 var _atelier4Default = _interopRequireDefault(require("../assets/img/ateliers/atelier4Default.png"));
@@ -54901,6 +48691,10 @@ var _atelier12Default = _interopRequireDefault(require("../assets/img/ateliers/a
 var _atelier13Default = _interopRequireDefault(require("../assets/img/ateliers/atelier13Default.png"));
 
 var _atelier14Default = _interopRequireDefault(require("../assets/img/ateliers/atelier14Default.png"));
+
+var _atelier1Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier1Hover.png"));
+
+var _atelier2Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier2Hover.png"));
 
 var _atelier3Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier3Hover.png"));
 
@@ -54926,8 +48720,6 @@ var _atelier13Hover = _interopRequireDefault(require("../assets/img/ateliers/ate
 
 var _atelier14Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier14Hover.png"));
 
-var _Site_web = _interopRequireDefault(require("../assets/img/ateliers/Site_web.png"));
-
 var _socle = _interopRequireDefault(require("../assets/model/socle.gltf"));
 
 var _logo = _interopRequireDefault(require("../assets/model/logo.glb"));
@@ -54938,7 +48730,11 @@ var _street = _interopRequireDefault(require("../assets/model/street.gltf"));
 
 var _rightDoor = _interopRequireDefault(require("../assets/model/rightDoor.gltf"));
 
+var _rightDoor2 = _interopRequireDefault(require("../assets/model/rightDoor2.gltf"));
+
 var _leftDoor = _interopRequireDefault(require("../assets/model/leftDoor.gltf"));
+
+var _leftDoor2 = _interopRequireDefault(require("../assets/model/leftDoor2.gltf"));
 
 var _pylone = _interopRequireDefault(require("../assets/model/navigation/pylone.gltf"));
 
@@ -54986,7 +48782,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-////////// SCENE //////////
+gsap.registerPlugin(ScrollTrigger); ////////// SCENE //////////
+
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); /////// CLOCK ///////
@@ -54997,22 +48794,7 @@ if (window.matchMedia("(max-width: 600px)").matches) {
   camera.position.set(0, 0, 11.3);
 } else {
   camera.position.set(0, 0, 10);
-} // var textMesh = new Text ({
-//     key: 'my-text',
-//     text: 'Hello world!',
-//     fontSize: 0.2,
-//     color: 0x9966FF,
-// });
-// let textMesh = new Text({
-//     key: 'my-text',
-//     text: 'Hello world!',
-//     fontSize: 0.2,
-//     color: 0x9966FF,
-// });
-// console.log(textMesh)
-// scene.add(textMesh)
-// textMesh.position.set(0, 2, 0)
-/////// MAIN RENDERER ///////
+} /////// MAIN RENDERER ///////
 
 
 var renderer = new THREE.WebGLRenderer({
@@ -55076,15 +48858,19 @@ scene.add(ambientLight); /////// 3D MODEL ///////
 //HOME MODEL
 
 var home;
-var loaderHome = new _GLTFLoader.GLTFLoader();
-loaderHome.crossOrigin = true;
-loaderHome.load(_home.default, function (addHome) {
-  home = addHome.scene;
-  scene.add(home);
-  home.position.set(-1.45, -10, 0);
-  home.scale.set(100, 100, 100);
-  home.rotation.y = -.35;
-}); // SOCLE MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderHome = new _GLTFLoader.GLTFLoader();
+  loaderHome.crossOrigin = true;
+  loaderHome.load(_home.default, function (addHome) {
+    home = addHome.scene;
+    scene.add(home);
+    home.position.set(-1.45, -10, 0);
+    home.scale.set(100, 100, 100);
+    home.rotation.y = -.35;
+  });
+} // SOCLE MODEL
+
 
 var socle;
 var loaderSocle = new _GLTFLoader.GLTFLoader();
@@ -55111,226 +48897,329 @@ loaderLogo.load(_logo.default, function (addLogo) {
 }); // FIELD MODEL
 
 var field;
-var loaderField = new _GLTFLoader.GLTFLoader();
-loaderField.crossOrigin = true;
-loaderField.load(_field.default, function (addField) {
-  field = addField.scene;
-  scene.add(field);
-  field.position.set(-1.2, -53, -48);
-  field.rotation.y = -.5 * Math.PI;
-  field.scale.set(0.0001, 0.0001, 0.0001);
-}); // LEFT WALL MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderField = new _GLTFLoader.GLTFLoader();
+  loaderField.crossOrigin = true;
+  loaderField.load(_field.default, function (addField) {
+    field = addField.scene;
+    scene.add(field);
+    field.position.set(-1.2, -53, -48);
+    field.rotation.y = -.5 * Math.PI;
+    field.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // LEFT WALL MODEL
+
 
 var leftWall;
-var loaderleftWall = new _GLTFLoader.GLTFLoader();
-loaderleftWall.crossOrigin = true;
-loaderleftWall.load(_leftWall.default, function (addleftWall) {
-  leftWall = addleftWall.scene;
-  scene.add(leftWall);
-  leftWall.position.set(-51.2, -4.8, -48);
-  leftWall.rotation.y = -.5 * Math.PI;
-  leftWall.scale.set(0.0001, 0.0001, 0.0001);
-}); // RIGHT WALL MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderleftWall = new _GLTFLoader.GLTFLoader();
+  loaderleftWall.crossOrigin = true;
+  loaderleftWall.load(_leftWall.default, function (addleftWall) {
+    leftWall = addleftWall.scene;
+    scene.add(leftWall);
+    leftWall.position.set(-51.2, -4.8, -48);
+    leftWall.rotation.y = -.5 * Math.PI;
+    leftWall.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // RIGHT WALL MODEL
+
 
 var rightWall;
-var loaderRightWall = new _GLTFLoader.GLTFLoader();
-loaderRightWall.crossOrigin = true;
-loaderRightWall.load(_rightWall.default, function (addRightWall) {
-  rightWall = addRightWall.scene;
-  scene.add(rightWall);
-  rightWall.position.set(58.8, -4.8, -48);
-  rightWall.rotation.y = -.5 * Math.PI;
-  rightWall.scale.set(0.0001, 0.0001, 0.0001);
-}); // TABLE MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderRightWall = new _GLTFLoader.GLTFLoader();
+  loaderRightWall.crossOrigin = true;
+  loaderRightWall.load(_rightWall.default, function (addRightWall) {
+    rightWall = addRightWall.scene;
+    scene.add(rightWall);
+    rightWall.position.set(58.8, -4.8, -48);
+    rightWall.rotation.y = -.5 * Math.PI;
+    rightWall.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // TABLE MODEL
+
 
 var table;
-var loaderTable = new _GLTFLoader.GLTFLoader();
-loaderTable.crossOrigin = true;
-loaderTable.load(_table.default, function (addTable) {
-  table = addTable.scene;
-  scene.add(table);
-  table.position.set(-8, -4.9, -8.5);
-  table.rotation.y = -.5 * Math.PI;
-  table.scale.set(110, 0.0001, 0.0001);
-}); // PYLONE MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderTable = new _GLTFLoader.GLTFLoader();
+  loaderTable.crossOrigin = true;
+  loaderTable.load(_table.default, function (addTable) {
+    table = addTable.scene;
+    scene.add(table);
+    table.position.set(-8, -4.9, -8.5);
+    table.rotation.y = -.5 * Math.PI;
+    table.scale.set(110, 0.0001, 0.0001);
+  });
+} // PYLONE MODEL
+
 
 var pylone;
 var loaderPylone = new _GLTFLoader.GLTFLoader();
 loaderPylone.crossOrigin = true;
-loaderPylone.load(_pylone.default, function (addPylone) {
-  pylone = addPylone.scene;
-  scene.add(pylone);
-  pylone.position.set(-8.5, -1.5, -5);
-  pylone.rotation.y = -.5 * Math.PI;
-  pylone.scale.set(110, 0.0001, 0.0001);
-}); // PYLONE2 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  loaderPylone.load(_pylone.default, function (addPylone) {
+    pylone = addPylone.scene;
+    scene.add(pylone);
+    pylone.position.set(-8.5, -1.5, -5);
+    pylone.rotation.y = -.5 * Math.PI;
+    pylone.scale.set(110, 0.0001, 0.0001);
+  });
+} // PYLONE2 MODEL
+
 
 var pylone2;
-var loaderPylone2 = new _GLTFLoader.GLTFLoader();
-loaderPylone2.crossOrigin = true;
-loaderPylone2.load(_pylone2.default, function (addPylone2) {
-  pylone2 = addPylone2.scene;
-  scene.add(pylone2);
-  pylone2.position.set(-8.5, -1.5, -6.5);
-  pylone2.rotation.y = -.5 * Math.PI;
-  pylone2.scale.set(110, 0.0001, 0.0001);
-}); // PYLONE3 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderPylone2 = new _GLTFLoader.GLTFLoader();
+  loaderPylone2.crossOrigin = true;
+  loaderPylone2.load(_pylone2.default, function (addPylone2) {
+    pylone2 = addPylone2.scene;
+    scene.add(pylone2);
+    pylone2.position.set(-8.5, -1.5, -6.5);
+    pylone2.rotation.y = -.5 * Math.PI;
+    pylone2.scale.set(110, 0.0001, 0.0001);
+  });
+} // PYLONE3 MODEL
+
 
 var pylone3;
-var loaderPylone3 = new _GLTFLoader.GLTFLoader();
-loaderPylone3.crossOrigin = true;
-loaderPylone3.load(_pylone3.default, function (addPylone3) {
-  pylone3 = addPylone3.scene;
-  scene.add(pylone3);
-  pylone3.position.set(-8.5, -1.5, -8);
-  pylone3.rotation.y = -.5 * Math.PI;
-  pylone3.scale.set(110, 0.0001, 0.0001);
-}); // PYLONE4 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderPylone3 = new _GLTFLoader.GLTFLoader();
+  loaderPylone3.crossOrigin = true;
+  loaderPylone3.load(_pylone3.default, function (addPylone3) {
+    pylone3 = addPylone3.scene;
+    scene.add(pylone3);
+    pylone3.position.set(-8.5, -1.5, -8);
+    pylone3.rotation.y = -.5 * Math.PI;
+    pylone3.scale.set(110, 0.0001, 0.0001);
+  });
+} // PYLONE4 MODEL
+
 
 var pylone4;
-var loaderPylone4 = new _GLTFLoader.GLTFLoader();
-loaderPylone4.crossOrigin = true;
-loaderPylone.load(_pylone4.default, function (addPylone4) {
-  pylone4 = addPylone4.scene;
-  scene.add(pylone4);
-  pylone4.position.set(-8.5, -1.5, -9.5);
-  pylone4.rotation.y = -.5 * Math.PI;
-  pylone4.scale.set(110, 0.0001, 0.0001);
-}); // PYLONE5 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderPylone4 = new _GLTFLoader.GLTFLoader();
+  loaderPylone4.crossOrigin = true;
+  loaderPylone.load(_pylone4.default, function (addPylone4) {
+    pylone4 = addPylone4.scene;
+    scene.add(pylone4);
+    pylone4.position.set(-8.5, -1.5, -9.5);
+    pylone4.rotation.y = -.5 * Math.PI;
+    pylone4.scale.set(110, 0.0001, 0.0001);
+  });
+} // PYLONE5 MODEL
+
 
 var pylone5;
-var loaderPylone5 = new _GLTFLoader.GLTFLoader();
-loaderPylone5.crossOrigin = true;
-loaderPylone.load(_pylone5.default, function (addPylone5) {
-  pylone5 = addPylone5.scene;
-  scene.add(pylone5);
-  pylone5.position.set(-8.5, -1.5, -11);
-  pylone5.rotation.y = -.5 * Math.PI;
-  pylone5.scale.set(110, 0.0001, 0.0001);
-}); // GRID MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderPylone5 = new _GLTFLoader.GLTFLoader();
+  loaderPylone5.crossOrigin = true;
+  loaderPylone.load(_pylone5.default, function (addPylone5) {
+    pylone5 = addPylone5.scene;
+    scene.add(pylone5);
+    pylone5.position.set(-8.5, -1.5, -11);
+    pylone5.rotation.y = -.5 * Math.PI;
+    pylone5.scale.set(110, 0.0001, 0.0001);
+  });
+} // GRID MODEL
+
 
 var grid;
-var loaderGrid = new _GLTFLoader.GLTFLoader();
-loaderGrid.crossOrigin = true;
-loaderGrid.load(_grid.default, function (addGrid) {
-  grid = addGrid.scene;
-  scene.add(grid);
-  grid.position.set(-7.5, -3.8, -7.5);
-  grid.rotation.y = -.5 * Math.PI;
-  grid.scale.set(0.0001, 110, 0.0001);
-}); // GRID2 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderGrid = new _GLTFLoader.GLTFLoader();
+  loaderGrid.crossOrigin = true;
+  loaderGrid.load(_grid.default, function (addGrid) {
+    grid = addGrid.scene;
+    scene.add(grid);
+    grid.position.set(-7.5, -3.8, -7.5);
+    grid.rotation.y = -.5 * Math.PI;
+    grid.scale.set(0.0001, 110, 0.0001);
+  });
+} // GRID2 MODEL
+
 
 var grid2;
-var loaderGrid2 = new _GLTFLoader.GLTFLoader();
-loaderGrid2.crossOrigin = true;
-loaderGrid2.load(_grid2.default, function (addGrid2) {
-  grid2 = addGrid2.scene;
-  scene.add(grid2);
-  grid2.position.set(-7.5, -3.2, -7.5);
-  grid2.rotation.y = -.5 * Math.PI;
-  grid2.scale.set(0.0001, 110, 0.0001);
-}); // GRID3 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderGrid2 = new _GLTFLoader.GLTFLoader();
+  loaderGrid2.crossOrigin = true;
+  loaderGrid2.load(_grid2.default, function (addGrid2) {
+    grid2 = addGrid2.scene;
+    scene.add(grid2);
+    grid2.position.set(-7.5, -3.2, -7.5);
+    grid2.rotation.y = -.5 * Math.PI;
+    grid2.scale.set(0.0001, 110, 0.0001);
+  });
+} // GRID3 MODEL
+
 
 var grid3;
-var loaderGrid3 = new _GLTFLoader.GLTFLoader();
-loaderGrid3.crossOrigin = true;
-loaderGrid3.load(_grid3.default, function (addGrid3) {
-  grid3 = addGrid3.scene;
-  scene.add(grid3);
-  grid3.position.set(-7.5, -2.6, -7.5);
-  grid3.rotation.y = -.5 * Math.PI;
-  grid3.scale.set(0.0001, 110, 0.0001);
-}); // GRID4 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderGrid3 = new _GLTFLoader.GLTFLoader();
+  loaderGrid3.crossOrigin = true;
+  loaderGrid3.load(_grid3.default, function (addGrid3) {
+    grid3 = addGrid3.scene;
+    scene.add(grid3);
+    grid3.position.set(-7.5, -2.6, -7.5);
+    grid3.rotation.y = -.5 * Math.PI;
+    grid3.scale.set(0.0001, 110, 0.0001);
+  });
+} // GRID4 MODEL
+
 
 var grid4;
-var loaderGrid4 = new _GLTFLoader.GLTFLoader();
-loaderGrid4.crossOrigin = true;
-loaderGrid4.load(_grid4.default, function (addGrid4) {
-  grid4 = addGrid4.scene;
-  scene.add(grid4);
-  grid4.position.set(-7.5, -2, -7.5);
-  grid4.rotation.y = -.5 * Math.PI;
-  grid4.scale.set(0.0001, 110, 0.0001);
-}); // GRID5 MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderGrid4 = new _GLTFLoader.GLTFLoader();
+  loaderGrid4.crossOrigin = true;
+  loaderGrid4.load(_grid4.default, function (addGrid4) {
+    grid4 = addGrid4.scene;
+    scene.add(grid4);
+    grid4.position.set(-7.5, -2, -7.5);
+    grid4.rotation.y = -.5 * Math.PI;
+    grid4.scale.set(0.0001, 110, 0.0001);
+  });
+} // GRID5 MODEL
+
 
 var grid5;
-var loaderGrid5 = new _GLTFLoader.GLTFLoader();
-loaderGrid5.crossOrigin = true;
-loaderGrid5.load(_grid5.default, function (addGrid5) {
-  grid5 = addGrid5.scene;
-  scene.add(grid5);
-  grid5.position.set(-7.5, -1.4, -7.5);
-  grid5.rotation.y = -.5 * Math.PI;
-  grid5.scale.set(0.0001, 110, 0.0001);
-}); // POUTRE MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderGrid5 = new _GLTFLoader.GLTFLoader();
+  loaderGrid5.crossOrigin = true;
+  loaderGrid5.load(_grid5.default, function (addGrid5) {
+    grid5 = addGrid5.scene;
+    scene.add(grid5);
+    grid5.position.set(-7.5, -1.4, -7.5);
+    grid5.rotation.y = -.5 * Math.PI;
+    grid5.scale.set(0.0001, 110, 0.0001);
+  });
+} // POUTRE MODEL
+
 
 var poutre;
-var loaderPoutre = new _GLTFLoader.GLTFLoader();
-loaderPoutre.crossOrigin = true;
-loaderPoutre.load(_poutre.default, function (addPoutre) {
-  poutre = addPoutre.scene;
-  scene.add(poutre);
-  poutre.position.set(-9, 4, -9);
-  poutre.rotation.y = -.5 * Math.PI;
-  poutre.scale.set(0.0001, 100, 0.0001);
-}); // SIGN MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderPoutre = new _GLTFLoader.GLTFLoader();
+  loaderPoutre.crossOrigin = true;
+  loaderPoutre.load(_poutre.default, function (addPoutre) {
+    poutre = addPoutre.scene;
+    scene.add(poutre);
+    poutre.position.set(-9, 4, -9);
+    poutre.rotation.y = -.5 * Math.PI;
+    poutre.scale.set(0.0001, 100, 0.0001);
+  });
+} // SIGN MODEL
+
 
 var sign;
-var loaderSign = new _GLTFLoader.GLTFLoader();
-loaderSign.crossOrigin = true;
-loaderSign.load(_sign.default, function (addSign) {
-  sign = addSign.scene;
-  scene.add(sign);
-  sign.position.set(7.8, -3.05, -4);
-  sign.rotation.y = -.5 * Math.PI;
-  sign.scale.set(0.0001, 0.0001, 0.0001);
-}); // RIGHT DOOR MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderSign = new _GLTFLoader.GLTFLoader();
+  loaderSign.crossOrigin = true;
+  loaderSign.load(_sign.default, function (addSign) {
+    sign = addSign.scene;
+    scene.add(sign);
+    sign.position.set(7.8, -3.05, -4);
+    sign.rotation.y = -.5 * Math.PI;
+    sign.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // RIGHT DOOR MODEL
+
 
 var rightDoor;
-var loaderRightDoor = new _GLTFLoader.GLTFLoader();
-loaderRightDoor.crossOrigin = true;
-loaderRightDoor.load(_rightDoor.default, function (addRightDoor) {
-  rightDoor = addRightDoor.scene;
-  scene.add(rightDoor);
-  rightDoor.position.set(.35, -55.8, -48);
-  rightDoor.rotation.y = -.5 * Math.PI;
-  rightDoor.scale.set(0.0001, 0.0001, 0.0001);
-}); // LEFT DOOR MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderRightDoor = new _GLTFLoader.GLTFLoader();
+  loaderRightDoor.crossOrigin = true;
+  loaderRightDoor.load(_rightDoor.default, function (addRightDoor) {
+    rightDoor = addRightDoor.scene;
+    scene.add(rightDoor);
+    rightDoor.position.set(.35, -55.8, -48);
+    rightDoor.rotation.y = -.5 * Math.PI;
+    rightDoor.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // LEFT DOOR MODEL
+
 
 var leftDoor;
-var loaderLeftDoor = new _GLTFLoader.GLTFLoader();
-loaderLeftDoor.crossOrigin = true;
-loaderLeftDoor.load(_leftDoor.default, function (addLeftDoor) {
-  leftDoor = addLeftDoor.scene;
-  scene.add(leftDoor);
-  leftDoor.position.set(.35, -55.8, -48);
-  leftDoor.rotation.y = -.5 * Math.PI;
-  leftDoor.scale.set(0.0001, 0.0001, 0.0001);
-}); // STREET MODEL
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderLeftDoor = new _GLTFLoader.GLTFLoader();
+  loaderLeftDoor.crossOrigin = true;
+  loaderLeftDoor.load(_leftDoor.default, function (addLeftDoor) {
+    leftDoor = addLeftDoor.scene;
+    scene.add(leftDoor);
+    leftDoor.position.set(.35, -55.8, -48);
+    leftDoor.rotation.y = -.5 * Math.PI;
+    leftDoor.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // RIGHT DOOR 2 MODEL
+
+
+var rightDoor2;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderRight2Door = new _GLTFLoader.GLTFLoader();
+  loaderRight2Door.crossOrigin = true;
+  loaderRight2Door.load(_rightDoor2.default, function (addRightDoor2) {
+    rightDoor2 = addRightDoor2.scene;
+    scene.add(rightDoor2);
+    rightDoor2.position.set(.35, -5.8, -197);
+    rightDoor2.rotation.y = -.5 * Math.PI;
+    rightDoor2.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // LEFT DOOR 2 MODEL
+
+
+var leftDoor2;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderLeftDoor2 = new _GLTFLoader.GLTFLoader();
+  loaderLeftDoor2.crossOrigin = true;
+  loaderLeftDoor2.load(_leftDoor2.default, function (addLeftDoor2) {
+    leftDoor2 = addLeftDoor2.scene;
+    scene.add(leftDoor2);
+    leftDoor2.position.set(.35, -5.8, -197);
+    leftDoor2.rotation.y = -.5 * Math.PI;
+    leftDoor2.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} // STREET MODEL
+
 
 var street;
-var loaderStreet = new _GLTFLoader.GLTFLoader();
-loaderStreet.crossOrigin = true;
-loaderStreet.load(_street.default, function (addStreet) {
-  street = addStreet.scene;
-  scene.add(street);
-  street.position.set(.5, -5.83, -48.75);
-  street.rotation.y = -.5 * Math.PI;
-  street.scale.set(0.0001, 0.0001, 0.0001);
-}); /////// PLANES ///////
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderStreet = new _GLTFLoader.GLTFLoader();
+  loaderStreet.crossOrigin = true;
+  loaderStreet.load(_street.default, function (addStreet) {
+    street = addStreet.scene;
+    scene.add(street);
+    street.position.set(.5, -5.83, -48.75);
+    street.rotation.y = -.5 * Math.PI;
+    street.scale.set(0.0001, 0.0001, 0.0001);
+  });
+} /////// PLANES ///////
+
 
 var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30); //WorkShops
 // var planeTrombi = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30); //Trombi ateliers
-/////// INITIATION DES TEXTURES ///////
 
-var texture1Default = new THREE.TextureLoader().load(_Site_web.default); // atelier1Default
+var planePanneau = new THREE.PlaneGeometry(1.2, 1.2, 1, 1); /////// INITIATION DES TEXTURES ///////
 
-var texture1Hover = new THREE.TextureLoader().load(_Site_web.default); // atelier1Hover
-
-var texture2Default = new THREE.TextureLoader().load(_Site_web.default); // atelier2Default
-
-var texture2Hover = new THREE.TextureLoader().load(_Site_web.default); // atelier2Hover
-
+var texture1Default = new THREE.TextureLoader().load(_atelier1Default.default);
+var texture1Hover = new THREE.TextureLoader().load(_atelier1Hover.default);
+var texture2Default = new THREE.TextureLoader().load(_atelier2Default.default);
+var texture2Hover = new THREE.TextureLoader().load(_atelier2Hover.default);
 var texture3Default = new THREE.TextureLoader().load(_atelier3Default.default);
 var texture3Hover = new THREE.TextureLoader().load(_atelier3Hover.default);
 var texture4Default = new THREE.TextureLoader().load(_atelier4Default.default);
@@ -55930,7 +49819,7 @@ var materialPlane14 = new THREE.ShaderMaterial({
   side: THREE.DoubleSide,
   transparent: true,
   opacity: 1.0
-}); // Panneau
+}); /////// PLANE PANEL ///////
 
 var materialPlanePanneau = new THREE.ShaderMaterial({
   vertexShader: _vertex.default,
@@ -56023,7 +49912,7 @@ var planeMesh11 = new THREE.Mesh(plane, materialPlane11);
 var planeMesh12 = new THREE.Mesh(plane, materialPlane12);
 var planeMesh13 = new THREE.Mesh(plane, materialPlane13);
 var planeMesh14 = new THREE.Mesh(plane, materialPlane14);
-var planeMeshPanneau = new THREE.Mesh(plane, materialPlanePanneau);
+var planeMeshPanneau = new THREE.Mesh(planePanneau, materialPlanePanneau);
 planeMesh1.position.y = 4;
 planeMesh2.position.y = 5;
 planeMesh3.position.y = 6;
@@ -56037,9 +49926,11 @@ planeMesh10.position.y = 13;
 planeMesh11.position.y = 14;
 planeMesh12.position.y = 15;
 planeMesh13.position.y = 16;
-planeMesh14.position.y = 17;
-scene.add(planeMeshPanneau);
-planeMeshPanneau.position.set(0, 2, 0);
+planeMesh14.position.y = 17; // scene.add(planeMeshPanneau)
+
+planeMeshPanneau.position.set(7.2, -3.05, -3);
+planeMeshPanneau.rotation.y = -.9; // sign.position.set(7.8, -3.05, -4)
+
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
 planeMesh4.rotation.y = Math.PI / 2;
@@ -56066,8 +49957,8 @@ pivot12.add(planeMesh12);
 pivot13.add(planeMesh13);
 pivot14.add(planeMesh14); /////// GRID ///////
 
-var screenWidth = window.innerWidth;
-var ScreenHeigth = window.innerHeight;
+var screenWidth = window.innerWidth / 22.2;
+var ScreenHeigth = window.innerHeight / 22.2;
 var colContainer = document.querySelector('.colContainer');
 var rowContainer = document.querySelector('.rowContainer');
 
@@ -56122,6 +50013,9 @@ var spanContainerStartMouseOut = document.querySelector('.spanContainerStartMous
 var btnBackHome = document.querySelector('.btn__backHome');
 var spanContainerBackMouseOver = document.querySelector('.spanContainerBackMouseover');
 var spanContainerBackMouseOut = document.querySelector('.spanContainerBackMouseout');
+var btnBackWorkshop = document.querySelector('.btn__backWorkshop');
+var spanContainerBackWorkshopMouseOver = document.querySelector('.spanContainerBackWorkshopMouseover');
+var spanContainerBackWorkshopMouseOut = document.querySelector('.spanContainerBackWorkshopMouseout');
 var canvas = document.querySelector('canvas');
 var sm = document.querySelectorAll('.sm');
 var sm1 = document.querySelector('.sm__1');
@@ -56152,6 +50046,152 @@ var workShopButton12 = document.querySelector('.workShopButton__12');
 var workShopButton13 = document.querySelector('.workShopButton__13');
 var workShopButton14 = document.querySelector('.workShopButton__14');
 var indicClickOnPlane = document.querySelector('.indicClickOnPlane');
+var contentContainer = document.querySelector('.contentContainer');
+var workShopContainer1 = document.querySelector('.workShopContainer__1');
+var creditContainer1 = document.querySelector('.creditContainer__1');
+var prenom__1 = document.querySelector('.prenom__1');
+var nom__1 = document.querySelector('.nom__1');
+var r1__1 = document.querySelector('.r1__1');
+var r2__1 = document.querySelector('.r2__1');
+var screenMask__1 = document.querySelector('.screenMask__1');
+var faceImgPath__1 = document.querySelector('.content__1');
+var faceImgZoom__1 = document.querySelector('.faceImg__1');
+var prenom__2 = document.querySelector('.prenom__2');
+var nom__2 = document.querySelector('.nom__2');
+var r1__2 = document.querySelector('.r1__2');
+var r2__2 = document.querySelector('.r2__2');
+var screenMask__2 = document.querySelector('.screenMask__2');
+var faceImgPath__2 = document.querySelector('.content__2');
+var faceImgZoom__2 = document.querySelector('.faceImg__2');
+var prenom__3 = document.querySelector('.prenom__3');
+var nom__3 = document.querySelector('.nom__3');
+var r1__3 = document.querySelector('.r1__3');
+var r2__3 = document.querySelector('.r2__3');
+var screenMask__3 = document.querySelector('.screenMask__3');
+var faceImgPath__3 = document.querySelector('.content__3');
+var faceImgZoom__3 = document.querySelector('.faceImg__3');
+var prenom__4 = document.querySelector('.prenom__4');
+var nom__4 = document.querySelector('.nom__4');
+var r1__4 = document.querySelector('.r1__4');
+var r2__4 = document.querySelector('.r2__4');
+var faceImgPath__4 = document.querySelector('.content__4');
+var faceImgZoom__4 = document.querySelector('.faceImg__4');
+var prenom__5 = document.querySelector('.prenom__5');
+var nom__5 = document.querySelector('.nom__5');
+var r1__5 = document.querySelector('.r1__5');
+var r2__5 = document.querySelector('.r2__5');
+var faceImgPath__5 = document.querySelector('.content__5');
+var faceImgZoom__5 = document.querySelector('.faceImg__5');
+var prenom__6 = document.querySelector('.prenom__6');
+var nom__6 = document.querySelector('.nom__6');
+var r1__6 = document.querySelector('.r1__6');
+var r2__6 = document.querySelector('.r2__6');
+var faceImgPath__6 = document.querySelector('.content__6');
+var faceImgZoom__6 = document.querySelector('.faceImg__6');
+gsap.to(screenMask__1, 5, {
+  scrollTrigger: screenMask__1,
+  clipPath: "inset(0% 0% 0% 0%)",
+  ease: "Power3.easeOut"
+}); /////// IMAGES HOVER ///////
+
+faceImgPath__1.addEventListener('mouseenter', function () {
+  faceImgPath__1.classList.add('switch');
+  faceImgZoom__1.classList.add('switch');
+  prenom__1.classList.add('switch');
+  nom__1.classList.add('switch');
+  r1__1.classList.add('switch');
+  r2__1.classList.add('switch');
+});
+faceImgPath__1.addEventListener('mouseleave', function () {
+  faceImgPath__1.classList.remove('switch');
+  faceImgZoom__1.classList.remove('switch');
+  prenom__1.classList.remove('switch');
+  nom__1.classList.remove('switch');
+  r1__1.classList.remove('switch');
+  r2__1.classList.remove('switch');
+});
+faceImgPath__2.addEventListener('mouseenter', function () {
+  faceImgPath__2.classList.add('switch');
+  faceImgZoom__2.classList.add('switch');
+  prenom__2.classList.add('switch');
+  nom__2.classList.add('switch');
+  r1__2.classList.add('switch');
+  r2__2.classList.add('switch');
+});
+faceImgPath__2.addEventListener('mouseleave', function () {
+  faceImgPath__2.classList.remove('switch');
+  faceImgZoom__2.classList.remove('switch');
+  prenom__2.classList.remove('switch');
+  nom__2.classList.remove('switch');
+  r1__2.classList.remove('switch');
+  r2__2.classList.remove('switch');
+});
+faceImgPath__3.addEventListener('mouseenter', function () {
+  faceImgPath__3.classList.add('switch');
+  faceImgZoom__3.classList.add('switch');
+  prenom__3.classList.add('switch');
+  nom__3.classList.add('switch');
+  r1__3.classList.add('switch');
+  r2__3.classList.add('switch');
+});
+faceImgPath__3.addEventListener('mouseleave', function () {
+  faceImgPath__3.classList.remove('switch');
+  faceImgZoom__3.classList.remove('switch');
+  prenom__3.classList.remove('switch');
+  nom__3.classList.remove('switch');
+  r1__3.classList.remove('switch');
+  r2__3.classList.remove('switch');
+});
+faceImgPath__4.addEventListener('mouseenter', function () {
+  faceImgPath__4.classList.add('switch');
+  faceImgZoom__4.classList.add('switch');
+  prenom__4.classList.add('switch');
+  nom__4.classList.add('switch');
+  r1__4.classList.add('switch');
+  r2__4.classList.add('switch');
+});
+faceImgPath__4.addEventListener('mouseleave', function () {
+  faceImgPath__4.classList.remove('switch');
+  faceImgZoom__4.classList.remove('switch');
+  prenom__4.classList.remove('switch');
+  nom__4.classList.remove('switch');
+  r1__4.classList.remove('switch');
+  r2__4.classList.remove('switch');
+});
+faceImgPath__5.addEventListener('mouseenter', function () {
+  faceImgPath__5.classList.add('switch');
+  faceImgZoom__5.classList.add('switch');
+  prenom__5.classList.add('switch');
+  nom__5.classList.add('switch');
+  r1__5.classList.add('switch');
+  r2__5.classList.add('switch');
+});
+faceImgPath__5.addEventListener('mouseleave', function () {
+  faceImgPath__5.classList.remove('switch');
+  faceImgZoom__5.classList.remove('switch');
+  prenom__5.classList.remove('switch');
+  nom__5.classList.remove('switch');
+  r1__5.classList.remove('switch');
+  r2__5.classList.remove('switch');
+});
+faceImgPath__6.addEventListener('mouseenter', function () {
+  faceImgPath__6.classList.add('switch');
+  faceImgZoom__6.classList.add('switch');
+  prenom__6.classList.add('switch');
+  nom__6.classList.add('switch');
+  r1__6.classList.add('switch');
+  r2__6.classList.add('switch');
+});
+faceImgPath__6.addEventListener('mouseleave', function () {
+  faceImgPath__6.classList.remove('switch');
+  faceImgZoom__6.classList.remove('switch');
+  prenom__6.classList.remove('switch');
+  nom__6.classList.remove('switch');
+  r1__6.classList.remove('switch');
+  r2__6.classList.remove('switch');
+});
+var workshopActive = false;
+var homeActive = true;
 window.addEventListener('load', function () {
   TweenMax.to(bgCol, {
     duration: 1,
@@ -56192,8 +50232,6 @@ window.addEventListener('load', function () {
     background: '#f72585',
     opacity: .05,
     stagger: 0.02,
-    repeat: -1,
-    yoyo: true,
     delay: 2
   });
   TweenMax.to(bgRow, {
@@ -56201,18 +50239,37 @@ window.addEventListener('load', function () {
     background: '#f72585',
     opacity: .05,
     stagger: 0.0355555,
-    repeat: -1,
-    yoyo: true,
     delay: 2
   });
-  canvas.classList.add('hologramActive');
+  indicClickOnPlane.style.opacity = 0;
 
-  var _cursorIn = new Cursor(cursorShapeIn);
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(bgCol, {
+      duration: .5,
+      background: '#f72585',
+      opacity: .05,
+      stagger: 0.02,
+      repeat: -1,
+      yoyo: true,
+      delay: 2
+    });
+    TweenMax.to(bgRow, {
+      duration: .5,
+      background: '#f72585',
+      opacity: .05,
+      stagger: 0.0355555,
+      repeat: -1,
+      yoyo: true,
+      delay: 2
+    });
+    canvas.classList.add('hologramActive');
+    setTimeout(function () {
+      var _cursorIn = new Cursor(cursorShapeIn);
 
-  updateCursor();
-  indicClickOnPlane.style.opacity = 0; // indicClickOnPlane.style.letterSpacing = 0;
-});
-var workshopActive = false; /////// PLANE HOVER SHADERS EFFECT ///////
+      updateCursor();
+    }, 4000);
+  }
+}); /////// PLANE HOVER SHADERS EFFECT ///////
 
 var colorCursorHover = "#f72585";
 var colorCursorDefault = "#4cc9f0";
@@ -56226,22 +50283,25 @@ planeMesh1.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh1.on('mouseout', function (ev) {
@@ -56254,23 +50314,26 @@ planeMesh1.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh2.on('mouseover', function (ev) {
@@ -56284,22 +50347,25 @@ planeMesh2.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh2.on('mouseout', function (ev) {
@@ -56312,23 +50378,26 @@ planeMesh2.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh3.on('mouseover', function (ev) {
@@ -56342,22 +50411,25 @@ planeMesh3.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh3.on('mouseout', function (ev) {
@@ -56370,23 +50442,26 @@ planeMesh3.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh4.on('mouseover', function (ev) {
@@ -56400,22 +50475,25 @@ planeMesh4.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh4.on('mouseout', function (ev) {
@@ -56428,23 +50506,26 @@ planeMesh4.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh5.on('mouseover', function (ev) {
@@ -56458,22 +50539,25 @@ planeMesh5.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh5.on('mouseout', function (ev) {
@@ -56486,23 +50570,26 @@ planeMesh5.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh6.on('mouseover', function (ev) {
@@ -56516,22 +50603,25 @@ planeMesh6.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh6.on('mouseout', function (ev) {
@@ -56544,23 +50634,26 @@ planeMesh6.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh7.on('mouseover', function (ev) {
@@ -56574,22 +50667,25 @@ planeMesh7.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh7.on('mouseout', function (ev) {
@@ -56602,23 +50698,26 @@ planeMesh7.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh8.on('mouseover', function (ev) {
@@ -56632,22 +50731,25 @@ planeMesh8.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh8.on('mouseout', function (ev) {
@@ -56660,23 +50762,26 @@ planeMesh8.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh9.on('mouseover', function (ev) {
@@ -56690,22 +50795,25 @@ planeMesh9.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh9.on('mouseout', function (ev) {
@@ -56718,23 +50826,26 @@ planeMesh9.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh10.on('mouseover', function (ev) {
@@ -56748,22 +50859,25 @@ planeMesh10.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh10.on('mouseout', function (ev) {
@@ -56776,23 +50890,26 @@ planeMesh10.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh11.on('mouseover', function (ev) {
@@ -56806,22 +50923,25 @@ planeMesh11.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh11.on('mouseout', function (ev) {
@@ -56834,23 +50954,26 @@ planeMesh11.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh12.on('mouseover', function (ev) {
@@ -56864,22 +50987,25 @@ planeMesh12.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh12.on('mouseout', function (ev) {
@@ -56892,23 +51018,26 @@ planeMesh12.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh13.on('mouseover', function (ev) {
@@ -56922,22 +51051,25 @@ planeMesh13.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh13.on('mouseout', function (ev) {
@@ -56950,28 +51082,31 @@ planeMesh13.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
 });
 planeMesh14.on('mouseover', function (ev) {
   if (ev && workshopActive == false && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
-    console.log(ev);
+    console.log(ev.intersects);
     gsap.to(materialPlane14.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "Power3.easeOut"
@@ -56980,22 +51115,25 @@ planeMesh14.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      left: -50,
-      top: -50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        left: -50,
+        top: -50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.add("planeHover");
+    }
   }
 });
 planeMesh14.on('mouseout', function (ev) {
@@ -57008,636 +51146,1188 @@ planeMesh14.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorDefault,
-      padding: 0,
-      left: -10,
-      top: -10,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeOut, 0.25, {
-      opacity: 1,
-      delay: 0.25,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(indicClickOnPlane, 0.50, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
   }
-}); ///// PLANES CLICK /////
+});
+var el = document.querySelector('canvas');
+var data = {
+  value: 1
+};
+var threshold = 20;
+new _touchsweep.default(el, data, threshold);
+el.addEventListener('swipeleft', function () {
+  console.log('left');
+  scrollDown();
+});
+el.addEventListener('swiperight', function () {
+  console.log('right');
+  scrollUp();
+});
+el.addEventListener('swipedown', function () {
+  console.log('down');
+  scrollUp();
+});
+el.addEventListener('swipeup', function () {
+  console.log('up');
+  scrollDown();
+}); // el.addEventListener('tap', () => {
+// });
+///// PLANES CLICK /////
 
 planeMesh14.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane14.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh14.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  gsap.to(cursorShapeIn, 0.75, {
-    background: colorCursorDefault,
-    padding: 0,
-    left: -10,
-    top: -10,
-    ease: "Power3.easeOut"
-  });
-  gsap.to(cursorShapeOut, 0.25, {
-    opacity: 1,
-    delay: 0.25,
-    ease: "Power3.easeOut"
-  });
-  gsap.to(indicClickOnPlane, 0.50, {
-    opacity: 0,
-    ease: "Power3.easeOut"
-  });
-  indicClickOnPlane.classList.remove("planeHover");
-  workshopActive = true;
+  if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane14.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh14.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    gsap.to(workShopContainer1, 1.5, {
+      opacity: 1,
+      ease: "Power3.easeOut",
+      delay: 2.75
+    });
+    setTimeout(function () {
+      workShopContainer1.classList.add('switchPlane');
+    }, 3750);
+    workshopActive = true;
+  }
 });
 planeMesh13.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane13.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh13.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh13.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh12.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane12.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh12.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh12.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh11.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane11.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh11.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh11.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh10.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane10.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh10.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh10.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh9.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane9.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh9.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh9.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh8.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane8.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh8.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -11) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh8.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh7.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane7.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh7.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh7.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh6.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane6.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh6.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh6.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh5.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane5.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh5.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh5.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh4.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane4.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh4.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh4.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh3.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane3.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh3.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh3.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh2.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane2.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh2.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
+  if (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh2.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
 });
 planeMesh1.on('click', function () {
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(leftDoor.position, 1.5, {
-    x: -15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(rightDoor.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
-  gsap.to(materialPlane1.uniforms.alpha, 0.75, {
-    value: 0.0,
-    ease: "power3.inOut"
-  });
-  gsap.to(planeMesh1.scale, 0.75, {
-    x: 1.2,
-    y: 1.2,
-    ease: "power3.inOut"
-  });
-  workshopActive = true;
-}); /////// BACKHOME BUTTON EVENTS ///////
+  if (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
+      value: 0.0,
+      ease: "power3.inOut"
+    });
+    gsap.to(planeMesh1.scale, 0.75, {
+      x: 1.2,
+      y: 1.2,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(leftDoor.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(rightDoor.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: 1.5
+      });
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 0,
+        left: -10,
+        top: -10,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.25, {
+        opacity: 1,
+        delay: 0.25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, 0.50, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      indicClickOnPlane.classList.remove("planeHover");
+    }
+
+    workshopActive = true;
+  }
+});
+console.log(titleSvgLine); /////// BACKHOME BUTTON EVENTS ///////
 
 function functionBtnBackHome() {
   // Rajout des particules
   scene.add(particleMesh);
   workshopActive = false;
+  homeActive = true;
+  gsap.to(materialPlane1.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane2.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane3.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane4.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane5.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane6.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane7.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane8.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane9.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane10.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane11.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane12.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
+  gsap.to(materialPlane14.uniforms.alpha, 0.75, {
+    value: 1.0,
+    ease: "power3.inOut"
+  });
   canvas.classList.remove('hologramDefault');
   canvas.classList.add('hologramActive');
   btnBackHome.disabled = true;
@@ -57703,11 +52393,11 @@ function functionBtnBackHome() {
 
 
   titleSvgPath.forEach(function (e) {
-    e.classList.add("pathTitleIn");
     e.classList.remove("pathTitleOut");
+    e.classList.add("pathTitleIn");
   });
-  titleSvgLine.classList.add("pathLineIn");
   titleSvgLine.classList.remove("pathLineOut");
+  titleSvgLine.classList.add("pathLineIn");
   littleTitleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleIn");
     e.classList.add("pathTitleOut");
@@ -57717,7 +52407,7 @@ function functionBtnBackHome() {
   TweenMax.to(btnStart, .75, {
     opacity: 1,
     clipPath: "inset(0% 0% 0% 0%)",
-    delay: .75,
+    delay: 1.75,
     ease: "power3.inOut"
   });
   TweenMax.to(btnBackHome, 1, {
@@ -57798,16 +52488,6 @@ function functionBtnBackHome() {
     y: 0,
     ease: "power3.inOut"
   });
-  gsap.to(home.position, 2.95, {
-    z: 0,
-    x: -1.45,
-    ease: "power3.inOut"
-  });
-  gsap.to(home.rotation, 2.95, {
-    y: -.35,
-    z: 0,
-    ease: "power3.inOut"
-  });
   gsap.to(socle.position, 2.25, {
     y: -10.7,
     ease: "power3.inOut"
@@ -57816,142 +52496,156 @@ function functionBtnBackHome() {
     y: 0,
     ease: "power3.inOut"
   });
-  gsap.to(field.scale, 2.25, {
-    y: 0.0001,
-    x: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(field.position, 2.25, {
-    y: -53,
-    ease: "power3.inOut"
-  });
-  gsap.to(leftWall.position, 2.25, {
-    x: -51.2,
-    ease: "power3.inOut"
-  });
-  gsap.to(leftWall.scale, 2.25, {
-    x: 0.0001,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(rightWall.position, 2.25, {
-    x: 58.8,
-    ease: "power3.inOut"
-  });
-  gsap.to(rightWall.scale, 2.25, {
-    x: 0.0001,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(leftDoor.position, 2.25, {
-    y: -55.8,
-    ease: "power3.inOut"
-  });
-  gsap.to(rightDoor.position, 2.25, {
-    y: -55.8,
-    ease: "power3.inOut"
-  });
-  gsap.to(leftDoor.scale, 2.25, {
-    x: 0.0001,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(rightDoor.scale, 2.25, {
-    x: 0.0001,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(sign.scale, 2.25, {
-    x: 0.0001,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(table.scale, 2.25, {
-    x: 0.0001,
-    y: 110,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(pylone5.scale, 2.25, {
-    x: 110,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(pylone4.scale, 2.1, {
-    x: 110,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .15
-  });
-  gsap.to(pylone3.scale, 1.95, {
-    x: 110,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .3
-  });
-  gsap.to(pylone2.scale, 1.8, {
-    x: 110,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .45
-  });
-  gsap.to(pylone.scale, 1.65, {
-    x: 110,
-    y: 0.0001,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .6
-  });
-  gsap.to(grid.scale, 2.25, {
-    x: 0.0001,
-    y: 110,
-    z: 0.0001,
-    ease: "power3.inOut"
-  });
-  gsap.to(grid2.scale, 2.1, {
-    x: 0.0001,
-    y: 110,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .15
-  });
-  gsap.to(grid3.scale, 1.95, {
-    x: 0.0001,
-    y: 110,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .3
-  });
-  gsap.to(grid4.scale, 1.8, {
-    x: 0.0001,
-    y: 110,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .45
-  });
-  gsap.to(grid5.scale, 1.65, {
-    x: 0.0001,
-    y: 110,
-    z: 0.0001,
-    ease: "power3.inOut",
-    delay: .6
-  });
-  gsap.to(poutre.scale, 2.25, {
-    x: 0.0001,
-    y: 100,
-    z: 0.0001,
-    ease: "power3.inOut"
-  }); //LIGHTS ANIM
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    gsap.to(home.position, 2.95, {
+      z: 0,
+      x: -1.45,
+      ease: "power3.inOut"
+    });
+    gsap.to(home.rotation, 2.95, {
+      y: -.35,
+      z: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(field.scale, 2.25, {
+      y: 0.0001,
+      x: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(field.position, 2.25, {
+      y: -53,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftWall.position, 2.25, {
+      x: -51.2,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftWall.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightWall.position, 2.25, {
+      x: 58.8,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightWall.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftDoor.position, 2.25, {
+      y: -55.8,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightDoor.position, 2.25, {
+      y: -55.8,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftDoor.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightDoor.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(sign.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(table.scale, 2.25, {
+      x: 0.0001,
+      y: 110,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(pylone5.scale, 2.25, {
+      x: 110,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(pylone4.scale, 2.1, {
+      x: 110,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .15
+    });
+    gsap.to(pylone3.scale, 1.95, {
+      x: 110,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(pylone2.scale, 1.8, {
+      x: 110,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .45
+    });
+    gsap.to(pylone.scale, 1.65, {
+      x: 110,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(grid.scale, 2.25, {
+      x: 0.0001,
+      y: 110,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(grid2.scale, 2.1, {
+      x: 0.0001,
+      y: 110,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .15
+    });
+    gsap.to(grid3.scale, 1.95, {
+      x: 0.0001,
+      y: 110,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(grid4.scale, 1.8, {
+      x: 0.0001,
+      y: 110,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .45
+    });
+    gsap.to(grid5.scale, 1.65, {
+      x: 0.0001,
+      y: 110,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(poutre.scale, 2.25, {
+      x: 0.0001,
+      y: 100,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+  } //LIGHTS ANIM
+
 
   TweenMax.to(lightCenterSocle.color, .75, {
     r: cyanColorReset.r,
@@ -57966,16 +52660,13 @@ function functionBtnBackHome() {
     delay: .75
   }); //SWITCH ELEMENTS ON CLICK
 
-  homeContainer.classList.add('close');
-  homeContainer.classList.remove('open');
-  btnBackHome.classList.add('close');
-  btnBackHome.classList.remove('open');
   canvas.style.zIndex = -1;
 } ///// START BUTTON EVENTS /////
 
 
 function functionBtnStart() {
-  // Supression des particules
+  homeActive = false; // Supression des particules
+
   scene.remove(scene.getObjectByName("ParticleObjects")); //HTML ELEMENTS ANIM
 
   titleSvgPath.forEach(function (e) {
@@ -57983,17 +52674,23 @@ function functionBtnStart() {
     e.classList.add("pathTitleOut");
   });
   titleSvgLine.classList.remove("pathLineIn");
-  titleSvgLine.classList.add("pathLineOut");
+  titleSvgLine.classList.add("pathLineOut"); // console.log(titleSvgLine)
+
   littleTitleSvgPath.forEach(function (e) {
     e.classList.add("pathTitleIn");
     e.classList.remove("pathTitleOut");
   });
-  littleTitleSvgLine.classList.add("pathLineIn");
   littleTitleSvgLine.classList.remove("pathLineOut");
-  canvas.classList.add('hologramDefault');
+  littleTitleSvgLine.classList.add("pathLineIn");
   canvas.classList.remove('hologramActive');
+  canvas.classList.add('hologramDefault');
   btnBackHome.disabled = false;
   btnStart.disabled = true;
+  TweenMax.to(btnStart, 1.7, {
+    opacity: 0,
+    clipPath: "inset(0% 0% 0% 100%)",
+    ease: "power3.inOut"
+  });
   setTimeout(function () {
     //AXES ANIM
     gsap.to(planeAxe.position, 1.5, {
@@ -58019,15 +52716,10 @@ function functionBtnStart() {
       });
     }
 
-    TweenMax.to(btnStart, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 0% 0% 100%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackHome, .75, {
+    TweenMax.to(btnBackHome, 1.3, {
       opacity: 1,
       clipPath: "inset(0% 0% 0% 0%)",
-      delay: .75,
+      delay: 1.75,
       ease: "power3.inOut"
     }); //PLANE ROTATION Z ANIM
 
@@ -58116,16 +52808,6 @@ function functionBtnStart() {
       z: 0.25,
       ease: "power3.inOut"
     });
-    gsap.to(home.position, 3, {
-      z: 105,
-      x: 20,
-      ease: "power3.inOut"
-    });
-    gsap.to(home.rotation, 3, {
-      y: -Math.PI,
-      z: Math.PI,
-      ease: "power3.inOut"
-    });
     gsap.to(socle.position, 3, {
       y: -2.5,
       ease: "power3.inOut"
@@ -58134,148 +52816,176 @@ function functionBtnStart() {
       y: -Math.PI,
       ease: "power3.inOut"
     });
-    gsap.to(field.scale, 3, {
-      y: 110,
-      x: 110,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(field.position, 3, {
-      y: -5.1,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftWall.position, 3, {
-      x: -1.2,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftWall.scale, 3, {
-      y: 140,
-      x: 110,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightWall.position, 3, {
-      x: -1.2,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightWall.scale, 3, {
-      y: 140,
-      x: 110,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftDoor.position, 3, {
-      y: -5.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor.position, 3, {
-      y: -5.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftDoor.scale, 3, {
-      x: 110,
-      y: 110,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor.scale, 3, {
-      x: 110,
-      y: 110,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(sign.scale, 3, {
-      x: 100,
-      y: 100,
-      z: 100,
-      ease: "power3.inOut"
-    });
-    gsap.to(table.scale, 3, {
-      x: 110,
-      y: 110,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(pylone.scale, 3, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(pylone2.scale, 2.85, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .15
-    });
-    gsap.to(pylone3.scale, 2.7, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(pylone4.scale, 2.55, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .45
-    });
-    gsap.to(pylone5.scale, 2.4, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(grid5.scale, 3, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut"
-    });
-    gsap.to(grid4.scale, 2.85, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .15
-    });
-    gsap.to(grid3.scale, 2.7, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(grid2.scale, 2.55, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .45
-    });
-    gsap.to(grid.scale, 2.4, {
-      x: 110,
-      y: 80,
-      z: 110,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(poutre.scale, 3, {
-      x: 90,
-      y: 100,
-      z: 100,
-      ease: "power3.inOut"
-    });
-    gsap.to(street.scale, 0, {
-      x: 110,
-      y: 110,
-      z: 110,
-      delay: 3.1
-    }); //LIGHTS ANIM
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(home.position, 3, {
+        z: 105,
+        x: 20,
+        ease: "power3.inOut"
+      });
+      gsap.to(home.rotation, 3, {
+        y: -Math.PI,
+        z: Math.PI,
+        ease: "power3.inOut"
+      });
+      gsap.to(field.scale, 3, {
+        y: 110,
+        x: 110,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(field.position, 3, {
+        y: -5.1,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftWall.position, 3, {
+        x: -1.2,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftWall.scale, 3, {
+        y: 140,
+        x: 110,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightWall.position, 3, {
+        x: -1.2,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightWall.scale, 3, {
+        y: 140,
+        x: 110,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor.position, 3, {
+        y: -5.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor.position, 3, {
+        y: -5.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor.scale, 3, {
+        x: 110,
+        y: 110,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor.scale, 3, {
+        x: 110,
+        y: 110,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(sign.scale, 3, {
+        x: 100,
+        y: 100,
+        z: 100,
+        ease: "power3.inOut"
+      });
+      gsap.to(table.scale, 3, {
+        x: 110,
+        y: 110,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(pylone.scale, 3, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(pylone2.scale, 2.85, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .15
+      });
+      gsap.to(pylone3.scale, 2.7, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(pylone4.scale, 2.55, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .45
+      });
+      gsap.to(pylone5.scale, 2.4, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(grid5.scale, 3, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut"
+      });
+      gsap.to(grid4.scale, 2.85, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .15
+      });
+      gsap.to(grid3.scale, 2.7, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(grid2.scale, 2.55, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .45
+      });
+      gsap.to(grid.scale, 2.4, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(poutre.scale, 3, {
+        x: 90,
+        y: 100,
+        z: 100,
+        ease: "power3.inOut"
+      });
+      gsap.to(street.scale, 0, {
+        x: 110,
+        y: 110,
+        z: 110,
+        delay: 3.1
+      });
+      gsap.to(leftDoor2.scale, 0, {
+        x: 110,
+        y: 110,
+        z: 110,
+        ease: "power3.inOut",
+        delay: 3.1
+      });
+      gsap.to(rightDoor2.scale, 0, {
+        x: 110,
+        y: 110,
+        z: 110,
+        ease: "power3.inOut",
+        delay: 3.1
+      });
+    } //LIGHTS ANIM
+
 
     TweenMax.to(lightCenterSocle.color, .75, {
       r: cyanColor.r,
@@ -58291,10 +53001,6 @@ function functionBtnStart() {
     }); //SWITCH ELEMENTS ON CLICK  
 
     setTimeout(function () {
-      btnBackHome.classList.add('open');
-      btnBackHome.classList.remove('close');
-      homeContainer.classList.add('open');
-      homeContainer.classList.remove('close');
       canvas.style.zIndex = 1;
     }, 1500);
   }, 1000);
@@ -58302,6 +53008,31 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function () {
   functionBtnStart();
+  TweenMax.to(".spanContainerStartMouseover span", {
+    duration: .5,
+    translateY: 0,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerStartMouseout span", {
+    duration: .5,
+    translateY: 40,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(btnStart, {
+    color: "#4cc9f0",
+    background: "#09021e",
+    ease: "power2.inOut"
+  });
+  handleMouseLeave();
+  cursorShapeIn.classList.remove('mouseover');
   setTimeout(function () {
     spanContainerStartMouseOut.classList.remove('neonText');
   }, 750);
@@ -58323,6 +53054,11 @@ btnStart.addEventListener('mouseenter', function () {
       each: 0.01,
       from: "center"
     },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(btnStart, {
+    color: "#09021e",
+    background: "#4cc9f0",
     ease: "power2.inOut"
   });
   spanContainerStartMouseOut.classList.add('neonText');
@@ -58347,11 +53083,40 @@ btnStart.addEventListener('mouseleave', function () {
     },
     ease: "power2.inOut"
   });
+  TweenMax.to(btnStart, {
+    color: "#4cc9f0",
+    background: "#09021e",
+    ease: "power2.inOut"
+  });
   spanContainerStartMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
 });
 btnBackHome.addEventListener('click', function () {
   functionBtnBackHome();
+  TweenMax.to(".spanContainerBackMouseover span", {
+    duration: .5,
+    translateY: 0,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackMouseout span", {
+    duration: .5,
+    translateY: 40,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(btnBackHome, {
+    color: "#4cc9f0",
+    background: "#09021e",
+    ease: "power2.inOut"
+  });
+  handleMouseLeave();
   setTimeout(function () {
     spanContainerBackMouseOut.classList.remove('neonText');
   }, 750);
@@ -58367,6 +53132,11 @@ btnBackHome.addEventListener('mouseenter', function () {
     duration: .5,
     translateY: 0,
     stagger: .027,
+    ease: "power2.inOut"
+  });
+  TweenMax.to(btnBackHome, {
+    color: "#09021e",
+    background: "#4cc9f0",
     ease: "power2.inOut"
   });
   spanContainerBackMouseOut.classList.add('neonText');
@@ -58385,6 +53155,364 @@ btnBackHome.addEventListener('mouseleave', function () {
     stagger: .027,
     ease: "power2.inOut"
   });
+  TweenMax.to(btnBackHome, {
+    color: "#4cc9f0",
+    background: "#09021e",
+    ease: "power2.inOut"
+  });
+  spanContainerBackMouseOut.classList.remove('neonText');
+  cursorShapeIn.classList.remove('mouseover');
+});
+btnBackWorkshop.addEventListener('click', function () {
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    handleMouseLeave();
+    gsap.to(leftDoor.position, 1.5, {
+      x: .3,
+      ease: "power3.inOut",
+      delay: 0.75
+    });
+    gsap.to(rightDoor.position, 1.5, {
+      x: .3,
+      ease: "power3.inOut",
+      delay: 0.75
+    });
+    gsap.to(camera.position, 3, {
+      z: 3.7,
+      ease: "power3.inOut"
+    });
+  } else {
+    gsap.to(camera.position, 3, {
+      z: 4.5,
+      ease: "power3.inOut"
+    });
+  }
+
+  gsap.to(logo.position, 1.5, {
+    x: 0,
+    ease: "power3.inOut",
+    delay: 0.75
+  });
+  gsap.to(logo.rotation, 1.5, {
+    z: .25,
+    ease: "power3.inOut",
+    delay: 1.5
+  });
+  gsap.to(logo.position, 1.5, {
+    z: 0,
+    y: 0,
+    ease: "power3.inOut",
+    delay: 1.5
+  });
+
+  if (materialPlane14.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane14.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane14.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh14.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane13.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane13.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh13.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane13.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane12.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh13.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane12.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh12.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane11.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane11.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh11.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+    gsap.to(materialPlane10.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+  } else if (materialPlane10.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh10.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane9.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane9.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh9.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane8.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane8.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh8.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane7.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane7.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh7.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane6.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane6.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh6.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane5.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane5.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh5.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane4.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane4.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh4.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane3.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane3.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh3.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane2.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane2.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh2.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  } else if (materialPlane1.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane1.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "power3.inOut",
+      delay: 3.75
+    });
+    gsap.to(planeMesh1.scale, 0.75, {
+      x: 1,
+      y: 1,
+      ease: "power3.inOut"
+    });
+  }
+
+  TweenMax.to(btnBackHome, 0.75, {
+    opacity: 1,
+    clipPath: "inset(0% 0% 0% 0%)",
+    delay: 2.5,
+    ease: "power3.inOut"
+  });
+  TweenMax.to(btnBackWorkshop, 1, {
+    opacity: 0,
+    clipPath: "inset(0% 100% 0% 0%)",
+    ease: "power3.inOut"
+  });
+  TweenMax.to(".spanContainerBackMouseover span", {
+    duration: .5,
+    translateY: 0,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackMouseout span", {
+    duration: .5,
+    translateY: 40,
+    stagger: {
+      each: 0.01,
+      from: "center"
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(btnBackWorkshop, {
+    color: "#4cc9f0",
+    background: "#09021e",
+    ease: "power2.inOut"
+  });
+  setTimeout(function () {
+    spanContainerBackMouseOut.classList.remove('neonText');
+  }, 750);
+  gsap.to(workShopContainer1, 1.5, {
+    opacity: 0,
+    ease: "Power3.easeOut",
+    delay: 0.5
+  });
+  setTimeout(function () {
+    workShopContainer1.classList.add('switchPlane');
+  }, 3750);
+  workshopActive = false;
+});
+btnBackWorkshop.addEventListener('mouseenter', function () {
+  TweenMax.to(".spanContainerBackWorkshopMouseover span", {
+    duration: .5,
+    translateY: -40,
+    stagger: .027,
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackWorkshopMouseout span", {
+    duration: .5,
+    translateY: 0,
+    stagger: .027,
+    ease: "power2.inOut"
+  });
+  TweenMax.to(btnBackWorkshop, {
+    color: "#09021e",
+    background: "#4cc9f0",
+    ease: "power2.inOut"
+  });
+  spanContainerBackMouseOut.classList.add('neonText');
+  cursorShapeIn.classList.add('mouseover');
+});
+btnBackWorkshop.addEventListener('mouseleave', function () {
+  TweenMax.to(".spanContainerBackWorkshopMouseover span", {
+    duration: .5,
+    translateY: 0,
+    stagger: .027,
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerBackWorkshopMouseout span", {
+    duration: .5,
+    translateY: 40,
+    stagger: .027,
+    ease: "power2.inOut"
+  });
+  TweenMax.to(btnBackWorkshop, {
+    color: "#4cc9f0",
+    background: "#09021e",
+    ease: "power2.inOut"
+  });
   spanContainerBackMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
 }); ///// BUTTON START HOVER /////
@@ -58392,27 +53520,40 @@ btnBackHome.addEventListener('mouseleave', function () {
 var btnStartText = "Découvrir les ateliers";
 var charsTextBtnStart = btnStartText.split('');
 charsTextBtnStart.forEach(function (letter) {
-  var btnStartchar = document.createElement('span');
-  btnStartchar.innerHTML = letter;
-  spanContainerStartMouseOver.append(btnStartchar);
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerStartMouseOver.append(btnChar);
 });
 charsTextBtnStart.forEach(function (letter) {
-  var btnStartchar = document.createElement('span');
-  btnStartchar.innerHTML = letter;
-  spanContainerStartMouseOut.append(btnStartchar);
-}); ///// BUTTON BACK HOVER /////
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerStartMouseOut.append(btnChar);
+}); ///// BUTTON BACK HOME HOVER /////
 
-var btnBackText = "Retour";
+var btnBackText = "Accueil";
 var charsTextBtnBack = btnBackText.split('');
 charsTextBtnBack.forEach(function (letter) {
-  var btnBackchar = document.createElement('span');
-  btnBackchar.innerHTML = letter;
-  spanContainerBackMouseOver.append(btnBackchar);
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerBackMouseOver.append(btnChar);
 });
 charsTextBtnBack.forEach(function (letter) {
-  var btnBackchar = document.createElement('span');
-  btnBackchar.innerHTML = letter;
-  spanContainerBackMouseOut.append(btnBackchar);
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerBackMouseOut.append(btnChar);
+}); ///// BUTTON BACK WORKSHOP HOVER /////
+
+var btnBackWorkshopText = "Ateliers";
+var charsTextBtnBackWorkshop = btnBackWorkshopText.split('');
+charsTextBtnBackWorkshop.forEach(function (letter) {
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerBackWorkshopMouseOver.append(btnChar);
+});
+charsTextBtnBackWorkshop.forEach(function (letter) {
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerBackWorkshopMouseOut.append(btnChar);
 }); ///// WORKSHOP TIMELINE /////
 
 containerTimeline.addEventListener('mouseenter', function () {
@@ -58470,12 +53611,12 @@ containerTimeline.addEventListener('mouseleave', function () {
   setTimeout(function () {
     timelineIndication.classList.remove('switch');
   }, 500);
-}); /////// TIMELINE BUTTONS HOVER ///////
-
-workShopButton14.addEventListener('mouseleave', function () {
-  workShopButton14.classList.add('mouseout');
-  workShopButton14.classList.remove('mouseover');
-}); /////// SM HOVER ///////
+}); // /////// TIMELINE BUTTONS HOVER ///////
+// workShopButton14.addEventListener('mouseleave', function() {
+//     workShopButton14.classList.add('mouseout')
+//     workShopButton14.classList.remove('mouseover')
+// })
+/////// SM HOVER ///////
 
 sm1.classList.add('mouseout');
 sm2.classList.add('mouseout');
@@ -58572,7 +53713,7 @@ var Cursor = /*#__PURE__*/function () {
     value: function speed_morph() {
       var dist = Math.dist(this.dx, this.dy);
       var min = 1;
-      var max_distance = 200;
+      var max_distance = 275;
       var total = dist / max_distance;
       return Number(Math.min(total, min).toFixed(2));
     }
@@ -58624,10 +53765,31 @@ window.addEventListener('scroll', function (e) {
 var cursorOuterOriginalState = {
   width: cursorShapeOut.getBoundingClientRect().width,
   height: cursorShapeOut.getBoundingClientRect().height
-};
-buttons.forEach(function (button) {
-  button.addEventListener("pointerenter", handleMouseEnter);
-  button.addEventListener("pointerleave", handleMouseLeave);
+}; // buttons.forEach(button => {
+//     button.addEventListener("pointerenter", handleMouseEnter);
+//     button.addEventListener("pointerleave", handleMouseLeave);
+// });
+
+btnStart.addEventListener("pointerenter", function () {
+  if (homeActive) {
+    handleMouseEnterBtn(btnStart);
+  }
+
+  btnStart.addEventListener("pointerleave", handleMouseLeave);
+});
+btnBackHome.addEventListener("pointerenter", function () {
+  if (!homeActive) {
+    handleMouseEnterBtn(btnBackHome);
+  }
+
+  btnBackHome.addEventListener("pointerleave", handleMouseLeave);
+});
+btnBackWorkshop.addEventListener("pointerenter", function () {
+  if (workshopActive) {
+    handleMouseEnterBtn(btnBackWorkshop);
+  }
+
+  btnBackWorkshop.addEventListener("pointerleave", handleMouseLeave);
 });
 sm.forEach(function (media) {
   media.addEventListener("pointerenter", handleMouseEnter);
@@ -58664,6 +53826,21 @@ function updateCursor() {
 function handleMouseEnter(e) {
   isStuck = true;
   var targetBox = e.currentTarget.getBoundingClientRect();
+  console.log(targetBox);
+  gsap.to(cursorShapeOut, 0.2, {
+    x: targetBox.left,
+    y: targetBox.top + scrollHeight,
+    width: targetBox.width,
+    height: targetBox.height,
+    borderRadius: 0,
+    backgroundColor: "transparent"
+  });
+  cursorShapeIn.classList.add('mouseover');
+}
+
+function handleMouseEnterBtn(e) {
+  isStuck = true;
+  var targetBox = e.getBoundingClientRect();
   console.log(targetBox);
   gsap.to(cursorShapeOut, 0.2, {
     x: targetBox.left,
@@ -59911,8 +55088,7 @@ function scrollPlane1() {
 
 
 function scrollUp() {
-  console.log(materialPlanePanneau.uniforms.dispFactor.value); // camera.position.z += 1;
-
+  // camera.position.z += 1;
   if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
     scene.add(particleMesh); //AXES ANIM
 
@@ -59943,11 +55119,11 @@ function scrollUp() {
     btnBackHome.disabled = true;
     btnStart.disabled = false;
     titleSvgPath.forEach(function (e) {
-      e.classList.add("pathTitleIn");
       e.classList.remove("pathTitleOut");
+      e.classList.add("pathTitleIn");
     });
-    titleSvgLine.classList.add("pathLineIn");
     titleSvgLine.classList.remove("pathLineOut");
+    titleSvgLine.classList.add("pathLineIn");
     littleTitleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleIn");
       e.classList.add("pathTitleOut");
@@ -60206,10 +55382,6 @@ function scrollUp() {
       delay: .75
     }); //SWITCH ELEMENTS ON CLICK
 
-    homeContainer.classList.add('close');
-    homeContainer.classList.remove('open');
-    btnBackHome.classList.add('close');
-    btnBackHome.classList.remove('open');
     canvas.style.zIndex = -1;
   } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
     scrollPlane14();
@@ -60423,8 +55595,8 @@ function scrollUp() {
 }
 
 function scrollDown() {
-  console.log(materialPlanePanneau.uniforms.dispFactor.value); // camera.position.z -= 1;
-
+  // console.log(materialPlanePanneau.uniforms.dispFactor.value)
+  // camera.position.z -= 1;
   if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
     scrollPlane13();
 
@@ -60663,11 +55835,11 @@ function scrollDown() {
     btnBackHome.disabled = true;
     btnStart.disabled = false;
     titleSvgPath.forEach(function (e) {
-      e.classList.add("pathTitleIn");
       e.classList.remove("pathTitleOut");
+      e.classList.add("pathTitleIn");
     });
-    titleSvgLine.classList.add("pathLineIn");
     titleSvgLine.classList.remove("pathLineOut");
+    titleSvgLine.classList.add("pathLineIn");
     littleTitleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleIn");
       e.classList.add("pathTitleOut");
@@ -60926,10 +56098,6 @@ function scrollDown() {
       delay: .75
     }); //SWITCH ELEMENTS ON CLICK
 
-    homeContainer.classList.add('close');
-    homeContainer.classList.remove('open');
-    btnBackHome.classList.add('close');
-    btnBackHome.classList.remove('open');
     canvas.style.zIndex = -1; //RESET AXES POSITION 
 
     gsap.to(planeAxe.position, 0, {
@@ -60959,14 +56127,14 @@ function scrollDown() {
 document.body.addEventListener('wheel', scrollPlane);
 
 function scrollPlane(event) {
-  if (checkScrollDirectionIsUp(event)) {
-    // SCROLL UP
-    scrollUp();
-    console.log("up:" + planeAxe.position.y);
-  } else {
-    // SCROLL DOWN
-    scrollDown();
-    console.log("down:" + planeAxe.position.y);
+  if (workshopActive == false) {
+    if (checkScrollDirectionIsUp(event)) {
+      // SCROLL UP
+      scrollUp(); // console.log("up:" + planeAxe.position.y)
+    } else {
+      // SCROLL DOWN
+      scrollDown(); // console.log("down:" + planeAxe.position.y)
+    }
   }
 }
 
@@ -60977,6 +56145,48 @@ function checkScrollDirectionIsUp(event) {
   }
 
   return event.deltaY < 0;
+} ///// WORKSHOP SCROLL /////
+
+
+contentContainer.addEventListener('scroll', function () {
+  scrollWorkshop(contentContainer);
+
+  if (camera.position.z <= -106) {
+    creditContainer1.classList.add('switchStreet');
+    gsap.to(creditContainer1, 1.5, {
+      opacity: 1,
+      ease: "Power3.easeOut"
+    });
+    workShopContainer1.classList.remove('switchPlane');
+    gsap.to(workShopContainer1, 1.5, {
+      opacity: 0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(camera.position, 3, {
+      z: -185,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftDoor2.position, 1.5, {
+      x: -15,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(rightDoor2.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: .75
+    });
+  } else {
+    gsap.to(workShopContainer1, 1.5, {
+      opacity: 1,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+
+function scrollWorkshop(el) {
+  camera.position.z = -20 + el.scrollTop / el.scrollHeight * -120;
+  console.log(camera.position.z);
 } ///// ARROWS SCROLL + KEY ECHAP ///////
 
 
@@ -61018,83 +56228,7 @@ document.onkeydown = function (e) {
 
       break;
   }
-}; // /////// DRAG EVENT ///////
-// let isDown = false;
-// var last_position = {};
-// document.body.addEventListener('mousedown', () => {
-//     isDown = true;
-// });
-// document.body.addEventListener('mouseleave', () => {
-//     isDown = false;
-// });
-// document.body.addEventListener('mouseup', () => {
-//     isDown = false;
-// });
-// /////// DRAG EVENT COMPUTER ///////
-// document.body.addEventListener('mousemove', function(event) {
-//     if (typeof(last_position.x) != 'undefined') {
-//         var deltaX = last_position.x - event.offsetX,
-//             deltaY = last_position.y - event.offsetY;
-//         if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX > 0) { // MOUSEMOVE LEFT
-//             if (!isDown) return;
-//             mesh.rotation.y += 0.1;
-//             planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y += 1 / 20; // POSITION SPEED
-//         } else if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) { // MOUSEMOVE RIGHT
-//             if (!isDown) return;
-//             mesh.rotation.y -= 0.1;
-//             planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y -= 1 / 20; // POSITION SPEED
-//         } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) { // MOUSEMOVE UP
-//             if (!isDown) return;
-//             mesh.rotation.y -= 0.1;
-//             planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y -= 1 / 20; // POSITION SPEED
-//         } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < 0) { // MOUSEMOVE DOWN
-//             if (!isDown) return;
-//             mesh.rotation.y += 0.1;
-//             planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y += 1 / 20; // POSITION SPEED
-//         }
-//     }
-//     last_position = {
-//         x: event.offsetX,
-//         y: event.offsetY
-//     }
-// })
-// /////// DRAG EVENT MOBILE ///////
-// document.body.addEventListener('touchmove', function(event) {
-//     if (typeof(last_position.x) != 'undefined') {
-//         var deltaX = last_position.x - event.offsetX,
-//             deltaY = last_position.y - event.offsetY;
-//         if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX > 0) { // TOUCHMOVE LEFT
-//             if (!isDown) return;
-//             mesh.rotation.y += 0.1;
-//             planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y += 1 / 20; // POSITION SPEED
-//         } else if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) { // TOUCHMOVE RIGHT
-//             if (!isDown) return;
-//             mesh.rotation.y -= 0.1;
-//             planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y -= 1 / 20; // POSITION SPEED
-//         } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) { // TOUCHMOVE UP
-//             if (!isDown) return;
-//             mesh.rotation.y -= 0.1;
-//             planeAxe.rotation.y += 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y -= 1 / 20; // POSITION SPEED
-//         } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < 0) { // TOUCHMOVE DOWN
-//             if (!isDown) return;
-//             mesh.rotation.y += 0.1;
-//             planeAxe.rotation.y -= 1 / 2 * Math.PI / 20; // ROTATION SPEED
-//             planeAxe.position.y += 1 / 20; // POSITION SPEED
-//         }
-//     }
-//     last_position = {
-//         x: event.offsetX,
-//         y: event.offsetY
-//     }
-// })
-
+};
 
 var variation = 0;
 var variationShaders = 0;
@@ -61103,7 +56237,7 @@ var render = function render() {
   composer.render();
   requestAnimationFrame(render);
 
-  if (camera.position.z < 6 && materialPlane1.uniforms.alpha.value > 0.0) {
+  if (logo && logo.position.z == 0) {
     logo.rotation.y += .01;
 
     if (logo.rotation.y > Math.PI) {
@@ -61135,24 +56269,29 @@ var render = function render() {
   // };
 
   renderer.render(scene, camera);
-  materialPlane1.uniforms.time.value = clock.getElapsedTime();
-  materialPlane2.uniforms.time.value = clock.getElapsedTime();
-  materialPlane3.uniforms.time.value = clock.getElapsedTime();
-  materialPlane4.uniforms.time.value = clock.getElapsedTime();
-  materialPlane5.uniforms.time.value = clock.getElapsedTime();
-  materialPlane6.uniforms.time.value = clock.getElapsedTime();
-  materialPlane7.uniforms.time.value = clock.getElapsedTime();
-  materialPlane8.uniforms.time.value = clock.getElapsedTime();
-  materialPlane9.uniforms.time.value = clock.getElapsedTime();
-  materialPlane10.uniforms.time.value = clock.getElapsedTime();
-  materialPlane11.uniforms.time.value = clock.getElapsedTime();
-  materialPlane12.uniforms.time.value = clock.getElapsedTime();
-  materialPlane13.uniforms.time.value = clock.getElapsedTime();
-  materialPlane14.uniforms.time.value = clock.getElapsedTime();
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    if (camera.position.z >= 3.4 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
+      materialPlane1.uniforms.time.value = clock.getElapsedTime();
+      materialPlane2.uniforms.time.value = clock.getElapsedTime();
+      materialPlane3.uniforms.time.value = clock.getElapsedTime();
+      materialPlane4.uniforms.time.value = clock.getElapsedTime();
+      materialPlane5.uniforms.time.value = clock.getElapsedTime();
+      materialPlane6.uniforms.time.value = clock.getElapsedTime();
+      materialPlane7.uniforms.time.value = clock.getElapsedTime();
+      materialPlane8.uniforms.time.value = clock.getElapsedTime();
+      materialPlane9.uniforms.time.value = clock.getElapsedTime();
+      materialPlane10.uniforms.time.value = clock.getElapsedTime();
+      materialPlane11.uniforms.time.value = clock.getElapsedTime();
+      materialPlane12.uniforms.time.value = clock.getElapsedTime();
+      materialPlane13.uniforms.time.value = clock.getElapsedTime();
+      materialPlane14.uniforms.time.value = clock.getElapsedTime();
+    }
+  }
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","troika-three-text":"node_modules/troika-three-text/dist/troika-three-text.esm.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/ateliers/Site_web.png":"assets/img/ateliers/Site_web.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/pylone2.gltf":"assets/model/navigation/pylone2.gltf","../assets/model/navigation/pylone3.gltf":"assets/model/navigation/pylone3.gltf","../assets/model/navigation/pylone4.gltf":"assets/model/navigation/pylone4.gltf","../assets/model/navigation/pylone5.gltf":"assets/model/navigation/pylone5.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/grid2.gltf":"assets/model/navigation/grid2.gltf","../assets/model/navigation/grid3.gltf":"assets/model/navigation/grid3.gltf","../assets/model/navigation/grid4.gltf":"assets/model/navigation/grid4.gltf","../assets/model/navigation/grid5.gltf":"assets/model/navigation/grid5.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/pylone2.gltf":"assets/model/navigation/pylone2.gltf","../assets/model/navigation/pylone3.gltf":"assets/model/navigation/pylone3.gltf","../assets/model/navigation/pylone4.gltf":"assets/model/navigation/pylone4.gltf","../assets/model/navigation/pylone5.gltf":"assets/model/navigation/pylone5.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/grid2.gltf":"assets/model/navigation/grid2.gltf","../assets/model/navigation/grid3.gltf":"assets/model/navigation/grid3.gltf","../assets/model/navigation/grid4.gltf":"assets/model/navigation/grid4.gltf","../assets/model/navigation/grid5.gltf":"assets/model/navigation/grid5.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -61180,7 +56319,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10571" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52761" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
