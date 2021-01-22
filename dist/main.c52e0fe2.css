@@ -216,9 +216,6 @@ canvas.hologramDefault {
   height: 100vh;
   position: fixed;
   z-index: 2;
-}
-
-.workShopContainer__1 {
   opacity: 0;
   pointer-events: none;
   display: -webkit-box;
@@ -232,11 +229,12 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.workShopContainer__1.switchPlane {
+.workShopContainer.switchPlane {
   pointer-events: all;
 }
 
 .workShopContainer .contentContainer {
+  display: none;
   width: 100%;
   height: 100vh;
   background: rgba(9, 2, 30, 0.6);
@@ -257,7 +255,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-.workShopContainer .contentContainer .containerPara1 {
+.workShopContainer .contentContainer .containerPara__1 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -270,7 +268,7 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.workShopContainer .contentContainer .containerPara1 .para {
+.workShopContainer .contentContainer .containerPara__1 .para {
   width: 25%;
   margin: 22vh 22vw 22vh 0;
   display: -webkit-box;
@@ -285,20 +283,20 @@ canvas.hologramDefault {
           align-items: flex-end;
 }
 
-.workShopContainer .contentContainer .containerPara1 .para .subtitle {
+.workShopContainer .contentContainer .containerPara__1 .para .subtitle {
   font-family: "littleTitle";
   font-size: 25px;
   color: #f72585;
   margin: 0;
 }
 
-.workShopContainer .contentContainer .containerPara1 .para .text {
+.workShopContainer .contentContainer .containerPara__1 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
 }
 
-.workShopContainer .contentContainer .containerPara2 {
+.workShopContainer .contentContainer .containerPara__2 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -311,7 +309,7 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.workShopContainer .contentContainer .containerPara2 .para2 {
+.workShopContainer .contentContainer .containerPara__2 .para {
   width: 25%;
   margin: 22vh 0 22vh 22vw;
   display: -webkit-box;
@@ -329,20 +327,20 @@ canvas.hologramDefault {
           justify-content: center;
 }
 
-.workShopContainer .contentContainer .containerPara2 .para2 .subtitle {
+.workShopContainer .contentContainer .containerPara__2 .para .subtitle {
   font-family: "littleTitle";
   font-size: 25px;
   color: #f72585;
   margin: 0;
 }
 
-.workShopContainer .contentContainer .containerPara2 .para2 .text {
+.workShopContainer .contentContainer .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
 }
 
-.workShopContainer .contentContainer .containerPara3 {
+.workShopContainer .contentContainer .containerPara__3 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -355,7 +353,7 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.workShopContainer .contentContainer .containerPara3 .para3 {
+.workShopContainer .contentContainer .containerPara__3 .para {
   width: 25%;
   margin: 22vh 22vw 100vh 0;
   display: -webkit-box;
@@ -370,14 +368,14 @@ canvas.hologramDefault {
           align-items: flex-end;
 }
 
-.workShopContainer .contentContainer .containerPara3 .para3 .subtitle {
+.workShopContainer .contentContainer .containerPara__3 .para .subtitle {
   font-family: "littleTitle";
   font-size: 25px;
   color: #f72585;
   margin: 0;
 }
 
-.workShopContainer .contentContainer .containerPara3 .para3 .text {
+.workShopContainer .contentContainer .containerPara__3 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
@@ -388,9 +386,6 @@ canvas.hologramDefault {
   height: 100vh;
   position: fixed;
   z-index: 2;
-}
-
-.creditContainer__1 {
   opacity: 0;
   pointer-events: none;
   display: none;
@@ -402,21 +397,19 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.creditContainer__1.switchStreet {
+.creditContainer.switchStreet {
   pointer-events: all;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.creditContainer__1 .scrollContainer {
+.creditContainer .scrollContainer {
+  display: none;
   width: 100%;
   height: 100vh;
   margin: 0;
   overflow: scroll;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -426,11 +419,11 @@ canvas.hologramDefault {
   scrollbar-width: none;
 }
 
-.creditContainer__1 .scrollContainer::-webkit-scrollbar {
+.creditContainer .scrollContainer::-webkit-scrollbar {
   display: none;
 }
 
-.creditContainer__1 .scrollContainer .mainImg {
+.creditContainer .scrollContainer .trombi {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -446,7 +439,7 @@ canvas.hologramDefault {
   height: 100vh;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg {
+.creditContainer .scrollContainer .trombi .contentImg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -464,11 +457,11 @@ canvas.hologramDefault {
   opacity: 0;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg__2, .creditContainer__1 .scrollContainer .mainImg .contentImg__4, .creditContainer__1 .scrollContainer .mainImg .contentImg__6 {
+.creditContainer .scrollContainer .trombi .contentImg__2, .creditContainer .scrollContainer .trombi .contentImg__4, .creditContainer .scrollContainer .trombi .contentImg__6 {
   margin-top: 21.5%;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .prenom {
+.creditContainer .scrollContainer .trombi .contentImg .prenom {
   color: #4cc9f0;
   position: absolute;
   left: 13.7%;
@@ -491,7 +484,7 @@ canvas.hologramDefault {
           filter: blur(5px);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .prenom.switch {
+.creditContainer .scrollContainer .trombi .contentImg .prenom.switch {
   top: 50%;
   letter-spacing: 10px;
   opacity: 1;
@@ -499,7 +492,7 @@ canvas.hologramDefault {
           filter: blur(0);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .nom {
+.creditContainer .scrollContainer .trombi .contentImg .nom {
   color: #4cc9f0;
   position: absolute;
   right: 6%;
@@ -522,7 +515,7 @@ canvas.hologramDefault {
           filter: blur(5px);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .nom.switch {
+.creditContainer .scrollContainer .trombi .contentImg .nom.switch {
   top: 50%;
   letter-spacing: 10px;
   opacity: 1;
@@ -530,7 +523,7 @@ canvas.hologramDefault {
           filter: blur(0);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content {
+.creditContainer .scrollContainer .trombi .contentImg .content {
   width: 450px;
   height: 100%;
   -webkit-clip-path: inset(4% 4% 4% 4%);
@@ -541,12 +534,12 @@ canvas.hologramDefault {
   position: relative;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content.switch {
+.creditContainer .scrollContainer .trombi .contentImg .content.switch {
   -webkit-clip-path: inset(1% 1% 1% 1%);
           clip-path: inset(1% 1% 1% 1%);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .mask {
+.creditContainer .scrollContainer .trombi .contentImg .content .mask {
   position: absolute;
   opacity: 0;
   left: 0;
@@ -559,7 +552,7 @@ canvas.hologramDefault {
           clip-path: "inset(0% 100% 0% 0%)";
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r1 {
+.creditContainer .scrollContainer .trombi .contentImg .content .r1 {
   position: absolute;
   bottom: -2%;
   left: 25%;
@@ -573,12 +566,12 @@ canvas.hologramDefault {
   text-decoration: none;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r1.switch {
+.creditContainer .scrollContainer .trombi .contentImg .content .r1.switch {
   opacity: 1;
   bottom: 3%;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r1::after {
+.creditContainer .scrollContainer .trombi .contentImg .content .r1::after {
   bottom: 3%;
   content: ' ';
   position: absolute;
@@ -592,12 +585,12 @@ canvas.hologramDefault {
   transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r1:hover::after {
+.creditContainer .scrollContainer .trombi .contentImg .content .r1:hover::after {
   -webkit-clip-path: inset(0 0 0 0);
           clip-path: inset(0 0 0 0);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r2 {
+.creditContainer .scrollContainer .trombi .contentImg .content .r2 {
   position: absolute;
   bottom: -2%;
   right: 25%;
@@ -611,12 +604,12 @@ canvas.hologramDefault {
   text-decoration: none;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r2.switch {
+.creditContainer .scrollContainer .trombi .contentImg .content .r2.switch {
   opacity: 1;
   bottom: 3%;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r2::after {
+.creditContainer .scrollContainer .trombi .contentImg .content .r2::after {
   content: ' ';
   bottom: 3%;
   position: absolute;
@@ -630,12 +623,12 @@ canvas.hologramDefault {
   transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .r2:hover::after {
+.creditContainer .scrollContainer .trombi .contentImg .content .r2:hover::after {
   -webkit-clip-path: inset(0 0 0 0);
           clip-path: inset(0 0 0 0);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content::after {
+.creditContainer .scrollContainer .trombi .contentImg .content::after {
   content: "";
   position: absolute;
   left: 0;
@@ -646,7 +639,7 @@ canvas.hologramDefault {
   z-index: -1;
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .faceImg {
+.creditContainer .scrollContainer .trombi .contentImg .content .faceImg {
   width: 100%;
   opacity: 1;
   -webkit-transform: scale(1.3);
@@ -655,7 +648,7 @@ canvas.hologramDefault {
   transition: 1s cubic-bezier(0.25, 0, 0, 1);
 }
 
-.creditContainer__1 .scrollContainer .mainImg .contentImg .content .faceImg.switch {
+.creditContainer .scrollContainer .trombi .contentImg .content .faceImg.switch {
   -webkit-transform: scale(1);
           transform: scale(1);
   opacity: 0.5;

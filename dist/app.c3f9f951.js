@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,23 +32462,15 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  
-  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  
-  var d = light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.scale.set( d, d, d );
-  
-  }
-  
-  this.add( this.lightDistance );
+  	var d = light.distance;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.scale.set( d, d, d );
+  	}
+  	this.add( this.lightDistance );
   */
 }
 
@@ -32498,17 +32490,12 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.visible = true;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  
-  }
+  	}
   */
 
 };
@@ -32939,8 +32926,7 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  
-  0: max.x, max.y, max.z
+  	0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -48633,6 +48619,8 @@ module.exports = "/tv.d7e7e5ad.gltf";
 module.exports = "/cam.dcdda644.gltf";
 },{}],"assets/model/navigation/enceinte.gltf":[function(require,module,exports) {
 module.exports = "/enceinte.a451ff81.gltf";
+},{}],"assets/sound/effect/rpz.mp3":[function(require,module,exports) {
+module.exports = "/rpz.c76645ff.mp3";
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -48771,6 +48759,8 @@ var _tv = _interopRequireDefault(require("../assets/model/navigation/tv.gltf"));
 var _cam = _interopRequireDefault(require("../assets/model/navigation/cam.gltf"));
 
 var _enceinte = _interopRequireDefault(require("../assets/model/navigation/enceinte.gltf"));
+
+var _rpz = _interopRequireDefault(require("../assets/sound/effect/rpz.mp3"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49267,11 +49257,18 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
   loaderEnceinte.load(_enceinte.default, function (addEnceinte) {
     enceinte = addEnceinte.scene;
     scene.add(enceinte);
+    enceinte.name = 'enceinte';
     enceinte.position.set(-9.2, 5.2, -5);
     enceinte.scale.set(0.0001, 0.0001, 0.0001);
     enceinte.rotation.y = .3 * Math.PI;
   });
-} // RIGHT DOOR MODEL
+} // c'est un test pour l'interaction sinon c'était "undefind"
+// let enceinteMaterial = new THREE.MeshBasicMaterial({
+//     map: null
+// });
+// let enceinteMesh = new THREE.Mesh(enceinte, enceinteMaterial);
+// scene.add(enceinteMesh)
+// RIGHT DOOR MODEL
 
 
 var rightDoor;
@@ -49352,7 +49349,7 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30); //WorkShops
 // var planeTrombi = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30); //Trombi ateliers
 
-var planePanneau = new THREE.PlaneGeometry(1.2, 1.2, 1, 1); /////// INITIATION DES TEXTURES ///////
+var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1); /////// INITIATION DES TEXTURES ///////
 
 var texture1Default = new THREE.TextureLoader().load(_atelier1Default.default);
 var texture1Hover = new THREE.TextureLoader().load(_atelier1Hover.default);
@@ -50066,8 +50063,8 @@ planeMesh12.position.y = 15;
 planeMesh13.position.y = 16;
 planeMesh14.position.y = 17;
 scene.add(planeMeshPanneau);
-planeMeshPanneau.position.set(7.2, -3.05, -3);
-planeMeshPanneau.rotation.y = -.9; // sign.position.set(7.8, -3.05, -4)
+planeMeshPanneau.position.set(7.575, -2.998, -3.755);
+planeMeshPanneau.rotation.set(-.035, -.74, -.07); // sign.position.set(7.8, -3.05, -4)
 
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
@@ -50137,6 +50134,7 @@ particleMesh.name = 'ParticleObjects';
 scene.add(particleMesh); /////// VARIABLES EVENTS ///////
 
 var homeContainer = document.querySelector('.homeContainer');
+var homeMask = document.querySelector('.homeMask');
 var titleSvg = document.querySelector('.title');
 var titleSvgPath = document.querySelectorAll('.title path');
 var titleSvgLine = document.querySelector('.title line');
@@ -50176,7 +50174,6 @@ var tailleBoulette = document.querySelector('.tailleBoulette');
 var containerTimeline = document.querySelector('.containerTimeline');
 var workShopButton = document.querySelectorAll('.workShopButton');
 var workShopButtonMask = document.querySelectorAll('.mask');
-var timelineIndication = document.querySelector('.indication');
 var workShopButton1 = document.querySelector('.workShopButton__1');
 var workShopButton2 = document.querySelector('.workShopButton__2');
 var workShopButton3 = document.querySelector('.workShopButton__3');
@@ -50192,157 +50189,290 @@ var workShopButton12 = document.querySelector('.workShopButton__12');
 var workShopButton13 = document.querySelector('.workShopButton__13');
 var workShopButton14 = document.querySelector('.workShopButton__14');
 var indicClickOnPlane = document.querySelector('.indicClickOnPlane');
-var contentContainer = document.querySelector('.contentContainer');
-var workShopContainer1 = document.querySelector('.workShopContainer__1');
-var creditContainer1 = document.querySelector('.creditContainer__1');
-var scrollContainer = document.querySelector('.scrollContainer');
-var prenom__1 = document.querySelector('.prenom__1');
-var nom__1 = document.querySelector('.nom__1');
-var r1__1 = document.querySelector('.r1__1');
-var r2__1 = document.querySelector('.r2__1');
-var screenMask__1 = document.querySelector('.screenMask__1');
-var faceImgPath__1 = document.querySelector('.content__1');
-var faceImgZoom__1 = document.querySelector('.faceImg__1');
-var prenom__2 = document.querySelector('.prenom__2');
-var nom__2 = document.querySelector('.nom__2');
-var r1__2 = document.querySelector('.r1__2');
-var r2__2 = document.querySelector('.r2__2');
-var screenMask__2 = document.querySelector('.screenMask__2');
-var faceImgPath__2 = document.querySelector('.content__2');
-var faceImgZoom__2 = document.querySelector('.faceImg__2');
-var prenom__3 = document.querySelector('.prenom__3');
-var nom__3 = document.querySelector('.nom__3');
-var r1__3 = document.querySelector('.r1__3');
-var r2__3 = document.querySelector('.r2__3');
-var screenMask__3 = document.querySelector('.screenMask__3');
-var faceImgPath__3 = document.querySelector('.content__3');
-var faceImgZoom__3 = document.querySelector('.faceImg__3');
-var prenom__4 = document.querySelector('.prenom__4');
-var nom__4 = document.querySelector('.nom__4');
-var r1__4 = document.querySelector('.r1__4');
-var r2__4 = document.querySelector('.r2__4');
-var faceImgPath__4 = document.querySelector('.content__4');
-var faceImgZoom__4 = document.querySelector('.faceImg__4');
-var prenom__5 = document.querySelector('.prenom__5');
-var nom__5 = document.querySelector('.nom__5');
-var r1__5 = document.querySelector('.r1__5');
-var r2__5 = document.querySelector('.r2__5');
-var faceImgPath__5 = document.querySelector('.content__5');
-var faceImgZoom__5 = document.querySelector('.faceImg__5');
-var prenom__6 = document.querySelector('.prenom__6');
-var nom__6 = document.querySelector('.nom__6');
-var r1__6 = document.querySelector('.r1__6');
-var r2__6 = document.querySelector('.r2__6');
-var faceImgPath__6 = document.querySelector('.content__6');
-var faceImgZoom__6 = document.querySelector('.faceImg__6');
-var homeMask = document.querySelector('.homeMask');
-var cursorIndication = document.querySelector('.cursorIndication'); /////// IMAGES HOVER ///////
+var timelineIndication = document.querySelector('.indication');
+var cursorIndication = document.querySelector('.cursorIndication');
+var workShopContainer = document.querySelector('.workShopContainer');
+var creditContainer = document.querySelector('.creditContainer');
+var contentContainer__14 = document.querySelector('.contentContainer__14');
+var scrollContainer__14 = document.querySelector('.scrollContainer__14');
+var scrollContainerContentImg__14 = document.querySelectorAll('.scrollContainer__14 .contentImg');
+var contentContainer__13 = document.querySelector('.contentContainer__13');
+var scrollContainer__13 = document.querySelector('.scrollContainer__13');
+var scrollContainerContentImg__13 = document.querySelectorAll('.scrollContainer__13 .contentImg');
+var contentContainer__12 = document.querySelector('.contentContainer__12');
+var scrollContainer__12 = document.querySelector('.scrollContainer__12');
+var scrollContainerContentImg__12 = document.querySelectorAll('.scrollContainer__12 .contentImg');
+var contentContainer__11 = document.querySelector('.contentContainer__11');
+var scrollContainer__11 = document.querySelector('.scrollContainer__11');
+var scrollContainerContentImg__11 = document.querySelectorAll('.scrollContainer__11 .contentImg');
+var contentContainer__10 = document.querySelector('.contentContainer__10');
+var scrollContainer__10 = document.querySelector('.scrollContainer__10');
+var scrollContainerContentImg__10 = document.querySelectorAll('.scrollContainer__10 .contentImg');
+var contentContainer__9 = document.querySelector('.contentContainer__9');
+var scrollContainer__9 = document.querySelector('.scrollContainer__9');
+var scrollContainerContentImg__9 = document.querySelectorAll('.scrollContainer__9 .contentImg');
+var contentContainer__8 = document.querySelector('.contentContainer__8');
+var scrollContainer__8 = document.querySelector('.scrollContainer__8');
+var scrollContainerContentImg__8 = document.querySelectorAll('.scrollContainer__8 .contentImg');
+var contentContainer__7 = document.querySelector('.contentContainer__7');
+var scrollContainer__7 = document.querySelector('.scrollContainer__7');
+var scrollContainerContentImg__7 = document.querySelectorAll('.scrollContainer__7 .contentImg');
+var contentContainer__6 = document.querySelector('.contentContainer__6');
+var scrollContainer__6 = document.querySelector('.scrollContainer__6');
+var scrollContainerContentImg__6 = document.querySelectorAll('.scrollContainer__6 .contentImg');
+var contentContainer__5 = document.querySelector('.contentContainer__5');
+var scrollContainer__5 = document.querySelector('.scrollContainer__5');
+var scrollContainerContentImg__5 = document.querySelectorAll('.scrollContainer__5 .contentImg');
+var contentContainer__4 = document.querySelector('.contentContainer__4');
+var scrollContainer__4 = document.querySelector('.scrollContainer__4');
+var scrollContainerContentImg__4 = document.querySelectorAll('.scrollContainer__4 .contentImg');
+var contentContainer__3 = document.querySelector('.contentContainer__3');
+var scrollContainer__3 = document.querySelector('.scrollContainer__3');
+var scrollContainerContentImg__3 = document.querySelectorAll('.scrollContainer__3 .contentImg');
+var contentContainer__2 = document.querySelector('.contentContainer__2');
+var scrollContainer__2 = document.querySelector('.scrollContainer__2');
+var scrollContainerContentImg__2 = document.querySelectorAll('.scrollContainer__2 .contentImg');
+var contentContainer__1 = document.querySelector('.contentContainer__1');
+var scrollContainer__1 = document.querySelector('.scrollContainer__1');
+var scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg'); /////// IMAGES HOVER ///////
 
-faceImgPath__1.addEventListener('mouseenter', function () {
-  faceImgPath__1.classList.add('switch');
-  faceImgZoom__1.classList.add('switch');
-  prenom__1.classList.add('switch');
-  nom__1.classList.add('switch');
-  r1__1.classList.add('switch');
-  r2__1.classList.add('switch');
+scrollContainerContentImg__14.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__1.addEventListener('mouseleave', function () {
-  faceImgPath__1.classList.remove('switch');
-  faceImgZoom__1.classList.remove('switch');
-  prenom__1.classList.remove('switch');
-  nom__1.classList.remove('switch');
-  r1__1.classList.remove('switch');
-  r2__1.classList.remove('switch');
+scrollContainerContentImg__13.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__2.addEventListener('mouseenter', function () {
-  faceImgPath__2.classList.add('switch');
-  faceImgZoom__2.classList.add('switch');
-  prenom__2.classList.add('switch');
-  nom__2.classList.add('switch');
-  r1__2.classList.add('switch');
-  r2__2.classList.add('switch');
+scrollContainerContentImg__12.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__2.addEventListener('mouseleave', function () {
-  faceImgPath__2.classList.remove('switch');
-  faceImgZoom__2.classList.remove('switch');
-  prenom__2.classList.remove('switch');
-  nom__2.classList.remove('switch');
-  r1__2.classList.remove('switch');
-  r2__2.classList.remove('switch');
+scrollContainerContentImg__11.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__3.addEventListener('mouseenter', function () {
-  faceImgPath__3.classList.add('switch');
-  faceImgZoom__3.classList.add('switch');
-  prenom__3.classList.add('switch');
-  nom__3.classList.add('switch');
-  r1__3.classList.add('switch');
-  r2__3.classList.add('switch');
+scrollContainerContentImg__10.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__3.addEventListener('mouseleave', function () {
-  faceImgPath__3.classList.remove('switch');
-  faceImgZoom__3.classList.remove('switch');
-  prenom__3.classList.remove('switch');
-  nom__3.classList.remove('switch');
-  r1__3.classList.remove('switch');
-  r2__3.classList.remove('switch');
+scrollContainerContentImg__9.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__4.addEventListener('mouseenter', function () {
-  faceImgPath__4.classList.add('switch');
-  faceImgZoom__4.classList.add('switch');
-  prenom__4.classList.add('switch');
-  nom__4.classList.add('switch');
-  r1__4.classList.add('switch');
-  r2__4.classList.add('switch');
+scrollContainerContentImg__8.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__4.addEventListener('mouseleave', function () {
-  faceImgPath__4.classList.remove('switch');
-  faceImgZoom__4.classList.remove('switch');
-  prenom__4.classList.remove('switch');
-  nom__4.classList.remove('switch');
-  r1__4.classList.remove('switch');
-  r2__4.classList.remove('switch');
+scrollContainerContentImg__7.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__5.addEventListener('mouseenter', function () {
-  faceImgPath__5.classList.add('switch');
-  faceImgZoom__5.classList.add('switch');
-  prenom__5.classList.add('switch');
-  nom__5.classList.add('switch');
-  r1__5.classList.add('switch');
-  r2__5.classList.add('switch');
+scrollContainerContentImg__6.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__5.addEventListener('mouseleave', function () {
-  faceImgPath__5.classList.remove('switch');
-  faceImgZoom__5.classList.remove('switch');
-  prenom__5.classList.remove('switch');
-  nom__5.classList.remove('switch');
-  r1__5.classList.remove('switch');
-  r2__5.classList.remove('switch');
+scrollContainerContentImg__5.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__6.addEventListener('mouseenter', function () {
-  faceImgPath__6.classList.add('switch');
-  faceImgZoom__6.classList.add('switch');
-  prenom__6.classList.add('switch');
-  nom__6.classList.add('switch');
-  r1__6.classList.add('switch');
-  r2__6.classList.add('switch');
+scrollContainerContentImg__4.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
-faceImgPath__6.addEventListener('mouseleave', function () {
-  faceImgPath__6.classList.remove('switch');
-  faceImgZoom__6.classList.remove('switch');
-  prenom__6.classList.remove('switch');
-  nom__6.classList.remove('switch');
-  r1__6.classList.remove('switch');
-  r2__6.classList.remove('switch');
+scrollContainerContentImg__3.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
+});
+scrollContainerContentImg__2.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
+});
+scrollContainerContentImg__1.forEach(function (e) {
+  e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[0].classList.add('switch');
+    e.children[1].classList.add('switch');
+    e.children[2].children[0].classList.add('switch');
+    e.children[2].children[1].classList.add('switch');
+    e.children[2].children[3].classList.add('switch');
+  });
+  e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[0].classList.remove('switch');
+    e.children[1].classList.remove('switch');
+    e.children[2].children[0].classList.remove('switch');
+    e.children[2].children[1].classList.remove('switch');
+    e.children[2].children[3].classList.remove('switch');
+  });
 });
 var homeActive = true;
 var hoverPlane = true;
 var workshopActive = false;
 var creditActive = false;
+var switchBtn = false;
 var backPossible = true;
 var clickPossible = true;
-var scrollPossible = true;
+var scrollPossible = false;
+var btnPressed = false;
 var isScrollDown = false;
 var isScrollUp = false;
+var idPlane = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+var varDelay = .0;
 window.addEventListener('load', function () {
   TweenMax.to(bgCol, {
     duration: 1,
@@ -50422,7 +50552,6 @@ window.addEventListener('load', function () {
     }, 4000);
   }
 });
-var switchBtn = false;
 musicBtn.addEventListener('click', function () {
   if (switchBtn == false) {
     TweenMax.to(maskMusicBtn, {
@@ -50471,7 +50600,17 @@ musicBtn.addEventListener('click', function () {
       line.classList.toggle('switch');
     });
   }, 350);
-}); // var shouldStop = false;
+});
+var soundEffectRpz = new Audio(_rpz.default);
+soundEffectRpz.volume = 0.4; // let test = scene.children[33]
+// console.log(scene.children)
+// console.log(planeMeshPanneau)
+// console.log(enceinteMesh)
+// enceinteMesh.on('click', function(ev) {
+//     soundEffectRpz.play();
+//     console.log(ev)
+// })
+// var shouldStop = false;
 // function checkShouldStop() {
 //     if(shouldStop) {
 //       tl.pause();
@@ -50487,909 +50626,60 @@ musicBtn.addEventListener('click', function () {
 // //     shouldStop = false;
 // //     tl.resume();
 // //   })
-/////// PLANE HOVER SHADERS EFFECT ///////
+
+function cursorHoverIn() {
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    gsap.to(tailleBoulette, 0.75, {
+      padding: 50,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(cursorShapeIn, 0.75, {
+      background: colorCursorHover,
+      padding: 50,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(cursorShapeOut, 0.50, {
+      opacity: 0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(indicClickOnPlane, .75, {
+      scale: 1,
+      ease: "Power3.easeOut",
+      delay: .05
+    });
+    indicClickOnPlane.classList.add("planeHover");
+  }
+}
+
+function cursorHoverOut() {
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    gsap.to(tailleBoulette, 0.75, {
+      padding: 0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(cursorShapeIn, 0.75, {
+      background: colorCursorDefault,
+      padding: 0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(cursorShapeOut, 0.25, {
+      opacity: 1,
+      delay: 0.25,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(indicClickOnPlane, 0.75, {
+      scale: 0,
+      ease: "Power3.easeOut"
+    });
+    indicClickOnPlane.classList.remove("planeHover");
+  }
+} /////// PLANE HOVER SHADERS EFFECT ///////
+
 
 var colorCursorHover = "#f72585";
 var colorCursorDefault = "#4cc9f0";
-planeMesh1.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
-    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh1.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh2.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
-    console.log(ev);
-    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh2.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh3.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
-    console.log(ev);
-    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh3.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh4.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
-    console.log(ev);
-    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh4.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh5.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
-    console.log(ev);
-    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh5.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh6.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
-    console.log(ev);
-    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh6.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh7.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
-    console.log(ev);
-    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh7.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh8.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -10.5 && planeAxe.position.y >= -11)) {
-    console.log(ev);
-    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh8.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh9.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
-    console.log(ev);
-    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh9.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh10.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
-    console.log(ev);
-    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh10.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh11.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
-    console.log(ev);
-    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh11.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh12.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
-    console.log(ev);
-    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh12.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
-planeMesh13.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
-    console.log(ev);
-    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
-  }
-});
-planeMesh13.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
-    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-  }
-});
 planeMesh14.on('mouseover', function (ev) {
-  if (ev && hoverPlane && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
-    console.log(ev.intersects);
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
     gsap.to(materialPlane14.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "Power3.easeOut"
@@ -51398,32 +50688,11 @@ planeMesh14.on('mouseover', function (ev) {
       value: 1.0,
       ease: "Power3.easeOut"
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorHover,
-        padding: 50,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.50, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, .75, {
-        scale: 1,
-        ease: "Power3.easeOut",
-        delay: .05
-      });
-      indicClickOnPlane.classList.add("planeHover");
-    }
+    cursorHoverIn();
   }
 });
 planeMesh14.on('mouseout', function (ev) {
-  if (ev && workshopActive == false) {
+  if (ev && !workshopActive) {
     gsap.to(materialPlane14.uniforms.alpha, 0.75, {
       value: planeOpacityDefault,
       ease: "Power3.easeOut"
@@ -51432,28 +50701,356 @@ planeMesh14.on('mouseout', function (ev) {
       value: 0.0,
       ease: "Power3.easeOut"
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
+    cursorHoverOut();
+  }
+});
+planeMesh13.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
+    console.log(ev);
+    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh13.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh12.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
+    console.log(ev);
+    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh12.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh11.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
+    console.log(ev);
+    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh11.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh10.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
+    console.log(ev);
+    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh10.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh9.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
+    console.log(ev);
+    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh9.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh8.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -10.5 && planeAxe.position.y >= -11)) {
+    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh8.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh7.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
+    console.log(ev);
+    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh7.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh6.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
+    console.log(ev);
+    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh6.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh5.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
+    console.log(ev);
+    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh5.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh4.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
+    console.log(ev);
+    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh4.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh3.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
+    console.log(ev);
+    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh3.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh2.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
+    console.log(ev);
+    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh2.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
+  }
+});
+planeMesh1.on('mouseover', function (ev) {
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
+    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverIn();
+  }
+});
+planeMesh1.on('mouseout', function (ev) {
+  if (ev && !workshopActive) {
+    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
+      value: planeOpacityDefault,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
+      value: 0.0,
+      ease: "Power3.easeOut"
+    });
+    cursorHoverOut();
   }
 });
 var el = document.querySelector('canvas');
@@ -51481,30 +51078,138 @@ el.addEventListener('swiperight', function () {
 // });
 // el.addEventListener('tap', () => {
 // });
-///// PLANES CLICK /////
 
-function plane14Click() {
-  if (clickPossible && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
+function animationEnterWorkshop() {
+  if (idPlane[14]) {
+    contentContainer__14.style.display = "block";
+    scrollContainer__14.style.display = "flex";
+  } else if (idPlane[13]) {
+    contentContainer__13.style.display = "block";
+    scrollContainer__13.style.display = "flex";
+  } else if (idPlane[12]) {
+    contentContainer__12.style.display = "block";
+    scrollContainer__12.style.display = "flex";
+  } else if (idPlane[11]) {
+    contentContainer__11.style.display = "block";
+    scrollContainer__11.style.display = "flex";
+  } else if (idPlane[10]) {
+    contentContainer__10.style.display = "block";
+    scrollContainer__10.style.display = "flex";
+  } else if (idPlane[9]) {
+    contentContainer__9.style.display = "block";
+    scrollContainer__9.style.display = "flex";
+  } else if (idPlane[8]) {
+    contentContainer__8.style.display = "block";
+    scrollContainer__8.style.display = "flex";
+  } else if (idPlane[7]) {
+    contentContainer__7.style.display = "block";
+    scrollContainer__7.style.display = "flex";
+  } else if (idPlane[6]) {
+    contentContainer__6.style.display = "block";
+    scrollContainer__6.style.display = "flex";
+  } else if (idPlane[5]) {
+    contentContainer__5.style.display = "block";
+    scrollContainer__5.style.display = "flex";
+  } else if (idPlane[4]) {
+    contentContainer__4.style.display = "block";
+    scrollContainer__4.style.display = "flex";
+  } else if (idPlane[3]) {
+    contentContainer__3.style.display = "block";
+    scrollContainer__3.style.display = "flex";
+  } else if (idPlane[2]) {
+    contentContainer__2.style.display = "block";
+    scrollContainer__2.style.display = "flex";
+  } else if (idPlane[1]) {
+    contentContainer__1.style.display = "block";
+    scrollContainer__1.style.display = "flex";
+  }
+
+  gsap.to(camera.position, 3, {
+    z: -20,
+    ease: "power3.inOut",
+    delay: .75
+  });
+  gsap.to(logo.rotation, 1.5, {
+    z: -.725,
+    y: 0,
+    ease: "power3.inOut"
+  });
+  gsap.to(logo.position, 1.5, {
+    z: -15,
+    y: .35,
+    ease: "power3.inOut"
+  });
+  gsap.to(logo.position, 1.5, {
+    x: 15,
+    ease: "power3.inOut",
+    delay: 1.5
+  });
+  TweenMax.to(btnBackHome, 1, {
+    opacity: 0,
+    clipPath: "inset(0% 100% 0% 0%)",
+    ease: "power3.inOut"
+  });
+  TweenMax.to(btnBackWorkshop, .75, {
+    opacity: 1,
+    clipPath: "inset(0% 0% 0% 0%)",
+    delay: 2.5,
+    ease: "power3.inOut"
+  });
+  hideTimeline();
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    gsap.to(tailleBoulette, 0.75, {
+      padding: 0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(leftDoor.position, 1.5, {
+      x: -15,
       ease: "power3.inOut",
-      delay: .75
+      delay: 1.5
     });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
+    gsap.to(rightDoor.position, 1.5, {
       x: 15,
       ease: "power3.inOut",
       delay: 1.5
     });
+    gsap.to(cursorShapeIn, 0.75, {
+      background: colorCursorDefault,
+      padding: 0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(cursorShapeOut, 0.25, {
+      opacity: 1,
+      delay: 0.25,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(indicClickOnPlane, 0.75, {
+      scale: 0,
+      ease: "Power3.easeOut"
+    });
+    indicClickOnPlane.classList.remove("planeHover");
+  }
+
+  gsap.to(workShopContainer, 1.5, {
+    opacity: 1,
+    ease: "Power3.easeOut",
+    delay: 2
+  });
+  setTimeout(function () {
+    if (workshopActive) {
+      workShopContainer.classList.add('switchPlane');
+      scrollPossible = true;
+    }
+  }, 3500);
+  workshopActive = true;
+  hoverPlane = false;
+  clickPossible = false;
+} ///// PLANES CLICK /////
+
+
+function plane14Click() {
+  if (clickPossible && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
+    idPlane[14] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane14.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -51514,67 +51219,11 @@ function plane14Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
-      opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
-    });
-    hideTimeline();
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    gsap.to(workShopContainer1, 1.5, {
+    gsap.to(contentContainer__14, 1.5, {
       opacity: 1,
       ease: "Power3.easeOut",
       delay: 2
     });
-    gsap.to(contentContainer, 1.5, {
-      opacity: 1,
-      ease: "Power3.easeOut",
-      delay: 2
-    });
-    setTimeout(function () {
-      if (workshopActive) workShopContainer1.classList.add('switchPlane');
-    }, 3500);
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -51584,26 +51233,8 @@ planeMesh14.on('click', function () {
 
 function plane13Click() {
   if (clickPossible && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[13] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane13.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -51613,53 +51244,11 @@ function plane13Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__13, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -51669,26 +51258,8 @@ planeMesh13.on('click', function () {
 
 function plane12Click() {
   if (clickPossible && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[12] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane12.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -51698,53 +51269,11 @@ function plane12Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__12, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -51754,26 +51283,8 @@ planeMesh12.on('click', function () {
 
 function plane11Click() {
   if (clickPossible && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[11] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane11.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -51783,53 +51294,11 @@ function plane11Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__11, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -51839,26 +51308,8 @@ planeMesh11.on('click', function () {
 
 function plane10Click() {
   if (clickPossible && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[10] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane10.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -51868,53 +51319,11 @@ function plane10Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__10, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -51924,26 +51333,8 @@ planeMesh10.on('click', function () {
 
 function plane9Click() {
   if (clickPossible && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[9] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane9.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -51953,53 +51344,11 @@ function plane9Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__9, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52009,26 +51358,8 @@ planeMesh9.on('click', function () {
 
 function plane8Click() {
   if (clickPossible && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -11)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[8] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane8.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52038,53 +51369,11 @@ function plane8Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__8, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52094,26 +51383,8 @@ planeMesh8.on('click', function () {
 
 function plane7Click() {
   if (clickPossible && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[7] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane7.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52123,53 +51394,11 @@ function plane7Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__7, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52179,26 +51408,8 @@ planeMesh7.on('click', function () {
 
 function plane6Click() {
   if (clickPossible && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[6] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane6.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52208,53 +51419,11 @@ function plane6Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__6, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52264,26 +51433,8 @@ planeMesh6.on('click', function () {
 
 function plane5Click() {
   if (clickPossible && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[5] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane5.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52293,53 +51444,11 @@ function plane5Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__5, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52349,26 +51458,8 @@ planeMesh5.on('click', function () {
 
 function plane4Click() {
   if (clickPossible && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[4] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane4.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52378,53 +51469,11 @@ function plane4Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__4, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52434,26 +51483,8 @@ planeMesh4.on('click', function () {
 
 function plane3Click() {
   if (clickPossible && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[3] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane3.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52463,53 +51494,11 @@ function plane3Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__3, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52519,26 +51508,8 @@ planeMesh3.on('click', function () {
 
 function plane2Click() {
   if (clickPossible && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[2] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane2.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52548,53 +51519,11 @@ function plane2Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__2, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -52604,26 +51533,8 @@ planeMesh2.on('click', function () {
 
 function plane1Click() {
   if (clickPossible && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
-    gsap.to(camera.position, 3, {
-      z: -20,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(logo.rotation, 1.5, {
-      z: -.725,
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      z: -15,
-      y: .35,
-      ease: "power3.inOut"
-    });
-    gsap.to(logo.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: 1.5
-    });
+    idPlane[1] = true;
+    animationEnterWorkshop();
     gsap.to(materialPlane1.uniforms.alpha, 0.75, {
       value: 0.0,
       ease: "power3.inOut"
@@ -52633,53 +51544,11 @@ function plane1Click() {
       y: 1.2,
       ease: "power3.inOut"
     });
-    TweenMax.to(btnBackHome, 1, {
-      opacity: 0,
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "power3.inOut"
-    });
-    TweenMax.to(btnBackWorkshop, .75, {
+    gsap.to(contentContainer__1, 1.5, {
       opacity: 1,
-      clipPath: "inset(0% 0% 0% 0%)",
-      delay: 2.5,
-      ease: "power3.inOut"
+      ease: "Power3.easeOut",
+      delay: 2
     });
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-      gsap.to(leftDoor.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(rightDoor.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: 1.5
-      });
-      gsap.to(tailleBoulette, 0.75, {
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeIn, 0.75, {
-        background: colorCursorDefault,
-        padding: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(cursorShapeOut, 0.25, {
-        opacity: 1,
-        delay: 0.25,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(indicClickOnPlane, 0.75, {
-        scale: 0,
-        ease: "Power3.easeOut"
-      });
-      indicClickOnPlane.classList.remove("planeHover");
-    }
-
-    workshopActive = true;
-    hoverPlane = false;
-    clickPossible = false;
   }
 }
 
@@ -53816,32 +52685,119 @@ btnBackHome.addEventListener('mouseleave', function () {
   cursorShapeIn.classList.remove('mouseover');
 });
 
-function backToPlane() {
-  var varDelay = .0;
-  var taillePopUpSplit = contentContainer.scrollHeight / 4;
+function posComparedToElementHeight(el) {
+  var taillePopUpSplit = el.scrollHeight / 4;
 
-  if (camera.position.z >= -106 && contentContainer.scrollTop >= taillePopUpSplit * 2 && contentContainer.scrollTop < taillePopUpSplit * 3) {
+  if (camera.position.z >= -106 && el.scrollTop >= taillePopUpSplit * 2 && el.scrollTop < taillePopUpSplit * 3) {
     varDelay = .75;
-    gsap.to(contentContainer, 3, {
+    gsap.to(el, 3, {
       opacity: 0,
       ease: "Power3.easeOut",
       delay: 0.25
     });
-    console.log("loin");
-  } else if (contentContainer.scrollTop < taillePopUpSplit * 2 && contentContainer.scrollTop >= taillePopUpSplit) {
+  } else if (el.scrollTop < taillePopUpSplit * 2 && el.scrollTop >= taillePopUpSplit) {
     varDelay = .50;
-    gsap.to(contentContainer, 3, {
+    gsap.to(el, 3, {
       opacity: 0,
       ease: "Power3.easeOut",
       delay: 0.25
     });
-    console.log("milieu");
   } else {
-    gsap.to(contentContainer, 3, {
+    gsap.to(el, 3, {
       opacity: 0,
       ease: "Power3.easeOut",
       delay: 0.25
     });
+  }
+
+  return varDelay;
+}
+
+function backToPlane() {
+  if (idPlane[14]) {
+    varDelay = posComparedToElementHeight(contentContainer__14);
+    setTimeout(function () {
+      contentContainer__14.style.display = "none";
+      scrollContainer__14.style.display = "none";
+    }, 2700);
+  } else if (idPlane[13]) {
+    varDelay = posComparedToElementHeight(contentContainer__13);
+    setTimeout(function () {
+      contentContainer__13.style.display = "none";
+      scrollContainer__13.style.display = "none";
+    }, 2700);
+  } else if (idPlane[12]) {
+    varDelay = posComparedToElementHeight(contentContainer__12);
+    setTimeout(function () {
+      contentContainer__12.style.display = "none";
+      scrollContainer__12.style.display = "none";
+    }, 2700);
+  } else if (idPlane[11]) {
+    varDelay = posComparedToElementHeight(contentContainer__11);
+    setTimeout(function () {
+      contentContainer__11.style.display = "none";
+      scrollContainer__11.style.display = "none";
+    }, 2700);
+  } else if (idPlane[10]) {
+    varDelay = posComparedToElementHeight(contentContainer__10);
+    setTimeout(function () {
+      contentContainer__10.style.display = "none";
+      scrollContainer__10.style.display = "none";
+    }, 2700);
+  } else if (idPlane[9]) {
+    varDelay = posComparedToElementHeight(contentContainer__9);
+    setTimeout(function () {
+      contentContainer__9.style.display = "none";
+      scrollContainer__9.style.display = "none";
+    }, 2700);
+  } else if (idPlane[8]) {
+    varDelay = posComparedToElementHeight(contentContainer__8);
+    setTimeout(function () {
+      contentContainer__8.style.display = "none";
+      scrollContainer__8.style.display = "none";
+    }, 2700);
+  } else if (idPlane[7]) {
+    varDelay = posComparedToElementHeight(contentContainer__7);
+    setTimeout(function () {
+      contentContainer__7.style.display = "none";
+      scrollContainer__7.style.display = "none";
+    }, 2700);
+  } else if (idPlane[6]) {
+    varDelay = posComparedToElementHeight(contentContainer__6);
+    setTimeout(function () {
+      contentContainer__6.style.display = "none";
+      scrollContainer__6.style.display = "none";
+    }, 2700);
+  } else if (idPlane[5]) {
+    varDelay = posComparedToElementHeight(contentContainer__5);
+    setTimeout(function () {
+      contentContainer__5.style.display = "none";
+      scrollContainer__5.style.display = "none";
+    }, 2700);
+  } else if (idPlane[4]) {
+    varDelay = posComparedToElementHeight(contentContainer__4);
+    setTimeout(function () {
+      contentContainer__4.style.display = "none";
+      scrollContainer__4.style.display = "none";
+    }, 2700);
+  } else if (idPlane[3]) {
+    varDelay = posComparedToElementHeight(contentContainer__3);
+    setTimeout(function () {
+      contentContainer__3.style.display = "none";
+      scrollContainer__3.style.display = "none";
+    }, 2700);
+  } else if (idPlane[2]) {
+    varDelay = posComparedToElementHeight(contentContainer__2);
+    setTimeout(function () {
+      contentContainer__2.style.display = "none";
+      scrollContainer__2.style.display = "none";
+    }, 2700);
+  } else if (idPlane[1]) {
+    varDelay = posComparedToElementHeight(contentContainer__1);
+    setTimeout(function () {
+      contentContainer__1.style.display = "none";
+      scrollContainer__1.style.display = "none";
+    }, 2700);
   }
 
   if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -53860,9 +52816,9 @@ function backToPlane() {
       ease: "power3.inOut"
     });
     setTimeout(function () {
-      creditContainer1.classList.remove('switchStreet');
-      scrollPossible = true;
-    }, 3000);
+      creditContainer.classList.remove('switchStreet');
+      scrollPossible = false;
+    }, 1500);
   } else {
     gsap.to(camera.position, 3, {
       z: 4.5,
@@ -53870,6 +52826,7 @@ function backToPlane() {
     });
   }
 
+  revealTimeline();
   gsap.to(logo.position, 1.5, {
     x: 0,
     ease: "power3.inOut",
@@ -54121,29 +53078,139 @@ function backToPlane() {
     clipPath: "inset(0% 100% 0% 0%)",
     ease: "power3.inOut"
   });
-  gsap.to(workShopContainer1, 1.5, {
+  gsap.to(workShopContainer, 1.5, {
     opacity: 0,
     ease: "Power3.easeOut",
     delay: 0.5
   });
-  workShopContainer1.classList.remove('switchPlane');
-  hoverPlane = true;
-  clickPossible = true;
+  workShopContainer.classList.remove('switchPlane');
+  setTimeout(function () {
+    hoverPlane = true;
+    clickPossible = true;
+    idPlane = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+  }, 2500);
   setTimeout(function () {
     workshopActive = false;
-    contentContainer.scrollTop = 0;
+    btnPressed = false;
+    contentContainer__14.scrollTop = 0;
+    contentContainer__13.scrollTop = 0;
+    contentContainer__12.scrollTop = 0;
+    contentContainer__11.scrollTop = 0;
+    contentContainer__10.scrollTop = 0;
+    contentContainer__9.scrollTop = 0;
+    contentContainer__8.scrollTop = 0;
+    contentContainer__7.scrollTop = 0;
+    contentContainer__6.scrollTop = 0;
+    contentContainer__5.scrollTop = 0;
+    contentContainer__4.scrollTop = 0;
+    contentContainer__3.scrollTop = 0;
+    contentContainer__2.scrollTop = 0;
+    contentContainer__1.scrollTop = 0;
   }, 2500);
 }
 
 function backToWorkshop() {
   if (camera.position.z <= -185) {
-    var lastPosScroll = contentContainer.scrollTop;
-    contentContainer.scrollTop = lastPosScroll - 50;
-    console.log(contentContainer.scrollTop);
-    gsap.to(camera.position, 3, {
-      z: -108,
-      ease: "power3.inOut"
-    });
+    if (idPlane[14]) {
+      var lastPosScroll__14 = contentContainer__14.scrollTop;
+      contentContainer__14.scrollTop = lastPosScroll__14 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__14),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[13]) {
+      var lastPosScroll__13 = contentContainer__13.scrollTop;
+      contentContainer__13.scrollTop = lastPosScroll__13 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__13),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[12]) {
+      var lastPosScroll__12 = contentContainer__12.scrollTop;
+      contentContainer__12.scrollTop = lastPosScroll__12 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__12),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[11]) {
+      var lastPosScroll__11 = contentContainer__11.scrollTop;
+      contentContainer__11.scrollTop = lastPosScroll__11 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__11),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[10]) {
+      var lastPosScroll__10 = contentContainer__10.scrollTop;
+      contentContainer__10.scrollTop = lastPosScroll__10 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__10),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[9]) {
+      var lastPosScroll__9 = contentContainer__9.scrollTop;
+      contentContainer__9.scrollTop = lastPosScroll__9 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__9),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[8]) {
+      var lastPosScroll__8 = contentContainer__8.scrollTop;
+      contentContainer__8.scrollTop = lastPosScroll__8 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__8),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[7]) {
+      var lastPosScroll__7 = contentContainer__7.scrollTop;
+      contentContainer__7.scrollTop = lastPosScroll__7 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__7),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[6]) {
+      var lastPosScroll__6 = contentContainer__6.scrollTop;
+      contentContainer__6.scrollTop = lastPosScroll__6 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__6),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[5]) {
+      var lastPosScroll__5 = contentContainer__5.scrollTop;
+      contentContainer__5.scrollTop = lastPosScroll__5 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__5),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[4]) {
+      var lastPosScroll__4 = contentContainer__4.scrollTop;
+      contentContainer__4.scrollTop = lastPosScroll__4 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__4),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[3]) {
+      var lastPosScroll__3 = contentContainer__3.scrollTop;
+      contentContainer__3.scrollTop = lastPosScroll__3 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__3),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[2]) {
+      var lastPosScroll__2 = contentContainer__2.scrollTop;
+      contentContainer__2.scrollTop = lastPosScroll__2 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__2),
+        ease: "power3.inOut"
+      });
+    } else if (idPlane[1]) {
+      var lastPosScroll__1 = contentContainer__1.scrollTop;
+      contentContainer__1.scrollTop = lastPosScroll__1 - 50;
+      gsap.to(camera.position, 3, {
+        z: scrollWorkshop(contentContainer__1),
+        ease: "power3.inOut"
+      });
+    }
+
     gsap.to(leftDoor2.position, 1.5, {
       x: .3,
       ease: "power3.inOut",
@@ -54154,7 +53221,7 @@ function backToWorkshop() {
       ease: "power3.inOut",
       delay: .75
     });
-    gsap.to(creditContainer1, 2.5, {
+    gsap.to(creditContainer, 2.5, {
       opacity: 0,
       ease: "Power4.easeOut"
     });
@@ -54167,19 +53234,18 @@ function backToWorkshop() {
       });
     }
 
-    gsap.to(workShopContainer1, 1.5, {
+    gsap.to(workShopContainer, 1.5, {
       opacity: 1,
       ease: "Power3.easeOut",
       delay: 2
     });
     setTimeout(function () {
-      workShopContainer1.classList.add('switchPlane');
+      workShopContainer.classList.add('switchPlane');
       creditActive = false;
     }, 1000);
     setTimeout(function () {
-      creditContainer1.classList.remove('switchStreet');
-      scrollContainer.scrollTop = 0;
-    }, 3000);
+      creditContainer.classList.remove('switchStreet');
+    }, 1500);
   }
 }
 
@@ -57185,16 +56251,137 @@ function scrollWheel(event) {
   } else if (creditActive) {
     if (checkScrollDirectionIsUp(event)) {
       // SCROLL UP
-      if (camera.position.z <= -185 && scrollContainer.scrollTop == 0) {
-        backToWorkshop();
+      if (idPlane[14]) {
+        if (camera.position.z <= -185 && scrollContainer__14.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[13]) {
+        if (camera.position.z <= -185 && scrollContainer__13.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[12]) {
+        if (camera.position.z <= -185 && scrollContainer__12.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[11]) {
+        if (camera.position.z <= -185 && scrollContainer__11.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[10]) {
+        if (camera.position.z <= -185 && scrollContainer__10.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[9]) {
+        if (camera.position.z <= -185 && scrollContainer__9.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[8]) {
+        if (camera.position.z <= -185 && scrollContainer__8.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[7]) {
+        if (camera.position.z <= -185 && scrollContainer__7.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[6]) {
+        if (camera.position.z <= -185 && scrollContainer__6.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[5]) {
+        if (camera.position.z <= -185 && scrollContainer__5.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[4]) {
+        if (camera.position.z <= -185 && scrollContainer__4.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[3]) {
+        if (camera.position.z <= -185 && scrollContainer__3.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[2]) {
+        if (camera.position.z <= -185 && scrollContainer__2.scrollTop == 0) {
+          backToWorkshop();
+        }
+      } else if (idPlane[1]) {
+        if (camera.position.z <= -185 && scrollContainer__1.scrollTop == 0) {
+          backToWorkshop();
+        }
       }
     }
   } else if (workshopActive) {
     if (checkScrollDirectionIsUp(event)) {
       // SCROLL UP
-      if (contentContainer.scrollTop == 0 && scrollPossible) {
-        backToPlane();
-        scrollPossible = false;
+      if (idPlane[14]) {
+        if (contentContainer__14.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[13]) {
+        if (contentContainer__13.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[12]) {
+        if (contentContainer__12.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[11]) {
+        if (contentContainer__11.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[10]) {
+        if (contentContainer__10.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[9]) {
+        if (contentContainer__9.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[8]) {
+        if (contentContainer__8.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[7]) {
+        if (contentContainer__7.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[6]) {
+        if (contentContainer__6.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[5]) {
+        if (contentContainer__5.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[4]) {
+        if (contentContainer__4.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[3]) {
+        if (contentContainer__3.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[2]) {
+        if (contentContainer__2.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[1]) {
+        if (contentContainer__1.scrollTop == 0 && scrollPossible) {
+          backToPlane();
+          scrollPossible = false;
+        }
       }
     }
   }
@@ -57207,111 +56394,498 @@ function checkScrollDirectionIsUp(event) {
   }
 
   return event.deltaY < 0;
-} ///// WORKSHOP SCROLL /////
+}
+
+function scrollIntoWorkshop(elContent, elCredit) {
+  camera.position.z = scrollWorkshop(elContent);
+
+  if (window.matchMedia("(max-width: 1440px)").matches) {
+    if (camera.position.z <= -109) {
+      elCredit.scrollTop = 0;
+      creditContainer.classList.add('switchStreet');
+      workShopContainer.classList.remove('switchPlane');
+      gsap.to(workShopContainer, 1.5, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(camera.position, 3, {
+        z: -185,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor2.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: .75
+      });
+      gsap.to(rightDoor2.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: .75
+      });
+      gsap.to(creditContainer, 2, {
+        opacity: 1,
+        ease: "Power1.easeOut",
+        delay: 2
+      });
+      backPossible = false;
+      setTimeout(function () {
+        creditActive = true;
+      }, 1000);
+      setTimeout(function () {
+        backPossible = true;
+      }, 3000);
+    }
+  } else {
+    if (camera.position.z <= -106) {
+      elCredit.scrollTop = 0;
+      creditContainer.classList.add('switchStreet');
+      workShopContainer.classList.remove('switchPlane');
+      gsap.to(workShopContainer, 1.5, {
+        opacity: 0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(camera.position, 3, {
+        z: -185,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor2.position, 1.5, {
+        x: -15,
+        ease: "power3.inOut",
+        delay: .75
+      });
+      gsap.to(rightDoor2.position, 1.5, {
+        x: 15,
+        ease: "power3.inOut",
+        delay: .75
+      });
+      gsap.to(creditContainer, 2, {
+        opacity: 1,
+        ease: "Power1.easeOut",
+        delay: 2
+      });
+      backPossible = false;
+      setTimeout(function () {
+        creditActive = true;
+      }, 1000);
+      setTimeout(function () {
+        backPossible = true;
+      }, 3000);
+    }
+  }
+} ///// WORKSHOP SCROLL + CREDIT ENTER /////
 
 
-contentContainer.addEventListener('scroll', function () {
+contentContainer__14.addEventListener('scroll', function () {
   if (!creditActive) {
-    scrollWorkshop(contentContainer);
-
-    if (window.matchMedia("(max-width: 1440px)").matches) {
-      if (camera.position.z <= -109) {
-        creditContainer1.classList.add('switchStreet');
-        workShopContainer1.classList.remove('switchPlane');
-        gsap.to(workShopContainer1, 1.5, {
-          opacity: 0,
-          ease: "Power3.easeOut"
-        });
-        gsap.to(camera.position, 3, {
-          z: -185,
-          ease: "power3.inOut"
-        });
-        gsap.to(leftDoor2.position, 1.5, {
-          x: -15,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(rightDoor2.position, 1.5, {
-          x: 15,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(creditContainer1, 2, {
-          opacity: 1,
-          ease: "Power1.easeOut",
-          delay: 2
-        });
-        backPossible = false;
-        setTimeout(function () {
-          creditActive = true;
-        }, 1000);
-        setTimeout(function () {
-          backPossible = true;
-        }, 3000);
-      }
-    } else {
-      if (camera.position.z <= -106) {
-        creditContainer1.classList.add('switchStreet');
-        workShopContainer1.classList.remove('switchPlane');
-        gsap.to(workShopContainer1, 1.5, {
-          opacity: 0,
-          ease: "Power3.easeOut"
-        });
-        gsap.to(camera.position, 3, {
-          z: -185,
-          ease: "power3.inOut"
-        });
-        gsap.to(leftDoor2.position, 1.5, {
-          x: -15,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(rightDoor2.position, 1.5, {
-          x: 15,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(creditContainer1, 2, {
-          opacity: 1,
-          ease: "Power1.easeOut",
-          delay: 2
-        });
-        backPossible = false;
-        setTimeout(function () {
-          creditActive = true;
-        }, 1000);
-        setTimeout(function () {
-          backPossible = true;
-        }, 3000);
-      }
+    if (idPlane[14]) {
+      scrollIntoWorkshop(contentContainer__14, scrollContainer__14);
     }
   }
 });
-scrollContainer.addEventListener("scroll", function () {
+contentContainer__13.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[13]) {
+      scrollIntoWorkshop(contentContainer__13, scrollContainer__13);
+    }
+  }
+});
+contentContainer__12.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[12]) {
+      scrollIntoWorkshop(contentContainer__12, scrollContainer__12);
+    }
+  }
+});
+contentContainer__11.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[11]) {
+      scrollIntoWorkshop(contentContainer__11, scrollContainer__11);
+    }
+  }
+});
+contentContainer__10.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[10]) {
+      scrollIntoWorkshop(contentContainer__10, scrollContainer__10);
+    }
+  }
+});
+contentContainer__9.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[9]) {
+      scrollIntoWorkshop(contentContainer__9, scrollContainer__9);
+    }
+  }
+});
+contentContainer__8.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[8]) {
+      scrollIntoWorkshop(contentContainer__8, scrollContainer__8);
+    }
+  }
+});
+contentContainer__7.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[7]) {
+      scrollIntoWorkshop(contentContainer__7, scrollContainer__7);
+    }
+  }
+});
+contentContainer__6.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[6]) {
+      scrollIntoWorkshop(contentContainer__6, scrollContainer__6);
+    }
+  }
+});
+contentContainer__5.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[5]) {
+      scrollIntoWorkshop(contentContainer__5, scrollContainer__5);
+    }
+  }
+});
+contentContainer__4.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[4]) {
+      scrollIntoWorkshop(contentContainer__4, scrollContainer__4);
+    }
+  }
+});
+contentContainer__3.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[3]) {
+      scrollIntoWorkshop(contentContainer__3, scrollContainer__3);
+    }
+  }
+});
+contentContainer__2.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[2]) {
+      scrollIntoWorkshop(contentContainer__2, scrollContainer__2);
+    }
+  }
+});
+contentContainer__1.addEventListener('scroll', function () {
+  if (!creditActive) {
+    if (idPlane[1]) {
+      scrollIntoWorkshop(contentContainer__1, scrollContainer__1);
+    }
+  }
+}); ///// CREDIT SCROLL TRIGGER /////
+
+scrollContainer__14.addEventListener("scroll", function () {
   if (creditActive) {
-    for (var _i2 = 1; _i2 <= 6; _i2++) {
+    scrollContainerContentImg__14.forEach(function (e) {
       var tl = gsap.timeline({
         defaults: {
           ease: "Power3.InOut"
         }
-      }).to(".contentImg__" + _i2, {
+      }).to(e, {
         opacity: 1,
         duration: 1
       });
       ScrollTrigger.create({
-        trigger: ".contentImg__" + _i2,
+        trigger: e,
         start: "10% 50%",
         // end: "+=300",
-        scroller: ".scrollContainer",
+        scroller: scrollContainer__14,
         animation: tl // scrub: true,
 
       });
-    }
+    });
   }
 });
+scrollContainer__13.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__13.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__13,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__12.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__12.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__12,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__11.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__11.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__11,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__10.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__10.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__10,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__9.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__9.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__9,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__8.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__8.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__8,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__7.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__7.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__7,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__6.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__6.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__6,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__5.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__5.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__5,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__4.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__4.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__4,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__3.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__3.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__3,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__2.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__2.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__2,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+});
+scrollContainer__1.addEventListener("scroll", function () {
+  if (creditActive) {
+    scrollContainerContentImg__1.forEach(function (e) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(e, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: e,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: scrollContainer__4,
+        animation: tl // scrub: true,
+
+      });
+    });
+  }
+}); ///// SYNCHRO CAM TO SCROLL /////
 
 function scrollWorkshop(el) {
-  camera.position.z = -20 + el.scrollTop / el.scrollHeight * -120;
+  var posCam = -20 + el.scrollTop / el.scrollHeight * -120;
+  return posCam;
 } ///// ARROWS SCROLL + KEY ECHAP ///////
 
 
@@ -57356,8 +56930,9 @@ document.onkeydown = function (e) {
         functionBtnBackHome();
       }
 
-      if (workshopActive && !creditActive) {
+      if (workshopActive && !creditActive && scrollPossible && !btnPressed) {
         backToPlane();
+        btnPressed = true;
       } else if (workshopActive && creditActive) {
         backToWorkshop();
       }
@@ -57366,7 +56941,7 @@ document.onkeydown = function (e) {
       break;
 
     case 13:
-      if (camera.position.z == 10) {
+      if (camera.position.z == 10 && homeActive) {
         functionBtnStart();
       }
 
@@ -57392,16 +56967,17 @@ document.onkeydown = function (e) {
 
     case 65:
       // DEBUGGER
-      console.log(camera.position.z); // console.log("1/4 : " + contentContainer.scrollHeight / 4)
-      // console.log("2/4 : " + contentContainer.scrollHeight / 4 * 2)
-      // console.log("3/4 : " + contentContainer.scrollHeight / 4 * 3)
-      // console.log("4/4 : " + contentContainer.scrollHeight / 4 * 4)
+      console.log(camera.position.z); // console.log("1/4 : " + contentContainer__14.scrollHeight / 4)
+      // console.log("2/4 : " + contentContainer__14.scrollHeight / 4 * 2)
+      // console.log("3/4 : " + contentContainer__14.scrollHeight / 4 * 3)
+      // console.log("4/4 : " + contentContainer__14.scrollHeight / 4 * 4)
 
-      console.log("pos Fiche Actuelle : " + contentContainer.scrollTop);
-      console.log("pos Crédit Actuelle : " + scrollContainer.scrollTop);
+      console.log("pos Fiche Actuelle : " + contentContainer__14.scrollTop);
+      console.log("pos Crédit Actuelle : " + scrollContainer__14.scrollTop);
       console.log("Crédit : " + creditActive);
       console.log("Workshop : " + workshopActive);
       console.log("Back : " + backPossible);
+      console.log("Plane Alpha : " + materialPlane14.uniforms.alpha.value);
       break;
   }
 };
@@ -57465,7 +57041,7 @@ var render = function render() {
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/particle.png":"assets/img/particle.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/particle.png":"assets/img/particle.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf","../assets/sound/effect/rpz.mp3":"assets/sound/effect/rpz.mp3"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -57493,7 +57069,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58583" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63180" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

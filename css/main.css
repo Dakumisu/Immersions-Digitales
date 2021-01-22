@@ -233,7 +233,8 @@ canvas.hologramDefault {
   pointer-events: all;
 }
 
-.workShopContainer .contentContainer__1 {
+.workShopContainer .contentContainer {
+  display: none;
   width: 100%;
   height: 100vh;
   background: rgba(9, 2, 30, 0.6);
@@ -242,11 +243,11 @@ canvas.hologramDefault {
   scrollbar-width: none;
 }
 
-.workShopContainer .contentContainer__1::-webkit-scrollbar {
+.workShopContainer .contentContainer::-webkit-scrollbar {
   display: none;
 }
 
-.workShopContainer .contentContainer__1 .title {
+.workShopContainer .contentContainer .title {
   text-align: center;
   font-family: "main";
   font-size: 6vw;
@@ -254,7 +255,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__1 {
+.workShopContainer .contentContainer .containerPara__1 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -267,7 +268,7 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__1 .para {
+.workShopContainer .contentContainer .containerPara__1 .para {
   width: 25%;
   margin: 22vh 22vw 22vh 0;
   display: -webkit-box;
@@ -282,20 +283,20 @@ canvas.hologramDefault {
           align-items: flex-end;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__1 .para .subtitle {
+.workShopContainer .contentContainer .containerPara__1 .para .subtitle {
   font-family: "littleTitle";
   font-size: 25px;
   color: #f72585;
   margin: 0;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__1 .para .text {
+.workShopContainer .contentContainer .containerPara__1 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__2 {
+.workShopContainer .contentContainer .containerPara__2 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -308,7 +309,7 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__2 .para {
+.workShopContainer .contentContainer .containerPara__2 .para {
   width: 25%;
   margin: 22vh 0 22vh 22vw;
   display: -webkit-box;
@@ -326,20 +327,20 @@ canvas.hologramDefault {
           justify-content: center;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__2 .para .subtitle {
+.workShopContainer .contentContainer .containerPara__2 .para .subtitle {
   font-family: "littleTitle";
   font-size: 25px;
   color: #f72585;
   margin: 0;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__2 .para .text {
+.workShopContainer .contentContainer .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__3 {
+.workShopContainer .contentContainer .containerPara__3 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -352,7 +353,7 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__3 .para {
+.workShopContainer .contentContainer .containerPara__3 .para {
   width: 25%;
   margin: 22vh 22vw 100vh 0;
   display: -webkit-box;
@@ -367,14 +368,14 @@ canvas.hologramDefault {
           align-items: flex-end;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__3 .para .subtitle {
+.workShopContainer .contentContainer .containerPara__3 .para .subtitle {
   font-family: "littleTitle";
   font-size: 25px;
   color: #f72585;
   margin: 0;
 }
 
-.workShopContainer .contentContainer__1 .containerPara__3 .para .text {
+.workShopContainer .contentContainer .containerPara__3 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
@@ -404,13 +405,11 @@ canvas.hologramDefault {
 }
 
 .creditContainer .scrollContainer {
+  display: none;
   width: 100%;
   height: 100vh;
   margin: 0;
   overflow: scroll;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;

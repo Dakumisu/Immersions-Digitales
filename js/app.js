@@ -80,6 +80,8 @@ import tvModel from "../assets/model/navigation/tv.gltf";
 import camModel from "../assets/model/navigation/cam.gltf";
 import enceinteModel from "../assets/model/navigation/enceinte.gltf";
 
+import rpz from "../assets/sound/effect/rpz.mp3"
+
 ////////// SCENE //////////
 var scene = new THREE.Scene();
 
@@ -617,11 +619,20 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     loaderEnceinte.load(enceinteModel, function(addEnceinte) {
         enceinte = addEnceinte.scene;
         scene.add(enceinte);
+        enceinte.name = 'enceinte';
         enceinte.position.set(-9.2, 5.2,-5)
         enceinte.scale.set(0.0001, 0.0001, 0.0001);
         enceinte.rotation.y = .3*Math.PI;
     });
 }
+
+// c'est un test pour l'interaction sinon c'était "undefind"
+// let enceinteMaterial = new THREE.MeshBasicMaterial({
+//     map: null
+// });
+
+// let enceinteMesh = new THREE.Mesh(enceinte, enceinteMaterial);
+// scene.add(enceinteMesh)
 
 // RIGHT DOOR MODEL
 var rightDoor;
@@ -707,7 +718,7 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30); //WorkShops
 // var planeTrombi = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30); //Trombi ateliers
 
-var planePanneau = new THREE.PlaneGeometry(1.2, 1.2, 1, 1);
+var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1);
 
 /////// INITIATION DES TEXTURES ///////
 let texture1Default = new THREE.TextureLoader().load(atelier1Default)
@@ -1103,8 +1114,8 @@ planeMesh13.position.y = 16;
 planeMesh14.position.y = 17;
 
 scene.add(planeMeshPanneau)
-planeMeshPanneau.position.set(7.2, -3.05, -3)
-planeMeshPanneau.rotation.y = -.9;
+planeMeshPanneau.position.set(7.575, -2.998, -3.755);
+planeMeshPanneau.rotation.set(-.035, -.74, -.07);
 
 // sign.position.set(7.8, -3.05, -4)
 
@@ -1241,177 +1252,320 @@ let cursorIndication = document.querySelector('.cursorIndication');
 let workShopContainer = document.querySelector('.workShopContainer');
 let creditContainer = document.querySelector('.creditContainer');
 
+let contentContainer__14 = document.querySelector('.contentContainer__14');
+let scrollContainer__14 = document.querySelector('.scrollContainer__14');
+let scrollContainerContentImg__14 = document.querySelectorAll('.scrollContainer__14 .contentImg');
+
+let contentContainer__13 = document.querySelector('.contentContainer__13');
+let scrollContainer__13 = document.querySelector('.scrollContainer__13');
+let scrollContainerContentImg__13 = document.querySelectorAll('.scrollContainer__13 .contentImg');
+
+let contentContainer__12 = document.querySelector('.contentContainer__12');
+let scrollContainer__12 = document.querySelector('.scrollContainer__12');
+let scrollContainerContentImg__12 = document.querySelectorAll('.scrollContainer__12 .contentImg');
+
+let contentContainer__11 = document.querySelector('.contentContainer__11');
+let scrollContainer__11 = document.querySelector('.scrollContainer__11');
+let scrollContainerContentImg__11 = document.querySelectorAll('.scrollContainer__11 .contentImg');
+
+let contentContainer__10 = document.querySelector('.contentContainer__10');
+let scrollContainer__10 = document.querySelector('.scrollContainer__10');
+let scrollContainerContentImg__10 = document.querySelectorAll('.scrollContainer__10 .contentImg');
+
+let contentContainer__9 = document.querySelector('.contentContainer__9');
+let scrollContainer__9 = document.querySelector('.scrollContainer__9');
+let scrollContainerContentImg__9 = document.querySelectorAll('.scrollContainer__9 .contentImg');
+
+let contentContainer__8 = document.querySelector('.contentContainer__8');
+let scrollContainer__8 = document.querySelector('.scrollContainer__8');
+let scrollContainerContentImg__8 = document.querySelectorAll('.scrollContainer__8 .contentImg');
+
+let contentContainer__7 = document.querySelector('.contentContainer__7');
+let scrollContainer__7 = document.querySelector('.scrollContainer__7');
+let scrollContainerContentImg__7 = document.querySelectorAll('.scrollContainer__7 .contentImg');
+
+let contentContainer__6 = document.querySelector('.contentContainer__6');
+let scrollContainer__6 = document.querySelector('.scrollContainer__6');
+let scrollContainerContentImg__6 = document.querySelectorAll('.scrollContainer__6 .contentImg');
+
+let contentContainer__5 = document.querySelector('.contentContainer__5');
+let scrollContainer__5 = document.querySelector('.scrollContainer__5');
+let scrollContainerContentImg__5 = document.querySelectorAll('.scrollContainer__5 .contentImg');
+
+let contentContainer__4 = document.querySelector('.contentContainer__4');
+let scrollContainer__4 = document.querySelector('.scrollContainer__4');
+let scrollContainerContentImg__4 = document.querySelectorAll('.scrollContainer__4 .contentImg');
+
+let contentContainer__3 = document.querySelector('.contentContainer__3');
+let scrollContainer__3 = document.querySelector('.scrollContainer__3');
+let scrollContainerContentImg__3 = document.querySelectorAll('.scrollContainer__3 .contentImg');
+
+let contentContainer__2 = document.querySelector('.contentContainer__2');
+let scrollContainer__2 = document.querySelector('.scrollContainer__2');
+let scrollContainerContentImg__2 = document.querySelectorAll('.scrollContainer__2 .contentImg');
+
 let contentContainer__1 = document.querySelector('.contentContainer__1');
 let scrollContainer__1 = document.querySelector('.scrollContainer__1');
-
-let prenom__1 = document.querySelector('.scrollContainer__1 .contentImg__1 .prenom')
-let nom__1 = document.querySelector('.scrollContainer__1 .contentImg__1 .nom')
-let r1__1 = document.querySelector('.scrollContainer__1 .contentImg__1 .r1')
-let r2__1 = document.querySelector('.scrollContainer__1 .contentImg__1 .r2')
-let screenMask__1 = document.querySelector('.scrollContainer__1 .contentImg__1 .screenMask')
-let faceImgPath__1 = document.querySelector('.scrollContainer__1 .contentImg__1 .content')
-let faceImgZoom__1 = document.querySelector('.scrollContainer__1 .contentImg__1 .faceImg')
-
-let prenom__2 = document.querySelector('.scrollContainer__1 .contentImg__2 .prenom')
-let nom__2 = document.querySelector('.scrollContainer__1 .contentImg__2 .nom')
-let r1__2 = document.querySelector('.scrollContainer__1 .contentImg__2 .r1')
-let r2__2 = document.querySelector('.scrollContainer__1 .contentImg__2 .r2')
-let screenMask__2 = document.querySelector('.scrollContainer__1 .contentImg__2 .screenMask')
-let faceImgPath__2 = document.querySelector('.scrollContainer__1 .contentImg__2 .content')
-let faceImgZoom__2 = document.querySelector('.scrollContainer__1 .contentImg__2 .faceImg')
-
-let prenom__3 = document.querySelector('.scrollContainer__1 .contentImg__3 .prenom')
-let nom__3 = document.querySelector('.scrollContainer__1 .contentImg__3 .nom')
-let r1__3 = document.querySelector('.scrollContainer__1 .contentImg__3 .r1')
-let r2__3 = document.querySelector('.scrollContainer__1 .contentImg__3 .r2')
-let screenMask__3 = document.querySelector('.scrollContainer__1 .contentImg__3 .screenMask')
-let faceImgPath__3 = document.querySelector('.scrollContainer__1 .contentImg__3 .content')
-let faceImgZoom__3 = document.querySelector('.scrollContainer__1 .contentImg__3 .faceImg')
-
-let prenom__4 = document.querySelector('.scrollContainer__1 .contentImg__4 .prenom')
-let nom__4 = document.querySelector('.scrollContainer__1 .contentImg__4 .nom')
-let r1__4 = document.querySelector('.scrollContainer__1 .contentImg__4 .r1')
-let r2__4 = document.querySelector('.scrollContainer__1 .contentImg__4 .r2')
-let screenMask__4 = document.querySelector('.scrollContainer__1 .contentImg__4 .screenMask')
-let faceImgPath__4 = document.querySelector('.scrollContainer__1 .contentImg__4 .content')
-let faceImgZoom__4 = document.querySelector('.scrollContainer__1 .contentImg__4 .faceImg')
-
-let prenom__5 = document.querySelector('.scrollContainer__1 .contentImg__5 .prenom')
-let nom__5 = document.querySelector('.scrollContainer__1 .contentImg__5 .nom')
-let r1__5 = document.querySelector('.scrollContainer__1 .contentImg__5 .r1')
-let r2__5 = document.querySelector('.scrollContainer__1 .contentImg__5 .r2')
-let screenMask__5 = document.querySelector('.scrollContainer__1 .contentImg__5 .screenMask')
-let faceImgPath__5 = document.querySelector('.scrollContainer__1 .contentImg__5 .content')
-let faceImgZoom__5 = document.querySelector('.scrollContainer__1 .contentImg__5 .faceImg')
-
-let prenom__6 = document.querySelector('.scrollContainer__1 .contentImg__6 .prenom')
-let nom__6 = document.querySelector('.scrollContainer__1 .contentImg__6 .nom')
-let r1__6 = document.querySelector('.scrollContainer__1 .contentImg__6 .r1')
-let r2__6 = document.querySelector('.scrollContainer__1 .contentImg__6 .r2')
-let screenMask__6 = document.querySelector('.scrollContainer__1 .contentImg__6 .screenMask')
-let faceImgPath__6 = document.querySelector('.scrollContainer__1 .contentImg__6 .content')
-let faceImgZoom__6 = document.querySelector('.scrollContainer__1 .contentImg__6 .faceImg')
+let scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
 
 /////// IMAGES HOVER ///////
-faceImgPath__1.addEventListener('mouseenter', function () {
-    faceImgPath__1.classList.add('switch');
-    faceImgZoom__1.classList.add('switch');
-    prenom__1.classList.add('switch')
-    nom__1.classList.add('switch')
-    r1__1.classList.add('switch')
-    r2__1.classList.add('switch')
-})
+scrollContainerContentImg__14.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__1.addEventListener('mouseleave', function () {
-    faceImgPath__1.classList.remove('switch');
-    faceImgZoom__1.classList.remove('switch');
-    prenom__1.classList.remove('switch')
-    nom__1.classList.remove('switch')
-    r1__1.classList.remove('switch')
-    r2__1.classList.remove('switch')
-})
+scrollContainerContentImg__13.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__2.addEventListener('mouseenter', function () {
-    faceImgPath__2.classList.add('switch');
-    faceImgZoom__2.classList.add('switch');
-    prenom__2.classList.add('switch')
-    nom__2.classList.add('switch')
-    r1__2.classList.add('switch')
-    r2__2.classList.add('switch')
-})
+scrollContainerContentImg__12.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__2.addEventListener('mouseleave', function () {
-    faceImgPath__2.classList.remove('switch');
-    faceImgZoom__2.classList.remove('switch');
-    prenom__2.classList.remove('switch')
-    nom__2.classList.remove('switch')
-    r1__2.classList.remove('switch')
-    r2__2.classList.remove('switch')
-})
+scrollContainerContentImg__11.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__3.addEventListener('mouseenter', function () {
-    faceImgPath__3.classList.add('switch');
-    faceImgZoom__3.classList.add('switch');
-    prenom__3.classList.add('switch')
-    nom__3.classList.add('switch')
-    r1__3.classList.add('switch')
-    r2__3.classList.add('switch')
-})
+scrollContainerContentImg__10.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__3.addEventListener('mouseleave', function () {
-    faceImgPath__3.classList.remove('switch');
-    faceImgZoom__3.classList.remove('switch');
-    prenom__3.classList.remove('switch')
-    nom__3.classList.remove('switch')
-    r1__3.classList.remove('switch')
-    r2__3.classList.remove('switch')
-})
+scrollContainerContentImg__9.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__4.addEventListener('mouseenter', function () {
-    faceImgPath__4.classList.add('switch');
-    faceImgZoom__4.classList.add('switch');
-    prenom__4.classList.add('switch')
-    nom__4.classList.add('switch')
-    r1__4.classList.add('switch')
-    r2__4.classList.add('switch')
-})
+scrollContainerContentImg__8.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__4.addEventListener('mouseleave', function () {
-    faceImgPath__4.classList.remove('switch');
-    faceImgZoom__4.classList.remove('switch');
-    prenom__4.classList.remove('switch')
-    nom__4.classList.remove('switch')
-    r1__4.classList.remove('switch')
-    r2__4.classList.remove('switch')
-})
+scrollContainerContentImg__7.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__5.addEventListener('mouseenter', function () {
-    faceImgPath__5.classList.add('switch');
-    faceImgZoom__5.classList.add('switch');
-    prenom__5.classList.add('switch')
-    nom__5.classList.add('switch')
-    r1__5.classList.add('switch')
-    r2__5.classList.add('switch')
-})
+scrollContainerContentImg__6.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__5.addEventListener('mouseleave', function () {
-    faceImgPath__5.classList.remove('switch');
-    faceImgZoom__5.classList.remove('switch');
-    prenom__5.classList.remove('switch')
-    nom__5.classList.remove('switch')
-    r1__5.classList.remove('switch')
-    r2__5.classList.remove('switch')
-})
+scrollContainerContentImg__5.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__6.addEventListener('mouseenter', function () {
-    faceImgPath__6.classList.add('switch');
-    faceImgZoom__6.classList.add('switch');
-    prenom__6.classList.add('switch')
-    nom__6.classList.add('switch')
-    r1__6.classList.add('switch')
-    r2__6.classList.add('switch')
-})
+scrollContainerContentImg__4.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
-faceImgPath__6.addEventListener('mouseleave', function () {
-    faceImgPath__6.classList.remove('switch');
-    faceImgZoom__6.classList.remove('switch');
-    prenom__6.classList.remove('switch')
-    nom__6.classList.remove('switch')
-    r1__6.classList.remove('switch')
-    r2__6.classList.remove('switch')
-})
+scrollContainerContentImg__3.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
+
+scrollContainerContentImg__2.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
+
+scrollContainerContentImg__1.forEach(e => {
+    e.children[2].children[3].addEventListener('mouseenter', function () {
+        e.children[0].classList.add('switch')
+        e.children[1].classList.add('switch')
+        e.children[2].children[0].classList.add('switch')
+        e.children[2].children[1].classList.add('switch')
+        e.children[2].children[3].classList.add('switch')
+    })
+    e.children[2].children[3].addEventListener('mouseleave', function () {
+        e.children[0].classList.remove('switch')
+        e.children[1].classList.remove('switch')
+        e.children[2].children[0].classList.remove('switch')
+        e.children[2].children[1].classList.remove('switch')
+        e.children[2].children[3].classList.remove('switch')
+    })
+});
 
 let homeActive = true;
 let hoverPlane = true;
 let workshopActive = false;
 let creditActive = false;
+let switchBtn = false;
 
 let backPossible = true;
 let clickPossible = true;
-let scrollPossible = true;
+let scrollPossible = false;
+let btnPressed = false;
 
 let isScrollDown = false;
 let isScrollUp = false;
+
+let idPlane = [
+    false, false, false, false, false, false, false, false, false, false, false, false, false, false
+]
+
+let varDelay = .0
 
 window.addEventListener('load', function() {
     TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
@@ -1436,23 +1590,18 @@ window.addEventListener('load', function() {
 })
 
 
-let switchBtn = false;
-
 musicBtn.addEventListener('click', function(){
-
     if(switchBtn == false){
     TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 });   
     switchBtn = true;    
-}
-
-else{
+    } else {
     TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 }); 
     switchBtn = false;
-}
+    }
 
     onMusic.classList.toggle('switch');
     offMusic.classList.toggle('switch')
@@ -1463,6 +1612,17 @@ else{
         })
     },350)   
 })
+
+let soundEffectRpz = new Audio(rpz)
+soundEffectRpz.volume = 0.4
+// let test = scene.children[33]
+// console.log(scene.children)
+// console.log(planeMeshPanneau)
+// console.log(enceinteMesh)
+// enceinteMesh.on('click', function(ev) {
+//     soundEffectRpz.play();
+//     console.log(ev)
+// })
 // var shouldStop = false;
 
   
@@ -1490,398 +1650,248 @@ else{
 // //   })
 
 
+function cursorHoverIn() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+        gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+        gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
+        gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+        gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
+        indicClickOnPlane.classList.add("planeHover")
+    }
+}
+
+function cursorHoverOut() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+        gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+        gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
+        gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
+        gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
+        indicClickOnPlane.classList.remove("planeHover")
+    }
+}
+
 /////// PLANE HOVER SHADERS EFFECT ///////
 let colorCursorHover = "#f72585";
 let colorCursorDefault = "#4cc9f0";
 
-planeMesh1.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
-        gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane1.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
+planeMesh14.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17))) {
+        gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane14.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
     }
 });
-planeMesh1.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane1.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh2.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
-        console.log(ev)
-        gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane2.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh2.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane2.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh3.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
-        console.log(ev)
-        gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane3.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh3.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane3.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh4.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
-        console.log(ev)
-        gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane4.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh4.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane4.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh5.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
-        console.log(ev)
-        gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane5.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh5.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane5.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh6.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
-        console.log(ev)
-        gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane6.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-       if (!window.matchMedia("(max-width: 1024px)").matches) {
-           gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh6.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane6.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh7.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
-        console.log(ev)
-        gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane7.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-       if (!window.matchMedia("(max-width: 1024px)").matches) {
-           gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh7.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane7.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh8.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -10.5 && planeAxe.position.y >= -11)) {
-        console.log(ev)
-        gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane8.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh8.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane8.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh9.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
-        console.log(ev)
-        gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane9.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh9.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane9.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }   
-});
-
-planeMesh10.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
-        console.log(ev)
-        gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane10.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh10.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane10.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh11.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
-        console.log(ev)
-        gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane11.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh11.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane11.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-    }
-});
-
-planeMesh12.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
-        console.log(ev)
-        gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane12.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
-    }
-});
-planeMesh12.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane12.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
+planeMesh14.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane14.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
     }
 });
 
 planeMesh13.on('mouseover', function(ev) {
-    if (ev && workshopActive == false && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16))) {
         console.log(ev)
         gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane13.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
+        cursorHoverIn()
     }
 });
 planeMesh13.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
+    if (ev && !workshopActive) {
         gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane13.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
+        cursorHoverOut()
     }
 });
 
-planeMesh14.on('mouseover', function(ev) {
-    if (ev && (hoverPlane && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17))) {
-        console.log(ev.intersects)
-        gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
-        gsap.to(materialPlane14.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-            indicClickOnPlane.classList.add("planeHover")
-        }
+planeMesh12.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15))) {
+        console.log(ev)
+        gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane12.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
     }
 });
-planeMesh14.on('mouseout', function(ev) {
-    if (ev && workshopActive == false) {
-        gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
-        gsap.to(materialPlane14.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
+planeMesh12.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane12.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh11.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14))) {
+        console.log(ev)
+        gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane11.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh11.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane11.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh10.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13))) {
+        console.log(ev)
+        gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane10.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh10.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane10.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh9.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12))) {
+        console.log(ev)
+        gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane9.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh9.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane9.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }   
+});
+
+planeMesh8.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -10.5 && planeAxe.position.y >= -11))) {
+        gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane8.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh8.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane8.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh7.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10))) {
+        console.log(ev)
+        gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane7.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh7.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane7.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh6.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9))) {
+        console.log(ev)
+        gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane6.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh6.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane6.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh5.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8))) {
+        console.log(ev)
+        gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane5.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh5.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane5.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh4.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7))) {
+        console.log(ev)
+        gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane4.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh4.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane4.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh3.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6))) {
+        console.log(ev)
+        gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane3.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh3.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane3.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh2.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5))) {
+        console.log(ev)
+        gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane2.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh2.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane2.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
+    }
+});
+
+planeMesh1.on('mouseover', function(ev) {
+    if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4))) {
+        gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
+        gsap.to(materialPlane1.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
+        cursorHoverIn()
+    }
+});
+planeMesh1.on('mouseout', function(ev) {
+    if (ev && !workshopActive) {
+        gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
+        gsap.to(materialPlane1.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
+        cursorHoverOut()
     }
 });
 
@@ -1922,41 +1932,93 @@ el.addEventListener('swiperight', () => {
 // el.addEventListener('tap', () => {
 // });
 
+function animationEnterWorkshop() {
+    if (idPlane[14]) {
+        contentContainer__14.style.display = "block"
+        scrollContainer__14.style.display = "flex"
+    } else if (idPlane[13]) {
+        contentContainer__13.style.display = "block"
+        scrollContainer__13.style.display = "flex"
+    } else if (idPlane[12]) {
+        contentContainer__12.style.display = "block"
+        scrollContainer__12.style.display = "flex"
+    } else if (idPlane[11]) {
+        contentContainer__11.style.display = "block"
+        scrollContainer__11.style.display = "flex"
+    } else if (idPlane[10]) {
+        contentContainer__10.style.display = "block"
+        scrollContainer__10.style.display = "flex"
+    } else if (idPlane[9]) {
+        contentContainer__9.style.display = "block"
+        scrollContainer__9.style.display = "flex"
+    } else if (idPlane[8]) {
+        contentContainer__8.style.display = "block"
+        scrollContainer__8.style.display = "flex"
+    } else if (idPlane[7]) {
+        contentContainer__7.style.display = "block"
+        scrollContainer__7.style.display = "flex"
+    } else if (idPlane[6]) {
+        contentContainer__6.style.display = "block"
+        scrollContainer__6.style.display = "flex"
+    } else if (idPlane[5]) {
+        contentContainer__5.style.display = "block"
+        scrollContainer__5.style.display = "flex"
+    } else if (idPlane[4]) {
+        contentContainer__4.style.display = "block"
+        scrollContainer__4.style.display = "flex"
+    } else if (idPlane[3]) {
+        contentContainer__3.style.display = "block"
+        scrollContainer__3.style.display = "flex"
+    } else if (idPlane[2]) {
+        contentContainer__2.style.display = "block"
+        scrollContainer__2.style.display = "flex"
+    } else if (idPlane[1]) {
+        contentContainer__1.style.display = "block"
+        scrollContainer__1.style.display = "flex"
+    }
+
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    
+    TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
+    TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
+
+    hideTimeline()
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+        gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+        gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
+        gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
+        gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
+        gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
+        indicClickOnPlane.classList.remove("planeHover")
+    }
+
+    gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
+
+    setTimeout(function() {
+        if(workshopActive) {
+            workShopContainer.classList.add('switchPlane');
+            scrollPossible = true
+        }
+    }, 3500)
+    
+    workshopActive = true
+    hoverPlane = false
+    clickPossible = false
+}
+
 ///// PLANES CLICK /////
 function plane14Click() {
     if (clickPossible && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[14] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh14.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-        
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-
-        hideTimeline()
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-
-        gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
-        gsap.to(contentContainer__1, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
-        setTimeout(function() {
-            if(workshopActive)
-                workShopContainer.classList.add('switchPlane');
-        }, 3500)
-        
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__14, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2}) 
     }
 }
 planeMesh14.on('click', function() {
@@ -1965,28 +2027,11 @@ planeMesh14.on('click', function() {
 
 function plane13Click() {
     if (clickPossible && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[13] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh13.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-        
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-        
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__13, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})  
     }
 }
 planeMesh13.on('click', function() {
@@ -1995,28 +2040,11 @@ planeMesh13.on('click', function() {
 
 function plane12Click() {
     if (clickPossible && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[12] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh12.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-        
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__12, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})  
     }
 }
 planeMesh12.on('click', function() {
@@ -2025,28 +2053,11 @@ planeMesh12.on('click', function() {
 
 function plane11Click() {
     if (clickPossible && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[11] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh11.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-        
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__11, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh11.on('click', function() {
@@ -2055,28 +2066,11 @@ planeMesh11.on('click', function() {
 
 function plane10Click() {
     if (clickPossible && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[10] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh10.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-        
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__10, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh10.on('click', function() {
@@ -2085,28 +2079,11 @@ planeMesh10.on('click', function() {
 
 function plane9Click() {
     if (clickPossible && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[9] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh9.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__9, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh9.on('click', function() {
@@ -2115,28 +2092,11 @@ planeMesh9.on('click', function() {
 
 function plane8Click() {
     if (clickPossible && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -11)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[8] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh8.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__8, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh8.on('click', function() {
@@ -2145,28 +2105,11 @@ planeMesh8.on('click', function() {
 
 function plane7Click() {
     if (clickPossible && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[7] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh7.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__7, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh7.on('click', function() {
@@ -2175,28 +2118,11 @@ planeMesh7.on('click', function() {
 
 function plane6Click() {
     if (clickPossible && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[6] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh6.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__6, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh6.on('click', function() {
@@ -2205,28 +2131,11 @@ planeMesh6.on('click', function() {
 
 function plane5Click() {
     if (clickPossible && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[5] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh5.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__5, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh5.on('click', function() {
@@ -2235,28 +2144,11 @@ planeMesh5.on('click', function() {
 
 function plane4Click() {
     if (clickPossible && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[4] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh4.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__4, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh4.on('click', function() {
@@ -2265,28 +2157,11 @@ planeMesh4.on('click', function() {
 
 function plane3Click() {
     if (clickPossible && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[3] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh3.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__3, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh3.on('click', function() {
@@ -2295,28 +2170,11 @@ planeMesh3.on('click', function() {
 
 function plane2Click() {
     if (clickPossible && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[2] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh2.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__2, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh2.on('click', function() {
@@ -2325,28 +2183,11 @@ planeMesh2.on('click', function() {
 
 function plane1Click() {
     if (clickPossible && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
-        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
-        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        idPlane[1] = true
+        animationEnterWorkshop();
         gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: 0.0, ease: "power3.inOut" });
         gsap.to(planeMesh1.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
-    
-        TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-    
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
-            gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-            indicClickOnPlane.classList.remove("planeHover")
-        }
-        workshopActive = true
-        hoverPlane = false
-        clickPossible = false
+        gsap.to(contentContainer__1, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
     }
 }
 planeMesh1.on('click', function() {
@@ -2720,19 +2561,107 @@ btnBackHome.addEventListener('mouseleave', function() {
     cursorShapeIn.classList.remove('mouseover');
 })
 
-function backToPlane() {
-    let varDelay = .0
-    let taillePopUpSplit = contentContainer__1.scrollHeight / 4
-    if (camera.position.z >= -106 && contentContainer__1.scrollTop >= taillePopUpSplit * 2 && contentContainer__1.scrollTop < taillePopUpSplit * 3) {
+function posComparedToElementHeight(el) {
+    let taillePopUpSplit = el.scrollHeight / 4
+
+    if (camera.position.z >= -106 && el.scrollTop >= taillePopUpSplit * 2 && el.scrollTop < taillePopUpSplit * 3) {
         varDelay = .75
-        gsap.to(contentContainer__1, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
-        console.log("loin")
-    } else if (contentContainer__1.scrollTop < taillePopUpSplit * 2 && contentContainer__1.scrollTop >= taillePopUpSplit) {
+        gsap.to(el, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
+    } else if (el.scrollTop < taillePopUpSplit * 2 && el.scrollTop >= taillePopUpSplit) {
         varDelay = .50
-        gsap.to(contentContainer__1, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
-        console.log("milieu")
+        gsap.to(el, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
     } else {
-        gsap.to(contentContainer__1, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
+        gsap.to(el, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
+    }
+
+    return varDelay
+}
+
+function backToPlane() {
+    if (idPlane[14]) {
+        varDelay = posComparedToElementHeight(contentContainer__14)
+        setTimeout(function() {
+            contentContainer__14.style.display = "none"
+            scrollContainer__14.style.display = "none"
+        }, 2700)
+    } else if (idPlane[13]) {
+        varDelay = posComparedToElementHeight(contentContainer__13)
+        setTimeout(function() {
+            contentContainer__13.style.display = "none"
+            scrollContainer__13.style.display = "none"
+        }, 2700)
+    } else if (idPlane[12]) {
+        varDelay = posComparedToElementHeight(contentContainer__12)
+        setTimeout(function() {
+            contentContainer__12.style.display = "none"
+            scrollContainer__12.style.display = "none"
+        }, 2700)
+    } else if (idPlane[11]) {
+        varDelay = posComparedToElementHeight(contentContainer__11)
+        setTimeout(function() {
+            contentContainer__11.style.display = "none"
+            scrollContainer__11.style.display = "none"
+        }, 2700)
+    } else if (idPlane[10]) {
+        varDelay = posComparedToElementHeight(contentContainer__10)
+        setTimeout(function() {
+            contentContainer__10.style.display = "none"
+            scrollContainer__10.style.display = "none"
+        }, 2700)
+    } else if (idPlane[9]) {
+        varDelay = posComparedToElementHeight(contentContainer__9)
+        setTimeout(function() {
+            contentContainer__9.style.display = "none"
+            scrollContainer__9.style.display = "none"
+        }, 2700)
+    } else if (idPlane[8]) {
+        varDelay = posComparedToElementHeight(contentContainer__8)
+        setTimeout(function() {
+            contentContainer__8.style.display = "none"
+            scrollContainer__8.style.display = "none"
+        }, 2700)
+    } else if (idPlane[7]) {
+        varDelay = posComparedToElementHeight(contentContainer__7)
+        setTimeout(function() {
+            contentContainer__7.style.display = "none"
+            scrollContainer__7.style.display = "none"
+        }, 2700)
+    } else if (idPlane[6]) {
+        varDelay = posComparedToElementHeight(contentContainer__6)
+        setTimeout(function() {
+            contentContainer__6.style.display = "none"
+            scrollContainer__6.style.display = "none"
+        }, 2700)
+    } else if (idPlane[5]) {
+        varDelay = posComparedToElementHeight(contentContainer__5)
+        setTimeout(function() {
+            contentContainer__5.style.display = "none"
+            scrollContainer__5.style.display = "none"
+        }, 2700)
+    } else if (idPlane[4]) {
+        varDelay = posComparedToElementHeight(contentContainer__4)
+        setTimeout(function() {
+            contentContainer__4.style.display = "none"
+            scrollContainer__4.style.display = "none"
+        }, 2700)
+    } else if (idPlane[3]) {
+        varDelay = posComparedToElementHeight(contentContainer__3)
+        setTimeout(function() {
+            contentContainer__3.style.display = "none"
+            scrollContainer__3.style.display = "none"
+        }, 2700)
+    } else if (idPlane[2]) {
+        varDelay = posComparedToElementHeight(contentContainer__2)
+        setTimeout(function() {
+            contentContainer__2.style.display = "none"
+            scrollContainer__2.style.display = "none"
+        }, 2700)
+    } else if (idPlane[1]) {
+        varDelay = posComparedToElementHeight(contentContainer__1)
+        setTimeout(function() {
+            contentContainer__1.style.display = "none"
+            scrollContainer__1.style.display = "none"
+        }, 2700)
     }
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -2741,11 +2670,13 @@ function backToPlane() {
         gsap.to(camera.position, 3 , { z: 3.7, ease: "power3.inOut" })
         setTimeout(function() {
             creditContainer.classList.remove('switchStreet')
-            scrollPossible = true
+            scrollPossible = false
         }, 1500)
     } else {
         gsap.to(camera.position, 3, { z: 4.5, ease: "power3.inOut" })
     }
+
+    revealTimeline()
     
     gsap.to(logo.position, 1.5, { x: 0, ease: "power3.inOut", delay: 0.75 + varDelay })
     gsap.to(logo.rotation, 1.5, { z: .25, ease: "power3.inOut", delay: 1.5 + varDelay })
@@ -2817,20 +2748,93 @@ function backToPlane() {
     gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut", delay: 0.5 })
     workShopContainer.classList.remove('switchPlane');
 
-    hoverPlane = true
-    clickPossible = true
+    setTimeout(function() {
+        hoverPlane = true
+        clickPossible = true
+        idPlane = [
+            false, false, false, false, false, false, false, false, false, false, false, false, false, false
+        ]
+    }, 2500)
 
     setTimeout(function() {
         workshopActive = false;
+        btnPressed = false
+        contentContainer__14.scrollTop = 0
+        contentContainer__13.scrollTop = 0
+        contentContainer__12.scrollTop = 0
+        contentContainer__11.scrollTop = 0
+        contentContainer__10.scrollTop = 0
+        contentContainer__9.scrollTop = 0
+        contentContainer__8.scrollTop = 0
+        contentContainer__7.scrollTop = 0
+        contentContainer__6.scrollTop = 0
+        contentContainer__5.scrollTop = 0
+        contentContainer__4.scrollTop = 0
+        contentContainer__3.scrollTop = 0
+        contentContainer__2.scrollTop = 0
         contentContainer__1.scrollTop = 0
     }, 2500)
 }
 
 function backToWorkshop() {
     if (camera.position.z <= -185) {
-        let lastPosScroll = contentContainer__1.scrollTop
-        contentContainer__1.scrollTop = lastPosScroll - 50
-        gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__1), ease: "power3.inOut" })
+        if (idPlane[14]) {
+            let lastPosScroll__14 = contentContainer__14.scrollTop
+            contentContainer__14.scrollTop = lastPosScroll__14 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__14), ease: "power3.inOut" })
+        } else if (idPlane[13]) {
+            let lastPosScroll__13 = contentContainer__13.scrollTop
+            contentContainer__13.scrollTop = lastPosScroll__13 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__13), ease: "power3.inOut" })
+        } else if (idPlane[12]) {
+            let lastPosScroll__12 = contentContainer__12.scrollTop
+            contentContainer__12.scrollTop = lastPosScroll__12 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__12), ease: "power3.inOut" })
+        } else if (idPlane[11]) {
+            let lastPosScroll__11 = contentContainer__11.scrollTop
+            contentContainer__11.scrollTop = lastPosScroll__11 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__11), ease: "power3.inOut" })
+        } else if (idPlane[10]) {
+            let lastPosScroll__10 = contentContainer__10.scrollTop
+            contentContainer__10.scrollTop = lastPosScroll__10 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__10), ease: "power3.inOut" })
+        } else if (idPlane[9]) {
+            let lastPosScroll__9 = contentContainer__9.scrollTop
+            contentContainer__9.scrollTop = lastPosScroll__9 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__9), ease: "power3.inOut" })
+        } else if (idPlane[8]) {
+            let lastPosScroll__8 = contentContainer__8.scrollTop
+            contentContainer__8.scrollTop = lastPosScroll__8 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__8), ease: "power3.inOut" })
+        } else if (idPlane[7]) {
+            let lastPosScroll__7 = contentContainer__7.scrollTop
+            contentContainer__7.scrollTop = lastPosScroll__7 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__7), ease: "power3.inOut" })
+        } else if (idPlane[6]) {
+            let lastPosScroll__6 = contentContainer__6.scrollTop
+            contentContainer__6.scrollTop = lastPosScroll__6 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__6), ease: "power3.inOut" })
+        } else if (idPlane[5]) {
+            let lastPosScroll__5 = contentContainer__5.scrollTop
+            contentContainer__5.scrollTop = lastPosScroll__5 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__5), ease: "power3.inOut" })
+        } else if (idPlane[4]) {
+            let lastPosScroll__4 = contentContainer__4.scrollTop
+            contentContainer__4.scrollTop = lastPosScroll__4 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__4), ease: "power3.inOut" })
+        } else if (idPlane[3]) {
+            let lastPosScroll__3 = contentContainer__3.scrollTop
+            contentContainer__3.scrollTop = lastPosScroll__3 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__3), ease: "power3.inOut" })
+        } else if (idPlane[2]) {
+            let lastPosScroll__2 = contentContainer__2.scrollTop
+            contentContainer__2.scrollTop = lastPosScroll__2 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__2), ease: "power3.inOut" })
+        } else if (idPlane[1]) {
+            let lastPosScroll__1 = contentContainer__1.scrollTop
+            contentContainer__1.scrollTop = lastPosScroll__1 - 50
+            gsap.to(camera.position, 3, { z: scrollWorkshop(contentContainer__1), ease: "power3.inOut" })
+        }
         gsap.to(leftDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
         gsap.to(rightDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
         gsap.to(creditContainer, 2.5, { opacity: 0, ease: "Power4.easeOut" })
@@ -4223,15 +4227,136 @@ function scrollWheel(event) {
         }
     } else if (creditActive) {
         if (checkScrollDirectionIsUp(event)) { // SCROLL UP
-            if (camera.position.z <= -185 && scrollContainer__1.scrollTop == 0) {
-                backToWorkshop();
+            if (idPlane[14]) {
+                if (camera.position.z <= -185 && scrollContainer__14.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[13]) {
+                if (camera.position.z <= -185 && scrollContainer__13.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[12]) {
+                if (camera.position.z <= -185 && scrollContainer__12.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[11]) {
+                if (camera.position.z <= -185 && scrollContainer__11.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[10]) {
+                if (camera.position.z <= -185 && scrollContainer__10.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[9]) {
+                if (camera.position.z <= -185 && scrollContainer__9.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[8]) {
+                if (camera.position.z <= -185 && scrollContainer__8.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[7]) {
+                if (camera.position.z <= -185 && scrollContainer__7.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[6]) {
+                if (camera.position.z <= -185 && scrollContainer__6.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[5]) {
+                if (camera.position.z <= -185 && scrollContainer__5.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[4]) {
+                if (camera.position.z <= -185 && scrollContainer__4.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[3]) {
+                if (camera.position.z <= -185 && scrollContainer__3.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[2]) {
+                if (camera.position.z <= -185 && scrollContainer__2.scrollTop == 0) {
+                    backToWorkshop();
+                }
+            } else if (idPlane[1]) {
+                if (camera.position.z <= -185 && scrollContainer__1.scrollTop == 0) {
+                    backToWorkshop();
+                }
             }
         }
     } else if (workshopActive) {
         if (checkScrollDirectionIsUp(event)) { // SCROLL UP
-            if (contentContainer__1.scrollTop == 0 && scrollPossible) {
-                backToPlane();
-                scrollPossible = false
+            if (idPlane[14]) {
+                if (contentContainer__14.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[13]) {
+                if (contentContainer__13.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[12]) {
+                if (contentContainer__12.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[11]) {
+                if (contentContainer__11.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[10]) {
+                if (contentContainer__10.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[9]) {
+                if (contentContainer__9.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[8]) {
+                if (contentContainer__8.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[7]) {
+                if (contentContainer__7.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[6]) {
+                if (contentContainer__6.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[5]) {
+                if (contentContainer__5.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[4]) {
+                if (contentContainer__4.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[3]) {
+                if (contentContainer__3.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[2]) {
+                if (contentContainer__2.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
+            } else if (idPlane[1]) {
+                if (contentContainer__1.scrollTop == 0 && scrollPossible) {
+                    backToPlane();
+                    scrollPossible = false
+                }
             }
         }
     }
@@ -4244,66 +4369,388 @@ function checkScrollDirectionIsUp(event) { //REVERSE SCROLL
     return event.deltaY < 0;
 }
 
-///// WORKSHOP SCROLL /////
+function scrollIntoWorkshop(elContent, elCredit) {
+    camera.position.z = scrollWorkshop(elContent)
+    if (window.matchMedia("(max-width: 1440px)").matches) {
+        if (camera.position.z <= -109) {
+            elCredit.scrollTop = 0
+            creditContainer.classList.add('switchStreet')
+            workShopContainer.classList.remove('switchPlane');
+            gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+            gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+            gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
+            gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
+            gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+            backPossible = false;
+            setTimeout(function() {
+                creditActive = true
+            }, 1000)
+            setTimeout(function() {
+                backPossible = true
+            }, 3000)
+        } 
+    } else {
+        if (camera.position.z <= -106) {
+            elCredit.scrollTop = 0
+            creditContainer.classList.add('switchStreet')
+            workShopContainer.classList.remove('switchPlane');
+            gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+            gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+            gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
+            gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
+            gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+            backPossible = false;
+            setTimeout(function() {
+                creditActive = true
+            }, 1000)
+            setTimeout(function() {
+                backPossible = true
+            }, 3000)
+        } 
+    }
+}
+
+///// WORKSHOP SCROLL + CREDIT ENTER /////
+contentContainer__14.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[14]) {
+            scrollIntoWorkshop(contentContainer__14, scrollContainer__14);
+        }
+    }
+})
+
+contentContainer__13.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[13]) {
+            scrollIntoWorkshop(contentContainer__13, scrollContainer__13);
+        }
+    }
+})
+
+contentContainer__12.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[12]) {
+            scrollIntoWorkshop(contentContainer__12, scrollContainer__12);
+        }
+    }
+})
+
+contentContainer__11.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[11]) {
+            scrollIntoWorkshop(contentContainer__11, scrollContainer__11);
+        }
+    }
+})
+
+contentContainer__10.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[10]) {
+            scrollIntoWorkshop(contentContainer__10, scrollContainer__10);
+        }
+    }
+})
+
+contentContainer__9.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[9]) {
+            scrollIntoWorkshop(contentContainer__9, scrollContainer__9);
+        }
+    }
+})
+
+contentContainer__8.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[8]) {
+            scrollIntoWorkshop(contentContainer__8, scrollContainer__8);
+        }
+    }
+})
+
+contentContainer__7.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[7]) {
+            scrollIntoWorkshop(contentContainer__7, scrollContainer__7);
+        }
+    }
+})
+
+contentContainer__6.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[6]) {
+            scrollIntoWorkshop(contentContainer__6, scrollContainer__6);
+        }
+    }
+})
+
+contentContainer__5.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[5]) {
+            scrollIntoWorkshop(contentContainer__5, scrollContainer__5);
+        }
+    }
+})
+
+contentContainer__4.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[4]) {
+            scrollIntoWorkshop(contentContainer__4, scrollContainer__4);
+        }
+    }
+})
+
+contentContainer__3.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[3]) {
+            scrollIntoWorkshop(contentContainer__3, scrollContainer__3);
+        }
+    }
+})
+
+contentContainer__2.addEventListener('scroll', function() {
+    if (!creditActive) {
+        if (idPlane[2]) {
+            scrollIntoWorkshop(contentContainer__2, scrollContainer__2);
+        }
+    }
+})
+
 contentContainer__1.addEventListener('scroll', function() {
     if (!creditActive) {
-        camera.position.z = scrollWorkshop(contentContainer__1)
-        if (window.matchMedia("(max-width: 1440px)").matches) {
-            if (camera.position.z <= -109) {
-                scrollContainer__1.scrollTop = 0
-                creditContainer.classList.add('switchStreet')
-                workShopContainer.classList.remove('switchPlane');
-                gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-                gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-                gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
-                gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
-                gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
-                backPossible = false;
-                setTimeout(function() {
-                    creditActive = true
-                }, 1000)
-                setTimeout(function() {
-                    backPossible = true
-                }, 3000)
-            } 
-        } else {
-            if (camera.position.z <= -106) {
-                scrollContainer__1.scrollTop = 0
-                creditContainer.classList.add('switchStreet')
-                workShopContainer.classList.remove('switchPlane');
-                gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-                gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-                gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
-                gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
-                gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
-                backPossible = false;
-                setTimeout(function() {
-                    creditActive = true
-                }, 1000)
-                setTimeout(function() {
-                    backPossible = true
-                }, 3000)
-            } 
+        if (idPlane[1]) {
+            scrollIntoWorkshop(contentContainer__1, scrollContainer__1);
         }
+    }
+})
+
+
+///// CREDIT SCROLL TRIGGER /////
+scrollContainer__14.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__14.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__14,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__13.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__13.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__13,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__12.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__12.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__12,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__11.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__11.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__11,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__10.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__10.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__10,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__9.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__9.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__9,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__8.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__8.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__8,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__7.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__7.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__7,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__6.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__6.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__6,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__5.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__5.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__5,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__4.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__4.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__4,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__3.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__3.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__3,
+                animation: tl,
+                // scrub: true,
+            })
+        });
+    }
+})
+
+scrollContainer__2.addEventListener("scroll", function() {
+    if (creditActive) {
+        scrollContainerContentImg__2.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: e,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: scrollContainer__2,
+                animation: tl,
+                // scrub: true,
+            })
+        });
     }
 })
 
 scrollContainer__1.addEventListener("scroll", function() {
     if (creditActive) {
-        for (let i = 1; i <= 6; i++) {
-            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(".contentImg__"+i, { opacity: 1, duration: 1 })
+        scrollContainerContentImg__1.forEach(e => {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
             ScrollTrigger.create({
-                trigger: ".contentImg__"+i,
+                trigger: e,
                 start: "10% 50%",
                 // end: "+=300",
-                scroller: ".scrollContainer__1",
+                scroller: scrollContainer__4,
                 animation: tl,
                 // scrub: true,
             })
-        }
+        });
     }
 })
 
+
+///// SYNCHRO CAM TO SCROLL /////
 function scrollWorkshop(el) {
     let posCam = -20 + (el.scrollTop / el.scrollHeight) * -120
     return posCam
@@ -4340,15 +4787,16 @@ document.onkeydown = function(e) {
             if (camera.position.z == 3.7 && !workshopActive) {
                 functionBtnBackHome();
             }
-            if (workshopActive && !creditActive) {
+            if (workshopActive && !creditActive && scrollPossible && !btnPressed) {
                 backToPlane();
+                btnPressed = true;
             } else if (workshopActive && creditActive) {
                 backToWorkshop();
             }
             console.log("echap")
             break;
         case 13:
-            if (camera.position.z == 10) {
+            if (camera.position.z == 10 && homeActive) {
                 functionBtnStart();
             }
             if (!homeActive) {
@@ -4371,15 +4819,16 @@ document.onkeydown = function(e) {
             break;
         case 65: // DEBUGGER
             console.log(camera.position.z)
-            // console.log("1/4 : " + contentContainer__1.scrollHeight / 4)
-            // console.log("2/4 : " + contentContainer__1.scrollHeight / 4 * 2)
-            // console.log("3/4 : " + contentContainer__1.scrollHeight / 4 * 3)
-            // console.log("4/4 : " + contentContainer__1.scrollHeight / 4 * 4)
-            console.log("pos Fiche Actuelle : " + contentContainer__1.scrollTop)
-            console.log("pos Crédit Actuelle : " + scrollContainer__1.scrollTop)
+            // console.log("1/4 : " + contentContainer__14.scrollHeight / 4)
+            // console.log("2/4 : " + contentContainer__14.scrollHeight / 4 * 2)
+            // console.log("3/4 : " + contentContainer__14.scrollHeight / 4 * 3)
+            // console.log("4/4 : " + contentContainer__14.scrollHeight / 4 * 4)
+            console.log("pos Fiche Actuelle : " + contentContainer__14.scrollTop)
+            console.log("pos Crédit Actuelle : " + scrollContainer__14.scrollTop)
             console.log("Crédit : " + creditActive)
             console.log("Workshop : " + workshopActive)
             console.log("Back : " + backPossible)
+            console.log("Plane Alpha : " + materialPlane14.uniforms.alpha.value)
             break;
     }
 };
