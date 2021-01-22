@@ -1,15 +1,17 @@
 import * as THREE from "three";
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import { Draco } from 'draco3d';
+// import { GLTFPipeline } from 'gltf-pipeline'
+// import { THREEGLTFLoader, THREEDRACOLoader } from 'three-loaders'
 import * as POSTPROCESSING from "postprocessing";
 import { Interaction } from 'three.interaction';
 import TouchSweep from 'touchsweep';
 
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+
 import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import fragmentShaderVertical from "./libs/glsl/fragmentVertical.glsl";
-
 
 import displacement from "../assets/img/displaces/displace.jpg";
 import displacement1 from "../assets/img/displaces/displace.png";
@@ -22,7 +24,7 @@ import displacement7 from "../assets/img/displaces/displace7.jpg";
 import displacement8 from "../assets/img/displaces/displace8.jpg";
 import displacement9 from "../assets/img/displaces/displace9.png";
 
-import atelier1Default from "../assets/img/ateliers/atelier1Default.png"; // Site Web / crédit
+import atelier1Default from "../assets/img/ateliers/atelier1Default.png"; // Backstage
 import atelier2Default from "../assets/img/ateliers/atelier2Default.png"; // FTM
 import atelier3Default from "../assets/img/ateliers/atelier3Default.png"; // VR
 import atelier4Default from "../assets/img/ateliers/atelier4Default.png"; // init dev web
@@ -37,7 +39,7 @@ import atelier12Default from "../assets/img/ateliers/atelier12Default.png"; // f
 import atelier13Default from "../assets/img/ateliers/atelier13Default.png"; // mapping
 import atelier14Default from "../assets/img/ateliers/atelier14Default.png"; // audiovisuel
 
-import atelier1Hover from "../assets/img/ateliers/atelier1Hover.png"; // Site Web / crédit
+import atelier1Hover from "../assets/img/ateliers/atelier1Hover.png"; // Backstage
 import atelier2Hover from "../assets/img/ateliers/atelier2Hover.png"; // FTM
 import atelier3Hover from "../assets/img/ateliers/atelier3Hover.png"; // VR
 import atelier4Hover from "../assets/img/ateliers/atelier4Hover.png"; // init dev web
@@ -51,6 +53,8 @@ import atelier11Hover from "../assets/img/ateliers/atelier11Hover.png"; // ptv
 import atelier12Hover from "../assets/img/ateliers/atelier12Hover.png"; // fond vert
 import atelier13Hover from "../assets/img/ateliers/atelier13Hover.png"; // mapping
 import atelier14Hover from "../assets/img/ateliers/atelier14Hover.png"; // audiovisuel
+
+import particle from "../assets/img/particle.png";
 
 import socleModel from "../assets/model/socle.gltf";
 import logoModel from "../assets/model/logo.glb";
@@ -78,13 +82,23 @@ import rightWallModel from "../assets/model/navigation/rightWall.gltf";
 import fieldModel from "../assets/model/navigation/field.gltf";
 import signModel from "../assets/model/navigation/sign.gltf";
 
+// import test from "../assets/model/DracoModels/modelDraco.gltf";
+
 // import greenScreenModel from "../assets/model/fondVert/greenScreen.gltf";
 // import tvModel from "../assets/model/fondVert/tv.gltf";
 // import tv2Model from "../assets/model/fondVert/tv2.gltf";
 // import tvLineModel from "../assets/model/fondVert/tvLine.gltf";
 
-
-import particle from "../assets/img/particle.png";
+// const processGltf = GLTFPipeline.processGltf;
+// const gltf = fsExtra.readJsonSync(socleModel);
+// const options = {
+//     dracoOptions: {
+//         compressionLevel: 10
+//     }
+// };
+// processGltf(gltf, options).then(function (results) {
+//     fsExtra.writeJsonSync('socleModel-draco.gltf', results.gltf);
+// });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,13 +117,16 @@ if (window.matchMedia("(max-width: 600px)").matches) {
     camera.position.set(0, 0, 10);
 }
 
-
 /////// MAIN RENDERER ///////
 var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
+// const controls = new OrbitControls(camera, renderer.domElement)
+// controls.enableDamping = true
+// controls.dampingFactor = 0.25
+// controls.enableZoom = false 
 
 /////// RESIZE EVENT ///////
 window.addEventListener('resize', () => {
@@ -207,6 +224,52 @@ loaderSocle.load(socleModel, function(addSocle) {
     socle.scale.set(.7, .7, .7)
     socle.rotation.y = 0;
 });
+
+// import test from "../assets/model/DracoModels/socleCompress.gltf";
+
+// var loaderSocle = new THREEGLTFLoader();
+// // loaderSocle.setDRACOLoader(new THREEDRACOLoader("node_module/three/examples/js/libs/draco/gltf/"));
+// loaderSocle.setDRACOLoader(new THREEDRACOLoader("https://unpkg.com/browse/three@0.124.0/examples/js/libs/draco/"));
+
+// loaderSocle.load(test, gltf => {
+//         socle = gltf.scene;
+//         scene.add(socle);
+//         socle.position.set(0, -10.7, 0)
+//         socle.scale.set(.7, .7, .7)
+//         socle.rotation.y = 0;
+//         console.log(true)
+//     },
+//     function (xhr) {
+//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+//     }
+// );
+
+// Specify path to a folder containing WASM/JS decoding libraries.
+// loaderSocle.setDecoderPath( '../node_modules/three/examples/js/libs/draco/gltf/' );
+
+// Load a Draco geometry
+// loaderSocle.load(test, function( geometry ) {
+//     const material = new THREE.MeshStandardMaterial({
+//         color: 0x606060
+//     });
+//     const mesh = new THREE.Mesh(geometry, material);
+//     console.log(mesh)
+//     },
+//     function (xhr) {
+//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+//         console.log(xhr)
+//         // console.log(xhr.srcElement.responseURL)
+//         // var test = xhr.srcElement.responseURL
+//         // var socle = addSocle.scene;
+//         // scene.add(socle);
+//         // console.log(scene);
+
+//     },
+//     function (error) {
+//         console.log('An error happened');
+//     }
+// );
+
 
 // LOGO MODEL
 var logo;
@@ -567,7 +630,6 @@ var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30); //WorkShops
 var planePanneau = new THREE.PlaneGeometry(1.2, 1.2, 1, 1);
 
 /////// INITIATION DES TEXTURES ///////
-
 let texture1Default = new THREE.TextureLoader().load(atelier1Default)
 let texture1Hover = new THREE.TextureLoader().load(atelier1Hover)
 
@@ -960,7 +1022,7 @@ planeMesh12.position.y = 15;
 planeMesh13.position.y = 16;
 planeMesh14.position.y = 17;
 
-// scene.add(planeMeshPanneau)
+scene.add(planeMeshPanneau)
 planeMeshPanneau.position.set(7.2, -3.05, -3)
 planeMeshPanneau.rotation.y = -.9;
 
@@ -1058,12 +1120,17 @@ let sm = document.querySelectorAll('.sm');
 let sm1 = document.querySelector('.sm__1');
 let sm2 = document.querySelector('.sm__2');
 let sm3 = document.querySelector('.sm__3');
+let discordContainer = document.querySelector('.btn__discord');
+let discordSpanContainer = document.querySelector('.spanContainerDiscord');
+let iutContainer = document.querySelector('.btn__iut');
+let iutSpanContainer = document.querySelector('.spanContainerIut');
 let musicBtn = document.querySelector('.musicBtn');
 let bgCol = document.querySelectorAll('.colContainer .col');
 let bgRow = document.querySelectorAll('.rowContainer .row');
 let cursor = document.querySelector('.cursor');
 let cursorShapeIn = document.querySelector('.cursor-shape_in');
 let cursorShapeOut = document.querySelector('.cursor-shape_out');
+let tailleBoulette = document.querySelector('.tailleBoulette');
 let containerTimeline = document.querySelector('.containerTimeline');
 let workShopButton = document.querySelectorAll('.workShopButton');
 let workShopButtonMask = document.querySelectorAll('.mask');
@@ -1087,6 +1154,7 @@ let contentContainer = document.querySelector('.contentContainer');
 
 let workShopContainer1 = document.querySelector('.workShopContainer__1');
 let creditContainer1 = document.querySelector('.creditContainer__1');
+let scrollContainer = document.querySelector('.scrollContainer');
 let prenom__1 = document.querySelector('.prenom__1')
 let nom__1 = document.querySelector('.nom__1')
 let r1__1 = document.querySelector('.r1__1')
@@ -1094,6 +1162,7 @@ let r2__1 = document.querySelector('.r2__1')
 let screenMask__1 = document.querySelector('.screenMask__1')
 let faceImgPath__1 = document.querySelector('.content__1')
 let faceImgZoom__1 = document.querySelector('.faceImg__1')
+
 let prenom__2 = document.querySelector('.prenom__2')
 let nom__2 = document.querySelector('.nom__2')
 let r1__2 = document.querySelector('.r1__2')
@@ -1101,6 +1170,7 @@ let r2__2 = document.querySelector('.r2__2')
 let screenMask__2 = document.querySelector('.screenMask__2')
 let faceImgPath__2 = document.querySelector('.content__2')
 let faceImgZoom__2 = document.querySelector('.faceImg__2')
+
 let prenom__3 = document.querySelector('.prenom__3')
 let nom__3 = document.querySelector('.nom__3')
 let r1__3 = document.querySelector('.r1__3')
@@ -1108,18 +1178,21 @@ let r2__3 = document.querySelector('.r2__3')
 let screenMask__3 = document.querySelector('.screenMask__3')
 let faceImgPath__3 = document.querySelector('.content__3')
 let faceImgZoom__3 = document.querySelector('.faceImg__3')
+
 let prenom__4 = document.querySelector('.prenom__4')
 let nom__4 = document.querySelector('.nom__4')
 let r1__4 = document.querySelector('.r1__4')
 let r2__4 = document.querySelector('.r2__4')
 let faceImgPath__4 = document.querySelector('.content__4')
 let faceImgZoom__4 = document.querySelector('.faceImg__4')
+
 let prenom__5 = document.querySelector('.prenom__5')
 let nom__5 = document.querySelector('.nom__5')
 let r1__5 = document.querySelector('.r1__5')
 let r2__5 = document.querySelector('.r2__5')
 let faceImgPath__5 = document.querySelector('.content__5')
 let faceImgZoom__5 = document.querySelector('.faceImg__5')
+
 let prenom__6 = document.querySelector('.prenom__6')
 let nom__6 = document.querySelector('.nom__6')
 let r1__6 = document.querySelector('.r1__6')
@@ -1127,19 +1200,17 @@ let r2__6 = document.querySelector('.r2__6')
 let faceImgPath__6 = document.querySelector('.content__6')
 let faceImgZoom__6 = document.querySelector('.faceImg__6')
 
-gsap.to(screenMask__1, 5, { scrollTrigger: screenMask__1, clipPath: "inset(0% 0% 0% 0%)", ease: "Power3.easeOut"})
-
 /////// IMAGES HOVER ///////
-faceImgPath__1.addEventListener('mouseenter', function(){
-        faceImgPath__1.classList.add('switch');
-        faceImgZoom__1.classList.add('switch');
-        prenom__1.classList.add('switch')
-        nom__1.classList.add('switch')
-        r1__1.classList.add('switch')
-        r2__1.classList.add('switch')
+faceImgPath__1.addEventListener('mouseenter', function () {
+    faceImgPath__1.classList.add('switch');
+    faceImgZoom__1.classList.add('switch');
+    prenom__1.classList.add('switch')
+    nom__1.classList.add('switch')
+    r1__1.classList.add('switch')
+    r2__1.classList.add('switch')
 })
 
-faceImgPath__1.addEventListener('mouseleave', function(){
+faceImgPath__1.addEventListener('mouseleave', function () {
     faceImgPath__1.classList.remove('switch');
     faceImgZoom__1.classList.remove('switch');
     prenom__1.classList.remove('switch')
@@ -1148,7 +1219,7 @@ faceImgPath__1.addEventListener('mouseleave', function(){
     r2__1.classList.remove('switch')
 })
 
-faceImgPath__2.addEventListener('mouseenter', function(){
+faceImgPath__2.addEventListener('mouseenter', function () {
     faceImgPath__2.classList.add('switch');
     faceImgZoom__2.classList.add('switch');
     prenom__2.classList.add('switch')
@@ -1157,16 +1228,16 @@ faceImgPath__2.addEventListener('mouseenter', function(){
     r2__2.classList.add('switch')
 })
 
-faceImgPath__2.addEventListener('mouseleave', function(){
-faceImgPath__2.classList.remove('switch');
-faceImgZoom__2.classList.remove('switch');
-prenom__2.classList.remove('switch')
-nom__2.classList.remove('switch')
-r1__2.classList.remove('switch')
-r2__2.classList.remove('switch')
+faceImgPath__2.addEventListener('mouseleave', function () {
+    faceImgPath__2.classList.remove('switch');
+    faceImgZoom__2.classList.remove('switch');
+    prenom__2.classList.remove('switch')
+    nom__2.classList.remove('switch')
+    r1__2.classList.remove('switch')
+    r2__2.classList.remove('switch')
 })
 
-faceImgPath__3.addEventListener('mouseenter', function(){
+faceImgPath__3.addEventListener('mouseenter', function () {
     faceImgPath__3.classList.add('switch');
     faceImgZoom__3.classList.add('switch');
     prenom__3.classList.add('switch')
@@ -1175,16 +1246,16 @@ faceImgPath__3.addEventListener('mouseenter', function(){
     r2__3.classList.add('switch')
 })
 
-faceImgPath__3.addEventListener('mouseleave', function(){
-faceImgPath__3.classList.remove('switch');
-faceImgZoom__3.classList.remove('switch');
-prenom__3.classList.remove('switch')
-nom__3.classList.remove('switch')
-r1__3.classList.remove('switch')
-r2__3.classList.remove('switch')
+faceImgPath__3.addEventListener('mouseleave', function () {
+    faceImgPath__3.classList.remove('switch');
+    faceImgZoom__3.classList.remove('switch');
+    prenom__3.classList.remove('switch')
+    nom__3.classList.remove('switch')
+    r1__3.classList.remove('switch')
+    r2__3.classList.remove('switch')
 })
 
-faceImgPath__4.addEventListener('mouseenter', function(){
+faceImgPath__4.addEventListener('mouseenter', function () {
     faceImgPath__4.classList.add('switch');
     faceImgZoom__4.classList.add('switch');
     prenom__4.classList.add('switch')
@@ -1193,16 +1264,16 @@ faceImgPath__4.addEventListener('mouseenter', function(){
     r2__4.classList.add('switch')
 })
 
-faceImgPath__4.addEventListener('mouseleave', function(){
-faceImgPath__4.classList.remove('switch');
-faceImgZoom__4.classList.remove('switch');
-prenom__4.classList.remove('switch')
-nom__4.classList.remove('switch')
-r1__4.classList.remove('switch')
-r2__4.classList.remove('switch')
+faceImgPath__4.addEventListener('mouseleave', function () {
+    faceImgPath__4.classList.remove('switch');
+    faceImgZoom__4.classList.remove('switch');
+    prenom__4.classList.remove('switch')
+    nom__4.classList.remove('switch')
+    r1__4.classList.remove('switch')
+    r2__4.classList.remove('switch')
 })
 
-faceImgPath__5.addEventListener('mouseenter', function(){
+faceImgPath__5.addEventListener('mouseenter', function () {
     faceImgPath__5.classList.add('switch');
     faceImgZoom__5.classList.add('switch');
     prenom__5.classList.add('switch')
@@ -1211,16 +1282,16 @@ faceImgPath__5.addEventListener('mouseenter', function(){
     r2__5.classList.add('switch')
 })
 
-faceImgPath__5.addEventListener('mouseleave', function(){
-faceImgPath__5.classList.remove('switch');
-faceImgZoom__5.classList.remove('switch');
-prenom__5.classList.remove('switch')
-nom__5.classList.remove('switch')
-r1__5.classList.remove('switch')
-r2__5.classList.remove('switch')
+faceImgPath__5.addEventListener('mouseleave', function () {
+    faceImgPath__5.classList.remove('switch');
+    faceImgZoom__5.classList.remove('switch');
+    prenom__5.classList.remove('switch')
+    nom__5.classList.remove('switch')
+    r1__5.classList.remove('switch')
+    r2__5.classList.remove('switch')
 })
 
-faceImgPath__6.addEventListener('mouseenter', function(){
+faceImgPath__6.addEventListener('mouseenter', function () {
     faceImgPath__6.classList.add('switch');
     faceImgZoom__6.classList.add('switch');
     prenom__6.classList.add('switch')
@@ -1229,18 +1300,26 @@ faceImgPath__6.addEventListener('mouseenter', function(){
     r2__6.classList.add('switch')
 })
 
-faceImgPath__6.addEventListener('mouseleave', function(){
-faceImgPath__6.classList.remove('switch');
-faceImgZoom__6.classList.remove('switch');
-prenom__6.classList.remove('switch')
-nom__6.classList.remove('switch')
-r1__6.classList.remove('switch')
-r2__6.classList.remove('switch')
+faceImgPath__6.addEventListener('mouseleave', function () {
+    faceImgPath__6.classList.remove('switch');
+    faceImgZoom__6.classList.remove('switch');
+    prenom__6.classList.remove('switch')
+    nom__6.classList.remove('switch')
+    r1__6.classList.remove('switch')
+    r2__6.classList.remove('switch')
 })
 
-
-let workshopActive = false;
 let homeActive = true;
+let hoverPlane = true;
+let workshopActive = false;
+let creditActive = false;
+
+let backPossible = true;
+let clickPossible = true;
+let scrollPossible = true;
+
+let isScrollDown = false;
+let isScrollUp = false;
 
 window.addEventListener('load', function() {
     TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
@@ -1251,11 +1330,12 @@ window.addEventListener('load', function() {
     TweenMax.to(bgRow, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.0355555 });
     TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, delay: 2 });
     TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, delay: 2 });
-    indicClickOnPlane.style.opacity = 0;
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-        TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 2 });
-        TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 2 });
+        TweenMax.to(bgCol, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 2 });
+        TweenMax.to(bgRow, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 2 });
         canvas.classList.add('hologramActive')
+        cursor.style.opacity = 1
+        cursorShapeOut.style.opacity = 1
         setTimeout(function() {
             const _cursorIn = new Cursor(cursorShapeIn);
             updateCursor();
@@ -1272,9 +1352,10 @@ planeMesh1.on('mouseover', function(ev) {
         gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane1.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1284,9 +1365,10 @@ planeMesh1.on('mouseout', function(ev) {
         gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane1.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1298,9 +1380,10 @@ planeMesh2.on('mouseover', function(ev) {
         gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane2.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1310,9 +1393,10 @@ planeMesh2.on('mouseout', function(ev) {
         gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane2.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1324,9 +1408,10 @@ planeMesh3.on('mouseover', function(ev) {
         gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane3.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1336,9 +1421,10 @@ planeMesh3.on('mouseout', function(ev) {
         gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane3.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1350,9 +1436,10 @@ planeMesh4.on('mouseover', function(ev) {
         gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane4.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1362,9 +1449,10 @@ planeMesh4.on('mouseout', function(ev) {
         gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane4.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1376,9 +1464,10 @@ planeMesh5.on('mouseover', function(ev) {
         gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane5.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1388,9 +1477,10 @@ planeMesh5.on('mouseout', function(ev) {
         gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane5.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1402,9 +1492,10 @@ planeMesh6.on('mouseover', function(ev) {
         gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane6.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+           gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1414,9 +1505,10 @@ planeMesh6.on('mouseout', function(ev) {
         gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane6.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1428,9 +1520,10 @@ planeMesh7.on('mouseover', function(ev) {
         gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane7.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
        if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+           gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1440,9 +1533,10 @@ planeMesh7.on('mouseout', function(ev) {
         gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane7.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1454,9 +1548,10 @@ planeMesh8.on('mouseover', function(ev) {
         gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane8.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1466,9 +1561,10 @@ planeMesh8.on('mouseout', function(ev) {
         gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane8.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1480,9 +1576,10 @@ planeMesh9.on('mouseover', function(ev) {
         gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane9.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1492,9 +1589,10 @@ planeMesh9.on('mouseout', function(ev) {
         gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane9.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }   
@@ -1506,9 +1604,10 @@ planeMesh10.on('mouseover', function(ev) {
         gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane10.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1518,9 +1617,10 @@ planeMesh10.on('mouseout', function(ev) {
         gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane10.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1532,9 +1632,10 @@ planeMesh11.on('mouseover', function(ev) {
         gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane11.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1544,9 +1645,10 @@ planeMesh11.on('mouseout', function(ev) {
         gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane11.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1558,9 +1660,10 @@ planeMesh12.on('mouseover', function(ev) {
         gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane12.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1570,9 +1673,10 @@ planeMesh12.on('mouseout', function(ev) {
         gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane12.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1584,9 +1688,10 @@ planeMesh13.on('mouseover', function(ev) {
         gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane13.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1596,23 +1701,25 @@ planeMesh13.on('mouseout', function(ev) {
         gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane13.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
 });
 
 planeMesh14.on('mouseover', function(ev) {
-    if (ev && (workshopActive == false && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17))) {
+    if (ev && (hoverPlane && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17))) {
         console.log(ev.intersects)
         gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
         gsap.to(materialPlane14.uniforms.dispFactor, 0.75, { value: 1.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, left: -50, top: -50, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
             indicClickOnPlane.classList.add("planeHover")
         }
     }
@@ -1622,9 +1729,10 @@ planeMesh14.on('mouseout', function(ev) {
         gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: planeOpacityDefault, ease: "Power3.easeOut" })
         gsap.to(materialPlane14.uniforms.dispFactor, 0.75, { value: 0.0, ease: "Power3.easeOut" });
         if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
     }
@@ -1642,32 +1750,35 @@ new TouchSweep(el, data, threshold);
 
 el.addEventListener('swipeleft', () => {
     console.log('left')
-    scrollDown();
+    if (!workshopActive)
+        scrollDown();
 });
 
 el.addEventListener('swiperight', () => {
     console.log('right')
-    scrollUp();
+    if (!workshopActive)
+        scrollUp();
 });
 
-el.addEventListener('swipedown', () => {
-    console.log('down')
-    scrollUp();
-});
+// el.addEventListener('swipedown', () => {
+//     console.log('down')
+//     if (!workshopActive)
+//         scrollUp();
+// });
 
-el.addEventListener('swipeup', () => {
-    console.log('up')
-    scrollDown();
-});
+// el.addEventListener('swipeup', () => {
+//     console.log('up')
+//     if (!workshopActive)
+//         scrollDown();
+// });
 
 // el.addEventListener('tap', () => {
 // });
 
 
-
 ///// PLANES CLICK /////
-planeMesh14.on('click', function() {
-    if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17) {
+function plane14Click() {
+    if (clickPossible && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1676,28 +1787,36 @@ planeMesh14.on('click', function() {
         gsap.to(planeMesh14.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
         
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
+        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 3.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
 
-        gsap.to(workShopContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2.75 })
+        gsap.to(workShopContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
+        gsap.to(contentContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2})
         setTimeout(function() {
-            workShopContainer1.classList.add('switchPlane');
-        }, 3750)
+            if(workshopActive)
+                workShopContainer1.classList.add('switchPlane');
+        }, 3500)
         
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh14.on('click', function() {
+    plane14Click();
 })
 
-planeMesh13.on('click', function() {
-    if (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16) {
+function plane13Click() {
+    if (clickPossible && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1709,19 +1828,25 @@ planeMesh13.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
         
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh13.on('click', function() {
+    plane13Click();
 })
 
-planeMesh12.on('click', function() {
-    if (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15) {
+function plane12Click() {
+    if (clickPossible && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1733,19 +1858,25 @@ planeMesh12.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh12.on('click', function() {
+    plane12Click();
 })
 
-planeMesh11.on('click', function() {
-    if (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14) {
+function plane11Click() {
+    if (clickPossible && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1757,19 +1888,25 @@ planeMesh11.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh11.on('click', function() {
+    plane11Click();
 })
 
-planeMesh10.on('click', function() {
-    if (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13) {
+function plane10Click() {
+    if (clickPossible && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1781,19 +1918,25 @@ planeMesh10.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh10.on('click', function() {
+    plane10Click();
 })
 
-planeMesh9.on('click', function() {
-    if (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12) {
+function plane9Click() {
+    if (clickPossible && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1805,19 +1948,25 @@ planeMesh9.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh9.on('click', function() {
+    plane9Click();
 })
 
-planeMesh8.on('click', function() {
-    if (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -11) {
+function plane8Click() {
+    if (clickPossible && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -11)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1829,19 +1978,25 @@ planeMesh8.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh8.on('click', function() {
+    plane8Click();
 })
 
-planeMesh7.on('click', function() {
-    if (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10) {
+function plane7Click() {
+    if (clickPossible && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1853,19 +2008,25 @@ planeMesh7.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh7.on('click', function() {
+    plane7Click();
 })
 
-planeMesh6.on('click', function() {
-    if (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9) {
+function plane6Click() {
+    if (clickPossible && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1877,19 +2038,25 @@ planeMesh6.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh6.on('click', function() {
+    plane6Click();
 })
 
-planeMesh5.on('click', function() {
-    if (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8) {
+function plane5Click() {
+    if (clickPossible && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1901,19 +2068,25 @@ planeMesh5.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh5.on('click', function() {
+    plane5Click();
 })
 
-planeMesh4.on('click', function() {
-    if (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7) {
+function plane4Click() {
+    if (clickPossible && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1925,19 +2098,25 @@ planeMesh4.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh4.on('click', function() {
+    plane4Click();
 })
 
-planeMesh3.on('click', function() {
-    if (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6) {
+function plane3Click() {
+    if (clickPossible && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1949,19 +2128,25 @@ planeMesh3.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh3.on('click', function() {
+    plane3Click();
 })
 
-planeMesh2.on('click', function() {
-    if (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5) {
+function plane2Click() {
+    if (clickPossible && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1973,19 +2158,25 @@ planeMesh2.on('click', function() {
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh2.on('click', function() {
+    plane2Click();
 })
 
-planeMesh1.on('click', function() {
-    if (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4) {
+function plane1Click() {
+    if (clickPossible && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
@@ -1999,16 +2190,21 @@ planeMesh1.on('click', function() {
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
             gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, left: -10, top: -10, ease: "Power3.easeOut"})
+            gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+            gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
-            gsap.to(indicClickOnPlane, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+            gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
             indicClickOnPlane.classList.remove("planeHover")
         }
         workshopActive = true
+        hoverPlane = false
+        clickPossible = false
     }
+}
+planeMesh1.on('click', function() {
+    plane1Click();
 })
 
-console.log(titleSvgLine)
 
 /////// BACKHOME BUTTON EVENTS ///////
 function functionBtnBackHome() {
@@ -2033,10 +2229,23 @@ function functionBtnBackHome() {
     gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut" });
     gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut" });
 
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+    TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+
+    setTimeout(function() {
+        discordContainer.classList.remove('close')
+        iutContainer.classList.remove('close')
+    }, 3000)
+
     canvas.classList.remove('hologramDefault')
     canvas.classList.add('hologramActive')
+    btnBackHome.classList.add('close')
     btnBackHome.disabled = true;
-    btnStart.disabled = false;
+    
+    setTimeout(function(){
+        btnStart.disabled = false;
+        btnStart.classList.remove('close')
+    }, 3000)
     if (planeAxe.position.y <= -11) {
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
@@ -2156,10 +2365,22 @@ function functionBtnStart() {
 
     canvas.classList.remove('hologramActive')
     canvas.classList.add('hologramDefault')
-    btnBackHome.disabled = false;
+
+    btnStart.classList.add('close')
     btnStart.disabled = true;
 
+    setTimeout(function(){
+        btnBackHome.disabled = false;
+        btnBackHome.classList.remove('close')
+    }, 4000)
+
     TweenMax.to(btnStart, 1.7, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
+
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .0, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut" })
+    TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .0, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut" })
+
+    discordContainer.classList.add('close')
+    iutContainer.classList.add('close')
 
     setTimeout(function() {
         //AXES ANIM
@@ -2241,7 +2462,7 @@ btnStart.addEventListener('click', function() {
     TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
 
     handleMouseLeave();
-
+    btnStart.classList.remove('hover')
     cursorShapeIn.classList.remove('mouseover');
     setTimeout(function() {
         spanContainerStartMouseOut.classList.remove('neonText');
@@ -2252,6 +2473,7 @@ btnStart.addEventListener('mouseenter', function() {
     TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: -40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     TweenMax.to(btnStart, { color: "#09021e", background: "#4cc9f0", ease: "power2.inOut" });
+    btnStart.classList.add('hover')
     spanContainerStartMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
@@ -2260,6 +2482,7 @@ btnStart.addEventListener('mouseleave', function() {
     TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
+    btnStart.classList.remove('hover')
     spanContainerStartMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
 })
@@ -2271,7 +2494,7 @@ btnBackHome.addEventListener('click', function() {
     TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
 
     handleMouseLeave();
-
+    btnBackHome.classList.remove('hover')
     setTimeout(function() {
         spanContainerBackMouseOut.classList.remove('neonText');
     }, 750)
@@ -2281,6 +2504,7 @@ btnBackHome.addEventListener('mouseenter', function() {
     TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(btnBackHome, { color: "#09021e", background: "#4cc9f0", ease: "power2.inOut" });
+    btnBackHome.classList.add('hover')
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
@@ -2289,107 +2513,170 @@ btnBackHome.addEventListener('mouseleave', function() {
     TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
+    btnBackHome.classList.remove('hover')
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
 })
 
-btnBackWorkshop.addEventListener('click', function() {
+function backToPlane() {
+    let varDelay = .0
+    let taillePopUpSplit = contentContainer.scrollHeight / 4
+    if (camera.position.z >= -106 && contentContainer.scrollTop >= taillePopUpSplit * 2 && contentContainer.scrollTop < taillePopUpSplit * 3) {
+        varDelay = .75
+        gsap.to(contentContainer, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
+        console.log("loin")
+    } else if (contentContainer.scrollTop < taillePopUpSplit * 2 && contentContainer.scrollTop >= taillePopUpSplit) {
+        varDelay = .50
+        gsap.to(contentContainer, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
+        console.log("milieu")
+    } else {
+        gsap.to(contentContainer, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
+    }
+
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-        handleMouseLeave();
-        gsap.to(leftDoor.position, 1.5, { x: .3, ease: "power3.inOut", delay: 0.75 })
-        gsap.to(rightDoor.position, 1.5, { x: .3, ease: "power3.inOut", delay: 0.75 })
-        gsap.to(camera.position, 3, { z: 3.7, ease: "power3.inOut" })
+        gsap.to(leftDoor.position, 1.5, { x: .3, ease: "power3.inOut", delay: 0.75 + varDelay })
+        gsap.to(rightDoor.position, 1.5, { x: .3, ease: "power3.inOut", delay: 0.75 + varDelay })
+        gsap.to(camera.position, 3 , { z: 3.7, ease: "power3.inOut" })
+        setTimeout(function() {
+            creditContainer1.classList.remove('switchStreet')
+            scrollPossible = true
+        }, 3000)
     } else {
         gsap.to(camera.position, 3, { z: 4.5, ease: "power3.inOut" })
     }
     
-    gsap.to(logo.position, 1.5, { x: 0, ease: "power3.inOut", delay: 0.75 })
-    gsap.to(logo.rotation, 1.5, { z: .25, ease: "power3.inOut", delay: 1.5 })
-    gsap.to(logo.position, 1.5, { z: 0, y: 0, ease: "power3.inOut", delay: 1.5 })
+    gsap.to(logo.position, 1.5, { x: 0, ease: "power3.inOut", delay: 0.75 + varDelay })
+    gsap.to(logo.rotation, 1.5, { z: .25, ease: "power3.inOut", delay: 1.5 + varDelay })
+    gsap.to(logo.position, 1.5, { z: 0, y: 0, ease: "power3.inOut", delay: 1.5 + varDelay })
     
     if (materialPlane14.uniforms.alpha.value == 0) {
         gsap.to(materialPlane14.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh14.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane13.uniforms.alpha.value == 0) {
         gsap.to(materialPlane13.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh13.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane13.uniforms.alpha.value == 0) {
         gsap.to(materialPlane12.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh13.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane12.uniforms.alpha.value == 0) {
-        gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh12.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane11.uniforms.alpha.value == 0) {
         gsap.to(materialPlane11.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh11.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
         gsap.to(materialPlane10.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
     } else if (materialPlane10.uniforms.alpha.value == 0) {
-        gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh10.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane9.uniforms.alpha.value == 0) {
         gsap.to(materialPlane9.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh9.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane8.uniforms.alpha.value == 0) {
         gsap.to(materialPlane8.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane8.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh8.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane7.uniforms.alpha.value == 0) {
         gsap.to(materialPlane7.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh7.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane6.uniforms.alpha.value == 0) {
         gsap.to(materialPlane6.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh6.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane5.uniforms.alpha.value == 0) {
         gsap.to(materialPlane5.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh5.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane4.uniforms.alpha.value == 0) {
         gsap.to(materialPlane4.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh4.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane3.uniforms.alpha.value == 0) {
         gsap.to(materialPlane3.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh3.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane2.uniforms.alpha.value == 0) {
         gsap.to(materialPlane2.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh2.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     } else if (materialPlane1.uniforms.alpha.value == 0) {
         gsap.to(materialPlane1.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" });
-        gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 3.75 });
+        gsap.to(materialPlane1.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut", delay: 2.75 });
         gsap.to(planeMesh1.scale, 0.75, { x: 1, y: 1, ease: "power3.inOut" });
     }
 
     TweenMax.to(btnBackHome, 0.75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
     TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
+    gsap.to(workShopContainer1, 1.5, { opacity: 0, ease: "Power3.easeOut", delay: 0.5 })
+    workShopContainer1.classList.remove('switchPlane');
+
+    hoverPlane = true
+    clickPossible = true
+
+    setTimeout(function() {
+        workshopActive = false;
+        contentContainer.scrollTop = 0
+    }, 2500)
+}
+
+function backToWorkshop() {
+    if (camera.position.z <= -125) {
+        let lastPosScroll = contentContainer.scrollTop
+        contentContainer.scrollTop = lastPosScroll - 50
+        console.log(contentContainer.scrollTop)
+        gsap.to(camera.position, 3 , { z: -108, ease: "power3.inOut" })
+        gsap.to(leftDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
+        gsap.to(rightDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
+        gsap.to(creditContainer1, 2.5, { opacity: 0, ease: "Power4.easeOut" })
+
+        for (let i=1; i <= 6; i++) {
+            gsap.to(".contentImg__"+i, { opacity: 0, ease: "Power3.easeOut", delay: 2.5 })
+        }
+        
+        gsap.to(workShopContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
+
+        setTimeout(function() {
+            workShopContainer1.classList.add('switchPlane');
+            creditActive = false;
+        }, 1000)
+
+        setTimeout(function() {
+            creditContainer1.classList.remove('switchStreet')
+            scrollContainer.scrollTop = 0
+        }, 3000)
+    }
+}
+
+btnBackWorkshop.addEventListener('click', function() {
+    if (workshopActive && !creditActive && backPossible) {
+        backToPlane();
+    } else if (workshopActive && creditActive) {
+        backToWorkshop();
+    }
+
+    if (!window.matchMedia("(max-width: 1024px)").matches && backPossible) {
+        handleMouseLeave();
+        btnBackWorkshop.classList.remove('hover')
+        TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
+    }
 
     TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
-    TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
     setTimeout(function() {
         spanContainerBackMouseOut.classList.remove('neonText');
-    }, 750)
-
-    gsap.to(workShopContainer1, 1.5, { opacity: 0, ease: "Power3.easeOut", delay: 0.5 })
-    setTimeout(function() {
-        workShopContainer1.classList.add('switchPlane');
-    }, 3750)
-
-    workshopActive = false;
+    }, 750)    
 })
 
 btnBackWorkshop.addEventListener('mouseenter', function() {
     TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(btnBackWorkshop, { color: "#09021e", background: "#4cc9f0", ease: "power2.inOut" });
+    btnBackWorkshop.classList.add('hover')
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
@@ -2398,6 +2685,7 @@ btnBackWorkshop.addEventListener('mouseleave', function() {
     TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power2.inOut" });
     TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
+    btnBackWorkshop.classList.remove('hover')
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
 })
@@ -2435,7 +2723,7 @@ charsTextBtnBack.forEach(letter => {
 });
 
 ///// BUTTON BACK WORKSHOP HOVER /////
-let btnBackWorkshopText = "Ateliers"
+let btnBackWorkshopText = "Retour"
 let charsTextBtnBackWorkshop = btnBackWorkshopText.split('')
 
 charsTextBtnBackWorkshop.forEach(letter => {
@@ -2448,6 +2736,26 @@ charsTextBtnBackWorkshop.forEach(letter => {
     let btnChar = document.createElement('span')
     btnChar.innerHTML = letter
     spanContainerBackWorkshopMouseOut.append(btnChar)
+});
+
+///// BUTTON DISCORD /////
+let btnDiscordText = "Discord"
+let charsTextDiscord = btnDiscordText.split('')
+
+charsTextDiscord.forEach(letter => {
+    let btnChar = document.createElement('span')
+    btnChar.innerHTML = letter
+    discordSpanContainer.append(btnChar)
+});
+
+///// BUTTON IUT /////
+let btnIutText = "Site Officiel"
+let charsTextIut = btnIutText.split('')
+
+charsTextIut.forEach(letter => {
+    let btnChar = document.createElement('span')
+    btnChar.innerHTML = letter
+    iutSpanContainer.append(btnChar)
 });
 
 ///// WORKSHOP TIMELINE /////
@@ -2470,14 +2778,6 @@ containerTimeline.addEventListener('mouseleave', function() {
 
 })
 
-
-// /////// TIMELINE BUTTONS HOVER ///////
-// workShopButton14.addEventListener('mouseleave', function() {
-//     workShopButton14.classList.add('mouseout')
-//     workShopButton14.classList.remove('mouseover')
-// })
-
-
 /////// SM HOVER ///////
 sm1.classList.add('mouseout')
 sm2.classList.add('mouseout')
@@ -2497,7 +2797,6 @@ sm1.addEventListener('mouseleave', function() {
 
 sm1.addEventListener('click', function() {
     window.open('https://www.facebook.com/mmi.tarbes.jpo', '_blank');
-
 })
 
 sm2.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 2
@@ -2514,7 +2813,6 @@ sm2.addEventListener('mouseleave', function() {
 
 sm2.addEventListener('click', function() {
     window.open('https://www.instagram.com/immersions_digitales_tarbes/', '_blank');
-
 })
 
 sm3.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 3
@@ -2531,6 +2829,30 @@ sm3.addEventListener('mouseleave', function() {
 
 sm3.addEventListener('click', function() {
     window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
+})
+
+discordContainer.addEventListener('mouseenter', function() { // POINTER DISCORD
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: 1, stagger: { each: 0.07, from: 'end' }, ease: "power2.inOut" })
+})
+
+discordContainer.addEventListener('mouseleave', function() {
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: .6, stagger: { each: 0.07, from: 'end' }, ease: "power2.inOut" })
+})
+
+discordContainer.addEventListener('click', function() {
+    window.open('#', '_blank');
+})
+
+iutContainer.addEventListener('mouseenter', function() { // POINTER IUT
+    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: 1, stagger: { each: 0.05, from: 'start' }, ease: "power2.inOut" })
+})
+
+iutContainer.addEventListener('mouseleave', function() {
+    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: .6, stagger: { each: 0.05, from: 'start' }, ease: "power2.inOut" })
+})
+
+iutContainer.addEventListener('click', function() {
+    window.open('https://www.iut-tarbes.fr/', '_blank');
 })
 
 ///// CUSTOM CURSOR /////
@@ -2606,11 +2928,6 @@ class Cursor {
     }
 }
 
-document.addEventListener('mousemove', e => {
-    indicClickOnPlane.style.top = e.pageY - 10 + "px"
-    indicClickOnPlane.style.left = e.pageX - 10 + "px"
-})
-
 let isStuck = false;
 let mouse = {
     x: -100,
@@ -2627,11 +2944,6 @@ let cursorOuterOriginalState = {
     width: cursorShapeOut.getBoundingClientRect().width,
     height: cursorShapeOut.getBoundingClientRect().height,
 };
-
-// buttons.forEach(button => {
-//     button.addEventListener("pointerenter", handleMouseEnter);
-//     button.addEventListener("pointerleave", handleMouseLeave);
-// });
 
 btnStart.addEventListener("pointerenter", function() {
     if (homeActive) {
@@ -2657,15 +2969,21 @@ btnBackWorkshop.addEventListener("pointerenter", function() {
     btnBackWorkshop.addEventListener("pointerleave", handleMouseLeave)
 })
 
-sm.forEach(media => {
-    media.addEventListener("pointerenter", handleMouseEnter);
-    media.addEventListener("pointerleave", handleMouseLeave);
+sm.forEach(e => {
+    e.addEventListener("pointerenter", handleMouseEnter);
+    e.addEventListener("pointerleave", handleMouseLeave);
 });
 
-workShopButton.forEach(button => {
-    button.addEventListener("pointerenter", handleMouseEnter);
-    button.addEventListener("pointerleave", handleMouseLeave);
+workShopButton.forEach(e => {
+    e.addEventListener("pointerenter", handleMouseEnter);
+    e.addEventListener("pointerleave", handleMouseLeave);
 })
+
+discordContainer.addEventListener("pointerenter", handleMouseEnter);
+discordContainer.addEventListener("pointerleave", handleMouseLeave);
+
+iutContainer.addEventListener("pointerenter", handleMouseEnter);
+iutContainer.addEventListener("pointerleave", handleMouseLeave);
 
 document.body.addEventListener("pointermove", updateCursorPosition);
 
@@ -2675,9 +2993,13 @@ function updateCursorPosition(e) {
 }
 
 function updateCursor() {
+    let cursorInnerOriginalState = {
+        width: tailleBoulette.getBoundingClientRect().width,
+        height: tailleBoulette.getBoundingClientRect().height,
+    };
     gsap.set(cursor, {
-        x: mouse.x,
-        y: mouse.y,
+        x: mouse.x - cursorInnerOriginalState.width / 2,
+        y: mouse.y - cursorInnerOriginalState.height / 2,
     });
 
     if (!isStuck) {
@@ -2721,7 +3043,6 @@ function handleMouseEnterBtn(e) {
     cursorShapeIn.classList.add('mouseover');
 }
 
-
 function handleMouseLeave(e) {
     isStuck = false;
     // updateCursor();
@@ -2733,6 +3054,12 @@ function handleMouseLeave(e) {
     });
     cursorShapeIn.classList.remove('mouseover');
 }
+
+// Indication plane hover
+document.addEventListener('mousemove', e => {
+    indicClickOnPlane.style.top = e.pageY - 20 / 2 + "px"
+    indicClickOnPlane.style.left = e.pageX - 20 / 2 + "px"
+})
 
 
 /////// TIMELINE REDIRECTION ///////
@@ -3188,8 +3515,8 @@ function scrollPlane1() {
 
 ///// SCROLL FUNCTIONS /////
 function scrollUp() {
-    // camera.position.z += 1;
     if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
+        homeActive = true
         scene.add(particleMesh);
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
@@ -3220,6 +3547,14 @@ function scrollUp() {
         littleTitleSvgLine.classList.add("pathLineOut")
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
+
+        TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+        TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+
+        setTimeout(function() {
+            discordContainer.classList.remove('close')
+            iutContainer.classList.remove('close')
+        }, 3000)
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -3392,8 +3727,6 @@ function scrollUp() {
 }
 
 function scrollDown() {
-    // console.log(materialPlanePanneau.uniforms.dispFactor.value)
-        // camera.position.z -= 1;
     if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
         scrollPlane13();
         if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
@@ -3512,6 +3845,7 @@ function scrollDown() {
             gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
         }
     } else if (planeAxe.position.y == -4) {
+        homeActive = true
         scene.add(particleMesh);
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: 4.2, ease: "power3.inOut" })
@@ -3542,6 +3876,14 @@ function scrollDown() {
         littleTitleSvgLine.classList.add("pathLineOut")
         TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
+
+        TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+        TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+
+        setTimeout(function() {
+            discordContainer.classList.remove('close')
+            iutContainer.classList.remove('close')
+        }, 3000)
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -3601,16 +3943,41 @@ function scrollDown() {
     }
 }
 ///// MOUSE SCROLL /////
-document.body.addEventListener('wheel', scrollPlane);
+document.body.addEventListener('wheel', scrollWheel);
 
-function scrollPlane(event) {
-    if (workshopActive == false) {
+function scrollWheel(event) {
+    if (!workshopActive) {
+        if (!isScrollUp) {
+            if (checkScrollDirectionIsUp(event)) { // SCROLL UP
+                scrollUp();
+                isScrollUp = true
+                setTimeout(function () {
+                    isScrollUp = false
+                }, 750)
+            }
+        }
+        if (!isScrollDown) {
+            if (checkScrollDirectionIsUp(event)) { // SCROLL DOWN
+            } else {
+                scrollDown();
+                isScrollDown = true
+                setTimeout(function () {
+                    isScrollDown = false
+                }, 750)
+            }
+        }
+    } else if (creditActive) {
         if (checkScrollDirectionIsUp(event)) { // SCROLL UP
-            scrollUp();
-            // console.log("up:" + planeAxe.position.y)
-        } else { // SCROLL DOWN
-            scrollDown();
-            // console.log("down:" + planeAxe.position.y)
+            if (camera.position.z <= -185 && scrollContainer.scrollTop == 0) {
+                backToWorkshop();
+            }
+        }
+    } else if (workshopActive) {
+        if (checkScrollDirectionIsUp(event)) { // SCROLL UP
+            if (contentContainer.scrollTop == 0 && scrollPossible) {
+                backToPlane();
+                scrollPossible = false
+            }
         }
     }
 }
@@ -3624,55 +3991,163 @@ function checkScrollDirectionIsUp(event) { //REVERSE SCROLL
 
 ///// WORKSHOP SCROLL /////
 contentContainer.addEventListener('scroll', function() {
-    scrollWorkshop(contentContainer)
-    if (camera.position.z <= -106) {
-            creditContainer1.classList.add('switchStreet')
-            gsap.to(creditContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut" })
-        workShopContainer1.classList.remove('switchPlane');
-        gsap.to(workShopContainer1, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-        gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-        gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
-        gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
-    } else {
-        gsap.to(workShopContainer1, 1.5, { opacity: 1, ease: "Power3.easeOut" })
+    if (!creditActive) {
+        scrollWorkshop(contentContainer)
+        if (window.matchMedia("(max-width: 1440px)").matches) {
+            if (camera.position.z <= -109) {
+                creditContainer1.classList.add('switchStreet')
+                workShopContainer1.classList.remove('switchPlane');
+                gsap.to(workShopContainer1, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+                gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+                gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
+                gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
+                gsap.to(creditContainer1, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+                backPossible = false;
+                setTimeout(function() {
+                    creditActive = true
+                }, 1000)
+                setTimeout(function() {
+                    backPossible = true
+                }, 3000)
+            } 
+        } else {
+            if (camera.position.z <= -106) {
+                creditContainer1.classList.add('switchStreet')
+                workShopContainer1.classList.remove('switchPlane');
+                gsap.to(workShopContainer1, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+                gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+                gsap.to(leftDoor2.position, 1.5, { x: -15, ease: "power3.inOut", delay: .75 })
+                gsap.to(rightDoor2.position, 1.5, { x: 15, ease: "power3.inOut", delay: .75 })
+                gsap.to(creditContainer1, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+                backPossible = false;
+                setTimeout(function() {
+                    creditActive = true
+                }, 1000)
+                setTimeout(function() {
+                    backPossible = true
+                }, 3000)
+            } 
+        }
+    }
+})
+
+
+// ///// CREDIT SCROLL /////
+// scrollContainer.addEventListener('scroll', function() {
+//     if (creditActive) {
+//         if (scrollContainer.scrollTop == 0) {
+//             console.log('tagrandmere')
+//             backToPlane();
+//         }
+//     }
+// })
+
+// gsap.to('.content', {
+//     opacity: 1,
+//     ease: "Power3.inOut",
+//     immediateRender: true,
+//     scrollTrigger: {
+//       scroller: ".scrollContainer",
+//       start: 0
+//     }
+//   })
+// ScrollReveal().reveal('.btn');
+
+// ScrollReveal().reveal(".btn", { delay: 2000 });
+// ScrollReveal().reveal(".scrollContainer .content", { viewFactor: 1.0, container: ".scrollContainer", opacity: 1, delay: 1, duration: 2, reset: true });
+// ScrollReveal().reveal(".scrollContainer p", { container: ".scrollContainer", opacity: 1, delay: 2000 })
+
+scrollContainer.addEventListener("scroll", function() {
+    if (creditActive) {
+        for (let i = 1; i <= 6; i++) {
+            let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(".contentImg__"+i, { opacity: 1, duration: 1 })
+            ScrollTrigger.create({
+                trigger: ".contentImg__"+i,
+                start: "10% 50%",
+                // end: "+=300",
+                scroller: ".scrollContainer",
+                animation: tl,
+                // scrub: true,
+            })
+        }
     }
 })
 
 function scrollWorkshop(el) {
     camera.position.z = -20 + (el.scrollTop / el.scrollHeight) * -120
-    console.log(camera.position.z)
 }
-
-
 
 ///// ARROWS SCROLL + KEY ECHAP ///////
 document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 37:
+            if (!workshopActive) {
+                scrollUp();
+            }
             console.log('left');
             break;
         case 38: // SCROLL UP
+            if (!workshopActive) {
+                scrollUp();
+            }
             console.log('up');
-            scrollUp();
             break;
         case 39:
+            if (!workshopActive) {
+                scrollDown();
+            }
             console.log('right');
             break;
         case 40: // SCROLL DOWN
+            if (!workshopActive) {
+                scrollDown();
+            }
             console.log('down');
-            scrollDown();
             break;
         case 27:
-            if (camera.position.z == 3.7) {
+            if (camera.position.z == 3.7 && !workshopActive) {
                 functionBtnBackHome();
-                console.log("echap")
             }
+            if (workshopActive && !creditActive) {
+                backToPlane();
+            } else if (workshopActive && creditActive) {
+                backToWorkshop();
+            }
+            console.log("echap")
             break;
         case 13:
             if (camera.position.z == 10) {
                 functionBtnStart();
-                console.log("enter")
             }
+            if (!homeActive) {
+                plane14Click();
+                plane13Click();
+                plane12Click();
+                plane11Click();
+                plane10Click();
+                plane9Click();
+                plane8Click();
+                plane7Click();
+                plane6Click();
+                plane5Click();
+                plane4Click();
+                plane3Click();
+                plane2Click();
+                plane1Click();
+            }
+            console.log("enter")
+            break;
+        case 65: // DEBUGGER
+            console.log(camera.position.z)
+            // console.log("1/4 : " + contentContainer.scrollHeight / 4)
+            // console.log("2/4 : " + contentContainer.scrollHeight / 4 * 2)
+            // console.log("3/4 : " + contentContainer.scrollHeight / 4 * 3)
+            // console.log("4/4 : " + contentContainer.scrollHeight / 4 * 4)
+            console.log("pos Fiche Actuelle : " + contentContainer.scrollTop)
+            console.log("pos Crédit Actuelle : " + scrollContainer.scrollTop)
+            console.log("Crédit : " + creditActive)
+            console.log("Workshop : " + workshopActive)
+            console.log("Back : " + backPossible)
             break;
     }
 };
@@ -3705,7 +4180,7 @@ var render = function() {
     });
 
     particleGeo.verticesNeedUpdate = true;
-
+    
     // window.onmousemove = function(e) { //PARTICLES MOUSE EVENT
 
     //     // var resetCenterX = window.innerWidth / 2;
@@ -3744,8 +4219,6 @@ var render = function() {
             materialPlane14.uniforms.time.value = clock.getElapsedTime();
         }
     }
-
-
 };
 
 render();

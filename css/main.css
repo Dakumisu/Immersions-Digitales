@@ -9,6 +9,15 @@
           user-select: none;
 }
 
+html {
+  height: auto;
+  overflow-x: initial;
+}
+
+html body {
+  height: auto;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -115,14 +124,26 @@ canvas.hologramDefault {
   pointer-events: none;
   z-index: 100;
   mix-blend-mode: difference;
+  opacity: 0;
+}
+
+.tailleBoulette {
+  position: absolute;
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  left: 0;
+  top: 0;
+  border-radius: 50px;
 }
 
 .cursor-shape_in {
   position: absolute;
   pointer-events: none;
   border-radius: 50px;
-  left: -10px;
-  top: -10px;
+  left: 0;
+  top: 0;
   width: 20px;
   height: 20px;
   background: #4cc9f0;
@@ -136,38 +157,8 @@ canvas.hologramDefault {
   opacity: 0;
 }
 
-.indicClickOnPlane {
-  opacity: 0;
-  z-index: 100;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-38%, 15%);
-          transform: translate(-38%, 15%);
-  color: #4cc9f0;
-  pointer-events: none;
-  font-family: littleTitle;
-  font-size: 11px;
-  font-weight: bold;
-  -webkit-transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1), -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
-}
-
-.indicClickOnPlane.planeHover {
-  letter-spacing: 1.5px;
-  -webkit-transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  transition: -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  transition: filter 0.5s cubic-bezier(0.75, 0, 0, 1), -webkit-filter 0.5s cubic-bezier(0.75, 0, 0, 1);
-  -webkit-filter: blur(0px);
-          filter: blur(0px);
-}
-
 .cursor-shape_out {
+  opacity: 1;
   mix-blend-mode: difference;
   z-index: 99;
   position: absolute;
@@ -180,6 +171,30 @@ canvas.hologramDefault {
   border: #4cc9f0 solid 1px;
   -webkit-transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
   transition: padding 0.75s cubic-bezier(0.25, 0, 0, 1);
+}
+
+.indicClickOnPlane {
+  opacity: 0;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-37%, 20%);
+          transform: translate(-37%, 20%);
+  color: #4cc9f0;
+  pointer-events: none;
+  font-family: littleTitle;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  -webkit-transition: opacity 0.1s cubic-bezier(0.75, 0, 0, 1);
+  transition: opacity 0.1s cubic-bezier(0.75, 0, 0, 1);
+}
+
+.indicClickOnPlane.planeHover {
+  -webkit-transition: opacity 0.75s cubic-bezier(0.75, 0, 0, 1);
+  transition: opacity 0.75s cubic-bezier(0.75, 0, 0, 1);
+  opacity: 1;
 }
 
 .workShopContainer {
@@ -382,6 +397,7 @@ canvas.hologramDefault {
 
 .creditContainer__1 .scrollContainer {
   width: 100%;
+  height: 100vh;
   margin: 0;
   overflow: scroll;
   display: -webkit-box;
@@ -393,7 +409,6 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
@@ -432,6 +447,7 @@ canvas.hologramDefault {
   margin-left: 10%;
   margin-right: 10%;
   position: relative;
+  opacity: 0;
 }
 
 .creditContainer__1 .scrollContainer .mainImg .contentImg__2, .creditContainer__1 .scrollContainer .mainImg .contentImg__4, .creditContainer__1 .scrollContainer .mainImg .contentImg__6 {
@@ -518,6 +534,7 @@ canvas.hologramDefault {
 
 .creditContainer__1 .scrollContainer .mainImg .contentImg .content .mask {
   position: absolute;
+  opacity: 0;
   left: 0;
   top: 0;
   width: 100%;
@@ -935,7 +952,6 @@ canvas.hologramDefault {
 
 .btn {
   outline: none;
-  border: none;
   font-family: "littleTitle";
   font-size: 17px;
   letter-spacing: 1px;
@@ -961,7 +977,14 @@ canvas.hologramDefault {
   }
 }
 
-.btn__start:hover {
+.btn__start {
+  -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+}
+
+.btn__start.hover {
+  -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
   border: 1px solid #09021e;
 }
 
@@ -1010,6 +1033,8 @@ canvas.hologramDefault {
   background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
+  -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {
@@ -1019,18 +1044,6 @@ canvas.hologramDefault {
     left: 2%;
     top: 1.2%;
   }
-}
-
-.btn__backHome.open {
-  pointer-events: all;
-}
-
-.btn__backHome.close {
-  pointer-events: none;
-}
-
-.btn__backHome:hover {
-  border: 1px solid #09021e;
 }
 
 .btn__backHome .spanContainerBackMouseout.neonText {
@@ -1087,6 +1100,8 @@ canvas.hologramDefault {
   background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
+  -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {
@@ -1096,18 +1111,6 @@ canvas.hologramDefault {
     left: 2%;
     top: 1.2%;
   }
-}
-
-.btn__backWorkshop.open {
-  pointer-events: all;
-}
-
-.btn__backWorkshop.close {
-  pointer-events: none;
-}
-
-.btn__backWorkshop:hover {
-  border: 1px solid #09021e;
 }
 
 .btn__backWorkshop .spanContainerBackWorkshopMouseout.neonText {
@@ -1155,6 +1158,54 @@ canvas.hologramDefault {
   }
 }
 
+.btn__discord {
+  background: none;
+  border: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 47px;
+  position: absolute;
+  right: 18px;
+  top: 1.5%;
+  padding: 0 10px;
+}
+
+.btn__discord span {
+  opacity: 0.6;
+}
+
+.btn__iut {
+  background: none;
+  border: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 47px;
+  position: absolute;
+  left: 18px;
+  top: 1.5%;
+  padding: 0 10px;
+}
+
+.btn__iut span {
+  opacity: 0.6;
+}
+
+.open {
+  pointer-events: all;
+}
+
+.close {
+  pointer-events: none;
+}
+
+.hover {
+  -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
+  border: 1px solid #09021e;
+}
+
 .colContainer {
   position: absolute;
   width: 100%;
@@ -1179,16 +1230,29 @@ canvas.hologramDefault {
           clip-path: inset(0% 0% 0% 100%);
 }
 
-.rowContainer .colContainer {
-  position: absolute;
+.row {
   width: 100%;
-  height: 100vh;
-  z-index: -1;
+  height: 2px;
+  background: #0d0437;
+  margin-top: 20px;
+  opacity: .65;
 }
 
-.rowContainer .colContainer .col {
-  -webkit-clip-path: inset(100% 0% 0% 0%);
-          clip-path: inset(100% 0% 0% 0%);
+.row.line {
+  width: 0;
+  position: absolute;
+  height: 2px;
+  background: #1b355e;
+  z-index: -1;
+  opacity: 0.35;
+}
+
+.row.line__1 {
+  bottom: 6.1%;
+}
+
+.row.line__2 {
+  bottom: 1.8%;
 }
 
 .col {
@@ -1209,14 +1273,16 @@ canvas.hologramDefault {
   height: 0;
   background: #1b355e;
   position: absolute;
-  width: 100%;
-  height: 100vh;
   z-index: -1;
+  opacity: 0.35;
 }
 
-.col.line .row {
-  -webkit-clip-path: inset(0% 0% 0% 100%);
-          clip-path: inset(0% 0% 0% 100%);
+.col.line__1 {
+  right: 0;
+}
+
+.col.line__2 {
+  right: 0;
 }
 
 .sm {

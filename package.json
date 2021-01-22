@@ -8,13 +8,19 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "fonts-loader": "^1.0.11",
+    "draco": "0.0.1",
     "glsl-noise": "0.0.0",
+    "gltf-pipeline": "^3.0.2",
     "gsap": "^3.5.1",
     "postprocessing": "^6.19.0",
+    "scroll-triggers": "^4.4.0",
     "three": "^0.114.0",
     "three-gltf-loader": "^1.111.0",
-    "three.interaction": "^0.2.3"
+    "three-loaders": "^1.0.9",
+    "three-orbit-controls": "^82.1.0",
+    "three-orbitcontrols": "^2.110.3",
+    "three.interaction": "^0.2.3",
+    "touchsweep": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",
