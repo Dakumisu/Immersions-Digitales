@@ -937,13 +937,13 @@ canvas.hologramDefault {
   outline: none;
   border: none;
   font-family: "littleTitle";
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 1px;
   background: #09021e;
   color: #4cc9f0;
   border: 1px solid #4cc9f0;
-  width: 235px;
-  height: 57px;
+  width: 225px;
+  height: 55px;
   overflow: hidden;
   position: relative;
   -webkit-clip-path: inset(0% 0% 0% 0%);
@@ -986,7 +986,7 @@ canvas.hologramDefault {
 .btn__start .spanContainerStartMouseover span,
 .btn__start .spanContainerStartMouseout span {
   display: inline-block;
-  line-height: 55px;
+  line-height: 53px;
 }
 
 @media screen and (max-width: 600px) {
@@ -1002,12 +1002,11 @@ canvas.hologramDefault {
 }
 
 .btn__backHome {
-  width: 107px;
-  height: 57px;
-  top: 2.5%;
+  width: 100px;
+  height: 55px;
+  top: 2.25%;
   left: 24px;
   position: absolute;
-  background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
 }
@@ -1054,7 +1053,7 @@ canvas.hologramDefault {
 .btn__backHome .spanContainerBackMouseover span,
 .btn__backHome .spanContainerBackMouseout span {
   display: inline-block;
-  line-height: 55px;
+  line-height: 53px;
 }
 
 @media screen and (max-width: 600px) {
@@ -1079,12 +1078,11 @@ canvas.hologramDefault {
 }
 
 .btn__backWorkshop {
-  width: 107px;
-  height: 57px;
-  top: 2.5%;
+  width: 100px;
+  height: 55px;
+  top: 2.25%;
   left: 24px;
   position: absolute;
-  background: none;
   -webkit-clip-path: inset(0% 100% 0% 0%);
           clip-path: inset(0% 100% 0% 0%);
 }
@@ -1131,7 +1129,7 @@ canvas.hologramDefault {
 .btn__backWorkshop .spanContainerBackWorkshopMouseover span,
 .btn__backWorkshop .spanContainerBackWorkshopMouseout span {
   display: inline-block;
-  line-height: 55px;
+  line-height: 53px;
 }
 
 @media screen and (max-width: 600px) {
@@ -1179,28 +1177,38 @@ canvas.hologramDefault {
           clip-path: inset(0% 0% 0% 100%);
 }
 
-.rowContainer .colContainer {
-  position: absolute;
+.row {
   width: 100%;
-  height: 100vh;
-  z-index: -1;
+  height: 2px;
+  background: #0d0437;
+  margin-top: 20px;
+  opacity: .65;
 }
 
-.rowContainer .colContainer .col {
-  -webkit-clip-path: inset(100% 0% 0% 0%);
-          clip-path: inset(100% 0% 0% 0%);
+.row.line {
+  width: 0;
+  position: absolute;
+  height: 2px;
+  background: #1b355e;
+  z-index: -1;
+  opacity: 0.35;
+}
+
+.row.line__1 {
+  bottom: 6.1%;
+}
+
+.row.line__2 {
+  bottom: 1.8%;
 }
 
 .col {
   width: 2px;
   height: 100vh;
   background: #0d0437;
-  margin-left: 20px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  margin-right: 10px;
+  margin-left: 10px;
+  display: inline-block;
   opacity: .65;
 }
 
@@ -1209,14 +1217,16 @@ canvas.hologramDefault {
   height: 0;
   background: #1b355e;
   position: absolute;
-  width: 100%;
-  height: 100vh;
   z-index: -1;
+  opacity: 0.35;
 }
 
-.col.line .row {
-  -webkit-clip-path: inset(0% 0% 0% 100%);
-          clip-path: inset(0% 0% 0% 100%);
+.col.line__1 {
+  right: 0;
+}
+
+.col.line__2 {
+  right: 0;
 }
 
 .sm {
@@ -1237,7 +1247,7 @@ canvas.hologramDefault {
   z-index: 10;
   font-family: 'littleTitle';
   letter-spacing: 2px;
-  font-size: 15px;
+  font-size: 13px;
   overflow: hidden;
   font-weight: 600;
 }
@@ -1351,29 +1361,29 @@ canvas.hologramDefault {
 
 @-webkit-keyframes outSM {
   to {
-    -webkit-transform: translateX(165%);
-            transform: translateX(165%);
+    -webkit-transform: translateX(175%);
+            transform: translateX(175%);
   }
 }
 
 @keyframes outSM {
   to {
-    -webkit-transform: translateX(165%);
-            transform: translateX(165%);
+    -webkit-transform: translateX(175%);
+            transform: translateX(175%);
   }
 }
 
 @-webkit-keyframes outImpairSM {
   to {
-    -webkit-transform: translateX(-165%);
-            transform: translateX(-165%);
+    -webkit-transform: translateX(-175%);
+            transform: translateX(-175%);
   }
 }
 
 @keyframes outImpairSM {
   to {
-    -webkit-transform: translateX(-165%);
-            transform: translateX(-165%);
+    -webkit-transform: translateX(-175%);
+            transform: translateX(-175%);
   }
 }
 
@@ -1397,8 +1407,8 @@ canvas.hologramDefault {
 .sm__1.mouseover::before {
   content: "FB";
   position: absolute;
-  -webkit-transform: translateX(-165%);
-          transform: translateX(-165%);
+  -webkit-transform: translateX(-175%);
+          transform: translateX(-175%);
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
@@ -1408,8 +1418,8 @@ canvas.hologramDefault {
   position: absolute;
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
-  -webkit-transform: translateX(-165%);
-          transform: translateX(-165%);
+  -webkit-transform: translateX(-175%);
+          transform: translateX(-175%);
 }
 
 .sm__1.mouseout::before {
@@ -1441,8 +1451,8 @@ canvas.hologramDefault {
 .sm__2.mouseover::before {
   content: "IG";
   position: absolute;
-  -webkit-transform: translateX(165%);
-          transform: translateX(165%);
+  -webkit-transform: translateX(175%);
+          transform: translateX(175%);
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
@@ -1452,8 +1462,8 @@ canvas.hologramDefault {
   position: absolute;
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
-  -webkit-transform: translateX(165%);
-          transform: translateX(165%);
+  -webkit-transform: translateX(175%);
+          transform: translateX(175%);
 }
 
 .sm__2.mouseout::before {
@@ -1485,8 +1495,8 @@ canvas.hologramDefault {
 .sm__3.mouseover::before {
   content: "IN";
   position: absolute;
-  -webkit-transform: translateX(-165%);
-          transform: translateX(-165%);
+  -webkit-transform: translateX(-175%);
+          transform: translateX(-175%);
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
 }
@@ -1496,8 +1506,8 @@ canvas.hologramDefault {
   position: absolute;
   -webkit-animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
           animation: inSM 0.5s cubic-bezier(0.75, 0, 0, 1) forwards;
-  -webkit-transform: translateX(-165%);
-          transform: translateX(-165%);
+  -webkit-transform: translateX(-175%);
+          transform: translateX(-175%);
 }
 
 .sm__3.mouseout::before {
@@ -1530,13 +1540,18 @@ canvas.hologramDefault {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  padding: 0 18px 0 25px;
+  padding: 25px 18px 25px 25px;
   overflow: hidden;
   -webkit-transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
   transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
   -webkit-clip-path: inset(0 0 0 70%);
           clip-path: inset(0 0 0 70%);
   text-align: center;
+  pointer-events: none;
+}
+
+.containerTimeline.switch {
+  pointer-events: all;
 }
 
 .containerTimeline .timelineIndication .indication {
@@ -1547,25 +1562,18 @@ canvas.hologramDefault {
           writing-mode: vertical-rl;
   text-orientation: mixed;
   letter-spacing: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   position: absolute;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   right: 22px;
   top: 50%;
-  opacity: 1;
+  opacity: 0;
   -webkit-transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
   transition: 0.5s cubic-bezier(0.75, 0, 0, 1);
-  -webkit-filter: blur(0);
-          filter: blur(0);
-}
-
-.containerTimeline .timelineIndication .indication.switch {
-  opacity: 0;
-  letter-spacing: 25px;
-  -webkit-filter: blur(2px);
-          filter: blur(2px);
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
 }
 
 .containerTimeline .workShopButton {
@@ -1585,6 +1593,11 @@ canvas.hologramDefault {
   -webkit-clip-path: inset(0 0 0 99%);
           clip-path: inset(0 0 0 99%);
   font-weight: normal;
+  -webkit-transform: translateX(25%);
+          transform: translateX(25%);
+  opacity: 0;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
 }
 
 .containerTimeline .workShopButton:hover {
