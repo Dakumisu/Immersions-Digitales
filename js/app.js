@@ -66,7 +66,15 @@ import leftDoorModel from "../assets/model/leftDoor.gltf";
 import leftDoor2Model from "../assets/model/leftDoor2.gltf";
 
 import pyloneModel from "../assets/model/navigation/pylone.gltf";
+import pylone2Model from "../assets/model/navigation/pylone2.gltf";
+import pylone3Model from "../assets/model/navigation/pylone3.gltf";
+import pylone4Model from "../assets/model/navigation/pylone4.gltf";
+import pylone5Model from "../assets/model/navigation/pylone5.gltf";
 import gridModel from "../assets/model/navigation/grid.gltf";
+import grid2Model from "../assets/model/navigation/grid2.gltf";
+import grid3Model from "../assets/model/navigation/grid3.gltf";
+import grid4Model from "../assets/model/navigation/grid4.gltf";
+import grid5Model from "../assets/model/navigation/grid5.gltf";
 import tableModel from "../assets/model/navigation/table.gltf";
 import poutreModel from "../assets/model/navigation/poutre.gltf";
 import leftWallModel from "../assets/model/navigation/leftWall.gltf";
@@ -74,11 +82,25 @@ import rightWallModel from "../assets/model/navigation/rightWall.gltf";
 import fieldModel from "../assets/model/navigation/field.gltf";
 import signModel from "../assets/model/navigation/sign.gltf";
 
-import vr2Model from "../assets/model/navigation/vr2.gltf";
-import tabProgModel from "../assets/model/navigation/tabProg.gltf";
-import tvModel from "../assets/model/navigation/tv.gltf";
-import camModel from "../assets/model/navigation/cam.gltf";
-import enceinteModel from "../assets/model/navigation/enceinte.gltf";
+// import test from "../assets/model/DracoModels/modelDraco.gltf";
+
+// import greenScreenModel from "../assets/model/fondVert/greenScreen.gltf";
+// import tvModel from "../assets/model/fondVert/tv.gltf";
+// import tv2Model from "../assets/model/fondVert/tv2.gltf";
+// import tvLineModel from "../assets/model/fondVert/tvLine.gltf";
+
+// const processGltf = GLTFPipeline.processGltf;
+// const gltf = fsExtra.readJsonSync(socleModel);
+// const options = {
+//     dracoOptions: {
+//         compressionLevel: 10
+//     }
+// };
+// processGltf(gltf, options).then(function (results) {
+//     fsExtra.writeJsonSync('socleModel-draco.gltf', results.gltf);
+// });
+
+gsap.registerPlugin(ScrollTrigger);
 
 ////////// SCENE //////////
 var scene = new THREE.Scene();
@@ -113,7 +135,6 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 })
-
 
 /////// MESH INTERACTION ///////
 const interaction = new Interaction(renderer, scene, camera);
@@ -156,17 +177,10 @@ let light4 = new THREE.PointLight(0x4cc9f0, .3);
 light4.position.set(2000, 1000, -2000);
 scene.add(light4);
 
-let light5 = new THREE.PointLight(0xf72585, .2);
-light5.position.set(0, 2000, 2000);
-scene.add(light5);
-
-let lightCenter = new THREE.PointLight(0x000000, 30, 2.6);
-lightCenter.position.set(0, 1.5, 0)
+let lightCenter = new THREE.DirectionalLight(0x000000, 10);
+lightCenter.position.set(0, -1.5, 0)
+lightCenter.target = targetLogo;
 scene.add(lightCenter);
-
-let lightCenter2 = new THREE.DirectionalLight(0x4cc9f0, 3);
-lightCenter2.position.set(0, -.1, 0)
-scene.add(lightCenter2);
 
 let lightCenterSocle = new THREE.PointLight(0x000000, 150, .6);
 lightCenterSocle.position.set(0, -1.5, 0)
@@ -175,8 +189,8 @@ scene.add(lightCenterSocle);
 const cyanColor = new THREE.Color(0x4cc9f0);
 const cyanColorReset = new THREE.Color(0x000000);
 
-let ambientLight = new THREE.AmbientLight(0x09021e, 7.5);
-ambientLight.position.set(0, 0, 0)
+let ambientLight = new THREE.AmbientLight(0x09021e, 8);
+ambientLight.position.set(0, -1000, 0)
 scene.add(ambientLight);
 
 /////// 3D MODEL ///////
@@ -331,9 +345,9 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     loaderTable.load(tableModel, function(addTable) {
         table = addTable.scene;
         scene.add(table);
-        table.position.set(-8.3, -4.9, -8.5)
+        table.position.set(-8, -4.9, -8.5)
         table.rotation.y = -.5 * Math.PI
-        table.scale.set(0.0001, 0.0001, 0.0001)
+        table.scale.set(110, 0.0001, 0.0001)
     })
 }
 
@@ -347,9 +361,9 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     loaderPylone.load(pyloneModel, function(addPylone) {
         pylone = addPylone.scene;
         scene.add(pylone);
-        pylone.position.set(-9.2, -1.5, -5)
+        pylone.position.set(-8.5, -1.5, -5)
         pylone.rotation.y = -.5 * Math.PI
-        pylone.scale.set(0.0001, 0.0001, 0.0001)
+        pylone.scale.set(110, 0.0001, 0.0001)
     })
 }
 
@@ -360,12 +374,12 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderPylone2 = new GLTFLoader;
     loaderPylone2.crossOrigin = true;
     
-    loaderPylone2.load(pyloneModel, function(addPylone2) {
+    loaderPylone2.load(pylone2Model, function(addPylone2) {
         pylone2 = addPylone2.scene;
         scene.add(pylone2);
-        pylone2.position.set(-9.2, -1.5, -6.5)
+        pylone2.position.set(-8.5, -1.5, -6.5)
         pylone2.rotation.y = -.5 * Math.PI
-        pylone2.scale.set(0.0001, 0.0001, 0.0001)
+        pylone2.scale.set(110, 0.0001, 0.0001)
     })
 }
 
@@ -376,12 +390,12 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderPylone3 = new GLTFLoader;
     loaderPylone3.crossOrigin = true;
     
-    loaderPylone3.load(pyloneModel, function(addPylone3) {
+    loaderPylone3.load(pylone3Model, function(addPylone3) {
         pylone3 = addPylone3.scene;
         scene.add(pylone3);
-        pylone3.position.set(-9.2, -1.5, -8)
+        pylone3.position.set(-8.5, -1.5, -8)
         pylone3.rotation.y = -.5 * Math.PI
-        pylone3.scale.set(0.0001, 0.0001, 0.0001)
+        pylone3.scale.set(110, 0.0001, 0.0001)
     })
 }
 
@@ -392,28 +406,28 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderPylone4 = new GLTFLoader;
     loaderPylone4.crossOrigin = true;
     
-    loaderPylone.load(pyloneModel, function(addPylone4) {
+    loaderPylone.load(pylone4Model, function(addPylone4) {
         pylone4 = addPylone4.scene;
         scene.add(pylone4);
-        pylone4.position.set(-9.2, -1.5, -9.5)
+        pylone4.position.set(-8.5, -1.5, -9.5)
         pylone4.rotation.y = -.5 * Math.PI
-        pylone4.scale.set(0.0001, 0.0001, 0.0001)
+        pylone4.scale.set(110, 0.0001, 0.0001)
     })
 }
 
-// PYLONE 5 MODEL
+// PYLONE5 MODEL
 var pylone5;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderPylone5 = new GLTFLoader;
     loaderPylone5.crossOrigin = true;
     
-    loaderPylone.load(pyloneModel, function(addPylone5) {
+    loaderPylone.load(pylone5Model, function(addPylone5) {
         pylone5 = addPylone5.scene;
         scene.add(pylone5);
-        pylone5.position.set(-9.2, -1.5, -11)
+        pylone5.position.set(-8.5, -1.5, -11)
         pylone5.rotation.y = -.5 * Math.PI
-        pylone5.scale.set(0.0001, 0.0001, 0.0001)
+        pylone5.scale.set(110, 0.0001, 0.0001)
     })
 }
 
@@ -427,73 +441,73 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     loaderGrid.load(gridModel, function(addGrid) {
         grid = addGrid.scene;
         scene.add(grid);
-        grid.position.set(-8, -3.8, -7.5)
+        grid.position.set(-7.5, -3.8, -7.5)
         grid.rotation.y = -.5 * Math.PI
-        grid.scale.set(0.0001, 0.0001, 0.0001)
+        grid.scale.set(0.0001, 110, 0.0001)
     })
 }
 
-// GRID 2 MODEL
+// GRID2 MODEL
 var grid2;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderGrid2 = new GLTFLoader;
     loaderGrid2.crossOrigin = true;
     
-    loaderGrid2.load(gridModel, function(addGrid2) {
+    loaderGrid2.load(grid2Model, function(addGrid2) {
         grid2 = addGrid2.scene;
         scene.add(grid2);
-        grid2.position.set(-8, -3.2, -7.5)
+        grid2.position.set(-7.5, -3.2, -7.5)
         grid2.rotation.y = -.5 * Math.PI
-        grid2.scale.set(0.0001, 0.0001, 0.0001)
+        grid2.scale.set(0.0001, 110, 0.0001)
     })
 }
 
-// GRID 3 MODEL
+// GRID3 MODEL
 var grid3;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderGrid3 = new GLTFLoader;
     loaderGrid3.crossOrigin = true;
     
-    loaderGrid3.load(gridModel, function(addGrid3) {
+    loaderGrid3.load(grid3Model, function(addGrid3) {
         grid3 = addGrid3.scene;
         scene.add(grid3);
-        grid3.position.set(-8, -2.6, -7.5)
+        grid3.position.set(-7.5, -2.6, -7.5)
         grid3.rotation.y = -.5 * Math.PI
-        grid3.scale.set(0.0001, 0.0001, 0.0001)
+        grid3.scale.set(0.0001, 110, 0.0001)
     })
 }
 
-// GRID 4 MODEL
+// GRID4 MODEL
 var grid4;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderGrid4 = new GLTFLoader;
     loaderGrid4.crossOrigin = true;
     
-    loaderGrid4.load(gridModel, function(addGrid4) {
+    loaderGrid4.load(grid4Model, function(addGrid4) {
         grid4 = addGrid4.scene;
         scene.add(grid4);
-        grid4.position.set(-8, -2, -7.5)
+        grid4.position.set(-7.5, -2, -7.5)
         grid4.rotation.y = -.5 * Math.PI
-        grid4.scale.set(0.0001, 0.0001, 0.0001)
+        grid4.scale.set(0.0001, 110, 0.0001)
     })
 }
 
-// GRID 5 MODEL
+// GRID5 MODEL
 var grid5;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
     var loaderGrid5 = new GLTFLoader;
     loaderGrid5.crossOrigin = true;
     
-    loaderGrid5.load(gridModel, function(addGrid5) {
+    loaderGrid5.load(grid5Model, function(addGrid5) {
         grid5 = addGrid5.scene;
         scene.add(grid5);
-        grid5.position.set(-8, -1.4, -7.5)
+        grid5.position.set(-7.5, -1.4, -7.5)
         grid5.rotation.y = -.5 * Math.PI
-        grid5.scale.set(0.0001, 0.0001, 0.0001)
+        grid5.scale.set(0.0001, 110, 0.0001)
     })
 }
 
@@ -509,7 +523,7 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
         scene.add(poutre);
         poutre.position.set(-9, 4, -9)
         poutre.rotation.y = -.5 * Math.PI
-        poutre.scale.set(0.0001, 0.0001, 0.0001)
+        poutre.scale.set(0.0001, 100, 0.0001)
     })
 }
 
@@ -526,100 +540,6 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
         sign.position.set(7.8, -3.05, -4)
         sign.rotation.y = -.5 * Math.PI
         sign.scale.set(0.0001, 0.0001, 0.0001)
-    });
-}
-
-// TAB PROG
-var tabProg;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderTabProg = new GLTFLoader();
-    loaderTabProg.crossOrigin = true
-    
-    loaderTabProg.load(tabProgModel, function(addTabProg) {
-        tabProg = addTabProg.scene;
-        scene.add(tabProg);
-        tabProg.position.set(9.2, .5, -11.8)
-        tabProg.scale.set(0.0001,0.0001, 0.0001);
-        tabProg.rotation.y = -Math.PI;
-    });
-}
-
-// TV
-var tv;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderTv = new GLTFLoader();
-    loaderTv.crossOrigin = true
-    
-    loaderTv.load(tvModel, function(addTv) {
-        tv = addTv.scene;
-        scene.add(tv);
-        tv.position.set(8.9, 2.2, -6)
-        tv.scale.set(0.0001,0.0001, 0.0001);
-        tv.rotation.y = -.79*Math.PI;
-    });
-}
-
-// TV2
-var tv2;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderTv2 = new GLTFLoader();
-    loaderTv2.crossOrigin = true
-    
-    loaderTv2.load(tvModel, function(addTv2) {
-        tv2 = addTv2.scene;
-        scene.add(tv2);
-        tv2.position.set(9, 4.6, -13)
-        tv2.scale.set(0.0001,0.0001, 0.0001);
-        tv2.rotation.y = -.73*Math.PI;
-    });
-}
-// CAM
-var cam;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderCam = new GLTFLoader();
-    loaderCam.crossOrigin = true
-    
-    loaderCam.load(camModel, function(addCam) {
-        cam = addCam.scene;
-        scene.add(cam);
-        cam.position.set(-8.8, 5.2, -12.5)
-        cam.scale.set(0.0001, 0.0001, 0.0001);
-        cam.rotation.y = -.45*Math.PI
-    });
-}
-
-//VR 2
-var vr2;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderVr2 = new GLTFLoader();
-    loaderVr2.crossOrigin = true
-    
-    loaderVr2.load(vr2Model, function(addVr2) {
-        vr2 = addVr2.scene;
-        scene.add(vr2);
-        vr2.position.set(-8.9, 5.2, -8.8)
-        vr2.scale.set(0.0001, 0.0001, 0.0001);
-    });
-}
-
-//ENCEINTE
-var enceinte;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderEnceinte = new GLTFLoader();
-    loaderEnceinte.crossOrigin = true
-    
-    loaderEnceinte.load(enceinteModel, function(addEnceinte) {
-        enceinte = addEnceinte.scene;
-        scene.add(enceinte);
-        enceinte.position.set(-9.2, 5.2,-5)
-        enceinte.scale.set(0.0001, 0.0001, 0.0001);
-        enceinte.rotation.y = .3*Math.PI;
     });
 }
 
@@ -754,7 +674,7 @@ let texture14Hover = new THREE.TextureLoader().load(atelier14Hover)
 
 
 /////// PLANES MATERIALS ///////
-let planeOpacityDefault = 0.9;
+let planeOpacityDefault = 0.925;
 
 var materialPlane1 = new THREE.ShaderMaterial({
     vertexShader,
@@ -1160,7 +1080,7 @@ for (let i = 0; i < 800; i++) {
     let particle = new THREE.Vector3(
             Math.random() * 50 - 40,
             Math.random() * 50 - 40,
-            Math.random() * 15 - 7.5)
+            Math.random() * 3.4 - 1.7) //20-10
     particleGeo.vertices.push(particle);
 }
 
@@ -1205,10 +1125,6 @@ let discordSpanContainer = document.querySelector('.spanContainerDiscord');
 let iutContainer = document.querySelector('.btn__iut');
 let iutSpanContainer = document.querySelector('.spanContainerIut');
 let musicBtn = document.querySelector('.musicBtn');
-let lineMusicBtn = document.querySelectorAll('.musicBtn .lineContainer .line')
-let maskMusicBtn = document.querySelector('.musicBtn .lineContainer .soundMask')
-let onMusic = document.querySelector('.musicBtn .containerIndication .on')
-let offMusic = document.querySelector('.musicBtn .containerIndication .off')
 let bgCol = document.querySelectorAll('.colContainer .col');
 let bgRow = document.querySelectorAll('.rowContainer .row');
 let cursor = document.querySelector('.cursor');
@@ -1234,10 +1150,8 @@ let workShopButton12 = document.querySelector('.workShopButton__12');
 let workShopButton13 = document.querySelector('.workShopButton__13');
 let workShopButton14 = document.querySelector('.workShopButton__14');
 let indicClickOnPlane = document.querySelector('.indicClickOnPlane');
-
 let contentContainer = document.querySelector('.contentContainer');
 
-let contentContainer = document.querySelector('.contentContainer__1');
 let workShopContainer1 = document.querySelector('.workShopContainer__1');
 let creditContainer1 = document.querySelector('.creditContainer__1');
 let scrollContainer = document.querySelector('.scrollContainer');
@@ -1285,8 +1199,6 @@ let r1__6 = document.querySelector('.r1__6')
 let r2__6 = document.querySelector('.r2__6')
 let faceImgPath__6 = document.querySelector('.content__6')
 let faceImgZoom__6 = document.querySelector('.faceImg__6')
-let homeMask = document.querySelector('.homeMask');
-let cursorIndication = document.querySelector('.cursorIndication');
 
 /////// IMAGES HOVER ///////
 faceImgPath__1.addEventListener('mouseenter', function () {
@@ -1430,61 +1342,6 @@ window.addEventListener('load', function() {
         }, 4000)
     }
 })
-
-
-let switchBtn = false;
-
-musicBtn.addEventListener('click', function(){
-
-    if(switchBtn == false){
-    TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 });   
-    switchBtn = true;    
-}
-
-else{
-    TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 }); 
-    switchBtn = false;
-}
-
-    onMusic.classList.toggle('switch');
-    offMusic.classList.toggle('switch')
-
-    setTimeout(function(){
-        lineMusicBtn.forEach(line=>{
-            line.classList.toggle('switch');
-        })
-    },350)   
-})
-// var shouldStop = false;
-
-  
-
-
-// function checkShouldStop() {
-//     if(shouldStop) {
-//       tl.pause();
-//     }else {
-//       tl.resume();
-//     }
-//   }
-
-
-//   musicBtn.addEventListener('click', function(){
-//     shouldStop = true;
-//     gsap.staggerTo(lineMusicBtn, .5, { clipPath: "inset(95% 0% 0% 0%)"}, 0.12)
-   
-//   })
-
-// //   musicBtn.addEventListener('mouseout', function(){
-// //     shouldStop = false;
-// //     tl.resume();
-   
-// //   })
-
 
 /////// PLANE HOVER SHADERS EFFECT ///////
 let colorCursorHover = "#f72585";
@@ -1918,6 +1775,7 @@ el.addEventListener('swiperight', () => {
 // el.addEventListener('tap', () => {
 // });
 
+
 ///// PLANES CLICK /////
 function plane14Click() {
     if (clickPossible && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
@@ -1929,9 +1787,7 @@ function plane14Click() {
         gsap.to(planeMesh14.scale, 0.75, { x: 1.2, y: 1.2, ease: "power3.inOut" });
         
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-
-        hideTimeline()
+        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 3.5, ease: "power3.inOut" })
     
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
@@ -2353,6 +2209,8 @@ planeMesh1.on('click', function() {
 /////// BACKHOME BUTTON EVENTS ///////
 function functionBtnBackHome() {
     
+    // Rajout des particules
+    scene.add(particleMesh);
     workshopActive = false
     homeActive = true;
 
@@ -2387,11 +2245,7 @@ function functionBtnBackHome() {
     setTimeout(function(){
         btnStart.disabled = false;
         btnStart.classList.remove('close')
-        littleTitleSvg.classList.add('close')
     }, 3000)
-
-    hideTimeline()
-
     if (planeAxe.position.y <= -11) {
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
@@ -2407,18 +2261,12 @@ function functionBtnBackHome() {
         gsap.to(planeAxe.scale, 0, { y: 0.0001, x: 0.0001, z: 0.0001, delay: 2 })
         gsap.to(planeAxe.scale, 0, { y: 1, x: 1, z: 1, delay: 3.1 })
     }
-
     //CAMERA ANIM
     if (window.matchMedia("(max-width: 600px)").matches) {
         gsap.to(camera.position, 2.95, { z: 11.3, ease: "power3.inOut" })
     } else {
         gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
     }
-
-     //RAJOUT DES PARTICULES
-     scene.add(particleMesh);
-     gsap.to(particleMesh.scale, 2.95, { x: 1, y: 1, z: 1, ease: "power3.inOut" })
-
     //HTML ELEMENTS ANIM
     titleSvgPath.forEach(e => {
         e.classList.remove("pathTitleOut")
@@ -2434,10 +2282,7 @@ function functionBtnBackHome() {
     littleTitleSvgLine.classList.remove("pathLineIn")
     littleTitleSvgLine.classList.add("pathLineOut")
 
-    cursorIndication.classList.remove('switch')
-
     TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
-    TweenMax.to(homeMask, 2.95, { opacity: 1, ease: "power3.inOut" })
     TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
         //PLANE ROTATION Z ANIM
     gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -2474,56 +2319,32 @@ function functionBtnBackHome() {
         gsap.to(leftDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
         gsap.to(rightDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
         gsap.to(sign.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(table.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(pylone5.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(pylone4.scale, 2.1, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
-        gsap.to(pylone3.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(pylone2.scale, 1.8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
-        gsap.to(pylone.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
-        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
-        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
-        gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(cam.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(vr2.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(enceinte.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(tv2.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6})
-        gsap.to(tabProg.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3})
-        gsap.to(tv.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut"})
+        gsap.to(table.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone5.scale, 2.25, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone4.scale, 2.1, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(pylone3.scale, 1.95, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(pylone2.scale, 1.8, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(pylone.scale, 1.65, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 100, z: 0.0001, ease: "power3.inOut" })
     }
         //LIGHTS ANIM
     TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
     TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
     //SWITCH ELEMENTS ON CLICK
     canvas.style.zIndex = -1;
-    homeContainer.style.zIndex = 2;
-    homeMask.style.zIndex = 1;
-}
-
-function revealTimeline(){
-    TweenMax.to(workShopButton, 1, {  x: 0, opacity: 1, webkitFilter: 'blur(0)', stagger: { each: 0.03, from: "edges" }, ease: "power3.inOut", delay: 2 })
-    TweenMax.to(timelineIndication,1, { opacity: 1,  webkitFilter: 'blur(0)', ease: "power3.inOut", delay: 2.5 });
-    setTimeout(function(){
-        containerTimeline.classList.add('switch');
-    }, 4000)
-}
-
-function hideTimeline(){
-    TweenMax.to(workShopButton, 1, {  x: '25%', opacity: 0, webkitFilter: 'blur(2px)', stagger: { each: 0.03, from: "center" }, ease: "power3.inOut" })
-    TweenMax.to(timelineIndication,1, { opacity: 0,  webkitFilter: 'blur(2px)', ease: "power3.inOut" });
-    setTimeout(function(){
-        containerTimeline.classList.remove('switch');
-    }, 1000)
 }
 
 ///// START BUTTON EVENTS /////
 function functionBtnStart() {
     homeActive = false;
+
+    // Supression des particules
+    scene.remove(scene.getObjectByName("ParticleObjects"));
 
     //HTML ELEMENTS ANIM
     titleSvgPath.forEach(e => {
@@ -2532,6 +2353,8 @@ function functionBtnStart() {
     });
     titleSvgLine.classList.remove("pathLineIn")
     titleSvgLine.classList.add("pathLineOut")
+
+    // console.log(titleSvgLine)
 
     littleTitleSvgPath.forEach(e => {
         e.classList.add("pathTitleIn")
@@ -2549,13 +2372,9 @@ function functionBtnStart() {
     setTimeout(function(){
         btnBackHome.disabled = false;
         btnBackHome.classList.remove('close')
-        littleTitleSvg.classList.remove('close')
     }, 4000)
 
     TweenMax.to(btnStart, 1.7, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
-    TweenMax.to(homeMask, 3, { opacity: 0, ease: "power3.inOut" })
-
-    revealTimeline()
 
     TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .0, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut" })
     TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .0, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut" })
@@ -2564,15 +2383,9 @@ function functionBtnStart() {
     iutContainer.classList.add('close')
 
     setTimeout(function() {
-    // SUPPRESSIONS DES PARTICULES
-    setTimeout(function(){
-        scene.remove(scene.getObjectByName("ParticleObjects"));
-    }, 3000)
-    gsap.to(particleMesh.scale, 3, { x: 8, y: 8, z: 8, ease: "power3.inOut" })
         //AXES ANIM
         gsap.to(planeAxe.position, 1.5, { y: -17, ease: "power3.inOut", delay: 1.25 })
         gsap.to(planeAxe.rotation, 1.5, { y: -3.5 * Math.PI, ease: "power3.inOut", delay: 1.25 })
-        
             //CAMERA ANIM
         if (window.matchMedia("(max-width: 600px)").matches) {
             gsap.to(camera.position, 3, { z: 4.5, ease: "power3.inOut" })
@@ -2616,12 +2429,6 @@ function functionBtnStart() {
             gsap.to(rightDoor.scale, 3, { x: 110, y: 110, z: 110, ease: "power3.inOut" })
             gsap.to(sign.scale, 3, { x: 100, y: 100, z: 100, ease: "power3.inOut" })
             gsap.to(table.scale, 3, { x: 110, y: 110, z: 110, ease: "power3.inOut" })
-            gsap.to(cam.scale, 3, { x: 14, y: 14, z: 14, ease: "power3.inOut" })
-            gsap.to(vr2.scale, 2.7, { x: 75, y: 75, z: 75, ease: "power3.inOut", delay: .3 })
-            gsap.to(enceinte.scale, 2.4, { x: 1, y: 1, z: 1, ease: "power3.inOut", delay: .6 })
-            gsap.to(tv2.scale, 3, { x: 95, y: 95, z: 65, ease: "power3.inOut"})
-            gsap.to(tabProg.scale, 2.7, { x: 95, y: 95, z: 95, ease: "power3.inOut", delay: .3})
-            gsap.to(tv.scale, 2.4, { x: 95, y: 95, z: 95, ease: "power3.inOut", delay: .6})
             gsap.to(pylone.scale, 3, { x: 110, y: 80, z: 110, ease: "power3.inOut" })
             gsap.to(pylone2.scale, 2.85, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .15 })
             gsap.to(pylone3.scale, 2.7, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: .3 })
@@ -2643,11 +2450,6 @@ function functionBtnStart() {
         //SWITCH ELEMENTS ON CLICK  
         setTimeout(function() {
             canvas.style.zIndex = 1;
-            homeContainer.style.zIndex = -1;
-            homeMask.style.zIndex = -1;
-            setTimeout(function(){
-                cursorIndication.classList.add('switch')
-            },1100)
         }, 1500)
     }, 1000)
 }
@@ -2655,9 +2457,9 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function() {
     functionBtnStart();
-    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
 
     handleMouseLeave();
     btnStart.classList.remove('hover')
@@ -2668,18 +2470,18 @@ btnStart.addEventListener('click', function() {
 })
 
 btnStart.addEventListener('mouseenter', function() {
-    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: -40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnStart, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: -40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(btnStart, { color: "#09021e", background: "#4cc9f0", ease: "power2.inOut" });
     btnStart.classList.add('hover')
     spanContainerStartMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
 
 btnStart.addEventListener('mouseleave', function() {
-    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
     btnStart.classList.remove('hover')
     spanContainerStartMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
@@ -2687,9 +2489,9 @@ btnStart.addEventListener('mouseleave', function() {
 
 btnBackHome.addEventListener('click', function() {
     functionBtnBackHome();
-    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
 
     handleMouseLeave();
     btnBackHome.classList.remove('hover')
@@ -2699,18 +2501,18 @@ btnBackHome.addEventListener('click', function() {
 })
 
 btnBackHome.addEventListener('mouseenter', function() {
-    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(btnBackHome, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(btnBackHome, { color: "#09021e", background: "#4cc9f0", ease: "power2.inOut" });
     btnBackHome.classList.add('hover')
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
 
 btnBackHome.addEventListener('mouseleave', function() {
-    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
     btnBackHome.classList.remove('hover')
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
@@ -2823,7 +2625,7 @@ function backToPlane() {
 }
 
 function backToWorkshop() {
-    if (camera.position.z <= -185) {
+    if (camera.position.z <= -125) {
         let lastPosScroll = contentContainer.scrollTop
         contentContainer.scrollTop = lastPosScroll - 50
         console.log(contentContainer.scrollTop)
@@ -2863,26 +2665,26 @@ btnBackWorkshop.addEventListener('click', function() {
         TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
     }
 
-    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
+    TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power2.inOut" });
     setTimeout(function() {
         spanContainerBackMouseOut.classList.remove('neonText');
     }, 750)    
 })
 
 btnBackWorkshop.addEventListener('mouseenter', function() {
-    TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(btnBackWorkshop, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(btnBackWorkshop, { color: "#09021e", background: "#4cc9f0", ease: "power2.inOut" });
     btnBackWorkshop.classList.add('hover')
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
 })
 
 btnBackWorkshop.addEventListener('mouseleave', function() {
-    TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+    TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power2.inOut" });
+    TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power2.inOut" });
     btnBackWorkshop.classList.remove('hover')
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
@@ -2958,21 +2760,22 @@ charsTextIut.forEach(letter => {
 
 ///// WORKSHOP TIMELINE /////
 containerTimeline.addEventListener('mouseenter', function() {
-        TweenMax.to(workShopButton, { duration: .25, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.013, ease: "power3.inOut" });
-        TweenMax.to(workShopButtonMask, { duration: .25, width: "100%", stagger: 0.013, ease: "power3.inOut" });
-        TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.013, ease: "power3.inOut", delay: .5 });
-        TweenMax.to(containerTimeline, { duration: .25, clipPath: "inset(0% 0% 0% 0%)", ease: "power3.inOut" });
-        TweenMax.to(timelineIndication, { duration: .25, opacity: 0,  webkitFilter: 'blur(2px)', ease: "power4.inOut" });
+    TweenMax.to(workShopButton, { duration: .25, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "100%", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.02, ease: "power3.inOut", delay: .5 });
+    TweenMax.to(containerTimeline, { duration: 0, clipPath: "inset(0% 0% 0% 0%)", ease: "power3.inOut" });
+    timelineIndication.classList.add('switch');
 })
 
 containerTimeline.addEventListener('mouseleave', function() {
-    TweenMax.to(workShopButton, { duration: .25, clipPath: "inset(0% 0% 0% 99%)", stagger: 0.013, ease: "power3.inOut" });
-    TweenMax.to(workShopButtonMask, { duration: .25, width: "100%", stagger: 0.013, ease: "power3.inOut" });
-    TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.013, ease: "power3.inOut", delay: .4 });
+    TweenMax.to(workShopButton, { duration: .25, clipPath: "inset(0% 0% 0% 99%)", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "100%", stagger: 0.02, ease: "power3.inOut" });
+    TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.02, ease: "power3.inOut", delay: .5 });
     TweenMax.to(containerTimeline, { duration: .25, clipPath: "inset(0% 0% 0% 70%)", ease: "power3.inOut" });
-    if(camera.position.z == 3.7){
-    TweenMax.to(timelineIndication, { duration: .4, opacity: 1,  webkitFilter: 'blur(0)', ease: "power4.inOut" });
-    }
+    setTimeout(function() {
+        timelineIndication.classList.remove('switch');
+    }, 500)
+
 })
 
 /////// SM HOVER ///////
@@ -3037,7 +2840,7 @@ discordContainer.addEventListener('mouseleave', function() {
 })
 
 discordContainer.addEventListener('click', function() {
-    window.open('https://discord.gg/RrT9Tv4n', '_blank');
+    window.open('#', '_blank');
 })
 
 iutContainer.addEventListener('mouseenter', function() { // POINTER IUT
@@ -3050,10 +2853,6 @@ iutContainer.addEventListener('mouseleave', function() {
 
 iutContainer.addEventListener('click', function() {
     window.open('https://www.iut-tarbes.fr/', '_blank');
-})
-
-littleTitleSvg.addEventListener('click', function() {
-    window.open('https://www.immersions-digitales.fr/', '_blank');
 })
 
 ///// CUSTOM CURSOR /////
@@ -3185,12 +2984,6 @@ discordContainer.addEventListener("pointerleave", handleMouseLeave);
 
 iutContainer.addEventListener("pointerenter", handleMouseEnter);
 iutContainer.addEventListener("pointerleave", handleMouseLeave);
-
-musicBtn.addEventListener("pointerenter", handleMouseEnter);
-musicBtn.addEventListener("pointerleave", handleMouseLeave);
-
-littleTitleSvg.addEventListener("pointerenter", handleMouseEnter);
-littleTitleSvg.addEventListener("pointerleave", handleMouseLeave);
 
 document.body.addEventListener("pointermove", updateCursorPosition);
 
@@ -3446,6 +3239,7 @@ function scrollPlane14() {
 }
 
 function scrollPlane13() {
+    // if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
     //AXES ANIM
     gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
     gsap.to(planeAxe.rotation, .75, { y: -4 * Math.PI, ease: "power3.inOut" })
@@ -3464,6 +3258,7 @@ function scrollPlane13() {
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: 0, ease: "power3.inOut" })
     gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
+        // }
 }
 
 function scrollPlane12() {
@@ -3526,7 +3321,7 @@ function scrollPlane10() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })  
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane9() {
@@ -3547,7 +3342,7 @@ function scrollPlane9() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" }) 
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane8() {
@@ -3568,7 +3363,7 @@ function scrollPlane8() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })    
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane7() {
@@ -3589,7 +3384,7 @@ function scrollPlane7() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })    
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane6() {
@@ -3610,7 +3405,7 @@ function scrollPlane6() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })    
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane5() {
@@ -3631,8 +3426,7 @@ function scrollPlane5() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })  
-
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane4() {
@@ -3653,7 +3447,7 @@ function scrollPlane4() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })   
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane3() {
@@ -3695,7 +3489,7 @@ function scrollPlane2() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })    
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 function scrollPlane1() {
@@ -3716,18 +3510,14 @@ function scrollPlane1() {
     gsap.to(planeMesh11.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh12.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
     gsap.to(planeMesh13.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
-    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })  
+    gsap.to(planeMesh14.rotation, .75, { z: rotateZ, ease: "power3.inOut" })
 }
 
 ///// SCROLL FUNCTIONS /////
 function scrollUp() {
     if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
         homeActive = true
-        //RAJOUT DES PARTICULES
-     
         scene.add(particleMesh);
-        gsap.to(particleMesh.scale, 2.95, { x: 1, y: 1, z: 1, ease: "power3.inOut" })
-
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
         gsap.to(planeAxe.rotation, 2.25, { y: 0, ease: "power3.inOut" })
@@ -3738,7 +3528,6 @@ function scrollUp() {
             gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
         }
         //HTML ELEMENTS ANIM
-        cursorIndication.classList.remove('switch')
         canvas.classList.remove('hologramDefault')
         canvas.classList.add('hologramActive')
         btnBackHome.disabled = true;
@@ -3756,11 +3545,7 @@ function scrollUp() {
         });
         littleTitleSvgLine.classList.remove("pathLineIn")
         littleTitleSvgLine.classList.add("pathLineOut")
-
-        hideTimeline()
-
-        TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
-        TweenMax.to(homeMask, 2.95, { opacity: 1, ease: "power3.inOut" })
+        TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
 
         TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
@@ -3769,9 +3554,7 @@ function scrollUp() {
         setTimeout(function() {
             discordContainer.classList.remove('close')
             iutContainer.classList.remove('close')
-            btnStart.classList.remove('close')
-            littleTitleSvg.classList.add('close')
-        }, 2500)
+        }, 3000)
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -3806,34 +3589,23 @@ function scrollUp() {
         gsap.to(leftDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
         gsap.to(rightDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
         gsap.to(sign.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(table.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(pylone5.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(pylone4.scale, 2.1, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
-        gsap.to(pylone3.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(pylone2.scale, 1.8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
-        gsap.to(pylone.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
-        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
-        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(cam.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(vr2.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(enceinte.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(tv2.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6})
-        gsap.to(tabProg.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3})
-        gsap.to(tv.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut"})
-        gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
-        gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(table.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone5.scale, 2.25, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone4.scale, 2.1, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(pylone3.scale, 1.95, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(pylone2.scale, 1.8, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(pylone.scale, 1.65, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 100, z: 0.0001, ease: "power3.inOut" })
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         //SWITCH ELEMENTS ON CLICK
         canvas.style.zIndex = -1;
-        homeContainer.style.zIndex = 2;
-        homeMask.style.zIndex = 1;
     } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
         scrollPlane14();
         if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
@@ -3953,10 +3725,6 @@ function scrollUp() {
         }
     }
 }
-
-//REVEAL AND HIDE CURSOR INDICATION
-// gsap.to(cursorIndication, 0, { opacity: 0, ease: "power1.inOut"})
-// gsap.to(cursorIndication, 1.5, { opacity: 1, ease: "power1.inOut", delay: 7})
 
 function scrollDown() {
     if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
@@ -4078,10 +3846,7 @@ function scrollDown() {
         }
     } else if (planeAxe.position.y == -4) {
         homeActive = true
-        
-        //RAJOUT DES PARTICULES
         scene.add(particleMesh);
-        gsap.to(particleMesh.scale, 2.95, { x: 1, y: 1, z: 1, ease: "power3.inOut" })
         //AXES ANIM
         gsap.to(planeAxe.position, 2.25, { y: 4.2, ease: "power3.inOut" })
         gsap.to(planeAxe.rotation, 2.25, { y: -13.5 * Math.PI, ease: "power3.inOut" })
@@ -4092,7 +3857,6 @@ function scrollDown() {
             gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
         }
         //HTML ELEMENTS ANIM
-        cursorIndication.classList.remove('switch')
         canvas.classList.remove('hologramDefault')
         canvas.classList.add('hologramActive')
         btnBackHome.disabled = true;
@@ -4110,11 +3874,7 @@ function scrollDown() {
         });
         littleTitleSvgLine.classList.remove("pathLineIn")
         littleTitleSvgLine.classList.add("pathLineOut")
-
-        hideTimeline()
-
-        TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
-        TweenMax.to(homeMask, 2.95, { opacity: 1, ease: "power3.inOut"})
+        TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: .75, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
 
         TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
@@ -4123,9 +3883,7 @@ function scrollDown() {
         setTimeout(function() {
             discordContainer.classList.remove('close')
             iutContainer.classList.remove('close')
-            btnStart.classList.remove('close')
-            littleTitleSvg.classList.add('close')
-        }, 2500)
+        }, 3000)
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -4160,34 +3918,23 @@ function scrollDown() {
         gsap.to(leftDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
         gsap.to(rightDoor.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
         gsap.to(sign.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(table.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(pylone5.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(pylone4.scale, 2.1, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
-        gsap.to(pylone3.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(pylone2.scale, 1.8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
-        gsap.to(pylone.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
-        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
-        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(table.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone5.scale, 2.25, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(pylone4.scale, 2.1, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(pylone3.scale, 1.95, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(pylone2.scale, 1.8, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(pylone.scale, 1.65, { x: 110, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
+        gsap.to(grid.scale, 2.25, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(grid2.scale, 2.1, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .15 })
+        gsap.to(grid3.scale, 1.95, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .3 })
+        gsap.to(grid4.scale, 1.8, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .45 })
+        gsap.to(grid5.scale, 1.65, { x: 0.0001, y: 110, z: 0.0001, ease: "power3.inOut", delay: .6 })
         gsap.to(poutre.scale, 2.25, { x: 0.0001, y: 100, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(cam.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
-        gsap.to(vr2.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
-        gsap.to(enceinte.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(tv2.scale, 1.65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6})
-        gsap.to(tabProg.scale, 1.95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3})
-        gsap.to(tv.scale, 2.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut"})
-        gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
-        gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         //SWITCH ELEMENTS ON CLICK
         canvas.style.zIndex = -1;
-        homeContainer.style.zIndex = 2;
-        homeMask.style.zIndex = 1;
         //RESET AXES POSITION 
         gsap.to(planeAxe.position, 0, { y: -26.5, delay: 3 })
         gsap.to(planeAxe.rotation, 0, { y: 0, delay: 3 })
@@ -4283,6 +4030,32 @@ contentContainer.addEventListener('scroll', function() {
         }
     }
 })
+
+
+// ///// CREDIT SCROLL /////
+// scrollContainer.addEventListener('scroll', function() {
+//     if (creditActive) {
+//         if (scrollContainer.scrollTop == 0) {
+//             console.log('tagrandmere')
+//             backToPlane();
+//         }
+//     }
+// })
+
+// gsap.to('.content', {
+//     opacity: 1,
+//     ease: "Power3.inOut",
+//     immediateRender: true,
+//     scrollTrigger: {
+//       scroller: ".scrollContainer",
+//       start: 0
+//     }
+//   })
+// ScrollReveal().reveal('.btn');
+
+// ScrollReveal().reveal(".btn", { delay: 2000 });
+// ScrollReveal().reveal(".scrollContainer .content", { viewFactor: 1.0, container: ".scrollContainer", opacity: 1, delay: 1, duration: 2, reset: true });
+// ScrollReveal().reveal(".scrollContainer p", { container: ".scrollContainer", opacity: 1, delay: 2000 })
 
 scrollContainer.addEventListener("scroll", function() {
     if (creditActive) {
@@ -4413,21 +4186,22 @@ var render = function() {
     //     // var resetCenterX = window.innerWidth / 2;
     //     // var resetCenterY = window.innerHeight / 2;
 
-
-    //         var cameraRotationYTolerance = .05;
-    //         var cameraRotationXTolerance = .05;
+    //     if (camera.position.z > 9.9) {
+    //         var cameraRotationYTolerance = .02;
+    //         var cameraRotationXTolerance = .01;
 
     //         var rotX = window.innerWidth * .5;
     //         var rotY = window.innerHeight * .5;
 
-    //         // camera.rotation.y = (e.clientX - rotX) / rotX * cameraRotationYTolerance;
-    //         // camera.rotation.x = (e.clientY - rotY) / rotY * cameraRotationXTolerance;
-    //         // gsap.to(camera.position, 0.05, { x: (e.clientX - rotX) / rotX * cameraRotationXTolerance, y: (e.clientY - rotY) / rotY * cameraRotationYTolerance, ease: "power4.inOut" })
+    //         camera.rotation.y = (e.clientX - rotX) / rotX * cameraRotationYTolerance;
+    //         camera.rotation.x = (e.clientY - rotY) / rotY * cameraRotationXTolerance;
+    //     }
+
     // };
 
     renderer.render(scene, camera);
 
-    // if (!window.matchMedia("(max-width: 1024px)").matches) {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
         if (camera.position.z >= 3.4 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
             materialPlane1.uniforms.time.value = clock.getElapsedTime();
             materialPlane2.uniforms.time.value = clock.getElapsedTime();
@@ -4444,7 +4218,7 @@ var render = function() {
             materialPlane13.uniforms.time.value = clock.getElapsedTime();
             materialPlane14.uniforms.time.value = clock.getElapsedTime();
         }
-    // }
+    }
 };
 
 render();
