@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,15 +32462,23 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  
+  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  	var d = light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.scale.set( d, d, d );
-  	}
-  	this.add( this.lightDistance );
+  
+  var d = light.distance;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.scale.set( d, d, d );
+  
+  }
+  
+  this.add( this.lightDistance );
   */
 }
 
@@ -32490,12 +32498,17 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.visible = true;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  	}
+  
+  }
   */
 
 };
@@ -32926,7 +32939,8 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  	0: max.x, max.y, max.z
+  
+  0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -54122,7 +54136,7 @@ function backToPlane() {
 }
 
 function backToWorkshop() {
-  if (camera.position.z <= -125) {
+  if (camera.position.z <= -185) {
     var lastPosScroll = contentContainer.scrollTop;
     contentContainer.scrollTop = lastPosScroll - 50;
     console.log(contentContainer.scrollTop);
@@ -57272,29 +57286,7 @@ contentContainer.addEventListener('scroll', function () {
       }
     }
   }
-}); // ///// CREDIT SCROLL /////
-// scrollContainer.addEventListener('scroll', function() {
-//     if (creditActive) {
-//         if (scrollContainer.scrollTop == 0) {
-//             console.log('tagrandmere')
-//             backToPlane();
-//         }
-//     }
-// })
-// gsap.to('.content', {
-//     opacity: 1,
-//     ease: "Power3.inOut",
-//     immediateRender: true,
-//     scrollTrigger: {
-//       scroller: ".scrollContainer",
-//       start: 0
-//     }
-//   })
-// ScrollReveal().reveal('.btn');
-// ScrollReveal().reveal(".btn", { delay: 2000 });
-// ScrollReveal().reveal(".scrollContainer .content", { viewFactor: 1.0, container: ".scrollContainer", opacity: 1, delay: 1, duration: 2, reset: true });
-// ScrollReveal().reveal(".scrollContainer p", { container: ".scrollContainer", opacity: 1, delay: 2000 })
-
+});
 scrollContainer.addEventListener("scroll", function () {
   if (creditActive) {
     for (var _i2 = 1; _i2 <= 6; _i2++) {
@@ -57501,7 +57493,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57905" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58583" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

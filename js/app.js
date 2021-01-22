@@ -1234,7 +1234,10 @@ let workShopButton12 = document.querySelector('.workShopButton__12');
 let workShopButton13 = document.querySelector('.workShopButton__13');
 let workShopButton14 = document.querySelector('.workShopButton__14');
 let indicClickOnPlane = document.querySelector('.indicClickOnPlane');
+
 let contentContainer = document.querySelector('.contentContainer');
+
+let contentContainer = document.querySelector('.contentContainer__1');
 let workShopContainer1 = document.querySelector('.workShopContainer__1');
 let creditContainer1 = document.querySelector('.creditContainer__1');
 let scrollContainer = document.querySelector('.scrollContainer');
@@ -2820,7 +2823,7 @@ function backToPlane() {
 }
 
 function backToWorkshop() {
-    if (camera.position.z <= -125) {
+    if (camera.position.z <= -185) {
         let lastPosScroll = contentContainer.scrollTop
         contentContainer.scrollTop = lastPosScroll - 50
         console.log(contentContainer.scrollTop)
@@ -4280,32 +4283,6 @@ contentContainer.addEventListener('scroll', function() {
         }
     }
 })
-
-
-// ///// CREDIT SCROLL /////
-// scrollContainer.addEventListener('scroll', function() {
-//     if (creditActive) {
-//         if (scrollContainer.scrollTop == 0) {
-//             console.log('tagrandmere')
-//             backToPlane();
-//         }
-//     }
-// })
-
-// gsap.to('.content', {
-//     opacity: 1,
-//     ease: "Power3.inOut",
-//     immediateRender: true,
-//     scrollTrigger: {
-//       scroller: ".scrollContainer",
-//       start: 0
-//     }
-//   })
-// ScrollReveal().reveal('.btn');
-
-// ScrollReveal().reveal(".btn", { delay: 2000 });
-// ScrollReveal().reveal(".scrollContainer .content", { viewFactor: 1.0, container: ".scrollContainer", opacity: 1, delay: 1, duration: 2, reset: true });
-// ScrollReveal().reveal(".scrollContainer p", { container: ".scrollContainer", opacity: 1, delay: 2000 })
 
 scrollContainer.addEventListener("scroll", function() {
     if (creditActive) {
