@@ -16,6 +16,10 @@
 </head>
 
 <body>
+
+    <!--//////////HOMEMASK//////////-->
+    <div class="homeMask"></div>
+
     <!--//////////CURSOR//////////-->
     <div class="cursor">
         <div class="cursor-shape_in"></div>
@@ -23,6 +27,48 @@
     <div class="cursor-shape_out"></div>
     <span class="indicClickOnPlane">DÉCOUVRIR</span>
     <div class="tailleBoulette"></div>
+
+    <!--//////////CURSOR INDICATION//////////-->
+    <div class="cursorIndication">
+        <div class="keyboardIndicationContainer">
+            <span class="up">
+                <span class="arrow"></span>
+            </span>
+            <div class="echapIndication"></div>
+            <div class="enterIndication"></div>
+            <div class="enterIndication2"></div>
+            <div class="touch">
+            <div class="blockKeyboard left">
+                <span class="arrowLeft"></span>
+            </div>
+            <div class="blockKeyboard down">
+                <span class="arrowDown"></span>
+            </div>
+            <div class="blockKeyboard right">
+                <span class="arrowRight"></span>
+            </div>
+        </div>
+        </div>
+        <div class="mouseIndication">
+            <div class="containerPointMouse">
+            <span class="blockMouse"></span>
+            <span class="blockMouse"></span>
+            <span class="blockMouse"></span>
+        </div>
+        </div>
+        <div class="textIndication">
+        <span class="indic">NAVIGUE AVEC</span>
+            <div class="indicContainer">
+                <span class="text mouse">TA SOURIS</span>
+                <span class="text keyboard" >TON CLAVIER</span>
+            </div>
+        </div>
+    </div>
+
+    <!--//////////MOBILE INDICATION//////////-->
+    <div class="mobileIndication">
+        <span class="mobileTextIndic">TOUCHE ET DÉFILE POUR NAVIGUER</span>
+    </div>
 
     <!--//////////GRID//////////-->
     <div class="colContainer"></div>
@@ -41,7 +87,26 @@
     </button>
 
     <!--//////////MUSIC BUTTON//////////-->
-    <div class="musicBtn"></div>
+    <div class="musicBtn">
+        <div class="lineContainer">
+            <div class="soundMask"></div>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+        <div class="containerIndication">
+        <span class="on">ON</span>
+        <span class="off">OFF</span>         
+    </div>
+    </div>
 
     <button class="btn btn__backHome close">
         <div class="spanContainerBackMouseover"></div>
@@ -102,7 +167,7 @@
     </div>
 
     <!--//////////MAIN//////////-->
-    <svg class="littleTitle" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 584 263" xml:space="preserve">
+    <svg class="littleTitle close" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 584 263" xml:space="preserve">
         <path d="M82.1,112.9c-6.2-0.3-18.1-0.3-24.5,0v-1.4l5.7-1.4l0-51.6c-1.7-1.5-3.7-2.2-5.7-2.5l-0.1-1.9
             c6.2,0.3,18.1,0.3,24.5,0v1.4l-5.7,1.4v51.6C78,110,80,110.7,82,111L82.1,112.9z" />
         <path
@@ -253,27 +318,27 @@
             <div class="spanContainerStartMouseout"></div>
         </button>
     </section>
-    <section class="workShopContainer workShopContainer__1">
+    <section class="workShopContainer">
         <div class="contentContainer contentContainer__1">
             <h2 class="title">Audiovisuel</h2>
-            <div class="containerPara1 containerPara1__1">
-                <div class="para para__1">
+            <div class="containerPara containerPara__1">
+                <div class="para">
                     <h3 class="subtitle">SUBTITLE</h3>
                     <p class="text">Lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel a soluta possimus saepe officiis ipsum, quisquam ut veritatis, dolorum autem culpa deserunt nostrum officia molestias ullam odio velit fugiat? Distinctio? ipsum dolor
                         sit amet consectetur adipisicing elit. Deserunt necessitatibus, officia fugit temporibus adipisci corporis est aliquid mollitia ab voluptate, veniam distinctio porro accusamus omnis animi aperiam aliquam consectetur dolore.
                     </p>
                 </div>
             </div>
-            <div class="containerPara2 containerPara1__1">
-                <div class="para2 para2__1">
+            <div class="containerPara containerPara__2">
+                <div class="para">
                     <h3 class="subtitle">SUBTITLE</h3>
                     <p class="text">Lorem ipsum dolor Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni obcaecati ratione sunt ad, nobis doloribus voluptas animi id pariatur quaerat qui! Earum deserunt velit ut ea debitis quae quas culpa. sit amet consectetur
                         adipisicing elit. Deserunt necessitatibus, officia fugit temporibus adipisci corporis est aliquid mollitia ab voluptate, veniam distinctio porro accusamus omnis animi aperiam aliquam consectetur dolore.
                     </p>
                 </div>
             </div>
-            <div class="containerPara3 containerPara3__1">
-                <div class="para3 para3__1">
+            <div class="containerPara containerPara__3">
+                <div class="para">
                     <h3 class="subtitle">SUBTITLE</h3>
                     <p class="text">Lorem ipsum dolor Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ea odio quisquam labore sint, tempora aspernatur cumque numquam sed nisi ducimus maxime. Saepe quos nobis iure doloremque exercitationem a non? sit amet
                         consectetur adipisicing elit. Deserunt necessitatibus, officia fugit temporibus adipisci corporis est aliquid mollitia ab voluptate, veniam distinctio porro accusamus omnis animi aperiam aliquam consectetur dolore.
@@ -282,72 +347,72 @@
             </div>
         </div>
     </section>
-    <section class="creditContainer creditContainer__1">
-        <div class="scrollContainer">
-            <div class="mainImg">
+    <section class="creditContainer">
+        <div class="scrollContainer scrollContainer__1">
+            <div class="trombi">
                 <div class="contentImg contentImg__1">
-                    <span class="prenom prenom__1">SAMUEL</span>
-                    <span class="nom nom__1">GONZALEZ</span>
-                    <div class="content content__1">
-                        <a href="#" class="r1 r1__1">Instagram</a>
-                        <a href="#" class="r2 r2__1">Linkedin</a>
-                        <span class="screenMask screenMask__1"></span>
-                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg faceImg__1"
+                    <span class="prenom">SAMUEL</span>
+                    <span class="nom">GONZALEZ</span>
+                    <div class="content">
+                        <a href="#" class="r1">Instagram</a>
+                        <a href="#" class="r2">Linkedin</a>
+                        <span class="screenMask"></span>
+                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg"
                             alt="Samuel Gonzalez">
                     </div>
                 </div>
                 <div class="contentImg contentImg__2">
-                    <span class="prenom prenom__2">SAMUEL</span>
-                    <span class="nom nom__2">GONZALEZ</span>
-                    <div class="content content__2">
-                        <a href="#" class="r1 r1__2">Instagram</a>
-                        <a href="#" class="r2 r2__2">Linkedin</a>
-                        <span class="screenMask screenMask__2"></span>
-                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg faceImg__2"
+                    <span class="prenom">SAMUEL</span>
+                    <span class="nom">GONZALEZ</span>
+                    <div class="content">
+                        <a href="#" class="r1">Instagram</a>
+                        <a href="#" class="r2">Linkedin</a>
+                        <span class="screenMask"></span>
+                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg"
                             alt="Samuel Gonzalez">
                     </div>
                 </div>
                 <div class="contentImg contentImg__3">
-                    <span class="prenom prenom__3">SAMUEL</span>
-                    <span class="nom nom__3">GONZALEZ</span>
-                    <div class="content content__3">
-                        <a href="#" class="r1 r1__3">Instagram</a>
-                        <a href="#" class="r2 r2__3">Linkedin</a>
-                        <span class="screenMask screenMask__3"></span>
-                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg faceImg__3"
+                    <span class="prenom">SAMUEL</span>
+                    <span class="nom">GONZALEZ</span>
+                    <div class="content">
+                        <a href="#" class="r1">Instagram</a>
+                        <a href="#" class="r2">Linkedin</a>
+                        <span class="screenMask"></span>
+                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg"
                             alt="Samuel Gonzalez">
                     </div>
                 </div>
                 <div class="contentImg contentImg__4">
-                    <span class="prenom prenom__4">SAMUEL</span>
-                    <span class="nom nom__4">GONZALEZ</span>
-                    <div class="content content__4">
-                        <a href="#" class="r1 r1__4">Instagram</a>
-                        <a href="#" class="r2 r2__4">Linkedin</a>
-                        <span class="screenMask screenMask__4"></span>
-                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg faceImg__4"
+                    <span class="prenom">SAMUEL</span>
+                    <span class="nom">GONZALEZ</span>
+                    <div class="content">
+                        <a href="#" class="r1">Instagram</a>
+                        <a href="#" class="r2">Linkedin</a>
+                        <span class="screenMask"></span>
+                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg"
                             alt="Samuel Gonzalez">
                     </div>
                 </div>
                 <div class="contentImg contentImg__5">
-                    <span class="prenom prenom__5">SAMUEL</span>
-                    <span class="nom nom__5">GONZALEZ</span>
-                    <div class="content content__5">
-                        <a href="#" class="r1 r1__5">Instagram</a>
-                        <a href="#" class="r2 r2__5">Linkedin</a>
-                        <span class="screenMask screenMask__5"></span>
-                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg faceImg__5"
+                    <span class="prenom">SAMUEL</span>
+                    <span class="nom">GONZALEZ</span>
+                    <div class="content">
+                        <a href="#" class="r1">Instagram</a>
+                        <a href="#" class="r2">Linkedin</a>
+                        <span class="screenMask"></span>
+                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg"
                             alt="Samuel Gonzalez">
                     </div>
                 </div>
                 <div class="contentImg contentImg__6">
-                    <span class="prenom prenom__6">SAMUEL</span>
-                    <span class="nom nom__6">GONZALEZ</span>
-                    <div class="content content__6">
-                        <a href="#" class="r1 r1__6">Instagram</a>
-                        <a href="#" class="r2 r2__6">Linkedin</a>
-                        <span class="screenMask screenMask__6"></span>
-                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg faceImg__6"
+                    <span class="prenom">SAMUEL</span>
+                    <span class="nom">GONZALEZ</span>
+                    <div class="content">
+                        <a href="#" class="r1">Instagram</a>
+                        <a href="#" class="r2">Linkedin</a>
+                        <span class="screenMask"></span>
+                        <img src="./assets/img/trombi/samuelGonzalez.jpg" class="faceImg"
                             alt="Samuel Gonzalez">
                     </div>
                 </div>
@@ -358,7 +423,7 @@
     <!--//////////SCRIPTS//////////-->
     <script src="js/libs/gsap.min.js"></script>
     <script src="js/libs/ScrollTrigger.min.js"></script>
-    <script src="js/libs/MagicScroll.cjs.js"></script>
+    <!-- <script src="js/libs/MagicScroll.cjs.js"></script> -->
     <script src="js/app.js"></script>
 </body>
 
