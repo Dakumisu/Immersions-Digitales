@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,23 +32462,15 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  
-  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  
-  var d = light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.scale.set( d, d, d );
-  
-  }
-  
-  this.add( this.lightDistance );
+  	var d = light.distance;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.scale.set( d, d, d );
+  	}
+  	this.add( this.lightDistance );
   */
 }
 
@@ -32498,17 +32490,12 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.visible = true;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  
-  }
+  	}
   */
 
 };
@@ -32939,8 +32926,7 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  
-  0: max.x, max.y, max.z
+  	0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -48589,6 +48575,8 @@ module.exports = "/atelier12Hover.8ae78073.png";
 module.exports = "/atelier13Hover.37f453a6.png";
 },{}],"assets/img/ateliers/atelier14Hover.png":[function(require,module,exports) {
 module.exports = "/atelier14Hover.cf4e0176.png";
+},{}],"assets/img/particle.png":[function(require,module,exports) {
+module.exports = "/particle.8e4cb102.png";
 },{}],"assets/model/socle.gltf":[function(require,module,exports) {
 module.exports = "/socle.4736dd33.gltf";
 },{}],"assets/model/logo.glb":[function(require,module,exports) {
@@ -48607,24 +48595,8 @@ module.exports = "/leftDoor.5899d111.gltf";
 module.exports = "/leftDoor2.1d2889d7.gltf";
 },{}],"assets/model/navigation/pylone.gltf":[function(require,module,exports) {
 module.exports = "/pylone.206a826a.gltf";
-},{}],"assets/model/navigation/pylone2.gltf":[function(require,module,exports) {
-module.exports = "/pylone2.d5de1e0d.gltf";
-},{}],"assets/model/navigation/pylone3.gltf":[function(require,module,exports) {
-module.exports = "/pylone3.1083610d.gltf";
-},{}],"assets/model/navigation/pylone4.gltf":[function(require,module,exports) {
-module.exports = "/pylone4.261b1681.gltf";
-},{}],"assets/model/navigation/pylone5.gltf":[function(require,module,exports) {
-module.exports = "/pylone5.f2dfedcd.gltf";
 },{}],"assets/model/navigation/grid.gltf":[function(require,module,exports) {
 module.exports = "/grid.5fd5d4c8.gltf";
-},{}],"assets/model/navigation/grid2.gltf":[function(require,module,exports) {
-module.exports = "/grid2.e18ddae7.gltf";
-},{}],"assets/model/navigation/grid3.gltf":[function(require,module,exports) {
-module.exports = "/grid3.a22dbebf.gltf";
-},{}],"assets/model/navigation/grid4.gltf":[function(require,module,exports) {
-module.exports = "/grid4.46acd45e.gltf";
-},{}],"assets/model/navigation/grid5.gltf":[function(require,module,exports) {
-module.exports = "/grid5.3ed3c6c2.gltf";
 },{}],"assets/model/navigation/table.gltf":[function(require,module,exports) {
 module.exports = "/table.ab80ece0.gltf";
 },{}],"assets/model/navigation/poutre.gltf":[function(require,module,exports) {
@@ -48637,18 +48609,16 @@ module.exports = "/rightWall.873f03ed.gltf";
 module.exports = "/field.4048f86c.gltf";
 },{}],"assets/model/navigation/sign.gltf":[function(require,module,exports) {
 module.exports = "/sign.0dce5908.gltf";
-},{}],"assets/model/fondVert/greenScreen.gltf":[function(require,module,exports) {
-module.exports = "/greenScreen.2580a81a.gltf";
-},{}],"assets/model/vr/vr1.gltf":[function(require,module,exports) {
-module.exports = "/vr1.5a1ddc6e.gltf";
-},{}],"assets/model/vr/vr2.gltf":[function(require,module,exports) {
-module.exports = "/vr2.9bf4254b.gltf";
-},{}],"assets/model/cube/cb1.gltf":[function(require,module,exports) {
-module.exports = "/cb1.8b729542.gltf";
-},{}],"assets/model/adobe/adobe1.gltf":[function(require,module,exports) {
-module.exports = "/adobe1.718110bd.gltf";
-},{}],"assets/img/particle.png":[function(require,module,exports) {
-module.exports = "/particle.8e4cb102.png";
+},{}],"assets/model/navigation/vr2.gltf":[function(require,module,exports) {
+module.exports = "/vr2.6a0b886d.gltf";
+},{}],"assets/model/navigation/tabProg.gltf":[function(require,module,exports) {
+module.exports = "/tabProg.683cd264.gltf";
+},{}],"assets/model/navigation/tv.gltf":[function(require,module,exports) {
+module.exports = "/tv.d7e7e5ad.gltf";
+},{}],"assets/model/navigation/cam.gltf":[function(require,module,exports) {
+module.exports = "/cam.dcdda644.gltf";
+},{}],"assets/model/navigation/enceinte.gltf":[function(require,module,exports) {
+module.exports = "/enceinte.a451ff81.gltf";
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -48744,6 +48714,8 @@ var _atelier13Hover = _interopRequireDefault(require("../assets/img/ateliers/ate
 
 var _atelier14Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier14Hover.png"));
 
+var _particle2 = _interopRequireDefault(require("../assets/img/particle.png"));
+
 var _socle = _interopRequireDefault(require("../assets/model/socle.gltf"));
 
 var _logo = _interopRequireDefault(require("../assets/model/logo.glb"));
@@ -48762,23 +48734,7 @@ var _leftDoor2 = _interopRequireDefault(require("../assets/model/leftDoor2.gltf"
 
 var _pylone = _interopRequireDefault(require("../assets/model/navigation/pylone.gltf"));
 
-var _pylone2 = _interopRequireDefault(require("../assets/model/navigation/pylone2.gltf"));
-
-var _pylone3 = _interopRequireDefault(require("../assets/model/navigation/pylone3.gltf"));
-
-var _pylone4 = _interopRequireDefault(require("../assets/model/navigation/pylone4.gltf"));
-
-var _pylone5 = _interopRequireDefault(require("../assets/model/navigation/pylone5.gltf"));
-
 var _grid = _interopRequireDefault(require("../assets/model/navigation/grid.gltf"));
-
-var _grid2 = _interopRequireDefault(require("../assets/model/navigation/grid2.gltf"));
-
-var _grid3 = _interopRequireDefault(require("../assets/model/navigation/grid3.gltf"));
-
-var _grid4 = _interopRequireDefault(require("../assets/model/navigation/grid4.gltf"));
-
-var _grid5 = _interopRequireDefault(require("../assets/model/navigation/grid5.gltf"));
 
 var _table = _interopRequireDefault(require("../assets/model/navigation/table.gltf"));
 
@@ -48792,17 +48748,15 @@ var _field = _interopRequireDefault(require("../assets/model/navigation/field.gl
 
 var _sign = _interopRequireDefault(require("../assets/model/navigation/sign.gltf"));
 
-var _greenScreen = _interopRequireDefault(require("../assets/model/fondVert/greenScreen.gltf"));
+var _vr = _interopRequireDefault(require("../assets/model/navigation/vr2.gltf"));
 
-var _vr = _interopRequireDefault(require("../assets/model/vr/vr1.gltf"));
+var _tabProg = _interopRequireDefault(require("../assets/model/navigation/tabProg.gltf"));
 
-var _vr2 = _interopRequireDefault(require("../assets/model/vr/vr2.gltf"));
+var _tv = _interopRequireDefault(require("../assets/model/navigation/tv.gltf"));
 
-var _cb = _interopRequireDefault(require("../assets/model/cube/cb1.gltf"));
+var _cam = _interopRequireDefault(require("../assets/model/navigation/cam.gltf"));
 
-var _adobe = _interopRequireDefault(require("../assets/model/adobe/adobe1.gltf"));
-
-var _particle2 = _interopRequireDefault(require("../assets/img/particle.png"));
+var _enceinte = _interopRequireDefault(require("../assets/model/navigation/enceinte.gltf"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48816,8 +48770,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-gsap.registerPlugin(ScrollTrigger); ////////// SCENE //////////
-
+////////// SCENE //////////
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); /////// CLOCK ///////
@@ -48837,7 +48790,11 @@ var renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-document.body.appendChild(renderer.domElement); /////// RESIZE EVENT ///////
+document.body.appendChild(renderer.domElement); // const controls = new OrbitControls(camera, renderer.domElement)
+// controls.enableDamping = true
+// controls.dampingFactor = 0.25
+// controls.enableZoom = false 
+/////// RESIZE EVENT ///////
 
 window.addEventListener('resize', function () {
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -48877,17 +48834,22 @@ scene.add(light3);
 var light4 = new THREE.PointLight(0x4cc9f0, .3);
 light4.position.set(2000, 1000, -2000);
 scene.add(light4);
-var lightCenter = new THREE.DirectionalLight(0x000000, 10);
-lightCenter.position.set(0, -1.5, 0);
-lightCenter.target = targetLogo;
+var light5 = new THREE.PointLight(0xf72585, .2);
+light5.position.set(0, 2000, 2000);
+scene.add(light5);
+var lightCenter = new THREE.PointLight(0x000000, 30, 2.6);
+lightCenter.position.set(0, 1.5, 0);
 scene.add(lightCenter);
+var lightCenter2 = new THREE.DirectionalLight(0x4cc9f0, 3);
+lightCenter2.position.set(0, -.1, 0);
+scene.add(lightCenter2);
 var lightCenterSocle = new THREE.PointLight(0x000000, 150, .6);
 lightCenterSocle.position.set(0, -1.5, 0);
 scene.add(lightCenterSocle);
 var cyanColor = new THREE.Color(0x4cc9f0);
 var cyanColorReset = new THREE.Color(0x000000);
-var ambientLight = new THREE.AmbientLight(0x09021e, 8);
-ambientLight.position.set(0, -1000, 0);
+var ambientLight = new THREE.AmbientLight(0x09021e, 7.5);
+ambientLight.position.set(0, 0, 0);
 scene.add(ambientLight); /////// 3D MODEL ///////
 //HOME MODEL
 
@@ -48915,7 +48877,46 @@ loaderSocle.load(_socle.default, function (addSocle) {
   socle.position.set(0, -10.7, 0);
   socle.scale.set(.7, .7, .7);
   socle.rotation.y = 0;
-}); // LOGO MODEL
+}); // import test from "../assets/model/DracoModels/socleCompress.gltf";
+// var loaderSocle = new THREEGLTFLoader();
+// // loaderSocle.setDRACOLoader(new THREEDRACOLoader("node_module/three/examples/js/libs/draco/gltf/"));
+// loaderSocle.setDRACOLoader(new THREEDRACOLoader("https://unpkg.com/browse/three@0.124.0/examples/js/libs/draco/"));
+// loaderSocle.load(test, gltf => {
+//         socle = gltf.scene;
+//         scene.add(socle);
+//         socle.position.set(0, -10.7, 0)
+//         socle.scale.set(.7, .7, .7)
+//         socle.rotation.y = 0;
+//         console.log(true)
+//     },
+//     function (xhr) {
+//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+//     }
+// );
+// Specify path to a folder containing WASM/JS decoding libraries.
+// loaderSocle.setDecoderPath( '../node_modules/three/examples/js/libs/draco/gltf/' );
+// Load a Draco geometry
+// loaderSocle.load(test, function( geometry ) {
+//     const material = new THREE.MeshStandardMaterial({
+//         color: 0x606060
+//     });
+//     const mesh = new THREE.Mesh(geometry, material);
+//     console.log(mesh)
+//     },
+//     function (xhr) {
+//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+//         console.log(xhr)
+//         // console.log(xhr.srcElement.responseURL)
+//         // var test = xhr.srcElement.responseURL
+//         // var socle = addSocle.scene;
+//         // scene.add(socle);
+//         // console.log(scene);
+//     },
+//     function (error) {
+//         console.log('An error happened');
+//     }
+// );
+// LOGO MODEL
 
 var logo;
 var loaderLogo = new _GLTFLoader.GLTFLoader();
@@ -48983,9 +48984,9 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
   loaderTable.load(_table.default, function (addTable) {
     table = addTable.scene;
     scene.add(table);
-    table.position.set(-8, -4.9, -8.5);
+    table.position.set(-8.3, -4.9, -8.5);
     table.rotation.y = -.5 * Math.PI;
-    table.scale.set(110, 0.0001, 0.0001);
+    table.scale.set(0.0001, 0.0001, 0.0001);
   });
 } // PYLONE MODEL
 
@@ -48998,9 +48999,9 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
   loaderPylone.load(_pylone.default, function (addPylone) {
     pylone = addPylone.scene;
     scene.add(pylone);
-    pylone.position.set(-8.5, -1.5, -5);
+    pylone.position.set(-9.2, -1.5, -5);
     pylone.rotation.y = -.5 * Math.PI;
-    pylone.scale.set(110, 0.0001, 0.0001);
+    pylone.scale.set(0.0001, 0.0001, 0.0001);
   });
 } // PYLONE2 MODEL
 
@@ -49010,12 +49011,12 @@ var pylone2;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderPylone2 = new _GLTFLoader.GLTFLoader();
   loaderPylone2.crossOrigin = true;
-  loaderPylone2.load(_pylone2.default, function (addPylone2) {
+  loaderPylone2.load(_pylone.default, function (addPylone2) {
     pylone2 = addPylone2.scene;
     scene.add(pylone2);
-    pylone2.position.set(-8.5, -1.5, -6.5);
+    pylone2.position.set(-9.2, -1.5, -6.5);
     pylone2.rotation.y = -.5 * Math.PI;
-    pylone2.scale.set(110, 0.0001, 0.0001);
+    pylone2.scale.set(0.0001, 0.0001, 0.0001);
   });
 } // PYLONE3 MODEL
 
@@ -49025,12 +49026,12 @@ var pylone3;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderPylone3 = new _GLTFLoader.GLTFLoader();
   loaderPylone3.crossOrigin = true;
-  loaderPylone3.load(_pylone3.default, function (addPylone3) {
+  loaderPylone3.load(_pylone.default, function (addPylone3) {
     pylone3 = addPylone3.scene;
     scene.add(pylone3);
-    pylone3.position.set(-8.5, -1.5, -8);
+    pylone3.position.set(-9.2, -1.5, -8);
     pylone3.rotation.y = -.5 * Math.PI;
-    pylone3.scale.set(110, 0.0001, 0.0001);
+    pylone3.scale.set(0.0001, 0.0001, 0.0001);
   });
 } // PYLONE4 MODEL
 
@@ -49040,14 +49041,14 @@ var pylone4;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderPylone4 = new _GLTFLoader.GLTFLoader();
   loaderPylone4.crossOrigin = true;
-  loaderPylone.load(_pylone4.default, function (addPylone4) {
+  loaderPylone.load(_pylone.default, function (addPylone4) {
     pylone4 = addPylone4.scene;
     scene.add(pylone4);
-    pylone4.position.set(-8.5, -1.5, -9.5);
+    pylone4.position.set(-9.2, -1.5, -9.5);
     pylone4.rotation.y = -.5 * Math.PI;
-    pylone4.scale.set(110, 0.0001, 0.0001);
+    pylone4.scale.set(0.0001, 0.0001, 0.0001);
   });
-} // PYLONE5 MODEL
+} // PYLONE 5 MODEL
 
 
 var pylone5;
@@ -49055,12 +49056,12 @@ var pylone5;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderPylone5 = new _GLTFLoader.GLTFLoader();
   loaderPylone5.crossOrigin = true;
-  loaderPylone.load(_pylone5.default, function (addPylone5) {
+  loaderPylone.load(_pylone.default, function (addPylone5) {
     pylone5 = addPylone5.scene;
     scene.add(pylone5);
-    pylone5.position.set(-8.5, -1.5, -11);
+    pylone5.position.set(-9.2, -1.5, -11);
     pylone5.rotation.y = -.5 * Math.PI;
-    pylone5.scale.set(110, 0.0001, 0.0001);
+    pylone5.scale.set(0.0001, 0.0001, 0.0001);
   });
 } // GRID MODEL
 
@@ -49073,11 +49074,11 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
   loaderGrid.load(_grid.default, function (addGrid) {
     grid = addGrid.scene;
     scene.add(grid);
-    grid.position.set(-7.5, -3.8, -7.5);
+    grid.position.set(-8, -3.8, -7.5);
     grid.rotation.y = -.5 * Math.PI;
-    grid.scale.set(0.0001, 110, 0.0001);
+    grid.scale.set(0.0001, 0.0001, 0.0001);
   });
-} // GRID2 MODEL
+} // GRID 2 MODEL
 
 
 var grid2;
@@ -49085,14 +49086,14 @@ var grid2;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderGrid2 = new _GLTFLoader.GLTFLoader();
   loaderGrid2.crossOrigin = true;
-  loaderGrid2.load(_grid2.default, function (addGrid2) {
+  loaderGrid2.load(_grid.default, function (addGrid2) {
     grid2 = addGrid2.scene;
     scene.add(grid2);
-    grid2.position.set(-7.5, -3.2, -7.5);
+    grid2.position.set(-8, -3.2, -7.5);
     grid2.rotation.y = -.5 * Math.PI;
-    grid2.scale.set(0.0001, 110, 0.0001);
+    grid2.scale.set(0.0001, 0.0001, 0.0001);
   });
-} // GRID3 MODEL
+} // GRID 3 MODEL
 
 
 var grid3;
@@ -49100,14 +49101,14 @@ var grid3;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderGrid3 = new _GLTFLoader.GLTFLoader();
   loaderGrid3.crossOrigin = true;
-  loaderGrid3.load(_grid3.default, function (addGrid3) {
+  loaderGrid3.load(_grid.default, function (addGrid3) {
     grid3 = addGrid3.scene;
     scene.add(grid3);
-    grid3.position.set(-7.5, -2.6, -7.5);
+    grid3.position.set(-8, -2.6, -7.5);
     grid3.rotation.y = -.5 * Math.PI;
-    grid3.scale.set(0.0001, 110, 0.0001);
+    grid3.scale.set(0.0001, 0.0001, 0.0001);
   });
-} // GRID4 MODEL
+} // GRID 4 MODEL
 
 
 var grid4;
@@ -49115,14 +49116,14 @@ var grid4;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderGrid4 = new _GLTFLoader.GLTFLoader();
   loaderGrid4.crossOrigin = true;
-  loaderGrid4.load(_grid4.default, function (addGrid4) {
+  loaderGrid4.load(_grid.default, function (addGrid4) {
     grid4 = addGrid4.scene;
     scene.add(grid4);
-    grid4.position.set(-7.5, -2, -7.5);
+    grid4.position.set(-8, -2, -7.5);
     grid4.rotation.y = -.5 * Math.PI;
-    grid4.scale.set(0.0001, 110, 0.0001);
+    grid4.scale.set(0.0001, 0.0001, 0.0001);
   });
-} // GRID5 MODEL
+} // GRID 5 MODEL
 
 
 var grid5;
@@ -49130,12 +49131,12 @@ var grid5;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderGrid5 = new _GLTFLoader.GLTFLoader();
   loaderGrid5.crossOrigin = true;
-  loaderGrid5.load(_grid5.default, function (addGrid5) {
+  loaderGrid5.load(_grid.default, function (addGrid5) {
     grid5 = addGrid5.scene;
     scene.add(grid5);
-    grid5.position.set(-7.5, -1.4, -7.5);
+    grid5.position.set(-8, -1.4, -7.5);
     grid5.rotation.y = -.5 * Math.PI;
-    grid5.scale.set(0.0001, 110, 0.0001);
+    grid5.scale.set(0.0001, 0.0001, 0.0001);
   });
 } // POUTRE MODEL
 
@@ -49150,7 +49151,7 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     scene.add(poutre);
     poutre.position.set(-9, 4, -9);
     poutre.rotation.y = -.5 * Math.PI;
-    poutre.scale.set(0.0001, 100, 0.0001);
+    poutre.scale.set(0.0001, 0.0001, 0.0001);
   });
 } // SIGN MODEL
 
@@ -49167,37 +49168,65 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     sign.rotation.y = -.5 * Math.PI;
     sign.scale.set(0.0001, 0.0001, 0.0001);
   });
-} //GREEN SCREEN
+} // TAB PROG
 
 
-var greenScreen;
+var tabProg;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-  var loaderGreenScreen = new _GLTFLoader.GLTFLoader();
-  loaderGreenScreen.crossOrigin = true;
-  loaderGreenScreen.load(_greenScreen.default, function (addGreenScreen) {
-    greenScreen = addGreenScreen.scene;
-    scene.add(greenScreen);
-    greenScreen.position.set(9.5, -5, -8);
-    greenScreen.scale.set(0.0001, 0.0001, 0.0001); //110
-
-    greenScreen.rotation.y = -.5 * Math.PI;
+  var loaderTabProg = new _GLTFLoader.GLTFLoader();
+  loaderTabProg.crossOrigin = true;
+  loaderTabProg.load(_tabProg.default, function (addTabProg) {
+    tabProg = addTabProg.scene;
+    scene.add(tabProg);
+    tabProg.position.set(9.2, .5, -11.8);
+    tabProg.scale.set(0.0001, 0.0001, 0.0001);
+    tabProg.rotation.y = -Math.PI;
   });
-} //VR 1
+} // TV
 
 
-var vr1;
+var tv;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-  var loaderVr1 = new _GLTFLoader.GLTFLoader();
-  loaderVr1.crossOrigin = true;
-  loaderVr1.load(_vr.default, function (addVr1) {
-    vr1 = addVr1.scene;
-    scene.add(vr1);
-    vr1.position.set(6.5, -4.1, -12);
-    vr1.scale.set(0.0001, 0.0001, 0.0001); // 100
+  var loaderTv = new _GLTFLoader.GLTFLoader();
+  loaderTv.crossOrigin = true;
+  loaderTv.load(_tv.default, function (addTv) {
+    tv = addTv.scene;
+    scene.add(tv);
+    tv.position.set(8.9, 2.2, -6);
+    tv.scale.set(0.0001, 0.0001, 0.0001);
+    tv.rotation.y = -.79 * Math.PI;
+  });
+} // TV2
 
-    vr1.rotation.y = -.57 * Math.PI;
+
+var tv2;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderTv2 = new _GLTFLoader.GLTFLoader();
+  loaderTv2.crossOrigin = true;
+  loaderTv2.load(_tv.default, function (addTv2) {
+    tv2 = addTv2.scene;
+    scene.add(tv2);
+    tv2.position.set(9, 4.6, -13);
+    tv2.scale.set(0.0001, 0.0001, 0.0001);
+    tv2.rotation.y = -.73 * Math.PI;
+  });
+} // CAM
+
+
+var cam;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderCam = new _GLTFLoader.GLTFLoader();
+  loaderCam.crossOrigin = true;
+  loaderCam.load(_cam.default, function (addCam) {
+    cam = addCam.scene;
+    scene.add(cam);
+    cam.position.set(-8.8, 5.2, -12.5);
+    cam.scale.set(0.0001, 0.0001, 0.0001);
+    cam.rotation.y = -.45 * Math.PI;
   });
 } //VR 2
 
@@ -49207,43 +49236,26 @@ var vr2;
 if (!window.matchMedia("(max-width: 1024px)").matches) {
   var loaderVr2 = new _GLTFLoader.GLTFLoader();
   loaderVr2.crossOrigin = true;
-  loaderVr2.load(_vr2.default, function (addVr2) {
+  loaderVr2.load(_vr.default, function (addVr2) {
     vr2 = addVr2.scene;
     scene.add(vr2);
-    vr2.position.set(-8.7, 5.15, -8.5);
-    vr2.scale.set(0.0001, 0.0001, 0.0001); //100
+    vr2.position.set(-8.9, 5.2, -8.8);
+    vr2.scale.set(0.0001, 0.0001, 0.0001);
   });
-} //ADOBE 1
+} //ENCEINTE
 
 
-var adobe1;
+var enceinte;
 
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-  var loaderAdobe1 = new _GLTFLoader.GLTFLoader();
-  loaderAdobe1.crossOrigin = true;
-  loaderVr1.load(_adobe.default, function (addAdobe1) {
-    adobe1 = addAdobe1.scene;
-    scene.add(adobe1);
-    adobe1.position.set(6.5, -4.1, -12);
-    adobe1.scale.set(0.0001, 0.0001, 0.0001); // 100
-
-    adobe1.rotation.y = -.57 * Math.PI;
-  });
-} // CUBE MUSICAL
-
-
-var cb1;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-  var loaderCb1 = new _GLTFLoader.GLTFLoader();
-  loaderCb1.crossOrigin = true;
-  loaderCb1.load(_cb.default, function (addCb1) {
-    cb1 = addCb1.scene;
-    scene.add(cb1);
-    cb1.position.set(6.5, -3.3, -12);
-    cb1.scale.set(0.0001, 0.0001, 0.0001); //100
-
-    cb1.rotation.y = -.5 * Math.PI;
+  var loaderEnceinte = new _GLTFLoader.GLTFLoader();
+  loaderEnceinte.crossOrigin = true;
+  loaderEnceinte.load(_enceinte.default, function (addEnceinte) {
+    enceinte = addEnceinte.scene;
+    scene.add(enceinte);
+    enceinte.position.set(-9.2, 5.2, -5);
+    enceinte.scale.set(0.0001, 0.0001, 0.0001);
+    enceinte.rotation.y = .3 * Math.PI;
   });
 } // RIGHT DOOR MODEL
 
@@ -50038,8 +50050,8 @@ planeMesh10.position.y = 13;
 planeMesh11.position.y = 14;
 planeMesh12.position.y = 15;
 planeMesh13.position.y = 16;
-planeMesh14.position.y = 17; // scene.add(planeMeshPanneau)
-
+planeMesh14.position.y = 17;
+scene.add(planeMeshPanneau);
 planeMeshPanneau.position.set(7.2, -3.05, -3);
 planeMeshPanneau.rotation.y = -.9; // sign.position.set(7.8, -3.05, -4)
 
@@ -50132,12 +50144,21 @@ var sm = document.querySelectorAll('.sm');
 var sm1 = document.querySelector('.sm__1');
 var sm2 = document.querySelector('.sm__2');
 var sm3 = document.querySelector('.sm__3');
+var discordContainer = document.querySelector('.btn__discord');
+var discordSpanContainer = document.querySelector('.spanContainerDiscord');
+var iutContainer = document.querySelector('.btn__iut');
+var iutSpanContainer = document.querySelector('.spanContainerIut');
 var musicBtn = document.querySelector('.musicBtn');
+var lineMusicBtn = document.querySelectorAll('.musicBtn .lineContainer .line');
+var maskMusicBtn = document.querySelector('.musicBtn .lineContainer .soundMask');
+var onMusic = document.querySelector('.musicBtn .containerIndication .on');
+var offMusic = document.querySelector('.musicBtn .containerIndication .off');
 var bgCol = document.querySelectorAll('.colContainer .col');
 var bgRow = document.querySelectorAll('.rowContainer .row');
 var cursor = document.querySelector('.cursor');
 var cursorShapeIn = document.querySelector('.cursor-shape_in');
 var cursorShapeOut = document.querySelector('.cursor-shape_out');
+var tailleBoulette = document.querySelector('.tailleBoulette');
 var containerTimeline = document.querySelector('.containerTimeline');
 var workShopButton = document.querySelectorAll('.workShopButton');
 var workShopButtonMask = document.querySelectorAll('.mask');
@@ -50160,6 +50181,7 @@ var indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 var contentContainer = document.querySelector('.contentContainer');
 var workShopContainer1 = document.querySelector('.workShopContainer__1');
 var creditContainer1 = document.querySelector('.creditContainer__1');
+var scrollContainer = document.querySelector('.scrollContainer');
 var prenom__1 = document.querySelector('.prenom__1');
 var nom__1 = document.querySelector('.nom__1');
 var r1__1 = document.querySelector('.r1__1');
@@ -50199,11 +50221,8 @@ var r1__6 = document.querySelector('.r1__6');
 var r2__6 = document.querySelector('.r2__6');
 var faceImgPath__6 = document.querySelector('.content__6');
 var faceImgZoom__6 = document.querySelector('.faceImg__6');
-gsap.to(screenMask__1, 5, {
-  scrollTrigger: screenMask__1,
-  clipPath: "inset(0% 0% 0% 0%)",
-  ease: "Power3.easeOut"
-}); /////// IMAGES HOVER ///////
+var homeMask = document.querySelector('.homeMask');
+var cursorIndication = document.querySelector('.cursorIndication'); /////// IMAGES HOVER ///////
 
 faceImgPath__1.addEventListener('mouseenter', function () {
   faceImgPath__1.classList.add('switch');
@@ -50301,8 +50320,15 @@ faceImgPath__6.addEventListener('mouseleave', function () {
   r1__6.classList.remove('switch');
   r2__6.classList.remove('switch');
 });
-var workshopActive = false;
 var homeActive = true;
+var hoverPlane = true;
+var workshopActive = false;
+var creditActive = false;
+var backPossible = true;
+var clickPossible = true;
+var scrollPossible = true;
+var isScrollDown = false;
+var isScrollUp = false;
 window.addEventListener('load', function () {
   TweenMax.to(bgCol, {
     duration: 1,
@@ -50352,11 +50378,10 @@ window.addEventListener('load', function () {
     stagger: 0.0355555,
     delay: 2
   });
-  indicClickOnPlane.style.opacity = 0;
 
   if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(bgCol, {
-      duration: .5,
+      duration: 1.5,
       background: '#f72585',
       opacity: .05,
       stagger: 0.02,
@@ -50365,7 +50390,7 @@ window.addEventListener('load', function () {
       delay: 2
     });
     TweenMax.to(bgRow, {
-      duration: .5,
+      duration: 1.5,
       background: '#f72585',
       opacity: .05,
       stagger: 0.0355555,
@@ -50374,13 +50399,81 @@ window.addEventListener('load', function () {
       delay: 2
     });
     canvas.classList.add('hologramActive');
+    cursor.style.opacity = 1;
+    cursorShapeOut.style.opacity = 1;
     setTimeout(function () {
       var _cursorIn = new Cursor(cursorShapeIn);
 
       updateCursor();
     }, 4000);
   }
-}); /////// PLANE HOVER SHADERS EFFECT ///////
+});
+var switchBtn = false;
+musicBtn.addEventListener('click', function () {
+  if (switchBtn == false) {
+    TweenMax.to(maskMusicBtn, {
+      duration: .35,
+      clipPath: "inset(100% 0% 0% 0%)",
+      ease: "power3.easeOut"
+    });
+    TweenMax.to(maskMusicBtn, {
+      duration: .25,
+      clipPath: "inset(0% 0% 0% 0%)",
+      ease: "power3.easeOut",
+      delay: .15
+    });
+    TweenMax.to(maskMusicBtn, {
+      duration: .25,
+      clipPath: "inset(0% 0% 100% 0%)",
+      ease: "power3.easeOut",
+      delay: .5
+    });
+    switchBtn = true;
+  } else {
+    TweenMax.to(maskMusicBtn, {
+      duration: .35,
+      clipPath: "inset(0% 0% 100% 0%)",
+      ease: "power3.easeOut"
+    });
+    TweenMax.to(maskMusicBtn, {
+      duration: .25,
+      clipPath: "inset(0% 0% 0% 0%)",
+      ease: "power3.easeOut",
+      delay: .15
+    });
+    TweenMax.to(maskMusicBtn, {
+      duration: .25,
+      clipPath: "inset(100% 0% 0% 0%)",
+      ease: "power3.easeOut",
+      delay: .5
+    });
+    switchBtn = false;
+  }
+
+  onMusic.classList.toggle('switch');
+  offMusic.classList.toggle('switch');
+  setTimeout(function () {
+    lineMusicBtn.forEach(function (line) {
+      line.classList.toggle('switch');
+    });
+  }, 350);
+}); // var shouldStop = false;
+// function checkShouldStop() {
+//     if(shouldStop) {
+//       tl.pause();
+//     }else {
+//       tl.resume();
+//     }
+//   }
+//   musicBtn.addEventListener('click', function(){
+//     shouldStop = true;
+//     gsap.staggerTo(lineMusicBtn, .5, { clipPath: "inset(95% 0% 0% 0%)"}, 0.12)
+//   })
+// //   musicBtn.addEventListener('mouseout', function(){
+// //     shouldStop = false;
+// //     tl.resume();
+// //   })
+/////// PLANE HOVER SHADERS EFFECT ///////
 
 var colorCursorHover = "#f72585";
 var colorCursorDefault = "#4cc9f0";
@@ -50396,20 +50489,23 @@ planeMesh1.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50427,11 +50523,13 @@ planeMesh1.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50439,8 +50537,8 @@ planeMesh1.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50460,20 +50558,23 @@ planeMesh2.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50491,11 +50592,13 @@ planeMesh2.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50503,8 +50606,8 @@ planeMesh2.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50524,20 +50627,23 @@ planeMesh3.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50555,11 +50661,13 @@ planeMesh3.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50567,8 +50675,8 @@ planeMesh3.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50588,20 +50696,23 @@ planeMesh4.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50619,11 +50730,13 @@ planeMesh4.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50631,8 +50744,8 @@ planeMesh4.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50652,20 +50765,23 @@ planeMesh5.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50683,11 +50799,13 @@ planeMesh5.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50695,8 +50813,8 @@ planeMesh5.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50716,20 +50834,23 @@ planeMesh6.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50747,11 +50868,13 @@ planeMesh6.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50759,8 +50882,8 @@ planeMesh6.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50780,20 +50903,23 @@ planeMesh7.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50811,11 +50937,13 @@ planeMesh7.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50823,8 +50951,8 @@ planeMesh7.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50844,20 +50972,23 @@ planeMesh8.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50875,11 +51006,13 @@ planeMesh8.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50887,8 +51020,8 @@ planeMesh8.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50908,20 +51041,23 @@ planeMesh9.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -50939,11 +51075,13 @@ planeMesh9.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -50951,8 +51089,8 @@ planeMesh9.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -50972,20 +51110,23 @@ planeMesh10.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -51003,11 +51144,13 @@ planeMesh10.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51015,8 +51158,8 @@ planeMesh10.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -51036,20 +51179,23 @@ planeMesh11.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -51067,11 +51213,13 @@ planeMesh11.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51079,8 +51227,8 @@ planeMesh11.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -51100,20 +51248,23 @@ planeMesh12.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -51131,11 +51282,13 @@ planeMesh12.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51143,8 +51296,8 @@ planeMesh12.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -51164,20 +51317,23 @@ planeMesh13.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -51195,11 +51351,13 @@ planeMesh13.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51207,8 +51365,8 @@ planeMesh13.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -51216,7 +51374,7 @@ planeMesh13.on('mouseout', function (ev) {
   }
 });
 planeMesh14.on('mouseover', function (ev) {
-  if (ev && workshopActive == false && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
+  if (ev && hoverPlane && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
     console.log(ev.intersects);
     gsap.to(materialPlane14.uniforms.alpha, 0.75, {
       value: 1.0,
@@ -51228,20 +51386,23 @@ planeMesh14.on('mouseover', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorHover,
         padding: 50,
-        left: -50,
-        top: -50,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.50, {
         opacity: 0,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 1,
-        ease: "Power3.easeOut"
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
       });
       indicClickOnPlane.classList.add("planeHover");
     }
@@ -51259,11 +51420,13 @@ planeMesh14.on('mouseout', function (ev) {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51271,8 +51434,8 @@ planeMesh14.on('mouseout', function (ev) {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -51287,25 +51450,27 @@ var threshold = 20;
 new _touchsweep.default(el, data, threshold);
 el.addEventListener('swipeleft', function () {
   console.log('left');
-  scrollDown();
+  if (!workshopActive) scrollDown();
 });
 el.addEventListener('swiperight', function () {
   console.log('right');
-  scrollUp();
-});
-el.addEventListener('swipedown', function () {
-  console.log('down');
-  scrollUp();
-});
-el.addEventListener('swipeup', function () {
-  console.log('up');
-  scrollDown();
-}); // el.addEventListener('tap', () => {
+  if (!workshopActive) scrollUp();
+}); // el.addEventListener('swipedown', () => {
+//     console.log('down')
+//     if (!workshopActive)
+//         scrollUp();
+// });
+// el.addEventListener('swipeup', () => {
+//     console.log('up')
+//     if (!workshopActive)
+//         scrollDown();
+// });
+// el.addEventListener('tap', () => {
 // });
 ///// PLANES CLICK /////
 
-planeMesh14.on('click', function () {
-  if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17) {
+function plane14Click() {
+  if (clickPossible && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51349,6 +51514,10 @@ planeMesh14.on('click', function () {
     hideTimeline();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51362,8 +51531,6 @@ planeMesh14.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51371,8 +51538,8 @@ planeMesh14.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
@@ -51381,16 +51548,28 @@ planeMesh14.on('click', function () {
     gsap.to(workShopContainer1, 1.5, {
       opacity: 1,
       ease: "Power3.easeOut",
-      delay: 2.75
+      delay: 2
+    });
+    gsap.to(contentContainer, 1.5, {
+      opacity: 1,
+      ease: "Power3.easeOut",
+      delay: 2
     });
     setTimeout(function () {
-      workShopContainer1.classList.add('switchPlane');
-    }, 3750);
+      if (workshopActive) workShopContainer1.classList.add('switchPlane');
+    }, 3500);
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh14.on('click', function () {
+  plane14Click();
 });
-planeMesh13.on('click', function () {
-  if (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16) {
+
+function plane13Click() {
+  if (clickPossible && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51433,6 +51612,10 @@ planeMesh13.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51446,8 +51629,6 @@ planeMesh13.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51455,18 +51636,25 @@ planeMesh13.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh13.on('click', function () {
+  plane13Click();
 });
-planeMesh12.on('click', function () {
-  if (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15) {
+
+function plane12Click() {
+  if (clickPossible && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51509,6 +51697,10 @@ planeMesh12.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51522,8 +51714,6 @@ planeMesh12.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51531,18 +51721,25 @@ planeMesh12.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh12.on('click', function () {
+  plane12Click();
 });
-planeMesh11.on('click', function () {
-  if (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14) {
+
+function plane11Click() {
+  if (clickPossible && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51585,6 +51782,10 @@ planeMesh11.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51598,8 +51799,6 @@ planeMesh11.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51607,18 +51806,25 @@ planeMesh11.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh11.on('click', function () {
+  plane11Click();
 });
-planeMesh10.on('click', function () {
-  if (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13) {
+
+function plane10Click() {
+  if (clickPossible && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51661,6 +51867,10 @@ planeMesh10.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51674,8 +51884,6 @@ planeMesh10.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51683,18 +51891,25 @@ planeMesh10.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh10.on('click', function () {
+  plane10Click();
 });
-planeMesh9.on('click', function () {
-  if (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12) {
+
+function plane9Click() {
+  if (clickPossible && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51737,6 +51952,10 @@ planeMesh9.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51750,8 +51969,6 @@ planeMesh9.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51759,18 +51976,25 @@ planeMesh9.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh9.on('click', function () {
+  plane9Click();
 });
-planeMesh8.on('click', function () {
-  if (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -11) {
+
+function plane8Click() {
+  if (clickPossible && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -11)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51813,6 +52037,10 @@ planeMesh8.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51826,8 +52054,6 @@ planeMesh8.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51835,18 +52061,25 @@ planeMesh8.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh8.on('click', function () {
+  plane8Click();
 });
-planeMesh7.on('click', function () {
-  if (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10) {
+
+function plane7Click() {
+  if (clickPossible && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51889,6 +52122,10 @@ planeMesh7.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51902,8 +52139,6 @@ planeMesh7.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51911,18 +52146,25 @@ planeMesh7.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh7.on('click', function () {
+  plane7Click();
 });
-planeMesh6.on('click', function () {
-  if (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9) {
+
+function plane6Click() {
+  if (clickPossible && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -51965,6 +52207,10 @@ planeMesh6.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -51978,8 +52224,6 @@ planeMesh6.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -51987,18 +52231,25 @@ planeMesh6.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh6.on('click', function () {
+  plane6Click();
 });
-planeMesh5.on('click', function () {
-  if (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8) {
+
+function plane5Click() {
+  if (clickPossible && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -52041,6 +52292,10 @@ planeMesh5.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -52054,8 +52309,6 @@ planeMesh5.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -52063,18 +52316,25 @@ planeMesh5.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh5.on('click', function () {
+  plane5Click();
 });
-planeMesh4.on('click', function () {
-  if (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7) {
+
+function plane4Click() {
+  if (clickPossible && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -52117,6 +52377,10 @@ planeMesh4.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -52130,8 +52394,6 @@ planeMesh4.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -52139,18 +52401,25 @@ planeMesh4.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh4.on('click', function () {
+  plane4Click();
 });
-planeMesh3.on('click', function () {
-  if (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6) {
+
+function plane3Click() {
+  if (clickPossible && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -52193,6 +52462,10 @@ planeMesh3.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -52206,8 +52479,6 @@ planeMesh3.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -52215,18 +52486,25 @@ planeMesh3.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh3.on('click', function () {
+  plane3Click();
 });
-planeMesh2.on('click', function () {
-  if (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5) {
+
+function plane2Click() {
+  if (clickPossible && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -52269,6 +52547,10 @@ planeMesh2.on('click', function () {
     });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(leftDoor.position, 1.5, {
         x: -15,
         ease: "power3.inOut",
@@ -52282,8 +52564,6 @@ planeMesh2.on('click', function () {
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -52291,18 +52571,25 @@ planeMesh2.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
+}
+
+planeMesh2.on('click', function () {
+  plane2Click();
 });
-planeMesh1.on('click', function () {
-  if (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4) {
+
+function plane1Click() {
+  if (clickPossible && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut",
@@ -52355,11 +52642,13 @@ planeMesh1.on('click', function () {
         ease: "power3.inOut",
         delay: 1.5
       });
+      gsap.to(tailleBoulette, 0.75, {
+        padding: 0,
+        ease: "Power3.easeOut"
+      });
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 0,
-        left: -10,
-        top: -10,
         ease: "Power3.easeOut"
       });
       gsap.to(cursorShapeOut, 0.25, {
@@ -52367,17 +52656,22 @@ planeMesh1.on('click', function () {
         delay: 0.25,
         ease: "Power3.easeOut"
       });
-      gsap.to(indicClickOnPlane, 0.50, {
-        opacity: 0,
+      gsap.to(indicClickOnPlane, 0.75, {
+        scale: 0,
         ease: "Power3.easeOut"
       });
       indicClickOnPlane.classList.remove("planeHover");
     }
 
     workshopActive = true;
+    hoverPlane = false;
+    clickPossible = false;
   }
-});
-console.log(titleSvgLine); /////// BACKHOME BUTTON EVENTS ///////
+}
+
+planeMesh1.on('click', function () {
+  plane1Click();
+}); /////// BACKHOME BUTTON EVENTS ///////
 
 function functionBtnBackHome() {
   workshopActive = false;
@@ -52438,10 +52732,39 @@ function functionBtnBackHome() {
     value: 1.0,
     ease: "power3.inOut"
   });
+  TweenMax.to(".spanContainerDiscord span", {
+    duration: 0.75,
+    opacity: .6,
+    stagger: {
+      each: 0.07,
+      from: 'random'
+    },
+    ease: "power2.inOut",
+    delay: 1.25
+  });
+  TweenMax.to(".spanContainerIut span", {
+    duration: 0.75,
+    opacity: .6,
+    stagger: {
+      each: 0.05,
+      from: 'random'
+    },
+    ease: "power2.inOut",
+    delay: 1.25
+  });
+  setTimeout(function () {
+    discordContainer.classList.remove('close');
+    iutContainer.classList.remove('close');
+  }, 3000);
   canvas.classList.remove('hologramDefault');
   canvas.classList.add('hologramActive');
+  btnBackHome.classList.add('close');
   btnBackHome.disabled = true;
-  btnStart.disabled = false;
+  setTimeout(function () {
+    btnStart.disabled = false;
+    btnStart.classList.remove('close');
+    littleTitleSvg.classList.add('close');
+  }, 3000);
   hideTimeline();
 
   if (planeAxe.position.y <= -11) {
@@ -52523,10 +52846,15 @@ function functionBtnBackHome() {
   });
   littleTitleSvgLine.classList.remove("pathLineIn");
   littleTitleSvgLine.classList.add("pathLineOut");
+  cursorIndication.classList.remove('switch');
   TweenMax.to(btnStart, .75, {
     opacity: 1,
     clipPath: "inset(0% 0% 0% 0%)",
     delay: 1.75,
+    ease: "power3.inOut"
+  });
+  TweenMax.to(homeMask, 2.95, {
+    opacity: 1,
     ease: "power3.inOut"
   });
   TweenMax.to(btnBackHome, 1, {
@@ -52685,39 +53013,39 @@ function functionBtnBackHome() {
     });
     gsap.to(table.scale, 2.25, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(pylone5.scale, 2.25, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(pylone4.scale, 2.1, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
     gsap.to(pylone3.scale, 1.95, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
     gsap.to(pylone2.scale, 1.8, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
     gsap.to(pylone.scale, 1.65, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
@@ -52725,41 +53053,98 @@ function functionBtnBackHome() {
     });
     gsap.to(grid.scale, 2.25, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(grid2.scale, 2.1, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
     gsap.to(grid3.scale, 1.95, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
     gsap.to(grid4.scale, 1.8, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
     gsap.to(grid5.scale, 1.65, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .6
     });
     gsap.to(poutre.scale, 2.25, {
       x: 0.0001,
-      y: 100,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(street.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(leftDoor2.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightDoor2.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(cam.scale, 1.65, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(vr2.scale, 1.95, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(enceinte.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(tv2.scale, 1.65, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(tabProg.scale, 1.95, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(tv.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
@@ -52780,6 +53165,8 @@ function functionBtnBackHome() {
   }); //SWITCH ELEMENTS ON CLICK
 
   canvas.style.zIndex = -1;
+  homeContainer.style.zIndex = 2;
+  homeMask.style.zIndex = 1;
 }
 
 function revealTimeline() {
@@ -52809,7 +53196,7 @@ function hideTimeline() {
   TweenMax.to(workShopButton, 1, {
     x: '25%',
     opacity: 0,
-    webkitFilter: 'blur(5px)',
+    webkitFilter: 'blur(2px)',
     stagger: {
       each: 0.03,
       from: "center"
@@ -52818,7 +53205,7 @@ function hideTimeline() {
   });
   TweenMax.to(timelineIndication, 1, {
     opacity: 0,
-    webkitFilter: 'blur(5px)',
+    webkitFilter: 'blur(2px)',
     ease: "power3.inOut"
   });
   setTimeout(function () {
@@ -52844,14 +53231,43 @@ function functionBtnStart() {
   littleTitleSvgLine.classList.add("pathLineIn");
   canvas.classList.remove('hologramActive');
   canvas.classList.add('hologramDefault');
-  btnBackHome.disabled = false;
+  btnStart.classList.add('close');
   btnStart.disabled = true;
+  setTimeout(function () {
+    btnBackHome.disabled = false;
+    btnBackHome.classList.remove('close');
+    littleTitleSvg.classList.remove('close');
+  }, 4000);
   TweenMax.to(btnStart, 1.7, {
     opacity: 0,
     clipPath: "inset(0% 0% 0% 100%)",
     ease: "power3.inOut"
   });
+  TweenMax.to(homeMask, 3, {
+    opacity: 0,
+    ease: "power3.inOut"
+  });
   revealTimeline();
+  TweenMax.to(".spanContainerDiscord span", {
+    duration: 0.75,
+    opacity: .0,
+    stagger: {
+      each: 0.07,
+      from: 'random'
+    },
+    ease: "power2.inOut"
+  });
+  TweenMax.to(".spanContainerIut span", {
+    duration: 0.75,
+    opacity: .0,
+    stagger: {
+      each: 0.05,
+      from: 'random'
+    },
+    ease: "power2.inOut"
+  });
+  discordContainer.classList.add('close');
+  iutContainer.classList.add('close');
   setTimeout(function () {
     // SUPPRESSIONS DES PARTICULES
     setTimeout(function () {
@@ -53061,6 +53477,46 @@ function functionBtnStart() {
         z: 110,
         ease: "power3.inOut"
       });
+      gsap.to(cam.scale, 3, {
+        x: 14,
+        y: 14,
+        z: 14,
+        ease: "power3.inOut"
+      });
+      gsap.to(vr2.scale, 2.7, {
+        x: 75,
+        y: 75,
+        z: 75,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(enceinte.scale, 2.4, {
+        x: 1,
+        y: 1,
+        z: 1,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(tv2.scale, 3, {
+        x: 95,
+        y: 95,
+        z: 65,
+        ease: "power3.inOut"
+      });
+      gsap.to(tabProg.scale, 2.7, {
+        x: 95,
+        y: 95,
+        z: 95,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(tv.scale, 2.4, {
+        x: 95,
+        y: 95,
+        z: 95,
+        ease: "power3.inOut",
+        delay: .6
+      });
       gsap.to(pylone.scale, 3, {
         x: 110,
         y: 80,
@@ -53173,6 +53629,11 @@ function functionBtnStart() {
 
     setTimeout(function () {
       canvas.style.zIndex = 1;
+      homeContainer.style.zIndex = -1;
+      homeMask.style.zIndex = -1;
+      setTimeout(function () {
+        cursorIndication.classList.add('switch');
+      }, 1100);
     }, 1500);
   }, 1000);
 }
@@ -53186,7 +53647,7 @@ btnStart.addEventListener('click', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerStartMouseout span", {
     duration: .5,
@@ -53195,14 +53656,15 @@ btnStart.addEventListener('click', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnStart, {
     color: "#4cc9f0",
     background: "#09021e",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   handleMouseLeave();
+  btnStart.classList.remove('hover');
   cursorShapeIn.classList.remove('mouseover');
   setTimeout(function () {
     spanContainerStartMouseOut.classList.remove('neonText');
@@ -53216,7 +53678,7 @@ btnStart.addEventListener('mouseenter', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerStartMouseout span", {
     duration: .5,
@@ -53225,13 +53687,14 @@ btnStart.addEventListener('mouseenter', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnStart, {
     color: "#09021e",
     background: "#4cc9f0",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
+  btnStart.classList.add('hover');
   spanContainerStartMouseOut.classList.add('neonText');
   cursorShapeIn.classList.add('mouseover');
 });
@@ -53243,7 +53706,7 @@ btnStart.addEventListener('mouseleave', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerStartMouseout span", {
     duration: .5,
@@ -53252,13 +53715,14 @@ btnStart.addEventListener('mouseleave', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnStart, {
     color: "#4cc9f0",
     background: "#09021e",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
+  btnStart.classList.remove('hover');
   spanContainerStartMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
 });
@@ -53271,7 +53735,7 @@ btnBackHome.addEventListener('click', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerBackMouseout span", {
     duration: .5,
@@ -53280,14 +53744,15 @@ btnBackHome.addEventListener('click', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnBackHome, {
     color: "#4cc9f0",
     background: "#09021e",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   handleMouseLeave();
+  btnBackHome.classList.remove('hover');
   setTimeout(function () {
     spanContainerBackMouseOut.classList.remove('neonText');
   }, 750);
@@ -53297,19 +53762,20 @@ btnBackHome.addEventListener('mouseenter', function () {
     duration: .5,
     translateY: -40,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerBackMouseout span", {
     duration: .5,
     translateY: 0,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnBackHome, {
     color: "#09021e",
     background: "#4cc9f0",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
+  btnBackHome.classList.add('hover');
   spanContainerBackMouseOut.classList.add('neonText');
   cursorShapeIn.classList.add('mouseover');
 });
@@ -53318,39 +53784,71 @@ btnBackHome.addEventListener('mouseleave', function () {
     duration: .5,
     translateY: 0,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerBackMouseout span", {
     duration: .5,
     translateY: 40,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnBackHome, {
     color: "#4cc9f0",
     background: "#09021e",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
+  btnBackHome.classList.remove('hover');
   spanContainerBackMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
 });
-btnBackWorkshop.addEventListener('click', function () {
+
+function backToPlane() {
+  var varDelay = .0;
+  var taillePopUpSplit = contentContainer.scrollHeight / 4;
+
+  if (camera.position.z >= -106 && contentContainer.scrollTop >= taillePopUpSplit * 2 && contentContainer.scrollTop < taillePopUpSplit * 3) {
+    varDelay = .75;
+    gsap.to(contentContainer, 3, {
+      opacity: 0,
+      ease: "Power3.easeOut",
+      delay: 0.25
+    });
+    console.log("loin");
+  } else if (contentContainer.scrollTop < taillePopUpSplit * 2 && contentContainer.scrollTop >= taillePopUpSplit) {
+    varDelay = .50;
+    gsap.to(contentContainer, 3, {
+      opacity: 0,
+      ease: "Power3.easeOut",
+      delay: 0.25
+    });
+    console.log("milieu");
+  } else {
+    gsap.to(contentContainer, 3, {
+      opacity: 0,
+      ease: "Power3.easeOut",
+      delay: 0.25
+    });
+  }
+
   if (!window.matchMedia("(max-width: 1024px)").matches) {
-    handleMouseLeave();
     gsap.to(leftDoor.position, 1.5, {
       x: .3,
       ease: "power3.inOut",
-      delay: 0.75
+      delay: 0.75 + varDelay
     });
     gsap.to(rightDoor.position, 1.5, {
       x: .3,
       ease: "power3.inOut",
-      delay: 0.75
+      delay: 0.75 + varDelay
     });
     gsap.to(camera.position, 3, {
       z: 3.7,
       ease: "power3.inOut"
     });
+    setTimeout(function () {
+      creditContainer1.classList.remove('switchStreet');
+      scrollPossible = true;
+    }, 3000);
   } else {
     gsap.to(camera.position, 3, {
       z: 4.5,
@@ -53361,18 +53859,18 @@ btnBackWorkshop.addEventListener('click', function () {
   gsap.to(logo.position, 1.5, {
     x: 0,
     ease: "power3.inOut",
-    delay: 0.75
+    delay: 0.75 + varDelay
   });
   gsap.to(logo.rotation, 1.5, {
     z: .25,
     ease: "power3.inOut",
-    delay: 1.5
+    delay: 1.5 + varDelay
   });
   gsap.to(logo.position, 1.5, {
     z: 0,
     y: 0,
     ease: "power3.inOut",
-    delay: 1.5
+    delay: 1.5 + varDelay
   });
 
   if (materialPlane14.uniforms.alpha.value == 0) {
@@ -53383,7 +53881,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane14.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh14.scale, 0.75, {
       x: 1,
@@ -53398,7 +53896,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane13.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh13.scale, 0.75, {
       x: 1,
@@ -53413,7 +53911,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane13.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh13.scale, 0.75, {
       x: 1,
@@ -53424,7 +53922,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane12.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh12.scale, 0.75, {
       x: 1,
@@ -53439,7 +53937,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane11.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh11.scale, 0.75, {
       x: 1,
@@ -53454,7 +53952,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane10.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh10.scale, 0.75, {
       x: 1,
@@ -53469,7 +53967,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane9.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh9.scale, 0.75, {
       x: 1,
@@ -53484,7 +53982,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane8.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh8.scale, 0.75, {
       x: 1,
@@ -53499,7 +53997,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane7.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh7.scale, 0.75, {
       x: 1,
@@ -53514,7 +54012,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane6.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh6.scale, 0.75, {
       x: 1,
@@ -53529,7 +54027,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane5.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh5.scale, 0.75, {
       x: 1,
@@ -53544,7 +54042,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane4.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh4.scale, 0.75, {
       x: 1,
@@ -53559,7 +54057,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane3.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh3.scale, 0.75, {
       x: 1,
@@ -53574,7 +54072,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane2.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh2.scale, 0.75, {
       x: 1,
@@ -53589,7 +54087,7 @@ btnBackWorkshop.addEventListener('click', function () {
     gsap.to(materialPlane1.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 3.75
+      delay: 2.75
     });
     gsap.to(planeMesh1.scale, 0.75, {
       x: 1,
@@ -53609,6 +54107,85 @@ btnBackWorkshop.addEventListener('click', function () {
     clipPath: "inset(0% 100% 0% 0%)",
     ease: "power3.inOut"
   });
+  gsap.to(workShopContainer1, 1.5, {
+    opacity: 0,
+    ease: "Power3.easeOut",
+    delay: 0.5
+  });
+  workShopContainer1.classList.remove('switchPlane');
+  hoverPlane = true;
+  clickPossible = true;
+  setTimeout(function () {
+    workshopActive = false;
+    contentContainer.scrollTop = 0;
+  }, 2500);
+}
+
+function backToWorkshop() {
+  if (camera.position.z <= -125) {
+    var lastPosScroll = contentContainer.scrollTop;
+    contentContainer.scrollTop = lastPosScroll - 50;
+    console.log(contentContainer.scrollTop);
+    gsap.to(camera.position, 3, {
+      z: -108,
+      ease: "power3.inOut"
+    });
+    gsap.to(leftDoor2.position, 1.5, {
+      x: .3,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(rightDoor2.position, 1.5, {
+      x: .3,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(creditContainer1, 2.5, {
+      opacity: 0,
+      ease: "Power4.easeOut"
+    });
+
+    for (var _i = 1; _i <= 6; _i++) {
+      gsap.to(".contentImg__" + _i, {
+        opacity: 0,
+        ease: "Power3.easeOut",
+        delay: 2.5
+      });
+    }
+
+    gsap.to(workShopContainer1, 1.5, {
+      opacity: 1,
+      ease: "Power3.easeOut",
+      delay: 2
+    });
+    setTimeout(function () {
+      workShopContainer1.classList.add('switchPlane');
+      creditActive = false;
+    }, 1000);
+    setTimeout(function () {
+      creditContainer1.classList.remove('switchStreet');
+      scrollContainer.scrollTop = 0;
+    }, 3000);
+  }
+}
+
+btnBackWorkshop.addEventListener('click', function () {
+  if (workshopActive && !creditActive && backPossible) {
+    backToPlane();
+  } else if (workshopActive && creditActive) {
+    backToWorkshop();
+  }
+
+  if (!window.matchMedia("(max-width: 1024px)").matches && backPossible) {
+    handleMouseLeave();
+    btnBackWorkshop.classList.remove('hover');
+    TweenMax.to(btnBackWorkshop, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power2.inOut"
+    });
+  }
+
   TweenMax.to(".spanContainerBackMouseover span", {
     duration: .5,
     translateY: 0,
@@ -53616,7 +54193,7 @@ btnBackWorkshop.addEventListener('click', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerBackMouseout span", {
     duration: .5,
@@ -53625,44 +54202,31 @@ btnBackWorkshop.addEventListener('click', function () {
       each: 0.01,
       from: "center"
     },
-    ease: "power2.inOut"
-  });
-  TweenMax.to(btnBackWorkshop, {
-    color: "#4cc9f0",
-    background: "#09021e",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   setTimeout(function () {
     spanContainerBackMouseOut.classList.remove('neonText');
   }, 750);
-  gsap.to(workShopContainer1, 1.5, {
-    opacity: 0,
-    ease: "Power3.easeOut",
-    delay: 0.5
-  });
-  setTimeout(function () {
-    workShopContainer1.classList.add('switchPlane');
-  }, 3750);
-  workshopActive = false;
 });
 btnBackWorkshop.addEventListener('mouseenter', function () {
   TweenMax.to(".spanContainerBackWorkshopMouseover span", {
     duration: .5,
     translateY: -40,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerBackWorkshopMouseout span", {
     duration: .5,
     translateY: 0,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnBackWorkshop, {
     color: "#09021e",
     background: "#4cc9f0",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
+  btnBackWorkshop.classList.add('hover');
   spanContainerBackMouseOut.classList.add('neonText');
   cursorShapeIn.classList.add('mouseover');
 });
@@ -53671,19 +54235,20 @@ btnBackWorkshop.addEventListener('mouseleave', function () {
     duration: .5,
     translateY: 0,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerBackWorkshopMouseout span", {
     duration: .5,
     translateY: 40,
     stagger: .027,
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(btnBackWorkshop, {
     color: "#4cc9f0",
     background: "#09021e",
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
+  btnBackWorkshop.classList.remove('hover');
   spanContainerBackMouseOut.classList.remove('neonText');
   cursorShapeIn.classList.remove('mouseover');
 }); ///// BUTTON START HOVER /////
@@ -53714,7 +54279,7 @@ charsTextBtnBack.forEach(function (letter) {
   spanContainerBackMouseOut.append(btnChar);
 }); ///// BUTTON BACK WORKSHOP HOVER /////
 
-var btnBackWorkshopText = "Ateliers";
+var btnBackWorkshopText = "Retour";
 var charsTextBtnBackWorkshop = btnBackWorkshopText.split('');
 charsTextBtnBackWorkshop.forEach(function (letter) {
   var btnChar = document.createElement('span');
@@ -53725,25 +54290,41 @@ charsTextBtnBackWorkshop.forEach(function (letter) {
   var btnChar = document.createElement('span');
   btnChar.innerHTML = letter;
   spanContainerBackWorkshopMouseOut.append(btnChar);
+}); ///// BUTTON DISCORD /////
+
+var btnDiscordText = "Discord";
+var charsTextDiscord = btnDiscordText.split('');
+charsTextDiscord.forEach(function (letter) {
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  discordSpanContainer.append(btnChar);
+}); ///// BUTTON IUT /////
+
+var btnIutText = "Site Officiel";
+var charsTextIut = btnIutText.split('');
+charsTextIut.forEach(function (letter) {
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  iutSpanContainer.append(btnChar);
 }); ///// WORKSHOP TIMELINE /////
 
 containerTimeline.addEventListener('mouseenter', function () {
   TweenMax.to(workShopButton, {
     duration: .25,
     clipPath: "inset(0% 0% 0% 0%)",
-    stagger: 0.015,
+    stagger: 0.013,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "100%",
-    stagger: 0.015,
+    stagger: 0.013,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "2px",
-    stagger: 0.015,
+    stagger: 0.013,
     ease: "power3.inOut",
     delay: .5
   });
@@ -53755,28 +54336,27 @@ containerTimeline.addEventListener('mouseenter', function () {
   TweenMax.to(timelineIndication, {
     duration: .25,
     opacity: 0,
-    letterSpacing: '35px',
     webkitFilter: 'blur(2px)',
-    ease: "power3.inOut"
+    ease: "power4.inOut"
   });
 });
 containerTimeline.addEventListener('mouseleave', function () {
   TweenMax.to(workShopButton, {
     duration: .25,
     clipPath: "inset(0% 0% 0% 99%)",
-    stagger: 0.015,
+    stagger: 0.013,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "100%",
-    stagger: 0.015,
+    stagger: 0.013,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "2px",
-    stagger: 0.015,
+    stagger: 0.013,
     ease: "power3.inOut",
     delay: .4
   });
@@ -53785,19 +54365,16 @@ containerTimeline.addEventListener('mouseleave', function () {
     clipPath: "inset(0% 0% 0% 70%)",
     ease: "power3.inOut"
   });
-  TweenMax.to(timelineIndication, {
-    duration: .4,
-    opacity: 1,
-    letterSpacing: '8px',
-    webkitFilter: 'blur(0)',
-    ease: "power3.inOut"
-  });
-}); // /////// TIMELINE BUTTONS HOVER ///////
-// workShopButton14.addEventListener('mouseleave', function() {
-//     workShopButton14.classList.add('mouseout')
-//     workShopButton14.classList.remove('mouseover')
-// })
-/////// SM HOVER ///////
+
+  if (camera.position.z == 3.7) {
+    TweenMax.to(timelineIndication, {
+      duration: .4,
+      opacity: 1,
+      webkitFilter: 'blur(0)',
+      ease: "power4.inOut"
+    });
+  }
+}); /////// SM HOVER ///////
 
 sm1.classList.add('mouseout');
 sm2.classList.add('mouseout');
@@ -53843,6 +54420,61 @@ sm3.addEventListener('mouseleave', function () {
 });
 sm3.addEventListener('click', function () {
   window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
+});
+discordContainer.addEventListener('mouseenter', function () {
+  // POINTER DISCORD
+  TweenMax.to(".spanContainerDiscord span", {
+    duration: 0.5,
+    opacity: 1,
+    stagger: {
+      each: 0.07,
+      from: 'end'
+    },
+    ease: "power2.inOut"
+  });
+});
+discordContainer.addEventListener('mouseleave', function () {
+  TweenMax.to(".spanContainerDiscord span", {
+    duration: 0.5,
+    opacity: .6,
+    stagger: {
+      each: 0.07,
+      from: 'end'
+    },
+    ease: "power2.inOut"
+  });
+});
+discordContainer.addEventListener('click', function () {
+  window.open('https://discord.gg/RrT9Tv4n', '_blank');
+});
+iutContainer.addEventListener('mouseenter', function () {
+  // POINTER IUT
+  TweenMax.to(".spanContainerIut span", {
+    duration: 0.5,
+    opacity: 1,
+    stagger: {
+      each: 0.05,
+      from: 'start'
+    },
+    ease: "power2.inOut"
+  });
+});
+iutContainer.addEventListener('mouseleave', function () {
+  TweenMax.to(".spanContainerIut span", {
+    duration: 0.5,
+    opacity: .6,
+    stagger: {
+      each: 0.05,
+      from: 'start'
+    },
+    ease: "power2.inOut"
+  });
+});
+iutContainer.addEventListener('click', function () {
+  window.open('https://www.iut-tarbes.fr/', '_blank');
+});
+littleTitleSvg.addEventListener('click', function () {
+  window.open('https://www.immersions-digitales.fr/', '_blank');
 }); ///// CUSTOM CURSOR /////
 
 var pixelRatio = window.devicePixelRatio;
@@ -53929,10 +54561,6 @@ var Cursor = /*#__PURE__*/function () {
   return Cursor;
 }();
 
-document.addEventListener('mousemove', function (e) {
-  indicClickOnPlane.style.top = e.pageY - 10 + "px";
-  indicClickOnPlane.style.left = e.pageX - 10 + "px";
-});
 var isStuck = false;
 var mouse = {
   x: -100,
@@ -53946,11 +54574,7 @@ window.addEventListener('scroll', function (e) {
 var cursorOuterOriginalState = {
   width: cursorShapeOut.getBoundingClientRect().width,
   height: cursorShapeOut.getBoundingClientRect().height
-}; // buttons.forEach(button => {
-//     button.addEventListener("pointerenter", handleMouseEnter);
-//     button.addEventListener("pointerleave", handleMouseLeave);
-// });
-
+};
 btnStart.addEventListener("pointerenter", function () {
   if (homeActive) {
     handleMouseEnterBtn(btnStart);
@@ -53972,14 +54596,22 @@ btnBackWorkshop.addEventListener("pointerenter", function () {
 
   btnBackWorkshop.addEventListener("pointerleave", handleMouseLeave);
 });
-sm.forEach(function (media) {
-  media.addEventListener("pointerenter", handleMouseEnter);
-  media.addEventListener("pointerleave", handleMouseLeave);
+sm.forEach(function (e) {
+  e.addEventListener("pointerenter", handleMouseEnter);
+  e.addEventListener("pointerleave", handleMouseLeave);
 });
-workShopButton.forEach(function (button) {
-  button.addEventListener("pointerenter", handleMouseEnter);
-  button.addEventListener("pointerleave", handleMouseLeave);
+workShopButton.forEach(function (e) {
+  e.addEventListener("pointerenter", handleMouseEnter);
+  e.addEventListener("pointerleave", handleMouseLeave);
 });
+discordContainer.addEventListener("pointerenter", handleMouseEnter);
+discordContainer.addEventListener("pointerleave", handleMouseLeave);
+iutContainer.addEventListener("pointerenter", handleMouseEnter);
+iutContainer.addEventListener("pointerleave", handleMouseLeave);
+musicBtn.addEventListener("pointerenter", handleMouseEnter);
+musicBtn.addEventListener("pointerleave", handleMouseLeave);
+littleTitleSvg.addEventListener("pointerenter", handleMouseEnter);
+littleTitleSvg.addEventListener("pointerleave", handleMouseLeave);
 document.body.addEventListener("pointermove", updateCursorPosition);
 
 function updateCursorPosition(e) {
@@ -53988,9 +54620,13 @@ function updateCursorPosition(e) {
 }
 
 function updateCursor() {
+  var cursorInnerOriginalState = {
+    width: tailleBoulette.getBoundingClientRect().width,
+    height: tailleBoulette.getBoundingClientRect().height
+  };
   gsap.set(cursor, {
-    x: mouse.x,
-    y: mouse.y
+    x: mouse.x - cursorInnerOriginalState.width / 2,
+    y: mouse.y - cursorInnerOriginalState.height / 2
   });
 
   if (!isStuck) {
@@ -54044,8 +54680,13 @@ function handleMouseLeave(e) {
     backgroundColor: "transparent"
   });
   cursorShapeIn.classList.remove('mouseover');
-} /////// TIMELINE REDIRECTION ///////
+} // Indication plane hover
 
+
+document.addEventListener('mousemove', function (e) {
+  indicClickOnPlane.style.top = e.pageY - 20 / 2 + "px";
+  indicClickOnPlane.style.left = e.pageX - 20 / 2 + "px";
+}); /////// TIMELINE REDIRECTION ///////
 
 workShopButton1.addEventListener('click', function () {
   // WORKSHOP 1
@@ -54370,7 +55011,6 @@ function scrollPlane14() {
 }
 
 function scrollPlane13() {
-  // if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
   //AXES ANIM
   gsap.to(planeAxe.position, .75, {
     y: -16,
@@ -54436,7 +55076,7 @@ function scrollPlane13() {
   gsap.to(planeMesh14.rotation, .75, {
     z: rotateZ,
     ease: "power3.inOut"
-  }); // }
+  });
 }
 
 function scrollPlane12() {
@@ -55269,9 +55909,9 @@ function scrollPlane1() {
 
 
 function scrollUp() {
-  // camera.position.z += 1;
   if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
-    //RAJOUT DES PARTICULES
+    homeActive = true; //RAJOUT DES PARTICULES
+
     scene.add(particleMesh);
     gsap.to(particleMesh.scale, 2.95, {
       x: 1,
@@ -55302,6 +55942,7 @@ function scrollUp() {
     } //HTML ELEMENTS ANIM
 
 
+    cursorIndication.classList.remove('switch');
     canvas.classList.remove('hologramDefault');
     canvas.classList.add('hologramActive');
     btnBackHome.disabled = true;
@@ -55322,14 +55963,44 @@ function scrollUp() {
     TweenMax.to(btnStart, .75, {
       opacity: 1,
       clipPath: "inset(0% 0% 0% 0%)",
-      delay: .75,
+      delay: 1.75,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(homeMask, 2.95, {
+      opacity: 1,
       ease: "power3.inOut"
     });
     TweenMax.to(btnBackHome, 1, {
       opacity: 0,
       clipPath: "inset(0% 100% 0% 0%)",
       ease: "power3.inOut"
-    }); //PLANE ROTATION Z ANIM
+    });
+    TweenMax.to(".spanContainerDiscord span", {
+      duration: 0.75,
+      opacity: .6,
+      stagger: {
+        each: 0.07,
+        from: 'random'
+      },
+      ease: "power2.inOut",
+      delay: 1.25
+    });
+    TweenMax.to(".spanContainerIut span", {
+      duration: 0.75,
+      opacity: .6,
+      stagger: {
+        each: 0.05,
+        from: 'random'
+      },
+      ease: "power2.inOut",
+      delay: 1.25
+    });
+    setTimeout(function () {
+      discordContainer.classList.remove('close');
+      iutContainer.classList.remove('close');
+      btnStart.classList.remove('close');
+      littleTitleSvg.classList.add('close');
+    }, 2500); //PLANE ROTATION Z ANIM
 
     gsap.to(planeMesh1.rotation, 2.25, {
       z: rotateZ,
@@ -55479,39 +56150,39 @@ function scrollUp() {
     });
     gsap.to(table.scale, 2.25, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(pylone5.scale, 2.25, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(pylone4.scale, 2.1, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
     gsap.to(pylone3.scale, 1.95, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
     gsap.to(pylone2.scale, 1.8, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
     gsap.to(pylone.scale, 1.65, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
@@ -55519,41 +56190,98 @@ function scrollUp() {
     });
     gsap.to(grid.scale, 2.25, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(grid2.scale, 2.1, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
     gsap.to(grid3.scale, 1.95, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
     gsap.to(grid4.scale, 1.8, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
     gsap.to(grid5.scale, 1.65, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .6
     });
     gsap.to(poutre.scale, 2.25, {
       x: 0.0001,
-      y: 100,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(cam.scale, 1.65, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(vr2.scale, 1.95, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(enceinte.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(tv2.scale, 1.65, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(tabProg.scale, 1.95, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(tv.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(street.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(leftDoor2.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightDoor2.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     }); //LIGHTS ANIM
@@ -55572,6 +56300,8 @@ function scrollUp() {
     }); //SWITCH ELEMENTS ON CLICK
 
     canvas.style.zIndex = -1;
+    homeContainer.style.zIndex = 2;
+    homeMask.style.zIndex = 1;
   } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
     scrollPlane14();
 
@@ -55781,11 +56511,12 @@ function scrollUp() {
       });
     }
   }
-}
+} //REVEAL AND HIDE CURSOR INDICATION
+// gsap.to(cursorIndication, 0, { opacity: 0, ease: "power1.inOut"})
+// gsap.to(cursorIndication, 1.5, { opacity: 1, ease: "power1.inOut", delay: 7})
+
 
 function scrollDown() {
-  // console.log(materialPlanePanneau.uniforms.dispFactor.value)
-  // camera.position.z -= 1;
   if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
     scrollPlane13();
 
@@ -55995,7 +56726,8 @@ function scrollDown() {
       });
     }
   } else if (planeAxe.position.y == -4) {
-    //RAJOUT DES PARTICULES
+    homeActive = true; //RAJOUT DES PARTICULES
+
     scene.add(particleMesh);
     gsap.to(particleMesh.scale, 2.95, {
       x: 1,
@@ -56026,6 +56758,7 @@ function scrollDown() {
     } //HTML ELEMENTS ANIM
 
 
+    cursorIndication.classList.remove('switch');
     canvas.classList.remove('hologramDefault');
     canvas.classList.add('hologramActive');
     btnBackHome.disabled = true;
@@ -56046,14 +56779,44 @@ function scrollDown() {
     TweenMax.to(btnStart, .75, {
       opacity: 1,
       clipPath: "inset(0% 0% 0% 0%)",
-      delay: .75,
+      delay: 1.75,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(homeMask, 2.95, {
+      opacity: 1,
       ease: "power3.inOut"
     });
     TweenMax.to(btnBackHome, 1, {
       opacity: 0,
       clipPath: "inset(0% 100% 0% 0%)",
       ease: "power3.inOut"
-    }); //PLANE ROTATION Z ANIM
+    });
+    TweenMax.to(".spanContainerDiscord span", {
+      duration: 0.75,
+      opacity: .6,
+      stagger: {
+        each: 0.07,
+        from: 'random'
+      },
+      ease: "power2.inOut",
+      delay: 1.25
+    });
+    TweenMax.to(".spanContainerIut span", {
+      duration: 0.75,
+      opacity: .6,
+      stagger: {
+        each: 0.05,
+        from: 'random'
+      },
+      ease: "power2.inOut",
+      delay: 1.25
+    });
+    setTimeout(function () {
+      discordContainer.classList.remove('close');
+      iutContainer.classList.remove('close');
+      btnStart.classList.remove('close');
+      littleTitleSvg.classList.add('close');
+    }, 2500); //PLANE ROTATION Z ANIM
 
     gsap.to(planeMesh1.rotation, 2.25, {
       z: rotateZ,
@@ -56203,39 +56966,39 @@ function scrollDown() {
     });
     gsap.to(table.scale, 2.25, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(pylone5.scale, 2.25, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(pylone4.scale, 2.1, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
     gsap.to(pylone3.scale, 1.95, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
     gsap.to(pylone2.scale, 1.8, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
     gsap.to(pylone.scale, 1.65, {
-      x: 110,
+      x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
@@ -56243,34 +57006,34 @@ function scrollDown() {
     });
     gsap.to(grid.scale, 2.25, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(grid2.scale, 2.1, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
     gsap.to(grid3.scale, 1.95, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
     gsap.to(grid4.scale, 1.8, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
     gsap.to(grid5.scale, 1.65, {
       x: 0.0001,
-      y: 110,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .6
@@ -56278,6 +57041,63 @@ function scrollDown() {
     gsap.to(poutre.scale, 2.25, {
       x: 0.0001,
       y: 100,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(cam.scale, 1.65, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(vr2.scale, 1.95, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(enceinte.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(tv2.scale, 1.65, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .6
+    });
+    gsap.to(tabProg.scale, 1.95, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut",
+      delay: .3
+    });
+    gsap.to(tv.scale, 2.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(street.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(leftDoor2.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(rightDoor2.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     }); //LIGHTS ANIM
@@ -56295,7 +57115,9 @@ function scrollDown() {
       delay: .75
     }); //SWITCH ELEMENTS ON CLICK
 
-    canvas.style.zIndex = -1; //RESET AXES POSITION 
+    canvas.style.zIndex = -1;
+    homeContainer.style.zIndex = 2;
+    homeMask.style.zIndex = 1; //RESET AXES POSITION 
 
     gsap.to(planeAxe.position, 0, {
       y: -26.5,
@@ -56321,16 +57143,45 @@ function scrollDown() {
 } ///// MOUSE SCROLL /////
 
 
-document.body.addEventListener('wheel', scrollPlane);
+document.body.addEventListener('wheel', scrollWheel);
 
-function scrollPlane(event) {
-  if (workshopActive == false) {
+function scrollWheel(event) {
+  if (!workshopActive) {
+    if (!isScrollUp) {
+      if (checkScrollDirectionIsUp(event)) {
+        // SCROLL UP
+        scrollUp();
+        isScrollUp = true;
+        setTimeout(function () {
+          isScrollUp = false;
+        }, 750);
+      }
+    }
+
+    if (!isScrollDown) {
+      if (checkScrollDirectionIsUp(event)) {// SCROLL DOWN
+      } else {
+        scrollDown();
+        isScrollDown = true;
+        setTimeout(function () {
+          isScrollDown = false;
+        }, 750);
+      }
+    }
+  } else if (creditActive) {
     if (checkScrollDirectionIsUp(event)) {
       // SCROLL UP
-      scrollUp(); // console.log("up:" + planeAxe.position.y)
-    } else {
-      // SCROLL DOWN
-      scrollDown(); // console.log("down:" + planeAxe.position.y)
+      if (camera.position.z <= -185 && scrollContainer.scrollTop == 0) {
+        backToWorkshop();
+      }
+    }
+  } else if (workshopActive) {
+    if (checkScrollDirectionIsUp(event)) {
+      // SCROLL UP
+      if (contentContainer.scrollTop == 0 && scrollPossible) {
+        backToPlane();
+        scrollPossible = false;
+      }
     }
   }
 }
@@ -56346,83 +57197,219 @@ function checkScrollDirectionIsUp(event) {
 
 
 contentContainer.addEventListener('scroll', function () {
-  scrollWorkshop(contentContainer);
+  if (!creditActive) {
+    scrollWorkshop(contentContainer);
 
-  if (camera.position.z <= -106) {
-    creditContainer1.classList.add('switchStreet');
-    gsap.to(creditContainer1, 1.5, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
-    workShopContainer1.classList.remove('switchPlane');
-    gsap.to(workShopContainer1, 1.5, {
-      opacity: 0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(camera.position, 3, {
-      z: -185,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftDoor2.position, 1.5, {
-      x: -15,
-      ease: "power3.inOut",
-      delay: .75
-    });
-    gsap.to(rightDoor2.position, 1.5, {
-      x: 15,
-      ease: "power3.inOut",
-      delay: .75
-    });
-  } else {
-    gsap.to(workShopContainer1, 1.5, {
-      opacity: 1,
-      ease: "Power3.easeOut"
-    });
+    if (window.matchMedia("(max-width: 1440px)").matches) {
+      if (camera.position.z <= -109) {
+        creditContainer1.classList.add('switchStreet');
+        workShopContainer1.classList.remove('switchPlane');
+        gsap.to(workShopContainer1, 1.5, {
+          opacity: 0,
+          ease: "Power3.easeOut"
+        });
+        gsap.to(camera.position, 3, {
+          z: -185,
+          ease: "power3.inOut"
+        });
+        gsap.to(leftDoor2.position, 1.5, {
+          x: -15,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(rightDoor2.position, 1.5, {
+          x: 15,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(creditContainer1, 2, {
+          opacity: 1,
+          ease: "Power1.easeOut",
+          delay: 2
+        });
+        backPossible = false;
+        setTimeout(function () {
+          creditActive = true;
+        }, 1000);
+        setTimeout(function () {
+          backPossible = true;
+        }, 3000);
+      }
+    } else {
+      if (camera.position.z <= -106) {
+        creditContainer1.classList.add('switchStreet');
+        workShopContainer1.classList.remove('switchPlane');
+        gsap.to(workShopContainer1, 1.5, {
+          opacity: 0,
+          ease: "Power3.easeOut"
+        });
+        gsap.to(camera.position, 3, {
+          z: -185,
+          ease: "power3.inOut"
+        });
+        gsap.to(leftDoor2.position, 1.5, {
+          x: -15,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(rightDoor2.position, 1.5, {
+          x: 15,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(creditContainer1, 2, {
+          opacity: 1,
+          ease: "Power1.easeOut",
+          delay: 2
+        });
+        backPossible = false;
+        setTimeout(function () {
+          creditActive = true;
+        }, 1000);
+        setTimeout(function () {
+          backPossible = true;
+        }, 3000);
+      }
+    }
+  }
+}); // ///// CREDIT SCROLL /////
+// scrollContainer.addEventListener('scroll', function() {
+//     if (creditActive) {
+//         if (scrollContainer.scrollTop == 0) {
+//             console.log('tagrandmere')
+//             backToPlane();
+//         }
+//     }
+// })
+// gsap.to('.content', {
+//     opacity: 1,
+//     ease: "Power3.inOut",
+//     immediateRender: true,
+//     scrollTrigger: {
+//       scroller: ".scrollContainer",
+//       start: 0
+//     }
+//   })
+// ScrollReveal().reveal('.btn');
+// ScrollReveal().reveal(".btn", { delay: 2000 });
+// ScrollReveal().reveal(".scrollContainer .content", { viewFactor: 1.0, container: ".scrollContainer", opacity: 1, delay: 1, duration: 2, reset: true });
+// ScrollReveal().reveal(".scrollContainer p", { container: ".scrollContainer", opacity: 1, delay: 2000 })
+
+scrollContainer.addEventListener("scroll", function () {
+  if (creditActive) {
+    for (var _i2 = 1; _i2 <= 6; _i2++) {
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "Power3.InOut"
+        }
+      }).to(".contentImg__" + _i2, {
+        opacity: 1,
+        duration: 1
+      });
+      ScrollTrigger.create({
+        trigger: ".contentImg__" + _i2,
+        start: "10% 50%",
+        // end: "+=300",
+        scroller: ".scrollContainer",
+        animation: tl // scrub: true,
+
+      });
+    }
   }
 });
 
 function scrollWorkshop(el) {
   camera.position.z = -20 + el.scrollTop / el.scrollHeight * -120;
-  console.log(camera.position.z);
 } ///// ARROWS SCROLL + KEY ECHAP ///////
 
 
 document.onkeydown = function (e) {
   switch (e.keyCode) {
     case 37:
+      if (!workshopActive) {
+        scrollUp();
+      }
+
       console.log('left');
       break;
 
     case 38:
       // SCROLL UP
+      if (!workshopActive) {
+        scrollUp();
+      }
+
       console.log('up');
-      scrollUp();
       break;
 
     case 39:
+      if (!workshopActive) {
+        scrollDown();
+      }
+
       console.log('right');
       break;
 
     case 40:
       // SCROLL DOWN
+      if (!workshopActive) {
+        scrollDown();
+      }
+
       console.log('down');
-      scrollDown();
       break;
 
     case 27:
-      if (camera.position.z == 3.7) {
+      if (camera.position.z == 3.7 && !workshopActive) {
         functionBtnBackHome();
-        console.log("echap");
       }
 
+      if (workshopActive && !creditActive) {
+        backToPlane();
+      } else if (workshopActive && creditActive) {
+        backToWorkshop();
+      }
+
+      console.log("echap");
       break;
 
     case 13:
       if (camera.position.z == 10) {
         functionBtnStart();
-        console.log("enter");
       }
 
+      if (!homeActive) {
+        plane14Click();
+        plane13Click();
+        plane12Click();
+        plane11Click();
+        plane10Click();
+        plane9Click();
+        plane8Click();
+        plane7Click();
+        plane6Click();
+        plane5Click();
+        plane4Click();
+        plane3Click();
+        plane2Click();
+        plane1Click();
+      }
+
+      console.log("enter");
+      break;
+
+    case 65:
+      // DEBUGGER
+      console.log(camera.position.z); // console.log("1/4 : " + contentContainer.scrollHeight / 4)
+      // console.log("2/4 : " + contentContainer.scrollHeight / 4 * 2)
+      // console.log("3/4 : " + contentContainer.scrollHeight / 4 * 3)
+      // console.log("4/4 : " + contentContainer.scrollHeight / 4 * 4)
+
+      console.log("pos Fiche Actuelle : " + contentContainer.scrollTop);
+      console.log("pos Crédit Actuelle : " + scrollContainer.scrollTop);
+      console.log("Crédit : " + creditActive);
+      console.log("Workshop : " + workshopActive);
+      console.log("Back : " + backPossible);
       break;
   }
 };
@@ -56455,40 +57442,38 @@ var render = function render() {
   particleGeo.verticesNeedUpdate = true; // window.onmousemove = function(e) { //PARTICLES MOUSE EVENT
   //     // var resetCenterX = window.innerWidth / 2;
   //     // var resetCenterY = window.innerHeight / 2;
-  //     if (camera.position.z > 9.9) {
-  //         var cameraRotationYTolerance = .02;
-  //         var cameraRotationXTolerance = .01;
+  //         var cameraRotationYTolerance = .05;
+  //         var cameraRotationXTolerance = .05;
   //         var rotX = window.innerWidth * .5;
   //         var rotY = window.innerHeight * .5;
-  //         camera.rotation.y = (e.clientX - rotX) / rotX * cameraRotationYTolerance;
-  //         camera.rotation.x = (e.clientY - rotY) / rotY * cameraRotationXTolerance;
-  //     }
+  //         // camera.rotation.y = (e.clientX - rotX) / rotX * cameraRotationYTolerance;
+  //         // camera.rotation.x = (e.clientY - rotY) / rotY * cameraRotationXTolerance;
+  //         // gsap.to(camera.position, 0.05, { x: (e.clientX - rotX) / rotX * cameraRotationXTolerance, y: (e.clientY - rotY) / rotY * cameraRotationYTolerance, ease: "power4.inOut" })
   // };
 
-  renderer.render(scene, camera);
+  renderer.render(scene, camera); // if (!window.matchMedia("(max-width: 1024px)").matches) {
 
-  if (!window.matchMedia("(max-width: 1024px)").matches) {
-    if (camera.position.z >= 3.4 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
-      materialPlane1.uniforms.time.value = clock.getElapsedTime();
-      materialPlane2.uniforms.time.value = clock.getElapsedTime();
-      materialPlane3.uniforms.time.value = clock.getElapsedTime();
-      materialPlane4.uniforms.time.value = clock.getElapsedTime();
-      materialPlane5.uniforms.time.value = clock.getElapsedTime();
-      materialPlane6.uniforms.time.value = clock.getElapsedTime();
-      materialPlane7.uniforms.time.value = clock.getElapsedTime();
-      materialPlane8.uniforms.time.value = clock.getElapsedTime();
-      materialPlane9.uniforms.time.value = clock.getElapsedTime();
-      materialPlane10.uniforms.time.value = clock.getElapsedTime();
-      materialPlane11.uniforms.time.value = clock.getElapsedTime();
-      materialPlane12.uniforms.time.value = clock.getElapsedTime();
-      materialPlane13.uniforms.time.value = clock.getElapsedTime();
-      materialPlane14.uniforms.time.value = clock.getElapsedTime();
-    }
-  }
+  if (camera.position.z >= 3.4 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
+    materialPlane1.uniforms.time.value = clock.getElapsedTime();
+    materialPlane2.uniforms.time.value = clock.getElapsedTime();
+    materialPlane3.uniforms.time.value = clock.getElapsedTime();
+    materialPlane4.uniforms.time.value = clock.getElapsedTime();
+    materialPlane5.uniforms.time.value = clock.getElapsedTime();
+    materialPlane6.uniforms.time.value = clock.getElapsedTime();
+    materialPlane7.uniforms.time.value = clock.getElapsedTime();
+    materialPlane8.uniforms.time.value = clock.getElapsedTime();
+    materialPlane9.uniforms.time.value = clock.getElapsedTime();
+    materialPlane10.uniforms.time.value = clock.getElapsedTime();
+    materialPlane11.uniforms.time.value = clock.getElapsedTime();
+    materialPlane12.uniforms.time.value = clock.getElapsedTime();
+    materialPlane13.uniforms.time.value = clock.getElapsedTime();
+    materialPlane14.uniforms.time.value = clock.getElapsedTime();
+  } // }
+
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/pylone2.gltf":"assets/model/navigation/pylone2.gltf","../assets/model/navigation/pylone3.gltf":"assets/model/navigation/pylone3.gltf","../assets/model/navigation/pylone4.gltf":"assets/model/navigation/pylone4.gltf","../assets/model/navigation/pylone5.gltf":"assets/model/navigation/pylone5.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/grid2.gltf":"assets/model/navigation/grid2.gltf","../assets/model/navigation/grid3.gltf":"assets/model/navigation/grid3.gltf","../assets/model/navigation/grid4.gltf":"assets/model/navigation/grid4.gltf","../assets/model/navigation/grid5.gltf":"assets/model/navigation/grid5.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/fondVert/greenScreen.gltf":"assets/model/fondVert/greenScreen.gltf","../assets/model/vr/vr1.gltf":"assets/model/vr/vr1.gltf","../assets/model/vr/vr2.gltf":"assets/model/vr/vr2.gltf","../assets/model/cube/cb1.gltf":"assets/model/cube/cb1.gltf","../assets/model/adobe/adobe1.gltf":"assets/model/adobe/adobe1.gltf","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/particle.png":"assets/img/particle.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -56516,7 +57501,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33667" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57905" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

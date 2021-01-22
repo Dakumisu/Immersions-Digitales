@@ -4,8 +4,8 @@
 
     * {
         box-sizing: border-box;
-        // cursor: none !important;
-        cursor: auto;
+        cursor: none !important;
+        // cursor: auto;
         user-select: none;
     }
 
@@ -546,7 +546,7 @@
     }
 
     .littleTitle {
-        z-index: 10;
+        z-index: 3;
         width: 150px;
         position: absolute;
         right: 18px;

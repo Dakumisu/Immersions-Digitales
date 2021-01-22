@@ -2384,6 +2384,7 @@ function functionBtnBackHome() {
     setTimeout(function(){
         btnStart.disabled = false;
         btnStart.classList.remove('close')
+        littleTitleSvg.classList.add('close')
     }, 3000)
 
     hideTimeline()
@@ -2500,6 +2501,7 @@ function functionBtnBackHome() {
     homeContainer.style.zIndex = 2;
     homeMask.style.zIndex = 1;
 }
+
 function revealTimeline(){
     TweenMax.to(workShopButton, 1, {  x: 0, opacity: 1, webkitFilter: 'blur(0)', stagger: { each: 0.03, from: "edges" }, ease: "power3.inOut", delay: 2 })
     TweenMax.to(timelineIndication,1, { opacity: 1,  webkitFilter: 'blur(0)', ease: "power3.inOut", delay: 2.5 });
@@ -2544,6 +2546,7 @@ function functionBtnStart() {
     setTimeout(function(){
         btnBackHome.disabled = false;
         btnBackHome.classList.remove('close')
+        littleTitleSvg.classList.remove('close')
     }, 4000)
 
     TweenMax.to(btnStart, 1.7, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
@@ -3031,7 +3034,7 @@ discordContainer.addEventListener('mouseleave', function() {
 })
 
 discordContainer.addEventListener('click', function() {
-    window.open('#', '_blank');
+    window.open('https://discord.gg/RrT9Tv4n', '_blank');
 })
 
 iutContainer.addEventListener('mouseenter', function() { // POINTER IUT
@@ -3044,6 +3047,10 @@ iutContainer.addEventListener('mouseleave', function() {
 
 iutContainer.addEventListener('click', function() {
     window.open('https://www.iut-tarbes.fr/', '_blank');
+})
+
+littleTitleSvg.addEventListener('click', function() {
+    window.open('https://www.immersions-digitales.fr/', '_blank');
 })
 
 ///// CUSTOM CURSOR /////
@@ -3176,8 +3183,11 @@ discordContainer.addEventListener("pointerleave", handleMouseLeave);
 iutContainer.addEventListener("pointerenter", handleMouseEnter);
 iutContainer.addEventListener("pointerleave", handleMouseLeave);
 
-musicBtn.addEventListener("pointerleave", handleMouseLeave);
 musicBtn.addEventListener("pointerenter", handleMouseEnter);
+musicBtn.addEventListener("pointerleave", handleMouseLeave);
+
+littleTitleSvg.addEventListener("pointerenter", handleMouseEnter);
+littleTitleSvg.addEventListener("pointerleave", handleMouseLeave);
 
 document.body.addEventListener("pointermove", updateCursorPosition);
 
@@ -3756,7 +3766,9 @@ function scrollUp() {
         setTimeout(function() {
             discordContainer.classList.remove('close')
             iutContainer.classList.remove('close')
-        }, 3000)
+            btnStart.classList.remove('close')
+            littleTitleSvg.classList.add('close')
+        }, 2500)
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -4108,7 +4120,9 @@ function scrollDown() {
         setTimeout(function() {
             discordContainer.classList.remove('close')
             iutContainer.classList.remove('close')
-        }, 3000)
+            btnStart.classList.remove('close')
+            littleTitleSvg.classList.add('close')
+        }, 2500)
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -4436,7 +4450,7 @@ var render = function() {
 
     renderer.render(scene, camera);
 
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
+    // if (!window.matchMedia("(max-width: 1024px)").matches) {
         if (camera.position.z >= 3.4 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
             materialPlane1.uniforms.time.value = clock.getElapsedTime();
             materialPlane2.uniforms.time.value = clock.getElapsedTime();
@@ -4453,7 +4467,7 @@ var render = function() {
             materialPlane13.uniforms.time.value = clock.getElapsedTime();
             materialPlane14.uniforms.time.value = clock.getElapsedTime();
         }
-    }
+    // }
 };
 
 render();
