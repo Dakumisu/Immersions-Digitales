@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    	 var parameters = this.parameters;
-    	 if ( parameters !== undefined ) {
-    	 var values = [];
-    	 for ( var key in parameters ) {
-    	 values.push( parameters[ key ] );
-    	 }
-    	 var geometry = Object.create( this.constructor.prototype );
+    		 var parameters = this.parameters;
+    		 if ( parameters !== undefined ) {
+    		 var values = [];
+    		 for ( var key in parameters ) {
+    		 values.push( parameters[ key ] );
+    		 }
+    		 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    	 }
-    	 return new this.constructor().copy( this );
+    		 }
+    		 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,15 +32462,23 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  
+  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  	var d = light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.scale.set( d, d, d );
-  	}
-  	this.add( this.lightDistance );
+  
+  var d = light.distance;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.scale.set( d, d, d );
+  
+  }
+  
+  this.add( this.lightDistance );
   */
 }
 
@@ -32490,12 +32498,17 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  	if ( d === 0.0 ) {
-  		this.lightDistance.visible = false;
-  	} else {
-  		this.lightDistance.visible = true;
+  
+  if ( d === 0.0 ) {
+  
+  	this.lightDistance.visible = false;
+  
+  } else {
+  
+  	this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  	}
+  
+  }
   */
 
 };
@@ -32926,7 +32939,8 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  	0: max.x, max.y, max.z
+  
+  0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -48623,6 +48637,16 @@ module.exports = "/rightWall.873f03ed.gltf";
 module.exports = "/field.4048f86c.gltf";
 },{}],"assets/model/navigation/sign.gltf":[function(require,module,exports) {
 module.exports = "/sign.0dce5908.gltf";
+},{}],"assets/model/fondVert/greenScreen.gltf":[function(require,module,exports) {
+module.exports = "/greenScreen.2580a81a.gltf";
+},{}],"assets/model/vr/vr1.gltf":[function(require,module,exports) {
+module.exports = "/vr1.5a1ddc6e.gltf";
+},{}],"assets/model/vr/vr2.gltf":[function(require,module,exports) {
+module.exports = "/vr2.9bf4254b.gltf";
+},{}],"assets/model/cube/cb1.gltf":[function(require,module,exports) {
+module.exports = "/cb1.8b729542.gltf";
+},{}],"assets/model/adobe/adobe1.gltf":[function(require,module,exports) {
+module.exports = "/adobe1.718110bd.gltf";
 },{}],"assets/img/particle.png":[function(require,module,exports) {
 module.exports = "/particle.8e4cb102.png";
 },{}],"js/app.js":[function(require,module,exports) {
@@ -48767,6 +48791,16 @@ var _rightWall = _interopRequireDefault(require("../assets/model/navigation/righ
 var _field = _interopRequireDefault(require("../assets/model/navigation/field.gltf"));
 
 var _sign = _interopRequireDefault(require("../assets/model/navigation/sign.gltf"));
+
+var _greenScreen = _interopRequireDefault(require("../assets/model/fondVert/greenScreen.gltf"));
+
+var _vr = _interopRequireDefault(require("../assets/model/vr/vr1.gltf"));
+
+var _vr2 = _interopRequireDefault(require("../assets/model/vr/vr2.gltf"));
+
+var _cb = _interopRequireDefault(require("../assets/model/cube/cb1.gltf"));
+
+var _adobe = _interopRequireDefault(require("../assets/model/adobe/adobe1.gltf"));
 
 var _particle2 = _interopRequireDefault(require("../assets/img/particle.png"));
 
@@ -49133,6 +49167,84 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     sign.rotation.y = -.5 * Math.PI;
     sign.scale.set(0.0001, 0.0001, 0.0001);
   });
+} //GREEN SCREEN
+
+
+var greenScreen;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderGreenScreen = new _GLTFLoader.GLTFLoader();
+  loaderGreenScreen.crossOrigin = true;
+  loaderGreenScreen.load(_greenScreen.default, function (addGreenScreen) {
+    greenScreen = addGreenScreen.scene;
+    scene.add(greenScreen);
+    greenScreen.position.set(9.5, -5, -8);
+    greenScreen.scale.set(0.0001, 0.0001, 0.0001); //110
+
+    greenScreen.rotation.y = -.5 * Math.PI;
+  });
+} //VR 1
+
+
+var vr1;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderVr1 = new _GLTFLoader.GLTFLoader();
+  loaderVr1.crossOrigin = true;
+  loaderVr1.load(_vr.default, function (addVr1) {
+    vr1 = addVr1.scene;
+    scene.add(vr1);
+    vr1.position.set(6.5, -4.1, -12);
+    vr1.scale.set(0.0001, 0.0001, 0.0001); // 100
+
+    vr1.rotation.y = -.57 * Math.PI;
+  });
+} //VR 2
+
+
+var vr2;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderVr2 = new _GLTFLoader.GLTFLoader();
+  loaderVr2.crossOrigin = true;
+  loaderVr2.load(_vr2.default, function (addVr2) {
+    vr2 = addVr2.scene;
+    scene.add(vr2);
+    vr2.position.set(-8.7, 5.15, -8.5);
+    vr2.scale.set(0.0001, 0.0001, 0.0001); //100
+  });
+} //ADOBE 1
+
+
+var adobe1;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderAdobe1 = new _GLTFLoader.GLTFLoader();
+  loaderAdobe1.crossOrigin = true;
+  loaderVr1.load(_adobe.default, function (addAdobe1) {
+    adobe1 = addAdobe1.scene;
+    scene.add(adobe1);
+    adobe1.position.set(6.5, -4.1, -12);
+    adobe1.scale.set(0.0001, 0.0001, 0.0001); // 100
+
+    adobe1.rotation.y = -.57 * Math.PI;
+  });
+} // CUBE MUSICAL
+
+
+var cb1;
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  var loaderCb1 = new _GLTFLoader.GLTFLoader();
+  loaderCb1.crossOrigin = true;
+  loaderCb1.load(_cb.default, function (addCb1) {
+    cb1 = addCb1.scene;
+    scene.add(cb1);
+    cb1.position.set(6.5, -3.3, -12);
+    cb1.scale.set(0.0001, 0.0001, 0.0001); //100
+
+    cb1.rotation.y = -.5 * Math.PI;
+  });
 } // RIGHT DOOR MODEL
 
 
@@ -49245,7 +49357,7 @@ var texture13Hover = new THREE.TextureLoader().load(_atelier13Hover.default);
 var texture14Default = new THREE.TextureLoader().load(_atelier14Default.default);
 var texture14Hover = new THREE.TextureLoader().load(_atelier14Hover.default); /////// PLANES MATERIALS ///////
 
-var planeOpacityDefault = 0.925;
+var planeOpacityDefault = 0.9;
 var materialPlane1 = new THREE.ShaderMaterial({
   vertexShader: _vertex.default,
   fragmentShader: _fragment.default,
@@ -49981,8 +50093,7 @@ for (var row = 0; row < ScreenHeigth; row++) {
 var particleGeo = new THREE.Geometry();
 
 for (var i = 0; i < 800; i++) {
-  var _particle = new THREE.Vector3(Math.random() * 50 - 40, Math.random() * 50 - 40, Math.random() * 3.4 - 1.7); //20-10
-
+  var _particle = new THREE.Vector3(Math.random() * 50 - 40, Math.random() * 50 - 40, Math.random() * 15 - 7.5);
 
   particleGeo.vertices.push(_particle);
 }
@@ -51235,6 +51346,7 @@ planeMesh14.on('click', function () {
       delay: 2.5,
       ease: "power3.inOut"
     });
+    hideTimeline();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
       gsap.to(leftDoor.position, 1.5, {
@@ -52268,8 +52380,6 @@ planeMesh1.on('click', function () {
 console.log(titleSvgLine); /////// BACKHOME BUTTON EVENTS ///////
 
 function functionBtnBackHome() {
-  // Rajout des particules
-  scene.add(particleMesh);
   workshopActive = false;
   homeActive = true;
   gsap.to(materialPlane1.uniforms.alpha, 0.75, {
@@ -52332,6 +52442,7 @@ function functionBtnBackHome() {
   canvas.classList.add('hologramActive');
   btnBackHome.disabled = true;
   btnStart.disabled = false;
+  hideTimeline();
 
   if (planeAxe.position.y <= -11) {
     //AXES ANIM
@@ -52389,8 +52500,16 @@ function functionBtnBackHome() {
       z: 10,
       ease: "power3.inOut"
     });
-  } //HTML ELEMENTS ANIM
+  } //RAJOUT DES PARTICULES
 
+
+  scene.add(particleMesh);
+  gsap.to(particleMesh.scale, 2.95, {
+    x: 1,
+    y: 1,
+    z: 1,
+    ease: "power3.inOut"
+  }); //HTML ELEMENTS ANIM
 
   titleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleOut");
@@ -52661,21 +52780,62 @@ function functionBtnBackHome() {
   }); //SWITCH ELEMENTS ON CLICK
 
   canvas.style.zIndex = -1;
+}
+
+function revealTimeline() {
+  TweenMax.to(workShopButton, 1, {
+    x: 0,
+    opacity: 1,
+    webkitFilter: 'blur(0)',
+    stagger: {
+      each: 0.03,
+      from: "edges"
+    },
+    ease: "power3.inOut",
+    delay: 2
+  });
+  TweenMax.to(timelineIndication, 1, {
+    opacity: 1,
+    webkitFilter: 'blur(0)',
+    ease: "power3.inOut",
+    delay: 2.5
+  });
+  setTimeout(function () {
+    containerTimeline.classList.add('switch');
+  }, 4000);
+}
+
+function hideTimeline() {
+  TweenMax.to(workShopButton, 1, {
+    x: '25%',
+    opacity: 0,
+    webkitFilter: 'blur(5px)',
+    stagger: {
+      each: 0.03,
+      from: "center"
+    },
+    ease: "power3.inOut"
+  });
+  TweenMax.to(timelineIndication, 1, {
+    opacity: 0,
+    webkitFilter: 'blur(5px)',
+    ease: "power3.inOut"
+  });
+  setTimeout(function () {
+    containerTimeline.classList.remove('switch');
+  }, 1000);
 } ///// START BUTTON EVENTS /////
 
 
 function functionBtnStart() {
-  homeActive = false; // Supression des particules
-
-  scene.remove(scene.getObjectByName("ParticleObjects")); //HTML ELEMENTS ANIM
+  homeActive = false; //HTML ELEMENTS ANIM
 
   titleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleIn");
     e.classList.add("pathTitleOut");
   });
   titleSvgLine.classList.remove("pathLineIn");
-  titleSvgLine.classList.add("pathLineOut"); // console.log(titleSvgLine)
-
+  titleSvgLine.classList.add("pathLineOut");
   littleTitleSvgPath.forEach(function (e) {
     e.classList.add("pathTitleIn");
     e.classList.remove("pathTitleOut");
@@ -52691,8 +52851,19 @@ function functionBtnStart() {
     clipPath: "inset(0% 0% 0% 100%)",
     ease: "power3.inOut"
   });
+  revealTimeline();
   setTimeout(function () {
-    //AXES ANIM
+    // SUPPRESSIONS DES PARTICULES
+    setTimeout(function () {
+      scene.remove(scene.getObjectByName("ParticleObjects"));
+    }, 3000);
+    gsap.to(particleMesh.scale, 3, {
+      x: 8,
+      y: 8,
+      z: 8,
+      ease: "power3.inOut"
+    }); //AXES ANIM
+
     gsap.to(planeAxe.position, 1.5, {
       y: -17,
       ease: "power3.inOut",
@@ -53560,57 +53731,67 @@ containerTimeline.addEventListener('mouseenter', function () {
   TweenMax.to(workShopButton, {
     duration: .25,
     clipPath: "inset(0% 0% 0% 0%)",
-    stagger: 0.02,
+    stagger: 0.015,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "100%",
-    stagger: 0.02,
+    stagger: 0.015,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "2px",
-    stagger: 0.02,
+    stagger: 0.015,
     ease: "power3.inOut",
     delay: .5
   });
   TweenMax.to(containerTimeline, {
-    duration: 0,
+    duration: .25,
     clipPath: "inset(0% 0% 0% 0%)",
     ease: "power3.inOut"
   });
-  timelineIndication.classList.add('switch');
+  TweenMax.to(timelineIndication, {
+    duration: .25,
+    opacity: 0,
+    letterSpacing: '35px',
+    webkitFilter: 'blur(2px)',
+    ease: "power3.inOut"
+  });
 });
 containerTimeline.addEventListener('mouseleave', function () {
   TweenMax.to(workShopButton, {
     duration: .25,
     clipPath: "inset(0% 0% 0% 99%)",
-    stagger: 0.02,
+    stagger: 0.015,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "100%",
-    stagger: 0.02,
+    stagger: 0.015,
     ease: "power3.inOut"
   });
   TweenMax.to(workShopButtonMask, {
     duration: .25,
     width: "2px",
-    stagger: 0.02,
+    stagger: 0.015,
     ease: "power3.inOut",
-    delay: .5
+    delay: .4
   });
   TweenMax.to(containerTimeline, {
     duration: .25,
     clipPath: "inset(0% 0% 0% 70%)",
     ease: "power3.inOut"
   });
-  setTimeout(function () {
-    timelineIndication.classList.remove('switch');
-  }, 500);
+  TweenMax.to(timelineIndication, {
+    duration: .4,
+    opacity: 1,
+    letterSpacing: '8px',
+    webkitFilter: 'blur(0)',
+    ease: "power3.inOut"
+  });
 }); // /////// TIMELINE BUTTONS HOVER ///////
 // workShopButton14.addEventListener('mouseleave', function() {
 //     workShopButton14.classList.add('mouseout')
@@ -55090,7 +55271,14 @@ function scrollPlane1() {
 function scrollUp() {
   // camera.position.z += 1;
   if (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.1) {
-    scene.add(particleMesh); //AXES ANIM
+    //RAJOUT DES PARTICULES
+    scene.add(particleMesh);
+    gsap.to(particleMesh.scale, 2.95, {
+      x: 1,
+      y: 1,
+      z: 1,
+      ease: "power3.inOut"
+    }); //AXES ANIM
 
     gsap.to(planeAxe.position, 2.25, {
       y: -26.5,
@@ -55130,6 +55318,7 @@ function scrollUp() {
     });
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
+    hideTimeline();
     TweenMax.to(btnStart, .75, {
       opacity: 1,
       clipPath: "inset(0% 0% 0% 0%)",
@@ -55806,7 +55995,14 @@ function scrollDown() {
       });
     }
   } else if (planeAxe.position.y == -4) {
-    scene.add(particleMesh); //AXES ANIM
+    //RAJOUT DES PARTICULES
+    scene.add(particleMesh);
+    gsap.to(particleMesh.scale, 2.95, {
+      x: 1,
+      y: 1,
+      z: 1,
+      ease: "power3.inOut"
+    }); //AXES ANIM
 
     gsap.to(planeAxe.position, 2.25, {
       y: 4.2,
@@ -55846,6 +56042,7 @@ function scrollDown() {
     });
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
+    hideTimeline();
     TweenMax.to(btnStart, .75, {
       opacity: 1,
       clipPath: "inset(0% 0% 0% 0%)",
@@ -56291,7 +56488,7 @@ var render = function render() {
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/pylone2.gltf":"assets/model/navigation/pylone2.gltf","../assets/model/navigation/pylone3.gltf":"assets/model/navigation/pylone3.gltf","../assets/model/navigation/pylone4.gltf":"assets/model/navigation/pylone4.gltf","../assets/model/navigation/pylone5.gltf":"assets/model/navigation/pylone5.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/grid2.gltf":"assets/model/navigation/grid2.gltf","../assets/model/navigation/grid3.gltf":"assets/model/navigation/grid3.gltf","../assets/model/navigation/grid4.gltf":"assets/model/navigation/grid4.gltf","../assets/model/navigation/grid5.gltf":"assets/model/navigation/grid5.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/pylone2.gltf":"assets/model/navigation/pylone2.gltf","../assets/model/navigation/pylone3.gltf":"assets/model/navigation/pylone3.gltf","../assets/model/navigation/pylone4.gltf":"assets/model/navigation/pylone4.gltf","../assets/model/navigation/pylone5.gltf":"assets/model/navigation/pylone5.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/grid2.gltf":"assets/model/navigation/grid2.gltf","../assets/model/navigation/grid3.gltf":"assets/model/navigation/grid3.gltf","../assets/model/navigation/grid4.gltf":"assets/model/navigation/grid4.gltf","../assets/model/navigation/grid5.gltf":"assets/model/navigation/grid5.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/fondVert/greenScreen.gltf":"assets/model/fondVert/greenScreen.gltf","../assets/model/vr/vr1.gltf":"assets/model/vr/vr1.gltf","../assets/model/vr/vr2.gltf":"assets/model/vr/vr2.gltf","../assets/model/cube/cb1.gltf":"assets/model/cube/cb1.gltf","../assets/model/adobe/adobe1.gltf":"assets/model/adobe/adobe1.gltf","../assets/img/particle.png":"assets/img/particle.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -56319,7 +56516,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52761" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33667" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
