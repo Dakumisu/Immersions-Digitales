@@ -250,9 +250,13 @@ canvas.hologramDefault {
 .workShopContainer .contentContainer .title {
   text-align: center;
   font-family: "main";
-  font-size: 6vw;
+  font-size: 5vw;
   margin: 43vh auto 25vh auto;
   color: #4cc9f0;
+  text-transform: uppercase;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .workShopContainer .contentContainer .containerPara__1 {
@@ -526,8 +530,8 @@ canvas.hologramDefault {
 .creditContainer .scrollContainer .trombi .contentImg .content {
   width: 450px;
   height: 100%;
-  -webkit-clip-path: inset(4% 4% 4% 4%);
-          clip-path: inset(4% 4% 4% 4%);
+  -webkit-clip-path: inset(7% 7% 7% 7%);
+          clip-path: inset(7% 7% 7% 7%);
   -webkit-transition: .5s ease;
   transition: .5s ease;
   margin: 20%;
@@ -539,22 +543,9 @@ canvas.hologramDefault {
           clip-path: inset(1% 1% 1% 1%);
 }
 
-.creditContainer .scrollContainer .trombi .contentImg .content .mask {
-  position: absolute;
-  opacity: 0;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #4cc9f0;
-  z-index: 2;
-  -webkit-clip-path: "inset(0% 100% 0% 0%)";
-          clip-path: "inset(0% 100% 0% 0%)";
-}
-
 .creditContainer .scrollContainer .trombi .contentImg .content .r1 {
   position: absolute;
-  bottom: -2%;
+  bottom: 10%;
   left: 25%;
   font-family: "text";
   color: #4cc9f0;
@@ -568,7 +559,6 @@ canvas.hologramDefault {
 
 .creditContainer .scrollContainer .trombi .contentImg .content .r1.switch {
   opacity: 1;
-  bottom: 3%;
 }
 
 .creditContainer .scrollContainer .trombi .contentImg .content .r1::after {
@@ -592,7 +582,7 @@ canvas.hologramDefault {
 
 .creditContainer .scrollContainer .trombi .contentImg .content .r2 {
   position: absolute;
-  bottom: -2%;
+  bottom: 10%;
   right: 25%;
   font-family: "text";
   color: #4cc9f0;
@@ -606,7 +596,6 @@ canvas.hologramDefault {
 
 .creditContainer .scrollContainer .trombi .contentImg .content .r2.switch {
   opacity: 1;
-  bottom: 3%;
 }
 
 .creditContainer .scrollContainer .trombi .contentImg .content .r2::after {
@@ -652,6 +641,19 @@ canvas.hologramDefault {
   -webkit-transform: scale(1);
           transform: scale(1);
   opacity: 0.5;
+}
+
+.creditContainer .scrollContainer .trombi .contentImg .content .screenMask {
+  position: absolute;
+  opacity: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #4cc9f0;
+  z-index: 4;
+  -webkit-clip-path: "inset(100% 0% 0% 0%)";
+          clip-path: "inset(100% 0% 0% 0%)";
 }
 
 .title,
@@ -1001,12 +1003,6 @@ canvas.hologramDefault {
   }
 }
 
-@media screen and (width: 375px) and (height: 812px) {
-  .btn {
-    font-size: 1.9vh;
-  }
-}
-
 .btn__start {
   -webkit-transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
   transition: border 0.75s cubic-bezier(0.25, 0, 0, 1);
@@ -1111,15 +1107,6 @@ canvas.hologramDefault {
           transform: translateY(40px);
 }
 
-@media screen and (max-width: 539px) {
-  .btn__backHome {
-    width: 22.5vw;
-    height: 6.5vh;
-    left: 2%;
-    top: 1.2%;
-  }
-}
-
 .btn__backWorkshop {
   width: 100px;
   height: 55px;
@@ -1175,15 +1162,6 @@ canvas.hologramDefault {
 .btn__backWorkshop .spanContainerBackWorkshopMouseout span {
   -webkit-transform: translateY(40px);
           transform: translateY(40px);
-}
-
-@media screen and (max-width: 539px) {
-  .btn__backWorkshop {
-    width: 22.5vw;
-    height: 6.5vh;
-    left: 2%;
-    top: 1.2%;
-  }
 }
 
 .btn__discord {

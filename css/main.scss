@@ -214,9 +214,11 @@
             .title {
                 text-align: center;
                 font-family: "main";
-                font-size: 6vw;
+                font-size: 5vw;
                 margin: 43vh auto 25vh auto;
                 color: $cyan;
+                text-transform: uppercase;
+                width: fit-content;
             }
 
             .containerPara__1 {
@@ -328,7 +330,6 @@
             height: 100vh;
             margin: 0;
             overflow: scroll;
-            // display: flex;
             justify-content: center;
             align-items: center;
             scrollbar-width: none;
@@ -413,7 +414,7 @@
                         .content {
                             width: 450px;
                             height: 100%;
-                            clip-path: inset(4% 4% 4% 4%);
+                            clip-path: inset(7% 7% 7% 7%);
                             transition: .5s ease;
                             margin: 20%;
                             position: relative;
@@ -422,21 +423,9 @@
                                 clip-path: inset(1% 1% 1% 1%);
                             }
 
-                            .mask {
-                                position: absolute;
-                                opacity: 0;
-                                left: 0;
-                                top: 0;
-                                width: 100%;
-                                height: 100%;
-                                background: $cyan;
-                                z-index: 2;
-                                clip-path: "inset(0% 100% 0% 0%)";
-                            }
-
                             .r1 {
                                 position: absolute;
-                                bottom: -2%;
+                                bottom: 10%;
                                 left: 25%;
                                 font-family: "text";
                                 color: $cyan;
@@ -448,7 +437,6 @@
 
                                 &.switch {
                                     opacity: 1;
-                                    bottom: 3%;
                                 }
 
                                 &::after {
@@ -470,7 +458,7 @@
 
                             .r2 {
                                 position: absolute;
-                                bottom: -2%;
+                                bottom: 10%;
                                 right: 25%;
                                 font-family: "text";
                                 color: $cyan;
@@ -482,7 +470,6 @@
 
                                 &.switch {
                                     opacity: 1;
-                                    bottom: 3%;
                                 }
 
                                 &::after {
@@ -523,6 +510,17 @@
                                     transform: scale(1);
                                     opacity: 0.5;
                                 }
+                            }
+                            .screenMask {
+                                position: absolute;
+                                opacity: 1;
+                                left: 0;
+                                top: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: $cyan;
+                                z-index: 4;
+                                clip-path: "inset(100% 0% 0% 0%)";
                             }
                         }
                     }
@@ -753,10 +751,6 @@
             letter-spacing: .2vw;
         }
 
-        @media screen and (width: 375px) and (height: 812px) {
-            font-size: 1.9vh;
-        }
-
         &__start {
             transition: border .75s cubic-bezier(.25, 0, 0, 1);
 
@@ -804,7 +798,6 @@
             clip-path: inset(0% 100% 0% 0%);
             transition: border .75s cubic-bezier(.25, 0, 0, 1);
 
-            // transition: .75s cubic-bezier(.25, 0, 0, 1);
             @media screen and (max-width: 539px) {
                 width: 22.5vw;
                 height: 6.5vh;
@@ -839,13 +832,6 @@
 
             .spanContainerBackMouseout span {
                 transform: translateY(40px);
-            }
-
-            @media screen and (max-width: 539px) {
-                width: 22.5vw;
-                height: 6.5vh;
-                left: 2%;
-                top: 1.2%;
             }
         }
 
@@ -894,12 +880,6 @@
                 transform: translateY(40px);
             }
 
-            @media screen and (max-width: 539px) {
-                width: 22.5vw;
-                height: 6.5vh;
-                left: 2%;
-                top: 1.2%;
-            }
         }
 
         &__discord {
