@@ -2,6 +2,7 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  cursor: none !important;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -244,16 +245,14 @@ canvas.hologramDefault {
   }
 }
 
-.startHidden {
-  display: none;
-}
-
 .cursor {
   position: fixed;
   pointer-events: none;
   z-index: 100;
   mix-blend-mode: difference;
   opacity: 0;
+  -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+  transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 .cursorSize {
@@ -281,8 +280,8 @@ canvas.hologramDefault {
 }
 
 .cursor-shape_in.mouseover {
-  -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+  -webkit-transition: opacity 0.5s cubic-bezier(0.25, 0, 0, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 0, 0, 1);
   opacity: 0;
 }
 
@@ -2950,6 +2949,34 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+.workShopContainer .contentContainer__1 .containerPara__7 .para .text .greta {
+  -webkit-transition: .75s ease;
+  transition: .75s ease;
+  color: #4cc9f0;
+  text-decoration: none;
+  position: relative;
+}
+
+@media screen and (min-width: 1024px) {
+  .workShopContainer .contentContainer__1 .containerPara__7 .para .text .greta::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: #4cc9f0;
+    -webkit-clip-path: inset(0 50% 0 50%);
+            clip-path: inset(0 50% 0 50%);
+    -webkit-transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
+    transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
+  }
+  .workShopContainer .contentContainer__1 .containerPara__7 .para .text .greta:hover::after {
+    -webkit-clip-path: inset(0 0 0 0);
+            clip-path: inset(0 0 0 0);
+  }
 }
 
 @media screen and (max-width: 1440px) {
@@ -5708,5 +5735,46 @@ canvas.hologramDefault {
 @font-face {
   font-family: "text";
   src: url("/assets/font/titilliumweb-regular.woff2") format("woff2"), url("/assets/font/titilliumweb-regular.woff") format("woff");
+}
+
+.attente {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .attente {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #09021e;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    z-index: 50;
+  }
+  .attente h3 {
+    -webkit-animation: blinkBtn 4s infinite alternate;
+            animation: blinkBtn 4s infinite alternate;
+    text-align: center;
+    font-family: 'littleTitle';
+    color: #4cc9f0;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (max-width: 539px) {
+  .attente h3 {
+    font-size: 2.8vw;
+    letter-spacing: .2vw;
+  }
 }
 /*# sourceMappingURL=main.css.map */

@@ -49069,21 +49069,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 ////////// MAIN LOADER //////////
 var indicGoDesktop = document.querySelector('.indicGoDesktop');
 var progress = document.querySelector('.progress');
-var volume = .1;
-var volumePlane = .075;
-var volumeBtn = .9;
+var volume = 1;
+var volumeBg = .04;
+var volumePlane = .025;
+var volumeBtn = .5;
 var bgMusic = document.createElement("audio");
 bgMusic.src = _bg.default;
 bgMusic.loop = false;
 bgMusic.volume = volume;
 var bgLoopMusic = document.createElement("audio");
 bgLoopMusic.src = _bgLoop.default;
-bgLoopMusic.loop = false;
-bgLoopMusic.volume = volume;
+bgLoopMusic.loop = true;
+bgLoopMusic.volume = volumeBg;
 var rpzMusic = document.createElement("audio");
 rpzMusic.src = _rpz.default;
 rpzMusic.loop = false;
-rpzMusic.volume = volume;
+rpzMusic.volume = 0.05;
 var soundHover = document.createElement("audio");
 soundHover.src = _soundHover.default;
 soundHover.loop = false;
@@ -49095,423 +49096,7 @@ soundHoverPlane.volume = volumePlane;
 var soundOutPlane = document.createElement("audio");
 soundOutPlane.src = _soundOutPlane.default;
 soundOutPlane.loop = false;
-soundOutPlane.volume = volumePlane;
-var queue = new _preloadJs.default.LoadQueue(false);
-queue.on("progress", function (event) {
-  var increment = Math.floor(event.progress * 100);
-  progress.innerHTML = increment;
-  indicGoDesktop.classList.add('switch');
-});
-queue.on("complete", function (event) {
-  indicGoDesktop.classList.remove('switch');
-  progress.classList.add('switch');
-
-  if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var _cursorIn = new Cursor(cursorShapeIn);
-
-    updateCursor();
-    setTimeout(function () {
-      cursor.style.opacity = 1;
-      cursorShapeOut.style.opacity = 1;
-    }, 50);
-  }
-
-  TweenMax.to(".spanContainerMainStart span", {
-    duration: 1,
-    opacity: 1,
-    stagger: {
-      each: 0.04,
-      from: 'random'
-    },
-    ease: "power3.inOut",
-    delay: .75
-  });
-  TweenMax.to(".borderLeft", {
-    duration: 1,
-    opacity: 1,
-    clipPath: 'inset(0% 0% 0% 0%)',
-    ease: "power3.inOut",
-    delay: .75
-  });
-  TweenMax.to(".borderRight", {
-    duration: 1,
-    opacity: 1,
-    clipPath: 'inset(0% 0% 0% 0%)',
-    ease: "power3.inOut",
-    delay: .75
-  });
-  TweenMax.to(".borderTop", {
-    duration: 1,
-    opacity: 1,
-    clipPath: 'inset(0% 0% 0% 0%)',
-    ease: "power3.inOut",
-    delay: 1.25
-  });
-  TweenMax.to(".borderBottom", {
-    duration: 1,
-    opacity: 1,
-    clipPath: 'inset(0% 0% 0% 0%)',
-    ease: "power3.inOut",
-    delay: 1.25
-  });
-  setTimeout(function () {
-    btnMainStart.addEventListener("pointerenter", function () {
-      if (homeActive) {
-        handleMouseEnterBtn(btnMainStart);
-      }
-
-      btnMainStart.addEventListener("pointerleave", handleMouseLeave);
-    });
-    btnMainStart.addEventListener('mouseenter', function () {
-      spanContainerMainStart.classList.add('neonText');
-      cursorShapeIn.classList.add('mouseover');
-      TweenMax.to(btnMainStart, .5, {
-        color: "#09021e",
-        background: "#4cc9f0",
-        ease: "power3.inOut"
-      });
-      spanContainerMainStart.classList.add('neonText');
-    });
-    btnMainStart.addEventListener('mouseleave', function () {
-      TweenMax.to(btnMainStart, .5, {
-        color: "#4cc9f0",
-        background: "#09021e",
-        ease: "power3.inOut"
-      });
-      cursorShapeIn.classList.remove('mouseover');
-      spanContainerMainStart.classList.remove('neonText');
-    });
-    btnMainStart.addEventListener('click', function () {
-      bgMusic.play();
-      TweenMax.to(maskMusicBtn, {
-        duration: .35,
-        clipPath: "inset(100% 0% 0% 0%)",
-        ease: "power3.easeOut"
-      });
-      TweenMax.to(maskMusicBtn, {
-        duration: .25,
-        clipPath: "inset(0% 0% 0% 0%)",
-        ease: "power3.easeOut",
-        delay: .15
-      });
-      TweenMax.to(maskMusicBtn, {
-        duration: .25,
-        clipPath: "inset(0% 0% 100% 0%)",
-        ease: "power3.easeOut",
-        delay: .5
-      });
-      switchBtn = true;
-      onMusic.classList.toggle('switch');
-      offMusic.classList.toggle('switch');
-      setTimeout(function () {
-        lineMusicBtn.forEach(function (line) {
-          line.classList.toggle('switch');
-        });
-      }, 350);
-
-      if (window.matchMedia("(max-width: 1024px)").matches) {
-        var html = document.querySelector('html');
-
-        if (html.requestFullscreen) {
-          html.requestFullscreen();
-        } else if (html.mozRequestFullScreen) {
-          html.mozRequestFullScreen();
-        } else if (html.webkitRequestFullscreen) {
-          html.webkitRequestFullscreen();
-        } else if (html.msRequestFullscreen) {
-          html.msRequestFullscreen();
-        }
-      }
-
-      handleMouseLeave();
-      TweenMax.to(".spanContainerMainStart span", {
-        duration: .5,
-        opacity: 0,
-        stagger: {
-          each: 0.04,
-          from: 'random'
-        },
-        ease: "power3.inOut"
-      });
-      TweenMax.to(btnMainStart, {
-        duration: 1.5,
-        opacity: 0,
-        ease: "power3.inOut"
-      });
-      titleSvgPath.forEach(function (e) {
-        e.classList.remove("pathTitleOut");
-        e.classList.remove("pathTitleIn");
-      });
-      titleSvgLine.classList.remove("pathLineOut");
-      titleSvgLine.classList.remove("pathLineIn");
-      setTimeout(function () {
-        TweenMax.to(bgCol, {
-          duration: 1,
-          clipPath: "inset(0% 0% 0% 0%)",
-          stagger: 0.02
-        });
-        TweenMax.to(bgCol, {
-          duration: .5,
-          background: '#f72585',
-          opacity: .325,
-          stagger: 0.02
-        });
-        TweenMax.to(bgCol, {
-          duration: .5,
-          background: '#0d0437',
-          opacity: .65,
-          stagger: 0.02
-        });
-        TweenMax.to(bgRow, {
-          duration: 1,
-          clipPath: "inset(0% 0% 0% 0%)",
-          stagger: 0.0355555
-        });
-        TweenMax.to(bgRow, {
-          duration: .5,
-          background: '#f72585',
-          opacity: .325,
-          stagger: 0.0355555
-        });
-        TweenMax.to(bgRow, {
-          duration: .5,
-          background: '#0d0437',
-          opacity: .65,
-          stagger: 0.0355555
-        });
-        TweenMax.to(bgCol, {
-          duration: .5,
-          background: '#f72585',
-          opacity: .05,
-          stagger: 0.02,
-          delay: 2
-        });
-        TweenMax.to(bgRow, {
-          duration: .5,
-          background: '#f72585',
-          opacity: .05,
-          stagger: 0.0355555,
-          delay: 2
-        });
-        TweenMax.to(".firstSlogan span", {
-          duration: 2,
-          opacity: 1,
-          stagger: {
-            each: 0.02,
-            from: 'random'
-          },
-          ease: "expo.inOut",
-          delay: .25
-        });
-        TweenMax.to(".firstSlogan span", {
-          duration: 2,
-          opacity: 0,
-          stagger: {
-            each: 0.02,
-            from: 'random'
-          },
-          ease: "expo.inOut",
-          delay: 3.5
-        });
-        setTimeout(function () {
-          canvas.classList.add('hologramActive'); //CAMERA ANIM
-
-          gsap.to(camera.position, 3.75, {
-            z: 10,
-            ease: "power3.inOut"
-          }); //RAJOUT DES PARTICULES
-
-          setTimeout(function () {
-            scene.add(particleMesh);
-          }, 1000);
-          gsap.to(particleMesh.scale, 3.75, {
-            x: 1,
-            y: 1,
-            z: 1,
-            ease: "power3.inOut"
-          });
-
-          if (!window.matchMedia("(max-width: 1024px)").matches) {
-            gsap.to(home.position, 3.75, {
-              z: 0,
-              x: -1.45,
-              ease: "power3.inOut"
-            });
-            gsap.to(home.rotation, 3.75, {
-              y: -.35,
-              z: 0,
-              ease: "power3.inOut"
-            });
-            TweenMax.to(homeMask, 3.75, {
-              opacity: 1,
-              ease: "power3.inOut"
-            });
-          }
-        }, 4000);
-        setTimeout(function () {
-          titleSvg.classList.add('switchTitle');
-          titleSvgPath.forEach(function (e) {
-            e.classList.remove("pathTitleOut");
-            e.classList.add("pathTitleIn");
-          });
-          titleSvgLine.classList.remove("pathLineOut");
-          titleSvgLine.classList.add("pathLineIn");
-          setTimeout(function () {
-            TweenMax.to(".spanContainerDiscord span", {
-              duration: 0.75,
-              opacity: .6,
-              stagger: {
-                each: 0.06,
-                from: 'random'
-              },
-              ease: "power3.inOut"
-            });
-            TweenMax.to(".spanContainerIut span", {
-              duration: 0.75,
-              opacity: .6,
-              stagger: {
-                each: 0.04,
-                from: 'random'
-              },
-              ease: "power3.inOut"
-            });
-            gsap.to(sm1, 0.75, {
-              opacity: 1,
-              ease: "Power3.easeOut"
-            });
-            gsap.to(sm2, 0.75, {
-              opacity: 1,
-              ease: "Power3.easeOut",
-              delay: .15
-            });
-            gsap.to(sm3, 0.75, {
-              opacity: 1,
-              ease: "Power3.easeOut",
-              delay: .3
-            });
-            gsap.to(musicBtn, 0.75, {
-              opacity: 1,
-              ease: "Power3.easeOut"
-            });
-            TweenMax.to(btnStart, .75, {
-              opacity: 1,
-              clipPath: "inset(0% 0% 0% 0%)",
-              ease: "power3.inOut"
-            });
-            setTimeout(function () {
-              discordContainer.classList.add('switchPointer');
-              iutContainer.classList.add('switchPointer');
-              sm1.classList.add('switchPointer');
-              sm2.classList.add('switchPointer');
-              sm3.classList.add('switchPointer');
-              musicBtn.classList.add('switchPointer');
-            }, 550);
-          }, 3200);
-        }, 4500);
-
-        if (!window.matchMedia("(max-width: 1024px)").matches) {
-          TweenMax.to(bgCol, {
-            duration: 1.5,
-            background: '#f72585',
-            opacity: .05,
-            stagger: 0.02,
-            repeat: -1,
-            yoyo: true,
-            delay: 2
-          });
-          TweenMax.to(bgRow, {
-            duration: 1.5,
-            background: '#f72585',
-            opacity: .05,
-            stagger: 0.0355555,
-            repeat: -1,
-            yoyo: true,
-            delay: 2
-          });
-        }
-      }, 200);
-      btnMainStart.classList.add('close');
-      btnBackHome.classList.remove('hover');
-      cursorShapeIn.classList.remove('mouseover');
-      setTimeout(function () {
-        spanContainerBackMouseOut.classList.remove('neonText');
-      }, 750);
-    });
-  }, 750);
-}); ////////// LOAD FILES //////////
-
-queue.on("fileload", handleFileComplete);
-queue.loadFile(_atelier1Default.default);
-queue.loadFile(_atelier2Default.default);
-queue.loadFile(_atelier3Default.default);
-queue.loadFile(_atelier4Default.default);
-queue.loadFile(_atelier5Default.default);
-queue.loadFile(_atelier6Default.default);
-queue.loadFile(_atelier7Default.default);
-queue.loadFile(_atelier8Default.default);
-queue.loadFile(_atelier9Default.default);
-queue.loadFile(_atelier10Default.default);
-queue.loadFile(_atelier11Default.default);
-queue.loadFile(_atelier12Default.default);
-queue.loadFile(_atelier13Default.default);
-queue.loadFile(_atelier14Default.default);
-queue.loadFile(_atelier1Hover.default);
-queue.loadFile(_atelier2Hover.default);
-queue.loadFile(_atelier3Hover.default);
-queue.loadFile(_atelier4Hover.default);
-queue.loadFile(_atelier5Hover.default);
-queue.loadFile(_atelier6Hover.default);
-queue.loadFile(_atelier7Hover.default);
-queue.loadFile(_atelier8Hover.default);
-queue.loadFile(_atelier9Hover.default);
-queue.loadFile(_atelier10Hover.default);
-queue.loadFile(_atelier11Hover.default);
-queue.loadFile(_atelier12Hover.default);
-queue.loadFile(_atelier13Hover.default);
-queue.loadFile(_atelier14Hover.default);
-queue.loadFile(_displace.default);
-queue.loadFile(_displace2.default);
-queue.loadFile(_particle2.default);
-queue.loadFile(_socle.default);
-queue.loadFile(_logo.default);
-queue.loadFile(_home.default);
-queue.loadFile(_street.default);
-queue.loadFile(_rightDoor.default);
-queue.loadFile(_rightDoor2.default);
-queue.loadFile(_leftDoor.default);
-queue.loadFile(_leftDoor2.default);
-queue.loadFile(_pylone.default);
-queue.loadFile(_grid.default);
-queue.loadFile(_table.default);
-queue.loadFile(_poutre.default);
-queue.loadFile(_leftWall.default);
-queue.loadFile(_rightWall.default);
-queue.loadFile(_field.default);
-queue.loadFile(_sign.default);
-queue.loadFile(_vr.default);
-queue.loadFile(_tabProg.default);
-queue.loadFile(_tv.default);
-queue.loadFile(_cam.default);
-queue.loadFile(_enceinte.default);
-queue.loadFile(_fragmentVertical.default);
-queue.loadFile(_fragment.default);
-queue.loadFile(_vertex.default);
-queue.loadFile(_rpz.default);
-queue.loadFile(_bg.default);
-queue.loadFile(_bgLoop.default);
-queue.loadFile(_rpz.default);
-queue.loadFile(_soundHover.default);
-queue.loadFile(_soundHoverPlane.default);
-queue.loadFile(_soundOutPlane.default);
-queue.loadFile(_GLTFLoader.GLTFLoader);
-queue.loadFile(THREE);
-queue.loadFile(POSTPROCESSING);
-queue.loadFile(_three2.Interaction);
-queue.loadFile(_preloadJs.default);
-queue.loadFile(_touchsweep.default);
-
-function handleFileComplete() {} ////////// SCENE //////////
-
+soundOutPlane.volume = volumePlane; ////////// SCENE //////////
 
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
@@ -49616,46 +49201,7 @@ loaderSocle.load(_socle.default, function (addSocle) {
   socle.position.set(0, -10.7, 0);
   socle.scale.set(.7, .7, .7);
   socle.rotation.y = 0;
-}); // import test from "../assets/model/DracoModels/socleCompress.gltf";
-// var loaderSocle = new THREEGLTFLoader();
-// // loaderSocle.setDRACOLoader(new THREEDRACOLoader("node_module/three/examples/js/libs/draco/gltf/"));
-// loaderSocle.setDRACOLoader(new THREEDRACOLoader("https://unpkg.com/browse/three@0.124.0/examples/js/libs/draco/"));
-// loaderSocle.load(test, gltf => {
-//         socle = gltf.scene;
-//         scene.add(socle);
-//         socle.position.set(0, -10.7, 0)
-//         socle.scale.set(.7, .7, .7)
-//         socle.rotation.y = 0;
-//         console.log(true)
-//     },
-//     function (xhr) {
-//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-//     }
-// );
-// Specify path to a folder containing WASM/JS decoding libraries.
-// loaderSocle.setDecoderPath( '../node_modules/three/examples/js/libs/draco/gltf/' );
-// Load a Draco geometry
-// loaderSocle.load(test, function( geometry ) {
-//     const material = new THREE.MeshStandardMaterial({
-//         color: 0x606060
-//     });
-//     const mesh = new THREE.Mesh(geometry, material);
-//     console.log(mesh)
-//     },
-//     function (xhr) {
-//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-//         console.log(xhr)
-//         // console.log(xhr.srcElement.responseURL)
-//         // var test = xhr.srcElement.responseURL
-//         // var socle = addSocle.scene;
-//         // scene.add(socle);
-//         // console.log(scene);
-//     },
-//     function (error) {
-//         console.log('An error happened');
-//     }
-// );
-// LOGO MODEL
+}); // LOGO MODEL
 
 var logo;
 var loaderLogo = new _GLTFLoader.GLTFLoader();
@@ -50000,13 +49546,7 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
       rpzMusic.play();
     });
   });
-} // c'est un test pour l'interaction sinon c'était "undefind"
-// let enceinteMaterial = new THREE.MeshBasicMaterial({
-//     map: null
-// });
-// let enceinteMesh = new THREE.Mesh(enceinte, enceinteMaterial);
-// scene.add(enceinteMesh)
-// RIGHT DOOR MODEL
+} // RIGHT DOOR MODEL
 
 
 var rightDoor;
@@ -50089,8 +49629,8 @@ var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1);
 var planePanneauRue1 = new THREE.PlaneGeometry(11.92, 3.6, 1, 1);
 var planePanneauRue2 = new THREE.PlaneGeometry(2.75, 5.9, 1, 1);
 var planePanneauRue3 = new THREE.PlaneGeometry(34.75, 3.2, 1, 1);
-var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
-var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
+var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1); // var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
+
 var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
 var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1); /////// INITIATION DES TEXTURES ///////
 
@@ -50825,48 +50365,59 @@ var materialPlaneRue7 = new THREE.MeshBasicMaterial({
   map: texturecredits
 });
 var planeMeshPanneauRue7 = new THREE.Mesh(planePanneauRue7, materialPlaneRue7);
-scene.add(planeMeshPanneauRue7);
 planeMeshPanneauRue7.position.set(5.975, 3.967, -133.6);
 planeMeshPanneauRue7.rotation.set(0, 0, 0);
+planeMeshPanneauRue7.scale.set(0.0001, 0.0001, 0.0001);
 var materialPlaneRue4 = new THREE.MeshBasicMaterial({
   map: texturepanneau2rue1
 });
 var planeMeshPanneauRue4 = new THREE.Mesh(planePanneauRue4, materialPlaneRue4);
-scene.add(planeMeshPanneauRue4);
 planeMeshPanneauRue4.position.set(-20.5, 18.5, -71.75);
 planeMeshPanneauRue4.rotation.set(0, 0, 0);
+planeMeshPanneauRue4.scale.set(0.0001, 0.0001, 0.0001);
 var materialPlaneRue3 = new THREE.MeshBasicMaterial({
   map: texturebaniere1
 });
 var planeMeshPanneauRue3 = new THREE.Mesh(planePanneauRue3, materialPlaneRue3);
-scene.add(planeMeshPanneauRue3);
 planeMeshPanneauRue3.position.set(-.60, 14.3, -71.1);
 planeMeshPanneauRue3.rotation.set(0, 0, 0);
+planeMeshPanneauRue3.scale.set(0.0001, 0.0001, 0.0001);
 var materialPlaneRue2 = new THREE.MeshBasicMaterial({
   map: texturepanneaurue1
 });
 var planeMeshPanneauRue2 = new THREE.Mesh(planePanneauRue2, materialPlaneRue2);
-scene.add(planeMeshPanneauRue2);
 planeMeshPanneauRue2.position.set(-6.841, 6.125, -45.05);
 planeMeshPanneauRue2.rotation.set(0, 0, 0);
+planeMeshPanneauRue2.scale.set(0.0001, 0.0001, 0.0001);
 var materialPlaneRue1 = new THREE.MeshBasicMaterial({
   map: textureidbaniere
 });
 var planeMeshPanneauRue1 = new THREE.Mesh(planePanneauRue1, materialPlaneRue1);
-scene.add(planeMeshPanneauRue1);
 planeMeshPanneauRue1.position.set(9.139, 6.048, -36.55);
 planeMeshPanneauRue1.rotation.set(0, -1.571, 0);
+planeMeshPanneauRue1.scale.set(0.0001, 0.0001, 0.0001);
 var materialPlaneRond = new THREE.MeshBasicMaterial({
   map: texturechiffre1
 });
 var planeMeshPanneauRueRond = new THREE.Mesh(planePanneauRueRond, materialPlaneRond);
-scene.add(planeMeshPanneauRueRond);
 planeMeshPanneauRueRond.position.set(6.75, 6.15, -43.0);
 planeMeshPanneauRueRond.rotation.set(0, 0, 0);
+planeMeshPanneauRueRond.scale.set(0.0001, 0.0001, 0.0001);
 var planeMeshPanneau = new THREE.Mesh(planePanneau, materialPlanePanneau);
-scene.add(planeMeshPanneau);
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
-planeMeshPanneau.rotation.set(-.035, -.74, -.07); /////// PLANE AXES ///////
+planeMeshPanneau.rotation.set(-.035, -.74, -.07);
+planeMeshPanneau.scale.set(0.0001, 0.0001, 0.0001);
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  scene.add(planeMeshPanneauRue7);
+  scene.add(planeMeshPanneauRue4);
+  scene.add(planeMeshPanneauRue3);
+  scene.add(planeMeshPanneauRue2);
+  scene.add(planeMeshPanneauRue1);
+  scene.add(planeMeshPanneauRueRond);
+  scene.add(planeMeshPanneau);
+} /////// PLANE AXES ///////
+
 
 var planeAxe = new THREE.Object3D();
 planeAxe.position.set(0, -26.5, 0);
@@ -51070,6 +50621,7 @@ var workShopButton14 = document.querySelector('.workShopButton__14');
 var iframe = document.querySelectorAll('iframe');
 var contenu = document.querySelectorAll('.contenu');
 var contenu_link = document.querySelectorAll('.contenu__link');
+var greta = document.querySelector('.greta');
 var contenu_vr = document.querySelectorAll('.vr');
 var mobileWorkShopButton = document.querySelectorAll('.mobileWorkShopButton');
 var mobileWorkShopButton1 = document.querySelector('.mobileWorkShopButton__1');
@@ -51085,15 +50637,14 @@ var mobileWorkShopButton10 = document.querySelector('.mobileWorkShopButton__10')
 var mobileWorkShopButton11 = document.querySelector('.mobileWorkShopButton__11');
 var mobileWorkShopButton12 = document.querySelector('.mobileWorkShopButton__12');
 var mobileWorkShopButton13 = document.querySelector('.mobileWorkShopButton__13');
-var mobileWorkShopButton14 = document.querySelector('.mobileWorkShopButton__14'); // let indicClickOnID = document.querySelector('.indicClickOnID');
-
+var mobileWorkShopButton14 = document.querySelector('.mobileWorkShopButton__14');
 var indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 var timelineIndication = document.querySelector('.indication');
 var cursorIndication = document.querySelector('.cursorIndication');
 var mobileIndication = document.querySelector('.mobileIndication');
 var workShopContainer = document.querySelector('.workShopContainer');
 var creditContainer = document.querySelector('.creditContainer');
-var contentContainer = document.querySelectorAll('.contentContainer');
+var faceImg = document.querySelectorAll('.faceImg');
 var contentContainer__14 = document.querySelector('.contentContainer__14');
 var scrollContainer__14 = document.querySelector('.scrollContainer__14');
 var scrollContainerContentImg__14 = document.querySelectorAll('.scrollContainer__14 .contentImg');
@@ -51136,7 +50687,6 @@ var scrollContainerContentImg__2 = document.querySelectorAll('.scrollContainer__
 var contentContainer__1 = document.querySelector('.contentContainer__1');
 var scrollContainer__1 = document.querySelector('.scrollContainer__1');
 var scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
-var switchHamburger = false;
 hamburgerContainer.addEventListener('click', function () {
   if (switchHamburger == false) {
     if (window.matchMedia("(max-width: 1024px)").matches) {
@@ -51190,263 +50740,211 @@ hamburgerContainer.addEventListener('click', function () {
 }); /////// IMAGES HOVER ///////
 
 scrollContainerContentImg__14.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__13.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__12.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__11.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__10.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__9.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__8.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__7.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__6.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__5.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__4.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__3.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__2.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__1.forEach(function (e) {
-  e.children[2].children[2].addEventListener('mouseenter', function () {
+  e.children[2].children[0].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
     e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
-    e.children[2].children[1].classList.add('switch');
-    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[2].addEventListener('mouseleave', function () {
+  e.children[2].children[0].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
     e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
-    e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[2].classList.remove('switch');
   });
 });
-var homeActive = true;
+var homeActive = false;
+var startMenuActive = true;
 var hoverPlane = true;
 var workshopActive = false;
 var creditActive = false;
-var switchBtn = false;
+var switchBtn = true;
+var stopMusic = false;
 var cursorOnVideo = false;
+var switchHamburger = false;
+var fisrtStart = true;
 var backPossible = true;
 var clickPossible = true;
 var scrollPossible = false;
@@ -51459,7 +50957,607 @@ var varDelay = .0;
 var scrollPos = 0;
 var direction = "";
 var indicHover = "";
-musicBtn.addEventListener('click', function () {
+var queue = new _preloadJs.default.LoadQueue(false);
+queue.on("progress", function (event) {
+  var increment = Math.floor(event.progress * 100);
+  progress.innerHTML = increment;
+  indicGoDesktop.classList.add('switch');
+});
+queue.on("complete", function (event) {
+  indicGoDesktop.classList.remove('switch');
+  progress.classList.add('switch');
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    var _cursorIn = new Cursor(cursorShapeIn);
+
+    updateCursor();
+    setTimeout(function () {
+      cursor.style.opacity = 1;
+      cursorShapeOut.style.opacity = 1;
+      cursor.classList.remove('startHidden');
+      cursorShapeOut.classList.remove('startHidden');
+    }, 50);
+  }
+
+  TweenMax.to(".spanContainerMainStart span", {
+    duration: 1,
+    opacity: 1,
+    stagger: {
+      each: 0.04,
+      from: 'random'
+    },
+    ease: "power3.inOut",
+    delay: .75
+  });
+  TweenMax.to(".borderLeft", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: .75
+  });
+  TweenMax.to(".borderRight", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: .75
+  });
+  TweenMax.to(".borderTop", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: 1.25
+  });
+  TweenMax.to(".borderBottom", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: 1.25
+  });
+  setTimeout(function () {
+    btnMainStart.addEventListener("pointerenter", function () {
+      if (!homeActive && startMenuActive) {
+        handleMouseEnterBtn(btnMainStart);
+      }
+
+      btnMainStart.addEventListener("pointerleave", handleMouseLeave);
+    });
+    btnMainStart.addEventListener('mouseenter', function () {
+      spanContainerMainStart.classList.add('neonText');
+      cursorShapeIn.classList.add('mouseover');
+      TweenMax.to(btnMainStart, .5, {
+        color: "#09021e",
+        background: "#4cc9f0",
+        ease: "power3.inOut"
+      });
+      spanContainerMainStart.classList.add('neonText');
+    });
+    btnMainStart.addEventListener('mouseleave', function () {
+      TweenMax.to(btnMainStart, .5, {
+        color: "#4cc9f0",
+        background: "#09021e",
+        ease: "power3.inOut"
+      });
+      cursorShapeIn.classList.remove('mouseover');
+      spanContainerMainStart.classList.remove('neonText');
+    });
+    btnMainStart.addEventListener('click', function () {
+      startImmersion();
+    });
+  }, 750);
+}); ////////// LOAD FILES //////////
+
+queue.on("fileload", handleFileComplete);
+queue.loadFile(_atelier1Default.default);
+queue.loadFile(_atelier2Default.default);
+queue.loadFile(_atelier3Default.default);
+queue.loadFile(_atelier4Default.default);
+queue.loadFile(_atelier5Default.default);
+queue.loadFile(_atelier6Default.default);
+queue.loadFile(_atelier7Default.default);
+queue.loadFile(_atelier8Default.default);
+queue.loadFile(_atelier9Default.default);
+queue.loadFile(_atelier10Default.default);
+queue.loadFile(_atelier11Default.default);
+queue.loadFile(_atelier12Default.default);
+queue.loadFile(_atelier13Default.default);
+queue.loadFile(_atelier14Default.default);
+queue.loadFile(_atelier1Hover.default);
+queue.loadFile(_atelier2Hover.default);
+queue.loadFile(_atelier3Hover.default);
+queue.loadFile(_atelier4Hover.default);
+queue.loadFile(_atelier5Hover.default);
+queue.loadFile(_atelier6Hover.default);
+queue.loadFile(_atelier7Hover.default);
+queue.loadFile(_atelier8Hover.default);
+queue.loadFile(_atelier9Hover.default);
+queue.loadFile(_atelier10Hover.default);
+queue.loadFile(_atelier11Hover.default);
+queue.loadFile(_atelier12Hover.default);
+queue.loadFile(_atelier13Hover.default);
+queue.loadFile(_atelier14Hover.default);
+queue.loadFile(_panneau_15.default);
+queue.loadFile(_panneau_16.default);
+queue.loadFile(_panneau_17.default);
+queue.loadFile(_panneau_18.default);
+queue.loadFile(_panneau_19.default);
+queue.loadFile(_panneau_20.default);
+queue.loadFile(_panneau_21.default);
+queue.loadFile(_panneau_22.default);
+queue.loadFile(_panneau_23.default);
+queue.loadFile(_panneau_24.default);
+queue.loadFile(_panneau_25.default);
+queue.loadFile(_panneau_26.default);
+queue.loadFile(_panneau_27.default);
+queue.loadFile(_panneau_28.default);
+queue.loadFile(_panneau_.default);
+queue.loadFile(_panneau_2.default);
+queue.loadFile(_panneau_3.default);
+queue.loadFile(_panneau_4.default);
+queue.loadFile(_panneau_5.default);
+queue.loadFile(_panneau_6.default);
+queue.loadFile(_panneau_7.default);
+queue.loadFile(_panneau_8.default);
+queue.loadFile(_panneau_9.default);
+queue.loadFile(_panneau_10.default);
+queue.loadFile(_panneau_11.default);
+queue.loadFile(_panneau_12.default);
+queue.loadFile(_panneau_13.default);
+queue.loadFile(_panneau_14.default);
+queue.loadFile(_panneau_29.default);
+queue.loadFile(_panneau_30.default);
+queue.loadFile(_panneau_31.default);
+queue.loadFile(_panneau_32.default);
+queue.loadFile(_panneau_33.default);
+queue.loadFile(_panneau_34.default);
+queue.loadFile(_panneau_35.default);
+queue.loadFile(_panneau_36.default);
+queue.loadFile(_panneau_37.default);
+queue.loadFile(_panneau_38.default);
+queue.loadFile(_panneau_39.default);
+queue.loadFile(_panneau_40.default);
+queue.loadFile(_panneau_41.default);
+queue.loadFile(_panneau_42.default);
+queue.loadFile(_baniere_backstage.default);
+queue.loadFile(_baniere_fabriquetonmmi.default);
+queue.loadFile(_baniere_vrgaming.default);
+queue.loadFile(_baniere_devweb.default);
+queue.loadFile(_baniere_cubemusical.default);
+queue.loadFile(_baniere_iaartgeneratif.default);
+queue.loadFile(_baniere_museemmi.default);
+queue.loadFile(_baniere_suiteadobe.default);
+queue.loadFile(_baniere_visiteguidE.default);
+queue.loadFile(_baniere_webradio.default);
+queue.loadFile(_baniere_plateautv.default);
+queue.loadFile(_baniere_fondvert.default);
+queue.loadFile(_baniere_mapping.default);
+queue.loadFile(_baniere_audiovisuel.default);
+queue.loadFile(_rond_.default);
+queue.loadFile(_rond_2.default);
+queue.loadFile(_rond_3.default);
+queue.loadFile(_rond_4.default);
+queue.loadFile(_rond_5.default);
+queue.loadFile(_rond_6.default);
+queue.loadFile(_rond_7.default);
+queue.loadFile(_rond_8.default);
+queue.loadFile(_rond_9.default);
+queue.loadFile(_rond_10.default);
+queue.loadFile(_rond_11.default);
+queue.loadFile(_rond_12.default);
+queue.loadFile(_rond_13.default);
+queue.loadFile(_rond_14.default);
+queue.loadFile('../assets/img/tombi/2A/alex.jpg');
+queue.loadFile('../assets/img/tombi/2A/amadine.jpg');
+queue.loadFile('../assets/img/tombi/2A/annie.jpg');
+queue.loadFile('../assets/img/tombi/2A/annita.jpg');
+queue.loadFile('../assets/img/tombi/2A/aurore.jpg');
+queue.loadFile('../assets/img/tombi/2A/ben.jpg');
+queue.loadFile('../assets/img/tombi/2A/carlaA.jpg');
+queue.loadFile('../assets/img/tombi/2A/carlaS.jpg');
+queue.loadFile('../assets/img/tombi/2A/carla.jpg');
+queue.loadFile('../assets/img/tombi/2A/clemo.jpg');
+queue.loadFile('../assets/img/tombi/2A/alex.jpg');
+queue.loadFile('../assets/img/tombi/2A/eliottis.jpg');
+queue.loadFile('../assets/img/tombi/2A/emeric.jpg');
+queue.loadFile('../assets/img/tombi/2A/enzoD.jpg');
+queue.loadFile('../assets/img/tombi/2A/enzoF.jpg');
+queue.loadFile('../assets/img/tombi/2A/flo.jpg');
+queue.loadFile('../assets/img/tombi/2A/gael.jpg');
+queue.loadFile('../assets/img/tombi/2A/gregoire.jpg');
+queue.loadFile('../assets/img/tombi/2A/guigui.jpg');
+queue.loadFile('../assets/img/tombi/2A/helder.jpg');
+queue.loadFile('../assets/img/tombi/2A/jules.jpg');
+queue.loadFile('../assets/img/tombi/2A/kikinou.jpg');
+queue.loadFile('../assets/img/tombi/2A/lena.jpg');
+queue.loadFile('../assets/img/tombi/2A/lucas.jpg');
+queue.loadFile('../assets/img/tombi/2A/lucile.jpg');
+queue.loadFile('../assets/img/tombi/2A/mael.jpg');
+queue.loadFile('../assets/img/tombi/2A/martin.jpg');
+queue.loadFile('../assets/img/tombi/2A/matteo.jpg');
+queue.loadFile('../assets/img/tombi/2A/max.jpg');
+queue.loadFile('../assets/img/tombi/2A/moyi.jpg');
+queue.loadFile('../assets/img/tombi/2A/nathan.jpg');
+queue.loadFile('../assets/img/tombi/2A/nicoFe.jpg');
+queue.loadFile('../assets/img/tombi/2A/nicoFi.jpg');
+queue.loadFile('../assets/img/tombi/2A/ossian.jpg');
+queue.loadFile('../assets/img/tombi/2A/paoline.jpg');
+queue.loadFile('../assets/img/tombi/2A/quentin.jpg');
+queue.loadFile('../assets/img/tombi/2A/raito.jpg');
+queue.loadFile('../assets/img/tombi/2A/rahpL.jpg');
+queue.loadFile('../assets/img/tombi/2A/raphO.jpg');
+queue.loadFile('../assets/img/tombi/2A/romane.jpg');
+queue.loadFile('../assets/img/tombi/2A/sam.jpg');
+queue.loadFile('../assets/img/tombi/2A/soba.jpg');
+queue.loadFile('../assets/img/tombi/2A/theo.jpg');
+queue.loadFile('../assets/img/tombi/2A/thoma.jpg');
+queue.loadFile('../assets/img/tombi/2A/thomas.jpg');
+queue.loadFile('../assets/img/tombi/2A/tistouille.jpg');
+queue.loadFile('../assets/img/tombi/2A/tristan.jpg');
+queue.loadFile('../assets/img/tombi/2A/valPl.jpg');
+queue.loadFile('../assets/img/tombi/2A/valPr.jpg');
+queue.loadFile('../assets/img/tombi/2A/yuxuan.jpg');
+queue.loadFile('../assets/img/tombi/2A/zoe.jpg');
+queue.loadFile('../assets/img/tombi/1A/alexia.jpg');
+queue.loadFile('../assets/img/tombi/1A/alexis.jpg');
+queue.loadFile('../assets/img/tombi/1A/alexL.jpg');
+queue.loadFile('../assets/img/tombi/1A/alexM.jpg');
+queue.loadFile('../assets/img/tombi/1A/alexP.jpg');
+queue.loadFile('../assets/img/tombi/1A/alize.jpg');
+queue.loadFile('../assets/img/tombi/1A/andreas.jpg');
+queue.loadFile('../assets/img/tombi/1A/antoine.jpg');
+queue.loadFile('../assets/img/tombi/1A/antoineM.jpg');
+queue.loadFile('../assets/img/tombi/1A/arthur.jpg');
+queue.loadFile('../assets/img/tombi/1A/arthurT.jpg');
+queue.loadFile('../assets/img/tombi/1A/auriane.jpg');
+queue.loadFile('../assets/img/tombi/1A/cantin.jpg');
+queue.loadFile('../assets/img/tombi/1A/celiaA.jpg');
+queue.loadFile('../assets/img/tombi/1A/celiaV.jpg');
+queue.loadFile('../assets/img/tombi/1A/coline.jpg');
+queue.loadFile('../assets/img/tombi/1A/corentin.jpg');
+queue.loadFile('../assets/img/tombi/1A/eliott.jpg');
+queue.loadFile('../assets/img/tombi/1A/elodie.jpg');
+queue.loadFile('../assets/img/tombi/1A/enora.jpg');
+queue.loadFile('../assets/img/tombi/1A/eva.jpg');
+queue.loadFile('../assets/img/tombi/1A/ezekel.jpg');
+queue.loadFile('../assets/img/tombi/1A/florian.jpg');
+queue.loadFile('../assets/img/tombi/1A/gilles.jpg');
+queue.loadFile('../assets/img/tombi/1A/guillaume.jpg');
+queue.loadFile('../assets/img/tombi/1A/hugoL.jpg');
+queue.loadFile('../assets/img/tombi/1A/hugoT.jpg');
+queue.loadFile('../assets/img/tombi/1A/jossua.jpg');
+queue.loadFile('../assets/img/tombi/1A/julesL.jpg');
+queue.loadFile('../assets/img/tombi/1A/latrique.jpg');
+queue.loadFile('../assets/img/tombi/1A/lea.jpg');
+queue.loadFile('../assets/img/tombi/1A/lorie.jpg');
+queue.loadFile('../assets/img/tombi/1A/lucasF.jpg');
+queue.loadFile('../assets/img/tombi/1A/maissane.jpg');
+queue.loadFile('../assets/img/tombi/1A/nina.jpg');
+queue.loadFile('../assets/img/tombi/1A/pablo.jpg');
+queue.loadFile('../assets/img/tombi/1A/robinB.jpg');
+queue.loadFile('../assets/img/tombi/1A/robinP.jpg');
+queue.loadFile('../assets/img/tombi/1A/romain.jpg');
+queue.loadFile('../assets/img/tombi/1A/romainB.jpg');
+queue.loadFile('../assets/img/tombi/1A/sacha.jpg');
+queue.loadFile('../assets/img/tombi/1A/sarah.jpg');
+queue.loadFile('../assets/img/tombi/1A/selmene.jpg');
+queue.loadFile('../assets/img/tombi/1A/solene.jpg');
+queue.loadFile('../assets/img/tombi/1A/teva.jpg');
+queue.loadFile('../assets/img/tombi/1A/thibaut.jpg');
+queue.loadFile('../assets/img/tombi/1A/thomasB.jpg');
+queue.loadFile('../assets/img/tombi/1A/thomasF.jpg');
+queue.loadFile('../assets/img/tombi/1A/valM.jpg');
+queue.loadFile('../assets/img/tombi/1A/vincent.jpg');
+queue.loadFile('../assets/img/tombi/1A/yvan.jpg');
+queue.loadFile(_displace.default);
+queue.loadFile(_displace2.default);
+queue.loadFile(_particle2.default);
+queue.loadFile(_socle.default);
+queue.loadFile(_logo.default);
+queue.loadFile(_home.default);
+queue.loadFile(_street.default);
+queue.loadFile(_rightDoor.default);
+queue.loadFile(_rightDoor2.default);
+queue.loadFile(_leftDoor.default);
+queue.loadFile(_leftDoor2.default);
+queue.loadFile(_pylone.default);
+queue.loadFile(_grid.default);
+queue.loadFile(_table.default);
+queue.loadFile(_poutre.default);
+queue.loadFile(_leftWall.default);
+queue.loadFile(_rightWall.default);
+queue.loadFile(_field.default);
+queue.loadFile(_sign.default);
+queue.loadFile(_vr.default);
+queue.loadFile(_tabProg.default);
+queue.loadFile(_tv.default);
+queue.loadFile(_cam.default);
+queue.loadFile(_enceinte.default);
+queue.loadFile(_fragmentVertical.default);
+queue.loadFile(_fragment.default);
+queue.loadFile(_vertex.default);
+queue.loadFile(_rpz.default);
+queue.loadFile(_bg.default);
+queue.loadFile(_bgLoop.default);
+queue.loadFile(_rpz.default);
+queue.loadFile(_soundHover.default);
+queue.loadFile(_soundHoverPlane.default);
+queue.loadFile(_soundOutPlane.default);
+queue.loadFile(_GLTFLoader.GLTFLoader);
+queue.loadFile(THREE);
+queue.loadFile(POSTPROCESSING);
+queue.loadFile(_three2.Interaction);
+queue.loadFile(_preloadJs.default);
+queue.loadFile(_touchsweep.default);
+
+function handleFileComplete() {}
+
+function startImmersion() {
+  cursorIndication.classList.remove('startHidden');
+  mobileIndication.classList.remove('startHidden');
+  containerTimeline.classList.remove('startHidden');
+  hamburgerContainer.classList.remove('startHidden');
+  startMenuActive = false;
+  bgMusic.play();
+  TweenMax.to(maskMusicBtn, {
+    duration: .35,
+    clipPath: "inset(100% 0% 0% 0%)",
+    ease: "power3.easeOut"
+  });
+  TweenMax.to(maskMusicBtn, {
+    duration: .25,
+    clipPath: "inset(0% 0% 0% 0%)",
+    ease: "power3.easeOut",
+    delay: .15
+  });
+  TweenMax.to(maskMusicBtn, {
+    duration: .25,
+    clipPath: "inset(0% 0% 100% 0%)",
+    ease: "power3.easeOut",
+    delay: .5
+  });
+  switchBtn = true;
+  onMusic.classList.toggle('switch');
+  offMusic.classList.toggle('switch');
+  setTimeout(function () {
+    lineMusicBtn.forEach(function (line) {
+      line.classList.toggle('switch');
+    });
+  }, 350);
+
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    var html = document.querySelector('html');
+
+    if (html.requestFullscreen) {
+      html.requestFullscreen();
+    } else if (html.mozRequestFullScreen) {
+      html.mozRequestFullScreen();
+    } else if (html.webkitRequestFullscreen) {
+      html.webkitRequestFullscreen();
+    } else if (html.msRequestFullscreen) {
+      html.msRequestFullscreen();
+    }
+  }
+
+  handleMouseLeave();
+  TweenMax.to(".spanContainerMainStart span", {
+    duration: .5,
+    opacity: 0,
+    stagger: {
+      each: 0.04,
+      from: 'random'
+    },
+    ease: "power3.inOut"
+  });
+  TweenMax.to(btnMainStart, {
+    duration: 1.5,
+    opacity: 0,
+    ease: "power3.inOut"
+  });
+  titleSvgPath.forEach(function (e) {
+    e.classList.remove("pathTitleOut");
+    e.classList.remove("pathTitleIn");
+  });
+  titleSvgLine.classList.remove("pathLineOut");
+  titleSvgLine.classList.remove("pathLineIn");
+  setTimeout(function () {
+    TweenMax.to(bgCol, {
+      duration: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      stagger: 0.02
+    });
+    TweenMax.to(bgCol, {
+      duration: .5,
+      background: '#f72585',
+      opacity: .325,
+      stagger: 0.02
+    });
+    TweenMax.to(bgCol, {
+      duration: .5,
+      background: '#0d0437',
+      opacity: .65,
+      stagger: 0.02
+    });
+    TweenMax.to(bgRow, {
+      duration: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      stagger: 0.0355555
+    });
+    TweenMax.to(bgRow, {
+      duration: .5,
+      background: '#f72585',
+      opacity: .325,
+      stagger: 0.0355555
+    });
+    TweenMax.to(bgRow, {
+      duration: .5,
+      background: '#0d0437',
+      opacity: .65,
+      stagger: 0.0355555
+    });
+    TweenMax.to(bgCol, {
+      duration: .5,
+      background: '#f72585',
+      opacity: .05,
+      stagger: 0.02,
+      delay: 2
+    });
+    TweenMax.to(bgRow, {
+      duration: .5,
+      background: '#f72585',
+      opacity: .05,
+      stagger: 0.0355555,
+      delay: 2
+    });
+    TweenMax.to(".firstSlogan span", {
+      duration: 2,
+      opacity: 1,
+      stagger: {
+        each: 0.02,
+        from: 'random'
+      },
+      ease: "expo.inOut",
+      delay: .25
+    });
+    TweenMax.to(".firstSlogan span", {
+      duration: 2,
+      opacity: 0,
+      stagger: {
+        each: 0.02,
+        from: 'random'
+      },
+      ease: "expo.inOut",
+      delay: 3.5
+    });
+    setTimeout(function () {
+      canvas.classList.add('hologramActive'); //CAMERA ANIM
+
+      gsap.to(camera.position, 3.75, {
+        z: 10,
+        ease: "power3.inOut"
+      }); //RAJOUT DES PARTICULES
+
+      setTimeout(function () {
+        scene.add(particleMesh);
+      }, 1000);
+      gsap.to(particleMesh.scale, 3.75, {
+        x: 1,
+        y: 1,
+        z: 1,
+        ease: "power3.inOut"
+      });
+
+      if (!window.matchMedia("(max-width: 1024px)").matches) {
+        gsap.to(home.position, 3.75, {
+          z: 0,
+          x: -1.45,
+          ease: "power3.inOut"
+        });
+        gsap.to(home.rotation, 3.75, {
+          y: -.35,
+          z: 0,
+          ease: "power3.inOut"
+        });
+        TweenMax.to(homeMask, 3.75, {
+          opacity: 1,
+          ease: "power3.inOut"
+        });
+      }
+    }, 4000);
+    setTimeout(function () {
+      titleSvg.classList.add('switchTitle');
+      titleSvgPath.forEach(function (e) {
+        e.classList.remove("pathTitleOut");
+        e.classList.add("pathTitleIn");
+      });
+      titleSvgLine.classList.remove("pathLineOut");
+      titleSvgLine.classList.add("pathLineIn");
+      setTimeout(function () {
+        TweenMax.to(".spanContainerDiscord span", {
+          duration: 0.75,
+          opacity: .6,
+          stagger: {
+            each: 0.06,
+            from: 'random'
+          },
+          ease: "power3.inOut"
+        });
+        TweenMax.to(".spanContainerIut span", {
+          duration: 0.75,
+          opacity: .6,
+          stagger: {
+            each: 0.04,
+            from: 'random'
+          },
+          ease: "power3.inOut"
+        });
+        gsap.to(sm1, 0.75, {
+          opacity: 1,
+          ease: "Power3.easeOut"
+        });
+        gsap.to(sm2, 0.75, {
+          opacity: 1,
+          ease: "Power3.easeOut",
+          delay: .15
+        });
+        gsap.to(sm3, 0.75, {
+          opacity: 1,
+          ease: "Power3.easeOut",
+          delay: .3
+        });
+        gsap.to(musicBtn, 0.75, {
+          opacity: 1,
+          ease: "Power3.easeOut"
+        });
+        TweenMax.to(btnStart, .75, {
+          opacity: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          ease: "power3.inOut"
+        });
+        setTimeout(function () {
+          homeActive = true;
+          discordContainer.classList.add('switchPointer');
+          iutContainer.classList.add('switchPointer');
+          sm1.classList.add('switchPointer');
+          sm2.classList.add('switchPointer');
+          sm3.classList.add('switchPointer');
+          musicBtn.classList.add('switchPointer');
+        }, 550);
+      }, 3200);
+    }, 4500);
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      TweenMax.to(bgCol, {
+        duration: 1.5,
+        background: '#f72585',
+        opacity: .05,
+        stagger: 0.02,
+        repeat: -1,
+        yoyo: true,
+        delay: 2
+      });
+      TweenMax.to(bgRow, {
+        duration: 1.5,
+        background: '#f72585',
+        opacity: .05,
+        stagger: 0.0355555,
+        repeat: -1,
+        yoyo: true,
+        delay: 2
+      });
+    }
+  }, 200);
+  btnMainStart.classList.add('close');
+  btnBackHome.classList.remove('hover');
+  cursorShapeIn.classList.remove('mouseover');
+  setTimeout(function () {
+    spanContainerBackMouseOut.classList.remove('neonText');
+  }, 750);
+}
+
+function switchMusic() {
   if (switchBtn == false) {
     TweenMax.to(maskMusicBtn, {
       duration: .35,
@@ -51483,12 +51581,24 @@ musicBtn.addEventListener('click', function () {
       soundHover.play();
     }
 
-    bgMusic.play();
+    if (fisrtStart) {
+      bgMusic.play();
+      var fadeAudio = setInterval(function () {
+        if (bgMusic.volume >= volume) {
+          clearInterval(fadeAudio);
+        } else if (bgMusic.volume < volume) {
+          bgMusic.volume += 0.1;
+        }
+      }, 500);
+    } else {
+      fadeInAudio(bgLoopMusic);
+    }
+
+    switchBtn = true;
     rpzMusic.volume = volume;
     soundHover.volume = volumeBtn;
     soundHoverPlane.volume = volumePlane;
     soundOutPlane.volume = volumePlane;
-    switchBtn = true;
   } else {
     TweenMax.to(maskMusicBtn, {
       duration: .35,
@@ -51506,23 +51616,26 @@ musicBtn.addEventListener('click', function () {
       clipPath: "inset(100% 0% 0% 0%)",
       ease: "power3.easeOut",
       delay: .5
-    }); // test pour le easing du son
-    // var i = setInterval(function () {
-    //   volume-= 0.1
-    //   bgMusic.volume = volume;
-    //   console.log(volume)
-    //   if (volume <=0) {
-    //     clearInterval(i);
-    //     bgMusic.pause();
-    //   }
-    // }, 200);
+    });
 
-    bgMusic.pause();
+    if (fisrtStart) {
+      var fadeAudio = setInterval(function () {
+        if (bgMusic.volume < 0.1) {
+          clearInterval(fadeAudio);
+          bgMusic.pause();
+        } else if (bgMusic.volume >= .1) {
+          bgMusic.volume -= .1;
+        }
+      }, 300);
+    } else {
+      fadeOutAudio(bgLoopMusic);
+    }
+
+    switchBtn = false;
     rpzMusic.volume = 0;
     soundHover.volume = 0;
     soundHoverPlane.volume = 0;
     soundOutPlane.volume = 0;
-    switchBtn = false;
   }
 
   onMusic.classList.toggle('switch');
@@ -51532,6 +51645,16 @@ musicBtn.addEventListener('click', function () {
       line.classList.toggle('switch');
     });
   }, 350);
+}
+
+musicBtn.addEventListener('click', function () {
+  switchMusic();
+
+  if (!stopMusic) {
+    stopMusic = true;
+  } else {
+    stopMusic = false;
+  }
 });
 musicBtn.addEventListener('mouseenter', function () {
   if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51567,7 +51690,6 @@ function cursorHoverIn() {
         delay: .05
       });
     } else if (indicHover == "ID") {
-      // indicClickOnID.classList.add("planeHover")
       gsap.to(cursorShapeIn, 0.75, {
         background: colorCursorDefault,
         padding: 25,
@@ -51576,7 +51698,7 @@ function cursorHoverIn() {
       gsap.to(cursorSize, 0.75, {
         padding: 25,
         ease: "Power3.easeOut"
-      }); // gsap.to(indicClickOnID, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
+      });
     }
   }
 }
@@ -51600,10 +51722,13 @@ function cursorHoverOut() {
     gsap.to(indicClickOnPlane, 0.75, {
       scale: 0,
       ease: "Power3.easeOut"
-    }); // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
-
+    });
     indicClickOnPlane.classList.remove("planeHover");
-    soundOutPlane.play(); // indicClickOnID.classList.remove("planeHover")
+
+    if (indicHover == "plane") {
+      soundOutPlane.play();
+    } // indicClickOnID.classList.remove("planeHover")
+
 
     indicHover = "";
   }
@@ -51648,7 +51773,6 @@ planeMesh14.on('mouseout', function (ev) {
 planeMesh13.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51682,7 +51806,6 @@ planeMesh13.on('mouseout', function (ev) {
 planeMesh12.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51716,7 +51839,6 @@ planeMesh12.on('mouseout', function (ev) {
 planeMesh11.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51750,7 +51872,6 @@ planeMesh11.on('mouseout', function (ev) {
 planeMesh10.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51784,7 +51905,6 @@ planeMesh10.on('mouseout', function (ev) {
 planeMesh9.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51851,7 +51971,6 @@ planeMesh8.on('mouseout', function (ev) {
 planeMesh7.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51885,7 +52004,6 @@ planeMesh7.on('mouseout', function (ev) {
 planeMesh6.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51919,7 +52037,6 @@ planeMesh6.on('mouseout', function (ev) {
 planeMesh5.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51953,7 +52070,6 @@ planeMesh5.on('mouseout', function (ev) {
 planeMesh4.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -51987,7 +52103,6 @@ planeMesh4.on('mouseout', function (ev) {
 planeMesh3.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -52021,7 +52136,6 @@ planeMesh3.on('mouseout', function (ev) {
 planeMesh2.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
     indicHover = "plane";
-    console.log(ev);
     cursorHoverIn();
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -52092,24 +52206,11 @@ var data = {
 var threshold = 20;
 new _touchsweep.default(el, data, threshold);
 el.addEventListener('swipeleft', function () {
-  console.log('left');
   if (!workshopActive) scrollDown();
 });
 el.addEventListener('swiperight', function () {
-  console.log('right');
   if (!workshopActive) scrollUp();
-}); // el.addEventListener('swipedown', () => {
-//     console.log('down')
-//     if (!workshopActive)
-//         scrollUp();
-// });
-// el.addEventListener('swipeup', () => {
-//     console.log('up')
-//     if (!workshopActive)
-//         scrollDown();
-// });
-// el.addEventListener('tap', () => {
-// });
+});
 
 function animationEnterWorkshop() {
   if (idPlane[14]) {
@@ -52125,17 +52226,15 @@ function animationEnterWorkshop() {
     contentContainer__12.style.display = "block";
     scrollContainer__12.style.display = "flex";
     contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/8tyYcjwssfA";
-    contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU";
+    contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/bkc_MHKCavg";
   } else if (idPlane[11]) {
     contentContainer__11.style.display = "block";
     scrollContainer__11.style.display = "flex";
-    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM";
-    contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr";
+    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM"; // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
   } else if (idPlane[10]) {
     contentContainer__10.style.display = "block";
     scrollContainer__10.style.display = "flex";
-    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA";
-    contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr";
+    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA"; // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
   } else if (idPlane[9]) {
     contentContainer__9.style.display = "block";
     scrollContainer__9.style.display = "flex";
@@ -52148,31 +52247,31 @@ function animationEnterWorkshop() {
   } else if (idPlane[7]) {
     contentContainer__7.style.display = "block";
     scrollContainer__7.style.display = "flex";
-    contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY"; // contentContainer__7.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY";
   } else if (idPlane[6]) {
     contentContainer__6.style.display = "block";
     scrollContainer__6.style.display = "flex";
-    contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ"; // contentContainer__6.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ";
   } else if (idPlane[5]) {
     contentContainer__5.style.display = "block";
     scrollContainer__5.style.display = "flex";
-    contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y"; // contentContainer__5.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y";
   } else if (idPlane[4]) {
     contentContainer__4.style.display = "block";
     scrollContainer__4.style.display = "flex";
-    contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM"; // contentContainer__4.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM";
   } else if (idPlane[3]) {
     contentContainer__3.style.display = "block";
     scrollContainer__3.style.display = "flex";
-    contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI"; // contentContainer__3.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI";
   } else if (idPlane[2]) {
     contentContainer__2.style.display = "block";
     scrollContainer__2.style.display = "flex";
-    contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g"; // contentContainer__2.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g";
   } else if (idPlane[1]) {
     contentContainer__1.style.display = "block";
     scrollContainer__1.style.display = "flex";
-    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"; // contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU";
   }
 
   if (window.matchMedia("(max-width: 1024px)").matches) {
@@ -52261,9 +52360,8 @@ function animationEnterWorkshop() {
     gsap.to(indicClickOnPlane, 0.75, {
       scale: 0,
       ease: "Power3.easeOut"
-    }); // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
-
-    indicClickOnPlane.classList.remove("planeHover"); // indicClickOnID.classList.remove("planeHover")
+    });
+    indicClickOnPlane.classList.remove("planeHover");
   }
 
   gsap.to(workShopContainer, 1.5, {
@@ -52643,7 +52741,8 @@ planeMesh1.on('click', function () {
 
 function functionBtnBackHome() {
   workshopActive = false;
-  homeActive = true;
+  homeActive = true; // fadeInAudio(bgLoopMusic)
+
   cursorOnVideo = false;
 
   if (!cursorOnVideo) {
@@ -53091,14 +53190,42 @@ function functionBtnBackHome() {
     gsap.to(leftDoor2.scale, 0, {
       x: 0.0001,
       y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
+      z: 0.0001
     });
     gsap.to(rightDoor2.scale, 0, {
       x: 0.0001,
       y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
+      z: 0.0001
+    });
+    gsap.to(planeMeshPanneauRue1.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(planeMeshPanneauRue2.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(planeMeshPanneauRue3.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(planeMeshPanneauRue4.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(planeMeshPanneauRue7.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
+    });
+    gsap.to(planeMeshPanneauRueRond.scale, 0, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001
     });
     gsap.to(cam.scale, .65, {
       x: 0.0001,
@@ -53210,6 +53337,30 @@ function hideTimeline() {
     opacity: 0,
     ease: "Power3.easeOut"
   });
+}
+
+function fadeOutAudio(elementMusic) {
+  var sound = elementMusic;
+  var fadeAudio = setInterval(function () {
+    if (sound.volume < .005) {
+      clearInterval(fadeAudio);
+      sound.pause();
+    } else if (sound.volume >= .002) {
+      sound.volume -= .002;
+    }
+  }, 100);
+}
+
+function fadeInAudio(elementMusic) {
+  var sound = elementMusic;
+  sound.play();
+  var fadeAudio = setInterval(function () {
+    if (sound.volume >= volumeBg) {
+      clearInterval(fadeAudio);
+    } else if (sound.volume < volumeBg) {
+      sound.volume += 0.01;
+    }
+  }, 500);
 } ///// START BUTTON EVENTS /////
 
 
@@ -53241,6 +53392,25 @@ function functionBtnStart() {
       backPossible = true;
     }, 500);
   }, 4000);
+
+  if (switchBtn && fisrtStart) {
+    var fadeAudio = setInterval(function () {
+      if (bgMusic.volume < 0.1) {
+        clearInterval(fadeAudio);
+        bgMusic.pause();
+      } else if (bgMusic.volume >= .1) {
+        bgMusic.volume -= .1;
+      }
+    }, 300);
+  }
+
+  fisrtStart = false;
+
+  if (switchBtn) {
+    bgLoopMusic.play();
+  } // fadeInAudio(bgLoopMusic)
+
+
   TweenMax.to(btnStart, 1.7, {
     opacity: 0,
     clipPath: "inset(0% 0% 0% 100%)",
@@ -53616,14 +53786,48 @@ function functionBtnStart() {
         x: 110,
         y: 110,
         z: 110,
-        ease: "power3.inOut",
         delay: 3.1
       });
       gsap.to(rightDoor2.scale, 0, {
         x: 110,
         y: 110,
         z: 110,
-        ease: "power3.inOut",
+        delay: 3.1
+      });
+      gsap.to(planeMeshPanneauRue1.scale, 0, {
+        x: 1,
+        y: 1,
+        z: 1,
+        delay: 3.1
+      });
+      gsap.to(planeMeshPanneauRue2.scale, 0, {
+        x: 1,
+        y: 1,
+        z: 1,
+        delay: 3.1
+      });
+      gsap.to(planeMeshPanneauRue3.scale, 0, {
+        x: 1,
+        y: 1,
+        z: 1,
+        delay: 3.1
+      });
+      gsap.to(planeMeshPanneauRue4.scale, 0, {
+        x: 1,
+        y: 1,
+        z: 1,
+        delay: 3.1
+      });
+      gsap.to(planeMeshPanneauRue7.scale, 0, {
+        x: 1,
+        y: 1,
+        z: 1,
+        delay: 3.1
+      });
+      gsap.to(planeMeshPanneauRueRond.scale, 0, {
+        x: 1,
+        y: 1,
+        z: 1,
         delay: 3.1
       });
     } //LIGHTS ANIM
@@ -53959,85 +54163,127 @@ function posComparedToElementHeight(el) {
 
 function backToPlane() {
   if (idPlane[14]) {
-    varDelay = posComparedToElementHeight(contentContainer__14);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__14);
+    }
+
     setTimeout(function () {
       contentContainer__14.style.display = "none";
       scrollContainer__14.style.display = "none";
     }, 2700);
   } else if (idPlane[13]) {
-    varDelay = posComparedToElementHeight(contentContainer__13);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__13);
+    }
+
     setTimeout(function () {
       contentContainer__13.style.display = "none";
       scrollContainer__13.style.display = "none";
     }, 2700);
   } else if (idPlane[12]) {
-    varDelay = posComparedToElementHeight(contentContainer__12);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__12);
+    }
+
     setTimeout(function () {
       contentContainer__12.style.display = "none";
       scrollContainer__12.style.display = "none";
     }, 2700);
   } else if (idPlane[11]) {
-    varDelay = posComparedToElementHeight(contentContainer__11);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__11);
+    }
+
     setTimeout(function () {
       contentContainer__11.style.display = "none";
       scrollContainer__11.style.display = "none";
     }, 2700);
   } else if (idPlane[10]) {
-    varDelay = posComparedToElementHeight(contentContainer__10);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__10);
+    }
+
     setTimeout(function () {
       contentContainer__10.style.display = "none";
       scrollContainer__10.style.display = "none";
     }, 2700);
   } else if (idPlane[9]) {
-    varDelay = posComparedToElementHeight(contentContainer__9);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__9);
+    }
+
     setTimeout(function () {
       contentContainer__9.style.display = "none";
       scrollContainer__9.style.display = "none";
     }, 2700);
   } else if (idPlane[8]) {
-    varDelay = posComparedToElementHeight(contentContainer__8);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__8);
+    }
+
     setTimeout(function () {
       contentContainer__8.style.display = "none";
       scrollContainer__8.style.display = "none";
     }, 2700);
   } else if (idPlane[7]) {
-    varDelay = posComparedToElementHeight(contentContainer__7);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__7);
+    }
+
     setTimeout(function () {
       contentContainer__7.style.display = "none";
       scrollContainer__7.style.display = "none";
     }, 2700);
   } else if (idPlane[6]) {
-    varDelay = posComparedToElementHeight(contentContainer__6);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__6);
+    }
+
     setTimeout(function () {
       contentContainer__6.style.display = "none";
       scrollContainer__6.style.display = "none";
     }, 2700);
   } else if (idPlane[5]) {
-    varDelay = posComparedToElementHeight(contentContainer__5);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__5);
+    }
+
     setTimeout(function () {
       contentContainer__5.style.display = "none";
       scrollContainer__5.style.display = "none";
     }, 2700);
   } else if (idPlane[4]) {
-    varDelay = posComparedToElementHeight(contentContainer__4);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__4);
+    }
+
     setTimeout(function () {
       contentContainer__4.style.display = "none";
       scrollContainer__4.style.display = "none";
     }, 2700);
   } else if (idPlane[3]) {
-    varDelay = posComparedToElementHeight(contentContainer__3);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__3);
+    }
+
     setTimeout(function () {
       contentContainer__3.style.display = "none";
       scrollContainer__3.style.display = "none";
     }, 2700);
   } else if (idPlane[2]) {
-    varDelay = posComparedToElementHeight(contentContainer__2);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__2);
+    }
+
     setTimeout(function () {
       contentContainer__2.style.display = "none";
       scrollContainer__2.style.display = "none";
     }, 2700);
   } else if (idPlane[1]) {
-    varDelay = posComparedToElementHeight(contentContainer__1);
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      varDelay = posComparedToElementHeight(contentContainer__1);
+    }
+
     setTimeout(function () {
       contentContainer__1.style.display = "none";
       scrollContainer__1.style.display = "none";
@@ -54419,13 +54665,12 @@ function backToPlane() {
   setTimeout(function () {
     hoverPlane = true;
   }, 2100);
+  workShopContainer.classList.remove('switchPlane');
   setTimeout(function () {
     workshopActive = false;
-    workShopContainer.classList.remove('switchPlane');
 
     if (idPlane[14]) {
       contentContainer__14.children[2].children[0].children[1].src = "";
-      contentContainer__14.children[4].children[0].children[1].src = "";
     } else if (idPlane[13]) {
       contentContainer__13.children[2].children[0].children[1].src = "";
       contentContainer__13.children[4].children[0].children[1].src = "";
@@ -54433,11 +54678,9 @@ function backToPlane() {
       contentContainer__12.children[2].children[0].children[1].src = "";
       contentContainer__12.children[4].children[0].children[1].src = "";
     } else if (idPlane[11]) {
-      contentContainer__11.children[2].children[0].children[1].src = "";
-      contentContainer__11.children[4].children[0].children[1].src = "";
+      contentContainer__11.children[2].children[0].children[1].src = ""; // contentContainer__11.children[4].children[0].children[1].src = ""
     } else if (idPlane[10]) {
-      contentContainer__10.children[2].children[0].children[1].src = "";
-      contentContainer__10.children[4].children[0].children[1].src = "";
+      contentContainer__10.children[2].children[0].children[1].src = ""; // contentContainer__10.children[4].children[0].children[1].src = ""
     } else if (idPlane[9]) {
       contentContainer__9.children[2].children[0].children[1].src = "";
       contentContainer__9.children[4].children[0].children[1].src = "";
@@ -54445,19 +54688,19 @@ function backToPlane() {
       contentContainer__8.children[2].children[0].children[1].src = "";
       contentContainer__8.children[4].children[0].children[1].src = "";
     } else if (idPlane[7]) {
-      contentContainer__7.children[2].children[0].children[1].src = ""; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+      contentContainer__7.children[2].children[0].children[1].src = "";
     } else if (idPlane[6]) {
-      contentContainer__6.children[2].children[0].children[1].src = ""; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+      contentContainer__6.children[2].children[0].children[1].src = "";
     } else if (idPlane[5]) {
-      contentContainer__5.children[2].children[0].children[1].src = ""; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+      contentContainer__5.children[2].children[0].children[1].src = "";
     } else if (idPlane[4]) {
-      contentContainer__4.children[2].children[0].children[1].src = ""; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+      contentContainer__4.children[2].children[0].children[1].src = "";
     } else if (idPlane[3]) {
-      contentContainer__3.children[2].children[0].children[1].src = ""; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+      contentContainer__3.children[2].children[0].children[1].src = "";
     } else if (idPlane[2]) {
-      contentContainer__2.children[2].children[0].children[1].src = ""; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+      contentContainer__2.children[2].children[0].children[1].src = "";
     } else if (idPlane[1]) {
-      contentContainer__1.children[2].children[0].children[1].src = ""; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+      contentContainer__1.children[2].children[0].children[1].src = "";
     }
   }, 2000);
 }
@@ -54576,11 +54819,10 @@ function backToWorkshop() {
       ease: "power3.inOut",
       delay: .75
     });
-    gsap.to(creditContainer, 2.5, {
+    gsap.to(creditContainer, 2, {
       opacity: 0,
-      ease: "Power4.easeOut"
-    }); //// CACHER LES IMAGES DES CREDITS ICI ////
-
+      ease: "Power3.easeOut"
+    });
     TweenMax.to(btnBackWorkshop, 1, {
       opacity: 0,
       clipPath: "inset(0% 100% 0% 0%)",
@@ -54597,13 +54839,13 @@ function backToWorkshop() {
       ease: "Power3.easeOut",
       delay: 2
     });
-    creditContainer.classList.remove('switchStreet');
     setTimeout(function () {
       creditActive = false;
     }, 3000);
     setTimeout(function () {
       workShopContainer.classList.add('switchPlane');
-    }, 2900);
+      creditContainer.classList.remove('switchStreet');
+    }, 3000);
   }
 } ///// BUTTON MAIN START REVEAL /////
 
@@ -54829,6 +55071,16 @@ discordContainer.addEventListener('mouseenter', function () {
       },
       ease: "power3.inOut"
     });
+    TweenMax.to(".containerAlertDiscord", {
+      duration: 0.65,
+      clipPath: 'inset(0% 0% 0% 0%)',
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertDiscord h3", {
+      duration: 0.65,
+      opacity: 1,
+      ease: "power3.inOut"
+    });
     soundHover.play();
   }
 });
@@ -54842,6 +55094,22 @@ discordContainer.addEventListener('mouseleave', function () {
         from: 'end'
       },
       ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertDiscord", {
+      duration: 0.65,
+      clipPath: 'inset(0% 100% 0% 0%)',
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertDiscord h3", {
+      duration: 0.65,
+      opacity: 0,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertDiscord", {
+      duration: 0,
+      clipPath: 'inset(0% 0% 0% 100%)',
+      ease: "power3.inOut",
+      delay: 0.65
     });
   }
 });
@@ -54864,6 +55132,16 @@ iutContainer.addEventListener('mouseenter', function () {
       },
       ease: "power3.inOut"
     });
+    TweenMax.to(".containerAlertIut", {
+      duration: 0.65,
+      clipPath: 'inset(0% 0% 0% 0%)',
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertIut h3", {
+      duration: 0.65,
+      opacity: 1,
+      ease: "power3.inOut"
+    });
     soundHover.play();
   }
 });
@@ -54877,6 +55155,22 @@ iutContainer.addEventListener('mouseleave', function () {
         from: 'start'
       },
       ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertIut", {
+      duration: 0.65,
+      clipPath: 'inset(0% 0% 0% 100%)',
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertIut h3", {
+      duration: 0.65,
+      opacity: 0,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".containerAlertIut", {
+      duration: 0,
+      clipPath: 'inset(0% 100% 0% 0%)',
+      ease: "power3.inOut",
+      delay: 0.65
     });
   }
 });
@@ -54956,8 +55250,7 @@ var Cursor = /*#__PURE__*/function () {
   }, {
     key: "render",
     value: function render() {
-      this.update(); // this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
-
+      this.update();
       this.shape.style.transform = 'rotate(' + this.rotation.toFixed(this.precision) + 'deg) ' + 'scale(' + (1 + this.scale) + ', ' + (1 - this.scale) + ')';
     }
   }, {
@@ -55041,17 +55334,29 @@ contenu_link.forEach(function (e) {
     cursorHoverOut();
   });
 });
+greta.addEventListener('pointerenter', function () {
+  indicHover = "ID";
+  cursorHoverIn();
+});
+greta.addEventListener('pointerleave', function () {
+  cursorHoverOut();
+});
+faceImg.forEach(function (e) {
+  e.addEventListener("pointerenter", function () {
+    indicHover = "ID";
+    cursorHoverIn();
+  });
+  e.addEventListener("pointerleave", function () {
+    cursorHoverOut();
+  });
+});
 littleTitleSvg.addEventListener("pointerenter", function () {
   indicHover = "ID";
   cursorHoverIn();
 });
 littleTitleSvg.addEventListener("pointerleave", function () {
   cursorHoverOut();
-}); // contenu_link.forEach(e => {
-//     e.addEventListener("pointerenter", handleMouseEnter);
-//     e.addEventListener("pointerleave", handleMouseLeave);
-// })
-
+});
 iframe.forEach(function (e) {
   e.addEventListener("pointerenter", function () {
     gsap.to(cursor, 0.50, {
@@ -55078,22 +55383,12 @@ iframe.forEach(function (e) {
       });
     }
   });
-}); // contentContainer.forEach(e => {
-//     e.addEventListener("mousemove", function() {
-//         if (!cursorOnVideo) {
-//             gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-//             gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-//         }
-//     });
-// });
-
+});
 contenu_vr.forEach(function (e) {
   e.addEventListener("pointerenter", function () {
-    // e.children[0].style.opacity = 0
     e.children[1].style.opacity = 1;
   });
   e.addEventListener("pointerleave", function () {
-    // e.children[0].style.opacity = 1
     e.children[1].style.opacity = 0;
   });
 });
@@ -55134,7 +55429,6 @@ function updateCursor() {
 function handleMouseEnter(e) {
   isStuck = true;
   var targetBox = e.currentTarget.getBoundingClientRect();
-  console.log(targetBox);
   gsap.to(cursorShapeOut, 0.2, {
     x: targetBox.left,
     y: targetBox.top + scrollHeight,
@@ -55149,7 +55443,6 @@ function handleMouseEnter(e) {
 function handleMouseEnterBtn(e) {
   isStuck = true;
   var targetBox = e.getBoundingClientRect();
-  console.log(targetBox);
   gsap.to(cursorShapeOut, 0.2, {
     x: targetBox.left,
     y: targetBox.top + scrollHeight,
@@ -55177,11 +55470,7 @@ function handleMouseLeave(e) {
 document.addEventListener('mousemove', function (e) {
   indicClickOnPlane.style.top = e.pageY - 20 / 2 + "px";
   indicClickOnPlane.style.left = e.pageX - 20 / 2 + "px";
-}); // document.addEventListener('mousemove', e => {
-//     indicClickOnID.style.top = e.pageY - 20 / 2 + "px"
-//     indicClickOnID.style.left = e.pageX - 20 / 2 + "px"
-// })
-/////// TIMELINE REDIRECTION ///////
+}); /////// TIMELINE REDIRECTION ///////
 
 workShopButton1.addEventListener('click', function () {
   // WORKSHOP 1
@@ -57185,6 +57474,14 @@ function scrollUp() {
       y: 0,
       ease: "power3.inOut"
     });
+    gsap.to(socle.position, 2.25, {
+      y: -10.7,
+      ease: "power3.inOut"
+    });
+    gsap.to(socle.rotation, 2.25, {
+      y: 0,
+      ease: "power3.inOut"
+    });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
       gsap.to(home.position, 2.95, {
@@ -57339,23 +57636,6 @@ function scrollUp() {
         z: 0.0001,
         ease: "power3.inOut"
       });
-      gsap.to(street.scale, 0, {
-        x: 0.0001,
-        y: 0.0001,
-        z: 0.0001
-      });
-      gsap.to(leftDoor2.scale, 0, {
-        x: 0.0001,
-        y: 0.0001,
-        z: 0.0001,
-        ease: "power3.inOut"
-      });
-      gsap.to(rightDoor2.scale, 0, {
-        x: 0.0001,
-        y: 0.0001,
-        z: 0.0001,
-        ease: "power3.inOut"
-      });
       gsap.to(cam.scale, .65, {
         x: 0.0001,
         y: 0.0001,
@@ -57396,7 +57676,47 @@ function scrollUp() {
         z: 0.0001,
         ease: "power3.inOut"
       });
+      gsap.to(leftDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(rightDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
       gsap.to(street.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue1.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue3.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue4.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue7.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRueRond.scale, 0, {
         x: 0.0001,
         y: 0.0001,
         z: 0.0001
@@ -58011,6 +58331,14 @@ function scrollDown() {
       y: 0,
       ease: "power3.inOut"
     });
+    gsap.to(socle.position, 2.25, {
+      y: -10.7,
+      ease: "power3.inOut"
+    });
+    gsap.to(socle.rotation, 2.25, {
+      y: 0,
+      ease: "power3.inOut"
+    });
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
       gsap.to(home.position, 2.95, {
@@ -58165,23 +58493,6 @@ function scrollDown() {
         z: 0.0001,
         ease: "power3.inOut"
       });
-      gsap.to(street.scale, 0, {
-        x: 0.0001,
-        y: 0.0001,
-        z: 0.0001
-      });
-      gsap.to(leftDoor2.scale, 0, {
-        x: 0.0001,
-        y: 0.0001,
-        z: 0.0001,
-        ease: "power3.inOut"
-      });
-      gsap.to(rightDoor2.scale, 0, {
-        x: 0.0001,
-        y: 0.0001,
-        z: 0.0001,
-        ease: "power3.inOut"
-      });
       gsap.to(cam.scale, .65, {
         x: 0.0001,
         y: 0.0001,
@@ -58222,7 +58533,47 @@ function scrollDown() {
         z: 0.0001,
         ease: "power3.inOut"
       });
+      gsap.to(leftDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(rightDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
       gsap.to(street.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue1.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue3.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue4.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRue7.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(planeMeshPanneauRueRond.scale, 0, {
         x: 0.0001,
         y: 0.0001,
         z: 0.0001
@@ -58275,10 +58626,6 @@ var tl = gsap.timeline(); ///// MOUSE SCROLL /////
 document.body.addEventListener('wheel', scrollWheel);
 
 function scrollWheel(event) {
-  // //REVEAL AND HIDE CURSOR INDICATION
-  // tl.to(cursorIndication, 1.5, { opacity: 0, ease: "power1.inOut" })
-  // tl.to(cursorIndication, 1.5, { opacity: 1, ease: "power1.inOut", delay: 10 })
-  // tl.restart()
   if (!workshopActive) {
     if (!isScrollUp && planeScrollPossible) {
       if (checkScrollDirectionIsUp(event)) {
@@ -58303,143 +58650,82 @@ function scrollWheel(event) {
         }, 750);
       }
     }
-  } // else if (creditActive) {
-  //     if (checkScrollDirectionIsUp(event)) { // SCROLL UP
-  //         if (idPlane[14]) {
-  //             if (camera.position.z <= -185 && scrollContainer__14.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[13]) {
-  //             if (camera.position.z <= -185 && scrollContainer__13.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[12]) {
-  //             if (camera.position.z <= -185 && scrollContainer__12.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[11]) {
-  //             if (camera.position.z <= -185 && scrollContainer__11.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[10]) {
-  //             if (camera.position.z <= -185 && scrollContainer__10.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[9]) {
-  //             if (camera.position.z <= -185 && scrollContainer__9.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[8]) {
-  //             if (camera.position.z <= -185 && scrollContainer__8.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[7]) {
-  //             if (camera.position.z <= -185 && scrollContainer__7.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[6]) {
-  //             if (camera.position.z <= -185 && scrollContainer__6.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[5]) {
-  //             if (camera.position.z <= -185 && scrollContainer__5.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[4]) {
-  //             if (camera.position.z <= -185 && scrollContainer__4.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[3]) {
-  //             if (camera.position.z <= -185 && scrollContainer__3.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[2]) {
-  //             if (camera.position.z <= -185 && scrollContainer__2.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         } else if (idPlane[1]) {
-  //             if (camera.position.z <= -185 && scrollContainer__1.scrollTop == 0) {
-  //                 backToWorkshop();
-  //             }
-  //         }
-  //     }
-  // }
-  else if (workshopActive) {
-      if (checkScrollDirectionIsUp(event) && clickPossible && scrollPossible) {
-        // SCROLL UP
-        if (idPlane[14]) {
-          if (contentContainer__14.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[13]) {
-          if (contentContainer__13.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[12]) {
-          if (contentContainer__12.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[11]) {
-          if (contentContainer__11.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[10]) {
-          if (contentContainer__10.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[9]) {
-          if (contentContainer__9.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[8]) {
-          if (contentContainer__8.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[7]) {
-          if (contentContainer__7.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[6]) {
-          if (contentContainer__6.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[5]) {
-          if (contentContainer__5.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[4]) {
-          if (contentContainer__4.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[3]) {
-          if (contentContainer__3.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[2]) {
-          if (contentContainer__2.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
-        } else if (idPlane[1]) {
-          if (contentContainer__1.scrollTop == 0) {
-            backToPlane();
-            scrollPossible = false;
-          }
+  } else if (workshopActive) {
+    if (checkScrollDirectionIsUp(event) && clickPossible && scrollPossible) {
+      // SCROLL UP
+      if (idPlane[14]) {
+        if (contentContainer__14.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[13]) {
+        if (contentContainer__13.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[12]) {
+        if (contentContainer__12.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[11]) {
+        if (contentContainer__11.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[10]) {
+        if (contentContainer__10.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[9]) {
+        if (contentContainer__9.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[8]) {
+        if (contentContainer__8.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[7]) {
+        if (contentContainer__7.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[6]) {
+        if (contentContainer__6.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[5]) {
+        if (contentContainer__5.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[4]) {
+        if (contentContainer__4.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[3]) {
+        if (contentContainer__3.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[2]) {
+        if (contentContainer__2.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
+        }
+      } else if (idPlane[1]) {
+        if (contentContainer__1.scrollTop == 0) {
+          backToPlane();
+          scrollPossible = false;
         }
       }
     }
+  }
 }
 
 function checkScrollDirectionIsUp(event) {
@@ -58452,7 +58738,6 @@ function checkScrollDirectionIsUp(event) {
 }
 
 function checkScrollDirection(elContent) {
-  // elContent.addEventListener('scroll', function () {
   if (elContent.scrollTop > scrollPos) {
     direction = "down";
   } else {
@@ -58464,211 +58749,207 @@ function checkScrollDirection(elContent) {
   return direction;
 }
 
-var test;
-
 function scrollIntoWorkshop(elContent, elCredit) {
-  camera.position.z = scrollWorkshop(elContent);
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    camera.position.z = scrollWorkshop(elContent);
 
-  if (window.matchMedia("(max-width: 1440px)").matches) {
-    if (checkScrollDirection(elContent) == "down") {
-      if (camera.position.z <= -108) {
-        if (idPlane[14]) {
-          contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
-        } else if (idPlane[13]) {
-          contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
-          contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
-        } else if (idPlane[12]) {
-          contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
-          contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
-        } else if (idPlane[11]) {
-          contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src;
-          contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src;
-        } else if (idPlane[10]) {
-          contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src;
-          contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src;
-        } else if (idPlane[9]) {
-          contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
-          contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
-        } else if (idPlane[8]) {
-          contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
-        } else if (idPlane[7]) {
-          contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-        } else if (idPlane[6]) {
-          contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-        } else if (idPlane[5]) {
-          contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-        } else if (idPlane[4]) {
-          contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-        } else if (idPlane[3]) {
-          contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-        } else if (idPlane[2]) {
-          contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-        } else if (idPlane[1]) {
-          contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-        }
+    if (window.matchMedia("(max-width: 1440px)").matches) {
+      if (checkScrollDirection(elContent) == "down") {
+        if (camera.position.z <= -108) {
+          if (idPlane[14]) {
+            contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
+          } else if (idPlane[13]) {
+            contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
+            contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
+          } else if (idPlane[12]) {
+            contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
+            contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
+          } else if (idPlane[11]) {
+            contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src; // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
+          } else if (idPlane[10]) {
+            contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src; // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
+          } else if (idPlane[9]) {
+            contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
+            contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
+          } else if (idPlane[8]) {
+            contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
+          } else if (idPlane[7]) {
+            contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+          } else if (idPlane[6]) {
+            contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+          } else if (idPlane[5]) {
+            contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+          } else if (idPlane[4]) {
+            contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+          } else if (idPlane[3]) {
+            contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+          } else if (idPlane[2]) {
+            contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+          } else if (idPlane[1]) {
+            contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+          }
 
-        cursorOnVideo = false;
+          cursorOnVideo = false;
 
-        if (!cursorOnVideo) {
-          gsap.to(cursor, 0.50, {
-            opacity: 1,
+          if (!cursorOnVideo) {
+            gsap.to(cursor, 0.50, {
+              opacity: 1,
+              ease: "Power3.easeOut"
+            });
+            gsap.to(cursorShapeOut, 0.50, {
+              opacity: 1,
+              ease: "Power3.easeOut"
+            });
+          }
+
+          workShopContainer.classList.remove('switchPlane');
+          btnBackWorkshop.classList.add('close');
+          gsap.to(workShopContainer, 1.5, {
+            opacity: 0,
             ease: "Power3.easeOut"
           });
-          gsap.to(cursorShapeOut, 0.50, {
-            opacity: 1,
-            ease: "Power3.easeOut"
+          gsap.to(camera.position, 3, {
+            z: -185,
+            ease: "power3.inOut"
           });
+          gsap.to(leftDoor2.position, 1.5, {
+            x: -20,
+            ease: "power3.inOut",
+            delay: .75
+          });
+          gsap.to(rightDoor2.position, 1.5, {
+            x: 20,
+            ease: "power3.inOut",
+            delay: .75
+          });
+          gsap.to(creditContainer, 2, {
+            opacity: 1,
+            ease: "Power1.easeOut",
+            delay: 2
+          });
+          TweenMax.to(btnBackWorkshop, 1, {
+            opacity: 0,
+            clipPath: "inset(0% 100% 0% 0%)",
+            ease: "power3.inOut"
+          });
+          TweenMax.to(btnBackWorkshop, .75, {
+            opacity: 1,
+            clipPath: "inset(0% 0% 0% 0%)",
+            delay: 2.5,
+            ease: "power3.inOut"
+          });
+          backPossible = false;
+          clickPossible = false;
+          setTimeout(function () {
+            creditActive = true;
+            creditContainer.classList.add('switchStreet');
+            elCredit.scrollTop = 0;
+          }, 1000);
+          setTimeout(function () {
+            backPossible = true;
+            clickPossible = true;
+            btnBackWorkshop.classList.remove('close');
+          }, 3000);
         }
-
-        elCredit.scrollTop = 0;
-        workShopContainer.classList.remove('switchPlane');
-        btnBackWorkshop.classList.add('close');
-        gsap.to(workShopContainer, 1.5, {
-          opacity: 0,
-          ease: "Power3.easeOut"
-        });
-        gsap.to(camera.position, 3, {
-          z: -185,
-          ease: "power3.inOut"
-        });
-        gsap.to(leftDoor2.position, 1.5, {
-          x: -20,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(rightDoor2.position, 1.5, {
-          x: 20,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(creditContainer, 2, {
-          opacity: 1,
-          ease: "Power1.easeOut",
-          delay: 2
-        });
-        TweenMax.to(btnBackWorkshop, 1, {
-          opacity: 0,
-          clipPath: "inset(0% 100% 0% 0%)",
-          ease: "power3.inOut"
-        });
-        TweenMax.to(btnBackWorkshop, .75, {
-          opacity: 1,
-          clipPath: "inset(0% 0% 0% 0%)",
-          delay: 2.5,
-          ease: "power3.inOut"
-        });
-        backPossible = false;
-        clickPossible = false;
-        setTimeout(function () {
-          creditActive = true;
-          creditContainer.classList.add('switchStreet');
-        }, 1000);
-        setTimeout(function () {
-          backPossible = true;
-          clickPossible = true;
-          btnBackWorkshop.classList.remove('close');
-        }, 3000);
       }
-    }
-  } else {
-    if (checkScrollDirection(elContent) == "down") {
-      if (camera.position.z <= -106) {
-        if (idPlane[14]) {
-          contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
-        } else if (idPlane[13]) {
-          contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
-          contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
-        } else if (idPlane[12]) {
-          contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
-          contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
-        } else if (idPlane[11]) {
-          contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src;
-          contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src;
-        } else if (idPlane[10]) {
-          contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src;
-          contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src;
-        } else if (idPlane[9]) {
-          contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
-          contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
-        } else if (idPlane[8]) {
-          contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
-        } else if (idPlane[7]) {
-          contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-        } else if (idPlane[6]) {
-          contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-        } else if (idPlane[5]) {
-          contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-        } else if (idPlane[4]) {
-          contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-        } else if (idPlane[3]) {
-          contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-        } else if (idPlane[2]) {
-          contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-        } else if (idPlane[1]) {
-          contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-        }
+    } else {
+      if (checkScrollDirection(elContent) == "down") {
+        if (camera.position.z <= -106) {
+          if (idPlane[14]) {
+            contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
+          } else if (idPlane[13]) {
+            contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
+            contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
+          } else if (idPlane[12]) {
+            contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
+            contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
+          } else if (idPlane[11]) {
+            contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src; // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
+          } else if (idPlane[10]) {
+            contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src; // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
+          } else if (idPlane[9]) {
+            contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
+            contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
+          } else if (idPlane[8]) {
+            contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
+          } else if (idPlane[7]) {
+            contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+          } else if (idPlane[6]) {
+            contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+          } else if (idPlane[5]) {
+            contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+          } else if (idPlane[4]) {
+            contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+          } else if (idPlane[3]) {
+            contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+          } else if (idPlane[2]) {
+            contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+          } else if (idPlane[1]) {
+            contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+          }
 
-        cursorOnVideo = false;
+          cursorOnVideo = false;
 
-        if (!cursorOnVideo) {
-          gsap.to(cursor, 0.50, {
-            opacity: 1,
+          if (!cursorOnVideo) {
+            gsap.to(cursor, 0.50, {
+              opacity: 1,
+              ease: "Power3.easeOut"
+            });
+            gsap.to(cursorShapeOut, 0.50, {
+              opacity: 1,
+              ease: "Power3.easeOut"
+            });
+          }
+
+          workShopContainer.classList.remove('switchPlane');
+          btnBackWorkshop.classList.add('close');
+          gsap.to(workShopContainer, 1.5, {
+            opacity: 0,
             ease: "Power3.easeOut"
           });
-          gsap.to(cursorShapeOut, 0.50, {
-            opacity: 1,
-            ease: "Power3.easeOut"
+          gsap.to(camera.position, 3, {
+            z: -185,
+            ease: "power3.inOut"
           });
+          gsap.to(leftDoor2.position, 1.5, {
+            x: -20,
+            ease: "power3.inOut",
+            delay: .75
+          });
+          gsap.to(rightDoor2.position, 1.5, {
+            x: 20,
+            ease: "power3.inOut",
+            delay: .75
+          });
+          gsap.to(creditContainer, 2, {
+            opacity: 1,
+            ease: "Power1.easeOut",
+            delay: 2
+          });
+          TweenMax.to(btnBackWorkshop, 1, {
+            opacity: 0,
+            clipPath: "inset(0% 100% 0% 0%)",
+            ease: "power3.inOut"
+          });
+          TweenMax.to(btnBackWorkshop, .75, {
+            opacity: 1,
+            clipPath: "inset(0% 0% 0% 0%)",
+            delay: 2.5,
+            ease: "power3.inOut"
+          });
+          backPossible = false;
+          clickPossible = false;
+          setTimeout(function () {
+            creditContainer.classList.add('switchStreet');
+            creditActive = true;
+            elCredit.scrollTop = 0;
+          }, 1000);
+          setTimeout(function () {
+            backPossible = true;
+            clickPossible = true;
+            btnBackWorkshop.classList.remove('close');
+          }, 3000);
         }
-
-        elCredit.scrollTop = 0;
-        workShopContainer.classList.remove('switchPlane');
-        btnBackWorkshop.classList.add('close');
-        gsap.to(workShopContainer, 1.5, {
-          opacity: 0,
-          ease: "Power3.easeOut"
-        });
-        gsap.to(camera.position, 3, {
-          z: -185,
-          ease: "power3.inOut"
-        });
-        gsap.to(leftDoor2.position, 1.5, {
-          x: -20,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(rightDoor2.position, 1.5, {
-          x: 20,
-          ease: "power3.inOut",
-          delay: .75
-        });
-        gsap.to(creditContainer, 2, {
-          opacity: 1,
-          ease: "Power1.easeOut",
-          delay: 2
-        });
-        TweenMax.to(btnBackWorkshop, 1, {
-          opacity: 0,
-          clipPath: "inset(0% 100% 0% 0%)",
-          ease: "power3.inOut"
-        });
-        TweenMax.to(btnBackWorkshop, .75, {
-          opacity: 1,
-          clipPath: "inset(0% 0% 0% 0%)",
-          delay: 2.5,
-          ease: "power3.inOut"
-        });
-        backPossible = false;
-        clickPossible = false;
-        setTimeout(function () {
-          creditContainer.classList.add('switchStreet');
-          creditActive = true;
-        }, 1000);
-        setTimeout(function () {
-          backPossible = true;
-          clickPossible = true;
-          btnBackWorkshop.classList.remove('close');
-        }, 3000);
       }
     }
   }
@@ -58772,47 +59053,7 @@ contentContainer__1.addEventListener('scroll', function () {
       scrollIntoWorkshop(contentContainer__1, scrollContainer__1);
     }
   }
-}); ///// SMOOTH SCROLL /////
-// Scrollbar.init(document.querySelector('#my-scrollbar'));
-///// CREDIT SCROLL TRIGGER /////
-
-function scrollTrigger(elementContainer, elementContainerImg) {
-  elementContainer.addEventListener("scroll", function () {
-    if (creditActive) {
-      elementContainerImg.forEach(function (e) {
-        var tl = gsap.timeline({
-          defaults: {
-            ease: "expo.InOut"
-          }
-        }).to(e, {
-          opacity: 1,
-          duration: .5
-        });
-        ScrollTrigger.create({
-          trigger: e.children[2].children[2],
-          start: "top center",
-          scroller: elementContainer,
-          animation: tl
-        });
-      });
-    }
-  });
-}
-
-scrollTrigger(scrollContainer__14, scrollContainerContentImg__14);
-scrollTrigger(scrollContainer__13, scrollContainerContentImg__13);
-scrollTrigger(scrollContainer__12, scrollContainerContentImg__12);
-scrollTrigger(scrollContainer__11, scrollContainerContentImg__11);
-scrollTrigger(scrollContainer__10, scrollContainerContentImg__10);
-scrollTrigger(scrollContainer__9, scrollContainerContentImg__9);
-scrollTrigger(scrollContainer__8, scrollContainerContentImg__8);
-scrollTrigger(scrollContainer__7, scrollContainerContentImg__7);
-scrollTrigger(scrollContainer__6, scrollContainerContentImg__6);
-scrollTrigger(scrollContainer__5, scrollContainerContentImg__5);
-scrollTrigger(scrollContainer__4, scrollContainerContentImg__4);
-scrollTrigger(scrollContainer__3, scrollContainerContentImg__3);
-scrollTrigger(scrollContainer__2, scrollContainerContentImg__2);
-scrollTrigger(scrollContainer__1, scrollContainerContentImg__1); ///// SYNCHRO CAM TO SCROLL /////
+}); ///// SYNCHRO CAM TO SCROLL /////
 
 function scrollWorkshop(el) {
   var posCam = -20 + el.scrollTop / el.scrollHeight * -120;
@@ -58853,7 +59094,7 @@ document.onkeydown = function (e) {
       break;
 
     case 27:
-      if (camera.position.z == 3.7 && !workshopActive && backPossible) {
+      if (camera.position.z == 3.7 && !workshopActive && backPossible && !homeActive && !startMenuActive) {
         functionBtnBackHome();
       }
 
@@ -58868,7 +59109,11 @@ document.onkeydown = function (e) {
       break;
 
     case 13:
-      if (camera.position.z == 10 && homeActive) {
+      if (!homeActive && startMenuActive) {
+        startImmersion();
+      }
+
+      if (camera.position.z == 10 && homeActive && !startMenuActive) {
         functionBtnStart();
       }
 
@@ -58888,25 +59133,6 @@ document.onkeydown = function (e) {
         plane2Click();
         plane1Click();
       }
-
-      break;
-
-    case 65:
-      // DEBUGGER
-      console.log(camera.position.z); // console.log("1/4 : " + contentContainer__14.scrollHeight / 4)
-      // console.log("2/4 : " + contentContainer__14.scrollHeight / 4 * 2)
-      // console.log("3/4 : " + contentContainer__14.scrollHeight / 4 * 3)
-      // console.log("4/4 : " + contentContainer__14.scrollHeight / 4 * 4)
-      // console.log("pos Fiche Actuelle : " + contentContainer__14.scrollTop)
-      // console.log("pos Crédit Actuelle : " + scrollContainer__14.scrollTop)
-
-      console.log("Crédit : " + creditActive);
-      console.log("Workshop : " + workshopActive);
-      console.log("Back : " + backPossible);
-      console.log("Click : " + clickPossible);
-      console.log("Btn pressed : " + btnPressed);
-      console.log("Scroll : " + scrollPossible);
-      console.log("Hover Plane : " + hoverPlane); // console.log("Plane Alpha : " + materialPlane14.uniforms.alpha.value)
 
       break;
   }
@@ -58934,18 +59160,7 @@ var render = function render() {
       p.y = -9;
     }
   });
-  particleGeo.verticesNeedUpdate = true; // window.onmousemove = function(e) { //PARTICLES MOUSE EVENT
-  //     // var resetCenterX = window.innerWidth / 2;
-  //     // var resetCenterY = window.innerHeight / 2;
-  //         var cameraRotationYTolerance = .05;
-  //         var cameraRotationXTolerance = .05;
-  //         var rotX = window.innerWidth * .5;
-  //         var rotY = window.innerHeight * .5;
-  //         // camera.rotation.y = (e.clientX - rotX) / rotX * cameraRotationYTolerance;
-  //         // camera.rotation.x = (e.clientY - rotY) / rotY * cameraRotationXTolerance;
-  //         // gsap.to(camera.position, 0.05, { x: (e.clientX - rotX) / rotX * cameraRotationXTolerance, y: (e.clientY - rotY) / rotY * cameraRotationYTolerance, ease: "power4.inOut" })
-  // };
-
+  particleGeo.verticesNeedUpdate = true;
   materialPlane1.uniforms.time.value = clock.running = false;
   materialPlane2.uniforms.time.value = clock.running = false;
   materialPlane3.uniforms.time.value = clock.running = false;
@@ -58959,7 +59174,7 @@ var render = function render() {
   materialPlane11.uniforms.time.value = clock.running = false;
   materialPlane12.uniforms.time.value = clock.running = false;
   materialPlane13.uniforms.time.value = clock.running = false;
-  materialPlane14.uniforms.time.value = clock.running = false; // if (!window.matchMedia("(max-width: 1024px)").matches) {
+  materialPlane14.uniforms.time.value = clock.running = false;
 
   if (camera.position.z >= 0 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
     materialPlane1.uniforms.time.value = clock.running = true;
@@ -58990,8 +59205,7 @@ var render = function render() {
     materialPlane12.uniforms.time.value = clock.getElapsedTime();
     materialPlane13.uniforms.time.value = clock.getElapsedTime();
     materialPlane14.uniforms.time.value = clock.getElapsedTime();
-  } // }
-
+  }
 
   composer.render();
   requestAnimationFrame(render);
@@ -59027,7 +59241,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56503" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63874" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

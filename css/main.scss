@@ -4,7 +4,7 @@
 
     * {
         box-sizing: border-box;
-        //cursor: none !important;
+        cursor: none !important;
         user-select: none;
     }
 
@@ -188,8 +188,8 @@
         pointer-events: all!important;
     }
 
-    ////CURSOR CUSTOM///
-    @media screen and (max-width: 1024px) {
+     ////CURSOR CUSTOM///
+     @media screen and (max-width: 1024px) {
         .cursor {
             display: none;
         }
@@ -203,16 +203,13 @@
         }
     }
 
-    .startHidden {
-        display: none;
-    }
-
     .cursor {
         position: fixed;
         pointer-events: none;
         z-index: 100;
         mix-blend-mode: difference;
         opacity: 0;
+        transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
     }
 
     .cursorSize {
@@ -238,7 +235,7 @@
         transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
 
         &.mouseover {
-            transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
+            transition: opacity .5s cubic-bezier(.25, 0, 0, 1);
             opacity: 0;
         }
     }
@@ -4341,3 +4338,37 @@
         font-family: "text";
         src: url("/assets/font/titilliumweb-regular.woff2") format("woff2"), url("/assets/font/titilliumweb-regular.woff") format("woff");
     }
+
+
+
+    .attente{
+        display: none;
+    @media screen and (max-width: 1024px){
+
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: $bleu;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 50;
+
+        h3{
+            animation: blinkBtn 4s infinite alternate;
+            text-align: center;
+            font-family: 'littleTitle';
+            color: $cyan;
+            font-size: 15px;
+            letter-spacing: 1px;
+
+            @media screen and (max-width: 539px) {
+                font-size: 2.8vw;
+                letter-spacing: .2vw;
+                }
+        }
+    }
+
+}
