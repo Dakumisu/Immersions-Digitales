@@ -162,9 +162,10 @@ import soundHoverImport from "../assets/sound/soundHover.mp3"
 let indicGoDesktop = document.querySelector('.indicGoDesktop');
 let progress = document.querySelector('.progress');
 
-let volume = .1;
-let volumePlane = .075;
-let volumeBtn = .9;
+let volume = 1;
+let volumeBg = .04;
+let volumePlane = .025;
+let volumeBtn = .5;
 
 let bgMusic = document.createElement("audio"); 
 bgMusic.src = bgMusicImport; 
@@ -173,13 +174,13 @@ bgMusic.volume = volume;
 
 let bgLoopMusic = document.createElement("audio"); 
 bgLoopMusic.src = bgLoopMusicImport; 
-bgLoopMusic.loop = false;
-bgLoopMusic.volume = volume;
+bgLoopMusic.loop = true;
+bgLoopMusic.volume = volumeBg;
 
 let rpzMusic = document.createElement("audio"); 
 rpzMusic.src = rpzImport; 
 rpzMusic.loop = false;
-rpzMusic.volume = volume;
+rpzMusic.volume = 0.05;
 
 let soundHover = document.createElement("audio"); 
 soundHover.src = soundHoverImport; 
@@ -196,256 +197,6 @@ soundOutPlane.src = soundOutPlaneImport;
 soundOutPlane.loop = false;
 soundOutPlane.volume = volumePlane; 
 
-let queue = new createjs.LoadQueue(false);
-
-queue.on("progress", event => {
-    let increment = Math.floor(event.progress*100);
-    progress.innerHTML = increment;
-    indicGoDesktop.classList.add('switch')
-});
-
-queue.on("complete", event =>{
-    indicGoDesktop.classList.remove('switch')
-    progress.classList.add('switch')
-
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-        const _cursorIn = new Cursor(cursorShapeIn);
-        updateCursor();
-        setTimeout(function(){
-            cursor.style.opacity = 1
-            cursorShapeOut.style.opacity = 1          
-        },50)
-    }
-
-    TweenMax.to(".spanContainerMainStart span", { duration: 1, opacity: 1, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut", delay: .75 })
-    TweenMax.to(".borderLeft", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: .75 })
-    TweenMax.to(".borderRight", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: .75 })
-    TweenMax.to(".borderTop", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: 1.25 })
-    TweenMax.to(".borderBottom", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: 1.25 })
-
-    setTimeout(function(){
-    btnMainStart.addEventListener("pointerenter", function() {
-        if (homeActive) {
-            handleMouseEnterBtn(btnMainStart);
-        }
-            
-        btnMainStart.addEventListener("pointerleave", handleMouseLeave)
-    })     
-
-        btnMainStart.addEventListener('mouseenter', function(){
-            spanContainerMainStart.classList.add('neonText');
-            cursorShapeIn.classList.add('mouseover');
-            TweenMax.to(btnMainStart, .5, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
-            spanContainerMainStart.classList.add('neonText');
-        })
-        
-        btnMainStart.addEventListener('mouseleave', function() {
-            TweenMax.to(btnMainStart, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
-            cursorShapeIn.classList.remove('mouseover');
-            spanContainerMainStart.classList.remove('neonText');
-        })
-        
-        btnMainStart.addEventListener('click', function() {
-
-            bgMusic.play();
-
-            TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
-            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 });   
-            switchBtn = true; 
-            onMusic.classList.toggle('switch');
-            offMusic.classList.toggle('switch')
-        
-            setTimeout(function(){
-                lineMusicBtn.forEach(line=>{
-                    line.classList.toggle('switch');
-                })
-            },350) 
-
-            if (window.matchMedia("(max-width: 1024px)").matches) {
-                let html = document.querySelector('html');
-                    if (html.requestFullscreen) {
-                        html.requestFullscreen();
-                    } else if (html.mozRequestFullScreen) {
-                        html.mozRequestFullScreen();
-                    } else if (html.webkitRequestFullscreen) {
-                        html.webkitRequestFullscreen();
-                    } else if (html.msRequestFullscreen) {
-                        html.msRequestFullscreen();
-                    }
-                }
-            
-            handleMouseLeave();
-            TweenMax.to(".spanContainerMainStart span", { duration: .5, opacity: 0, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut" })
-            TweenMax.to(btnMainStart, { duration: 1.5, opacity: 0, ease: "power3.inOut" })
-
-            titleSvgPath.forEach(e => {
-                e.classList.remove("pathTitleOut")
-                e.classList.remove("pathTitleIn")
-                });
-                titleSvgLine.classList.remove("pathLineOut")
-                titleSvgLine.classList.remove("pathLineIn")
-
-            setTimeout(function() {
-            TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
-            TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.02 });
-            TweenMax.to(bgCol, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.02 });
-            TweenMax.to(bgRow, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.0355555 });
-            TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.0355555 });
-            TweenMax.to(bgRow, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.0355555 });
-            TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, delay: 2 });
-            TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, delay: 2 });
-            TweenMax.to(".firstSlogan span", { duration: 2, opacity: 1, stagger: { each: 0.02, from: 'random' }, ease: "expo.inOut", delay: .25 })
-            TweenMax.to(".firstSlogan span", { duration: 2, opacity: 0, stagger: { each: 0.02, from: 'random' }, ease: "expo.inOut", delay: 3.5 })
-
-            setTimeout(function(){
-            canvas.classList.add('hologramActive')
-            //CAMERA ANIM
-             gsap.to(camera.position, 3.75, { z: 10, ease: "power3.inOut" })
-
-            //RAJOUT DES PARTICULES
-            setTimeout(function(){
-             scene.add(particleMesh);
-            },1000)
-            gsap.to(particleMesh.scale, 3.75, { x: 1, y: 1, z: 1, ease: "power3.inOut", })
-            if (!window.matchMedia("(max-width: 1024px)").matches) {
-             gsap.to(home.position, 3.75, { z: 0, x: -1.45, ease: "power3.inOut" })
-             gsap.to(home.rotation, 3.75, { y: -.35, z: 0, ease: "power3.inOut" })
-             TweenMax.to(homeMask, 3.75, { opacity: 1, ease: "power3.inOut" })
-             }
-            },4000);
-
-            setTimeout(function(){
-
-                titleSvg.classList.add('switchTitle')
-                titleSvgPath.forEach(e => {
-                e.classList.remove("pathTitleOut")
-                e.classList.add("pathTitleIn")
-                });
-                titleSvgLine.classList.remove("pathLineOut")
-                titleSvgLine.classList.add("pathLineIn")
-
-                setTimeout(function(){
-                TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.06, from: 'random' }, ease: "power3.inOut" })
-                TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut" })
-                gsap.to(sm1, 0.75, {opacity: 1,  ease: "Power3.easeOut"})
-                gsap.to(sm2, 0.75, {opacity: 1,  ease: "Power3.easeOut", delay: .15})
-                gsap.to(sm3, 0.75, {opacity: 1,  ease: "Power3.easeOut", delay: .3})
-                gsap.to(musicBtn, 0.75, {opacity: 1, ease: "Power3.easeOut"})
-                TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.inOut" })
-
-                setTimeout(function(){
-                    discordContainer.classList.add('switchPointer')
-                    iutContainer.classList.add('switchPointer')
-                    sm1.classList.add('switchPointer')
-                    sm2.classList.add('switchPointer')
-                    sm3.classList.add('switchPointer')
-                    musicBtn.classList.add('switchPointer')
-                },550)
-                }, 3200)
-                                
-            }, 4500)
-
-            if (!window.matchMedia("(max-width: 1024px)").matches) {
-                TweenMax.to(bgCol, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 2 });
-                TweenMax.to(bgRow, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 2 });
-            }
-        }, 200)
-
-            btnMainStart.classList.add('close');
-            btnBackHome.classList.remove('hover')
-            cursorShapeIn.classList.remove('mouseover')
-            setTimeout(function() {
-                spanContainerBackMouseOut.classList.remove('neonText');
-            }, 750)
-        })
-    }, 750)
-
-
-
-
-})
-
-////////// LOAD FILES //////////
-queue.on("fileload", handleFileComplete);
-
-queue.loadFile(atelier1Default);
-queue.loadFile(atelier2Default);
-queue.loadFile(atelier3Default);
-queue.loadFile(atelier4Default);
-queue.loadFile(atelier5Default);
-queue.loadFile(atelier6Default);
-queue.loadFile(atelier7Default);
-queue.loadFile(atelier8Default);
-queue.loadFile(atelier9Default);
-queue.loadFile(atelier10Default);
-queue.loadFile(atelier11Default);
-queue.loadFile(atelier12Default);
-queue.loadFile(atelier13Default);
-queue.loadFile(atelier14Default);
-
-queue.loadFile(atelier1Hover);
-queue.loadFile(atelier2Hover);
-queue.loadFile(atelier3Hover);
-queue.loadFile(atelier4Hover);
-queue.loadFile(atelier5Hover);
-queue.loadFile(atelier6Hover);
-queue.loadFile(atelier7Hover);
-queue.loadFile(atelier8Hover);
-queue.loadFile(atelier9Hover);
-queue.loadFile(atelier10Hover);
-queue.loadFile(atelier11Hover);
-queue.loadFile(atelier12Hover);
-queue.loadFile(atelier13Hover);
-queue.loadFile(atelier14Hover);
-
-queue.loadFile(displacement2);
-queue.loadFile(displacement4);
-
-queue.loadFile(particle);
-queue.loadFile(socleModel);
-queue.loadFile(logoModel);
-queue.loadFile(homeModel);
-queue.loadFile(streetModel);
-queue.loadFile(rightDoorModel);
-queue.loadFile(rightDoor2Model);
-queue.loadFile(leftDoorModel);
-queue.loadFile(leftDoor2Model);
-queue.loadFile(pyloneModel);
-queue.loadFile(gridModel);
-queue.loadFile(tableModel);
-queue.loadFile(poutreModel);
-queue.loadFile(leftWallModel);
-queue.loadFile(rightWallModel);
-queue.loadFile(fieldModel);
-queue.loadFile(signModel);
-queue.loadFile(vr2Model);
-queue.loadFile(tabProgModel);
-queue.loadFile(tvModel);
-queue.loadFile(camModel);
-queue.loadFile(enceinteModel);
-
-queue.loadFile(fragmentShaderVertical);
-queue.loadFile(fragmentShader);
-queue.loadFile(vertexShader);
-
-queue.loadFile(rpzImport);
-queue.loadFile(bgMusicImport);
-queue.loadFile(bgLoopMusicImport);
-queue.loadFile(rpzImport);
-queue.loadFile(soundHoverImport);
-queue.loadFile(soundHoverPlaneImport);
-queue.loadFile(soundOutPlaneImport);
-
-queue.loadFile(GLTFLoader);
-queue.loadFile(THREE);
-queue.loadFile(POSTPROCESSING);
-queue.loadFile(Interaction);
-queue.loadFile(createjs);
-queue.loadFile(TouchSweep);
-
-
-function handleFileComplete(){}
 
 ////////// SCENE //////////
 var scene = new THREE.Scene();
@@ -575,52 +326,6 @@ loaderSocle.load(socleModel, function(addSocle) {
     socle.scale.set(.7, .7, .7)
     socle.rotation.y = 0;
 });
-
-// import test from "../assets/model/DracoModels/socleCompress.gltf";
-
-// var loaderSocle = new THREEGLTFLoader();
-// // loaderSocle.setDRACOLoader(new THREEDRACOLoader("node_module/three/examples/js/libs/draco/gltf/"));
-// loaderSocle.setDRACOLoader(new THREEDRACOLoader("https://unpkg.com/browse/three@0.124.0/examples/js/libs/draco/"));
-
-// loaderSocle.load(test, gltf => {
-//         socle = gltf.scene;
-//         scene.add(socle);
-//         socle.position.set(0, -10.7, 0)
-//         socle.scale.set(.7, .7, .7)
-//         socle.rotation.y = 0;
-//         console.log(true)
-//     },
-//     function (xhr) {
-//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-//     }
-// );
-
-// Specify path to a folder containing WASM/JS decoding libraries.
-// loaderSocle.setDecoderPath( '../node_modules/three/examples/js/libs/draco/gltf/' );
-
-// Load a Draco geometry
-// loaderSocle.load(test, function( geometry ) {
-//     const material = new THREE.MeshStandardMaterial({
-//         color: 0x606060
-//     });
-//     const mesh = new THREE.Mesh(geometry, material);
-//     console.log(mesh)
-//     },
-//     function (xhr) {
-//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-//         console.log(xhr)
-//         // console.log(xhr.srcElement.responseURL)
-//         // var test = xhr.srcElement.responseURL
-//         // var socle = addSocle.scene;
-//         // scene.add(socle);
-//         // console.log(scene);
-
-//     },
-//     function (error) {
-//         console.log('An error happened');
-//     }
-// );
-
 
 // LOGO MODEL
 var logo;
@@ -992,16 +697,6 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
         })
     });
 }
-
-// c'est un test pour l'interaction sinon c'était "undefind"
-// let enceinteMaterial = new THREE.MeshBasicMaterial({
-//     map: null
-// });
-
-// let enceinteMesh = new THREE.Mesh(enceinte, enceinteMaterial);
-// scene.add(enceinteMesh)
-
-
 
 // RIGHT DOOR MODEL
 var rightDoor;
@@ -1500,44 +1195,47 @@ var materialPlanePanneau = new THREE.ShaderMaterial({
 /////// PLANE RUELLE ///////
 var materialPlaneRue7 = new THREE.MeshBasicMaterial( { map: texturecredits } );
 var planeMeshPanneauRue7 = new THREE.Mesh(planePanneauRue7, materialPlaneRue7);
-scene.add(planeMeshPanneauRue7);
 planeMeshPanneauRue7.position.set(5.975, 3.967, -133.6);
 planeMeshPanneauRue7.rotation.set(0, 0, 0);
 
 var materialPlaneRue4 = new THREE.MeshBasicMaterial( { map: texturepanneau2rue1 } );
 var planeMeshPanneauRue4 = new THREE.Mesh(planePanneauRue4, materialPlaneRue4);
-scene.add(planeMeshPanneauRue4);
 planeMeshPanneauRue4.position.set(-20.5, 18.5, -71.75);
 planeMeshPanneauRue4.rotation.set(0, 0, 0);
 
 var materialPlaneRue3 = new THREE.MeshBasicMaterial( { map: texturebaniere1 } );
 var planeMeshPanneauRue3 = new THREE.Mesh(planePanneauRue3, materialPlaneRue3);
-scene.add(planeMeshPanneauRue3);
 planeMeshPanneauRue3.position.set(-.60, 14.3, -71.1);
 planeMeshPanneauRue3.rotation.set(0, 0, 0);
 
 var materialPlaneRue2 = new THREE.MeshBasicMaterial( { map: texturepanneaurue1 } );
 var planeMeshPanneauRue2 = new THREE.Mesh(planePanneauRue2, materialPlaneRue2);
-scene.add(planeMeshPanneauRue2);
 planeMeshPanneauRue2.position.set(-6.841, 6.125, -45.05);
 planeMeshPanneauRue2.rotation.set(0, 0, 0);
 
 var materialPlaneRue1 = new THREE.MeshBasicMaterial( { map: textureidbaniere } );
 var planeMeshPanneauRue1 = new THREE.Mesh(planePanneauRue1, materialPlaneRue1);
-scene.add(planeMeshPanneauRue1);
 planeMeshPanneauRue1.position.set(9.139, 6.048, -36.55);
 planeMeshPanneauRue1.rotation.set(0, -1.571, 0);
 
 var materialPlaneRond = new THREE.MeshBasicMaterial( { map: texturechiffre1 } );
 var planeMeshPanneauRueRond = new THREE.Mesh(planePanneauRueRond, materialPlaneRond);
-scene.add(planeMeshPanneauRueRond);
 planeMeshPanneauRueRond.position.set(6.75, 6.15, -43.0);
 planeMeshPanneauRueRond.rotation.set(0, 0, 0);
 
 var planeMeshPanneau = new THREE.Mesh(planePanneau, materialPlanePanneau);
-scene.add(planeMeshPanneau);
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
 planeMeshPanneau.rotation.set(-.035, -.74, -.07);
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+    scene.add(planeMeshPanneauRue7);
+    scene.add(planeMeshPanneauRue4);
+    scene.add(planeMeshPanneauRue3);
+    scene.add(planeMeshPanneauRue2);
+    scene.add(planeMeshPanneauRue1);
+    scene.add(planeMeshPanneauRueRond);
+    scene.add(planeMeshPanneau);
+}
 
 /////// PLANE AXES ///////
 var planeAxe = new THREE.Object3D();
@@ -1839,7 +1537,6 @@ let contentContainer__1 = document.querySelector('.contentContainer__1');
 let scrollContainer__1 = document.querySelector('.scrollContainer__1');
 let scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
 
-let switchHamburger = false;
 
 hamburgerContainer.addEventListener('click', function(){
     if( switchHamburger == false){
@@ -2146,12 +1843,16 @@ scrollContainerContentImg__1.forEach(e => {
     })
 });
 
-let homeActive = true;
+let homeActive = false;
+let startMenuActive = true;
 let hoverPlane = true;
 let workshopActive = false;
 let creditActive = false;
-let switchBtn = false;
+let switchBtn = true;
+let stopMusic = false;
 let cursorOnVideo = false;
+let switchHamburger = false;
+let fisrtStart = true;
 
 let backPossible = true;
 let clickPossible = true;
@@ -2171,56 +1872,330 @@ let scrollPos = 0;
 let direction = "";
 let indicHover = "";
 
-musicBtn.addEventListener('click', function(){
-    if(switchBtn == false){
-    TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 }); 
-    if (window.matchMedia("(max-width: 1024px)").matches) {
-        soundHover.play();
+let queue = new createjs.LoadQueue(false);
+
+queue.on("progress", event => {
+    let increment = Math.floor(event.progress*100);
+    progress.innerHTML = increment;
+    indicGoDesktop.classList.add('switch')
+});
+
+queue.on("complete", event => {
+    indicGoDesktop.classList.remove('switch')
+    progress.classList.add('switch')
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+        const _cursorIn = new Cursor(cursorShapeIn);
+        updateCursor();
+        setTimeout(function(){
+            cursor.style.opacity = 1
+            cursorShapeOut.style.opacity = 1
+            cursor.classList.remove('startHidden')
+            cursorShapeOut.classList.remove('startHidden')
+        },50)
     }
-    bgMusic.play();
-    rpzMusic.volume = volume; 
-    soundHover.volume = volumeBtn;
-    soundHoverPlane.volume = volumePlane;
-    soundOutPlane.volume = volumePlane;  
-    switchBtn = true;    
+
+    TweenMax.to(".spanContainerMainStart span", { duration: 1, opacity: 1, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut", delay: .75 })
+    TweenMax.to(".borderLeft", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: .75 })
+    TweenMax.to(".borderRight", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: .75 })
+    TweenMax.to(".borderTop", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: 1.25 })
+    TweenMax.to(".borderBottom", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: 1.25 })
+
+    setTimeout(function(){
+    btnMainStart.addEventListener("pointerenter", function() {
+        if (!homeActive && startMenuActive) {
+            handleMouseEnterBtn(btnMainStart);
+        }
+        btnMainStart.addEventListener("pointerleave", handleMouseLeave)
+    })
+
+        btnMainStart.addEventListener('mouseenter', function(){
+            spanContainerMainStart.classList.add('neonText');
+            cursorShapeIn.classList.add('mouseover');
+            TweenMax.to(btnMainStart, .5, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+            spanContainerMainStart.classList.add('neonText');
+        })
+        
+        btnMainStart.addEventListener('mouseleave', function() {
+            TweenMax.to(btnMainStart, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+            cursorShapeIn.classList.remove('mouseover');
+            spanContainerMainStart.classList.remove('neonText');
+        })
+
+        btnMainStart.addEventListener('click', function() {
+            startImmersion()
+        })
+    }, 750)
+})
+
+////////// LOAD FILES //////////
+queue.on("fileload", handleFileComplete);
+
+queue.loadFile(atelier1Default);
+queue.loadFile(atelier2Default);
+queue.loadFile(atelier3Default);
+queue.loadFile(atelier4Default);
+queue.loadFile(atelier5Default);
+queue.loadFile(atelier6Default);
+queue.loadFile(atelier7Default);
+queue.loadFile(atelier8Default);
+queue.loadFile(atelier9Default);
+queue.loadFile(atelier10Default);
+queue.loadFile(atelier11Default);
+queue.loadFile(atelier12Default);
+queue.loadFile(atelier13Default);
+queue.loadFile(atelier14Default);
+
+queue.loadFile(atelier1Hover);
+queue.loadFile(atelier2Hover);
+queue.loadFile(atelier3Hover);
+queue.loadFile(atelier4Hover);
+queue.loadFile(atelier5Hover);
+queue.loadFile(atelier6Hover);
+queue.loadFile(atelier7Hover);
+queue.loadFile(atelier8Hover);
+queue.loadFile(atelier9Hover);
+queue.loadFile(atelier10Hover);
+queue.loadFile(atelier11Hover);
+queue.loadFile(atelier12Hover);
+queue.loadFile(atelier13Hover);
+queue.loadFile(atelier14Hover);
+
+queue.loadFile(displacement2);
+queue.loadFile(displacement4);
+
+queue.loadFile(particle);
+queue.loadFile(socleModel);
+queue.loadFile(logoModel);
+queue.loadFile(homeModel);
+queue.loadFile(streetModel);
+queue.loadFile(rightDoorModel);
+queue.loadFile(rightDoor2Model);
+queue.loadFile(leftDoorModel);
+queue.loadFile(leftDoor2Model);
+queue.loadFile(pyloneModel);
+queue.loadFile(gridModel);
+queue.loadFile(tableModel);
+queue.loadFile(poutreModel);
+queue.loadFile(leftWallModel);
+queue.loadFile(rightWallModel);
+queue.loadFile(fieldModel);
+queue.loadFile(signModel);
+queue.loadFile(vr2Model);
+queue.loadFile(tabProgModel);
+queue.loadFile(tvModel);
+queue.loadFile(camModel);
+queue.loadFile(enceinteModel);
+
+queue.loadFile(fragmentShaderVertical);
+queue.loadFile(fragmentShader);
+queue.loadFile(vertexShader);
+
+queue.loadFile(rpzImport);
+queue.loadFile(bgMusicImport);
+queue.loadFile(bgLoopMusicImport);
+queue.loadFile(rpzImport);
+queue.loadFile(soundHoverImport);
+queue.loadFile(soundHoverPlaneImport);
+queue.loadFile(soundOutPlaneImport);
+
+queue.loadFile(GLTFLoader);
+queue.loadFile(THREE);
+queue.loadFile(POSTPROCESSING);
+queue.loadFile(Interaction);
+queue.loadFile(createjs);
+queue.loadFile(TouchSweep);
+
+function handleFileComplete(){}
+
+function startImmersion() {
+
+        cursorIndication.classList.remove('startHidden')
+        mobileIndication.classList.remove('startHidden')
+        containerTimeline.classList.remove('startHidden')
+        hamburgerContainer.classList.remove('startHidden')
+
+        startMenuActive = false;
+        bgMusic.play();
+
+        TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
+        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
+        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 });   
+        switchBtn = true; 
+        onMusic.classList.toggle('switch');
+        offMusic.classList.toggle('switch')
+    
+        setTimeout(function(){
+            lineMusicBtn.forEach(line=>{
+                line.classList.toggle('switch');
+            })
+        },350) 
+
+        if (window.matchMedia("(max-width: 1024px)").matches) {
+            let html = document.querySelector('html');
+                if (html.requestFullscreen) {
+                    html.requestFullscreen();
+                } else if (html.mozRequestFullScreen) {
+                    html.mozRequestFullScreen();
+                } else if (html.webkitRequestFullscreen) {
+                    html.webkitRequestFullscreen();
+                } else if (html.msRequestFullscreen) {
+                    html.msRequestFullscreen();
+                }
+            }
+        
+        handleMouseLeave();
+        TweenMax.to(".spanContainerMainStart span", { duration: .5, opacity: 0, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut" })
+        TweenMax.to(btnMainStart, { duration: 1.5, opacity: 0, ease: "power3.inOut" })
+
+        titleSvgPath.forEach(e => {
+            e.classList.remove("pathTitleOut")
+            e.classList.remove("pathTitleIn")
+        });
+            titleSvgLine.classList.remove("pathLineOut")
+            titleSvgLine.classList.remove("pathLineIn")
+
+        setTimeout(function() {
+        TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
+        TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.02 });
+        TweenMax.to(bgCol, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.02 });
+        TweenMax.to(bgRow, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.0355555 });
+        TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.0355555 });
+        TweenMax.to(bgRow, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.0355555 });
+        TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, delay: 2 });
+        TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, delay: 2 });
+        TweenMax.to(".firstSlogan span", { duration: 2, opacity: 1, stagger: { each: 0.02, from: 'random' }, ease: "expo.inOut", delay: .25 })
+        TweenMax.to(".firstSlogan span", { duration: 2, opacity: 0, stagger: { each: 0.02, from: 'random' }, ease: "expo.inOut", delay: 3.5 })
+
+        setTimeout(function(){
+        canvas.classList.add('hologramActive')
+        //CAMERA ANIM
+         gsap.to(camera.position, 3.75, { z: 10, ease: "power3.inOut" })
+
+        //RAJOUT DES PARTICULES
+        setTimeout(function(){
+         scene.add(particleMesh);
+        },1000)
+        gsap.to(particleMesh.scale, 3.75, { x: 1, y: 1, z: 1, ease: "power3.inOut", })
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+         gsap.to(home.position, 3.75, { z: 0, x: -1.45, ease: "power3.inOut" })
+         gsap.to(home.rotation, 3.75, { y: -.35, z: 0, ease: "power3.inOut" })
+         TweenMax.to(homeMask, 3.75, { opacity: 1, ease: "power3.inOut" })
+         }
+        },4000);
+
+        setTimeout(function(){
+
+            titleSvg.classList.add('switchTitle')
+            titleSvgPath.forEach(e => {
+                e.classList.remove("pathTitleOut")
+                e.classList.add("pathTitleIn")
+            });
+            titleSvgLine.classList.remove("pathLineOut")
+            titleSvgLine.classList.add("pathLineIn")
+
+            setTimeout(function(){
+            TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.06, from: 'random' }, ease: "power3.inOut" })
+            TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut" })
+            gsap.to(sm1, 0.75, {opacity: 1,  ease: "Power3.easeOut"})
+            gsap.to(sm2, 0.75, {opacity: 1,  ease: "Power3.easeOut", delay: .15})
+            gsap.to(sm3, 0.75, {opacity: 1,  ease: "Power3.easeOut", delay: .3})
+            gsap.to(musicBtn, 0.75, {opacity: 1, ease: "Power3.easeOut"})
+            TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.inOut" })
+
+            setTimeout(function(){
+                homeActive = true;
+                discordContainer.classList.add('switchPointer')
+                iutContainer.classList.add('switchPointer')
+                sm1.classList.add('switchPointer')
+                sm2.classList.add('switchPointer')
+                sm3.classList.add('switchPointer')
+                musicBtn.classList.add('switchPointer')
+            }, 550)
+            }, 3200)
+                            
+        }, 4500)
+
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            TweenMax.to(bgCol, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 2 });
+            TweenMax.to(bgRow, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 2 });
+        }
+    }, 200)
+
+        btnMainStart.classList.add('close');
+        btnBackHome.classList.remove('hover')
+        cursorShapeIn.classList.remove('mouseover')
+        setTimeout(function() {
+            spanContainerBackMouseOut.classList.remove('neonText');
+        }, 750)
+}
+
+function switchMusic() {
+    if (switchBtn == false) {
+        TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
+        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
+        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 }); 
+        if (window.matchMedia("(max-width: 1024px)").matches) {
+            soundHover.play();
+        }
+        if (fisrtStart) {
+            bgMusic.play();
+            var fadeAudio = setInterval(function () {
+                if (bgMusic.volume >= volume) {
+                    clearInterval(fadeAudio);
+                } else if (bgMusic.volume < volume) {
+                    bgMusic.volume += 0.1;
+                }
+            }, 500);
+        } else {
+            fadeInAudio(bgLoopMusic)
+        }
+        switchBtn = true;
+        rpzMusic.volume = volume; 
+        soundHover.volume = volumeBtn;
+        soundHoverPlane.volume = volumePlane;
+        soundOutPlane.volume = volumePlane;
     } else {
-    TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 });
+        TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
+        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
+        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 });
+     
+        if (fisrtStart) {
+            var fadeAudio = setInterval(function () {
+                if (bgMusic.volume < 0.1) {
+                    clearInterval(fadeAudio);
+                    bgMusic.pause();
+                } else if (bgMusic.volume >= .1) {
+                    bgMusic.volume -= .1;
+                }
+            }, 300);
+        } else {
+            fadeOutAudio(bgLoopMusic)
+        }
+        switchBtn = false;
+        rpzMusic.volume = 0; 
+        soundHover.volume = 0;
+        soundHoverPlane.volume = 0;
+        soundOutPlane.volume = 0;
+        }
 
-    // test pour le easing du son
-    // var i = setInterval(function () {
-    
-    //   volume-= 0.1
-    //   bgMusic.volume = volume;
-
-    //   console.log(volume)
-
-    
-    //   if (volume <=0) {
-    //     clearInterval(i);
-    //     bgMusic.pause();
-    //   }
-    // }, 200);
-                
-    bgMusic.pause(); 
-    rpzMusic.volume = 0; 
-    soundHover.volume = 0;
-    soundHoverPlane.volume = 0;
-    soundOutPlane.volume = 0;
-    switchBtn = false;
-    }
-
-    onMusic.classList.toggle('switch');
-    offMusic.classList.toggle('switch')
+        onMusic.classList.toggle('switch');
+        offMusic.classList.toggle('switch')
 
     setTimeout(function(){
         lineMusicBtn.forEach(line=>{
             line.classList.toggle('switch');
         })
-    },350)   
+    }, 350)   
+}
+
+musicBtn.addEventListener('click', function(){
+    switchMusic() 
+    if (!stopMusic) {
+        stopMusic = true
+    } else {
+        stopMusic = false
+    }
 })
 
 musicBtn.addEventListener('mouseenter', function(){
@@ -2257,7 +2232,9 @@ function cursorHoverOut() {
         gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
         // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
         indicClickOnPlane.classList.remove("planeHover")
-        soundOutPlane.play(); 
+        if (indicHover == "plane") { 
+            soundOutPlane.play(); 
+        }
         // indicClickOnID.classList.remove("planeHover")
         indicHover = ""
     }
@@ -2593,21 +2570,6 @@ el.addEventListener('swiperight', () => {
         scrollUp();
 });
 
-// el.addEventListener('swipedown', () => {
-//     console.log('down')
-//     if (!workshopActive)
-//         scrollUp();
-// });
-
-// el.addEventListener('swipeup', () => {
-//     console.log('up')
-//     if (!workshopActive)
-//         scrollDown();
-// });
-
-// el.addEventListener('tap', () => {
-// });
-
 function animationEnterWorkshop() {
     if (idPlane[14]) {
         contentContainer__14.style.display = "block"
@@ -2622,17 +2584,17 @@ function animationEnterWorkshop() {
         contentContainer__12.style.display = "block"
         scrollContainer__12.style.display = "flex"
         contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/8tyYcjwssfA"
-        contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+        contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/bkc_MHKCavg"
     } else if (idPlane[11]) {
         contentContainer__11.style.display = "block"
         scrollContainer__11.style.display = "flex"
         contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM"
-        contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
+        // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
     } else if (idPlane[10]) {
         contentContainer__10.style.display = "block"
         scrollContainer__10.style.display = "flex"
         contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA"
-        contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
+        // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
     } else if (idPlane[9]) {
         contentContainer__9.style.display = "block"
         scrollContainer__9.style.display = "flex"
@@ -2675,7 +2637,7 @@ function animationEnterWorkshop() {
     } else if (idPlane[1]) {
         contentContainer__1.style.display = "block"
         scrollContainer__1.style.display = "flex"
-        contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+        // contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
         // contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
     }
 
@@ -2925,6 +2887,8 @@ function functionBtnBackHome() {
     workshopActive = false
     homeActive = true;
 
+    // fadeInAudio(bgLoopMusic)
+
     cursorOnVideo = false
     if (!cursorOnVideo) {
         gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
@@ -3109,6 +3073,31 @@ function hideTimeline(){
 
 }
 
+
+function fadeOutAudio(elementMusic) {
+        var sound = elementMusic
+        var fadeAudio = setInterval(function () {
+            if (sound.volume < .005) {
+                clearInterval(fadeAudio);
+                sound.pause();
+            } else if (sound.volume >= .002) {
+                sound.volume -= .002;
+            }
+        }, 100);
+}
+
+function fadeInAudio(elementMusic) {
+        var sound = elementMusic
+        sound.play();
+        var fadeAudio = setInterval(function () {
+            if (sound.volume >= volumeBg) {
+                clearInterval(fadeAudio);
+            } else if (sound.volume < volumeBg) {
+                sound.volume += 0.01;
+            }
+        }, 500);
+}
+
 ///// START BUTTON EVENTS /////
 function functionBtnStart() {
     homeActive = false;
@@ -3135,8 +3124,6 @@ function functionBtnStart() {
     btnStart.disabled = true;
     backPossible = false
 
-    
-
     setTimeout(function(){
         btnBackHome.disabled = false;
         btnBackHome.classList.remove('close')
@@ -3145,6 +3132,25 @@ function functionBtnStart() {
             backPossible = true
         }, 500)
     }, 4000)
+
+    if (switchBtn && fisrtStart) {
+        var fadeAudio = setInterval(function () {
+            if (bgMusic.volume < 0.1) {
+                clearInterval(fadeAudio);
+                bgMusic.pause();
+            } else if (bgMusic.volume >= .1) {
+                bgMusic.volume -= .1;
+            }
+        }, 300);
+    }
+    fisrtStart = false
+
+    if (switchBtn) {
+        bgLoopMusic.play();
+    }
+
+    // fadeInAudio(bgLoopMusic)
+
 
     TweenMax.to(btnStart, 1.7, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
     TweenMax.to(homeMask, 3, { opacity: 0, ease: "power3.inOut" })
@@ -3166,7 +3172,6 @@ function functionBtnStart() {
         //AXES ANIM
         gsap.to(planeAxe.position, 1.5, { y: -17, ease: "power3.inOut", delay: 1.25 })
         gsap.to(planeAxe.rotation, 1.5, { y: -3.5 * Math.PI, ease: "power3.inOut", delay: 1.25 })
-        
             //CAMERA ANIM
         if (window.matchMedia("(max-width: 600px)").matches) {
             gsap.to(camera.position, 3, { z: 4.3, ease: "power3.inOut" })
@@ -3400,85 +3405,113 @@ function posComparedToElementHeight(el) {
 
 function backToPlane() {
     if (idPlane[14]) {
-        varDelay = posComparedToElementHeight(contentContainer__14)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__14)
+        }
         setTimeout(function() {
             contentContainer__14.style.display = "none"
             scrollContainer__14.style.display = "none"
         }, 2700)
     } else if (idPlane[13]) {
-        varDelay = posComparedToElementHeight(contentContainer__13)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__13)
+        }
         setTimeout(function() {
             contentContainer__13.style.display = "none"
             scrollContainer__13.style.display = "none"
         }, 2700)
     } else if (idPlane[12]) {
-        varDelay = posComparedToElementHeight(contentContainer__12)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__12)
+        }
         setTimeout(function() {
             contentContainer__12.style.display = "none"
             scrollContainer__12.style.display = "none"
         }, 2700)
     } else if (idPlane[11]) {
-        varDelay = posComparedToElementHeight(contentContainer__11)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__11)
+        }
         setTimeout(function() {
             contentContainer__11.style.display = "none"
             scrollContainer__11.style.display = "none"
         }, 2700)
     } else if (idPlane[10]) {
-        varDelay = posComparedToElementHeight(contentContainer__10)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__10)
+        }
         setTimeout(function() {
             contentContainer__10.style.display = "none"
             scrollContainer__10.style.display = "none"
         }, 2700)
     } else if (idPlane[9]) {
-        varDelay = posComparedToElementHeight(contentContainer__9)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__9)
+        }
         setTimeout(function() {
             contentContainer__9.style.display = "none"
             scrollContainer__9.style.display = "none"
         }, 2700)
     } else if (idPlane[8]) {
-        varDelay = posComparedToElementHeight(contentContainer__8)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__8)
+        }
         setTimeout(function() {
             contentContainer__8.style.display = "none"
             scrollContainer__8.style.display = "none"
         }, 2700)
     } else if (idPlane[7]) {
-        varDelay = posComparedToElementHeight(contentContainer__7)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__7)
+        }
         setTimeout(function() {
             contentContainer__7.style.display = "none"
             scrollContainer__7.style.display = "none"
         }, 2700)
     } else if (idPlane[6]) {
-        varDelay = posComparedToElementHeight(contentContainer__6)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__6)
+        }
         setTimeout(function() {
             contentContainer__6.style.display = "none"
             scrollContainer__6.style.display = "none"
         }, 2700)
     } else if (idPlane[5]) {
-        varDelay = posComparedToElementHeight(contentContainer__5)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__5)
+        }
         setTimeout(function() {
             contentContainer__5.style.display = "none"
             scrollContainer__5.style.display = "none"
         }, 2700)
     } else if (idPlane[4]) {
-        varDelay = posComparedToElementHeight(contentContainer__4)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__4)
+        }
         setTimeout(function() {
             contentContainer__4.style.display = "none"
             scrollContainer__4.style.display = "none"
         }, 2700)
     } else if (idPlane[3]) {
-        varDelay = posComparedToElementHeight(contentContainer__3)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__3)
+        }
         setTimeout(function() {
             contentContainer__3.style.display = "none"
             scrollContainer__3.style.display = "none"
         }, 2700)
     } else if (idPlane[2]) {
-        varDelay = posComparedToElementHeight(contentContainer__2)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__2)
+        }
         setTimeout(function() {
             contentContainer__2.style.display = "none"
             scrollContainer__2.style.display = "none"
         }, 2700)
     } else if (idPlane[1]) {
-        varDelay = posComparedToElementHeight(contentContainer__1)
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+            varDelay = posComparedToElementHeight(contentContainer__1)
+        }
         setTimeout(function() {
             contentContainer__1.style.display = "none"
             scrollContainer__1.style.display = "none"
@@ -3624,12 +3657,11 @@ function backToPlane() {
         hoverPlane = true
     }, 2100);
 
+    workShopContainer.classList.remove('switchPlane');
     setTimeout(function() {
         workshopActive = false;
-        workShopContainer.classList.remove('switchPlane');
         if (idPlane[14]) {
             contentContainer__14.children[2].children[0].children[1].src = ""
-            contentContainer__14.children[4].children[0].children[1].src = ""
         } else if (idPlane[13]) {
             contentContainer__13.children[2].children[0].children[1].src = ""
             contentContainer__13.children[4].children[0].children[1].src = ""
@@ -3638,10 +3670,10 @@ function backToPlane() {
             contentContainer__12.children[4].children[0].children[1].src = ""
         } else if (idPlane[11]) {
             contentContainer__11.children[2].children[0].children[1].src = ""
-            contentContainer__11.children[4].children[0].children[1].src = ""
+            // contentContainer__11.children[4].children[0].children[1].src = ""
         } else if (idPlane[10]) {
             contentContainer__10.children[2].children[0].children[1].src = ""
-            contentContainer__10.children[4].children[0].children[1].src = ""
+            // contentContainer__10.children[4].children[0].children[1].src = ""
         } else if (idPlane[9]) {
             contentContainer__9.children[2].children[0].children[1].src = ""
             contentContainer__9.children[4].children[0].children[1].src = ""
@@ -4161,6 +4193,7 @@ iframe.forEach(e => {
             gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
         }
+
     });
 });
 // contentContainer.forEach(e => {
@@ -5232,6 +5265,8 @@ function scrollUp() {
         gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
         gsap.to(logo.scale, 2.25, { z: 0.0001, x: 0.0001, y: 0.0001, ease: "power3.inOut", })
         gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
+        gsap.to(socle.position, 2.25, { y: -10.7, ease: "power3.inOut" })
+        gsap.to(socle.rotation, 2.25, { y: 0, ease: "power3.inOut" })
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(home.position, 2.95, { z: 0, x: -1.45, ease: "power3.inOut" })
             gsap.to(home.rotation, 2.95, { y: -.35, z: 0, ease: "power3.inOut" })
@@ -5591,6 +5626,8 @@ function scrollDown() {
         gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
         gsap.to(logo.scale, 2.25, { z: 0.0001, x: 0.0001, y: 0.0001, ease: "power3.inOut", })
         gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
+        gsap.to(socle.position, 2.25, { y: -10.7, ease: "power3.inOut" })
+        gsap.to(socle.rotation, 2.25, { y: 0, ease: "power3.inOut" })
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(home.position, 2.95, { z: 0, x: -1.45, ease: "power3.inOut" })
             gsap.to(home.rotation, 2.95, { y: -.35, z: 0, ease: "power3.inOut" })
@@ -5828,166 +5865,167 @@ function checkScrollDirection(elContent) {
         } else {
             direction = "up"
         }
-        scrollPos = (elContent.scrollTop);
+        scrollPos = elContent.scrollTop;
     // })
     return direction
 }
 
-let test;
-
 function scrollIntoWorkshop(elContent, elCredit) {
-    camera.position.z = scrollWorkshop(elContent)
-    if (window.matchMedia("(max-width: 1440px)").matches) {
-        if (checkScrollDirection(elContent) == "down") {
-            if (camera.position.z <= -108) {
-                if (idPlane[14]) {
-                    contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
-                        } else if (idPlane[13]) {
-                            contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src
-                            contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src
-                        } else if (idPlane[12]) {
-                            contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src
-                            contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
-                        } else if (idPlane[11]) {
-                            contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
-                            contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
-                        } else if (idPlane[10]) {
-                            contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
-                            contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
-                        } else if (idPlane[9]) {
-                            contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
-                            contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
-                        } else if (idPlane[8]) {
-                            contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
-                        } else if (idPlane[7]) {
-                            contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
-                            // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-                        } else if (idPlane[6]) {
-                            contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
-                            // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-                        } else if (idPlane[5]) {
-                            contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
-                            // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-                        } else if (idPlane[4]) {
-                            contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
-                            // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-                        } else if (idPlane[3]) {
-                            contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
-                            // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-                        } else if (idPlane[2]) {
-                            contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
-                            // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-                        } else if (idPlane[1]) {
-                            contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
-                            // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-                        }
-                        cursorOnVideo = false
-                        if (!cursorOnVideo) {
-                            gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                            gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                        }
-                        elCredit.scrollTop = 0
-                        workShopContainer.classList.remove('switchPlane')
-                        btnBackWorkshop.classList.add('close')
-                        gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-                        gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-                        gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
-                        gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
-                        gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
-            
-                        TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-                        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-            
-                        backPossible = false;
-                        clickPossible = false;
-                        setTimeout(function() {
-                            creditActive = true
-                            creditContainer.classList.add('switchStreet')
-                        }, 1000)
-                        setTimeout(function() {
-                            backPossible = true
-                            clickPossible = true;
-                            btnBackWorkshop.classList.remove('close')
-                        }, 3000)
-                    } 
-                } 
-    } else {
-        if (checkScrollDirection(elContent) == "down") {
-                    if (camera.position.z <= -106) {
-                        if (idPlane[14]) {
-                            contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
-                        } else if (idPlane[13]) {
-                            contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src
-                            contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src
-                        } else if (idPlane[12]) {
-                            contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src
-                            contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
-                        } else if (idPlane[11]) {
-                            contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
-                            contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
-                        } else if (idPlane[10]) {
-                            contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
-                            contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
-                        } else if (idPlane[9]) {
-                            contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
-                            contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
-                        } else if (idPlane[8]) {
-                            contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
-                        } else if (idPlane[7]) {
-                            contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
-                            // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-                        } else if (idPlane[6]) {
-                            contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
-                            // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-                        } else if (idPlane[5]) {
-                            contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
-                            // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-                        } else if (idPlane[4]) {
-                            contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
-                            // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-                        } else if (idPlane[3]) {
-                            contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
-                            // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-                        } else if (idPlane[2]) {
-                            contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
-                            // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-                        } else if (idPlane[1]) {
-                            contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
-                            // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-                        }
-                        cursorOnVideo = false
-                        if (!cursorOnVideo) {
-                            gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                            gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                        }
-                        elCredit.scrollTop = 0
-                        workShopContainer.classList.remove('switchPlane')
-                        btnBackWorkshop.classList.add('close')
-                        gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-                        gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-                        gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
-                        gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
-                        gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
-                        
-                        TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-                        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-                        
-                        backPossible = false;
-                        clickPossible = false;
-                        setTimeout(function() {
-                            creditContainer.classList.add('switchStreet')
-                            creditActive = true
-                        }, 1000)
-                        setTimeout(function() {
-                            backPossible = true
-                            clickPossible = true;
-                            btnBackWorkshop.classList.remove('close')
-                        }, 3000)
-                    } 
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+        camera.position.z = scrollWorkshop(elContent)
+        if (window.matchMedia("(max-width: 1440px)").matches) {
+            if (checkScrollDirection(elContent) == "down") {
+                if (camera.position.z <= -108) {
+                    if (idPlane[14]) {
+                        contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
+                            } else if (idPlane[13]) {
+                                contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src
+                                contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src
+                            } else if (idPlane[12]) {
+                                contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src
+                                contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
+                            } else if (idPlane[11]) {
+                                contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
+                                // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
+                            } else if (idPlane[10]) {
+                                contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
+                                // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
+                            } else if (idPlane[9]) {
+                                contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
+                                contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
+                            } else if (idPlane[8]) {
+                                contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
+                            } else if (idPlane[7]) {
+                                contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
+                                // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+                            } else if (idPlane[6]) {
+                                contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
+                                // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+                            } else if (idPlane[5]) {
+                                contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
+                                // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+                            } else if (idPlane[4]) {
+                                contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
+                                // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+                            } else if (idPlane[3]) {
+                                contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
+                                // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+                            } else if (idPlane[2]) {
+                                contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
+                                // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+                            } else if (idPlane[1]) {
+                                contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
+                                // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+                            }
+    
+                            cursorOnVideo = false
+                            if (!cursorOnVideo) {
+                                gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+                                gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+                            }
+                            workShopContainer.classList.remove('switchPlane')
+                            btnBackWorkshop.classList.add('close')
+                            gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+                            gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+                            gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
+                            gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
+                            gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+                
+                            TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
+                            TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
+                
+                            backPossible = false;
+                            clickPossible = false;
+                            setTimeout(function() {
+                                creditActive = true
+                                creditContainer.classList.add('switchStreet')
+                                elCredit.scrollTop = 0
+                            }, 1000)
+                            setTimeout(function() {
+                                backPossible = true
+                                clickPossible = true;
+                                btnBackWorkshop.classList.remove('close')
+                            }, 3000)
+                        } 
+            } 
+        } else {
+            if (checkScrollDirection(elContent) == "down") {
+                        if (camera.position.z <= -106) {
+                            if (idPlane[14]) {
+                                contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
+                            } else if (idPlane[13]) {
+                                contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src
+                                contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src
+                            } else if (idPlane[12]) {
+                                contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src
+                                contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
+                            } else if (idPlane[11]) {
+                                contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
+                                // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
+                            } else if (idPlane[10]) {
+                                contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
+                                // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
+                            } else if (idPlane[9]) {
+                                contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
+                                contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
+                            } else if (idPlane[8]) {
+                                contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
+                            } else if (idPlane[7]) {
+                                contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
+                                // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+                            } else if (idPlane[6]) {
+                                contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
+                                // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+                            } else if (idPlane[5]) {
+                                contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
+                                // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+                            } else if (idPlane[4]) {
+                                contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
+                                // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+                            } else if (idPlane[3]) {
+                                contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
+                                // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+                            } else if (idPlane[2]) {
+                                contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
+                                // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+                            } else if (idPlane[1]) {
+                                contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
+                                // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+                            }
+                            
+                            cursorOnVideo = false
+                            if (!cursorOnVideo) {
+                                gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+                                gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+                            }
+                            workShopContainer.classList.remove('switchPlane')
+                            btnBackWorkshop.classList.add('close')
+                            gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+                            gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+                            gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
+                            gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
+                            gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+                            
+                            TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
+                            TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
+                            
+                            backPossible = false;
+                            clickPossible = false;
+                            setTimeout(function() {
+                                creditContainer.classList.add('switchStreet')
+                                creditActive = true
+                                elCredit.scrollTop = 0
+                            }, 1000)
+                            setTimeout(function() {
+                                backPossible = true
+                                clickPossible = true;
+                                btnBackWorkshop.classList.remove('close')
+                            }, 3000)
+                        } 
+            }
         }
     }
 }
-
 
 ///// WORKSHOP SCROLL + CREDIT ENTER /////
 contentContainer__14.addEventListener('scroll', function() {
@@ -6109,11 +6147,9 @@ contentContainer__1.addEventListener('scroll', function() {
 function scrollTrigger(elementContainer, elementContainerImg) {
     elementContainer.addEventListener("scroll", function() {
         if (creditActive) {
-
             elementContainerImg.forEach(e => {
                 let tl = gsap.timeline({ defaults: { ease: "expo.InOut" }}).to(e, { opacity: 1,  duration: .5 })
-
-                  ScrollTrigger.create({
+                ScrollTrigger.create({
                     trigger: e.children[2].children[2],
                     start: "top center",
                     scroller: elementContainer,
@@ -6169,7 +6205,7 @@ document.onkeydown = function(e) {
             }
             break;
         case 27:
-            if (camera.position.z == 3.7 && !workshopActive && backPossible) {
+            if (camera.position.z == 3.7 && !workshopActive && backPossible && !homeActive && !startMenuActive) {
                 functionBtnBackHome();
             }
             if (workshopActive && !creditActive && scrollPossible && !btnPressed) {
@@ -6181,7 +6217,10 @@ document.onkeydown = function(e) {
             }
             break;
         case 13:
-            if (camera.position.z == 10 && homeActive) {
+            if (!homeActive && startMenuActive) {
+                startImmersion();
+            }
+            if (camera.position.z == 10 && homeActive && !startMenuActive) {
                 functionBtnStart();
             }
             if (!homeActive && clickPossible) {
@@ -6202,20 +6241,23 @@ document.onkeydown = function(e) {
             }
             break;
         case 65: // DEBUGGER
-            console.log(camera.position.z)
+            // console.log(camera.position.z)
             // console.log("1/4 : " + contentContainer__14.scrollHeight / 4)
             // console.log("2/4 : " + contentContainer__14.scrollHeight / 4 * 2)
             // console.log("3/4 : " + contentContainer__14.scrollHeight / 4 * 3)
             // console.log("4/4 : " + contentContainer__14.scrollHeight / 4 * 4)
-            // console.log("pos Fiche Actuelle : " + contentContainer__14.scrollTop)
+            console.log(contentContainer__14.scrollTop)
             // console.log("pos Crédit Actuelle : " + scrollContainer__14.scrollTop)
-            console.log("Crédit : " + creditActive)
-            console.log("Workshop : " + workshopActive)
-            console.log("Back : " + backPossible)
-            console.log("Click : " + clickPossible)
-            console.log("Btn pressed : " + btnPressed)
-            console.log("Scroll : " + scrollPossible)
-            console.log("Hover Plane : " + hoverPlane)
+            // console.log("Crédit : " + creditActive)
+            // console.log("Workshop : " + workshopActive)
+            // console.log("Back : " + backPossible)
+            // console.log("Click : " + clickPossible)
+            // console.log("Btn pressed : " + btnPressed)
+            // console.log("Scroll : " + scrollPossible)
+            // console.log("Hover Plane : " + hoverPlane)
+            // console.log("btn Music : " + switchBtn)
+            // console.log("volume : " + bgLoopMusic.volume)
+            console.log(scrollContainer__14.scrollTop)
             // console.log("Plane Alpha : " + materialPlane14.uniforms.alpha.value)
             break;
     }

@@ -157,13 +157,16 @@
         }
     }
 
+    .startHidden {
+        display: none;
+    }
+
     .cursor {
         position: fixed;
         pointer-events: none;
         z-index: 100;
         mix-blend-mode: difference;
         opacity: 0;
-        transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
     }
 
     .cursorSize {
@@ -189,7 +192,7 @@
         transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
 
         &.mouseover {
-            transition: opacity .5s cubic-bezier(.25, 0, 0, 1);
+            transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
             opacity: 0;
         }
     }
@@ -290,17 +293,25 @@
                     width: 480px;
                     height: 270px;
                 }
+                @media screen and (max-width: 768px) {                    
+                    width: 390px;
+                    height: 216px;
+                }
                 @media screen and (max-width: 600px) {                    
                     width: 390px;
                     height: 216px;
                 }
-            }
-
-            .containerPara__1, .containerPara__3 {
-                @media screen and (max-width : 1440px) {
-                    .para {
-                        width: 35% !important;
-                    }
+                @media screen and (max-width: 550px) {                    
+                    width: 320px;
+                    height: 180px;
+                }
+                @media screen and (max-width: 500px) {                    
+                    width: 274px;
+                    height: 154px;
+                }
+                @media screen and (max-width: 400px) {                    
+                    width: 240px;
+                    height: 135px;
                 }
             }
 
@@ -718,7 +729,7 @@
                     align-items: center;
                     
                     .para {
-                        margin: 0 0 100vh 22vw;
+                        margin: 0 0 150vh 22vw;
                         width: 25%;
                         display: flex;
                         flex-direction: column;
@@ -835,7 +846,7 @@
                     align-items: center;
                     
                     .para {
-                        margin: 0 0 100vh 22vw;
+                        margin: 0 0 150vh 22vw;
                         width: 25%;
                         display: flex;
                         flex-direction: column;
@@ -1664,7 +1675,7 @@
                                 width: 100%;
                                 height: 100%;
                                 border: none;
-                                background-image: url('../assets/img/ateliers/contenu/Andy_Warho-Bot.jpg');
+                                background-image: url('../assets/img/ateliers/contenu/banksy_bot_img.png');
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 opacity: 1;
@@ -1678,7 +1689,7 @@
                                 // transform: translate(-50%, -50%);
                                 width: 100%;
                                 height: 100%;
-                                background-image: url('../assets/img/ateliers/contenu/Andy.gif');
+                                background-image: url('../assets/img/ateliers/contenu/banksy_bot.gif');
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 z-index: 5;
@@ -2035,6 +2046,254 @@
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width : 1440px) {
+                .containerPara__1, .containerPara__3 {
+                    .para {
+                        width: 35%;
+                    }
+                }
+            }
+            
+            @media screen and (max-width: 1024px) {
+                .title {
+                    margin-bottom: 30vh!important;
+                }
+                .para {
+                    width: 50%!important;
+                }
+
+                &__14 {
+                    .containerPara__3 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__13 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__12 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__11 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__10 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__9 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__8 {
+                    .containerPara__3 {
+                        .para {
+                            margin: 0 22vw 22vh 0;
+                        }
+                    }
+                }
+    
+                &__7 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__6 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                        .desktop {
+                            display: none;
+                        }
+                    }
+                }
+    
+                &__5 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__4 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__3 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__2 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__1 {
+                    .containerPara__7 {
+                        .para {
+                            width: 25%;
+                            margin: 0 22vw 22vh 0;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 768px) {                    
+                &__14 {
+                    .containerPara__3 {
+                        .para {
+                            margin: 0 22vw 22vh 0;
+                        }
+                    }
+                }
+    
+                &__13 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__12 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__11 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__10 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__9 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__8 {
+                    .containerPara__3 {
+                        .para {
+                            margin: 0 22vw 22vh 0;
+                        }
+                    }
+                }
+    
+                &__7 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__6 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__5 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__4 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__3 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__2 {
+                    .containerPara__4 {
+                        .para {
+                            margin: 0 0 22vh 22vw;
+                        }
+                    }
+                }
+    
+                &__1 {
+                    .containerPara__7 {
+                        .para {
+                            width: 25%;
+                            margin: 0 22vw 22vh 0;
                         }
                     }
                 }
