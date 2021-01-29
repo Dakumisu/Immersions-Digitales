@@ -576,51 +576,6 @@ loaderSocle.load(socleModel, function(addSocle) {
     socle.rotation.y = 0;
 });
 
-// import test from "../assets/model/DracoModels/socleCompress.gltf";
-
-// var loaderSocle = new THREEGLTFLoader();
-// // loaderSocle.setDRACOLoader(new THREEDRACOLoader("node_module/three/examples/js/libs/draco/gltf/"));
-// loaderSocle.setDRACOLoader(new THREEDRACOLoader("https://unpkg.com/browse/three@0.124.0/examples/js/libs/draco/"));
-
-// loaderSocle.load(test, gltf => {
-//         socle = gltf.scene;
-//         scene.add(socle);
-//         socle.position.set(0, -10.7, 0)
-//         socle.scale.set(.7, .7, .7)
-//         socle.rotation.y = 0;
-//         console.log(true)
-//     },
-//     function (xhr) {
-//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-//     }
-// );
-
-// Specify path to a folder containing WASM/JS decoding libraries.
-// loaderSocle.setDecoderPath( '../node_modules/three/examples/js/libs/draco/gltf/' );
-
-// Load a Draco geometry
-// loaderSocle.load(test, function( geometry ) {
-//     const material = new THREE.MeshStandardMaterial({
-//         color: 0x606060
-//     });
-//     const mesh = new THREE.Mesh(geometry, material);
-//     console.log(mesh)
-//     },
-//     function (xhr) {
-//         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-//         console.log(xhr)
-//         // console.log(xhr.srcElement.responseURL)
-//         // var test = xhr.srcElement.responseURL
-//         // var socle = addSocle.scene;
-//         // scene.add(socle);
-//         // console.log(scene);
-
-//     },
-//     function (error) {
-//         console.log('An error happened');
-//     }
-// );
-
 
 // LOGO MODEL
 var logo;
@@ -993,16 +948,6 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     });
 }
 
-// c'est un test pour l'interaction sinon c'était "undefind"
-// let enceinteMaterial = new THREE.MeshBasicMaterial({
-//     map: null
-// });
-
-// let enceinteMesh = new THREE.Mesh(enceinte, enceinteMaterial);
-// scene.add(enceinteMesh)
-
-
-
 // RIGHT DOOR MODEL
 var rightDoor;
 
@@ -1090,7 +1035,7 @@ var planePanneauRue1 = new THREE.PlaneGeometry(11.92, 3.6, 1, 1);
 var planePanneauRue2 = new THREE.PlaneGeometry(2.75, 5.9, 1, 1);
 var planePanneauRue3 = new THREE.PlaneGeometry(34.75, 3.2, 1, 1);
 var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
-var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
+// var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
 var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
 var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1);
 
@@ -1503,41 +1448,48 @@ var planeMeshPanneauRue7 = new THREE.Mesh(planePanneauRue7, materialPlaneRue7);
 scene.add(planeMeshPanneauRue7);
 planeMeshPanneauRue7.position.set(5.975, 3.967, -133.6);
 planeMeshPanneauRue7.rotation.set(0, 0, 0);
+planeMeshPanneauRue7.scale.set(0.0001, 0.0001, 0.0001);
 
 var materialPlaneRue4 = new THREE.MeshBasicMaterial( { map: texturepanneau2rue1 } );
 var planeMeshPanneauRue4 = new THREE.Mesh(planePanneauRue4, materialPlaneRue4);
 scene.add(planeMeshPanneauRue4);
 planeMeshPanneauRue4.position.set(-20.5, 18.5, -71.75);
 planeMeshPanneauRue4.rotation.set(0, 0, 0);
+planeMeshPanneauRue4.scale.set(0.0001, 0.0001, 0.0001);
 
 var materialPlaneRue3 = new THREE.MeshBasicMaterial( { map: texturebaniere1 } );
 var planeMeshPanneauRue3 = new THREE.Mesh(planePanneauRue3, materialPlaneRue3);
 scene.add(planeMeshPanneauRue3);
 planeMeshPanneauRue3.position.set(-.60, 14.3, -71.1);
 planeMeshPanneauRue3.rotation.set(0, 0, 0);
+planeMeshPanneauRue3.scale.set(0.0001, 0.0001, 0.0001);
 
 var materialPlaneRue2 = new THREE.MeshBasicMaterial( { map: texturepanneaurue1 } );
 var planeMeshPanneauRue2 = new THREE.Mesh(planePanneauRue2, materialPlaneRue2);
 scene.add(planeMeshPanneauRue2);
 planeMeshPanneauRue2.position.set(-6.841, 6.125, -45.05);
 planeMeshPanneauRue2.rotation.set(0, 0, 0);
+planeMeshPanneauRue2.scale.set(0.0001, 0.0001, 0.0001);
 
 var materialPlaneRue1 = new THREE.MeshBasicMaterial( { map: textureidbaniere } );
 var planeMeshPanneauRue1 = new THREE.Mesh(planePanneauRue1, materialPlaneRue1);
 scene.add(planeMeshPanneauRue1);
 planeMeshPanneauRue1.position.set(9.139, 6.048, -36.55);
 planeMeshPanneauRue1.rotation.set(0, -1.571, 0);
+planeMeshPanneauRue1.scale.set(0.0001, 0.0001, 0.0001);
 
 var materialPlaneRond = new THREE.MeshBasicMaterial( { map: texturechiffre1 } );
 var planeMeshPanneauRueRond = new THREE.Mesh(planePanneauRueRond, materialPlaneRond);
 scene.add(planeMeshPanneauRueRond);
 planeMeshPanneauRueRond.position.set(6.75, 6.15, -43.0);
 planeMeshPanneauRueRond.rotation.set(0, 0, 0);
+planeMeshPanneauRueRond.scale.set(0.0001, 0.0001, 0.0001);
 
 var planeMeshPanneau = new THREE.Mesh(planePanneau, materialPlanePanneau);
 scene.add(planeMeshPanneau);
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
 planeMeshPanneau.rotation.set(-.035, -.74, -.07);
+planeMeshPanneau.scale.set(0.0001, 0.0001, 0.0001);
 
 /////// PLANE AXES ///////
 var planeAxe = new THREE.Object3D();
@@ -1754,6 +1706,7 @@ let workShopButton14 = document.querySelector('.workShopButton__14');
 let iframe = document.querySelectorAll('iframe');
 let contenu = document.querySelectorAll('.contenu');
 let contenu_link = document.querySelectorAll('.contenu__link');
+let greta = document.querySelector('.greta');
 
 let contenu_vr = document.querySelectorAll('.vr');
 
@@ -1773,7 +1726,6 @@ let mobileWorkShopButton12 = document.querySelector('.mobileWorkShopButton__12')
 let mobileWorkShopButton13 = document.querySelector('.mobileWorkShopButton__13');
 let mobileWorkShopButton14 = document.querySelector('.mobileWorkShopButton__14');
 
-// let indicClickOnID = document.querySelector('.indicClickOnID');
 let indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 let timelineIndication = document.querySelector('.indication');
 let cursorIndication = document.querySelector('.cursorIndication');
@@ -1781,7 +1733,8 @@ let mobileIndication = document.querySelector('.mobileIndication');
 
 let workShopContainer = document.querySelector('.workShopContainer');
 let creditContainer = document.querySelector('.creditContainer');
-let contentContainer = document.querySelectorAll('.contentContainer')
+
+let faceImg = document.querySelectorAll('.faceImg');
 
 let contentContainer__14 = document.querySelector('.contentContainer__14');
 let scrollContainer__14 = document.querySelector('.scrollContainer__14');
@@ -1881,270 +1834,215 @@ hamburgerContainer.addEventListener('click', function(){
 
 /////// IMAGES HOVER ///////
 scrollContainerContentImg__14.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__13.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__12.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__11.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__10.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__9.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__8.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__7.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__6.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__5.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__4.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__3.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__2.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__1.forEach(e => {
-    e.children[2].children[2].addEventListener('mouseenter', function () {
+    e.children[2].children[0].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
-        e.children[2].children[1].classList.add('switch')
-        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[2].addEventListener('mouseleave', function () {
+    e.children[2].children[0].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
-        e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[2].classList.remove('switch')
     })
 });
+
 
 let homeActive = true;
 let hoverPlane = true;
@@ -2189,21 +2087,6 @@ musicBtn.addEventListener('click', function(){
     TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 });
-
-    // test pour le easing du son
-    // var i = setInterval(function () {
-    
-    //   volume-= 0.1
-    //   bgMusic.volume = volume;
-
-    //   console.log(volume)
-
-    
-    //   if (volume <=0) {
-    //     clearInterval(i);
-    //     bgMusic.pause();
-    //   }
-    // }, 200);
                 
     bgMusic.pause(); 
     rpzMusic.volume = 0; 
@@ -2241,10 +2124,8 @@ function cursorHoverIn() {
             gsap.to(cursorSize, 0.75, { padding: 50, ease: "Power3.easeOut"})
             gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
         } else if (indicHover == "ID") {
-            // indicClickOnID.classList.add("planeHover")
             gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 25, ease: "Power3.easeOut"})
             gsap.to(cursorSize, 0.75, { padding: 25, ease: "Power3.easeOut"})
-            // gsap.to(indicClickOnID, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
         }
     }
 }
@@ -2255,10 +2136,7 @@ function cursorHoverOut() {
         gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
         gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
         gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-        // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
         indicClickOnPlane.classList.remove("planeHover")
-        soundOutPlane.play(); 
-        // indicClickOnID.classList.remove("planeHover")
         indicHover = ""
     }
 }
@@ -2291,7 +2169,6 @@ planeMesh14.on('mouseout', function(ev) {
 planeMesh13.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2313,7 +2190,6 @@ planeMesh13.on('mouseout', function(ev) {
 planeMesh12.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane12.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2335,7 +2211,6 @@ planeMesh12.on('mouseout', function(ev) {
 planeMesh11.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane11.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2357,7 +2232,6 @@ planeMesh11.on('mouseout', function(ev) {
 planeMesh10.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane10.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2379,7 +2253,6 @@ planeMesh10.on('mouseout', function(ev) {
 planeMesh9.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane9.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2422,7 +2295,6 @@ planeMesh8.on('mouseout', function(ev) {
 planeMesh7.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane7.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2444,7 +2316,6 @@ planeMesh7.on('mouseout', function(ev) {
 planeMesh6.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane6.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2466,7 +2337,6 @@ planeMesh6.on('mouseout', function(ev) {
 planeMesh5.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane5.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2487,7 +2357,6 @@ planeMesh5.on('mouseout', function(ev) {
 planeMesh4.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane4.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2509,7 +2378,6 @@ planeMesh4.on('mouseout', function(ev) {
 planeMesh3.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane3.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2531,7 +2399,6 @@ planeMesh3.on('mouseout', function(ev) {
 planeMesh2.on('mouseover', function(ev) {
     if (ev && (hoverPlane && !workshopActive && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5))) {
         indicHover = "plane"
-        console.log(ev)
         cursorHoverIn()
         if (!window.matchMedia("(max-width: 1024px)").matches) {
             gsap.to(materialPlane2.uniforms.alpha, 0.75, { value: 1.0, ease: "Power3.easeOut" })
@@ -2582,31 +2449,14 @@ new TouchSweep(el, data, threshold);
 
 
 el.addEventListener('swipeleft', () => {
-    console.log('left')
     if (!workshopActive)
         scrollDown();
 });
 
 el.addEventListener('swiperight', () => {
-    console.log('right')
     if (!workshopActive)
         scrollUp();
 });
-
-// el.addEventListener('swipedown', () => {
-//     console.log('down')
-//     if (!workshopActive)
-//         scrollUp();
-// });
-
-// el.addEventListener('swipeup', () => {
-//     console.log('up')
-//     if (!workshopActive)
-//         scrollDown();
-// });
-
-// el.addEventListener('tap', () => {
-// });
 
 function animationEnterWorkshop() {
     if (idPlane[14]) {
@@ -2646,37 +2496,37 @@ function animationEnterWorkshop() {
         contentContainer__7.style.display = "block"
         scrollContainer__7.style.display = "flex"
         contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY"
-        // contentContainer__7.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    
     } else if (idPlane[6]) {
         contentContainer__6.style.display = "block"
         scrollContainer__6.style.display = "flex"
         contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ"
-        // contentContainer__6.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    
     } else if (idPlane[5]) {
         contentContainer__5.style.display = "block"
         scrollContainer__5.style.display = "flex"
         contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y"
-        // contentContainer__5.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    
     } else if (idPlane[4]) {
         contentContainer__4.style.display = "block"
         scrollContainer__4.style.display = "flex"
         contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM"
-        // contentContainer__4.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    
     } else if (idPlane[3]) {
         contentContainer__3.style.display = "block"
         scrollContainer__3.style.display = "flex"
         contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI"
-        // contentContainer__3.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    
     } else if (idPlane[2]) {
         contentContainer__2.style.display = "block"
         scrollContainer__2.style.display = "flex"
         contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g"
-        // contentContainer__2.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    
     } else if (idPlane[1]) {
         contentContainer__1.style.display = "block"
         scrollContainer__1.style.display = "flex"
         contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
-        // contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+    
     }
 
     if (window.matchMedia("(max-width: 1024px)").matches) {
@@ -2706,9 +2556,8 @@ function animationEnterWorkshop() {
         gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
         gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
         gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
-        // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
         indicClickOnPlane.classList.remove("planeHover")
-        // indicClickOnID.classList.remove("planeHover")
+
     }
 
     gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
@@ -3068,9 +2917,15 @@ function functionBtnBackHome() {
         gsap.to(grid4.scale, .8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
         gsap.to(grid5.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
         gsap.to(poutre.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
-        gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-        gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
+        gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(planeMeshPanneauRue1.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(planeMeshPanneauRue2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(planeMeshPanneauRue3.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(planeMeshPanneauRue4.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(planeMeshPanneauRue7.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+        gsap.to(planeMeshPanneauRueRond.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
         gsap.to(cam.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
         gsap.to(vr2.scale, .95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
         gsap.to(enceinte.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
@@ -3229,8 +3084,14 @@ function functionBtnStart() {
             gsap.to(grid.scale, 1.4, { x: 110, y: 80, z: 110, ease: "power3.inOut", delay: 1.6 })
             gsap.to(poutre.scale, 2, { x: 90, y: 100, z: 100, ease: "power3.inOut", delay: 1 })
             gsap.to(street.scale, 0, { x: 110, y: 110, z: 110, delay: 3.1 })
-            gsap.to(leftDoor2.scale, 0, { x: 110, y: 110, z: 110, ease: "power3.inOut", delay: 3.1 })
-            gsap.to(rightDoor2.scale, 0, { x: 110, y: 110, z: 110, ease: "power3.inOut", delay: 3.1 })
+            gsap.to(leftDoor2.scale, 0, { x: 110, y: 110, z: 110, delay: 3.1 })
+            gsap.to(rightDoor2.scale, 0, { x: 110, y: 110, z: 110, delay: 3.1 })
+            gsap.to(planeMeshPanneauRue1.scale, 0, { x: 1, y: 1, z: 1, delay: 3.1 })
+            gsap.to(planeMeshPanneauRue2.scale, 0, { x: 1, y: 1, z: 1, delay: 3.1 })
+            gsap.to(planeMeshPanneauRue3.scale, 0, { x: 1, y: 1, z: 1, delay: 3.1 })
+            gsap.to(planeMeshPanneauRue4.scale, 0, { x: 1, y: 1, z: 1, delay: 3.1 })
+            gsap.to(planeMeshPanneauRue7.scale, 0, { x: 1, y: 1, z: 1, delay: 3.1 })
+            gsap.to(planeMeshPanneauRueRond.scale, 0, { x: 1, y: 1, z: 1, delay: 3.1 })
         }
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColor.r, g: cyanColor.g, b: cyanColor.b, delay: 1 });
@@ -3629,7 +3490,6 @@ function backToPlane() {
         workShopContainer.classList.remove('switchPlane');
         if (idPlane[14]) {
             contentContainer__14.children[2].children[0].children[1].src = ""
-            contentContainer__14.children[4].children[0].children[1].src = ""
         } else if (idPlane[13]) {
             contentContainer__13.children[2].children[0].children[1].src = ""
             contentContainer__13.children[4].children[0].children[1].src = ""
@@ -3650,25 +3510,25 @@ function backToPlane() {
             contentContainer__8.children[4].children[0].children[1].src = ""
         } else if (idPlane[7]) {
             contentContainer__7.children[2].children[0].children[1].src = ""
-            // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+            
         } else if (idPlane[6]) {
             contentContainer__6.children[2].children[0].children[1].src = ""
-            // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+            
         } else if (idPlane[5]) {
             contentContainer__5.children[2].children[0].children[1].src = ""
-            // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+            
         } else if (idPlane[4]) {
             contentContainer__4.children[2].children[0].children[1].src = ""
-            // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+            
         } else if (idPlane[3]) {
             contentContainer__3.children[2].children[0].children[1].src = ""
-            // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+            
         } else if (idPlane[2]) {
             contentContainer__2.children[2].children[0].children[1].src = ""
-            // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+            
         } else if (idPlane[1]) {
             contentContainer__1.children[2].children[0].children[1].src = ""
-            // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+            
         }
     }, 2000)
 }
@@ -3737,22 +3597,20 @@ function backToWorkshop() {
 
         gsap.to(leftDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
         gsap.to(rightDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
-        gsap.to(creditContainer, 2.5, { opacity: 0, ease: "Power4.easeOut" })
-
-        //// CACHER LES IMAGES DES CREDITS ICI ////
+        gsap.to(creditContainer, 2, { opacity: 0, ease: "Power3.easeOut" })
 
         TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
         
         gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
         
-        creditContainer.classList.remove('switchStreet')
         setTimeout(function() {
             creditActive = false;
         }, 3000)
         setTimeout(function() {
             workShopContainer.classList.add('switchPlane');
-        }, 2900);
+            creditContainer.classList.remove('switchStreet')
+        }, 3000);
     }
 
 }
@@ -3945,6 +3803,8 @@ sm3.addEventListener('click', function() {
 discordContainer.addEventListener('mouseenter', function() { // POINTER DISCORD
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: 1, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
+        TweenMax.to(".containerAlertDiscord", { duration: 0.65, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut" })
+        TweenMax.to(".containerAlertDiscord h3", { duration: 0.65, opacity: 1, ease: "power3.inOut" })
         soundHover.play();
     }
 })
@@ -3952,6 +3812,9 @@ discordContainer.addEventListener('mouseenter', function() { // POINTER DISCORD
 discordContainer.addEventListener('mouseleave', function() {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: .6, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
+        TweenMax.to(".containerAlertDiscord", { duration: 0.65, clipPath: 'inset(0% 100% 0% 0%)', ease: "power3.inOut" })
+        TweenMax.to(".containerAlertDiscord h3", { duration: 0.65, opacity: 0, ease: "power3.inOut" })
+        TweenMax.to(".containerAlertDiscord", { duration: 0, clipPath: 'inset(0% 0% 0% 100%)', ease: "power3.inOut", delay: 0.65 })
     }
 })
 
@@ -3965,6 +3828,8 @@ discordContainer.addEventListener('click', function() {
 iutContainer.addEventListener('mouseenter', function() { // POINTER IUT
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: 1, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
+        TweenMax.to(".containerAlertIut", { duration: 0.65, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut" })
+        TweenMax.to(".containerAlertIut h3", { duration: 0.65, opacity: 1, ease: "power3.inOut" })
         soundHover.play();
     }
 })
@@ -3972,6 +3837,9 @@ iutContainer.addEventListener('mouseenter', function() { // POINTER IUT
 iutContainer.addEventListener('mouseleave', function() {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: .6, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
+        TweenMax.to(".containerAlertIut", { duration: 0.65, clipPath: 'inset(0% 0% 0% 100%)', ease: "power3.inOut" })
+        TweenMax.to(".containerAlertIut h3", { duration: 0.65, opacity: 0, ease: "power3.inOut" })
+        TweenMax.to(".containerAlertIut", { duration: 0, clipPath: 'inset(0% 100% 0% 0%)', ease: "power3.inOut", delay: 0.65 })
     }
 })
 
@@ -4046,7 +3914,6 @@ class Cursor {
 
     render() {
         this.update();
-        // this.container.style.transform = 'translate3d(' + this.translation.x.toFixed(this.precision) + 'px ,' + this.translation.y.toFixed(this.precision) + 'px, 0)';
         this.shape.style.transform = 'rotate(' + this.rotation.toFixed(this.precision) + 'deg) ' + 'scale(' + (1 + this.scale) + ', ' + (1 - this.scale) + ')';
     }
 
@@ -4136,6 +4003,25 @@ contenu_link.forEach(e => {
     });
 })
 
+greta.addEventListener('pointerenter', function(){
+    indicHover = "ID";
+    cursorHoverIn();
+})
+
+greta.addEventListener('pointerleave', function(){
+    cursorHoverOut();
+})
+
+faceImg.forEach(e => {
+    e.addEventListener("pointerenter", function() {
+        indicHover = "ID";
+        cursorHoverIn();
+    });
+    e.addEventListener("pointerleave", function() {
+        cursorHoverOut();
+    });
+})
+
 littleTitleSvg.addEventListener("pointerenter", function() {
     indicHover = "ID";
     cursorHoverIn();
@@ -4143,11 +4029,6 @@ littleTitleSvg.addEventListener("pointerenter", function() {
 littleTitleSvg.addEventListener("pointerleave", function() {
     cursorHoverOut();
 });
-
-// contenu_link.forEach(e => {
-//     e.addEventListener("pointerenter", handleMouseEnter);
-//     e.addEventListener("pointerleave", handleMouseLeave);
-// })
 
 iframe.forEach(e => {
     e.addEventListener("pointerenter", function() {
@@ -4163,22 +4044,12 @@ iframe.forEach(e => {
         }
     });
 });
-// contentContainer.forEach(e => {
-//     e.addEventListener("mousemove", function() {
-//         if (!cursorOnVideo) {
-//             gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-//             gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-//         }
-//     });
-// });
 
 contenu_vr.forEach(e => {
     e.addEventListener("pointerenter", function() {
-        // e.children[0].style.opacity = 0
         e.children[1].style.opacity = 1
     })
     e.addEventListener("pointerleave", function() {
-        // e.children[0].style.opacity = 1
         e.children[1].style.opacity = 0
     })
 });
@@ -4223,7 +4094,6 @@ function updateCursor() {
 function handleMouseEnter(e) {
     isStuck = true;
     const targetBox = e.currentTarget.getBoundingClientRect();
-    console.log(targetBox)
     gsap.to(cursorShapeOut, 0.2, {
         x: targetBox.left,
         y: targetBox.top + scrollHeight,
@@ -4238,7 +4108,6 @@ function handleMouseEnter(e) {
 function handleMouseEnterBtn(e) {
     isStuck = true;
     const targetBox = e.getBoundingClientRect();
-    console.log(targetBox)
     gsap.to(cursorShapeOut, 0.2, {
         x: targetBox.left,
         y: targetBox.top + scrollHeight,
@@ -4267,10 +4136,6 @@ document.addEventListener('mousemove', e => {
     indicClickOnPlane.style.top = e.pageY - 20 / 2 + "px"
     indicClickOnPlane.style.left = e.pageX - 20 / 2 + "px"
 })
-// document.addEventListener('mousemove', e => {
-//     indicClickOnID.style.top = e.pageY - 20 / 2 + "px"
-//     indicClickOnID.style.left = e.pageX - 20 / 2 + "px"
-// })
 
 
 /////// TIMELINE REDIRECTION ///////
@@ -5259,16 +5124,21 @@ function scrollUp() {
             gsap.to(grid4.scale, .8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
             gsap.to(grid5.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
             gsap.to(poutre.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-            gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
-            gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-            gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
             gsap.to(cam.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
             gsap.to(vr2.scale, .95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
             gsap.to(enceinte.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
             gsap.to(tv2.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6})
             gsap.to(tabProg.scale, .95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3})
             gsap.to(tv.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut"})
+            gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
             gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
+            gsap.to(planeMeshPanneauRue1.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue3.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue4.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue7.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRueRond.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
         }
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
@@ -5618,16 +5488,21 @@ function scrollDown() {
             gsap.to(grid4.scale, .8, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .45 })
             gsap.to(grid5.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
             gsap.to(poutre.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-            gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
-            gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
-            gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
             gsap.to(cam.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6 })
             gsap.to(vr2.scale, .95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3 })
             gsap.to(enceinte.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut" })
             gsap.to(tv2.scale, .65, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .6})
             gsap.to(tabProg.scale, .95, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut", delay: .3})
             gsap.to(tv.scale, 1.25, { x: 0.0001, y: 0.0001, z: 0.0001, ease: "power3.inOut"})
+            gsap.to(leftDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(rightDoor2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
             gsap.to(street.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001 })
+            gsap.to(planeMeshPanneauRue1.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue2.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue3.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue4.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRue7.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
+            gsap.to(planeMeshPanneauRueRond.scale, 0, { x: 0.0001, y: 0.0001, z: 0.0001})
         }
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
@@ -5649,10 +5524,6 @@ let tl = gsap.timeline()
 document.body.addEventListener('wheel', scrollWheel);
 
 function scrollWheel(event) {
-    // //REVEAL AND HIDE CURSOR INDICATION
-    // tl.to(cursorIndication, 1.5, { opacity: 0, ease: "power1.inOut" })
-    // tl.to(cursorIndication, 1.5, { opacity: 1, ease: "power1.inOut", delay: 10 })
-    // tl.restart()
     if (!workshopActive) {
         if (!isScrollUp && planeScrollPossible) {
             if (checkScrollDirectionIsUp(event)) { // SCROLL UP
@@ -5676,67 +5547,7 @@ function scrollWheel(event) {
             }
         }
     }
-    // else if (creditActive) {
-    //     if (checkScrollDirectionIsUp(event)) { // SCROLL UP
-    //         if (idPlane[14]) {
-    //             if (camera.position.z <= -185 && scrollContainer__14.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[13]) {
-    //             if (camera.position.z <= -185 && scrollContainer__13.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[12]) {
-    //             if (camera.position.z <= -185 && scrollContainer__12.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[11]) {
-    //             if (camera.position.z <= -185 && scrollContainer__11.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[10]) {
-    //             if (camera.position.z <= -185 && scrollContainer__10.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[9]) {
-    //             if (camera.position.z <= -185 && scrollContainer__9.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[8]) {
-    //             if (camera.position.z <= -185 && scrollContainer__8.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[7]) {
-    //             if (camera.position.z <= -185 && scrollContainer__7.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[6]) {
-    //             if (camera.position.z <= -185 && scrollContainer__6.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[5]) {
-    //             if (camera.position.z <= -185 && scrollContainer__5.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[4]) {
-    //             if (camera.position.z <= -185 && scrollContainer__4.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[3]) {
-    //             if (camera.position.z <= -185 && scrollContainer__3.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[2]) {
-    //             if (camera.position.z <= -185 && scrollContainer__2.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         } else if (idPlane[1]) {
-    //             if (camera.position.z <= -185 && scrollContainer__1.scrollTop == 0) {
-    //                 backToWorkshop();
-    //             }
-    //         }
-    //     }
-    // }
+    
     else if (workshopActive) {
         if (checkScrollDirectionIsUp(event) && clickPossible && scrollPossible) { // SCROLL UP
             if (idPlane[14]) {
@@ -5822,18 +5633,15 @@ function checkScrollDirectionIsUp(event) { //REVERSE SCROLL
 }
 
 function checkScrollDirection(elContent) {
-    // elContent.addEventListener('scroll', function () {
         if (elContent.scrollTop > scrollPos) {
             direction = "down"
         } else {
             direction = "up"
         }
         scrollPos = (elContent.scrollTop);
-    // })
+
     return direction
 }
-
-let test;
 
 function scrollIntoWorkshop(elContent, elCredit) {
     camera.position.z = scrollWorkshop(elContent)
@@ -5861,25 +5669,25 @@ function scrollIntoWorkshop(elContent, elCredit) {
                             contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
                         } else if (idPlane[7]) {
                             contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
-                            // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[6]) {
                             contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
-                            // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[5]) {
                             contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
-                            // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[4]) {
                             contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
-                            // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[3]) {
                             contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
-                            // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[2]) {
                             contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
-                            // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[1]) {
                             contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
-                            // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+                            
                         }
                         cursorOnVideo = false
                         if (!cursorOnVideo) {
@@ -5935,25 +5743,25 @@ function scrollIntoWorkshop(elContent, elCredit) {
                             contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
                         } else if (idPlane[7]) {
                             contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
-                            // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[6]) {
                             contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
-                            // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[5]) {
                             contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
-                            // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[4]) {
                             contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
-                            // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[3]) {
                             contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
-                            // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[2]) {
                             contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
-                            // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+                            
                         } else if (idPlane[1]) {
                             contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
-                            // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+                            
                         }
                         cursorOnVideo = false
                         if (!cursorOnVideo) {
@@ -6102,43 +5910,6 @@ contentContainer__1.addEventListener('scroll', function() {
     }
 })
 
-    ///// SMOOTH SCROLL /////
-    // Scrollbar.init(document.querySelector('#my-scrollbar'));
-
-///// CREDIT SCROLL TRIGGER /////
-function scrollTrigger(elementContainer, elementContainerImg) {
-    elementContainer.addEventListener("scroll", function() {
-        if (creditActive) {
-
-            elementContainerImg.forEach(e => {
-                let tl = gsap.timeline({ defaults: { ease: "expo.InOut" }}).to(e, { opacity: 1,  duration: .5 })
-
-                  ScrollTrigger.create({
-                    trigger: e.children[2].children[2],
-                    start: "top center",
-                    scroller: elementContainer,
-                    animation: tl,
-                })
-            })
-        }
-    })  
-}
-
-scrollTrigger(scrollContainer__14, scrollContainerContentImg__14);
-scrollTrigger(scrollContainer__13, scrollContainerContentImg__13);
-scrollTrigger(scrollContainer__12, scrollContainerContentImg__12);
-scrollTrigger(scrollContainer__11, scrollContainerContentImg__11);
-scrollTrigger(scrollContainer__10, scrollContainerContentImg__10);
-scrollTrigger(scrollContainer__9, scrollContainerContentImg__9);
-scrollTrigger(scrollContainer__8, scrollContainerContentImg__8);
-scrollTrigger(scrollContainer__7, scrollContainerContentImg__7);
-scrollTrigger(scrollContainer__6, scrollContainerContentImg__6);
-scrollTrigger(scrollContainer__5, scrollContainerContentImg__5);
-scrollTrigger(scrollContainer__4, scrollContainerContentImg__4);
-scrollTrigger(scrollContainer__3, scrollContainerContentImg__3);
-scrollTrigger(scrollContainer__2, scrollContainerContentImg__2);
-scrollTrigger(scrollContainer__1, scrollContainerContentImg__1);
-
 ///// SYNCHRO CAM TO SCROLL /////
 function scrollWorkshop(el) {
     let posCam = -20 + (el.scrollTop / el.scrollHeight) * -120
@@ -6201,22 +5972,7 @@ document.onkeydown = function(e) {
                 plane1Click();
             }
             break;
-        case 65: // DEBUGGER
-            console.log(camera.position.z)
-            // console.log("1/4 : " + contentContainer__14.scrollHeight / 4)
-            // console.log("2/4 : " + contentContainer__14.scrollHeight / 4 * 2)
-            // console.log("3/4 : " + contentContainer__14.scrollHeight / 4 * 3)
-            // console.log("4/4 : " + contentContainer__14.scrollHeight / 4 * 4)
-            // console.log("pos Fiche Actuelle : " + contentContainer__14.scrollTop)
-            // console.log("pos Crédit Actuelle : " + scrollContainer__14.scrollTop)
-            console.log("Crédit : " + creditActive)
-            console.log("Workshop : " + workshopActive)
-            console.log("Back : " + backPossible)
-            console.log("Click : " + clickPossible)
-            console.log("Btn pressed : " + btnPressed)
-            console.log("Scroll : " + scrollPossible)
-            console.log("Hover Plane : " + hoverPlane)
-            // console.log("Plane Alpha : " + materialPlane14.uniforms.alpha.value)
+        case 65:
             break;
     }
 };
@@ -6244,22 +6000,6 @@ var render = function() {
 
     particleGeo.verticesNeedUpdate = true;
     
-    // window.onmousemove = function(e) { //PARTICLES MOUSE EVENT
-
-    //     // var resetCenterX = window.innerWidth / 2;
-    //     // var resetCenterY = window.innerHeight / 2;
-
-
-    //         var cameraRotationYTolerance = .05;
-    //         var cameraRotationXTolerance = .05;
-
-    //         var rotX = window.innerWidth * .5;
-    //         var rotY = window.innerHeight * .5;
-
-    //         // camera.rotation.y = (e.clientX - rotX) / rotX * cameraRotationYTolerance;
-    //         // camera.rotation.x = (e.clientY - rotY) / rotY * cameraRotationXTolerance;
-    //         // gsap.to(camera.position, 0.05, { x: (e.clientX - rotX) / rotX * cameraRotationXTolerance, y: (e.clientY - rotY) / rotY * cameraRotationYTolerance, ease: "power4.inOut" })
-    // };
 
     materialPlane1.uniforms.time.value = clock.running = false;
     materialPlane2.uniforms.time.value = clock.running = false;
@@ -6276,7 +6016,6 @@ var render = function() {
     materialPlane13.uniforms.time.value = clock.running = false;
     materialPlane14.uniforms.time.value = clock.running = false;
 
-    // if (!window.matchMedia("(max-width: 1024px)").matches) {
         if (camera.position.z >= 0 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
             materialPlane1.uniforms.time.value = clock.running = true;
             materialPlane2.uniforms.time.value = clock.running = true;
@@ -6307,7 +6046,6 @@ var render = function() {
             materialPlane13.uniforms.time.value = clock.getElapsedTime();
             materialPlane14.uniforms.time.value = clock.getElapsedTime();
         }
-    // }
 
     composer.render();
 
