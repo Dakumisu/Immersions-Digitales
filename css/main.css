@@ -257,7 +257,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
   pointer-events: none;
   font-family: littleTitle;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
   letter-spacing: 1.5px;
   -webkit-transition: opacity 0.1s cubic-bezier(0.75, 0, 0, 1);
@@ -268,6 +268,12 @@ canvas.hologramDefault {
   -webkit-transition: opacity 0.75s cubic-bezier(0.75, 0, 0, 1);
   transition: opacity 0.75s cubic-bezier(0.75, 0, 0, 1);
   opacity: 1;
+}
+
+@media screen and (max-width: 1024px) {
+  .indicMouseHover {
+    display: none;
+  }
 }
 
 .indicClickOnID {
@@ -326,6 +332,7 @@ canvas.hologramDefault {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  opacity: 1 !important;
 }
 
 .workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
@@ -414,7 +421,7 @@ canvas.hologramDefault {
 
 .workShopContainer .contentContainer__14 .containerPara__2 .para {
   width: 25%;
-  margin: 0 0 5vh 22vw;
+  margin: 0 0 10vh 22vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -458,7 +465,7 @@ canvas.hologramDefault {
 
 .workShopContainer .contentContainer__14 .containerPara__3 .para {
   width: 25%;
-  margin: 0 22vw 120vh 0;
+  margin: 0 22vw 155vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2463,16 +2470,6 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
-<<<<<<< Updated upstream
-  pointer-events: none;
-  font-family: littleTitle;
-  font-size: 10px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  -webkit-transition: opacity 0.1s cubic-bezier(0.75, 0, 0, 1);
-  transition: opacity 0.1s cubic-bezier(0.75, 0, 0, 1);
-=======
->>>>>>> Stashed changes
 }
 
 .workShopContainer .contentContainer__2 .containerPara__3 {
@@ -2488,15 +2485,6 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-<<<<<<< Updated upstream
-@media screen and (max-width: 1024px) {
-  .indicClickOnPlane {
-    display: none;
-  }
-}
-
-.workShopContainer {
-=======
 .workShopContainer .contentContainer__2 .containerPara__3 .para {
   width: 25%;
   margin: 0 22vw 22vh 0;
@@ -2526,7 +2514,6 @@ canvas.hologramDefault {
 }
 
 .workShopContainer .contentContainer__2 .containerPara__4 {
->>>>>>> Stashed changes
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2653,14 +2640,6 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
-<<<<<<< Updated upstream
-  text-transform: uppercase;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  opacity: 1 !important;
-=======
->>>>>>> Stashed changes
 }
 
 .workShopContainer .contentContainer__1 .containerPara__3 {
@@ -2962,10 +2941,6 @@ canvas.hologramDefault {
   opacity: 0;
 }
 
-<<<<<<< Updated upstream
-.creditContainer .scrollContainer .trombi .contentImg__2, .creditContainer .scrollContainer .trombi .contentImg__4, .creditContainer .scrollContainer .trombi .contentImg__6, .creditContainer .scrollContainer .trombi .contentImg__8, .creditContainer .scrollContainer .trombi .contentImg__10, .creditContainer .scrollContainer .trombi .contentImg__12 {
-  margin-top: 21.5%;
-=======
 @media screen and (max-width: 1440px) {
   .creditContainer .scrollContainer .trombi .contentImg__droite {
     margin-top: 0 !important;
@@ -2981,27 +2956,6 @@ canvas.hologramDefault {
 
 .creditContainer .scrollContainer .trombi .contentImg__gauche {
   margin-bottom: 17.75%;
->>>>>>> Stashed changes
-}
-
-@media screen and (max-width: 1500px) {
-  .creditContainer .scrollContainer .trombi .contentImg {
-    margin-left: 3%;
-    margin-right: 3%;
-  }
-  .creditContainer .scrollContainer .trombi .contentImg__2, .creditContainer .scrollContainer .trombi .contentImg__4, .creditContainer .scrollContainer .trombi .contentImg__6, .creditContainer .scrollContainer .trombi .contentImg__8, .creditContainer .scrollContainer .trombi .contentImg__10, .creditContainer .scrollContainer .trombi .contentImg__12 {
-    margin-top: 10%;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .creditContainer .scrollContainer .trombi .contentImg {
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .creditContainer .scrollContainer .trombi .contentImg__2, .creditContainer .scrollContainer .trombi .contentImg__4, .creditContainer .scrollContainer .trombi .contentImg__6, .creditContainer .scrollContainer .trombi .contentImg__8, .creditContainer .scrollContainer .trombi .contentImg__10, .creditContainer .scrollContainer .trombi .contentImg__12 {
-    margin-top: 0 !important;
-  }
 }
 
 .creditContainer .scrollContainer .trombi .contentImg .prenom {
@@ -3174,34 +3128,17 @@ canvas.hologramDefault {
   opacity: 0.5;
 }
 
-<<<<<<< Updated upstream
-=======
-.creditContainer .scrollContainer .trombi .contentImg .content .screenMask {
-  position: absolute;
-  opacity: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #4cc9f0;
-  z-index: 4;
-  -webkit-clip-path: "inset(100% 0% 0% 0%)";
-          clip-path: "inset(100% 0% 0% 0%)";
-}
-
-.creditContainer .scrollContainer__7 .r1 {
+.creditContainer .scrollContainer__7 .r1, .creditContainer .scrollContainer__13 .r1 {
   bottom: 10%;
   left: 50% !important;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
-.creditContainer .scrollContainer__7 .r2 {
+.creditContainer .scrollContainer__7 .r2, .creditContainer .scrollContainer__13 .r2 {
   display: none;
 }
 
-.title,
->>>>>>> Stashed changes
 .littleTitle {
   z-index: 3 !important;
   width: 150px !important;

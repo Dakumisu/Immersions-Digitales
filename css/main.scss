@@ -277,6 +277,7 @@
                 color: $cyan;
                 text-transform: uppercase;
                 width: fit-content;
+                opacity: 1!important;
             }
 
             iframe, .contenu {
@@ -340,7 +341,7 @@
     
                     .para {
                         width: 25%;
-                        margin: 0 0 5vh 22vw;
+                        margin: 0 0 10vh 22vw;
                         display: flex;
                         flex-direction: column;
                         align-items: start;
@@ -369,7 +370,7 @@
     
                     .para {
                         width: 25%;
-                        margin: 0 22vw 120vh 0;
+                        margin: 0 22vw 155vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
@@ -1715,32 +1716,8 @@
                                 transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
                             }
                         }
-
-
-                        // .jeu__1--default {
-                        //     position: relative;
-                        // }
-
-<<<<<<< Updated upstream
-            .title {
-                text-align: center;
-                font-family: "main";
-                font-size: 5vw;
-                margin: 43vh auto 25vh auto;
-                color: $cyan;
-                text-transform: uppercase;
-                width: fit-content;
-                opacity: 1!important;
-=======
-                        // .jeu__1--hover {
-                        //     position: absolute;
-                        //     top: 50%;
-                        //     left: 50%;
-                        //     transform: translate(-50%, -50%);
-                        // }
                     }
                 }
->>>>>>> Stashed changes
             }
 
             &__2 {
@@ -2120,15 +2097,6 @@
                         position: relative;
                         opacity: 0;
 
-<<<<<<< Updated upstream
-                        &__2,
-                        &__4,
-                        &__6,
-                        &__8,
-                        &__10, 
-                        &__12 {
-                            margin-top: 21.5%;
-=======
                         @media screen and (max-width: 1440px) {      
                             &__droite {
                                 margin-top: 0 !important;
@@ -2145,39 +2113,7 @@
                         
                         &__gauche {
                             margin-bottom: 17.75%;
->>>>>>> Stashed changes
                         }
-
-                        @media screen and (max-width: 1500px){
-                            margin-left: 3%;
-                            margin-right: 3%;
-
-                            &__2,
-                            &__4,
-                            &__6,
-                            &__8,
-                            &__10, 
-                            &__12 {
-                                margin-top: 10%;
-                            }
-                        }
-
-                        @media screen and (max-width: 1024px){
-                            margin-left: 5%;
-                            margin-right: 5%;
-                  
-
-                            &__2,
-                            &__4,
-                            &__6,
-                            &__8,
-                            &__10, 
-                            &__12 {
-                                margin-top: 0!important;
-                            }
-                        }
-
-        
 
                         .prenom {
                             color: $cyan;
@@ -2329,7 +2265,7 @@
                     }
             }
 
-            &__7 {
+            &__7, &__13 {
                 .r1 {
                     bottom: 10%;
                     left: 50% !important;
@@ -2344,9 +2280,6 @@
     }
 
  
-
-
-
     .littleTitle {
         z-index: 3!important;
         width: 150px!important;
@@ -2867,7 +2800,6 @@
         transition: border .75s cubic-bezier(.25, 0, 0, 1);
         border: 1px solid $bleu;
     }
-
 
 
     ////GRID///

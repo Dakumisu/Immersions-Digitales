@@ -3,10 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as POSTPROCESSING from "postprocessing";
 import { Interaction } from 'three.interaction';
 import TouchSweep from 'touchsweep';
-<<<<<<< Updated upstream
 import createjs from 'preload-js';
-=======
->>>>>>> Stashed changes
 
 import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
@@ -402,16 +399,8 @@ queue.loadFile(atelier12Hover);
 queue.loadFile(atelier13Hover);
 queue.loadFile(atelier14Hover);
 
-queue.loadFile(displacement);
-queue.loadFile(displacement1);
 queue.loadFile(displacement2);
-queue.loadFile(displacement3);
 queue.loadFile(displacement4);
-queue.loadFile(displacement5);
-queue.loadFile(displacement6);
-queue.loadFile(displacement7);
-queue.loadFile(displacement8);
-queue.loadFile(displacement9);
 
 queue.loadFile(particle);
 queue.loadFile(socleModel);
@@ -1768,7 +1757,6 @@ let contenu_link = document.querySelectorAll('.contenu__link');
 
 let contenu_vr = document.querySelectorAll('.vr');
 
-<<<<<<< Updated upstream
 let mobileWorkShopButton = document.querySelectorAll('.mobileWorkShopButton');
 let mobileWorkShopButton1 = document.querySelector('.mobileWorkShopButton__1');
 let mobileWorkShopButton2 = document.querySelector('.mobileWorkShopButton__2');
@@ -1785,10 +1773,7 @@ let mobileWorkShopButton12 = document.querySelector('.mobileWorkShopButton__12')
 let mobileWorkShopButton13 = document.querySelector('.mobileWorkShopButton__13');
 let mobileWorkShopButton14 = document.querySelector('.mobileWorkShopButton__14');
 
-
-=======
 // let indicClickOnID = document.querySelector('.indicClickOnID');
->>>>>>> Stashed changes
 let indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 let timelineIndication = document.querySelector('.indication');
 let cursorIndication = document.querySelector('.cursorIndication');
@@ -2238,7 +2223,6 @@ musicBtn.addEventListener('click', function(){
     },350)   
 })
 
-<<<<<<< Updated upstream
 musicBtn.addEventListener('mouseenter', function(){
     if (!window.matchMedia("(max-width: 1024px)").matches) {
     soundHover.play();
@@ -2247,64 +2231,21 @@ musicBtn.addEventListener('mouseenter', function(){
 
 function cursorHoverIn() {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-        gsap.to(cursorSize, 0.75, { padding: 50, ease: "Power3.easeOut"})
-        gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
         gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
-        gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
-        indicClickOnPlane.classList.add("planeHover")
-        soundHoverPlane.play(); 
-=======
-let soundEffectRpz = new Audio(rpz)
-soundEffectRpz.volume = 0.4
-// let test = scene.children[33]
-// console.log(scene.children)
-// console.log(planeMeshPanneau)
-// console.log(enceinteMesh)
-// enceinteMesh.on('click', function(ev) {
-//     soundEffectRpz.play();
-//     console.log(ev)
-// })
-// var shouldStop = false;
-
-  
-
-
-// function checkShouldStop() {
-//     if(shouldStop) {
-//       tl.pause();
-//     }else {
-//       tl.resume();
-//     }
-//   }
-
-
-//   musicBtn.addEventListener('click', function(){
-//     shouldStop = true;
-//     gsap.staggerTo(lineMusicBtn, .5, { clipPath: "inset(95% 0% 0% 0%)"}, 0.12)
-   
-//   })
-
-// //   musicBtn.addEventListener('mouseout', function(){
-// //     shouldStop = false;
-// //     tl.resume();
-   
-// //   })
-
-function cursorHoverIn() {
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-        gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
+        if (indicHover == "plane") {
+            soundHoverPlane.play(); 
+        }
         if (indicHover == "plane" || indicHover == "content") {
             indicClickOnPlane.classList.add("planeHover")
             gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
-            gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+            gsap.to(cursorSize, 0.75, { padding: 50, ease: "Power3.easeOut"})
             gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
         } else if (indicHover == "ID") {
             // indicClickOnID.classList.add("planeHover")
             gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 25, ease: "Power3.easeOut"})
-            gsap.to(tailleBoulette, 0.75, { padding: 25, ease: "Power3.easeOut"})
+            gsap.to(cursorSize, 0.75, { padding: 25, ease: "Power3.easeOut"})
             // gsap.to(indicClickOnID, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
         }
->>>>>>> Stashed changes
     }
 }
 
@@ -2316,12 +2257,9 @@ function cursorHoverOut() {
         gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
         // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
         indicClickOnPlane.classList.remove("planeHover")
-<<<<<<< Updated upstream
         soundOutPlane.play(); 
-=======
         // indicClickOnID.classList.remove("planeHover")
         indicHover = ""
->>>>>>> Stashed changes
     }
 }
 
@@ -3016,21 +2954,15 @@ function functionBtnBackHome() {
     btnBackHome.classList.add('close')
     btnBackHome.disabled = true;
     
-<<<<<<< Updated upstream
-    
-=======
     littleTitleSvg.classList.add('close')
->>>>>>> Stashed changes
     setTimeout(function(){
         discordContainer.classList.add('switchPointer')
         iutContainer.classList.add('switchPointer')
         btnStart.disabled = false;
         btnStart.classList.remove('close')
-<<<<<<< Updated upstream
-        littleTitleSvg.classList.add('close')
     }, 2800)
 
-=======
+    setTimeout(() => {
         if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
             materialPlanePanneau.uniforms.imagergb.value = texturepanneau1
             gsap.to(materialPlanePanneau.uniforms.dispFactor, { value: 1.0 });
@@ -3039,8 +2971,8 @@ function functionBtnBackHome() {
             gsap.to(materialPlanePanneau.uniforms.dispFactor, { value: .0 });
         }
     }, 3000)
+
     cursorHoverOut()
->>>>>>> Stashed changes
     hideTimeline()
 
     if (planeAxe.position.y <= -11) {
@@ -3410,21 +3342,17 @@ btnBackWorkshop.addEventListener('click', function() {
         soundHover.play();
     }
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-    TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
-    handleMouseLeave();
-    btnBackWorkshop.classList.remove('hover')
-    cursorShapeIn.classList.remove('mouseover')
-    setTimeout(function() {
-        spanContainerBackMouseOut.classList.remove('neonText');
-<<<<<<< Updated upstream
-    }, 750)    
-}
-=======
-    }, 750)
+        TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+        handleMouseLeave();
+        btnBackWorkshop.classList.remove('hover')
+        cursorShapeIn.classList.remove('mouseover')
+        setTimeout(function() {
+            spanContainerBackMouseOut.classList.remove('neonText');
+        }, 750)    
+    }
     setTimeout(function() {
         btnPressed = false
     }, 3000)
->>>>>>> Stashed changes
 })
 
 btnBackWorkshop.addEventListener('mouseenter', function() {
@@ -3587,7 +3515,7 @@ function backToPlane() {
         gsap.to(logo.rotation, 1.5, { z: .25, y: 0, ease: "power3.inOut", delay: 1.75})
         gsap.to(logo.scale, 1.5, { z:.95, y:.95, x: .95,ease: "power3.inOut", delay: 1.75 })
         gsap.to(logo.position, 1.5, { z: 0, y: 0, ease: "power3.inOut", delay: 1.75 })
-        }
+    }
     
     if (materialPlane14.uniforms.alpha.value == 0) {
         gsap.to(materialPlane14.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" , delay: 0 + varDelay });
@@ -3691,10 +3619,13 @@ function backToPlane() {
         contentContainer__2.scrollTop = 0
         contentContainer__1.scrollTop = 0
     }, 2500)
-    
+
+    setTimeout(() => {
+        hoverPlane = true
+    }, 2100);
+
     setTimeout(function() {
         workshopActive = false;
-        hoverPlane = true
         workShopContainer.classList.remove('switchPlane');
         if (idPlane[14]) {
             contentContainer__14.children[2].children[0].children[1].src = ""
@@ -3808,16 +3739,10 @@ function backToWorkshop() {
         gsap.to(rightDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
         gsap.to(creditContainer, 2.5, { opacity: 0, ease: "Power4.easeOut" })
 
-<<<<<<< Updated upstream
-        for (let i=1; i <= 12; i++) {
-            gsap.to(".contentImg__"+i, { opacity: 0, ease: "Power3.easeOut", delay: 2.5 })
-        }
-=======
         //// CACHER LES IMAGES DES CREDITS ICI ////
 
         TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
         TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
->>>>>>> Stashed changes
         
         gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
         
@@ -3963,14 +3888,10 @@ sm1.addEventListener('mouseleave', function() {
 })
 
 sm1.addEventListener('click', function() {
-<<<<<<< Updated upstream
     if (window.matchMedia("(max-width: 1024px)").matches) {
         soundHover.play();
     }
-    window.open('https://www.facebook.com/mmi.tarbes.jpo', '_blank');
-=======
     window.open('https://www.facebook.com/mmi.tarbes.jpo');
->>>>>>> Stashed changes
 })
 
 sm2.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 2
@@ -3991,14 +3912,10 @@ sm2.addEventListener('mouseleave', function() {
 })
 
 sm2.addEventListener('click', function() {
-<<<<<<< Updated upstream
     if (window.matchMedia("(max-width: 1024px)").matches) {
         soundHover.play();
     }
-    window.open('https://www.instagram.com/immersions_digitales_tarbes/', '_blank');
-=======
     window.open('https://www.instagram.com/immersions_digitales_tarbes/');
->>>>>>> Stashed changes
 })
 
 sm3.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 3
@@ -4019,47 +3936,49 @@ sm3.addEventListener('mouseleave', function() {
 })
 
 sm3.addEventListener('click', function() {
-<<<<<<< Updated upstream
     if (window.matchMedia("(max-width: 1024px)").matches) {
         soundHover.play();
     }
-    window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
-=======
     window.open('https://www.linkedin.com/in/immersions-digitales/');
->>>>>>> Stashed changes
 })
 
 discordContainer.addEventListener('mouseenter', function() { // POINTER DISCORD
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: 1, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
-    soundHover.play();
+        TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: 1, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
+        soundHover.play();
     }
 })
 
 discordContainer.addEventListener('mouseleave', function() {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: .6, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
+        TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: .6, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
     }
 })
 
 discordContainer.addEventListener('click', function() {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
     window.open('https://discord.com/invite/QSTbcG7PeJ');
 })
 
 iutContainer.addEventListener('mouseenter', function() { // POINTER IUT
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: 1, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
-    soundHover.play();
+        TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: 1, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
+        soundHover.play();
     }
 })
 
 iutContainer.addEventListener('mouseleave', function() {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: .6, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
+        TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: .6, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
     }
 })
 
 iutContainer.addEventListener('click', function() {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
     window.open('https://www.iut-tarbes.fr/');
 })
 
@@ -4191,14 +4110,12 @@ workShopButton.forEach(e => {
     e.addEventListener("pointerleave", handleMouseLeave);
 })
 
-<<<<<<< Updated upstream
 workShopButton.forEach(e=>{
     e.addEventListener('mouseenter', function(){
         soundHover.play();
     })
 })
 
-=======
 contenu.forEach(e => {
     e.addEventListener("pointerenter", function() {
         indicHover = "content";
@@ -4266,7 +4183,6 @@ contenu_vr.forEach(e => {
     })
 });
 
->>>>>>> Stashed changes
 discordContainer.addEventListener("pointerenter", handleMouseEnter);
 discordContainer.addEventListener("pointerleave", handleMouseLeave);
 
@@ -5257,7 +5173,6 @@ function scrollUp() {
         canvas.classList.remove('hologramDefault')
         canvas.classList.add('hologramActive')
         btnBackHome.disabled = true;
-        btnStart.disabled = false;
         titleSvgPath.forEach(e => {
             e.classList.remove("pathTitleOut")
             e.classList.add("pathTitleIn")
@@ -5287,10 +5202,9 @@ function scrollUp() {
             btnStart.disabled = false;
             btnStart.classList.remove('close')
             littleTitleSvg.classList.add('close')
-<<<<<<< Updated upstream
         }, 2800)
 
-=======
+        setTimeout(() => {
             if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
                 materialPlanePanneau.uniforms.imagergb.value = texturepanneau1
                 gsap.to(materialPlanePanneau.uniforms.dispFactor, { value: 1.0 });
@@ -5299,7 +5213,6 @@ function scrollUp() {
                 gsap.to(materialPlanePanneau.uniforms.dispFactor, { value: .0 });
             }
         }, 2500)
->>>>>>> Stashed changes
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -5360,17 +5273,10 @@ function scrollUp() {
             //LIGHTS ANIM
         TweenMax.to(lightCenterSocle.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
-<<<<<<< Updated upstream
         //SWITCH ELEMENTS ON CLICK
         canvas.style.zIndex = -1;
         homeContainer.style.zIndex = 3;
         homeMask.style.zIndex = 2;
-=======
-        homeMask.style.zIndex = 1;
-        homeContainer.style.zIndex = 2;
-           //SWITCH ELEMENTS ON CLICK
-           canvas.style.zIndex = -1;
->>>>>>> Stashed changes
     } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
             scrollPlane14();
             if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
@@ -5626,7 +5532,6 @@ function scrollDown() {
         canvas.classList.remove('hologramDefault')
         canvas.classList.add('hologramActive')
         btnBackHome.disabled = true;
-        btnStart.disabled = false;
         titleSvgPath.forEach(e => {
             e.classList.remove("pathTitleOut")
             e.classList.add("pathTitleIn")
@@ -5656,10 +5561,9 @@ function scrollDown() {
             btnStart.disabled = false;
             btnStart.classList.remove('close')
             littleTitleSvg.classList.add('close')
-<<<<<<< Updated upstream
         }, 2800)
 
-=======
+        setTimeout(() => {
             if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
                 materialPlanePanneau.uniforms.imagergb.value = texturepanneau1
                 gsap.to(materialPlanePanneau.uniforms.dispFactor, { value: 1.0 });
@@ -5668,7 +5572,6 @@ function scrollDown() {
                 gsap.to(materialPlanePanneau.uniforms.dispFactor, { value: .0 });
             }
         }, 2500)
->>>>>>> Stashed changes
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -6358,25 +6261,6 @@ var render = function() {
     //         // gsap.to(camera.position, 0.05, { x: (e.clientX - rotX) / rotX * cameraRotationXTolerance, y: (e.clientY - rotY) / rotY * cameraRotationYTolerance, ease: "power4.inOut" })
     // };
 
-<<<<<<< Updated upstream
-    renderer.render(scene, camera);
-
-
-materialPlane1.uniforms.time.value = clock.running = false;
-materialPlane2.uniforms.time.value = clock.running = false;
-materialPlane3.uniforms.time.value = clock.running = false;
-materialPlane4.uniforms.time.value = clock.running = false;
-materialPlane5.uniforms.time.value = clock.running = false;
-materialPlane6.uniforms.time.value = clock.running = false;
-materialPlane7.uniforms.time.value = clock.running = false;
-materialPlane8.uniforms.time.value = clock.running = false;
-materialPlane9.uniforms.time.value = clock.running = false;
-materialPlane10.uniforms.time.value = clock.running = false;
-materialPlane11.uniforms.time.value = clock.running = false;
-materialPlane12.uniforms.time.value = clock.running = false;
-materialPlane13.uniforms.time.value = clock.running = false;
-materialPlane14.uniforms.time.value = clock.running = false;
-=======
     materialPlane1.uniforms.time.value = clock.running = false;
     materialPlane2.uniforms.time.value = clock.running = false;
     materialPlane3.uniforms.time.value = clock.running = false;
@@ -6391,7 +6275,6 @@ materialPlane14.uniforms.time.value = clock.running = false;
     materialPlane12.uniforms.time.value = clock.running = false;
     materialPlane13.uniforms.time.value = clock.running = false;
     materialPlane14.uniforms.time.value = clock.running = false;
->>>>>>> Stashed changes
 
     // if (!window.matchMedia("(max-width: 1024px)").matches) {
         if (camera.position.z >= 0 && camera.position.z <= 3.9 || camera.position.z == 4.5) {

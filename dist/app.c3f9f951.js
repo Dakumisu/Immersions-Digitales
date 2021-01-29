@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,23 +32462,15 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  
-  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  
-  var d = light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.scale.set( d, d, d );
-  
-  }
-  
-  this.add( this.lightDistance );
+  	var d = light.distance;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.scale.set( d, d, d );
+  	}
+  	this.add( this.lightDistance );
   */
 }
 
@@ -32498,17 +32490,12 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.visible = true;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  
-  }
+  	}
   */
 
 };
@@ -32939,8 +32926,7 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  
-  0: max.x, max.y, max.z
+  	0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -48507,32 +48493,30 @@ var global = arguments[3];
   _exports["default"] = TouchSweep;
 });
 
+},{}],"node_modules/preload-js/index.js":[function(require,module,exports) {
+/*!
+* @license PreloadJS
+* Visit http://createjs.com/ for documentation, updates and examples.
+*
+* Copyright (c) 2011-2013 gskinner.com, inc.
+*
+* Distributed under the terms of the MIT license.
+* http://www.opensource.org/licenses/mit-license.html
+*
+* This notice shall be included in all copies or substantial portions of the Software.
+*/
+window.createjs=window.createjs||{},function(){"use strict";var a=createjs.PreloadJS=createjs.PreloadJS||{};a.version="0.4.1",a.buildDate="Thu, 12 Dec 2013 23:33:38 GMT"}(),function(){"use strict";var a=function(a,b,c){this.initialize(a,b,c)},b=a.prototype;b.type=null,b.target=null,b.currentTarget=null,b.eventPhase=0,b.bubbles=!1,b.cancelable=!1,b.timeStamp=0,b.defaultPrevented=!1,b.propagationStopped=!1,b.immediatePropagationStopped=!1,b.removed=!1,b.initialize=function(a,b,c){this.type=a,this.bubbles=b,this.cancelable=c,this.timeStamp=(new Date).getTime()},b.preventDefault=function(){this.defaultPrevented=!0},b.stopPropagation=function(){this.propagationStopped=!0},b.stopImmediatePropagation=function(){this.immediatePropagationStopped=this.propagationStopped=!0},b.remove=function(){this.removed=!0},b.clone=function(){return new a(this.type,this.bubbles,this.cancelable)},b.toString=function(){return"[Event (type="+this.type+")]"},createjs.Event=a}(),function(){"use strict";var a=function(){},b=a.prototype;a.initialize=function(a){a.addEventListener=b.addEventListener,a.on=b.on,a.removeEventListener=a.off=b.removeEventListener,a.removeAllEventListeners=b.removeAllEventListeners,a.hasEventListener=b.hasEventListener,a.dispatchEvent=b.dispatchEvent,a._dispatchEvent=b._dispatchEvent,a.willTrigger=b.willTrigger},b._listeners=null,b._captureListeners=null,b.initialize=function(){},b.addEventListener=function(a,b,c){var d;d=c?this._captureListeners=this._captureListeners||{}:this._listeners=this._listeners||{};var e=d[a];return e&&this.removeEventListener(a,b,c),e=d[a],e?e.push(b):d[a]=[b],b},b.on=function(a,b,c,d,e,f){return b.handleEvent&&(c=c||b,b=b.handleEvent),c=c||this,this.addEventListener(a,function(a){b.call(c,a,e),d&&a.remove()},f)},b.removeEventListener=function(a,b,c){var d=c?this._captureListeners:this._listeners;if(d){var e=d[a];if(e)for(var f=0,g=e.length;g>f;f++)if(e[f]==b){1==g?delete d[a]:e.splice(f,1);break}}},b.off=b.removeEventListener,b.removeAllEventListeners=function(a){a?(this._listeners&&delete this._listeners[a],this._captureListeners&&delete this._captureListeners[a]):this._listeners=this._captureListeners=null},b.dispatchEvent=function(a,b){if("string"==typeof a){var c=this._listeners;if(!c||!c[a])return!1;a=new createjs.Event(a)}if(a.target=b||this,a.bubbles&&this.parent){for(var d=this,e=[d];d.parent;)e.push(d=d.parent);var f,g=e.length;for(f=g-1;f>=0&&!a.propagationStopped;f--)e[f]._dispatchEvent(a,1+(0==f));for(f=1;g>f&&!a.propagationStopped;f++)e[f]._dispatchEvent(a,3)}else this._dispatchEvent(a,2);return a.defaultPrevented},b.hasEventListener=function(a){var b=this._listeners,c=this._captureListeners;return!!(b&&b[a]||c&&c[a])},b.willTrigger=function(a){for(var b=this;b;){if(b.hasEventListener(a))return!0;b=b.parent}return!1},b.toString=function(){return"[EventDispatcher]"},b._dispatchEvent=function(a,b){var c,d=1==b?this._captureListeners:this._listeners;if(a&&d){var e=d[a.type];if(!e||!(c=e.length))return;a.currentTarget=this,a.eventPhase=b,a.removed=!1,e=e.slice();for(var f=0;c>f&&!a.immediatePropagationStopped;f++){var g=e[f];g.handleEvent?g.handleEvent(a):g(a),a.removed&&(this.off(a.type,g,1==b),a.removed=!1)}}},createjs.EventDispatcher=a}(),function(){"use strict";createjs.indexOf=function(a,b){for(var c=0,d=a.length;d>c;c++)if(b===a[c])return c;return-1}}(),function(){"use strict";createjs.proxy=function(a,b){var c=Array.prototype.slice.call(arguments,2);return function(){return a.apply(b,Array.prototype.slice.call(arguments,0).concat(c))}}}(),function(){"use strict";var a=function(){this.init()};a.prototype=new createjs.EventDispatcher;var b=a.prototype,c=a;c.FILE_PATTERN=/^(?:(\w+:)\/{2}(\w+(?:\.\w+)*\/?)|(.{0,2}\/{1}))?([/.]*?(?:[^?]+)?\/)?((?:[^/?]+)\.(\w+))(?:\?(\S+)?)?$/,c.PATH_PATTERN=/^(?:(\w+:)\/{2})|(.{0,2}\/{1})?([/.]*?(?:[^?]+)?\/?)?$/,b.loaded=!1,b.canceled=!1,b.progress=0,b._item=null,b.getItem=function(){return this._item},b.init=function(){},b.load=function(){},b.close=function(){},b._sendLoadStart=function(){this._isCanceled()||this.dispatchEvent("loadstart")},b._sendProgress=function(a){if(!this._isCanceled()){var b=null;"number"==typeof a?(this.progress=a,b=new createjs.Event("progress"),b.loaded=this.progress,b.total=1):(b=a,this.progress=a.loaded/a.total,(isNaN(this.progress)||1/0==this.progress)&&(this.progress=0)),b.progress=this.progress,this.hasEventListener("progress")&&this.dispatchEvent(b)}},b._sendComplete=function(){this._isCanceled()||this.dispatchEvent("complete")},b._sendError=function(a){!this._isCanceled()&&this.hasEventListener("error")&&(null==a&&(a=new createjs.Event("error")),this.dispatchEvent(a))},b._isCanceled=function(){return null==window.createjs||this.canceled?!0:!1},b._parseURI=function(a){return a?a.match(c.FILE_PATTERN):null},b._parsePath=function(a){return a?a.match(c.PATH_PATTERN):null},b._formatQueryString=function(a,b){if(null==a)throw new Error("You must specify data.");var c=[];for(var d in a)c.push(d+"="+escape(a[d]));return b&&(c=c.concat(b)),c.join("&")},b.buildPath=function(a,b){if(null==b)return a;var c=[],d=a.indexOf("?");if(-1!=d){var e=a.slice(d+1);c=c.concat(e.split("&"))}return-1!=d?a.slice(0,d)+"?"+this._formatQueryString(b,c):a+"?"+this._formatQueryString(b,c)},b._isCrossDomain=function(a){var b=document.createElement("a");b.href=a.src;var c=document.createElement("a");c.href=location.href;var d=""!=b.hostname&&(b.port!=c.port||b.protocol!=c.protocol||b.hostname!=c.hostname);return d},b._isLocal=function(a){var b=document.createElement("a");return b.href=a.src,""==b.hostname&&"file:"==b.protocol},b.toString=function(){return"[PreloadJS AbstractLoader]"},createjs.AbstractLoader=a}(),function(){"use strict";var a=function(a,b,c){this.init(a,b,c)},b=a.prototype=new createjs.AbstractLoader,c=a;c.loadTimeout=8e3,c.LOAD_TIMEOUT=0,c.BINARY="binary",c.CSS="css",c.IMAGE="image",c.JAVASCRIPT="javascript",c.JSON="json",c.JSONP="jsonp",c.MANIFEST="manifest",c.SOUND="sound",c.SVG="svg",c.TEXT="text",c.XML="xml",c.POST="POST",c.GET="GET",b._basePath=null,b._crossOrigin="",b.useXHR=!0,b.stopOnError=!1,b.maintainScriptOrder=!0,b.next=null,b._typeCallbacks=null,b._extensionCallbacks=null,b._loadStartWasDispatched=!1,b._maxConnections=1,b._currentlyLoadingScript=null,b._currentLoads=null,b._loadQueue=null,b._loadQueueBackup=null,b._loadItemsById=null,b._loadItemsBySrc=null,b._loadedResults=null,b._loadedRawResults=null,b._numItems=0,b._numItemsLoaded=0,b._scriptOrder=null,b._loadedScripts=null,b.init=function(a,b,c){this._numItems=this._numItemsLoaded=0,this._paused=!1,this._loadStartWasDispatched=!1,this._currentLoads=[],this._loadQueue=[],this._loadQueueBackup=[],this._scriptOrder=[],this._loadedScripts=[],this._loadItemsById={},this._loadItemsBySrc={},this._loadedResults={},this._loadedRawResults={},this._typeCallbacks={},this._extensionCallbacks={},this._basePath=b,this.setUseXHR(a),this._crossOrigin=c===!0?"Anonymous":c===!1||null==c?"":c},b.setUseXHR=function(a){return this.useXHR=0!=a&&null!=window.XMLHttpRequest,this.useXHR},b.removeAll=function(){this.remove()},b.remove=function(a){var b=null;if(!a||a instanceof Array){if(a)b=a;else if(arguments.length>0)return}else b=[a];var c=!1;if(b){for(;b.length;){var d=b.pop(),e=this.getResult(d);for(f=this._loadQueue.length-1;f>=0;f--)if(g=this._loadQueue[f].getItem(),g.id==d||g.src==d){this._loadQueue.splice(f,1)[0].cancel();break}for(f=this._loadQueueBackup.length-1;f>=0;f--)if(g=this._loadQueueBackup[f].getItem(),g.id==d||g.src==d){this._loadQueueBackup.splice(f,1)[0].cancel();break}if(e)delete this._loadItemsById[e.id],delete this._loadItemsBySrc[e.src],this._disposeItem(e);else for(var f=this._currentLoads.length-1;f>=0;f--){var g=this._currentLoads[f].getItem();if(g.id==d||g.src==d){this._currentLoads.splice(f,1)[0].cancel(),c=!0;break}}}c&&this._loadNext()}else{this.close();for(var h in this._loadItemsById)this._disposeItem(this._loadItemsById[h]);this.init(this.useXHR)}},b.reset=function(){this.close();for(var a in this._loadItemsById)this._disposeItem(this._loadItemsById[a]);for(var b=[],c=0,d=this._loadQueueBackup.length;d>c;c++)b.push(this._loadQueueBackup[c].getItem());this.loadManifest(b,!1)},c.isBinary=function(a){switch(a){case createjs.LoadQueue.IMAGE:case createjs.LoadQueue.BINARY:return!0;default:return!1}},c.isText=function(a){switch(a){case createjs.LoadQueue.TEXT:case createjs.LoadQueue.JSON:case createjs.LoadQueue.MANIFEST:case createjs.LoadQueue.XML:case createjs.LoadQueue.HTML:case createjs.LoadQueue.CSS:case createjs.LoadQueue.SVG:case createjs.LoadQueue.JAVASCRIPT:return!0;default:return!1}},b.installPlugin=function(a){if(null!=a&&null!=a.getPreloadHandlers){var b=a.getPreloadHandlers();if(b.scope=a,null!=b.types)for(var c=0,d=b.types.length;d>c;c++)this._typeCallbacks[b.types[c]]=b;if(null!=b.extensions)for(c=0,d=b.extensions.length;d>c;c++)this._extensionCallbacks[b.extensions[c]]=b}},b.setMaxConnections=function(a){this._maxConnections=a,!this._paused&&this._loadQueue.length>0&&this._loadNext()},b.loadFile=function(a,b,c){if(null==a){var d=new createjs.Event("error");return d.text="PRELOAD_NO_FILE",this._sendError(d),void 0}this._addItem(a,null,c),b!==!1?this.setPaused(!1):this.setPaused(!0)},b.loadManifest=function(a,b,d){var e=null,f=null;if(a instanceof Array){if(0==a.length){var g=new createjs.Event("error");return g.text="PRELOAD_MANIFEST_EMPTY",this._sendError(g),void 0}e=a}else if("string"==typeof a)e=[{src:a,type:c.MANIFEST}];else{if("object"!=typeof a){var g=new createjs.Event("error");return g.text="PRELOAD_MANIFEST_NULL",this._sendError(g),void 0}if(void 0!==a.src){if(null==a.type)a.type=c.MANIFEST;else if(a.type!=c.MANIFEST){var g=new createjs.Event("error");g.text="PRELOAD_MANIFEST_ERROR",this._sendError(g)}e=[a]}else void 0!==a.manifest&&(e=a.manifest,f=a.path)}for(var h=0,i=e.length;i>h;h++)this._addItem(e[h],f,d);b!==!1?this.setPaused(!1):this.setPaused(!0)},b.load=function(){this.setPaused(!1)},b.getItem=function(a){return this._loadItemsById[a]||this._loadItemsBySrc[a]},b.getResult=function(a,b){var c=this._loadItemsById[a]||this._loadItemsBySrc[a];if(null==c)return null;var d=c.id;return b&&this._loadedRawResults[d]?this._loadedRawResults[d]:this._loadedResults[d]},b.setPaused=function(a){this._paused=a,this._paused||this._loadNext()},b.close=function(){for(;this._currentLoads.length;)this._currentLoads.pop().cancel();this._scriptOrder.length=0,this._loadedScripts.length=0,this.loadStartWasDispatched=!1},b._addItem=function(a,b,c){var d=this._createLoadItem(a,b,c);if(null!=d){var e=this._createLoader(d);null!=e&&(this._loadQueue.push(e),this._loadQueueBackup.push(e),this._numItems++,this._updateProgress(),this.maintainScriptOrder&&d.type==createjs.LoadQueue.JAVASCRIPT&&e instanceof createjs.XHRLoader&&(this._scriptOrder.push(d),this._loadedScripts.push(null)))}},b._createLoadItem=function(a,b,c){var d=null;switch(typeof a){case"string":d={src:a};break;case"object":d=window.HTMLAudioElement&&a instanceof window.HTMLAudioElement?{tag:a,src:d.tag.src,type:createjs.LoadQueue.SOUND}:a;break;default:return null}var e=this._parseURI(d.src);null!=e&&(d.ext=e[6]),null==d.type&&(d.type=this._getTypeByExtension(d.ext));var f="",g=c||this._basePath,h=d.src;if(e&&null==e[1]&&null==e[3])if(b){f=b;var i=this._parsePath(b);h=b+h,null!=g&&i&&null==i[1]&&null==i[2]&&(f=g+f)}else null!=g&&(f=g);if(d.src=f+d.src,d.path=f,(d.type==createjs.LoadQueue.JSON||d.type==createjs.LoadQueue.MANIFEST)&&(d._loadAsJSONP=null!=d.callback),d.type==createjs.LoadQueue.JSONP&&null==d.callback)throw new Error("callback is required for loading JSONP requests.");(void 0===d.tag||null===d.tag)&&(d.tag=this._createTag(d)),(void 0===d.id||null===d.id||""===d.id)&&(d.id=h);var j=this._typeCallbacks[d.type]||this._extensionCallbacks[d.ext];if(j){var k=j.callback.call(j.scope,d.src,d.type,d.id,d.data,f,this);if(k===!1)return null;k===!0||(null!=k.src&&(d.src=k.src),null!=k.id&&(d.id=k.id),null!=k.tag&&(d.tag=k.tag),null!=k.completeHandler&&(d.completeHandler=k.completeHandler),k.type&&(d.type=k.type),e=this._parseURI(d.src),null!=e&&null!=e[6]&&(d.ext=e[6].toLowerCase()))}return this._loadItemsById[d.id]=d,this._loadItemsBySrc[d.src]=d,d},b._createLoader=function(a){var b=this.useXHR;switch(a.type){case createjs.LoadQueue.JSON:case createjs.LoadQueue.MANIFEST:b=!a._loadAsJSONP;break;case createjs.LoadQueue.XML:case createjs.LoadQueue.TEXT:b=!0;break;case createjs.LoadQueue.SOUND:case createjs.LoadQueue.JSONP:b=!1;break;case null:return null}return b?new createjs.XHRLoader(a,this._crossOrigin):new createjs.TagLoader(a)},b._loadNext=function(){if(!this._paused){this._loadStartWasDispatched||(this._sendLoadStart(),this._loadStartWasDispatched=!0),this._numItems==this._numItemsLoaded?(this.loaded=!0,this._sendComplete(),this.next&&this.next.load&&this.next.load()):this.loaded=!1;for(var a=0;a<this._loadQueue.length&&!(this._currentLoads.length>=this._maxConnections);a++){var b=this._loadQueue[a];if(this.maintainScriptOrder&&b instanceof createjs.TagLoader&&b.getItem().type==createjs.LoadQueue.JAVASCRIPT){if(this._currentlyLoadingScript)continue;this._currentlyLoadingScript=!0}this._loadQueue.splice(a,1),a--,this._loadItem(b)}}},b._loadItem=function(a){a.on("progress",this._handleProgress,this),a.on("complete",this._handleFileComplete,this),a.on("error",this._handleFileError,this),this._currentLoads.push(a),this._sendFileStart(a.getItem()),a.load()},b._handleFileError=function(a){var b=a.target;this._numItemsLoaded++,this._updateProgress();var c=new createjs.Event("error");c.text="FILE_LOAD_ERROR",c.item=b.getItem(),this._sendError(c),this.stopOnError||(this._removeLoadItem(b),this._loadNext())},b._handleFileComplete=function(a){var b=a.target,c=b.getItem();if(this._loadedResults[c.id]=b.getResult(),b instanceof createjs.XHRLoader&&(this._loadedRawResults[c.id]=b.getResult(!0)),this._removeLoadItem(b),this.maintainScriptOrder&&c.type==createjs.LoadQueue.JAVASCRIPT){if(!(b instanceof createjs.TagLoader))return this._loadedScripts[createjs.indexOf(this._scriptOrder,c)]=c,this._checkScriptLoadOrder(b),void 0;this._currentlyLoadingScript=!1}if(delete c._loadAsJSONP,c.type==createjs.LoadQueue.MANIFEST){var d=b.getResult();null!=d&&void 0!==d.manifest&&this.loadManifest(d,!0)}this._processFinishedLoad(c,b)},b._processFinishedLoad=function(a,b){this._numItemsLoaded++,this._updateProgress(),this._sendFileComplete(a,b),this._loadNext()},b._checkScriptLoadOrder=function(){for(var a=this._loadedScripts.length,b=0;a>b;b++){var c=this._loadedScripts[b];if(null===c)break;if(c!==!0){var d=this._loadedResults[c.id];(document.body||document.getElementsByTagName("body")[0]).appendChild(d),this._processFinishedLoad(c),this._loadedScripts[b]=!0}}},b._removeLoadItem=function(a){for(var b=this._currentLoads.length,c=0;b>c;c++)if(this._currentLoads[c]==a){this._currentLoads.splice(c,1);break}},b._handleProgress=function(a){var b=a.target;this._sendFileProgress(b.getItem(),b.progress),this._updateProgress()},b._updateProgress=function(){var a=this._numItemsLoaded/this._numItems,b=this._numItems-this._numItemsLoaded;if(b>0){for(var c=0,d=0,e=this._currentLoads.length;e>d;d++)c+=this._currentLoads[d].progress;a+=c/b*(b/this._numItems)}this._sendProgress(a)},b._disposeItem=function(a){delete this._loadedResults[a.id],delete this._loadedRawResults[a.id],delete this._loadItemsById[a.id],delete this._loadItemsBySrc[a.src]},b._createTag=function(a){var b=null;switch(a.type){case createjs.LoadQueue.IMAGE:return b=document.createElement("img"),""==this._crossOrigin||this._isLocal(a)||(b.crossOrigin=this._crossOrigin),b;case createjs.LoadQueue.SOUND:return b=document.createElement("audio"),b.autoplay=!1,b;case createjs.LoadQueue.JSON:case createjs.LoadQueue.JSONP:case createjs.LoadQueue.JAVASCRIPT:case createjs.LoadQueue.MANIFEST:return b=document.createElement("script"),b.type="text/javascript",b;case createjs.LoadQueue.CSS:return b=this.useXHR?document.createElement("style"):document.createElement("link"),b.rel="stylesheet",b.type="text/css",b;case createjs.LoadQueue.SVG:return this.useXHR?b=document.createElement("svg"):(b=document.createElement("object"),b.type="image/svg+xml"),b}return null},b._getTypeByExtension=function(a){if(null==a)return createjs.LoadQueue.TEXT;switch(a.toLowerCase()){case"jpeg":case"jpg":case"gif":case"png":case"webp":case"bmp":return createjs.LoadQueue.IMAGE;case"ogg":case"mp3":case"wav":return createjs.LoadQueue.SOUND;case"json":return createjs.LoadQueue.JSON;case"xml":return createjs.LoadQueue.XML;case"css":return createjs.LoadQueue.CSS;case"js":return createjs.LoadQueue.JAVASCRIPT;case"svg":return createjs.LoadQueue.SVG;default:return createjs.LoadQueue.TEXT}},b._sendFileProgress=function(a,b){if(this._isCanceled())return this._cleanUp(),void 0;if(this.hasEventListener("fileprogress")){var c=new createjs.Event("fileprogress");c.progress=b,c.loaded=b,c.total=1,c.item=a,this.dispatchEvent(c)}},b._sendFileComplete=function(a,b){if(!this._isCanceled()){var c=new createjs.Event("fileload");c.loader=b,c.item=a,c.result=this._loadedResults[a.id],c.rawResult=this._loadedRawResults[a.id],a.completeHandler&&a.completeHandler(c),this.hasEventListener("fileload")&&this.dispatchEvent(c)}},b._sendFileStart=function(a){var b=new createjs.Event("filestart");b.item=a,this.hasEventListener("filestart")&&this.dispatchEvent(b)},b.toString=function(){return"[PreloadJS LoadQueue]"},createjs.LoadQueue=a;var d=function(){};d.init=function(){var a=navigator.userAgent;d.isFirefox=a.indexOf("Firefox")>-1,d.isOpera=null!=window.opera,d.isChrome=a.indexOf("Chrome")>-1,d.isIOS=a.indexOf("iPod")>-1||a.indexOf("iPhone")>-1||a.indexOf("iPad")>-1},d.init(),createjs.LoadQueue.BrowserDetect=d}(),function(){"use strict";var a=function(a){this.init(a)},b=a.prototype=new createjs.AbstractLoader;b._loadTimeout=null,b._tagCompleteProxy=null,b._isAudio=!1,b._tag=null,b._jsonResult=null,b.init=function(a){this._item=a,this._tag=a.tag,this._isAudio=window.HTMLAudioElement&&a.tag instanceof window.HTMLAudioElement,this._tagCompleteProxy=createjs.proxy(this._handleLoad,this)},b.getResult=function(){return this._item.type==createjs.LoadQueue.JSONP||this._item.type==createjs.LoadQueue.MANIFEST?this._jsonResult:this._tag},b.cancel=function(){this.canceled=!0,this._clean()},b.load=function(){var a=this._item,b=this._tag;clearTimeout(this._loadTimeout);var c=createjs.LoadQueue.LOAD_TIMEOUT;0==c&&(c=createjs.LoadQueue.loadTimeout),this._loadTimeout=setTimeout(createjs.proxy(this._handleTimeout,this),c),this._isAudio&&(b.src=null,b.preload="auto"),b.onerror=createjs.proxy(this._handleError,this),this._isAudio?(b.onstalled=createjs.proxy(this._handleStalled,this),b.addEventListener("canplaythrough",this._tagCompleteProxy,!1)):(b.onload=createjs.proxy(this._handleLoad,this),b.onreadystatechange=createjs.proxy(this._handleReadyStateChange,this));var d=this.buildPath(a.src,a.values);switch(a.type){case createjs.LoadQueue.CSS:b.href=d;break;case createjs.LoadQueue.SVG:b.data=d;break;default:b.src=d}if(a.type==createjs.LoadQueue.JSONP||a.type==createjs.LoadQueue.JSON||a.type==createjs.LoadQueue.MANIFEST){if(null==a.callback)throw new Error("callback is required for loading JSONP requests.");if(null!=window[a.callback])throw new Error('JSONP callback "'+a.callback+'" already exists on window. You need to specify a different callback. Or re-name the current one.');window[a.callback]=createjs.proxy(this._handleJSONPLoad,this)}(a.type==createjs.LoadQueue.SVG||a.type==createjs.LoadQueue.JSONP||a.type==createjs.LoadQueue.JSON||a.type==createjs.LoadQueue.MANIFEST||a.type==createjs.LoadQueue.JAVASCRIPT||a.type==createjs.LoadQueue.CSS)&&(this._startTagVisibility=b.style.visibility,b.style.visibility="hidden",(document.body||document.getElementsByTagName("body")[0]).appendChild(b)),null!=b.load&&b.load()},b._handleJSONPLoad=function(a){this._jsonResult=a},b._handleTimeout=function(){this._clean();var a=new createjs.Event("error");a.text="PRELOAD_TIMEOUT",this._sendError(a)},b._handleStalled=function(){},b._handleError=function(){this._clean();var a=new createjs.Event("error");this._sendError(a)},b._handleReadyStateChange=function(){clearTimeout(this._loadTimeout);var a=this.getItem().tag;("loaded"==a.readyState||"complete"==a.readyState)&&this._handleLoad()},b._handleLoad=function(){if(!this._isCanceled()){var a=this.getItem(),b=a.tag;if(!(this.loaded||this._isAudio&&4!==b.readyState)){switch(this.loaded=!0,a.type){case createjs.LoadQueue.SVG:case createjs.LoadQueue.JSON:case createjs.LoadQueue.JSONP:case createjs.LoadQueue.MANIFEST:case createjs.LoadQueue.CSS:b.style.visibility=this._startTagVisibility,(document.body||document.getElementsByTagName("body")[0]).removeChild(b)}this._clean(),this._sendComplete()}}},b._clean=function(){clearTimeout(this._loadTimeout);var a=this.getItem(),b=a.tag;null!=b&&(b.onload=null,b.removeEventListener&&b.removeEventListener("canplaythrough",this._tagCompleteProxy,!1),b.onstalled=null,b.onprogress=null,b.onerror=null,null!=b.parentNode&&a.type==createjs.LoadQueue.SVG&&a.type==createjs.LoadQueue.JSON&&a.type==createjs.LoadQueue.MANIFEST&&a.type==createjs.LoadQueue.CSS&&a.type==createjs.LoadQueue.JSONP&&b.parentNode.removeChild(b));var a=this.getItem();(a.type==createjs.LoadQueue.JSONP||a.type==createjs.LoadQueue.MANIFEST)&&(window[a.callback]=null)},b.toString=function(){return"[PreloadJS TagLoader]"},createjs.TagLoader=a}(),function(){"use strict";var a=function(a,b){this.init(a,b)},b=a.prototype=new createjs.AbstractLoader;b._request=null,b._loadTimeout=null,b._xhrLevel=1,b._response=null,b._rawResponse=null,b._crossOrigin="",b.init=function(a,b){this._item=a,this._crossOrigin=b,!this._createXHR(a)},b.getResult=function(a){return a&&this._rawResponse?this._rawResponse:this._response},b.cancel=function(){this.canceled=!0,this._clean(),this._request.abort()},b.load=function(){if(null==this._request)return this._handleError(),void 0;if(this._request.onloadstart=createjs.proxy(this._handleLoadStart,this),this._request.onprogress=createjs.proxy(this._handleProgress,this),this._request.onabort=createjs.proxy(this._handleAbort,this),this._request.onerror=createjs.proxy(this._handleError,this),this._request.ontimeout=createjs.proxy(this._handleTimeout,this),1==this._xhrLevel){var a=createjs.LoadQueue.LOAD_TIMEOUT;if(0==a)a=createjs.LoadQueue.loadTimeout;else try{console.warn("LoadQueue.LOAD_TIMEOUT has been deprecated in favor of LoadQueue.loadTimeout")}catch(b){}this._loadTimeout=setTimeout(createjs.proxy(this._handleTimeout,this),a)}this._request.onload=createjs.proxy(this._handleLoad,this),this._request.onreadystatechange=createjs.proxy(this._handleReadyStateChange,this);try{this._item.values&&this._item.method!=createjs.LoadQueue.GET?this._item.method==createjs.LoadQueue.POST&&this._request.send(this._formatQueryString(this._item.values)):this._request.send()}catch(c){var d=new createjs.Event("error");d.error=c,this._sendError(d)}},b.getAllResponseHeaders=function(){return this._request.getAllResponseHeaders instanceof Function?this._request.getAllResponseHeaders():null},b.getResponseHeader=function(a){return this._request.getResponseHeader instanceof Function?this._request.getResponseHeader(a):null},b._handleProgress=function(a){if(a&&!(a.loaded>0&&0==a.total)){var b=new createjs.Event("progress");b.loaded=a.loaded,b.total=a.total,this._sendProgress(b)}},b._handleLoadStart=function(){clearTimeout(this._loadTimeout),this._sendLoadStart()},b._handleAbort=function(){this._clean();var a=new createjs.Event("error");a.text="XHR_ABORTED",this._sendError(a)},b._handleError=function(){this._clean();var a=new createjs.Event("error");this._sendError(a)},b._handleReadyStateChange=function(){4==this._request.readyState&&this._handleLoad()},b._handleLoad=function(){if(!this.loaded){if(this.loaded=!0,!this._checkError())return this._handleError(),void 0;this._response=this._getResponse(),this._clean();var a=this._generateTag();a&&this._sendComplete()}},b._handleTimeout=function(a){this._clean();var b=new createjs.Event("error");b.text="PRELOAD_TIMEOUT",this._sendError(a)},b._checkError=function(){var a=parseInt(this._request.status);switch(a){case 404:case 0:return!1}return!0},b._getResponse=function(){if(null!=this._response)return this._response;if(null!=this._request.response)return this._request.response;try{if(null!=this._request.responseText)return this._request.responseText}catch(a){}try{if(null!=this._request.responseXML)return this._request.responseXML}catch(a){}return null},b._createXHR=function(a){var b=this._isCrossDomain(a),c=null;if(b&&window.XDomainRequest)c=new XDomainRequest;else if(window.XMLHttpRequest)c=new XMLHttpRequest;else try{c=new ActiveXObject("Msxml2.XMLHTTP.6.0")}catch(d){try{c=new ActiveXObject("Msxml2.XMLHTTP.3.0")}catch(d){try{c=new ActiveXObject("Msxml2.XMLHTTP")}catch(d){return!1}}}createjs.LoadQueue.isText(a.type)&&c.overrideMimeType&&c.overrideMimeType("text/plain; charset=utf-8"),this._xhrLevel="string"==typeof c.responseType?2:1;var e=null;return e=a.method==createjs.LoadQueue.GET?this.buildPath(a.src,a.values):a.src,c.open(a.method||createjs.LoadQueue.GET,e,!0),b&&c instanceof XMLHttpRequest&&1==this._xhrLevel&&c.setRequestHeader("Origin",location.origin),a.values&&a.method==createjs.LoadQueue.POST&&c.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),createjs.LoadQueue.isBinary(a.type)&&(c.responseType="arraybuffer"),this._request=c,!0},b._clean=function(){clearTimeout(this._loadTimeout);var a=this._request;a.onloadstart=null,a.onprogress=null,a.onabort=null,a.onerror=null,a.onload=null,a.ontimeout=null,a.onloadend=null,a.onreadystatechange=null},b._generateTag=function(){var a=this._item.type,b=this._item.tag;switch(a){case createjs.LoadQueue.IMAGE:return b.onload=createjs.proxy(this._handleTagReady,this),""!=this._crossOrigin&&(b.crossOrigin="Anonymous"),b.src=this.buildPath(this._item.src,this._item.values),this._rawResponse=this._response,this._response=b,!1;case createjs.LoadQueue.JAVASCRIPT:return b=document.createElement("script"),b.text=this._response,this._rawResponse=this._response,this._response=b,!0;case createjs.LoadQueue.CSS:var c=document.getElementsByTagName("head")[0];if(c.appendChild(b),b.styleSheet)b.styleSheet.cssText=this._response;else{var d=document.createTextNode(this._response);b.appendChild(d)}return this._rawResponse=this._response,this._response=b,!0;case createjs.LoadQueue.XML:var e=this._parseXML(this._response,"text/xml");return this._rawResponse=this._response,this._response=e,!0;case createjs.LoadQueue.SVG:var e=this._parseXML(this._response,"image/svg+xml");return this._rawResponse=this._response,null!=e.documentElement?(b.appendChild(e.documentElement),this._response=b):this._response=e,!0;case createjs.LoadQueue.JSON:case createjs.LoadQueue.MANIFEST:var f={};try{f=JSON.parse(this._response)}catch(g){f=g}return this._rawResponse=this._response,this._response=f,!0}return!0},b._parseXML=function(a,b){var c=null;try{if(window.DOMParser){var d=new DOMParser;c=d.parseFromString(a,b)}else c=new ActiveXObject("Microsoft.XMLDOM"),c.async=!1,c.loadXML(a)}catch(e){}return c},b._handleTagReady=function(){this._sendComplete()},b.toString=function(){return"[PreloadJS XHRLoader]"},createjs.XHRLoader=a}(),"object"!=typeof JSON&&(JSON={}),function(){"use strict";function f(a){return 10>a?"0"+a:a}function quote(a){return escapable.lastIndex=0,escapable.test(a)?'"'+a.replace(escapable,function(a){var b=meta[a];return"string"==typeof b?b:"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4)})+'"':'"'+a+'"'}function str(a,b){var c,d,e,f,g,h=gap,i=b[a];switch(i&&"object"==typeof i&&"function"==typeof i.toJSON&&(i=i.toJSON(a)),"function"==typeof rep&&(i=rep.call(b,a,i)),typeof i){case"string":return quote(i);case"number":return isFinite(i)?String(i):"null";case"boolean":case"null":return String(i);case"object":if(!i)return"null";if(gap+=indent,g=[],"[object Array]"===Object.prototype.toString.apply(i)){for(f=i.length,c=0;f>c;c+=1)g[c]=str(c,i)||"null";return e=0===g.length?"[]":gap?"[\n"+gap+g.join(",\n"+gap)+"\n"+h+"]":"["+g.join(",")+"]",gap=h,e}if(rep&&"object"==typeof rep)for(f=rep.length,c=0;f>c;c+=1)"string"==typeof rep[c]&&(d=rep[c],e=str(d,i),e&&g.push(quote(d)+(gap?": ":":")+e));else for(d in i)Object.prototype.hasOwnProperty.call(i,d)&&(e=str(d,i),e&&g.push(quote(d)+(gap?": ":":")+e));return e=0===g.length?"{}":gap?"{\n"+gap+g.join(",\n"+gap)+"\n"+h+"}":"{"+g.join(",")+"}",gap=h,e}}"function"!=typeof Date.prototype.toJSON&&(Date.prototype.toJSON=function(){return isFinite(this.valueOf())?this.getUTCFullYear()+"-"+f(this.getUTCMonth()+1)+"-"+f(this.getUTCDate())+"T"+f(this.getUTCHours())+":"+f(this.getUTCMinutes())+":"+f(this.getUTCSeconds())+"Z":null},String.prototype.toJSON=Number.prototype.toJSON=Boolean.prototype.toJSON=function(){return this.valueOf()});var cx=/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,escapable=/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,gap,indent,meta={"\b":"\\b","	":"\\t","\n":"\\n","\f":"\\f","\r":"\\r",'"':'\\"',"\\":"\\\\"},rep;"function"!=typeof JSON.stringify&&(JSON.stringify=function(a,b,c){var d;if(gap="",indent="","number"==typeof c)for(d=0;c>d;d+=1)indent+=" ";else"string"==typeof c&&(indent=c);if(rep=b,b&&"function"!=typeof b&&("object"!=typeof b||"number"!=typeof b.length))throw new Error("JSON.stringify");return str("",{"":a})}),"function"!=typeof JSON.parse&&(JSON.parse=function(text,reviver){function walk(a,b){var c,d,e=a[b];if(e&&"object"==typeof e)for(c in e)Object.prototype.hasOwnProperty.call(e,c)&&(d=walk(e,c),void 0!==d?e[c]=d:delete e[c]);return reviver.call(a,b,e)}var j;if(text=String(text),cx.lastIndex=0,cx.test(text)&&(text=text.replace(cx,function(a){return"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4)})),/^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,"")))return j=eval("("+text+")"),"function"==typeof reviver?walk({"":j},""):j;throw new SyntaxError("JSON.parse")})}();module.exports=window.createjs;
+
 },{}],"js/libs/glsl/vertex.glsl":[function(require,module,exports) {
 module.exports = "varying vec2 vUv;\n\nuniform float time;\n\n// const float pi = 3.1415925;\n\n// void main() {\n  //   uv = vUv;\n  //   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );\n// }\n\nprecision mediump float;\n#define GLSLIFY 1\n\n// varying vec2 vUv;\n// uniform float time;\n\nvec3 mod289(vec3 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 mod289(vec4 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 permute(vec4 x){\n  return mod289(((x*34.)+1.)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159-.85373472095314*r;\n}\n\nfloat snoise(vec3 v){\n  const vec2 C=vec2(1./6.,1./3.);\n  const vec4 D=vec4(0.,.5,1.,2.);\n  \n  // First corner\n  vec3 i=floor(v+dot(v,C.yyy));\n  vec3 x0=v-i+dot(i,C.xxx);\n  \n  // Other corners\n  vec3 g=step(x0.yzx,x0.xyz);\n  vec3 l=1.-g;\n  vec3 i1=min(g.xyz,l.zxy);\n  vec3 i2=max(g.xyz,l.zxy);\n  \n  vec3 x1=x0-i1+C.xxx;\n  vec3 x2=x0-i2+C.yyy;\n  vec3 x3=x0-D.yyy;\n  \n  // Permutations\n  i=mod289(i);\n  vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));\n  // Gradients: 7x7 points over a square, mapped onto an octahedron.\n  // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_=.142857142857;\n  vec3 ns=n_*D.wyz-D.xzx;\n  \n  vec4 j=p-49.*floor(p*ns.z*ns.z);\n  \n  vec4 x_=floor(j*ns.z);\n  vec4 y_=floor(j-7.*x_);\n  \n  vec4 x=x_*ns.x+ns.yyyy;\n  vec4 y=y_*ns.x+ns.yyyy;\n  vec4 h=1.-abs(x)-abs(y);\n  \n  vec4 b0=vec4(x.xy,y.xy);\n  vec4 b1=vec4(x.zw,y.zw);\n  \n  vec4 s0=floor(b0)*2.+1.;\n  vec4 s1=floor(b1)*2.+1.;\n  vec4 sh=-step(h,vec4(0.));\n  \n  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;\n  vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;\n  \n  vec3 p0=vec3(a0.xy,h.x);\n  vec3 p1=vec3(a0.zw,h.y);\n  vec3 p2=vec3(a1.xy,h.z);\n  vec3 p3=vec3(a1.zw,h.w);\n  \n  // Normalise gradients\n  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));\n  p0*=norm.x;\n  p1*=norm.y;\n  p2*=norm.z;\n  p3*=norm.w;\n  \n  // Mix final noise value\n  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);\n  m=m*m;\n  return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),\n  dot(p2,x2),dot(p3,x3)));\n}\n\nvoid main(){\n  vUv=uv;\n  \n  vec3 pos=position;\n  float noiseFreq=.5;\n  float noiseAmp=.03;\n  vec3 noisePos=vec3(pos.x*noiseFreq+time,pos.y,pos.z);\n  pos.z+=snoise(noisePos)*noiseAmp;\n  \n  gl_Position=projectionMatrix*modelViewMatrix*vec4(pos,1.);\n}";
 },{}],"js/libs/glsl/fragment.glsl":[function(require,module,exports) {
 module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\n// uniform float _rot;\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\n// vec2 rotate(vec2 v, float a) {\n  //  float s = sin(a);\n  //  float c = cos(a);\n  //  mat2 m = mat2(c, -s, s, c);\n  //  return m * v;\n// }\n\nvoid main(){\n  \n  vec2 uv=vUv;\n  \n  // uv -= 0.5;\n  // vec2 rotUV = rotate(uv, _rot);\n  // uv += 0.5;\n\n  //   vec4 displace = texture2D(displacement, vUv.yx);\n  \n  vec4 disp=texture2D(displacement,uv);\n  // vec2 displacedUV = vec2(vUv.x, vUv.y + disp.r);\n\n  // displacedUV.y = mix(vUv.y, disp.r, 0.1);\n  \n  //   vec4 color = texture2D(image, displacedUV);\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n  \n  // finalTexture.r = texture2D(imagergb, disp + vec2(.0, .0)).r;\n  // finalTexture.g = texture2D(imagergb, disp + vec2(.0, -0.01)).g;\n  // finalTexture.b = texture2D(imagergb, disp + vec2(.0, 0.02)).b;\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n  // gl_FragColor = disp;\n\n}\n\n// void main() {\n//   vUv = uv;\n\n//   vec3 pos = position;\n//   float noiseFreq = 3.5;\n//   float noiseAmp = 0.15; \n//   vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);\n//   pos.z += snoise(noisePos) * noiseAmp;\n\n//   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.);\n// }\n\n// =================================================================================\n// =================================================================================\n\n// uniform float time;\n// uniform float alpha;\n// uniform float displaceHover;\n// // uniform float progress;\n// uniform sampler2D image;\n// uniform sampler2D displacement;\n// uniform sampler2D tDiffuse;\n\n// uniform vec2 resolution;\n// uniform vec2 mouse;\n// // uniform float u_Velo;\n// // uniform int u_Type;\n\n// varying vec2 vUv;\n// // varying vec4 vPosition;\n\n// void main(){\n//   vec4 displace = texture2D(displacement, vUv.yx);\n//   vec2 displacedUV = vec2(vUv.x, vUv.y + displace.r);\n  \n//   displacedUV.y = mix(vUv.y, displace.r, displaceHover);\n  \n//   vec4 color = texture2D(imagebw, displacedUV);\n  \n//   // color.r = texture2D(image, displacedUV + vec2(time*.002, time*0.03)).r;\n//   // color.g = 0.;\n//   // color.b = texture2D(image, displacedUV + vec2(time*.002, time*0.07)).b;\n//   float activeRGB = displaceHover * 10.0;\n//   // color.r = texture2D(imagebw, displacedUV + vec2(.0, 0.5)*activeRGB).r;\n//   color.r = texture2D(imagebw, displacedUV + vec2(.0, -0.2) + vec2(.3, 0.)*activeRGB).r;\n//   // color.r = texture2D(imagebw, displacedUV + vec2(.3, 0.)*activeRGB).r;\n//   color.g = texture2D(imagebw, displacedUV + vec2(.0, -0.01)*activeRGB).g;\n//   color.b = texture2D(imagebw, displacedUV + vec2(.0, 0.02)*activeRGB).b;\n  \n//   color.a = alpha;\n  \n// //   // // get small circle around mouse, with distances to it\n// //   // float c=circle(uv,mouse,0.,.2);\n// //   // // get texture 3 times, each time with a different offset, depending on mouse speed:\n\n// //   // float r=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.5)).x;\n// //   // float g=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.525)).y;\n// //   // float b=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.55)).z;\n// //   // // combine it all to final output\n// //   // color=vec4(r,g,b,1.);\n  \n// //   // vec2 newUV = mix(uv, mouse, circle); \n// //   // color = texture2D(tDiffuse,newUV);\n  \n//   gl_FragColor=color;\n// }\n\n// =================================================================================\n// =================================================================================\n\n// float circle(vec2 uv,vec2 disc_center,float disc_radius,float border_size){\n//   uv-=disc_center;\n//   uv*=resolution;\n//   float dist=sqrt(dot(uv,uv));\n//   return smoothstep(disc_radius+border_size,disc_radius-border_size,dist);\n// }\n\n// void main(){\n//   vec2 newUV=vUv;\n//   float c = circle(vUv,uMouse,0.,.2);\n//   float r = texture2D(tDiffuse,newUV.xy+=c*(.1*.5)).x;\n//   float g = texture2D(tDiffuse,newUV.xy+=c*(.1*.525)).y;\n//   float b = texture2D(tDiffuse,newUV.xy+=c*(.1*.55)).z;\n//   vec4 color = vec4(r,g,b,1.);\n//   gl_FragColor = color;\n// }\n\n// =================================================================================\n// =================================================================================\n\n// float circle(vec2 uv,vec2 disc_center,float disc_radius,float border_size){\n//   uv-=disc_center;\n//   uv*=resolution;\n//   float dist=sqrt(dot(uv,uv));\n//   return smoothstep(disc_radius+border_size,disc_radius-border_size,dist);\n// }\n\n// float map(float value,float min1,float max1,float min2,float max2){\n//   return min2+(value-min1)*(max2-min2)/(max1-min1);\n// }\n\n// float remap(float value,float inMin,float inMax,float outMin,float outMax){\n//   return outMin+(outMax-outMin)*(value-inMin)/(inMax-inMin);\n// }\n\n// float hash12(vec2 p){\n//   float h=dot(p,vec2(127.1,311.7));\n//   return fract(sin(h)*43758.5453123);\n// }\n\n// // #define HASHSCALE3 vec3(.1031, .1030, .0973)\n// vec2 hash2d(vec2 p)\n// {\n//   vec3 p3=fract(vec3(p.xyx)*vec3(.1031,.1030,.0973));\n//   p3+=dot(p3,p3.yzx+19.19);\n//   return fract((p3.xx+p3.yz)*p3.zy);\n// }\n\n// void main(){\n//   vec2 newUV=v_uv;\n//   vec4 color=vec4(1.,0.,0.,1.);\n  \n//   // colorful\n//   // if(uType==0){\n//     float c=circle(newUV,uMouse,0.,.2);\n//     float r=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.5)).x;\n//     float g=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.525)).y;\n//     float b=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.55)).z;\n//     color=vec4(r,g,b,1.);\n//   // }\n  \n//   // zoom\n//   // if(uType==1){\n//     // \tfloat c = circle(newUV, uMouse, 0.0, 0.1+uVelo*2.)*40.*uVelo;\n//     // \tvec2 offsetVector = normalize(uMouse - v_uv);\n//     // \tvec2 warpedUV = mix(v_uv, uMouse, c * 0.99); //power\n//     // \tcolor = texture2D(tDiffuse,warpedUV) + texture2D(tDiffuse,warpedUV)*vec4(vec3(c),1.);\n//   // }\n  \n//   // // zoom\n//   // if(uType==2){\n//     // \tfloat hash = hash12(v_uv*10.);\n//     // \t// float c = -circle(newUV, uMouse, 0.0, 0.1+uVelo*2.)*40.*uVelo;\n//     // \t// vec2 offsetVector = -normalize(uMouse - v_uv);\n//     // \t// vec2 warpedUV = mix(v_uv, uMouse, c * 0.6); //power\n//     // \t// vec2 warpedUV1 = mix(v_uv, uMouse, c * 0.3); //power\n//     // \t// vec2 warpedUV2 = mix(v_uv, uMouse, c * 0.1); //power\n//     // \t// color = vec4(\n//       // \t// \ttexture2D(tDiffuse,warpedUV ).r,\n//       // \t// \ttexture2D(tDiffuse,warpedUV1 ).g,\n//       // \t// \ttexture2D(tDiffuse,warpedUV2 ).b,\n//     // \t// \t1.);\n//     // \t// color = vec4(,0.,0.,1.);\n//     // \tfloat c = circle(newUV, uMouse, 0.0, 0.1+uVelo*0.01)*10.*uVelo;\n//     // \tvec2 offsetVector = normalize(uMouse - v_uv);\n//     // \t// vec2 warpedUV = mix(v_uv, uMouse,  20.*hash*c); //power\n//     // \tvec2 warpedUV = v_uv + vec2(hash - 0.5)*c; //power\n//     // \tcolor = texture2D(tDiffuse,warpedUV) + texture2D(tDiffuse,warpedUV)*vec4(vec3(c),1.);\n//   // }\n  \n//   gl_FragColor=color;\n// }";
 },{}],"js/libs/glsl/fragmentVertical.glsl":[function(require,module,exports) {
 module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\n// uniform float _rot;\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\nvoid main(){\n  \n  vec2 uv=vUv;\n  \n  // uv -= 0.5;\n  // vec2 rotUV = rotate(uv, _rot);\n  // uv += 0.5;\n\n  //   vec4 displace = texture2D(displacement, vUv.yx);\n  \n  vec4 disp=texture2D(displacement,uv.yx);\n  // vec2 displacedUV = vec2(vUv.x, vUv.y + disp.r);\n\n  // displacedUV.y = mix(vUv.y, disp.r, 0.1);\n  \n  //   vec4 color = texture2D(image, displacedUV);\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n  // gl_FragColor = disp;\n\n}";
-},{}],"assets/img/displaces/displace.jpg":[function(require,module,exports) {
-module.exports = "/displace.afb228a4.jpg";
-},{}],"assets/img/displaces/displace.png":[function(require,module,exports) {
-module.exports = "/displace.4e3b4bfa.png";
 },{}],"assets/img/displaces/displace2.png":[function(require,module,exports) {
 module.exports = "/displace2.66ac83aa.png";
-},{}],"assets/img/displaces/displace3.png":[function(require,module,exports) {
-module.exports = "/displace3.5605ca6d.png";
 },{}],"assets/img/displaces/displace4.png":[function(require,module,exports) {
 module.exports = "/displace4.23e6f4a0.png";
-},{}],"assets/img/displaces/displace5.jpg":[function(require,module,exports) {
-module.exports = "/displace5.47599f4e.jpg";
-},{}],"assets/img/displaces/displace6.jpg":[function(require,module,exports) {
-module.exports = "/displace6.55055ee2.jpg";
-},{}],"assets/img/displaces/displace7.jpg":[function(require,module,exports) {
-module.exports = "/displace7.bbc0120c.jpg";
-},{}],"assets/img/displaces/displace8.jpg":[function(require,module,exports) {
-module.exports = "/displace8.d60461ed.jpg";
-},{}],"assets/img/displaces/displace9.png":[function(require,module,exports) {
-module.exports = "/displace9.a0897a7d.png";
 },{}],"assets/img/ateliers/atelier1Default.png":[function(require,module,exports) {
 module.exports = "/atelier1Default.083cf2f9.png";
 },{}],"assets/img/ateliers/atelier2Default.png":[function(require,module,exports) {
@@ -48589,6 +48573,150 @@ module.exports = "/atelier12Hover.8ae78073.png";
 module.exports = "/atelier13Hover.37f453a6.png";
 },{}],"assets/img/ateliers/atelier14Hover.png":[function(require,module,exports) {
 module.exports = "/atelier14Hover.cf4e0176.png";
+},{}],"assets/img/ruelle/banniere/baniere_backstage.jpg":[function(require,module,exports) {
+module.exports = "/baniere_backstage.6ee0ca2e.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg":[function(require,module,exports) {
+module.exports = "/baniere_fabriquetonmmi.92d69c1f.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_vrgaming.jpg":[function(require,module,exports) {
+module.exports = "/baniere_vrgaming.d997f775.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_devweb.jpg":[function(require,module,exports) {
+module.exports = "/baniere_devweb.d2932b15.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_cubemusical.jpg":[function(require,module,exports) {
+module.exports = "/baniere_cubemusical.b247b9bb.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg":[function(require,module,exports) {
+module.exports = "/baniere_iaartgeneratif.3e63200b.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_museemmi.jpg":[function(require,module,exports) {
+module.exports = "/baniere_museemmi.494a347c.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_suiteadobe.jpg":[function(require,module,exports) {
+module.exports = "/baniere_suiteadobe.3ed73083.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_visiteguidée.jpg":[function(require,module,exports) {
+module.exports = "/baniere_visiteguidée.6840924d.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_webradio.jpg":[function(require,module,exports) {
+module.exports = "/baniere_webradio.5098c087.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_plateautv.jpg":[function(require,module,exports) {
+module.exports = "/baniere_plateautv.65d5cb5b.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_fondvert.jpg":[function(require,module,exports) {
+module.exports = "/baniere_fondvert.e54ad5b5.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_mapping.jpg":[function(require,module,exports) {
+module.exports = "/baniere_mapping.b23b6858.jpg";
+},{}],"assets/img/ruelle/banniere/baniere_audiovisuel.jpg":[function(require,module,exports) {
+module.exports = "/baniere_audiovisuel.ab79a4ae.jpg";
+},{}],"assets/img/ruelle/numero/rond_1.jpg":[function(require,module,exports) {
+module.exports = "/rond_1.b1859381.jpg";
+},{}],"assets/img/ruelle/numero/rond_2.jpg":[function(require,module,exports) {
+module.exports = "/rond_2.0ed35a1e.jpg";
+},{}],"assets/img/ruelle/numero/rond_3.jpg":[function(require,module,exports) {
+module.exports = "/rond_3.4635c530.jpg";
+},{}],"assets/img/ruelle/numero/rond_4.jpg":[function(require,module,exports) {
+module.exports = "/rond_4.832f9756.jpg";
+},{}],"assets/img/ruelle/numero/rond_5.jpg":[function(require,module,exports) {
+module.exports = "/rond_5.cb9705ce.jpg";
+},{}],"assets/img/ruelle/numero/rond_6.jpg":[function(require,module,exports) {
+module.exports = "/rond_6.4641b473.jpg";
+},{}],"assets/img/ruelle/numero/rond_7.jpg":[function(require,module,exports) {
+module.exports = "/rond_7.d4eae62b.jpg";
+},{}],"assets/img/ruelle/numero/rond_8.jpg":[function(require,module,exports) {
+module.exports = "/rond_8.d1212d8a.jpg";
+},{}],"assets/img/ruelle/numero/rond_9.jpg":[function(require,module,exports) {
+module.exports = "/rond_9.d3f35799.jpg";
+},{}],"assets/img/ruelle/numero/rond_10.jpg":[function(require,module,exports) {
+module.exports = "/rond_10.d221a24a.jpg";
+},{}],"assets/img/ruelle/numero/rond_11.jpg":[function(require,module,exports) {
+module.exports = "/rond_11.3e66cd89.jpg";
+},{}],"assets/img/ruelle/numero/rond_12.jpg":[function(require,module,exports) {
+module.exports = "/rond_12.d68c17ae.jpg";
+},{}],"assets/img/ruelle/numero/rond_13.jpg":[function(require,module,exports) {
+module.exports = "/rond_13.810f57c0.jpg";
+},{}],"assets/img/ruelle/numero/rond_14.jpg":[function(require,module,exports) {
+module.exports = "/rond_14.8319b838.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_1.jpg":[function(require,module,exports) {
+module.exports = "/panneau_1.bd46ce46.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_2.jpg":[function(require,module,exports) {
+module.exports = "/panneau_2.cf84c849.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_3.jpg":[function(require,module,exports) {
+module.exports = "/panneau_3.6b7aeae7.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_4.jpg":[function(require,module,exports) {
+module.exports = "/panneau_4.bb9f4e8d.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_5.jpg":[function(require,module,exports) {
+module.exports = "/panneau_5.5af23ca0.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_6.jpg":[function(require,module,exports) {
+module.exports = "/panneau_6.f3de0681.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_7.jpg":[function(require,module,exports) {
+module.exports = "/panneau_7.78c6beb0.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_8.jpg":[function(require,module,exports) {
+module.exports = "/panneau_8.55871260.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_9.jpg":[function(require,module,exports) {
+module.exports = "/panneau_9.1c81d8f0.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_10.jpg":[function(require,module,exports) {
+module.exports = "/panneau_10.ade043fa.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_11.jpg":[function(require,module,exports) {
+module.exports = "/panneau_11.80237183.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_12.jpg":[function(require,module,exports) {
+module.exports = "/panneau_12.6eb2d07e.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_13.jpg":[function(require,module,exports) {
+module.exports = "/panneau_13.1108b84b.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_14.jpg":[function(require,module,exports) {
+module.exports = "/panneau_14.c91e2127.jpg";
+},{}],"assets/img/panneau/panneau_1.jpg":[function(require,module,exports) {
+module.exports = "/panneau_1.82e23151.jpg";
+},{}],"assets/img/panneau/panneau_2.jpg":[function(require,module,exports) {
+module.exports = "/panneau_2.f22ee5d4.jpg";
+},{}],"assets/img/panneau/panneau_3.jpg":[function(require,module,exports) {
+module.exports = "/panneau_3.092431c9.jpg";
+},{}],"assets/img/panneau/panneau_4.jpg":[function(require,module,exports) {
+module.exports = "/panneau_4.0cdc25b3.jpg";
+},{}],"assets/img/panneau/panneau_5.jpg":[function(require,module,exports) {
+module.exports = "/panneau_5.cf2139f7.jpg";
+},{}],"assets/img/panneau/panneau_6.jpg":[function(require,module,exports) {
+module.exports = "/panneau_6.fc30cac4.jpg";
+},{}],"assets/img/panneau/panneau_7.jpg":[function(require,module,exports) {
+module.exports = "/panneau_7.021d3f32.jpg";
+},{}],"assets/img/panneau/panneau_8.jpg":[function(require,module,exports) {
+module.exports = "/panneau_8.b98bcd90.jpg";
+},{}],"assets/img/panneau/panneau_9.jpg":[function(require,module,exports) {
+module.exports = "/panneau_9.69e618e7.jpg";
+},{}],"assets/img/panneau/panneau_10.jpg":[function(require,module,exports) {
+module.exports = "/panneau_10.01218666.jpg";
+},{}],"assets/img/panneau/panneau_11.jpg":[function(require,module,exports) {
+module.exports = "/panneau_11.265650d8.jpg";
+},{}],"assets/img/panneau/panneau_12.jpg":[function(require,module,exports) {
+module.exports = "/panneau_12.35181ba4.jpg";
+},{}],"assets/img/panneau/panneau_13.jpg":[function(require,module,exports) {
+module.exports = "/panneau_13.81a5f89e.jpg";
+},{}],"assets/img/panneau/panneau_14.jpg":[function(require,module,exports) {
+module.exports = "/panneau_14.5984c353.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_1.jpg":[function(require,module,exports) {
+module.exports = "/panneau_1.e35a9c33.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_2.jpg":[function(require,module,exports) {
+module.exports = "/panneau_2.e6e5d2b6.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_3.jpg":[function(require,module,exports) {
+module.exports = "/panneau_3.9a0b1029.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_4.jpg":[function(require,module,exports) {
+module.exports = "/panneau_4.0a5bfcd3.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_5.jpg":[function(require,module,exports) {
+module.exports = "/panneau_5.df3f7652.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_6.jpg":[function(require,module,exports) {
+module.exports = "/panneau_6.59c0e7f8.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_7.jpg":[function(require,module,exports) {
+module.exports = "/panneau_7.1af732d3.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_8.jpg":[function(require,module,exports) {
+module.exports = "/panneau_8.4b376922.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_9.jpg":[function(require,module,exports) {
+module.exports = "/panneau_9.12b5abc6.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_10.jpg":[function(require,module,exports) {
+module.exports = "/panneau_10.33f552a0.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_11.jpg":[function(require,module,exports) {
+module.exports = "/panneau_11.1a20b445.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_12.jpg":[function(require,module,exports) {
+module.exports = "/panneau_12.178f5ec0.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_13.jpg":[function(require,module,exports) {
+module.exports = "/panneau_13.7e0e881a.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_14.jpg":[function(require,module,exports) {
+module.exports = "/panneau_14.d25a55a2.jpg";
+},{}],"assets/img/ruelle/idbannire.jpg":[function(require,module,exports) {
+module.exports = "/idbannire.0e9a4e06.jpg";
+},{}],"assets/img/ruelle/credits.jpg":[function(require,module,exports) {
+module.exports = "/credits.8e776ed8.jpg";
 },{}],"assets/img/particle.png":[function(require,module,exports) {
 module.exports = "/particle.8e4cb102.png";
 },{}],"assets/model/socle.gltf":[function(require,module,exports) {
@@ -48633,8 +48761,18 @@ module.exports = "/tv.d7e7e5ad.gltf";
 module.exports = "/cam.dcdda644.gltf";
 },{}],"assets/model/navigation/enceinte.gltf":[function(require,module,exports) {
 module.exports = "/enceinte.a451ff81.gltf";
-},{}],"assets/sound/effect/rpz.mp3":[function(require,module,exports) {
-module.exports = "/rpz.c76645ff.mp3";
+},{}],"assets/sound/rpz.mp3":[function(require,module,exports) {
+module.exports = "/rpz.72b0c7e4.mp3";
+},{}],"assets/sound/bg.mp3":[function(require,module,exports) {
+module.exports = "/bg.72751445.mp3";
+},{}],"assets/sound/bgLoop.mp3":[function(require,module,exports) {
+module.exports = "/bgLoop.78c1fef5.mp3";
+},{}],"assets/sound/soundHoverPlane.mp3":[function(require,module,exports) {
+module.exports = "/soundHoverPlane.bc95d693.mp3";
+},{}],"assets/sound/soundOutPlane.mp3":[function(require,module,exports) {
+module.exports = "/soundOutPlane.efc19fc6.mp3";
+},{}],"assets/sound/soundHover.mp3":[function(require,module,exports) {
+module.exports = "/soundHover.56f41e94.mp3";
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -48648,31 +48786,17 @@ var _three2 = require("three.interaction");
 
 var _touchsweep = _interopRequireDefault(require("touchsweep"));
 
+var _preloadJs = _interopRequireDefault(require("preload-js"));
+
 var _vertex = _interopRequireDefault(require("./libs/glsl/vertex.glsl"));
 
 var _fragment = _interopRequireDefault(require("./libs/glsl/fragment.glsl"));
 
 var _fragmentVertical = _interopRequireDefault(require("./libs/glsl/fragmentVertical.glsl"));
 
-var _displace = _interopRequireDefault(require("../assets/img/displaces/displace.jpg"));
+var _displace = _interopRequireDefault(require("../assets/img/displaces/displace2.png"));
 
-var _displace2 = _interopRequireDefault(require("../assets/img/displaces/displace.png"));
-
-var _displace3 = _interopRequireDefault(require("../assets/img/displaces/displace2.png"));
-
-var _displace4 = _interopRequireDefault(require("../assets/img/displaces/displace3.png"));
-
-var _displace5 = _interopRequireDefault(require("../assets/img/displaces/displace4.png"));
-
-var _displace6 = _interopRequireDefault(require("../assets/img/displaces/displace5.jpg"));
-
-var _displace7 = _interopRequireDefault(require("../assets/img/displaces/displace6.jpg"));
-
-var _displace8 = _interopRequireDefault(require("../assets/img/displaces/displace7.jpg"));
-
-var _displace9 = _interopRequireDefault(require("../assets/img/displaces/displace8.jpg"));
-
-var _displace10 = _interopRequireDefault(require("../assets/img/displaces/displace9.png"));
+var _displace2 = _interopRequireDefault(require("../assets/img/displaces/displace4.png"));
 
 var _atelier1Default = _interopRequireDefault(require("../assets/img/ateliers/atelier1Default.png"));
 
@@ -48730,6 +48854,150 @@ var _atelier13Hover = _interopRequireDefault(require("../assets/img/ateliers/ate
 
 var _atelier14Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier14Hover.png"));
 
+var _baniere_backstage = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_backstage.jpg"));
+
+var _baniere_fabriquetonmmi = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg"));
+
+var _baniere_vrgaming = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_vrgaming.jpg"));
+
+var _baniere_devweb = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_devweb.jpg"));
+
+var _baniere_cubemusical = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_cubemusical.jpg"));
+
+var _baniere_iaartgeneratif = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg"));
+
+var _baniere_museemmi = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_museemmi.jpg"));
+
+var _baniere_suiteadobe = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_suiteadobe.jpg"));
+
+var _baniere_visiteguidE = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_visiteguid\xE9e.jpg"));
+
+var _baniere_webradio = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_webradio.jpg"));
+
+var _baniere_plateautv = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_plateautv.jpg"));
+
+var _baniere_fondvert = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_fondvert.jpg"));
+
+var _baniere_mapping = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_mapping.jpg"));
+
+var _baniere_audiovisuel = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_audiovisuel.jpg"));
+
+var _rond_ = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_1.jpg"));
+
+var _rond_2 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_2.jpg"));
+
+var _rond_3 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_3.jpg"));
+
+var _rond_4 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_4.jpg"));
+
+var _rond_5 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_5.jpg"));
+
+var _rond_6 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_6.jpg"));
+
+var _rond_7 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_7.jpg"));
+
+var _rond_8 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_8.jpg"));
+
+var _rond_9 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_9.jpg"));
+
+var _rond_10 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_10.jpg"));
+
+var _rond_11 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_11.jpg"));
+
+var _rond_12 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_12.jpg"));
+
+var _rond_13 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_13.jpg"));
+
+var _rond_14 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_14.jpg"));
+
+var _panneau_ = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_1.jpg"));
+
+var _panneau_2 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_2.jpg"));
+
+var _panneau_3 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_3.jpg"));
+
+var _panneau_4 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_4.jpg"));
+
+var _panneau_5 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_5.jpg"));
+
+var _panneau_6 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_6.jpg"));
+
+var _panneau_7 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_7.jpg"));
+
+var _panneau_8 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_8.jpg"));
+
+var _panneau_9 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_9.jpg"));
+
+var _panneau_10 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_10.jpg"));
+
+var _panneau_11 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_11.jpg"));
+
+var _panneau_12 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_12.jpg"));
+
+var _panneau_13 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_13.jpg"));
+
+var _panneau_14 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_14.jpg"));
+
+var _panneau_15 = _interopRequireDefault(require("../assets/img/panneau/panneau_1.jpg"));
+
+var _panneau_16 = _interopRequireDefault(require("../assets/img/panneau/panneau_2.jpg"));
+
+var _panneau_17 = _interopRequireDefault(require("../assets/img/panneau/panneau_3.jpg"));
+
+var _panneau_18 = _interopRequireDefault(require("../assets/img/panneau/panneau_4.jpg"));
+
+var _panneau_19 = _interopRequireDefault(require("../assets/img/panneau/panneau_5.jpg"));
+
+var _panneau_20 = _interopRequireDefault(require("../assets/img/panneau/panneau_6.jpg"));
+
+var _panneau_21 = _interopRequireDefault(require("../assets/img/panneau/panneau_7.jpg"));
+
+var _panneau_22 = _interopRequireDefault(require("../assets/img/panneau/panneau_8.jpg"));
+
+var _panneau_23 = _interopRequireDefault(require("../assets/img/panneau/panneau_9.jpg"));
+
+var _panneau_24 = _interopRequireDefault(require("../assets/img/panneau/panneau_10.jpg"));
+
+var _panneau_25 = _interopRequireDefault(require("../assets/img/panneau/panneau_11.jpg"));
+
+var _panneau_26 = _interopRequireDefault(require("../assets/img/panneau/panneau_12.jpg"));
+
+var _panneau_27 = _interopRequireDefault(require("../assets/img/panneau/panneau_13.jpg"));
+
+var _panneau_28 = _interopRequireDefault(require("../assets/img/panneau/panneau_14.jpg"));
+
+var _panneau_29 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_1.jpg"));
+
+var _panneau_30 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_2.jpg"));
+
+var _panneau_31 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_3.jpg"));
+
+var _panneau_32 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_4.jpg"));
+
+var _panneau_33 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_5.jpg"));
+
+var _panneau_34 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_6.jpg"));
+
+var _panneau_35 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_7.jpg"));
+
+var _panneau_36 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_8.jpg"));
+
+var _panneau_37 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_9.jpg"));
+
+var _panneau_38 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_10.jpg"));
+
+var _panneau_39 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_11.jpg"));
+
+var _panneau_40 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_12.jpg"));
+
+var _panneau_41 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_13.jpg"));
+
+var _panneau_42 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_14.jpg"));
+
+var _idbannire = _interopRequireDefault(require("../assets/img/ruelle/idbannire.jpg"));
+
+var _credits = _interopRequireDefault(require("../assets/img/ruelle/credits.jpg"));
+
 var _particle2 = _interopRequireDefault(require("../assets/img/particle.png"));
 
 var _socle = _interopRequireDefault(require("../assets/model/socle.gltf"));
@@ -48774,7 +49042,17 @@ var _cam = _interopRequireDefault(require("../assets/model/navigation/cam.gltf")
 
 var _enceinte = _interopRequireDefault(require("../assets/model/navigation/enceinte.gltf"));
 
-var _rpz = _interopRequireDefault(require("../assets/sound/effect/rpz.mp3"));
+var _rpz = _interopRequireDefault(require("../assets/sound/rpz.mp3"));
+
+var _bg = _interopRequireDefault(require("../assets/sound/bg.mp3"));
+
+var _bgLoop = _interopRequireDefault(require("../assets/sound/bgLoop.mp3"));
+
+var _soundHoverPlane = _interopRequireDefault(require("../assets/sound/soundHoverPlane.mp3"));
+
+var _soundOutPlane = _interopRequireDefault(require("../assets/sound/soundOutPlane.mp3"));
+
+var _soundHover = _interopRequireDefault(require("../assets/sound/soundHover.mp3"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48788,7 +49066,453 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-////////// SCENE //////////
+////////// MAIN LOADER //////////
+var indicGoDesktop = document.querySelector('.indicGoDesktop');
+var progress = document.querySelector('.progress');
+var volume = .1;
+var volumePlane = .075;
+var volumeBtn = .9;
+var bgMusic = document.createElement("audio");
+bgMusic.src = _bg.default;
+bgMusic.loop = false;
+bgMusic.volume = volume;
+var bgLoopMusic = document.createElement("audio");
+bgLoopMusic.src = _bgLoop.default;
+bgLoopMusic.loop = false;
+bgLoopMusic.volume = volume;
+var rpzMusic = document.createElement("audio");
+rpzMusic.src = _rpz.default;
+rpzMusic.loop = false;
+rpzMusic.volume = volume;
+var soundHover = document.createElement("audio");
+soundHover.src = _soundHover.default;
+soundHover.loop = false;
+soundHover.volume = volumeBtn;
+var soundHoverPlane = document.createElement("audio");
+soundHoverPlane.src = _soundHoverPlane.default;
+soundHoverPlane.loop = false;
+soundHoverPlane.volume = volumePlane;
+var soundOutPlane = document.createElement("audio");
+soundOutPlane.src = _soundOutPlane.default;
+soundOutPlane.loop = false;
+soundOutPlane.volume = volumePlane;
+var queue = new _preloadJs.default.LoadQueue(false);
+queue.on("progress", function (event) {
+  var increment = Math.floor(event.progress * 100);
+  progress.innerHTML = increment;
+  indicGoDesktop.classList.add('switch');
+});
+queue.on("complete", function (event) {
+  indicGoDesktop.classList.remove('switch');
+  progress.classList.add('switch');
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    var _cursorIn = new Cursor(cursorShapeIn);
+
+    updateCursor();
+    setTimeout(function () {
+      cursor.style.opacity = 1;
+      cursorShapeOut.style.opacity = 1;
+    }, 50);
+  }
+
+  TweenMax.to(".spanContainerMainStart span", {
+    duration: 1,
+    opacity: 1,
+    stagger: {
+      each: 0.04,
+      from: 'random'
+    },
+    ease: "power3.inOut",
+    delay: .75
+  });
+  TweenMax.to(".borderLeft", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: .75
+  });
+  TweenMax.to(".borderRight", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: .75
+  });
+  TweenMax.to(".borderTop", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: 1.25
+  });
+  TweenMax.to(".borderBottom", {
+    duration: 1,
+    opacity: 1,
+    clipPath: 'inset(0% 0% 0% 0%)',
+    ease: "power3.inOut",
+    delay: 1.25
+  });
+  setTimeout(function () {
+    btnMainStart.addEventListener("pointerenter", function () {
+      if (homeActive) {
+        handleMouseEnterBtn(btnMainStart);
+      }
+
+      btnMainStart.addEventListener("pointerleave", handleMouseLeave);
+    });
+    btnMainStart.addEventListener('mouseenter', function () {
+      spanContainerMainStart.classList.add('neonText');
+      cursorShapeIn.classList.add('mouseover');
+      TweenMax.to(btnMainStart, .5, {
+        color: "#09021e",
+        background: "#4cc9f0",
+        ease: "power3.inOut"
+      });
+      spanContainerMainStart.classList.add('neonText');
+    });
+    btnMainStart.addEventListener('mouseleave', function () {
+      TweenMax.to(btnMainStart, .5, {
+        color: "#4cc9f0",
+        background: "#09021e",
+        ease: "power3.inOut"
+      });
+      cursorShapeIn.classList.remove('mouseover');
+      spanContainerMainStart.classList.remove('neonText');
+    });
+    btnMainStart.addEventListener('click', function () {
+      bgMusic.play();
+      TweenMax.to(maskMusicBtn, {
+        duration: .35,
+        clipPath: "inset(100% 0% 0% 0%)",
+        ease: "power3.easeOut"
+      });
+      TweenMax.to(maskMusicBtn, {
+        duration: .25,
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "power3.easeOut",
+        delay: .15
+      });
+      TweenMax.to(maskMusicBtn, {
+        duration: .25,
+        clipPath: "inset(0% 0% 100% 0%)",
+        ease: "power3.easeOut",
+        delay: .5
+      });
+      switchBtn = true;
+      onMusic.classList.toggle('switch');
+      offMusic.classList.toggle('switch');
+      setTimeout(function () {
+        lineMusicBtn.forEach(function (line) {
+          line.classList.toggle('switch');
+        });
+      }, 350);
+
+      if (window.matchMedia("(max-width: 1024px)").matches) {
+        var html = document.querySelector('html');
+
+        if (html.requestFullscreen) {
+          html.requestFullscreen();
+        } else if (html.mozRequestFullScreen) {
+          html.mozRequestFullScreen();
+        } else if (html.webkitRequestFullscreen) {
+          html.webkitRequestFullscreen();
+        } else if (html.msRequestFullscreen) {
+          html.msRequestFullscreen();
+        }
+      }
+
+      handleMouseLeave();
+      TweenMax.to(".spanContainerMainStart span", {
+        duration: .5,
+        opacity: 0,
+        stagger: {
+          each: 0.04,
+          from: 'random'
+        },
+        ease: "power3.inOut"
+      });
+      TweenMax.to(btnMainStart, {
+        duration: 1.5,
+        opacity: 0,
+        ease: "power3.inOut"
+      });
+      titleSvgPath.forEach(function (e) {
+        e.classList.remove("pathTitleOut");
+        e.classList.remove("pathTitleIn");
+      });
+      titleSvgLine.classList.remove("pathLineOut");
+      titleSvgLine.classList.remove("pathLineIn");
+      setTimeout(function () {
+        TweenMax.to(bgCol, {
+          duration: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          stagger: 0.02
+        });
+        TweenMax.to(bgCol, {
+          duration: .5,
+          background: '#f72585',
+          opacity: .325,
+          stagger: 0.02
+        });
+        TweenMax.to(bgCol, {
+          duration: .5,
+          background: '#0d0437',
+          opacity: .65,
+          stagger: 0.02
+        });
+        TweenMax.to(bgRow, {
+          duration: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          stagger: 0.0355555
+        });
+        TweenMax.to(bgRow, {
+          duration: .5,
+          background: '#f72585',
+          opacity: .325,
+          stagger: 0.0355555
+        });
+        TweenMax.to(bgRow, {
+          duration: .5,
+          background: '#0d0437',
+          opacity: .65,
+          stagger: 0.0355555
+        });
+        TweenMax.to(bgCol, {
+          duration: .5,
+          background: '#f72585',
+          opacity: .05,
+          stagger: 0.02,
+          delay: 2
+        });
+        TweenMax.to(bgRow, {
+          duration: .5,
+          background: '#f72585',
+          opacity: .05,
+          stagger: 0.0355555,
+          delay: 2
+        });
+        TweenMax.to(".firstSlogan span", {
+          duration: 2,
+          opacity: 1,
+          stagger: {
+            each: 0.02,
+            from: 'random'
+          },
+          ease: "expo.inOut",
+          delay: .25
+        });
+        TweenMax.to(".firstSlogan span", {
+          duration: 2,
+          opacity: 0,
+          stagger: {
+            each: 0.02,
+            from: 'random'
+          },
+          ease: "expo.inOut",
+          delay: 3.5
+        });
+        setTimeout(function () {
+          canvas.classList.add('hologramActive'); //CAMERA ANIM
+
+          gsap.to(camera.position, 3.75, {
+            z: 10,
+            ease: "power3.inOut"
+          }); //RAJOUT DES PARTICULES
+
+          setTimeout(function () {
+            scene.add(particleMesh);
+          }, 1000);
+          gsap.to(particleMesh.scale, 3.75, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "power3.inOut"
+          });
+
+          if (!window.matchMedia("(max-width: 1024px)").matches) {
+            gsap.to(home.position, 3.75, {
+              z: 0,
+              x: -1.45,
+              ease: "power3.inOut"
+            });
+            gsap.to(home.rotation, 3.75, {
+              y: -.35,
+              z: 0,
+              ease: "power3.inOut"
+            });
+            TweenMax.to(homeMask, 3.75, {
+              opacity: 1,
+              ease: "power3.inOut"
+            });
+          }
+        }, 4000);
+        setTimeout(function () {
+          titleSvg.classList.add('switchTitle');
+          titleSvgPath.forEach(function (e) {
+            e.classList.remove("pathTitleOut");
+            e.classList.add("pathTitleIn");
+          });
+          titleSvgLine.classList.remove("pathLineOut");
+          titleSvgLine.classList.add("pathLineIn");
+          setTimeout(function () {
+            TweenMax.to(".spanContainerDiscord span", {
+              duration: 0.75,
+              opacity: .6,
+              stagger: {
+                each: 0.06,
+                from: 'random'
+              },
+              ease: "power3.inOut"
+            });
+            TweenMax.to(".spanContainerIut span", {
+              duration: 0.75,
+              opacity: .6,
+              stagger: {
+                each: 0.04,
+                from: 'random'
+              },
+              ease: "power3.inOut"
+            });
+            gsap.to(sm1, 0.75, {
+              opacity: 1,
+              ease: "Power3.easeOut"
+            });
+            gsap.to(sm2, 0.75, {
+              opacity: 1,
+              ease: "Power3.easeOut",
+              delay: .15
+            });
+            gsap.to(sm3, 0.75, {
+              opacity: 1,
+              ease: "Power3.easeOut",
+              delay: .3
+            });
+            gsap.to(musicBtn, 0.75, {
+              opacity: 1,
+              ease: "Power3.easeOut"
+            });
+            TweenMax.to(btnStart, .75, {
+              opacity: 1,
+              clipPath: "inset(0% 0% 0% 0%)",
+              ease: "power3.inOut"
+            });
+            setTimeout(function () {
+              discordContainer.classList.add('switchPointer');
+              iutContainer.classList.add('switchPointer');
+              sm1.classList.add('switchPointer');
+              sm2.classList.add('switchPointer');
+              sm3.classList.add('switchPointer');
+              musicBtn.classList.add('switchPointer');
+            }, 550);
+          }, 3200);
+        }, 4500);
+
+        if (!window.matchMedia("(max-width: 1024px)").matches) {
+          TweenMax.to(bgCol, {
+            duration: 1.5,
+            background: '#f72585',
+            opacity: .05,
+            stagger: 0.02,
+            repeat: -1,
+            yoyo: true,
+            delay: 2
+          });
+          TweenMax.to(bgRow, {
+            duration: 1.5,
+            background: '#f72585',
+            opacity: .05,
+            stagger: 0.0355555,
+            repeat: -1,
+            yoyo: true,
+            delay: 2
+          });
+        }
+      }, 200);
+      btnMainStart.classList.add('close');
+      btnBackHome.classList.remove('hover');
+      cursorShapeIn.classList.remove('mouseover');
+      setTimeout(function () {
+        spanContainerBackMouseOut.classList.remove('neonText');
+      }, 750);
+    });
+  }, 750);
+}); ////////// LOAD FILES //////////
+
+queue.on("fileload", handleFileComplete);
+queue.loadFile(_atelier1Default.default);
+queue.loadFile(_atelier2Default.default);
+queue.loadFile(_atelier3Default.default);
+queue.loadFile(_atelier4Default.default);
+queue.loadFile(_atelier5Default.default);
+queue.loadFile(_atelier6Default.default);
+queue.loadFile(_atelier7Default.default);
+queue.loadFile(_atelier8Default.default);
+queue.loadFile(_atelier9Default.default);
+queue.loadFile(_atelier10Default.default);
+queue.loadFile(_atelier11Default.default);
+queue.loadFile(_atelier12Default.default);
+queue.loadFile(_atelier13Default.default);
+queue.loadFile(_atelier14Default.default);
+queue.loadFile(_atelier1Hover.default);
+queue.loadFile(_atelier2Hover.default);
+queue.loadFile(_atelier3Hover.default);
+queue.loadFile(_atelier4Hover.default);
+queue.loadFile(_atelier5Hover.default);
+queue.loadFile(_atelier6Hover.default);
+queue.loadFile(_atelier7Hover.default);
+queue.loadFile(_atelier8Hover.default);
+queue.loadFile(_atelier9Hover.default);
+queue.loadFile(_atelier10Hover.default);
+queue.loadFile(_atelier11Hover.default);
+queue.loadFile(_atelier12Hover.default);
+queue.loadFile(_atelier13Hover.default);
+queue.loadFile(_atelier14Hover.default);
+queue.loadFile(_displace.default);
+queue.loadFile(_displace2.default);
+queue.loadFile(_particle2.default);
+queue.loadFile(_socle.default);
+queue.loadFile(_logo.default);
+queue.loadFile(_home.default);
+queue.loadFile(_street.default);
+queue.loadFile(_rightDoor.default);
+queue.loadFile(_rightDoor2.default);
+queue.loadFile(_leftDoor.default);
+queue.loadFile(_leftDoor2.default);
+queue.loadFile(_pylone.default);
+queue.loadFile(_grid.default);
+queue.loadFile(_table.default);
+queue.loadFile(_poutre.default);
+queue.loadFile(_leftWall.default);
+queue.loadFile(_rightWall.default);
+queue.loadFile(_field.default);
+queue.loadFile(_sign.default);
+queue.loadFile(_vr.default);
+queue.loadFile(_tabProg.default);
+queue.loadFile(_tv.default);
+queue.loadFile(_cam.default);
+queue.loadFile(_enceinte.default);
+queue.loadFile(_fragmentVertical.default);
+queue.loadFile(_fragment.default);
+queue.loadFile(_vertex.default);
+queue.loadFile(_rpz.default);
+queue.loadFile(_bg.default);
+queue.loadFile(_bgLoop.default);
+queue.loadFile(_rpz.default);
+queue.loadFile(_soundHover.default);
+queue.loadFile(_soundHoverPlane.default);
+queue.loadFile(_soundOutPlane.default);
+queue.loadFile(_GLTFLoader.GLTFLoader);
+queue.loadFile(THREE);
+queue.loadFile(POSTPROCESSING);
+queue.loadFile(_three2.Interaction);
+queue.loadFile(_preloadJs.default);
+queue.loadFile(_touchsweep.default);
+
+function handleFileComplete() {} ////////// SCENE //////////
+
+
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); /////// CLOCK ///////
@@ -48796,9 +49520,9 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 var clock = new THREE.Clock();
 
 if (window.matchMedia("(max-width: 600px)").matches) {
-  camera.position.set(0, 0, 11.3);
+  camera.position.set(0, 0, 4.3);
 } else {
-  camera.position.set(0, 0, 10);
+  camera.position.set(0, 0, 3.7);
 } /////// MAIN RENDERER ///////
 
 
@@ -48808,11 +49532,7 @@ var renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-document.body.appendChild(renderer.domElement); // const controls = new OrbitControls(camera, renderer.domElement)
-// controls.enableDamping = true
-// controls.dampingFactor = 0.25
-// controls.enableZoom = false 
-/////// RESIZE EVENT ///////
+document.body.appendChild(renderer.domElement); /////// RESIZE EVENT ///////
 
 window.addEventListener('resize', function () {
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -48840,8 +49560,8 @@ var rotateZ = -.2; // PLANES ROTATION
 var targetLogo = new THREE.Object3D();
 targetLogo.position.set(0, 0, 0);
 scene.add(targetLogo);
-var light1 = new THREE.PointLight(0x4cc9f0, .3);
-light1.position.set(-2000, 1000, -2000);
+var light1 = new THREE.PointLight(0x4cc9f0, .15);
+light1.position.set(-2000, -.1, -2000);
 scene.add(light1);
 var light2 = new THREE.PointLight(0x4cc9f0, .3);
 light2.position.set(2000, 0, 0);
@@ -48849,8 +49569,8 @@ scene.add(light2);
 var light3 = new THREE.PointLight(0x4cc9f0, .3);
 light3.position.set(-2000, 0, 0);
 scene.add(light3);
-var light4 = new THREE.PointLight(0x4cc9f0, .3);
-light4.position.set(2000, 1000, -2000);
+var light4 = new THREE.PointLight(0x4cc9f0, .15);
+light4.position.set(2000, -.1, -2000);
 scene.add(light4);
 var light5 = new THREE.PointLight(0xf72585, .2);
 light5.position.set(0, 2000, 2000);
@@ -48858,7 +49578,7 @@ scene.add(light5);
 var lightCenter = new THREE.PointLight(0x000000, 30, 2.6);
 lightCenter.position.set(0, 1.5, 0);
 scene.add(lightCenter);
-var lightCenter2 = new THREE.DirectionalLight(0x4cc9f0, 3);
+var lightCenter2 = new THREE.DirectionalLight(0x4cc9f0, 1.5);
 lightCenter2.position.set(0, -.1, 0);
 scene.add(lightCenter2);
 var lightCenterSocle = new THREE.PointLight(0x000000, 150, .6);
@@ -48879,9 +49599,10 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
   loaderHome.load(_home.default, function (addHome) {
     home = addHome.scene;
     scene.add(home);
-    home.position.set(-1.45, -10, 0);
+    home.position.set(20, -10, 105);
     home.scale.set(100, 100, 100);
-    home.rotation.y = -.35;
+    home.rotation.y = -Math.PI;
+    home.rotation.z = Math.PI;
   });
 } // SOCLE MODEL
 
@@ -49275,6 +49996,9 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     enceinte.position.set(-9.2, 5.2, -5);
     enceinte.scale.set(0.0001, 0.0001, 0.0001);
     enceinte.rotation.y = .3 * Math.PI;
+    enceinte.on('click', function () {
+      rpzMusic.play();
+    });
   });
 } // c'est un test pour l'interaction sinon c'était "undefind"
 // let enceinteMaterial = new THREE.MeshBasicMaterial({
@@ -49360,10 +50084,15 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 } /////// PLANES ///////
 
 
-var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30); //WorkShops
-// var planeTrombi = new THREE.PlaneGeometry(1.6/1.2, 0.9/1.2, 30, 30); //Trombi ateliers
-
-var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1); /////// INITIATION DES TEXTURES ///////
+var plane = new THREE.PlaneGeometry(1.6 / 1.2, 0.9 / 1.2, 30, 30);
+var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1);
+var planePanneauRue1 = new THREE.PlaneGeometry(11.92, 3.6, 1, 1);
+var planePanneauRue2 = new THREE.PlaneGeometry(2.75, 5.9, 1, 1);
+var planePanneauRue3 = new THREE.PlaneGeometry(34.75, 3.2, 1, 1);
+var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
+var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
+var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
+var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1); /////// INITIATION DES TEXTURES ///////
 
 var texture1Default = new THREE.TextureLoader().load(_atelier1Default.default);
 var texture1Hover = new THREE.TextureLoader().load(_atelier1Hover.default);
@@ -49392,9 +50121,88 @@ var texture12Hover = new THREE.TextureLoader().load(_atelier12Hover.default);
 var texture13Default = new THREE.TextureLoader().load(_atelier13Default.default);
 var texture13Hover = new THREE.TextureLoader().load(_atelier13Hover.default);
 var texture14Default = new THREE.TextureLoader().load(_atelier14Default.default);
-var texture14Hover = new THREE.TextureLoader().load(_atelier14Hover.default); /////// PLANES MATERIALS ///////
+var texture14Hover = new THREE.TextureLoader().load(_atelier14Hover.default);
+var texturebaniere14 = new THREE.TextureLoader().load(_baniere_backstage.default);
+var texturebaniere13 = new THREE.TextureLoader().load(_baniere_fabriquetonmmi.default);
+var texturebaniere12 = new THREE.TextureLoader().load(_baniere_vrgaming.default);
+var texturebaniere11 = new THREE.TextureLoader().load(_baniere_devweb.default);
+var texturebaniere10 = new THREE.TextureLoader().load(_baniere_cubemusical.default);
+var texturebaniere9 = new THREE.TextureLoader().load(_baniere_iaartgeneratif.default);
+var texturebaniere8 = new THREE.TextureLoader().load(_baniere_museemmi.default);
+var texturebaniere7 = new THREE.TextureLoader().load(_baniere_suiteadobe.default);
+var texturebaniere6 = new THREE.TextureLoader().load(_baniere_visiteguidE.default);
+var texturebaniere5 = new THREE.TextureLoader().load(_baniere_webradio.default);
+var texturebaniere4 = new THREE.TextureLoader().load(_baniere_plateautv.default);
+var texturebaniere3 = new THREE.TextureLoader().load(_baniere_fondvert.default);
+var texturebaniere2 = new THREE.TextureLoader().load(_baniere_mapping.default);
+var texturebaniere1 = new THREE.TextureLoader().load(_baniere_audiovisuel.default);
+var texturechiffre1 = new THREE.TextureLoader().load(_rond_.default);
+var texturechiffre2 = new THREE.TextureLoader().load(_rond_2.default);
+var texturechiffre3 = new THREE.TextureLoader().load(_rond_3.default);
+var texturechiffre4 = new THREE.TextureLoader().load(_rond_4.default);
+var texturechiffre5 = new THREE.TextureLoader().load(_rond_5.default);
+var texturechiffre6 = new THREE.TextureLoader().load(_rond_6.default);
+var texturechiffre7 = new THREE.TextureLoader().load(_rond_7.default);
+var texturechiffre8 = new THREE.TextureLoader().load(_rond_8.default);
+var texturechiffre9 = new THREE.TextureLoader().load(_rond_9.default);
+var texturechiffre10 = new THREE.TextureLoader().load(_rond_10.default);
+var texturechiffre11 = new THREE.TextureLoader().load(_rond_11.default);
+var texturechiffre12 = new THREE.TextureLoader().load(_rond_12.default);
+var texturechiffre13 = new THREE.TextureLoader().load(_rond_13.default);
+var texturechiffre14 = new THREE.TextureLoader().load(_rond_14.default);
+var texturepanneaurue1 = new THREE.TextureLoader().load(_panneau_.default);
+var texturepanneaurue2 = new THREE.TextureLoader().load(_panneau_2.default);
+var texturepanneaurue3 = new THREE.TextureLoader().load(_panneau_3.default);
+var texturepanneaurue4 = new THREE.TextureLoader().load(_panneau_4.default);
+var texturepanneaurue5 = new THREE.TextureLoader().load(_panneau_5.default);
+var texturepanneaurue6 = new THREE.TextureLoader().load(_panneau_6.default);
+var texturepanneaurue7 = new THREE.TextureLoader().load(_panneau_7.default);
+var texturepanneaurue8 = new THREE.TextureLoader().load(_panneau_8.default);
+var texturepanneaurue9 = new THREE.TextureLoader().load(_panneau_9.default);
+var texturepanneaurue10 = new THREE.TextureLoader().load(_panneau_10.default);
+var texturepanneaurue11 = new THREE.TextureLoader().load(_panneau_11.default);
+var texturepanneaurue12 = new THREE.TextureLoader().load(_panneau_12.default);
+var texturepanneaurue13 = new THREE.TextureLoader().load(_panneau_13.default);
+var texturepanneaurue14 = new THREE.TextureLoader().load(_panneau_14.default);
+var texturepanneau1 = new THREE.TextureLoader().load(_panneau_15.default);
+var texturepanneau2 = new THREE.TextureLoader().load(_panneau_16.default);
+var texturepanneau3 = new THREE.TextureLoader().load(_panneau_17.default);
+var texturepanneau4 = new THREE.TextureLoader().load(_panneau_18.default);
+var texturepanneau5 = new THREE.TextureLoader().load(_panneau_19.default);
+var texturepanneau6 = new THREE.TextureLoader().load(_panneau_20.default);
+var texturepanneau7 = new THREE.TextureLoader().load(_panneau_21.default);
+var texturepanneau8 = new THREE.TextureLoader().load(_panneau_22.default);
+var texturepanneau9 = new THREE.TextureLoader().load(_panneau_23.default);
+var texturepanneau10 = new THREE.TextureLoader().load(_panneau_24.default);
+var texturepanneau11 = new THREE.TextureLoader().load(_panneau_25.default);
+var texturepanneau12 = new THREE.TextureLoader().load(_panneau_26.default);
+var texturepanneau13 = new THREE.TextureLoader().load(_panneau_27.default);
+var texturepanneau14 = new THREE.TextureLoader().load(_panneau_28.default);
+var texturepanneau2rue1 = new THREE.TextureLoader().load(_panneau_29.default);
+var texturepanneau2rue2 = new THREE.TextureLoader().load(_panneau_30.default);
+var texturepanneau2rue3 = new THREE.TextureLoader().load(_panneau_31.default);
+var texturepanneau2rue4 = new THREE.TextureLoader().load(_panneau_32.default);
+var texturepanneau2rue5 = new THREE.TextureLoader().load(_panneau_33.default);
+var texturepanneau2rue6 = new THREE.TextureLoader().load(_panneau_34.default);
+var texturepanneau2rue7 = new THREE.TextureLoader().load(_panneau_35.default);
+var texturepanneau2rue8 = new THREE.TextureLoader().load(_panneau_36.default);
+var texturepanneau2rue9 = new THREE.TextureLoader().load(_panneau_37.default);
+var texturepanneau2rue10 = new THREE.TextureLoader().load(_panneau_38.default);
+var texturepanneau2rue11 = new THREE.TextureLoader().load(_panneau_39.default);
+var texturepanneau2rue12 = new THREE.TextureLoader().load(_panneau_40.default);
+var texturepanneau2rue13 = new THREE.TextureLoader().load(_panneau_41.default);
+var texturepanneau2rue14 = new THREE.TextureLoader().load(_panneau_42.default);
+var textureidbaniere = new THREE.TextureLoader().load(_idbannire.default);
+var texturecredits = new THREE.TextureLoader().load(_credits.default); /////// PLANES MATERIALS ///////
 
-var planeOpacityDefault = 0.9;
+var planeOpacityDefault;
+
+if (window.matchMedia("(max-width: 1024px)").matches) {
+  planeOpacityDefault = 0.95;
+} else {
+  planeOpacityDefault = 0.9;
+}
+
 var materialPlane1 = new THREE.ShaderMaterial({
   vertexShader: _vertex.default,
   fragmentShader: _fragment.default,
@@ -49420,7 +50228,7 @@ var materialPlane1 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49461,7 +50269,7 @@ var materialPlane2 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49502,7 +50310,7 @@ var materialPlane3 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49543,7 +50351,7 @@ var materialPlane4 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49584,7 +50392,7 @@ var materialPlane5 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49625,7 +50433,7 @@ var materialPlane6 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49666,7 +50474,7 @@ var materialPlane7 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49707,7 +50515,7 @@ var materialPlane8 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49748,7 +50556,7 @@ var materialPlane9 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49789,7 +50597,7 @@ var materialPlane10 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49830,7 +50638,7 @@ var materialPlane11 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49871,7 +50679,7 @@ var materialPlane12 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49912,7 +50720,7 @@ var materialPlane13 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49953,7 +50761,7 @@ var materialPlane14 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace5.default)
+      value: new THREE.TextureLoader().load(_displace2.default)
     },
     dispFactor: {
       type: "f",
@@ -49987,15 +50795,15 @@ var materialPlanePanneau = new THREE.ShaderMaterial({
     },
     imagebw: {
       type: "t",
-      value: texture1Hover
+      value: texturepanneau1
     },
     imagergb: {
       type: "t",
-      value: texture2Hover
+      value: texturepanneau2
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace3.default)
+      value: new THREE.TextureLoader().load(_displace.default)
     },
     dispFactor: {
       type: "f",
@@ -50011,7 +50819,54 @@ var materialPlanePanneau = new THREE.ShaderMaterial({
   side: THREE.DoubleSide,
   transparent: true,
   opacity: 1.0
-}); /////// PLANE AXES ///////
+}); /////// PLANE RUELLE ///////
+
+var materialPlaneRue7 = new THREE.MeshBasicMaterial({
+  map: texturecredits
+});
+var planeMeshPanneauRue7 = new THREE.Mesh(planePanneauRue7, materialPlaneRue7);
+scene.add(planeMeshPanneauRue7);
+planeMeshPanneauRue7.position.set(5.975, 3.967, -133.6);
+planeMeshPanneauRue7.rotation.set(0, 0, 0);
+var materialPlaneRue4 = new THREE.MeshBasicMaterial({
+  map: texturepanneau2rue1
+});
+var planeMeshPanneauRue4 = new THREE.Mesh(planePanneauRue4, materialPlaneRue4);
+scene.add(planeMeshPanneauRue4);
+planeMeshPanneauRue4.position.set(-20.5, 18.5, -71.75);
+planeMeshPanneauRue4.rotation.set(0, 0, 0);
+var materialPlaneRue3 = new THREE.MeshBasicMaterial({
+  map: texturebaniere1
+});
+var planeMeshPanneauRue3 = new THREE.Mesh(planePanneauRue3, materialPlaneRue3);
+scene.add(planeMeshPanneauRue3);
+planeMeshPanneauRue3.position.set(-.60, 14.3, -71.1);
+planeMeshPanneauRue3.rotation.set(0, 0, 0);
+var materialPlaneRue2 = new THREE.MeshBasicMaterial({
+  map: texturepanneaurue1
+});
+var planeMeshPanneauRue2 = new THREE.Mesh(planePanneauRue2, materialPlaneRue2);
+scene.add(planeMeshPanneauRue2);
+planeMeshPanneauRue2.position.set(-6.841, 6.125, -45.05);
+planeMeshPanneauRue2.rotation.set(0, 0, 0);
+var materialPlaneRue1 = new THREE.MeshBasicMaterial({
+  map: textureidbaniere
+});
+var planeMeshPanneauRue1 = new THREE.Mesh(planePanneauRue1, materialPlaneRue1);
+scene.add(planeMeshPanneauRue1);
+planeMeshPanneauRue1.position.set(9.139, 6.048, -36.55);
+planeMeshPanneauRue1.rotation.set(0, -1.571, 0);
+var materialPlaneRond = new THREE.MeshBasicMaterial({
+  map: texturechiffre1
+});
+var planeMeshPanneauRueRond = new THREE.Mesh(planePanneauRueRond, materialPlaneRond);
+scene.add(planeMeshPanneauRueRond);
+planeMeshPanneauRueRond.position.set(6.75, 6.15, -43.0);
+planeMeshPanneauRueRond.rotation.set(0, 0, 0);
+var planeMeshPanneau = new THREE.Mesh(planePanneau, materialPlanePanneau);
+scene.add(planeMeshPanneau);
+planeMeshPanneau.position.set(7.575, -2.998, -3.755);
+planeMeshPanneau.rotation.set(-.035, -.74, -.07); /////// PLANE AXES ///////
 
 var planeAxe = new THREE.Object3D();
 planeAxe.position.set(0, -26.5, 0);
@@ -50061,7 +50916,6 @@ var planeMesh11 = new THREE.Mesh(plane, materialPlane11);
 var planeMesh12 = new THREE.Mesh(plane, materialPlane12);
 var planeMesh13 = new THREE.Mesh(plane, materialPlane13);
 var planeMesh14 = new THREE.Mesh(plane, materialPlane14);
-var planeMeshPanneau = new THREE.Mesh(planePanneau, materialPlanePanneau);
 planeMesh1.position.y = 4;
 planeMesh2.position.y = 5;
 planeMesh3.position.y = 6;
@@ -50078,7 +50932,8 @@ planeMesh13.position.y = 16;
 planeMesh14.position.y = 17;
 scene.add(planeMeshPanneau);
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
-planeMeshPanneau.rotation.set(-.035, -.74, -.07); // sign.position.set(7.8, -3.05, -4)
+planeMeshPanneau.rotation.set(-.035, -.74, -.07);
+planeMeshPanneau.scale.set(0.0001, 0.0001, 0.0001); // sign.position.set(7.8, -3.05, -4)
 
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
@@ -50145,7 +51000,9 @@ var particleMaterial = new THREE.PointsMaterial({
 });
 var particleMesh = new THREE.Points(particleGeo, particleMaterial);
 particleMesh.name = 'ParticleObjects';
-scene.add(particleMesh); /////// VARIABLES EVENTS ///////
+scene.add(particleMesh);
+particleMesh.scale.set(8, 8, 8);
+scene.remove(scene.getObjectByName("ParticleObjects")); /////// VARIABLES EVENTS ///////
 
 var homeContainer = document.querySelector('.homeContainer');
 var homeMask = document.querySelector('.homeMask');
@@ -50155,7 +51012,9 @@ var titleSvgLine = document.querySelector('.title line');
 var littleTitleSvg = document.querySelector('.littleTitle');
 var littleTitleSvgPath = document.querySelectorAll('.littleTitle path');
 var littleTitleSvgLine = document.querySelector('.littleTitle line');
-var buttons = document.querySelectorAll('button');
+var btnMainStart = document.querySelector('.btn__mainStart');
+var spanContainerMainStart = document.querySelector('.spanContainerMainStart');
+var spanContainerFirstSlogan = document.querySelector('.firstSlogan');
 var btnStart = document.querySelector('.btn__start');
 var spanContainerStartMouseOver = document.querySelector('.spanContainerStartMouseover');
 var spanContainerStartMouseOut = document.querySelector('.spanContainerStartMouseout');
@@ -50184,8 +51043,14 @@ var bgRow = document.querySelectorAll('.rowContainer .row');
 var cursor = document.querySelector('.cursor');
 var cursorShapeIn = document.querySelector('.cursor-shape_in');
 var cursorShapeOut = document.querySelector('.cursor-shape_out');
-var tailleBoulette = document.querySelector('.tailleBoulette');
+var cursorSize = document.querySelector('.cursorSize');
 var containerTimeline = document.querySelector('.containerTimeline');
+var containerTimelineMobile = document.querySelector('.containerTimelineMobile');
+var hamburgerContainer = document.querySelector('.hamburgerContainer');
+var hamburgerContainerLine = document.querySelector('.hamburgerContainer .line');
+var hamburgerContainerLine2 = document.querySelector('.hamburgerContainer .line2');
+var hamburgerContainerCroix = document.querySelector('.hamburgerContainer .croix');
+var hamburgerContainerCroix2 = document.querySelector('.hamburgerContainer .croix2');
 var workShopButton = document.querySelectorAll('.workShopButton');
 var workShopButtonMask = document.querySelectorAll('.mask');
 var workShopButton1 = document.querySelector('.workShopButton__1');
@@ -50202,11 +51067,33 @@ var workShopButton11 = document.querySelector('.workShopButton__11');
 var workShopButton12 = document.querySelector('.workShopButton__12');
 var workShopButton13 = document.querySelector('.workShopButton__13');
 var workShopButton14 = document.querySelector('.workShopButton__14');
+var iframe = document.querySelectorAll('iframe');
+var contenu = document.querySelectorAll('.contenu');
+var contenu_link = document.querySelectorAll('.contenu__link');
+var contenu_vr = document.querySelectorAll('.vr');
+var mobileWorkShopButton = document.querySelectorAll('.mobileWorkShopButton');
+var mobileWorkShopButton1 = document.querySelector('.mobileWorkShopButton__1');
+var mobileWorkShopButton2 = document.querySelector('.mobileWorkShopButton__2');
+var mobileWorkShopButton3 = document.querySelector('.mobileWorkShopButton__3');
+var mobileWorkShopButton4 = document.querySelector('.mobileWorkShopButton__4');
+var mobileWorkShopButton5 = document.querySelector('.mobileWorkShopButton__5');
+var mobileWorkShopButton6 = document.querySelector('.mobileWorkShopButton__6');
+var mobileWorkShopButton7 = document.querySelector('.mobileWorkShopButton__7');
+var mobileWorkShopButton8 = document.querySelector('.mobileWorkShopButton__8');
+var mobileWorkShopButton9 = document.querySelector('.mobileWorkShopButton__9');
+var mobileWorkShopButton10 = document.querySelector('.mobileWorkShopButton__10');
+var mobileWorkShopButton11 = document.querySelector('.mobileWorkShopButton__11');
+var mobileWorkShopButton12 = document.querySelector('.mobileWorkShopButton__12');
+var mobileWorkShopButton13 = document.querySelector('.mobileWorkShopButton__13');
+var mobileWorkShopButton14 = document.querySelector('.mobileWorkShopButton__14'); // let indicClickOnID = document.querySelector('.indicClickOnID');
+
 var indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 var timelineIndication = document.querySelector('.indication');
 var cursorIndication = document.querySelector('.cursorIndication');
+var mobileIndication = document.querySelector('.mobileIndication');
 var workShopContainer = document.querySelector('.workShopContainer');
 var creditContainer = document.querySelector('.creditContainer');
+var contentContainer = document.querySelectorAll('.contentContainer');
 var contentContainer__14 = document.querySelector('.contentContainer__14');
 var scrollContainer__14 = document.querySelector('.scrollContainer__14');
 var scrollContainerContentImg__14 = document.querySelectorAll('.scrollContainer__14 .contentImg');
@@ -50248,230 +51135,310 @@ var scrollContainer__2 = document.querySelector('.scrollContainer__2');
 var scrollContainerContentImg__2 = document.querySelectorAll('.scrollContainer__2 .contentImg');
 var contentContainer__1 = document.querySelector('.contentContainer__1');
 var scrollContainer__1 = document.querySelector('.scrollContainer__1');
-var scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg'); /////// IMAGES HOVER ///////
+var scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
+var switchHamburger = false;
+hamburgerContainer.addEventListener('click', function () {
+  if (switchHamburger == false) {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      soundHover.play();
+    }
+
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+    switchHamburger = true;
+    setTimeout(function () {
+      gsap.to('.mobileWorkShopButton', .5, {
+        opacity: 1,
+        stagger: {
+          each: .05,
+          from: 'edges'
+        },
+        ease: "power3.easeOut"
+      });
+      containerTimelineMobile.classList.toggle('switch');
+    }, 100);
+    containerTimelineMobile.style.zIndex = 4;
+    setTimeout(function () {
+      hamburgerContainerCroix.classList.toggle('switch');
+      hamburgerContainerCroix2.classList.toggle('switch');
+    }, 350);
+  } else {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      soundHover.play();
+    }
+
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+    gsap.to('.mobileWorkShopButton', .5, {
+      opacity: 0,
+      stagger: {
+        each: .03,
+        from: 'center'
+      },
+      ease: "power3.easeOut"
+    });
+    setTimeout(function () {
+      hamburgerContainerLine.classList.toggle('switch');
+      hamburgerContainerLine2.classList.toggle('switch');
+    }, 350);
+    setTimeout(function () {
+      containerTimelineMobile.classList.toggle('switch');
+      containerTimelineMobile.style.zIndex = -1;
+    }, 700);
+  }
+}); /////// IMAGES HOVER ///////
 
 scrollContainerContentImg__14.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__13.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__12.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__11.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__10.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__9.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__8.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__7.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__6.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__5.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__4.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__3.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__2.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 scrollContainerContentImg__1.forEach(function (e) {
-  e.children[2].children[3].addEventListener('mouseenter', function () {
+  e.children[2].children[2].addEventListener('mouseenter', function () {
     e.children[0].classList.add('switch');
     e.children[1].classList.add('switch');
+    e.children[2].classList.add('switch');
     e.children[2].children[0].classList.add('switch');
     e.children[2].children[1].classList.add('switch');
-    e.children[2].children[3].classList.add('switch');
+    e.children[2].children[2].classList.add('switch');
   });
-  e.children[2].children[3].addEventListener('mouseleave', function () {
+  e.children[2].children[2].addEventListener('mouseleave', function () {
     e.children[0].classList.remove('switch');
     e.children[1].classList.remove('switch');
+    e.children[2].classList.remove('switch');
     e.children[2].children[0].classList.remove('switch');
     e.children[2].children[1].classList.remove('switch');
-    e.children[2].children[3].classList.remove('switch');
+    e.children[2].children[2].classList.remove('switch');
   });
 });
 var homeActive = true;
@@ -50479,93 +51446,19 @@ var hoverPlane = true;
 var workshopActive = false;
 var creditActive = false;
 var switchBtn = false;
+var cursorOnVideo = false;
 var backPossible = true;
 var clickPossible = true;
 var scrollPossible = false;
+var planeScrollPossible = true;
 var btnPressed = false;
 var isScrollDown = false;
 var isScrollUp = false;
 var idPlane = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 var varDelay = .0;
-window.addEventListener('load', function () {
-  TweenMax.to(bgCol, {
-    duration: 1,
-    clipPath: "inset(0% 0% 0% 0%)",
-    stagger: 0.02
-  });
-  TweenMax.to(bgCol, {
-    duration: .5,
-    background: '#f72585',
-    opacity: .325,
-    stagger: 0.02
-  });
-  TweenMax.to(bgCol, {
-    duration: .5,
-    background: '#0d0437',
-    opacity: .65,
-    stagger: 0.02
-  });
-  TweenMax.to(bgRow, {
-    duration: 1,
-    clipPath: "inset(0% 0% 0% 0%)",
-    stagger: 0.0355555
-  });
-  TweenMax.to(bgRow, {
-    duration: .5,
-    background: '#f72585',
-    opacity: .325,
-    stagger: 0.0355555
-  });
-  TweenMax.to(bgRow, {
-    duration: .5,
-    background: '#0d0437',
-    opacity: .65,
-    stagger: 0.0355555
-  });
-  TweenMax.to(bgCol, {
-    duration: .5,
-    background: '#f72585',
-    opacity: .05,
-    stagger: 0.02,
-    delay: 2
-  });
-  TweenMax.to(bgRow, {
-    duration: .5,
-    background: '#f72585',
-    opacity: .05,
-    stagger: 0.0355555,
-    delay: 2
-  });
-
-  if (!window.matchMedia("(max-width: 1024px)").matches) {
-    TweenMax.to(bgCol, {
-      duration: 1.5,
-      background: '#f72585',
-      opacity: .05,
-      stagger: 0.02,
-      repeat: -1,
-      yoyo: true,
-      delay: 2
-    });
-    TweenMax.to(bgRow, {
-      duration: 1.5,
-      background: '#f72585',
-      opacity: .05,
-      stagger: 0.0355555,
-      repeat: -1,
-      yoyo: true,
-      delay: 2
-    });
-    canvas.classList.add('hologramActive');
-    cursor.style.opacity = 1;
-    cursorShapeOut.style.opacity = 1;
-    setTimeout(function () {
-      var _cursorIn = new Cursor(cursorShapeIn);
-
-      updateCursor();
-    }, 4000);
-  }
-});
+var scrollPos = 0;
+var direction = "";
+var indicHover = "";
 musicBtn.addEventListener('click', function () {
   if (switchBtn == false) {
     TweenMax.to(maskMusicBtn, {
@@ -50585,6 +51478,16 @@ musicBtn.addEventListener('click', function () {
       ease: "power3.easeOut",
       delay: .5
     });
+
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      soundHover.play();
+    }
+
+    bgMusic.play();
+    rpzMusic.volume = volume;
+    soundHover.volume = volumeBtn;
+    soundHoverPlane.volume = volumePlane;
+    soundOutPlane.volume = volumePlane;
     switchBtn = true;
   } else {
     TweenMax.to(maskMusicBtn, {
@@ -50603,7 +51506,22 @@ musicBtn.addEventListener('click', function () {
       clipPath: "inset(100% 0% 0% 0%)",
       ease: "power3.easeOut",
       delay: .5
-    });
+    }); // test pour le easing du son
+    // var i = setInterval(function () {
+    //   volume-= 0.1
+    //   bgMusic.volume = volume;
+    //   console.log(volume)
+    //   if (volume <=0) {
+    //     clearInterval(i);
+    //     bgMusic.pause();
+    //   }
+    // }, 200);
+
+    bgMusic.pause();
+    rpzMusic.volume = 0;
+    soundHover.volume = 0;
+    soundHoverPlane.volume = 0;
+    soundOutPlane.volume = 0;
     switchBtn = false;
   }
 
@@ -50615,59 +51533,57 @@ musicBtn.addEventListener('click', function () {
     });
   }, 350);
 });
-var soundEffectRpz = new Audio(_rpz.default);
-soundEffectRpz.volume = 0.4; // let test = scene.children[33]
-// console.log(scene.children)
-// console.log(planeMeshPanneau)
-// console.log(enceinteMesh)
-// enceinteMesh.on('click', function(ev) {
-//     soundEffectRpz.play();
-//     console.log(ev)
-// })
-// var shouldStop = false;
-// function checkShouldStop() {
-//     if(shouldStop) {
-//       tl.pause();
-//     }else {
-//       tl.resume();
-//     }
-//   }
-//   musicBtn.addEventListener('click', function(){
-//     shouldStop = true;
-//     gsap.staggerTo(lineMusicBtn, .5, { clipPath: "inset(95% 0% 0% 0%)"}, 0.12)
-//   })
-// //   musicBtn.addEventListener('mouseout', function(){
-// //     shouldStop = false;
-// //     tl.resume();
-// //   })
+musicBtn.addEventListener('mouseenter', function () {
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+});
 
 function cursorHoverIn() {
   if (!window.matchMedia("(max-width: 1024px)").matches) {
-    gsap.to(tailleBoulette, 0.75, {
-      padding: 50,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(cursorShapeIn, 0.75, {
-      background: colorCursorHover,
-      padding: 50,
-      ease: "Power3.easeOut"
-    });
     gsap.to(cursorShapeOut, 0.50, {
       opacity: 0,
       ease: "Power3.easeOut"
     });
-    gsap.to(indicClickOnPlane, .75, {
-      scale: 1,
-      ease: "Power3.easeOut",
-      delay: .05
-    });
-    indicClickOnPlane.classList.add("planeHover");
+
+    if (indicHover == "plane") {
+      soundHoverPlane.play();
+    }
+
+    if (indicHover == "plane" || indicHover == "content") {
+      indicClickOnPlane.classList.add("planeHover");
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorHover,
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorSize, 0.75, {
+        padding: 50,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(indicClickOnPlane, .75, {
+        scale: 1,
+        ease: "Power3.easeOut",
+        delay: .05
+      });
+    } else if (indicHover == "ID") {
+      // indicClickOnID.classList.add("planeHover")
+      gsap.to(cursorShapeIn, 0.75, {
+        background: colorCursorDefault,
+        padding: 25,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorSize, 0.75, {
+        padding: 25,
+        ease: "Power3.easeOut"
+      }); // gsap.to(indicClickOnID, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
+    }
   }
 }
 
 function cursorHoverOut() {
   if (!window.matchMedia("(max-width: 1024px)").matches) {
-    gsap.to(tailleBoulette, 0.75, {
+    gsap.to(cursorSize, 0.75, {
       padding: 0,
       ease: "Power3.easeOut"
     });
@@ -50684,8 +51600,12 @@ function cursorHoverOut() {
     gsap.to(indicClickOnPlane, 0.75, {
       scale: 0,
       ease: "Power3.easeOut"
-    });
+    }); // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
+
     indicClickOnPlane.classList.remove("planeHover");
+    soundOutPlane.play(); // indicClickOnID.classList.remove("planeHover")
+
+    indicHover = "";
   }
 } /////// PLANE HOVER SHADERS EFFECT ///////
 
@@ -50693,378 +51613,476 @@ function cursorHoverOut() {
 var colorCursorHover = "#f72585";
 var colorCursorDefault = "#4cc9f0";
 planeMesh14.on('mouseover', function (ev) {
-  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -17 && planeAxe.position.y >= -17.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
-    gsap.to(materialPlane14.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane14.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
+  if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -17 && planeAxe.position.y >= -25.5 || planeAxe.position.y <= -16.5 && planeAxe.position.y >= -17)) {
+    indicHover = "plane";
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane14.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane14.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh14.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane14.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane14.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane14.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane14.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh13.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -16 && planeAxe.position.y >= -16.5 || planeAxe.position.y <= -15.5 && planeAxe.position.y >= -16)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh13.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane13.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane13.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh12.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -15 && planeAxe.position.y >= -15.5 || planeAxe.position.y <= -14.5 && planeAxe.position.y >= -15)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane12.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh12.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane12.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane12.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane12.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh11.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -14 && planeAxe.position.y >= -14.5 || planeAxe.position.y <= -13.5 && planeAxe.position.y >= -14)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane11.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh11.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane11.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane11.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane11.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh10.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -13 && planeAxe.position.y >= -13.5 || planeAxe.position.y <= -12.5 && planeAxe.position.y >= -13)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane10.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh10.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane10.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane10.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane10.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh9.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -12 && planeAxe.position.y >= -12.5 || planeAxe.position.y <= -11.5 && planeAxe.position.y >= -12)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane9.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh9.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane9.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane9.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane9.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh8.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -11 && planeAxe.position.y >= -11.5 || planeAxe.position.y <= -10.5 && planeAxe.position.y >= -11)) {
-    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
+    indicHover = "plane";
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane8.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh8.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane8.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane8.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane8.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh7.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -10 && planeAxe.position.y >= -10.5 || planeAxe.position.y <= -9.5 && planeAxe.position.y >= -10)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane7.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh7.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane7.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane7.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane7.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh6.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -9 && planeAxe.position.y >= -9.5 || planeAxe.position.y <= -8.5 && planeAxe.position.y >= -9)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane6.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh6.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane6.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane6.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane6.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh5.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -8 && planeAxe.position.y >= -8.5 || planeAxe.position.y <= -7.5 && planeAxe.position.y >= -8)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane5.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh5.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane5.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane5.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane5.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh4.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -7 && planeAxe.position.y >= -7.5 || planeAxe.position.y <= -6.5 && planeAxe.position.y >= -7)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane4.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh4.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane4.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane4.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane4.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh3.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -6 && planeAxe.position.y >= -6.5 || planeAxe.position.y <= -5.5 && planeAxe.position.y >= -6)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane3.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh3.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane3.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane3.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane3.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh2.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -5 && planeAxe.position.y >= -5.5 || planeAxe.position.y <= -4.5 && planeAxe.position.y >= -5)) {
+    indicHover = "plane";
     console.log(ev);
-    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane2.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh2.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane2.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane2.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane2.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh1.on('mouseover', function (ev) {
   if (ev && hoverPlane && !workshopActive && (planeAxe.position.y <= -4 && planeAxe.position.y >= -4.5 || planeAxe.position.y <= -3.5 && planeAxe.position.y >= -4)) {
-    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
-      value: 1.0,
-      ease: "Power3.easeOut"
-    });
+    indicHover = "plane";
     cursorHoverIn();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane1.uniforms.alpha, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
+        value: 1.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 planeMesh1.on('mouseout', function (ev) {
   if (ev && !workshopActive) {
-    gsap.to(materialPlane1.uniforms.alpha, 0.75, {
-      value: planeOpacityDefault,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
     cursorHoverOut();
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(materialPlane1.uniforms.alpha, 0.75, {
+        value: planeOpacityDefault,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(materialPlane1.uniforms.dispFactor, 0.75, {
+        value: 0.0,
+        ease: "Power3.easeOut"
+      });
+    }
   }
 });
 var el = document.querySelector('canvas');
@@ -51097,67 +52115,89 @@ function animationEnterWorkshop() {
   if (idPlane[14]) {
     contentContainer__14.style.display = "block";
     scrollContainer__14.style.display = "flex";
+    contentContainer__14.children[2].children[0].children[1].src = "https://www.youtube.com/embed/Q0gk3DylOsM";
   } else if (idPlane[13]) {
     contentContainer__13.style.display = "block";
     scrollContainer__13.style.display = "flex";
+    contentContainer__13.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU";
+    contentContainer__13.children[4].children[0].children[1].src = "https://www.youtube.com/embed/KaS6BTJNLUQ";
   } else if (idPlane[12]) {
     contentContainer__12.style.display = "block";
     scrollContainer__12.style.display = "flex";
+    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/8tyYcjwssfA";
+    contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU";
   } else if (idPlane[11]) {
     contentContainer__11.style.display = "block";
     scrollContainer__11.style.display = "flex";
+    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM";
+    contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr";
   } else if (idPlane[10]) {
     contentContainer__10.style.display = "block";
     scrollContainer__10.style.display = "flex";
+    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA";
+    contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr";
   } else if (idPlane[9]) {
     contentContainer__9.style.display = "block";
     scrollContainer__9.style.display = "flex";
+    contentContainer__9.children[2].children[0].children[1].src = "https://www.youtube.com/embed/0Aa3iRMg8-E";
+    contentContainer__9.children[4].children[0].children[1].src = "https://www.youtube.com/embed/N6c2qao9yaM";
   } else if (idPlane[8]) {
     contentContainer__8.style.display = "block";
     scrollContainer__8.style.display = "flex";
+    contentContainer__8.children[2].children[0].children[1].src = "https://www.youtube.com/embed/-byRWG9-gjw";
   } else if (idPlane[7]) {
     contentContainer__7.style.display = "block";
     scrollContainer__7.style.display = "flex";
+    contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY"; // contentContainer__7.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
   } else if (idPlane[6]) {
     contentContainer__6.style.display = "block";
     scrollContainer__6.style.display = "flex";
+    contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ"; // contentContainer__6.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
   } else if (idPlane[5]) {
     contentContainer__5.style.display = "block";
     scrollContainer__5.style.display = "flex";
+    contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y"; // contentContainer__5.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
   } else if (idPlane[4]) {
     contentContainer__4.style.display = "block";
     scrollContainer__4.style.display = "flex";
+    contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM"; // contentContainer__4.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
   } else if (idPlane[3]) {
     contentContainer__3.style.display = "block";
     scrollContainer__3.style.display = "flex";
+    contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI"; // contentContainer__3.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
   } else if (idPlane[2]) {
     contentContainer__2.style.display = "block";
     scrollContainer__2.style.display = "flex";
+    contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g"; // contentContainer__2.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
   } else if (idPlane[1]) {
     contentContainer__1.style.display = "block";
     scrollContainer__1.style.display = "flex";
+    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"; // contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
   }
 
-  gsap.to(camera.position, 3, {
-    z: -20,
-    ease: "power3.inOut",
-    delay: .75
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: -.725,
-    y: 0,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    z: -15,
-    y: .35,
-    ease: "power3.inOut"
-  });
-  gsap.to(logo.position, 1.5, {
-    x: 15,
-    ease: "power3.inOut",
-    delay: 1.5
-  });
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.scale, 1.5, {
+      z: 0,
+      y: 0,
+      x: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+  }
+
   TweenMax.to(btnBackHome, 1, {
     opacity: 0,
     clipPath: "inset(0% 100% 0% 0%)",
@@ -51169,10 +52209,32 @@ function animationEnterWorkshop() {
     delay: 2.5,
     ease: "power3.inOut"
   });
+  cursorIndication.classList.remove('switch');
+  mobileIndication.classList.remove('switch');
   hideTimeline();
 
   if (!window.matchMedia("(max-width: 1024px)").matches) {
-    gsap.to(tailleBoulette, 0.75, {
+    gsap.to(camera.position, 3, {
+      z: -20,
+      ease: "power3.inOut",
+      delay: .75
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: -.725,
+      y: 0,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      z: -15,
+      y: .35,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.position, 1.5, {
+      x: 15,
+      ease: "power3.inOut",
+      delay: 1.5
+    });
+    gsap.to(cursorSize, 0.75, {
       padding: 0,
       ease: "Power3.easeOut"
     });
@@ -51199,8 +52261,9 @@ function animationEnterWorkshop() {
     gsap.to(indicClickOnPlane, 0.75, {
       scale: 0,
       ease: "Power3.easeOut"
-    });
-    indicClickOnPlane.classList.remove("planeHover");
+    }); // gsap.to(indicClickOnID, 0.75, { scale: 0, ease: "Power3.easeOut"})
+
+    indicClickOnPlane.classList.remove("planeHover"); // indicClickOnID.classList.remove("planeHover")
   }
 
   gsap.to(workShopContainer, 1.5, {
@@ -51208,12 +52271,20 @@ function animationEnterWorkshop() {
     ease: "Power3.easeOut",
     delay: 2
   });
+  btnBackWorkshop.classList.add('close');
+  btnBackWorkshop.disabled = true;
+  setTimeout(function () {
+    btnBackWorkshop.classList.remove('close');
+    btnBackWorkshop.disabled = false;
+    clickPossible = true;
+  }, 3000);
   setTimeout(function () {
     if (workshopActive) {
       workShopContainer.classList.add('switchPlane');
       scrollPossible = true;
     }
-  }, 3500);
+  }, 3750);
+  planeScrollPossible = false;
   workshopActive = true;
   hoverPlane = false;
   clickPossible = false;
@@ -51573,6 +52644,19 @@ planeMesh1.on('click', function () {
 function functionBtnBackHome() {
   workshopActive = false;
   homeActive = true;
+  cursorOnVideo = false;
+
+  if (!cursorOnVideo) {
+    gsap.to(cursor, 0.50, {
+      opacity: 1,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(cursorShapeOut, 0.50, {
+      opacity: 1,
+      ease: "Power3.easeOut"
+    });
+  }
+
   gsap.to(materialPlane1.uniforms.alpha, 0.75, {
     value: 1.0,
     ease: "power3.inOut"
@@ -51636,8 +52720,8 @@ function functionBtnBackHome() {
       each: 0.07,
       from: 'random'
     },
-    ease: "power2.inOut",
-    delay: 1.25
+    ease: "power3.inOut",
+    delay: 1.5
   });
   TweenMax.to(".spanContainerIut span", {
     duration: 0.75,
@@ -51646,22 +52730,34 @@ function functionBtnBackHome() {
       each: 0.05,
       from: 'random'
     },
-    ease: "power2.inOut",
-    delay: 1.25
+    ease: "power3.inOut",
+    delay: 1.5
   });
-  setTimeout(function () {
-    discordContainer.classList.remove('close');
-    iutContainer.classList.remove('close');
-  }, 3000);
   canvas.classList.remove('hologramDefault');
   canvas.classList.add('hologramActive');
   btnBackHome.classList.add('close');
   btnBackHome.disabled = true;
+  littleTitleSvg.classList.add('close');
   setTimeout(function () {
+    discordContainer.classList.add('switchPointer');
+    iutContainer.classList.add('switchPointer');
     btnStart.disabled = false;
     btnStart.classList.remove('close');
-    littleTitleSvg.classList.add('close');
+  }, 2800);
+  setTimeout(function () {
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau1;
+      gsap.to(materialPlanePanneau.uniforms.dispFactor, {
+        value: 1.0
+      });
+    } else {
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau1;
+      gsap.to(materialPlanePanneau.uniforms.dispFactor, {
+        value: .0
+      });
+    }
   }, 3000);
+  cursorHoverOut();
   hideTimeline();
 
   if (planeAxe.position.y <= -11) {
@@ -51710,18 +52806,10 @@ function functionBtnBackHome() {
   } //CAMERA ANIM
 
 
-  if (window.matchMedia("(max-width: 600px)").matches) {
-    gsap.to(camera.position, 2.95, {
-      z: 11.3,
-      ease: "power3.inOut"
-    });
-  } else {
-    gsap.to(camera.position, 2.95, {
-      z: 10,
-      ease: "power3.inOut"
-    });
-  } //RAJOUT DES PARTICULES
-
+  gsap.to(camera.position, 2.95, {
+    z: 10,
+    ease: "power3.inOut"
+  }); //RAJOUT DES PARTICULES
 
   scene.add(particleMesh);
   gsap.to(particleMesh.scale, 2.95, {
@@ -51744,7 +52832,8 @@ function functionBtnBackHome() {
   littleTitleSvgLine.classList.remove("pathLineIn");
   littleTitleSvgLine.classList.add("pathLineOut");
   cursorIndication.classList.remove('switch');
-  TweenMax.to(btnStart, .75, {
+  mobileIndication.classList.remove('switch');
+  TweenMax.to(btnStart, 1.5, {
     opacity: 1,
     clipPath: "inset(0% 0% 0% 0%)",
     delay: 1.75,
@@ -51902,87 +52991,93 @@ function functionBtnBackHome() {
       z: 0.0001,
       ease: "power3.inOut"
     });
-    gsap.to(sign.scale, 2.25, {
+    gsap.to(sign.scale, 1.25, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
-    gsap.to(table.scale, 2.25, {
+    gsap.to(planeMeshPanneau.scale, 1.25, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
-    gsap.to(pylone5.scale, 2.25, {
+    gsap.to(table.scale, 1.25, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
-    gsap.to(pylone4.scale, 2.1, {
+    gsap.to(pylone5.scale, 1.25, {
+      x: 0.0001,
+      y: 0.0001,
+      z: 0.0001,
+      ease: "power3.inOut"
+    });
+    gsap.to(pylone4.scale, 1.1, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
-    gsap.to(pylone3.scale, 1.95, {
+    gsap.to(pylone3.scale, .95, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
-    gsap.to(pylone2.scale, 1.8, {
+    gsap.to(pylone2.scale, .8, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
-    gsap.to(pylone.scale, 1.65, {
+    gsap.to(pylone.scale, .65, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .6
     });
-    gsap.to(grid.scale, 2.25, {
+    gsap.to(grid.scale, 1.25, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
-    gsap.to(grid2.scale, 2.1, {
+    gsap.to(grid2.scale, 1.1, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .15
     });
-    gsap.to(grid3.scale, 1.95, {
+    gsap.to(grid3.scale, .95, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
-    gsap.to(grid4.scale, 1.8, {
+    gsap.to(grid4.scale, .8, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .45
     });
-    gsap.to(grid5.scale, 1.65, {
+    gsap.to(grid5.scale, .65, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .6
     });
-    gsap.to(poutre.scale, 2.25, {
+    gsap.to(poutre.scale, 1.25, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
@@ -52005,41 +53100,41 @@ function functionBtnBackHome() {
       z: 0.0001,
       ease: "power3.inOut"
     });
-    gsap.to(cam.scale, 1.65, {
+    gsap.to(cam.scale, .65, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .6
     });
-    gsap.to(vr2.scale, 1.95, {
+    gsap.to(vr2.scale, .95, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
-    gsap.to(enceinte.scale, 2.25, {
+    gsap.to(enceinte.scale, 1.25, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut"
     });
-    gsap.to(tv2.scale, 1.65, {
+    gsap.to(tv2.scale, .65, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .6
     });
-    gsap.to(tabProg.scale, 1.95, {
+    gsap.to(tabProg.scale, .95, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
       ease: "power3.inOut",
       delay: .3
     });
-    gsap.to(tv.scale, 2.25, {
+    gsap.to(tv.scale, 1.25, {
       x: 0.0001,
       y: 0.0001,
       z: 0.0001,
@@ -52062,38 +53157,41 @@ function functionBtnBackHome() {
   }); //SWITCH ELEMENTS ON CLICK
 
   canvas.style.zIndex = -1;
-  homeContainer.style.zIndex = 2;
-  homeMask.style.zIndex = 1;
+  homeContainer.style.zIndex = 3;
+  homeMask.style.zIndex = 2;
 }
 
 function revealTimeline() {
   TweenMax.to(workShopButton, 1, {
     x: 0,
     opacity: 1,
-    webkitFilter: 'blur(0)',
     stagger: {
       each: 0.03,
       from: "edges"
     },
     ease: "power3.inOut",
-    delay: 2
+    delay: 1.5
   });
   TweenMax.to(timelineIndication, 1, {
     opacity: 1,
-    webkitFilter: 'blur(0)',
     ease: "power3.inOut",
-    delay: 2.5
+    delay: 2
   });
   setTimeout(function () {
     containerTimeline.classList.add('switch');
-  }, 4000);
+    hamburgerContainer.classList.add('switchPointer');
+  }, 3500);
+  gsap.to(hamburgerContainer, 1, {
+    opacity: 1,
+    ease: "Power3.easeOut",
+    delay: 3
+  });
 }
 
 function hideTimeline() {
   TweenMax.to(workShopButton, 1, {
     x: '25%',
     opacity: 0,
-    webkitFilter: 'blur(2px)',
     stagger: {
       each: 0.03,
       from: "center"
@@ -52102,12 +53200,16 @@ function hideTimeline() {
   });
   TweenMax.to(timelineIndication, 1, {
     opacity: 0,
-    webkitFilter: 'blur(2px)',
     ease: "power3.inOut"
   });
   setTimeout(function () {
     containerTimeline.classList.remove('switch');
+    hamburgerContainer.classList.remove('switchPointer');
   }, 1000);
+  gsap.to(hamburgerContainer, 1, {
+    opacity: 0,
+    ease: "Power3.easeOut"
+  });
 } ///// START BUTTON EVENTS /////
 
 
@@ -52130,10 +53232,14 @@ function functionBtnStart() {
   canvas.classList.add('hologramDefault');
   btnStart.classList.add('close');
   btnStart.disabled = true;
+  backPossible = false;
   setTimeout(function () {
     btnBackHome.disabled = false;
     btnBackHome.classList.remove('close');
     littleTitleSvg.classList.remove('close');
+    setTimeout(function () {
+      backPossible = true;
+    }, 500);
   }, 4000);
   TweenMax.to(btnStart, 1.7, {
     opacity: 0,
@@ -52152,7 +53258,7 @@ function functionBtnStart() {
       each: 0.07,
       from: 'random'
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
   TweenMax.to(".spanContainerIut span", {
     duration: 0.75,
@@ -52161,10 +53267,10 @@ function functionBtnStart() {
       each: 0.05,
       from: 'random'
     },
-    ease: "power2.inOut"
+    ease: "power3.inOut"
   });
-  discordContainer.classList.add('close');
-  iutContainer.classList.add('close');
+  discordContainer.classList.remove('switchPointer');
+  iutContainer.classList.remove('switchPointer');
   setTimeout(function () {
     // SUPPRESSIONS DES PARTICULES
     setTimeout(function () {
@@ -52190,7 +53296,7 @@ function functionBtnStart() {
 
     if (window.matchMedia("(max-width: 600px)").matches) {
       gsap.to(camera.position, 3, {
-        z: 4.5,
+        z: 4.3,
         ease: "power3.inOut"
       });
     } else {
@@ -52368,125 +53474,137 @@ function functionBtnStart() {
         z: 100,
         ease: "power3.inOut"
       });
-      gsap.to(table.scale, 3, {
+      gsap.to(planeMeshPanneau.scale, 3, {
+        x: 1,
+        y: 1,
+        z: 1,
+        ease: "power3.inOut"
+      });
+      gsap.to(table.scale, 2, {
         x: 110,
         y: 110,
         z: 110,
-        ease: "power3.inOut"
+        ease: "power3.inOut",
+        delay: 1
       });
-      gsap.to(cam.scale, 3, {
+      gsap.to(cam.scale, 2, {
         x: 14,
         y: 14,
         z: 14,
-        ease: "power3.inOut"
+        ease: "power3.inOut",
+        delay: 1
       });
-      gsap.to(vr2.scale, 2.7, {
+      gsap.to(vr2.scale, 1.7, {
         x: 75,
         y: 75,
         z: 75,
         ease: "power3.inOut",
-        delay: .3
+        delay: 1.3
       });
-      gsap.to(enceinte.scale, 2.4, {
+      gsap.to(enceinte.scale, 1.4, {
         x: 1,
         y: 1,
         z: 1,
         ease: "power3.inOut",
-        delay: .6
+        delay: 1.6
       });
-      gsap.to(tv2.scale, 3, {
+      gsap.to(tv2.scale, 2, {
         x: 95,
         y: 95,
         z: 65,
-        ease: "power3.inOut"
+        ease: "power3.inOut",
+        delay: 1
       });
-      gsap.to(tabProg.scale, 2.7, {
+      gsap.to(tabProg.scale, 1.7, {
         x: 95,
         y: 95,
         z: 95,
         ease: "power3.inOut",
-        delay: .3
+        delay: 1.3
       });
-      gsap.to(tv.scale, 2.4, {
+      gsap.to(tv.scale, 1.4, {
         x: 95,
         y: 95,
         z: 95,
         ease: "power3.inOut",
-        delay: .6
+        delay: 1.6
       });
-      gsap.to(pylone.scale, 3, {
-        x: 110,
-        y: 80,
-        z: 110,
-        ease: "power3.inOut"
-      });
-      gsap.to(pylone2.scale, 2.85, {
+      gsap.to(pylone.scale, 2, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .15
+        delay: 1
       });
-      gsap.to(pylone3.scale, 2.7, {
+      gsap.to(pylone2.scale, 1.85, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .3
+        delay: 1.15
       });
-      gsap.to(pylone4.scale, 2.55, {
+      gsap.to(pylone3.scale, 1.7, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .45
+        delay: 1.3
       });
-      gsap.to(pylone5.scale, 2.4, {
+      gsap.to(pylone4.scale, 1.55, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .6
+        delay: 1.45
       });
-      gsap.to(grid5.scale, 3, {
-        x: 110,
-        y: 80,
-        z: 110,
-        ease: "power3.inOut"
-      });
-      gsap.to(grid4.scale, 2.85, {
+      gsap.to(pylone5.scale, 1.4, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .15
+        delay: 1.6
       });
-      gsap.to(grid3.scale, 2.7, {
+      gsap.to(grid5.scale, 2, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .3
+        delay: 1
       });
-      gsap.to(grid2.scale, 2.55, {
+      gsap.to(grid4.scale, 1.85, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .45
+        delay: 1.15
       });
-      gsap.to(grid.scale, 2.4, {
+      gsap.to(grid3.scale, 1.7, {
         x: 110,
         y: 80,
         z: 110,
         ease: "power3.inOut",
-        delay: .6
+        delay: 1.3
       });
-      gsap.to(poutre.scale, 3, {
+      gsap.to(grid2.scale, 1.55, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: 1.45
+      });
+      gsap.to(grid.scale, 1.4, {
+        x: 110,
+        y: 80,
+        z: 110,
+        ease: "power3.inOut",
+        delay: 1.6
+      });
+      gsap.to(poutre.scale, 2, {
         x: 90,
         y: 100,
         z: 100,
-        ease: "power3.inOut"
+        ease: "power3.inOut",
+        delay: 1
       });
       gsap.to(street.scale, 0, {
         x: 110,
@@ -52530,180 +53648,292 @@ function functionBtnStart() {
       homeMask.style.zIndex = -1;
       setTimeout(function () {
         cursorIndication.classList.add('switch');
-      }, 1100);
+        mobileIndication.classList.add('switch');
+      }, 1000);
     }, 1500);
   }, 1000);
 }
 
 btnStart.addEventListener('click', function () {
   functionBtnStart();
-  TweenMax.to(".spanContainerStartMouseover span", {
-    duration: .5,
-    translateY: 0,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerStartMouseout span", {
-    duration: .5,
-    translateY: 40,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnStart, {
-    color: "#4cc9f0",
-    background: "#09021e",
-    ease: "power3.inOut"
-  });
-  handleMouseLeave();
-  btnStart.classList.remove('hover');
-  cursorShapeIn.classList.remove('mouseover');
-  setTimeout(function () {
-    spanContainerStartMouseOut.classList.remove('neonText');
-  }, 750);
+
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerStartMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerStartMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnStart, .5, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut"
+    });
+    setTimeout(function () {
+      spanContainerStartMouseOut.classList.remove('neonText');
+    }, 750);
+    handleMouseLeave();
+    btnStart.classList.remove('hover');
+    cursorShapeIn.classList.remove('mouseover');
+  }
 });
 btnStart.addEventListener('mouseenter', function () {
-  TweenMax.to(".spanContainerStartMouseover span", {
-    duration: .5,
-    translateY: -40,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerStartMouseout span", {
-    duration: .5,
-    translateY: 0,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnStart, {
-    color: "#09021e",
-    background: "#4cc9f0",
-    ease: "power3.inOut"
-  });
-  btnStart.classList.add('hover');
-  spanContainerStartMouseOut.classList.add('neonText');
-  cursorShapeIn.classList.add('mouseover');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerStartMouseover span", {
+      duration: .5,
+      translateY: -40,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerStartMouseout span", {
+      duration: .5,
+      translateY: 0,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnStart, .5, {
+      color: "#09021e",
+      background: "#4cc9f0",
+      ease: "power3.inOut"
+    });
+    btnStart.classList.add('hover');
+    spanContainerStartMouseOut.classList.add('neonText');
+    cursorShapeIn.classList.add('mouseover');
+    soundHover.play();
+  }
 });
 btnStart.addEventListener('mouseleave', function () {
-  TweenMax.to(".spanContainerStartMouseover span", {
-    duration: .5,
-    translateY: 0,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerStartMouseout span", {
-    duration: .5,
-    translateY: 40,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnStart, {
-    color: "#4cc9f0",
-    background: "#09021e",
-    ease: "power3.inOut"
-  });
-  btnStart.classList.remove('hover');
-  spanContainerStartMouseOut.classList.remove('neonText');
-  cursorShapeIn.classList.remove('mouseover');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerStartMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerStartMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnStart, .5, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut"
+    });
+    btnStart.classList.remove('hover');
+    spanContainerStartMouseOut.classList.remove('neonText');
+    cursorShapeIn.classList.remove('mouseover');
+  }
 });
 btnBackHome.addEventListener('click', function () {
   functionBtnBackHome();
-  TweenMax.to(".spanContainerBackMouseover span", {
-    duration: .5,
-    translateY: 0,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerBackMouseout span", {
-    duration: .5,
-    translateY: 40,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnBackHome, {
-    color: "#4cc9f0",
-    background: "#09021e",
-    ease: "power3.inOut"
-  });
-  handleMouseLeave();
-  btnBackHome.classList.remove('hover');
-  setTimeout(function () {
-    spanContainerBackMouseOut.classList.remove('neonText');
-  }, 750);
+
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerBackMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: {
+        each: 0.027,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: {
+        each: 0.027,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, .5, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut"
+    });
+    setTimeout(function () {
+      spanContainerBackMouseOut.classList.remove('neonText');
+    }, 750);
+    handleMouseLeave();
+    btnBackHome.classList.remove('hover');
+    cursorShapeIn.classList.remove('mouseover');
+  }
 });
 btnBackHome.addEventListener('mouseenter', function () {
-  TweenMax.to(".spanContainerBackMouseover span", {
-    duration: .5,
-    translateY: -40,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerBackMouseout span", {
-    duration: .5,
-    translateY: 0,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnBackHome, {
-    color: "#09021e",
-    background: "#4cc9f0",
-    ease: "power3.inOut"
-  });
-  btnBackHome.classList.add('hover');
-  spanContainerBackMouseOut.classList.add('neonText');
-  cursorShapeIn.classList.add('mouseover');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerBackMouseover span", {
+      duration: .5,
+      translateY: -40,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackMouseout span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, .5, {
+      color: "#09021e",
+      background: "#4cc9f0",
+      ease: "power3.inOut"
+    });
+    btnBackHome.classList.add('hover');
+    spanContainerBackMouseOut.classList.add('neonText');
+    cursorShapeIn.classList.add('mouseover');
+    soundHover.play();
+  }
 });
 btnBackHome.addEventListener('mouseleave', function () {
-  TweenMax.to(".spanContainerBackMouseover span", {
-    duration: .5,
-    translateY: 0,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerBackMouseout span", {
-    duration: .5,
-    translateY: 40,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnBackHome, {
-    color: "#4cc9f0",
-    background: "#09021e",
-    ease: "power3.inOut"
-  });
-  btnBackHome.classList.remove('hover');
-  spanContainerBackMouseOut.classList.remove('neonText');
-  cursorShapeIn.classList.remove('mouseover');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerBackMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, .5, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut"
+    });
+    btnBackHome.classList.remove('hover');
+    spanContainerBackMouseOut.classList.remove('neonText');
+    cursorShapeIn.classList.remove('mouseover');
+  }
+});
+btnBackWorkshop.addEventListener('click', function () {
+  if (workshopActive && !creditActive && backPossible && !btnPressed) {
+    btnPressed = true;
+    backToPlane();
+  } else if (workshopActive && creditActive && !btnPressed) {
+    btnPressed = true;
+    backToWorkshop();
+  }
+
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(btnBackWorkshop, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut"
+    });
+    handleMouseLeave();
+    btnBackWorkshop.classList.remove('hover');
+    cursorShapeIn.classList.remove('mouseover');
+    setTimeout(function () {
+      spanContainerBackMouseOut.classList.remove('neonText');
+    }, 750);
+  }
+
+  setTimeout(function () {
+    btnPressed = false;
+  }, 3000);
+});
+btnBackWorkshop.addEventListener('mouseenter', function () {
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerBackWorkshopMouseover span", {
+      duration: .5,
+      translateY: -40,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackWorkshopMouseout span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, {
+      color: "#09021e",
+      background: "#4cc9f0",
+      ease: "power3.inOut"
+    });
+    btnBackWorkshop.classList.add('hover');
+
+    if (workshopActive) {
+      spanContainerBackWorkshopMouseOut.classList.add('neonText');
+    } else {
+      spanContainerBackMouseOut.classList.add('neonText');
+    }
+
+    cursorShapeIn.classList.add('mouseover');
+    soundHover.play();
+  }
+});
+btnBackWorkshop.addEventListener('mouseleave', function () {
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerBackWorkshopMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackWorkshopMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut"
+    });
+    btnBackWorkshop.classList.remove('hover');
+    spanContainerBackMouseOut.classList.remove('neonText');
+    cursorShapeIn.classList.remove('mouseover');
+  }
 });
 
 function posComparedToElementHeight(el) {
   var taillePopUpSplit = el.scrollHeight / 4;
 
   if (camera.position.z >= -106 && el.scrollTop >= taillePopUpSplit * 2 && el.scrollTop < taillePopUpSplit * 3) {
-    varDelay = .75;
+    varDelay = 1;
     gsap.to(el, 3, {
       opacity: 0,
       ease: "Power3.easeOut",
@@ -52829,255 +54059,321 @@ function backToPlane() {
       z: 3.7,
       ease: "power3.inOut"
     });
+    gsap.to(logo.position, 1.5, {
+      x: 0,
+      ease: "power3.inOut",
+      delay: 0.75 + varDelay
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: .25,
+      ease: "power3.inOut",
+      delay: 1.5 + varDelay
+    });
+    gsap.to(logo.position, 1.5, {
+      z: 0,
+      y: 0,
+      ease: "power3.inOut",
+      delay: 1.5 + varDelay
+    });
     setTimeout(function () {
       creditContainer.classList.remove('switchStreet');
       scrollPossible = false;
     }, 1500);
-  } else {
+  } else if (window.matchMedia("(max-width: 600px)").matches) {
     gsap.to(camera.position, 3, {
-      z: 4.5,
+      z: 4.3,
       ease: "power3.inOut"
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: .25,
+      y: 0,
+      ease: "power3.inOut",
+      delay: 1.75
+    });
+    gsap.to(logo.scale, 1.5, {
+      z: .95,
+      y: .95,
+      x: .95,
+      ease: "power3.inOut",
+      delay: 1.75
+    });
+    gsap.to(logo.position, 1.5, {
+      z: 0,
+      y: 0,
+      ease: "power3.inOut",
+      delay: 1.75
     });
   }
 
   revealTimeline();
-  gsap.to(logo.position, 1.5, {
-    x: 0,
-    ease: "power3.inOut",
-    delay: 0.75 + varDelay
-  });
-  gsap.to(logo.rotation, 1.5, {
-    z: .25,
-    ease: "power3.inOut",
-    delay: 1.5 + varDelay
-  });
-  gsap.to(logo.position, 1.5, {
-    z: 0,
-    y: 0,
-    ease: "power3.inOut",
-    delay: 1.5 + varDelay
-  });
+  setTimeout(function () {
+    cursorIndication.classList.add('switch');
+    mobileIndication.classList.add('switch');
+  }, 3250);
+
+  if (window.matchMedia("(max-width: 1024px)").matches && window.matchMedia("(min-width: 601px)").matches) {
+    gsap.to(camera.position, 3, {
+      z: 3.7,
+      ease: "power3.inOut"
+    });
+    gsap.to(logo.rotation, 1.5, {
+      z: .25,
+      y: 0,
+      ease: "power3.inOut",
+      delay: 1.75
+    });
+    gsap.to(logo.scale, 1.5, {
+      z: .95,
+      y: .95,
+      x: .95,
+      ease: "power3.inOut",
+      delay: 1.75
+    });
+    gsap.to(logo.position, 1.5, {
+      z: 0,
+      y: 0,
+      ease: "power3.inOut",
+      delay: 1.75
+    });
+  }
 
   if (materialPlane14.uniforms.alpha.value == 0) {
     gsap.to(materialPlane14.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane14.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh14.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane13.uniforms.alpha.value == 0) {
     gsap.to(materialPlane13.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane13.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh13.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
-    });
-  } else if (materialPlane13.uniforms.alpha.value == 0) {
-    gsap.to(materialPlane12.uniforms.dispFactor, .0, {
-      value: 0.0,
-      ease: "Power3.easeOut"
-    });
-    gsap.to(materialPlane13.uniforms.alpha, 0.75, {
-      value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
-    });
-    gsap.to(planeMesh13.scale, 0.75, {
-      x: 1,
-      y: 1,
-      ease: "power3.inOut"
+      delay: 0 + varDelay
     });
   } else if (materialPlane12.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane12.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
+    });
     gsap.to(materialPlane12.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh12.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane11.uniforms.alpha.value == 0) {
     gsap.to(materialPlane11.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane11.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh11.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
-    });
-    gsap.to(materialPlane10.uniforms.dispFactor, .0, {
-      value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane10.uniforms.alpha.value == 0) {
+    gsap.to(materialPlane10.uniforms.dispFactor, .0, {
+      value: 0.0,
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
+    });
     gsap.to(materialPlane10.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh10.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane9.uniforms.alpha.value == 0) {
     gsap.to(materialPlane9.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane9.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh9.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane8.uniforms.alpha.value == 0) {
     gsap.to(materialPlane8.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane8.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh8.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane7.uniforms.alpha.value == 0) {
     gsap.to(materialPlane7.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane7.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh7.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane6.uniforms.alpha.value == 0) {
     gsap.to(materialPlane6.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane6.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh6.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane5.uniforms.alpha.value == 0) {
     gsap.to(materialPlane5.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane5.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh5.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane4.uniforms.alpha.value == 0) {
     gsap.to(materialPlane4.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane4.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh4.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane3.uniforms.alpha.value == 0) {
     gsap.to(materialPlane3.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane3.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh3.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane2.uniforms.alpha.value == 0) {
     gsap.to(materialPlane2.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane2.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh2.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   } else if (materialPlane1.uniforms.alpha.value == 0) {
     gsap.to(materialPlane1.uniforms.dispFactor, .0, {
       value: 0.0,
-      ease: "Power3.easeOut"
+      ease: "Power3.easeOut",
+      delay: 0 + varDelay
     });
     gsap.to(materialPlane1.uniforms.alpha, 0.75, {
       value: 1.0,
       ease: "power3.inOut",
-      delay: 2.75
+      delay: 2.75 + varDelay
     });
     gsap.to(planeMesh1.scale, 0.75, {
       x: 1,
       y: 1,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
+      delay: 0 + varDelay
     });
   }
 
@@ -53097,15 +54393,14 @@ function backToPlane() {
     ease: "Power3.easeOut",
     delay: 0.5
   });
-  workShopContainer.classList.remove('switchPlane');
+  clickPossible = false;
   setTimeout(function () {
-    hoverPlane = true;
     clickPossible = true;
-    idPlane = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-  }, 2500);
+  }, 3500);
   setTimeout(function () {
-    workshopActive = false;
+    idPlane = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
     btnPressed = false;
+    planeScrollPossible = true;
     contentContainer__14.scrollTop = 0;
     contentContainer__13.scrollTop = 0;
     contentContainer__12.scrollTop = 0;
@@ -53121,104 +54416,150 @@ function backToPlane() {
     contentContainer__2.scrollTop = 0;
     contentContainer__1.scrollTop = 0;
   }, 2500);
+  setTimeout(function () {
+    hoverPlane = true;
+  }, 2100);
+  setTimeout(function () {
+    workshopActive = false;
+    workShopContainer.classList.remove('switchPlane');
+
+    if (idPlane[14]) {
+      contentContainer__14.children[2].children[0].children[1].src = "";
+      contentContainer__14.children[4].children[0].children[1].src = "";
+    } else if (idPlane[13]) {
+      contentContainer__13.children[2].children[0].children[1].src = "";
+      contentContainer__13.children[4].children[0].children[1].src = "";
+    } else if (idPlane[12]) {
+      contentContainer__12.children[2].children[0].children[1].src = "";
+      contentContainer__12.children[4].children[0].children[1].src = "";
+    } else if (idPlane[11]) {
+      contentContainer__11.children[2].children[0].children[1].src = "";
+      contentContainer__11.children[4].children[0].children[1].src = "";
+    } else if (idPlane[10]) {
+      contentContainer__10.children[2].children[0].children[1].src = "";
+      contentContainer__10.children[4].children[0].children[1].src = "";
+    } else if (idPlane[9]) {
+      contentContainer__9.children[2].children[0].children[1].src = "";
+      contentContainer__9.children[4].children[0].children[1].src = "";
+    } else if (idPlane[8]) {
+      contentContainer__8.children[2].children[0].children[1].src = "";
+      contentContainer__8.children[4].children[0].children[1].src = "";
+    } else if (idPlane[7]) {
+      contentContainer__7.children[2].children[0].children[1].src = ""; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+    } else if (idPlane[6]) {
+      contentContainer__6.children[2].children[0].children[1].src = ""; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+    } else if (idPlane[5]) {
+      contentContainer__5.children[2].children[0].children[1].src = ""; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+    } else if (idPlane[4]) {
+      contentContainer__4.children[2].children[0].children[1].src = ""; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+    } else if (idPlane[3]) {
+      contentContainer__3.children[2].children[0].children[1].src = ""; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+    } else if (idPlane[2]) {
+      contentContainer__2.children[2].children[0].children[1].src = ""; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+    } else if (idPlane[1]) {
+      contentContainer__1.children[2].children[0].children[1].src = ""; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+    }
+  }, 2000);
 }
+
+var decalage = 100;
 
 function backToWorkshop() {
   if (camera.position.z <= -185) {
     if (idPlane[14]) {
       var lastPosScroll__14 = contentContainer__14.scrollTop;
-      contentContainer__14.scrollTop = lastPosScroll__14 - 50;
+      contentContainer__14.scrollTop = lastPosScroll__14 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__14),
         ease: "power3.inOut"
       });
     } else if (idPlane[13]) {
       var lastPosScroll__13 = contentContainer__13.scrollTop;
-      contentContainer__13.scrollTop = lastPosScroll__13 - 50;
+      contentContainer__13.scrollTop = lastPosScroll__13 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__13),
         ease: "power3.inOut"
       });
     } else if (idPlane[12]) {
       var lastPosScroll__12 = contentContainer__12.scrollTop;
-      contentContainer__12.scrollTop = lastPosScroll__12 - 50;
+      contentContainer__12.scrollTop = lastPosScroll__12 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__12),
         ease: "power3.inOut"
       });
     } else if (idPlane[11]) {
       var lastPosScroll__11 = contentContainer__11.scrollTop;
-      contentContainer__11.scrollTop = lastPosScroll__11 - 50;
+      contentContainer__11.scrollTop = lastPosScroll__11 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__11),
         ease: "power3.inOut"
       });
     } else if (idPlane[10]) {
       var lastPosScroll__10 = contentContainer__10.scrollTop;
-      contentContainer__10.scrollTop = lastPosScroll__10 - 50;
+      contentContainer__10.scrollTop = lastPosScroll__10 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__10),
         ease: "power3.inOut"
       });
     } else if (idPlane[9]) {
       var lastPosScroll__9 = contentContainer__9.scrollTop;
-      contentContainer__9.scrollTop = lastPosScroll__9 - 50;
+      contentContainer__9.scrollTop = lastPosScroll__9 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__9),
         ease: "power3.inOut"
       });
     } else if (idPlane[8]) {
       var lastPosScroll__8 = contentContainer__8.scrollTop;
-      contentContainer__8.scrollTop = lastPosScroll__8 - 50;
+      contentContainer__8.scrollTop = lastPosScroll__8 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__8),
         ease: "power3.inOut"
       });
     } else if (idPlane[7]) {
       var lastPosScroll__7 = contentContainer__7.scrollTop;
-      contentContainer__7.scrollTop = lastPosScroll__7 - 50;
+      contentContainer__7.scrollTop = lastPosScroll__7 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__7),
         ease: "power3.inOut"
       });
     } else if (idPlane[6]) {
       var lastPosScroll__6 = contentContainer__6.scrollTop;
-      contentContainer__6.scrollTop = lastPosScroll__6 - 50;
+      contentContainer__6.scrollTop = lastPosScroll__6 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__6),
         ease: "power3.inOut"
       });
     } else if (idPlane[5]) {
       var lastPosScroll__5 = contentContainer__5.scrollTop;
-      contentContainer__5.scrollTop = lastPosScroll__5 - 50;
+      contentContainer__5.scrollTop = lastPosScroll__5 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__5),
         ease: "power3.inOut"
       });
     } else if (idPlane[4]) {
       var lastPosScroll__4 = contentContainer__4.scrollTop;
-      contentContainer__4.scrollTop = lastPosScroll__4 - 50;
+      contentContainer__4.scrollTop = lastPosScroll__4 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__4),
         ease: "power3.inOut"
       });
     } else if (idPlane[3]) {
       var lastPosScroll__3 = contentContainer__3.scrollTop;
-      contentContainer__3.scrollTop = lastPosScroll__3 - 50;
+      contentContainer__3.scrollTop = lastPosScroll__3 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__3),
         ease: "power3.inOut"
       });
     } else if (idPlane[2]) {
       var lastPosScroll__2 = contentContainer__2.scrollTop;
-      contentContainer__2.scrollTop = lastPosScroll__2 - 50;
+      contentContainer__2.scrollTop = lastPosScroll__2 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__2),
         ease: "power3.inOut"
       });
     } else if (idPlane[1]) {
       var lastPosScroll__1 = contentContainer__1.scrollTop;
-      contentContainer__1.scrollTop = lastPosScroll__1 - 50;
+      contentContainer__1.scrollTop = lastPosScroll__1 - decalage;
       gsap.to(camera.position, 3, {
         z: scrollWorkshop(contentContainer__1),
         ease: "power3.inOut"
@@ -53238,113 +54579,49 @@ function backToWorkshop() {
     gsap.to(creditContainer, 2.5, {
       opacity: 0,
       ease: "Power4.easeOut"
+    }); //// CACHER LES IMAGES DES CREDITS ICI ////
+
+    TweenMax.to(btnBackWorkshop, 1, {
+      opacity: 0,
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "power3.inOut"
     });
-
-    for (var _i = 1; _i <= 6; _i++) {
-      gsap.to(".contentImg__" + _i, {
-        opacity: 0,
-        ease: "Power3.easeOut",
-        delay: 2.5
-      });
-    }
-
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
     gsap.to(workShopContainer, 1.5, {
       opacity: 1,
       ease: "Power3.easeOut",
       delay: 2
     });
+    creditContainer.classList.remove('switchStreet');
+    setTimeout(function () {
+      creditActive = false;
+    }, 3000);
     setTimeout(function () {
       workShopContainer.classList.add('switchPlane');
-      creditActive = false;
-    }, 1000);
-    setTimeout(function () {
-      creditContainer.classList.remove('switchStreet');
-    }, 1500);
+    }, 2900);
   }
-}
+} ///// BUTTON MAIN START REVEAL /////
 
-btnBackWorkshop.addEventListener('click', function () {
-  if (workshopActive && !creditActive && backPossible) {
-    backToPlane();
-  } else if (workshopActive && creditActive) {
-    backToWorkshop();
-  }
 
-  if (!window.matchMedia("(max-width: 1024px)").matches && backPossible) {
-    handleMouseLeave();
-    btnBackWorkshop.classList.remove('hover');
-    TweenMax.to(btnBackWorkshop, {
-      color: "#4cc9f0",
-      background: "#09021e",
-      ease: "power2.inOut"
-    });
-  }
+var btnMainStartText = "Commencer l'immersion";
+var charsTextBtnMainStart = btnMainStartText.split('');
+charsTextBtnMainStart.forEach(function (letter) {
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerMainStart.append(btnChar);
+}); ///// REVEAL FIRST SLOGAN /////
 
-  TweenMax.to(".spanContainerBackMouseover span", {
-    duration: .5,
-    translateY: 0,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerBackMouseout span", {
-    duration: .5,
-    translateY: 40,
-    stagger: {
-      each: 0.01,
-      from: "center"
-    },
-    ease: "power3.inOut"
-  });
-  setTimeout(function () {
-    spanContainerBackMouseOut.classList.remove('neonText');
-  }, 750);
-});
-btnBackWorkshop.addEventListener('mouseenter', function () {
-  TweenMax.to(".spanContainerBackWorkshopMouseover span", {
-    duration: .5,
-    translateY: -40,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerBackWorkshopMouseout span", {
-    duration: .5,
-    translateY: 0,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnBackWorkshop, {
-    color: "#09021e",
-    background: "#4cc9f0",
-    ease: "power3.inOut"
-  });
-  btnBackWorkshop.classList.add('hover');
-  spanContainerBackMouseOut.classList.add('neonText');
-  cursorShapeIn.classList.add('mouseover');
-});
-btnBackWorkshop.addEventListener('mouseleave', function () {
-  TweenMax.to(".spanContainerBackWorkshopMouseover span", {
-    duration: .5,
-    translateY: 0,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(".spanContainerBackWorkshopMouseout span", {
-    duration: .5,
-    translateY: 40,
-    stagger: .027,
-    ease: "power3.inOut"
-  });
-  TweenMax.to(btnBackWorkshop, {
-    color: "#4cc9f0",
-    background: "#09021e",
-    ease: "power3.inOut"
-  });
-  btnBackWorkshop.classList.remove('hover');
-  spanContainerBackMouseOut.classList.remove('neonText');
-  cursorShapeIn.classList.remove('mouseover');
+var FirstSloganText = "Le département MMI Tarbes présente";
+var charsTextFirstSlogan = FirstSloganText.split('');
+charsTextFirstSlogan.forEach(function (letter) {
+  var btnChar = document.createElement('span');
+  btnChar.innerHTML = letter;
+  spanContainerFirstSlogan.append(btnChar);
 }); ///// BUTTON START HOVER /////
 
 var btnStartText = "Découvrir les ateliers";
@@ -53394,7 +54671,7 @@ charsTextDiscord.forEach(function (letter) {
   discordSpanContainer.append(btnChar);
 }); ///// BUTTON IUT /////
 
-var btnIutText = "Site Officiel";
+var btnIutText = "Site MMI Tarbes";
 var charsTextIut = btnIutText.split('');
 charsTextIut.forEach(function (letter) {
   var btnChar = document.createElement('span');
@@ -53430,7 +54707,6 @@ containerTimeline.addEventListener('mouseenter', function () {
   TweenMax.to(timelineIndication, {
     duration: .25,
     opacity: 0,
-    webkitFilter: 'blur(2px)',
     ease: "power4.inOut"
   });
 });
@@ -53464,7 +54740,6 @@ containerTimeline.addEventListener('mouseleave', function () {
     TweenMax.to(timelineIndication, {
       duration: .4,
       opacity: 1,
-      webkitFilter: 'blur(0)',
       ease: "power4.inOut"
     });
   }
@@ -53475,100 +54750,145 @@ sm2.classList.add('mouseout');
 sm3.classList.add('mouseout');
 sm1.addEventListener('mouseenter', function () {
   // POINTER SOCIAL MEDIA 6
-  sm1.classList.add('mouseover');
-  sm1.classList.remove('mouseout');
-  sm1.classList.add('neonText');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    sm1.classList.add('mouseover');
+    sm1.classList.remove('mouseout');
+    sm1.classList.add('neonText');
+    soundHover.play();
+  }
 });
 sm1.addEventListener('mouseleave', function () {
-  sm1.classList.add('mouseout');
-  sm1.classList.remove('mouseover');
-  sm1.classList.remove('neonText');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    sm1.classList.add('mouseout');
+    sm1.classList.remove('mouseover');
+    sm1.classList.remove('neonText');
+  }
 });
 sm1.addEventListener('click', function () {
-  window.open('https://www.facebook.com/mmi.tarbes.jpo', '_blank');
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  window.open('https://www.facebook.com/mmi.tarbes.jpo');
 });
 sm2.addEventListener('mouseenter', function () {
   // POINTER SOCIAL MEDIA 2
-  sm2.classList.add('mouseover');
-  sm2.classList.remove('mouseout');
-  sm2.classList.add('neonText');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    sm2.classList.add('mouseover');
+    sm2.classList.remove('mouseout');
+    sm2.classList.add('neonText');
+    soundHover.play();
+  }
 });
 sm2.addEventListener('mouseleave', function () {
-  sm2.classList.add('mouseout');
-  sm2.classList.remove('mouseover');
-  sm2.classList.remove('neonText');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    sm2.classList.add('mouseout');
+    sm2.classList.remove('mouseover');
+    sm2.classList.remove('neonText');
+  }
 });
 sm2.addEventListener('click', function () {
-  window.open('https://www.instagram.com/immersions_digitales_tarbes/', '_blank');
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  window.open('https://www.instagram.com/immersions_digitales_tarbes/');
 });
 sm3.addEventListener('mouseenter', function () {
   // POINTER SOCIAL MEDIA 3
-  sm3.classList.add('mouseover');
-  sm3.classList.remove('mouseout');
-  sm3.classList.add('neonText');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    sm3.classList.add('mouseover');
+    sm3.classList.remove('mouseout');
+    sm3.classList.add('neonText');
+    soundHover.play();
+  }
 });
 sm3.addEventListener('mouseleave', function () {
-  sm3.classList.add('mouseout');
-  sm3.classList.remove('mouseover');
-  sm3.classList.remove('neonText');
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    sm3.classList.add('mouseout');
+    sm3.classList.remove('mouseover');
+    sm3.classList.remove('neonText');
+  }
 });
 sm3.addEventListener('click', function () {
-  window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  window.open('https://www.linkedin.com/in/immersions-digitales/');
 });
 discordContainer.addEventListener('mouseenter', function () {
   // POINTER DISCORD
-  TweenMax.to(".spanContainerDiscord span", {
-    duration: 0.5,
-    opacity: 1,
-    stagger: {
-      each: 0.07,
-      from: 'end'
-    },
-    ease: "power2.inOut"
-  });
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerDiscord span", {
+      duration: 0.5,
+      opacity: 1,
+      stagger: {
+        each: 0.05,
+        from: 'end'
+      },
+      ease: "power3.inOut"
+    });
+    soundHover.play();
+  }
 });
 discordContainer.addEventListener('mouseleave', function () {
-  TweenMax.to(".spanContainerDiscord span", {
-    duration: 0.5,
-    opacity: .6,
-    stagger: {
-      each: 0.07,
-      from: 'end'
-    },
-    ease: "power2.inOut"
-  });
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerDiscord span", {
+      duration: 0.5,
+      opacity: .6,
+      stagger: {
+        each: 0.05,
+        from: 'end'
+      },
+      ease: "power3.inOut"
+    });
+  }
 });
 discordContainer.addEventListener('click', function () {
-  window.open('https://discord.gg/RrT9Tv4n', '_blank');
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  window.open('https://discord.com/invite/QSTbcG7PeJ');
 });
 iutContainer.addEventListener('mouseenter', function () {
   // POINTER IUT
-  TweenMax.to(".spanContainerIut span", {
-    duration: 0.5,
-    opacity: 1,
-    stagger: {
-      each: 0.05,
-      from: 'start'
-    },
-    ease: "power2.inOut"
-  });
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerIut span", {
+      duration: 0.5,
+      opacity: 1,
+      stagger: {
+        each: 0.037,
+        from: 'start'
+      },
+      ease: "power3.inOut"
+    });
+    soundHover.play();
+  }
 });
 iutContainer.addEventListener('mouseleave', function () {
-  TweenMax.to(".spanContainerIut span", {
-    duration: 0.5,
-    opacity: .6,
-    stagger: {
-      each: 0.05,
-      from: 'start'
-    },
-    ease: "power2.inOut"
-  });
+  if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerIut span", {
+      duration: 0.5,
+      opacity: .6,
+      stagger: {
+        each: 0.037,
+        from: 'start'
+      },
+      ease: "power3.inOut"
+    });
+  }
 });
 iutContainer.addEventListener('click', function () {
-  window.open('https://www.iut-tarbes.fr/', '_blank');
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+  }
+
+  window.open('https://www.iut-tarbes.fr/');
 });
 littleTitleSvg.addEventListener('click', function () {
-  window.open('https://www.immersions-digitales.fr/', '_blank');
+  window.location.replace('https://www.immersions-digitales.fr/');
 }); ///// CUSTOM CURSOR /////
 
 var pixelRatio = window.devicePixelRatio;
@@ -53698,14 +55018,91 @@ workShopButton.forEach(function (e) {
   e.addEventListener("pointerenter", handleMouseEnter);
   e.addEventListener("pointerleave", handleMouseLeave);
 });
+workShopButton.forEach(function (e) {
+  e.addEventListener('mouseenter', function () {
+    soundHover.play();
+  });
+});
+contenu.forEach(function (e) {
+  e.addEventListener("pointerenter", function () {
+    indicHover = "content";
+    cursorHoverIn();
+  });
+  e.addEventListener("pointerleave", function () {
+    cursorHoverOut();
+  });
+});
+contenu_link.forEach(function (e) {
+  e.addEventListener("pointerenter", function () {
+    indicHover = "ID";
+    cursorHoverIn();
+  });
+  e.addEventListener("pointerleave", function () {
+    cursorHoverOut();
+  });
+});
+littleTitleSvg.addEventListener("pointerenter", function () {
+  indicHover = "ID";
+  cursorHoverIn();
+});
+littleTitleSvg.addEventListener("pointerleave", function () {
+  cursorHoverOut();
+}); // contenu_link.forEach(e => {
+//     e.addEventListener("pointerenter", handleMouseEnter);
+//     e.addEventListener("pointerleave", handleMouseLeave);
+// })
+
+iframe.forEach(function (e) {
+  e.addEventListener("pointerenter", function () {
+    gsap.to(cursor, 0.50, {
+      opacity: 0,
+      ease: "Power3.easeOut"
+    });
+    gsap.to(cursorShapeOut, 0.50, {
+      opacity: 0,
+      ease: "Power3.easeOut"
+    });
+    cursorOnVideo = true;
+  });
+  e.addEventListener("pointerleave", function () {
+    cursorOnVideo = false;
+
+    if (!cursorOnVideo) {
+      gsap.to(cursor, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+      gsap.to(cursorShapeOut, 0.50, {
+        opacity: 1,
+        ease: "Power3.easeOut"
+      });
+    }
+  });
+}); // contentContainer.forEach(e => {
+//     e.addEventListener("mousemove", function() {
+//         if (!cursorOnVideo) {
+//             gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+//             gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+//         }
+//     });
+// });
+
+contenu_vr.forEach(function (e) {
+  e.addEventListener("pointerenter", function () {
+    // e.children[0].style.opacity = 0
+    e.children[1].style.opacity = 1;
+  });
+  e.addEventListener("pointerleave", function () {
+    // e.children[0].style.opacity = 1
+    e.children[1].style.opacity = 0;
+  });
+});
 discordContainer.addEventListener("pointerenter", handleMouseEnter);
 discordContainer.addEventListener("pointerleave", handleMouseLeave);
 iutContainer.addEventListener("pointerenter", handleMouseEnter);
 iutContainer.addEventListener("pointerleave", handleMouseLeave);
 musicBtn.addEventListener("pointerenter", handleMouseEnter);
 musicBtn.addEventListener("pointerleave", handleMouseLeave);
-littleTitleSvg.addEventListener("pointerenter", handleMouseEnter);
-littleTitleSvg.addEventListener("pointerleave", handleMouseLeave);
 document.body.addEventListener("pointermove", updateCursorPosition);
 
 function updateCursorPosition(e) {
@@ -53715,8 +55112,8 @@ function updateCursorPosition(e) {
 
 function updateCursor() {
   var cursorInnerOriginalState = {
-    width: tailleBoulette.getBoundingClientRect().width,
-    height: tailleBoulette.getBoundingClientRect().height
+    width: cursorSize.getBoundingClientRect().width,
+    height: cursorSize.getBoundingClientRect().height
   };
   gsap.set(cursor, {
     x: mouse.x - cursorInnerOriginalState.width / 2,
@@ -53780,11 +55177,294 @@ function handleMouseLeave(e) {
 document.addEventListener('mousemove', function (e) {
   indicClickOnPlane.style.top = e.pageY - 20 / 2 + "px";
   indicClickOnPlane.style.left = e.pageX - 20 / 2 + "px";
-}); /////// TIMELINE REDIRECTION ///////
+}); // document.addEventListener('mousemove', e => {
+//     indicClickOnID.style.top = e.pageY - 20 / 2 + "px"
+//     indicClickOnID.style.left = e.pageX - 20 / 2 + "px"
+// })
+/////// TIMELINE REDIRECTION ///////
 
 workShopButton1.addEventListener('click', function () {
   // WORKSHOP 1
   scrollPlane1();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau14;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau14;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton2.addEventListener('click', function () {
+  // WORKSHOP 2
+  scrollPlane2();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau13;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau13;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton3.addEventListener('click', function () {
+  // WORKSHOP 3
+  scrollPlane3();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau12;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau12;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton4.addEventListener('click', function () {
+  // WORKSHOP 4
+  scrollPlane4();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau11;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau11;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton5.addEventListener('click', function () {
+  // WORKSHOP 5
+  scrollPlane5();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau10;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau10;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton6.addEventListener('click', function () {
+  // WORKSHOP 6
+  scrollPlane6();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau9;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau9;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton7.addEventListener('click', function () {
+  // WORKSHOP 7
+  scrollPlane7();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau8;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau8;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton8.addEventListener('click', function () {
+  // WORKSHOP 8
+  scrollPlane8();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau7;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau7;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton9.addEventListener('click', function () {
+  // WORKSHOP 9
+  scrollPlane9();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau6;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau6;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton10.addEventListener('click', function () {
+  // WORKSHOP 10
+  scrollPlane10();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau5;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau5;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton11.addEventListener('click', function () {
+  // WORKSHOP 11
+  scrollPlane11();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau4;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau4;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton12.addEventListener('click', function () {
+  // WORKSHOP 12
+  scrollPlane12();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau3;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau3;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton13.addEventListener('click', function () {
+  // WORKSHOP 13
+  scrollPlane13();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau2;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau2;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+});
+workShopButton14.addEventListener('click', function () {
+  // WORKSHOP 14
+  scrollPlane14();
+
+  if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+    materialPlanePanneau.uniforms.imagergb.value = texturepanneau1;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: 1.0,
+      ease: "Power3.easeOut"
+    });
+  } else {
+    materialPlanePanneau.uniforms.imagebw.value = texturepanneau1;
+    gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
+      value: .0,
+      ease: "Power3.easeOut"
+    });
+  }
+}); /////// TIMELINE MOBILE REDIRECTION ///////
+
+mobileWorkShopButton.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    soundHover.play();
+  });
+});
+mobileWorkShopButton1.addEventListener('click', function () {
+  // WORKSHOP 1
+  scrollPlane1();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture14Hover;
@@ -53800,9 +55480,30 @@ workShopButton1.addEventListener('click', function () {
     });
   }
 });
-workShopButton2.addEventListener('click', function () {
+mobileWorkShopButton2.addEventListener('click', function () {
   // WORKSHOP 2
   scrollPlane2();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture13Hover;
@@ -53818,9 +55519,30 @@ workShopButton2.addEventListener('click', function () {
     });
   }
 });
-workShopButton3.addEventListener('click', function () {
+mobileWorkShopButton3.addEventListener('click', function () {
   // WORKSHOP 3
   scrollPlane3();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture12Hover;
@@ -53836,9 +55558,30 @@ workShopButton3.addEventListener('click', function () {
     });
   }
 });
-workShopButton4.addEventListener('click', function () {
+mobileWorkShopButton4.addEventListener('click', function () {
   // WORKSHOP 4
   scrollPlane4();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture11Hover;
@@ -53854,9 +55597,30 @@ workShopButton4.addEventListener('click', function () {
     });
   }
 });
-workShopButton5.addEventListener('click', function () {
+mobileWorkShopButton5.addEventListener('click', function () {
   // WORKSHOP 5
   scrollPlane5();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture10Hover;
@@ -53872,9 +55636,30 @@ workShopButton5.addEventListener('click', function () {
     });
   }
 });
-workShopButton6.addEventListener('click', function () {
+mobileWorkShopButton6.addEventListener('click', function () {
   // WORKSHOP 6
   scrollPlane6();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture9Hover;
@@ -53890,9 +55675,30 @@ workShopButton6.addEventListener('click', function () {
     });
   }
 });
-workShopButton7.addEventListener('click', function () {
+mobileWorkShopButton7.addEventListener('click', function () {
   // WORKSHOP 7
   scrollPlane7();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture8Hover;
@@ -53908,9 +55714,30 @@ workShopButton7.addEventListener('click', function () {
     });
   }
 });
-workShopButton8.addEventListener('click', function () {
+mobileWorkShopButton8.addEventListener('click', function () {
   // WORKSHOP 8
   scrollPlane8();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture7Hover;
@@ -53926,9 +55753,30 @@ workShopButton8.addEventListener('click', function () {
     });
   }
 });
-workShopButton9.addEventListener('click', function () {
+mobileWorkShopButton9.addEventListener('click', function () {
   // WORKSHOP 9
   scrollPlane9();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture6Hover;
@@ -53944,9 +55792,30 @@ workShopButton9.addEventListener('click', function () {
     });
   }
 });
-workShopButton10.addEventListener('click', function () {
+mobileWorkShopButton10.addEventListener('click', function () {
   // WORKSHOP 10
   scrollPlane10();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture5Hover;
@@ -53962,9 +55831,30 @@ workShopButton10.addEventListener('click', function () {
     });
   }
 });
-workShopButton11.addEventListener('click', function () {
+mobileWorkShopButton11.addEventListener('click', function () {
   // WORKSHOP 11
   scrollPlane11();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture4Hover;
@@ -53980,9 +55870,30 @@ workShopButton11.addEventListener('click', function () {
     });
   }
 });
-workShopButton12.addEventListener('click', function () {
+mobileWorkShopButton12.addEventListener('click', function () {
   // WORKSHOP 12
   scrollPlane12();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture3Hover;
@@ -53998,9 +55909,30 @@ workShopButton12.addEventListener('click', function () {
     });
   }
 });
-workShopButton13.addEventListener('click', function () {
+mobileWorkShopButton13.addEventListener('click', function () {
   // WORKSHOP 13
   scrollPlane13();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture2Hover;
@@ -54016,9 +55948,30 @@ workShopButton13.addEventListener('click', function () {
     });
   }
 });
-workShopButton14.addEventListener('click', function () {
+mobileWorkShopButton14.addEventListener('click', function () {
   // WORKSHOP 14
   scrollPlane14();
+  setTimeout(function () {
+    hamburgerContainerCroix.classList.toggle('switch');
+    hamburgerContainerCroix2.classList.toggle('switch');
+    switchHamburger = false;
+  }, 350);
+  gsap.to('.mobileWorkShopButton', .5, {
+    opacity: 0,
+    stagger: {
+      each: .03,
+      from: 'center'
+    },
+    ease: "power3.easeOut"
+  });
+  setTimeout(function () {
+    hamburgerContainerLine.classList.toggle('switch');
+    hamburgerContainerLine2.classList.toggle('switch');
+  }, 700);
+  setTimeout(function () {
+    containerTimelineMobile.classList.toggle('switch');
+    containerTimelineMobile.style.zIndex = -1;
+  }, 700);
 
   if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
     materialPlanePanneau.uniforms.imagergb.value = texture1Hover;
@@ -54102,9 +56055,14 @@ function scrollPlane14() {
     z: 0,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere1;
+  materialPlaneRond.map = texturechiffre1;
+  materialPlaneRue2.map = texturepanneaurue1;
+  materialPlaneRue4.map = texturepanneau2rue1;
 }
 
 function scrollPlane13() {
+  // if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
   //AXES ANIM
   gsap.to(planeAxe.position, .75, {
     y: -16,
@@ -54170,7 +56128,12 @@ function scrollPlane13() {
   gsap.to(planeMesh14.rotation, .75, {
     z: rotateZ,
     ease: "power3.inOut"
-  });
+  }); // }
+
+  materialPlaneRue3.map = texturebaniere2;
+  materialPlaneRond.map = texturechiffre2;
+  materialPlaneRue2.map = texturepanneaurue2;
+  materialPlaneRue4.map = texturepanneau2rue2;
 }
 
 function scrollPlane12() {
@@ -54240,6 +56203,10 @@ function scrollPlane12() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere3;
+  materialPlaneRond.map = texturechiffre3;
+  materialPlaneRue2.map = texturepanneaurue3;
+  materialPlaneRue4.map = texturepanneau2rue3;
 }
 
 function scrollPlane11() {
@@ -54309,6 +56276,10 @@ function scrollPlane11() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere4;
+  materialPlaneRond.map = texturechiffre4;
+  materialPlaneRue2.map = texturepanneaurue4;
+  materialPlaneRue4.map = texturepanneau2rue4;
 }
 
 function scrollPlane10() {
@@ -54378,6 +56349,10 @@ function scrollPlane10() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere5;
+  materialPlaneRond.map = texturechiffre5;
+  materialPlaneRue2.map = texturepanneaurue5;
+  materialPlaneRue4.map = texturepanneau2rue5;
 }
 
 function scrollPlane9() {
@@ -54447,6 +56422,10 @@ function scrollPlane9() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere6;
+  materialPlaneRond.map = texturechiffre6;
+  materialPlaneRue2.map = texturepanneaurue6;
+  materialPlaneRue4.map = texturepanneau2rue6;
 }
 
 function scrollPlane8() {
@@ -54516,6 +56495,10 @@ function scrollPlane8() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere7;
+  materialPlaneRond.map = texturechiffre7;
+  materialPlaneRue2.map = texturepanneaurue7;
+  materialPlaneRue4.map = texturepanneau2rue7;
 }
 
 function scrollPlane7() {
@@ -54585,6 +56568,10 @@ function scrollPlane7() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere8;
+  materialPlaneRond.map = texturechiffre8;
+  materialPlaneRue2.map = texturepanneaurue8;
+  materialPlaneRue4.map = texturepanneau2rue8;
 }
 
 function scrollPlane6() {
@@ -54654,6 +56641,10 @@ function scrollPlane6() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere9;
+  materialPlaneRond.map = texturechiffre9;
+  materialPlaneRue2.map = texturepanneaurue9;
+  materialPlaneRue4.map = texturepanneau2rue9;
 }
 
 function scrollPlane5() {
@@ -54723,6 +56714,10 @@ function scrollPlane5() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere10;
+  materialPlaneRond.map = texturechiffre10;
+  materialPlaneRue2.map = texturepanneaurue10;
+  materialPlaneRue4.map = texturepanneau2rue10;
 }
 
 function scrollPlane4() {
@@ -54792,6 +56787,10 @@ function scrollPlane4() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere11;
+  materialPlaneRond.map = texturechiffre11;
+  materialPlaneRue2.map = texturepanneaurue11;
+  materialPlaneRue4.map = texturepanneau2rue11;
 }
 
 function scrollPlane3() {
@@ -54861,6 +56860,10 @@ function scrollPlane3() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere12;
+  materialPlaneRond.map = texturechiffre12;
+  materialPlaneRue2.map = texturepanneaurue12;
+  materialPlaneRue4.map = texturepanneau2rue12;
 }
 
 function scrollPlane2() {
@@ -54930,6 +56933,10 @@ function scrollPlane2() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere13;
+  materialPlaneRond.map = texturechiffre13;
+  materialPlaneRue2.map = texturepanneaurue13;
+  materialPlaneRue4.map = texturepanneau2rue13;
 }
 
 function scrollPlane1() {
@@ -54999,6 +57006,10 @@ function scrollPlane1() {
     z: rotateZ,
     ease: "power3.inOut"
   });
+  materialPlaneRue3.map = texturebaniere14;
+  materialPlaneRond.map = texturechiffre14;
+  materialPlaneRue2.map = texturepanneaurue14;
+  materialPlaneRue4.map = texturepanneau2rue14;
 } ///// SCROLL FUNCTIONS /////
 
 
@@ -55023,24 +57034,16 @@ function scrollUp() {
       ease: "power3.inOut"
     }); //CAMERA ANIM
 
-    if (window.matchMedia("(max-width: 600px)").matches) {
-      gsap.to(camera.position, 2.95, {
-        z: 11.3,
-        ease: "power3.inOut"
-      });
-    } else {
-      gsap.to(camera.position, 2.95, {
-        z: 10,
-        ease: "power3.inOut"
-      });
-    } //HTML ELEMENTS ANIM
-
+    gsap.to(camera.position, 2.95, {
+      z: 10,
+      ease: "power3.inOut"
+    }); //HTML ELEMENTS ANIM
 
     cursorIndication.classList.remove('switch');
+    mobileIndication.classList.add('switch');
     canvas.classList.remove('hologramDefault');
     canvas.classList.add('hologramActive');
     btnBackHome.disabled = true;
-    btnStart.disabled = false;
     titleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleOut");
       e.classList.add("pathTitleIn");
@@ -55054,7 +57057,7 @@ function scrollUp() {
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
     hideTimeline();
-    TweenMax.to(btnStart, .75, {
+    TweenMax.to(btnStart, 1.5, {
       opacity: 1,
       clipPath: "inset(0% 0% 0% 0%)",
       delay: 1.75,
@@ -55076,7 +57079,7 @@ function scrollUp() {
         each: 0.07,
         from: 'random'
       },
-      ease: "power2.inOut",
+      ease: "power3.inOut",
       delay: 1.25
     });
     TweenMax.to(".spanContainerIut span", {
@@ -55086,14 +57089,28 @@ function scrollUp() {
         each: 0.05,
         from: 'random'
       },
-      ease: "power2.inOut",
+      ease: "power3.inOut",
       delay: 1.25
     });
     setTimeout(function () {
       discordContainer.classList.remove('close');
       iutContainer.classList.remove('close');
+      btnStart.disabled = false;
       btnStart.classList.remove('close');
       littleTitleSvg.classList.add('close');
+    }, 2800);
+    setTimeout(function () {
+      if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texturepanneau1;
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, {
+          value: 1.0
+        });
+      } else {
+        materialPlanePanneau.uniforms.imagebw.value = texturepanneau1;
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, {
+          value: .0
+        });
+      }
     }, 2500); //PLANE ROTATION Z ANIM
 
     gsap.to(planeMesh1.rotation, 2.25, {
@@ -55158,9 +57175,9 @@ function scrollUp() {
       ease: "power3.inOut"
     });
     gsap.to(logo.scale, 2.25, {
-      z: 0,
-      x: 0,
-      y: 0,
+      z: 0.0001,
+      x: 0.0001,
+      y: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(logo.rotation, 2.25, {
@@ -55168,217 +57185,224 @@ function scrollUp() {
       y: 0,
       ease: "power3.inOut"
     });
-    gsap.to(home.position, 2.95, {
-      z: 0,
-      x: -1.45,
-      ease: "power3.inOut"
-    });
-    gsap.to(home.rotation, 2.95, {
-      y: -.35,
-      z: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(socle.position, 2.25, {
-      y: -10.7,
-      ease: "power3.inOut"
-    });
-    gsap.to(socle.rotation, 2.25, {
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(field.scale, 2.25, {
-      y: 0.0001,
-      x: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(field.position, 2.25, {
-      y: -53,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftWall.position, 2.25, {
-      x: -51.2,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftWall.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightWall.position, 2.25, {
-      x: 58.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightWall.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftDoor.position, 2.25, {
-      y: -55.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor.position, 2.25, {
-      y: -55.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftDoor.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(sign.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(table.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(pylone5.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(pylone4.scale, 2.1, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .15
-    });
-    gsap.to(pylone3.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(pylone2.scale, 1.8, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .45
-    });
-    gsap.to(pylone.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(grid.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(grid2.scale, 2.1, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .15
-    });
-    gsap.to(grid3.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(grid4.scale, 1.8, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .45
-    });
-    gsap.to(grid5.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(poutre.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(cam.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(vr2.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(enceinte.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(tv2.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(tabProg.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(tv.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(street.scale, 0, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001
-    });
-    gsap.to(leftDoor2.scale, 0, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor2.scale, 0, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    }); //LIGHTS ANIM
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(home.position, 2.95, {
+        z: 0,
+        x: -1.45,
+        ease: "power3.inOut"
+      });
+      gsap.to(home.rotation, 2.95, {
+        y: -.35,
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(field.scale, 2.25, {
+        y: 0.0001,
+        x: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(field.position, 2.25, {
+        y: -53,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftWall.position, 2.25, {
+        x: -51.2,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftWall.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightWall.position, 2.25, {
+        x: 58.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightWall.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor.position, 2.25, {
+        y: -55.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor.position, 2.25, {
+        y: -55.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(sign.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMeshPanneau.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(table.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(pylone5.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(pylone4.scale, 1.1, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .15
+      });
+      gsap.to(pylone3.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(pylone2.scale, .8, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .45
+      });
+      gsap.to(pylone.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(grid.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(grid2.scale, 1.1, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .15
+      });
+      gsap.to(grid3.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(grid4.scale, .8, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .45
+      });
+      gsap.to(grid5.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(poutre.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(street.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(leftDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(cam.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(vr2.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(enceinte.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(tv2.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(tabProg.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(tv.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(street.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+    } //LIGHTS ANIM
+
 
     TweenMax.to(lightCenterSocle.color, .75, {
       r: cyanColorReset.r,
@@ -55394,19 +57418,19 @@ function scrollUp() {
     }); //SWITCH ELEMENTS ON CLICK
 
     canvas.style.zIndex = -1;
-    homeContainer.style.zIndex = 2;
-    homeMask.style.zIndex = 1;
+    homeContainer.style.zIndex = 3;
+    homeMask.style.zIndex = 2;
   } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
     scrollPlane14();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture1Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau1;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture1Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau1;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55416,13 +57440,13 @@ function scrollUp() {
     scrollPlane13();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture2Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau2;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture2Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau2;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55432,13 +57456,13 @@ function scrollUp() {
     scrollPlane12();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture3Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau3;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture3Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau3;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55448,13 +57472,13 @@ function scrollUp() {
     scrollPlane11();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture4Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau4;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture4Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau4;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55464,13 +57488,13 @@ function scrollUp() {
     scrollPlane10();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture5Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau5;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture5Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau5;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55480,13 +57504,13 @@ function scrollUp() {
     scrollPlane9();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture6Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau6;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture6Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau6;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55496,13 +57520,13 @@ function scrollUp() {
     scrollPlane8();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture7Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau7;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture7Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau7;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55512,13 +57536,13 @@ function scrollUp() {
     scrollPlane7();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture8Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau8;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture8Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau8;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55528,13 +57552,13 @@ function scrollUp() {
     scrollPlane6();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture9Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau9;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture9Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau9;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55544,13 +57568,13 @@ function scrollUp() {
     scrollPlane5();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture10Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau10;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture10Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau10;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55560,13 +57584,13 @@ function scrollUp() {
     scrollPlane4();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture11Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau11;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture11Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau11;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55576,13 +57600,13 @@ function scrollUp() {
     scrollPlane3();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture12Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau12;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture12Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau12;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55592,36 +57616,33 @@ function scrollUp() {
     scrollPlane2();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture13Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau13;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture13Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau13;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
       });
     }
   }
-} //REVEAL AND HIDE CURSOR INDICATION
-// gsap.to(cursorIndication, 0, { opacity: 0, ease: "power1.inOut"})
-// gsap.to(cursorIndication, 1.5, { opacity: 1, ease: "power1.inOut", delay: 7})
-
+}
 
 function scrollDown() {
   if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
     scrollPlane13();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture2Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau2;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture2Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau2;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55631,13 +57652,13 @@ function scrollDown() {
     scrollPlane12();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture3Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau3;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture3Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau3;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55647,13 +57668,13 @@ function scrollDown() {
     scrollPlane11();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture4Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau4;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture4Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau4;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55663,13 +57684,13 @@ function scrollDown() {
     scrollPlane10();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture5Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau5;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture5Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau5;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55679,13 +57700,13 @@ function scrollDown() {
     scrollPlane9();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture6Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau6;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture6Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau6;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55695,13 +57716,13 @@ function scrollDown() {
     scrollPlane8();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture7Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau7;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture7Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau7;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55711,13 +57732,13 @@ function scrollDown() {
     scrollPlane7();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture8Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau8;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture8Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau8;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55727,13 +57748,13 @@ function scrollDown() {
     scrollPlane6();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture9Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau9;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture9Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau9;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55743,13 +57764,13 @@ function scrollDown() {
     scrollPlane5();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture10Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau10;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture10Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau10;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55759,13 +57780,13 @@ function scrollDown() {
     scrollPlane4();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture11Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau11;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture11Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau11;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55775,13 +57796,13 @@ function scrollDown() {
     scrollPlane3();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture12Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau12;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture12Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau12;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55791,13 +57812,13 @@ function scrollDown() {
     scrollPlane2();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture13Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau13;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture13Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau13;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55807,13 +57828,13 @@ function scrollDown() {
     scrollPlane1();
 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
-      materialPlanePanneau.uniforms.imagergb.value = texture14Hover;
+      materialPlanePanneau.uniforms.imagergb.value = texturepanneau14;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: 1.0,
         ease: "Power3.easeOut"
       });
     } else {
-      materialPlanePanneau.uniforms.imagebw.value = texture14Hover;
+      materialPlanePanneau.uniforms.imagebw.value = texturepanneau14;
       gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, {
         value: .0,
         ease: "Power3.easeOut"
@@ -55839,24 +57860,16 @@ function scrollDown() {
       ease: "power3.inOut"
     }); //CAMERA ANIM
 
-    if (window.matchMedia("(max-width: 600px)").matches) {
-      gsap.to(camera.position, 2.95, {
-        z: 11.3,
-        ease: "power3.inOut"
-      });
-    } else {
-      gsap.to(camera.position, 2.95, {
-        z: 10,
-        ease: "power3.inOut"
-      });
-    } //HTML ELEMENTS ANIM
-
+    gsap.to(camera.position, 2.95, {
+      z: 10,
+      ease: "power3.inOut"
+    }); //HTML ELEMENTS ANIM
 
     cursorIndication.classList.remove('switch');
+    mobileIndication.classList.remove('switch');
     canvas.classList.remove('hologramDefault');
     canvas.classList.add('hologramActive');
     btnBackHome.disabled = true;
-    btnStart.disabled = false;
     titleSvgPath.forEach(function (e) {
       e.classList.remove("pathTitleOut");
       e.classList.add("pathTitleIn");
@@ -55870,7 +57883,7 @@ function scrollDown() {
     littleTitleSvgLine.classList.remove("pathLineIn");
     littleTitleSvgLine.classList.add("pathLineOut");
     hideTimeline();
-    TweenMax.to(btnStart, .75, {
+    TweenMax.to(btnStart, 1.5, {
       opacity: 1,
       clipPath: "inset(0% 0% 0% 0%)",
       delay: 1.75,
@@ -55892,7 +57905,7 @@ function scrollDown() {
         each: 0.07,
         from: 'random'
       },
-      ease: "power2.inOut",
+      ease: "power3.inOut",
       delay: 1.25
     });
     TweenMax.to(".spanContainerIut span", {
@@ -55902,14 +57915,28 @@ function scrollDown() {
         each: 0.05,
         from: 'random'
       },
-      ease: "power2.inOut",
+      ease: "power3.inOut",
       delay: 1.25
     });
     setTimeout(function () {
       discordContainer.classList.remove('close');
       iutContainer.classList.remove('close');
+      btnStart.disabled = false;
       btnStart.classList.remove('close');
       littleTitleSvg.classList.add('close');
+    }, 2800);
+    setTimeout(function () {
+      if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texturepanneau1;
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, {
+          value: 1.0
+        });
+      } else {
+        materialPlanePanneau.uniforms.imagebw.value = texturepanneau1;
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, {
+          value: .0
+        });
+      }
     }, 2500); //PLANE ROTATION Z ANIM
 
     gsap.to(planeMesh1.rotation, 2.25, {
@@ -55984,217 +58011,224 @@ function scrollDown() {
       y: 0,
       ease: "power3.inOut"
     });
-    gsap.to(home.position, 2.95, {
-      z: 0,
-      x: -1.45,
-      ease: "power3.inOut"
-    });
-    gsap.to(home.rotation, 2.95, {
-      y: -.35,
-      z: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(socle.position, 2.25, {
-      y: -10.7,
-      ease: "power3.inOut"
-    });
-    gsap.to(socle.rotation, 2.25, {
-      y: 0,
-      ease: "power3.inOut"
-    });
-    gsap.to(field.scale, 2.25, {
-      y: 0.0001,
-      x: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(field.position, 2.25, {
-      y: -53,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftWall.position, 2.25, {
-      x: -51.2,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftWall.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightWall.position, 2.25, {
-      x: 58.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightWall.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftDoor.position, 2.25, {
-      y: -55.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor.position, 2.25, {
-      y: -55.8,
-      ease: "power3.inOut"
-    });
-    gsap.to(leftDoor.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(sign.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(table.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(pylone5.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(pylone4.scale, 2.1, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .15
-    });
-    gsap.to(pylone3.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(pylone2.scale, 1.8, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .45
-    });
-    gsap.to(pylone.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(grid.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(grid2.scale, 2.1, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .15
-    });
-    gsap.to(grid3.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(grid4.scale, 1.8, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .45
-    });
-    gsap.to(grid5.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(poutre.scale, 2.25, {
-      x: 0.0001,
-      y: 100,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(cam.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(vr2.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(enceinte.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(tv2.scale, 1.65, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .6
-    });
-    gsap.to(tabProg.scale, 1.95, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut",
-      delay: .3
-    });
-    gsap.to(tv.scale, 2.25, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(street.scale, 0, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001
-    });
-    gsap.to(leftDoor2.scale, 0, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    });
-    gsap.to(rightDoor2.scale, 0, {
-      x: 0.0001,
-      y: 0.0001,
-      z: 0.0001,
-      ease: "power3.inOut"
-    }); //LIGHTS ANIM
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.to(home.position, 2.95, {
+        z: 0,
+        x: -1.45,
+        ease: "power3.inOut"
+      });
+      gsap.to(home.rotation, 2.95, {
+        y: -.35,
+        z: 0,
+        ease: "power3.inOut"
+      });
+      gsap.to(field.scale, 2.25, {
+        y: 0.0001,
+        x: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(field.position, 2.25, {
+        y: -53,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftWall.position, 2.25, {
+        x: -51.2,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftWall.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightWall.position, 2.25, {
+        x: 58.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightWall.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor.position, 2.25, {
+        y: -55.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor.position, 2.25, {
+        y: -55.8,
+        ease: "power3.inOut"
+      });
+      gsap.to(leftDoor.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor.scale, 2.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(sign.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(planeMeshPanneau.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(table.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(pylone5.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(pylone4.scale, 1.1, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .15
+      });
+      gsap.to(pylone3.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(pylone2.scale, .8, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .45
+      });
+      gsap.to(pylone.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(grid.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(grid2.scale, 1.1, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .15
+      });
+      gsap.to(grid3.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(grid4.scale, .8, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .45
+      });
+      gsap.to(grid5.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(poutre.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(street.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+      gsap.to(leftDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(rightDoor2.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(cam.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(vr2.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(enceinte.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(tv2.scale, .65, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .6
+      });
+      gsap.to(tabProg.scale, .95, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut",
+        delay: .3
+      });
+      gsap.to(tv.scale, 1.25, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001,
+        ease: "power3.inOut"
+      });
+      gsap.to(street.scale, 0, {
+        x: 0.0001,
+        y: 0.0001,
+        z: 0.0001
+      });
+    } //LIGHTS ANIM
+
 
     TweenMax.to(lightCenterSocle.color, .75, {
       r: cyanColorReset.r,
@@ -56210,8 +58244,8 @@ function scrollDown() {
     }); //SWITCH ELEMENTS ON CLICK
 
     canvas.style.zIndex = -1;
-    homeContainer.style.zIndex = 2;
-    homeMask.style.zIndex = 1; //RESET AXES POSITION 
+    homeContainer.style.zIndex = 3;
+    homeMask.style.zIndex = 2; //RESET AXES POSITION 
 
     gsap.to(planeAxe.position, 0, {
       y: -26.5,
@@ -56234,25 +58268,32 @@ function scrollDown() {
       delay: 3.1
     });
   }
-} ///// MOUSE SCROLL /////
+}
 
+var tl = gsap.timeline(); ///// MOUSE SCROLL /////
 
 document.body.addEventListener('wheel', scrollWheel);
 
 function scrollWheel(event) {
+  // //REVEAL AND HIDE CURSOR INDICATION
+  // tl.to(cursorIndication, 1.5, { opacity: 0, ease: "power1.inOut" })
+  // tl.to(cursorIndication, 1.5, { opacity: 1, ease: "power1.inOut", delay: 10 })
+  // tl.restart()
   if (!workshopActive) {
-    if (!isScrollUp) {
+    if (!isScrollUp && planeScrollPossible) {
       if (checkScrollDirectionIsUp(event)) {
         // SCROLL UP
-        scrollUp();
-        isScrollUp = true;
-        setTimeout(function () {
-          isScrollUp = false;
-        }, 750);
+        if (backPossible) {
+          scrollUp();
+          isScrollUp = true;
+          setTimeout(function () {
+            isScrollUp = false;
+          }, 750);
+        }
       }
     }
 
-    if (!isScrollDown) {
+    if (!isScrollDown && planeScrollPossible) {
       if (checkScrollDirectionIsUp(event)) {// SCROLL DOWN
       } else {
         scrollDown();
@@ -56262,143 +58303,143 @@ function scrollWheel(event) {
         }, 750);
       }
     }
-  } else if (creditActive) {
-    if (checkScrollDirectionIsUp(event)) {
-      // SCROLL UP
-      if (idPlane[14]) {
-        if (camera.position.z <= -185 && scrollContainer__14.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[13]) {
-        if (camera.position.z <= -185 && scrollContainer__13.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[12]) {
-        if (camera.position.z <= -185 && scrollContainer__12.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[11]) {
-        if (camera.position.z <= -185 && scrollContainer__11.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[10]) {
-        if (camera.position.z <= -185 && scrollContainer__10.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[9]) {
-        if (camera.position.z <= -185 && scrollContainer__9.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[8]) {
-        if (camera.position.z <= -185 && scrollContainer__8.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[7]) {
-        if (camera.position.z <= -185 && scrollContainer__7.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[6]) {
-        if (camera.position.z <= -185 && scrollContainer__6.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[5]) {
-        if (camera.position.z <= -185 && scrollContainer__5.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[4]) {
-        if (camera.position.z <= -185 && scrollContainer__4.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[3]) {
-        if (camera.position.z <= -185 && scrollContainer__3.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[2]) {
-        if (camera.position.z <= -185 && scrollContainer__2.scrollTop == 0) {
-          backToWorkshop();
-        }
-      } else if (idPlane[1]) {
-        if (camera.position.z <= -185 && scrollContainer__1.scrollTop == 0) {
-          backToWorkshop();
+  } // else if (creditActive) {
+  //     if (checkScrollDirectionIsUp(event)) { // SCROLL UP
+  //         if (idPlane[14]) {
+  //             if (camera.position.z <= -185 && scrollContainer__14.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[13]) {
+  //             if (camera.position.z <= -185 && scrollContainer__13.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[12]) {
+  //             if (camera.position.z <= -185 && scrollContainer__12.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[11]) {
+  //             if (camera.position.z <= -185 && scrollContainer__11.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[10]) {
+  //             if (camera.position.z <= -185 && scrollContainer__10.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[9]) {
+  //             if (camera.position.z <= -185 && scrollContainer__9.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[8]) {
+  //             if (camera.position.z <= -185 && scrollContainer__8.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[7]) {
+  //             if (camera.position.z <= -185 && scrollContainer__7.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[6]) {
+  //             if (camera.position.z <= -185 && scrollContainer__6.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[5]) {
+  //             if (camera.position.z <= -185 && scrollContainer__5.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[4]) {
+  //             if (camera.position.z <= -185 && scrollContainer__4.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[3]) {
+  //             if (camera.position.z <= -185 && scrollContainer__3.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[2]) {
+  //             if (camera.position.z <= -185 && scrollContainer__2.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         } else if (idPlane[1]) {
+  //             if (camera.position.z <= -185 && scrollContainer__1.scrollTop == 0) {
+  //                 backToWorkshop();
+  //             }
+  //         }
+  //     }
+  // }
+  else if (workshopActive) {
+      if (checkScrollDirectionIsUp(event) && clickPossible && scrollPossible) {
+        // SCROLL UP
+        if (idPlane[14]) {
+          if (contentContainer__14.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[13]) {
+          if (contentContainer__13.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[12]) {
+          if (contentContainer__12.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[11]) {
+          if (contentContainer__11.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[10]) {
+          if (contentContainer__10.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[9]) {
+          if (contentContainer__9.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[8]) {
+          if (contentContainer__8.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[7]) {
+          if (contentContainer__7.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[6]) {
+          if (contentContainer__6.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[5]) {
+          if (contentContainer__5.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[4]) {
+          if (contentContainer__4.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[3]) {
+          if (contentContainer__3.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[2]) {
+          if (contentContainer__2.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
+        } else if (idPlane[1]) {
+          if (contentContainer__1.scrollTop == 0) {
+            backToPlane();
+            scrollPossible = false;
+          }
         }
       }
     }
-  } else if (workshopActive) {
-    if (checkScrollDirectionIsUp(event)) {
-      // SCROLL UP
-      if (idPlane[14]) {
-        if (contentContainer__14.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[13]) {
-        if (contentContainer__13.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[12]) {
-        if (contentContainer__12.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[11]) {
-        if (contentContainer__11.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[10]) {
-        if (contentContainer__10.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[9]) {
-        if (contentContainer__9.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[8]) {
-        if (contentContainer__8.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[7]) {
-        if (contentContainer__7.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[6]) {
-        if (contentContainer__6.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[5]) {
-        if (contentContainer__5.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[4]) {
-        if (contentContainer__4.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[3]) {
-        if (contentContainer__3.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[2]) {
-        if (contentContainer__2.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      } else if (idPlane[1]) {
-        if (contentContainer__1.scrollTop == 0 && scrollPossible) {
-          backToPlane();
-          scrollPossible = false;
-        }
-      }
-    }
-  }
 }
 
 function checkScrollDirectionIsUp(event) {
@@ -56410,80 +58451,225 @@ function checkScrollDirectionIsUp(event) {
   return event.deltaY < 0;
 }
 
+function checkScrollDirection(elContent) {
+  // elContent.addEventListener('scroll', function () {
+  if (elContent.scrollTop > scrollPos) {
+    direction = "down";
+  } else {
+    direction = "up";
+  }
+
+  scrollPos = elContent.scrollTop; // })
+
+  return direction;
+}
+
+var test;
+
 function scrollIntoWorkshop(elContent, elCredit) {
   camera.position.z = scrollWorkshop(elContent);
 
   if (window.matchMedia("(max-width: 1440px)").matches) {
-    if (camera.position.z <= -109) {
-      elCredit.scrollTop = 0;
-      creditContainer.classList.add('switchStreet');
-      workShopContainer.classList.remove('switchPlane');
-      gsap.to(workShopContainer, 1.5, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(camera.position, 3, {
-        z: -185,
-        ease: "power3.inOut"
-      });
-      gsap.to(leftDoor2.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: .75
-      });
-      gsap.to(rightDoor2.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: .75
-      });
-      gsap.to(creditContainer, 2, {
-        opacity: 1,
-        ease: "Power1.easeOut",
-        delay: 2
-      });
-      backPossible = false;
-      setTimeout(function () {
-        creditActive = true;
-      }, 1000);
-      setTimeout(function () {
-        backPossible = true;
-      }, 3000);
+    if (checkScrollDirection(elContent) == "down") {
+      if (camera.position.z <= -108) {
+        if (idPlane[14]) {
+          contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
+        } else if (idPlane[13]) {
+          contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
+          contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
+        } else if (idPlane[12]) {
+          contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
+          contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
+        } else if (idPlane[11]) {
+          contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src;
+          contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src;
+        } else if (idPlane[10]) {
+          contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src;
+          contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src;
+        } else if (idPlane[9]) {
+          contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
+          contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
+        } else if (idPlane[8]) {
+          contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
+        } else if (idPlane[7]) {
+          contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+        } else if (idPlane[6]) {
+          contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+        } else if (idPlane[5]) {
+          contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+        } else if (idPlane[4]) {
+          contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+        } else if (idPlane[3]) {
+          contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+        } else if (idPlane[2]) {
+          contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+        } else if (idPlane[1]) {
+          contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+        }
+
+        cursorOnVideo = false;
+
+        if (!cursorOnVideo) {
+          gsap.to(cursor, 0.50, {
+            opacity: 1,
+            ease: "Power3.easeOut"
+          });
+          gsap.to(cursorShapeOut, 0.50, {
+            opacity: 1,
+            ease: "Power3.easeOut"
+          });
+        }
+
+        elCredit.scrollTop = 0;
+        workShopContainer.classList.remove('switchPlane');
+        btnBackWorkshop.classList.add('close');
+        gsap.to(workShopContainer, 1.5, {
+          opacity: 0,
+          ease: "Power3.easeOut"
+        });
+        gsap.to(camera.position, 3, {
+          z: -185,
+          ease: "power3.inOut"
+        });
+        gsap.to(leftDoor2.position, 1.5, {
+          x: -20,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(rightDoor2.position, 1.5, {
+          x: 20,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(creditContainer, 2, {
+          opacity: 1,
+          ease: "Power1.easeOut",
+          delay: 2
+        });
+        TweenMax.to(btnBackWorkshop, 1, {
+          opacity: 0,
+          clipPath: "inset(0% 100% 0% 0%)",
+          ease: "power3.inOut"
+        });
+        TweenMax.to(btnBackWorkshop, .75, {
+          opacity: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          delay: 2.5,
+          ease: "power3.inOut"
+        });
+        backPossible = false;
+        clickPossible = false;
+        setTimeout(function () {
+          creditActive = true;
+          creditContainer.classList.add('switchStreet');
+        }, 1000);
+        setTimeout(function () {
+          backPossible = true;
+          clickPossible = true;
+          btnBackWorkshop.classList.remove('close');
+        }, 3000);
+      }
     }
   } else {
-    if (camera.position.z <= -106) {
-      elCredit.scrollTop = 0;
-      creditContainer.classList.add('switchStreet');
-      workShopContainer.classList.remove('switchPlane');
-      gsap.to(workShopContainer, 1.5, {
-        opacity: 0,
-        ease: "Power3.easeOut"
-      });
-      gsap.to(camera.position, 3, {
-        z: -185,
-        ease: "power3.inOut"
-      });
-      gsap.to(leftDoor2.position, 1.5, {
-        x: -15,
-        ease: "power3.inOut",
-        delay: .75
-      });
-      gsap.to(rightDoor2.position, 1.5, {
-        x: 15,
-        ease: "power3.inOut",
-        delay: .75
-      });
-      gsap.to(creditContainer, 2, {
-        opacity: 1,
-        ease: "Power1.easeOut",
-        delay: 2
-      });
-      backPossible = false;
-      setTimeout(function () {
-        creditActive = true;
-      }, 1000);
-      setTimeout(function () {
-        backPossible = true;
-      }, 3000);
+    if (checkScrollDirection(elContent) == "down") {
+      if (camera.position.z <= -106) {
+        if (idPlane[14]) {
+          contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
+        } else if (idPlane[13]) {
+          contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
+          contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
+        } else if (idPlane[12]) {
+          contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
+          contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
+        } else if (idPlane[11]) {
+          contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src;
+          contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src;
+        } else if (idPlane[10]) {
+          contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src;
+          contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src;
+        } else if (idPlane[9]) {
+          contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
+          contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
+        } else if (idPlane[8]) {
+          contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
+        } else if (idPlane[7]) {
+          contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+        } else if (idPlane[6]) {
+          contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+        } else if (idPlane[5]) {
+          contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+        } else if (idPlane[4]) {
+          contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+        } else if (idPlane[3]) {
+          contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+        } else if (idPlane[2]) {
+          contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+        } else if (idPlane[1]) {
+          contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+        }
+
+        cursorOnVideo = false;
+
+        if (!cursorOnVideo) {
+          gsap.to(cursor, 0.50, {
+            opacity: 1,
+            ease: "Power3.easeOut"
+          });
+          gsap.to(cursorShapeOut, 0.50, {
+            opacity: 1,
+            ease: "Power3.easeOut"
+          });
+        }
+
+        elCredit.scrollTop = 0;
+        workShopContainer.classList.remove('switchPlane');
+        btnBackWorkshop.classList.add('close');
+        gsap.to(workShopContainer, 1.5, {
+          opacity: 0,
+          ease: "Power3.easeOut"
+        });
+        gsap.to(camera.position, 3, {
+          z: -185,
+          ease: "power3.inOut"
+        });
+        gsap.to(leftDoor2.position, 1.5, {
+          x: -20,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(rightDoor2.position, 1.5, {
+          x: 20,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(creditContainer, 2, {
+          opacity: 1,
+          ease: "Power1.easeOut",
+          delay: 2
+        });
+        TweenMax.to(btnBackWorkshop, 1, {
+          opacity: 0,
+          clipPath: "inset(0% 100% 0% 0%)",
+          ease: "power3.inOut"
+        });
+        TweenMax.to(btnBackWorkshop, .75, {
+          opacity: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          delay: 2.5,
+          ease: "power3.inOut"
+        });
+        backPossible = false;
+        clickPossible = false;
+        setTimeout(function () {
+          creditContainer.classList.add('switchStreet');
+          creditActive = true;
+        }, 1000);
+        setTimeout(function () {
+          backPossible = true;
+          clickPossible = true;
+          btnBackWorkshop.classList.remove('close');
+        }, 3000);
+      }
     }
   }
 } ///// WORKSHOP SCROLL + CREDIT ENTER /////
@@ -56586,316 +58772,47 @@ contentContainer__1.addEventListener('scroll', function () {
       scrollIntoWorkshop(contentContainer__1, scrollContainer__1);
     }
   }
-}); ///// CREDIT SCROLL TRIGGER /////
+}); ///// SMOOTH SCROLL /////
+// Scrollbar.init(document.querySelector('#my-scrollbar'));
+///// CREDIT SCROLL TRIGGER /////
 
-scrollContainer__14.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__14.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
+function scrollTrigger(elementContainer, elementContainerImg) {
+  elementContainer.addEventListener("scroll", function () {
+    if (creditActive) {
+      elementContainerImg.forEach(function (e) {
+        var tl = gsap.timeline({
+          defaults: {
+            ease: "expo.InOut"
+          }
+        }).to(e, {
+          opacity: 1,
+          duration: .5
+        });
+        ScrollTrigger.create({
+          trigger: e.children[2].children[2],
+          start: "top center",
+          scroller: elementContainer,
+          animation: tl
+        });
       });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__14,
-        animation: tl // scrub: true,
+    }
+  });
+}
 
-      });
-    });
-  }
-});
-scrollContainer__13.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__13.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__13,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__12.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__12.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__12,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__11.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__11.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__11,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__10.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__10.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__10,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__9.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__9.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__9,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__8.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__8.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__8,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__7.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__7.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__7,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__6.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__6.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__6,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__5.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__5.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__5,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__4.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__4.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__4,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__3.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__3.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__3,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__2.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__2.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__2,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-});
-scrollContainer__1.addEventListener("scroll", function () {
-  if (creditActive) {
-    scrollContainerContentImg__1.forEach(function (e) {
-      var tl = gsap.timeline({
-        defaults: {
-          ease: "Power3.InOut"
-        }
-      }).to(e, {
-        opacity: 1,
-        duration: 1
-      });
-      ScrollTrigger.create({
-        trigger: e,
-        start: "10% 50%",
-        // end: "+=300",
-        scroller: scrollContainer__4,
-        animation: tl // scrub: true,
-
-      });
-    });
-  }
-}); ///// SYNCHRO CAM TO SCROLL /////
+scrollTrigger(scrollContainer__14, scrollContainerContentImg__14);
+scrollTrigger(scrollContainer__13, scrollContainerContentImg__13);
+scrollTrigger(scrollContainer__12, scrollContainerContentImg__12);
+scrollTrigger(scrollContainer__11, scrollContainerContentImg__11);
+scrollTrigger(scrollContainer__10, scrollContainerContentImg__10);
+scrollTrigger(scrollContainer__9, scrollContainerContentImg__9);
+scrollTrigger(scrollContainer__8, scrollContainerContentImg__8);
+scrollTrigger(scrollContainer__7, scrollContainerContentImg__7);
+scrollTrigger(scrollContainer__6, scrollContainerContentImg__6);
+scrollTrigger(scrollContainer__5, scrollContainerContentImg__5);
+scrollTrigger(scrollContainer__4, scrollContainerContentImg__4);
+scrollTrigger(scrollContainer__3, scrollContainerContentImg__3);
+scrollTrigger(scrollContainer__2, scrollContainerContentImg__2);
+scrollTrigger(scrollContainer__1, scrollContainerContentImg__1); ///// SYNCHRO CAM TO SCROLL /////
 
 function scrollWorkshop(el) {
   var posCam = -20 + el.scrollTop / el.scrollHeight * -120;
@@ -56910,7 +58827,6 @@ document.onkeydown = function (e) {
         scrollUp();
       }
 
-      console.log('left');
       break;
 
     case 38:
@@ -56919,7 +58835,6 @@ document.onkeydown = function (e) {
         scrollUp();
       }
 
-      console.log('up');
       break;
 
     case 39:
@@ -56927,7 +58842,6 @@ document.onkeydown = function (e) {
         scrollDown();
       }
 
-      console.log('right');
       break;
 
     case 40:
@@ -56936,22 +58850,21 @@ document.onkeydown = function (e) {
         scrollDown();
       }
 
-      console.log('down');
       break;
 
     case 27:
-      if (camera.position.z == 3.7 && !workshopActive) {
+      if (camera.position.z == 3.7 && !workshopActive && backPossible) {
         functionBtnBackHome();
       }
 
       if (workshopActive && !creditActive && scrollPossible && !btnPressed) {
         backToPlane();
         btnPressed = true;
-      } else if (workshopActive && creditActive) {
+      } else if (workshopActive && creditActive && !btnPressed) {
         backToWorkshop();
+        btnPressed = true;
       }
 
-      console.log("echap");
       break;
 
     case 13:
@@ -56959,7 +58872,7 @@ document.onkeydown = function (e) {
         functionBtnStart();
       }
 
-      if (!homeActive) {
+      if (!homeActive && clickPossible) {
         plane14Click();
         plane13Click();
         plane12Click();
@@ -56976,7 +58889,6 @@ document.onkeydown = function (e) {
         plane1Click();
       }
 
-      console.log("enter");
       break;
 
     case 65:
@@ -56985,13 +58897,17 @@ document.onkeydown = function (e) {
       // console.log("2/4 : " + contentContainer__14.scrollHeight / 4 * 2)
       // console.log("3/4 : " + contentContainer__14.scrollHeight / 4 * 3)
       // console.log("4/4 : " + contentContainer__14.scrollHeight / 4 * 4)
+      // console.log("pos Fiche Actuelle : " + contentContainer__14.scrollTop)
+      // console.log("pos Crédit Actuelle : " + scrollContainer__14.scrollTop)
 
-      console.log("pos Fiche Actuelle : " + contentContainer__14.scrollTop);
-      console.log("pos Crédit Actuelle : " + scrollContainer__14.scrollTop);
       console.log("Crédit : " + creditActive);
       console.log("Workshop : " + workshopActive);
       console.log("Back : " + backPossible);
-      console.log("Plane Alpha : " + materialPlane14.uniforms.alpha.value);
+      console.log("Click : " + clickPossible);
+      console.log("Btn pressed : " + btnPressed);
+      console.log("Scroll : " + scrollPossible);
+      console.log("Hover Plane : " + hoverPlane); // console.log("Plane Alpha : " + materialPlane14.uniforms.alpha.value)
+
       break;
   }
 };
@@ -57000,9 +58916,6 @@ var variation = 0;
 var variationShaders = 0;
 
 var render = function render() {
-  composer.render();
-  requestAnimationFrame(render);
-
   if (logo && logo.position.z == 0) {
     logo.rotation.y += .01;
 
@@ -57033,9 +58946,36 @@ var render = function render() {
   //         // gsap.to(camera.position, 0.05, { x: (e.clientX - rotX) / rotX * cameraRotationXTolerance, y: (e.clientY - rotY) / rotY * cameraRotationYTolerance, ease: "power4.inOut" })
   // };
 
-  renderer.render(scene, camera); // if (!window.matchMedia("(max-width: 1024px)").matches) {
+  materialPlane1.uniforms.time.value = clock.running = false;
+  materialPlane2.uniforms.time.value = clock.running = false;
+  materialPlane3.uniforms.time.value = clock.running = false;
+  materialPlane4.uniforms.time.value = clock.running = false;
+  materialPlane5.uniforms.time.value = clock.running = false;
+  materialPlane6.uniforms.time.value = clock.running = false;
+  materialPlane7.uniforms.time.value = clock.running = false;
+  materialPlane8.uniforms.time.value = clock.running = false;
+  materialPlane9.uniforms.time.value = clock.running = false;
+  materialPlane10.uniforms.time.value = clock.running = false;
+  materialPlane11.uniforms.time.value = clock.running = false;
+  materialPlane12.uniforms.time.value = clock.running = false;
+  materialPlane13.uniforms.time.value = clock.running = false;
+  materialPlane14.uniforms.time.value = clock.running = false; // if (!window.matchMedia("(max-width: 1024px)").matches) {
 
-  if (camera.position.z >= 3.4 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
+  if (camera.position.z >= 0 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
+    materialPlane1.uniforms.time.value = clock.running = true;
+    materialPlane2.uniforms.time.value = clock.running = true;
+    materialPlane3.uniforms.time.value = clock.running = true;
+    materialPlane4.uniforms.time.value = clock.running = true;
+    materialPlane5.uniforms.time.value = clock.running = true;
+    materialPlane6.uniforms.time.value = clock.running = true;
+    materialPlane7.uniforms.time.value = clock.running = true;
+    materialPlane8.uniforms.time.value = clock.running = true;
+    materialPlane9.uniforms.time.value = clock.running = true;
+    materialPlane10.uniforms.time.value = clock.running = true;
+    materialPlane11.uniforms.time.value = clock.running = true;
+    materialPlane12.uniforms.time.value = clock.running = true;
+    materialPlane13.uniforms.time.value = clock.running = true;
+    materialPlane14.uniforms.time.value = clock.running = true;
     materialPlane1.uniforms.time.value = clock.getElapsedTime();
     materialPlane2.uniforms.time.value = clock.getElapsedTime();
     materialPlane3.uniforms.time.value = clock.getElapsedTime();
@@ -57052,10 +58992,14 @@ var render = function render() {
     materialPlane14.uniforms.time.value = clock.getElapsedTime();
   } // }
 
+
+  composer.render();
+  requestAnimationFrame(render);
+  renderer.render(scene, camera);
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace.jpg":"assets/img/displaces/displace.jpg","../assets/img/displaces/displace.png":"assets/img/displaces/displace.png","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace3.png":"assets/img/displaces/displace3.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/displaces/displace5.jpg":"assets/img/displaces/displace5.jpg","../assets/img/displaces/displace6.jpg":"assets/img/displaces/displace6.jpg","../assets/img/displaces/displace7.jpg":"assets/img/displaces/displace7.jpg","../assets/img/displaces/displace8.jpg":"assets/img/displaces/displace8.jpg","../assets/img/displaces/displace9.png":"assets/img/displaces/displace9.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/particle.png":"assets/img/particle.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf","../assets/sound/effect/rpz.mp3":"assets/sound/effect/rpz.mp3"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","preload-js":"node_modules/preload-js/index.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/ruelle/banniere/baniere_backstage.jpg":"assets/img/ruelle/banniere/baniere_backstage.jpg","../assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg":"assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg","../assets/img/ruelle/banniere/baniere_vrgaming.jpg":"assets/img/ruelle/banniere/baniere_vrgaming.jpg","../assets/img/ruelle/banniere/baniere_devweb.jpg":"assets/img/ruelle/banniere/baniere_devweb.jpg","../assets/img/ruelle/banniere/baniere_cubemusical.jpg":"assets/img/ruelle/banniere/baniere_cubemusical.jpg","../assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg":"assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg","../assets/img/ruelle/banniere/baniere_museemmi.jpg":"assets/img/ruelle/banniere/baniere_museemmi.jpg","../assets/img/ruelle/banniere/baniere_suiteadobe.jpg":"assets/img/ruelle/banniere/baniere_suiteadobe.jpg","../assets/img/ruelle/banniere/baniere_visiteguidée.jpg":"assets/img/ruelle/banniere/baniere_visiteguidée.jpg","../assets/img/ruelle/banniere/baniere_webradio.jpg":"assets/img/ruelle/banniere/baniere_webradio.jpg","../assets/img/ruelle/banniere/baniere_plateautv.jpg":"assets/img/ruelle/banniere/baniere_plateautv.jpg","../assets/img/ruelle/banniere/baniere_fondvert.jpg":"assets/img/ruelle/banniere/baniere_fondvert.jpg","../assets/img/ruelle/banniere/baniere_mapping.jpg":"assets/img/ruelle/banniere/baniere_mapping.jpg","../assets/img/ruelle/banniere/baniere_audiovisuel.jpg":"assets/img/ruelle/banniere/baniere_audiovisuel.jpg","../assets/img/ruelle/numero/rond_1.jpg":"assets/img/ruelle/numero/rond_1.jpg","../assets/img/ruelle/numero/rond_2.jpg":"assets/img/ruelle/numero/rond_2.jpg","../assets/img/ruelle/numero/rond_3.jpg":"assets/img/ruelle/numero/rond_3.jpg","../assets/img/ruelle/numero/rond_4.jpg":"assets/img/ruelle/numero/rond_4.jpg","../assets/img/ruelle/numero/rond_5.jpg":"assets/img/ruelle/numero/rond_5.jpg","../assets/img/ruelle/numero/rond_6.jpg":"assets/img/ruelle/numero/rond_6.jpg","../assets/img/ruelle/numero/rond_7.jpg":"assets/img/ruelle/numero/rond_7.jpg","../assets/img/ruelle/numero/rond_8.jpg":"assets/img/ruelle/numero/rond_8.jpg","../assets/img/ruelle/numero/rond_9.jpg":"assets/img/ruelle/numero/rond_9.jpg","../assets/img/ruelle/numero/rond_10.jpg":"assets/img/ruelle/numero/rond_10.jpg","../assets/img/ruelle/numero/rond_11.jpg":"assets/img/ruelle/numero/rond_11.jpg","../assets/img/ruelle/numero/rond_12.jpg":"assets/img/ruelle/numero/rond_12.jpg","../assets/img/ruelle/numero/rond_13.jpg":"assets/img/ruelle/numero/rond_13.jpg","../assets/img/ruelle/numero/rond_14.jpg":"assets/img/ruelle/numero/rond_14.jpg","../assets/img/ruelle/panneaux/panneau_1.jpg":"assets/img/ruelle/panneaux/panneau_1.jpg","../assets/img/ruelle/panneaux/panneau_2.jpg":"assets/img/ruelle/panneaux/panneau_2.jpg","../assets/img/ruelle/panneaux/panneau_3.jpg":"assets/img/ruelle/panneaux/panneau_3.jpg","../assets/img/ruelle/panneaux/panneau_4.jpg":"assets/img/ruelle/panneaux/panneau_4.jpg","../assets/img/ruelle/panneaux/panneau_5.jpg":"assets/img/ruelle/panneaux/panneau_5.jpg","../assets/img/ruelle/panneaux/panneau_6.jpg":"assets/img/ruelle/panneaux/panneau_6.jpg","../assets/img/ruelle/panneaux/panneau_7.jpg":"assets/img/ruelle/panneaux/panneau_7.jpg","../assets/img/ruelle/panneaux/panneau_8.jpg":"assets/img/ruelle/panneaux/panneau_8.jpg","../assets/img/ruelle/panneaux/panneau_9.jpg":"assets/img/ruelle/panneaux/panneau_9.jpg","../assets/img/ruelle/panneaux/panneau_10.jpg":"assets/img/ruelle/panneaux/panneau_10.jpg","../assets/img/ruelle/panneaux/panneau_11.jpg":"assets/img/ruelle/panneaux/panneau_11.jpg","../assets/img/ruelle/panneaux/panneau_12.jpg":"assets/img/ruelle/panneaux/panneau_12.jpg","../assets/img/ruelle/panneaux/panneau_13.jpg":"assets/img/ruelle/panneaux/panneau_13.jpg","../assets/img/ruelle/panneaux/panneau_14.jpg":"assets/img/ruelle/panneaux/panneau_14.jpg","../assets/img/panneau/panneau_1.jpg":"assets/img/panneau/panneau_1.jpg","../assets/img/panneau/panneau_2.jpg":"assets/img/panneau/panneau_2.jpg","../assets/img/panneau/panneau_3.jpg":"assets/img/panneau/panneau_3.jpg","../assets/img/panneau/panneau_4.jpg":"assets/img/panneau/panneau_4.jpg","../assets/img/panneau/panneau_5.jpg":"assets/img/panneau/panneau_5.jpg","../assets/img/panneau/panneau_6.jpg":"assets/img/panneau/panneau_6.jpg","../assets/img/panneau/panneau_7.jpg":"assets/img/panneau/panneau_7.jpg","../assets/img/panneau/panneau_8.jpg":"assets/img/panneau/panneau_8.jpg","../assets/img/panneau/panneau_9.jpg":"assets/img/panneau/panneau_9.jpg","../assets/img/panneau/panneau_10.jpg":"assets/img/panneau/panneau_10.jpg","../assets/img/panneau/panneau_11.jpg":"assets/img/panneau/panneau_11.jpg","../assets/img/panneau/panneau_12.jpg":"assets/img/panneau/panneau_12.jpg","../assets/img/panneau/panneau_13.jpg":"assets/img/panneau/panneau_13.jpg","../assets/img/panneau/panneau_14.jpg":"assets/img/panneau/panneau_14.jpg","../assets/img/ruelle/back_panneaux/panneau_1.jpg":"assets/img/ruelle/back_panneaux/panneau_1.jpg","../assets/img/ruelle/back_panneaux/panneau_2.jpg":"assets/img/ruelle/back_panneaux/panneau_2.jpg","../assets/img/ruelle/back_panneaux/panneau_3.jpg":"assets/img/ruelle/back_panneaux/panneau_3.jpg","../assets/img/ruelle/back_panneaux/panneau_4.jpg":"assets/img/ruelle/back_panneaux/panneau_4.jpg","../assets/img/ruelle/back_panneaux/panneau_5.jpg":"assets/img/ruelle/back_panneaux/panneau_5.jpg","../assets/img/ruelle/back_panneaux/panneau_6.jpg":"assets/img/ruelle/back_panneaux/panneau_6.jpg","../assets/img/ruelle/back_panneaux/panneau_7.jpg":"assets/img/ruelle/back_panneaux/panneau_7.jpg","../assets/img/ruelle/back_panneaux/panneau_8.jpg":"assets/img/ruelle/back_panneaux/panneau_8.jpg","../assets/img/ruelle/back_panneaux/panneau_9.jpg":"assets/img/ruelle/back_panneaux/panneau_9.jpg","../assets/img/ruelle/back_panneaux/panneau_10.jpg":"assets/img/ruelle/back_panneaux/panneau_10.jpg","../assets/img/ruelle/back_panneaux/panneau_11.jpg":"assets/img/ruelle/back_panneaux/panneau_11.jpg","../assets/img/ruelle/back_panneaux/panneau_12.jpg":"assets/img/ruelle/back_panneaux/panneau_12.jpg","../assets/img/ruelle/back_panneaux/panneau_13.jpg":"assets/img/ruelle/back_panneaux/panneau_13.jpg","../assets/img/ruelle/back_panneaux/panneau_14.jpg":"assets/img/ruelle/back_panneaux/panneau_14.jpg","../assets/img/ruelle/idbannire.jpg":"assets/img/ruelle/idbannire.jpg","../assets/img/ruelle/credits.jpg":"assets/img/ruelle/credits.jpg","../assets/img/particle.png":"assets/img/particle.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf","../assets/sound/rpz.mp3":"assets/sound/rpz.mp3","../assets/sound/bg.mp3":"assets/sound/bg.mp3","../assets/sound/bgLoop.mp3":"assets/sound/bgLoop.mp3","../assets/sound/soundHoverPlane.mp3":"assets/sound/soundHoverPlane.mp3","../assets/sound/soundOutPlane.mp3":"assets/sound/soundOutPlane.mp3","../assets/sound/soundHover.mp3":"assets/sound/soundHover.mp3"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -57083,7 +59027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3773" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56503" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
