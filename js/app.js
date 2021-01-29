@@ -1,28 +1,16 @@
 import * as THREE from "three";
-
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import { GLTFPipeline } from 'gltf-pipeline'
-// import { THREEGLTFLoader, THREEDRACOLoader } from 'three-loaders'
 import * as POSTPROCESSING from "postprocessing";
 import { Interaction } from 'three.interaction';
 import TouchSweep from 'touchsweep';
-
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import createjs from 'preload-js';
 
 import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import fragmentShaderVertical from "./libs/glsl/fragmentVertical.glsl";
 
-import displacement from "../assets/img/displaces/displace.jpg";
-import displacement1 from "../assets/img/displaces/displace.png";
 import displacement2 from "../assets/img/displaces/displace2.png"; // Pour le panneau
-import displacement3 from "../assets/img/displaces/displace3.png";
 import displacement4 from "../assets/img/displaces/displace4.png"; // Pour les planes
-import displacement5 from "../assets/img/displaces/displace5.jpg";
-import displacement6 from "../assets/img/displaces/displace6.jpg";
-import displacement7 from "../assets/img/displaces/displace7.jpg";
-import displacement8 from "../assets/img/displaces/displace8.jpg";
-import displacement9 from "../assets/img/displaces/displace9.png";
 
 import atelier1Default from "../assets/img/ateliers/atelier1Default.png"; // Backstage
 import atelier2Default from "../assets/img/ateliers/atelier2Default.png"; // FTM
@@ -80,7 +68,310 @@ import tvModel from "../assets/model/navigation/tv.gltf";
 import camModel from "../assets/model/navigation/cam.gltf";
 import enceinteModel from "../assets/model/navigation/enceinte.gltf";
 
-import rpz from "../assets/sound/effect/rpz.mp3"
+import rpzImport from "../assets/sound/rpz.mp3"
+import bgMusicImport from "../assets/sound/bg.mp3"
+import bgLoopMusicImport from "../assets/sound/bgLoop.mp3"
+import soundHoverPlaneImport from "../assets/sound/soundHoverPlane.mp3"
+import soundOutPlaneImport from "../assets/sound/soundOutPlane.mp3"
+import soundHoverImport from "../assets/sound/soundHover.mp3"
+
+////////// MAIN LOADER //////////
+
+let indicGoDesktop = document.querySelector('.indicGoDesktop');
+let progress = document.querySelector('.progress');
+
+let volume = .1;
+let volumePlane = .075;
+let volumeBtn = .9;
+
+let bgMusic = document.createElement("audio"); 
+bgMusic.src = bgMusicImport; 
+bgMusic.loop = false;
+bgMusic.volume = volume;
+
+let bgLoopMusic = document.createElement("audio"); 
+bgLoopMusic.src = bgLoopMusicImport; 
+bgLoopMusic.loop = false;
+bgLoopMusic.volume = volume;
+
+let rpzMusic = document.createElement("audio"); 
+rpzMusic.src = rpzImport; 
+rpzMusic.loop = false;
+rpzMusic.volume = volume;
+
+let soundHover = document.createElement("audio"); 
+soundHover.src = soundHoverImport; 
+soundHover.loop = false;
+soundHover.volume = volumeBtn; 
+
+let soundHoverPlane = document.createElement("audio"); 
+soundHoverPlane.src = soundHoverPlaneImport; 
+soundHoverPlane.loop = false;
+soundHoverPlane.volume = volumePlane; 
+
+let soundOutPlane = document.createElement("audio"); 
+soundOutPlane.src = soundOutPlaneImport; 
+soundOutPlane.loop = false;
+soundOutPlane.volume = volumePlane; 
+
+let queue = new createjs.LoadQueue(false);
+
+queue.on("progress", event => {
+    let increment = Math.floor(event.progress*100);
+    progress.innerHTML = increment;
+    indicGoDesktop.classList.add('switch')
+});
+
+queue.on("complete", event =>{
+    indicGoDesktop.classList.remove('switch')
+    progress.classList.add('switch')
+
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+        const _cursorIn = new Cursor(cursorShapeIn);
+        updateCursor();
+        setTimeout(function(){
+            cursor.style.opacity = 1
+            cursorShapeOut.style.opacity = 1          
+        },50)
+    }
+
+    TweenMax.to(".spanContainerMainStart span", { duration: 1, opacity: 1, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut", delay: .75 })
+    TweenMax.to(".borderLeft", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: .75 })
+    TweenMax.to(".borderRight", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: .75 })
+    TweenMax.to(".borderTop", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: 1.25 })
+    TweenMax.to(".borderBottom", { duration: 1, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', ease: "power3.inOut", delay: 1.25 })
+
+    setTimeout(function(){
+    btnMainStart.addEventListener("pointerenter", function() {
+        if (homeActive) {
+            handleMouseEnterBtn(btnMainStart);
+        }
+            
+        btnMainStart.addEventListener("pointerleave", handleMouseLeave)
+    })     
+
+        btnMainStart.addEventListener('mouseenter', function(){
+            spanContainerMainStart.classList.add('neonText');
+            cursorShapeIn.classList.add('mouseover');
+            TweenMax.to(btnMainStart, .5, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+            spanContainerMainStart.classList.add('neonText');
+        })
+        
+        btnMainStart.addEventListener('mouseleave', function() {
+            TweenMax.to(btnMainStart, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+            cursorShapeIn.classList.remove('mouseover');
+            spanContainerMainStart.classList.remove('neonText');
+        })
+        
+        btnMainStart.addEventListener('click', function() {
+
+            bgMusic.play();
+
+            TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
+            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
+            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 });   
+            switchBtn = true; 
+            onMusic.classList.toggle('switch');
+            offMusic.classList.toggle('switch')
+        
+            setTimeout(function(){
+                lineMusicBtn.forEach(line=>{
+                    line.classList.toggle('switch');
+                })
+            },350) 
+
+            if (window.matchMedia("(max-width: 1024px)").matches) {
+                let html = document.querySelector('html');
+                    if (html.requestFullscreen) {
+                        html.requestFullscreen();
+                    } else if (html.mozRequestFullScreen) {
+                        html.mozRequestFullScreen();
+                    } else if (html.webkitRequestFullscreen) {
+                        html.webkitRequestFullscreen();
+                    } else if (html.msRequestFullscreen) {
+                        html.msRequestFullscreen();
+                    }
+                }
+            
+            handleMouseLeave();
+            TweenMax.to(".spanContainerMainStart span", { duration: .5, opacity: 0, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut" })
+            TweenMax.to(btnMainStart, { duration: 1.5, opacity: 0, ease: "power3.inOut" })
+
+            titleSvgPath.forEach(e => {
+                e.classList.remove("pathTitleOut")
+                e.classList.remove("pathTitleIn")
+                });
+                titleSvgLine.classList.remove("pathLineOut")
+                titleSvgLine.classList.remove("pathLineIn")
+
+            setTimeout(function() {
+            TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
+            TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.02 });
+            TweenMax.to(bgCol, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.02 });
+            TweenMax.to(bgRow, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.0355555 });
+            TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.0355555 });
+            TweenMax.to(bgRow, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.0355555 });
+            TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, delay: 2 });
+            TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, delay: 2 });
+            TweenMax.to(".firstSlogan span", { duration: 2, opacity: 1, stagger: { each: 0.02, from: 'random' }, ease: "expo.inOut", delay: .25 })
+            TweenMax.to(".firstSlogan span", { duration: 2, opacity: 0, stagger: { each: 0.02, from: 'random' }, ease: "expo.inOut", delay: 3.5 })
+
+            setTimeout(function(){
+            canvas.classList.add('hologramActive')
+            //CAMERA ANIM
+             gsap.to(camera.position, 3.75, { z: 10, ease: "power3.inOut" })
+
+            //RAJOUT DES PARTICULES
+            setTimeout(function(){
+             scene.add(particleMesh);
+            },1000)
+            gsap.to(particleMesh.scale, 3.75, { x: 1, y: 1, z: 1, ease: "power3.inOut", })
+            if (!window.matchMedia("(max-width: 1024px)").matches) {
+             gsap.to(home.position, 3.75, { z: 0, x: -1.45, ease: "power3.inOut" })
+             gsap.to(home.rotation, 3.75, { y: -.35, z: 0, ease: "power3.inOut" })
+             TweenMax.to(homeMask, 3.75, { opacity: 1, ease: "power3.inOut" })
+             }
+            },4000);
+
+            setTimeout(function(){
+
+                titleSvg.classList.add('switchTitle')
+                titleSvgPath.forEach(e => {
+                e.classList.remove("pathTitleOut")
+                e.classList.add("pathTitleIn")
+                });
+                titleSvgLine.classList.remove("pathLineOut")
+                titleSvgLine.classList.add("pathLineIn")
+
+                setTimeout(function(){
+                TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.06, from: 'random' }, ease: "power3.inOut" })
+                TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut" })
+                gsap.to(sm1, 0.75, {opacity: 1,  ease: "Power3.easeOut"})
+                gsap.to(sm2, 0.75, {opacity: 1,  ease: "Power3.easeOut", delay: .15})
+                gsap.to(sm3, 0.75, {opacity: 1,  ease: "Power3.easeOut", delay: .3})
+                gsap.to(musicBtn, 0.75, {opacity: 1, ease: "Power3.easeOut"})
+                TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.inOut" })
+
+                setTimeout(function(){
+                    discordContainer.classList.add('switchPointer')
+                    iutContainer.classList.add('switchPointer')
+                    sm1.classList.add('switchPointer')
+                    sm2.classList.add('switchPointer')
+                    sm3.classList.add('switchPointer')
+                    musicBtn.classList.add('switchPointer')
+                },550)
+                }, 3200)
+                                
+            }, 4500)
+
+            if (!window.matchMedia("(max-width: 1024px)").matches) {
+                TweenMax.to(bgCol, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 2 });
+                TweenMax.to(bgRow, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 2 });
+            }
+        }, 200)
+
+            btnMainStart.classList.add('close');
+            btnBackHome.classList.remove('hover')
+            cursorShapeIn.classList.remove('mouseover')
+            setTimeout(function() {
+                spanContainerBackMouseOut.classList.remove('neonText');
+            }, 750)
+        })
+    }, 750)
+
+
+
+
+})
+
+////////// LOAD FILES //////////
+queue.on("fileload", handleFileComplete);
+
+queue.loadFile(atelier1Default);
+queue.loadFile(atelier2Default);
+queue.loadFile(atelier3Default);
+queue.loadFile(atelier4Default);
+queue.loadFile(atelier5Default);
+queue.loadFile(atelier6Default);
+queue.loadFile(atelier7Default);
+queue.loadFile(atelier8Default);
+queue.loadFile(atelier9Default);
+queue.loadFile(atelier10Default);
+queue.loadFile(atelier11Default);
+queue.loadFile(atelier12Default);
+queue.loadFile(atelier13Default);
+queue.loadFile(atelier14Default);
+
+queue.loadFile(atelier1Hover);
+queue.loadFile(atelier2Hover);
+queue.loadFile(atelier3Hover);
+queue.loadFile(atelier4Hover);
+queue.loadFile(atelier5Hover);
+queue.loadFile(atelier6Hover);
+queue.loadFile(atelier7Hover);
+queue.loadFile(atelier8Hover);
+queue.loadFile(atelier9Hover);
+queue.loadFile(atelier10Hover);
+queue.loadFile(atelier11Hover);
+queue.loadFile(atelier12Hover);
+queue.loadFile(atelier13Hover);
+queue.loadFile(atelier14Hover);
+
+queue.loadFile(displacement);
+queue.loadFile(displacement1);
+queue.loadFile(displacement2);
+queue.loadFile(displacement3);
+queue.loadFile(displacement4);
+queue.loadFile(displacement5);
+queue.loadFile(displacement6);
+queue.loadFile(displacement7);
+queue.loadFile(displacement8);
+queue.loadFile(displacement9);
+
+queue.loadFile(particle);
+queue.loadFile(socleModel);
+queue.loadFile(logoModel);
+queue.loadFile(homeModel);
+queue.loadFile(streetModel);
+queue.loadFile(rightDoorModel);
+queue.loadFile(rightDoor2Model);
+queue.loadFile(leftDoorModel);
+queue.loadFile(leftDoor2Model);
+queue.loadFile(pyloneModel);
+queue.loadFile(gridModel);
+queue.loadFile(tableModel);
+queue.loadFile(poutreModel);
+queue.loadFile(leftWallModel);
+queue.loadFile(rightWallModel);
+queue.loadFile(fieldModel);
+queue.loadFile(signModel);
+queue.loadFile(vr2Model);
+queue.loadFile(tabProgModel);
+queue.loadFile(tvModel);
+queue.loadFile(camModel);
+queue.loadFile(enceinteModel);
+
+queue.loadFile(fragmentShaderVertical);
+queue.loadFile(fragmentShader);
+queue.loadFile(vertexShader);
+
+queue.loadFile(rpzImport);
+queue.loadFile(bgMusicImport);
+queue.loadFile(bgLoopMusicImport);
+queue.loadFile(rpzImport);
+queue.loadFile(soundHoverImport);
+queue.loadFile(soundHoverPlaneImport);
+queue.loadFile(soundOutPlaneImport);
+
+queue.loadFile(GLTFLoader);
+queue.loadFile(THREE);
+queue.loadFile(POSTPROCESSING);
+queue.loadFile(Interaction);
+queue.loadFile(createjs);
+queue.loadFile(TouchSweep);
+
+
+function handleFileComplete(){}
 
 ////////// SCENE //////////
 var scene = new THREE.Scene();
@@ -92,21 +383,17 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 var clock = new THREE.Clock();
 
 if (window.matchMedia("(max-width: 600px)").matches) {
-    camera.position.set(0, 0, 11.3);
-} else {
-    camera.position.set(0, 0, 10);
+camera.position.set(0, 0, 4.3);
+}else{
+    camera.position.set(0, 0, 3.7);
 }
+
 
 /////// MAIN RENDERER ///////
 var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
-
-// const controls = new OrbitControls(camera, renderer.domElement)
-// controls.enableDamping = true
-// controls.dampingFactor = 0.25
-// controls.enableZoom = false 
 
 /////// RESIZE EVENT ///////
 window.addEventListener('resize', () => {
@@ -145,8 +432,8 @@ var targetLogo = new THREE.Object3D();
 targetLogo.position.set(0, 0, 0)
 scene.add(targetLogo);
 
-let light1 = new THREE.PointLight(0x4cc9f0, .3);
-light1.position.set(-2000, 1000, -2000);
+let light1 = new THREE.PointLight(0x4cc9f0, .15);
+light1.position.set(-2000, -.1, -2000);
 scene.add(light1);
 let light2 = new THREE.PointLight(0x4cc9f0, .3);
 light2.position.set(2000, 0, 0);
@@ -154,8 +441,8 @@ scene.add(light2);
 let light3 = new THREE.PointLight(0x4cc9f0, .3);
 light3.position.set(-2000, 0, 0);
 scene.add(light3);
-let light4 = new THREE.PointLight(0x4cc9f0, .3);
-light4.position.set(2000, 1000, -2000);
+let light4 = new THREE.PointLight(0x4cc9f0, .15);
+light4.position.set(2000, -.1, -2000);
 scene.add(light4);
 
 let light5 = new THREE.PointLight(0xf72585, .2);
@@ -166,7 +453,7 @@ let lightCenter = new THREE.PointLight(0x000000, 30, 2.6);
 lightCenter.position.set(0, 1.5, 0)
 scene.add(lightCenter);
 
-let lightCenter2 = new THREE.DirectionalLight(0x4cc9f0, 3);
+let lightCenter2 = new THREE.DirectionalLight(0x4cc9f0, 1.5);
 lightCenter2.position.set(0, -.1, 0)
 scene.add(lightCenter2);
 
@@ -193,9 +480,11 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
     loaderHome.load(homeModel, function(addHome) {
         home = addHome.scene;
         scene.add(home);
-        home.position.set(-1.45, -10, 0)
+        home.position.set(20, -10, 105)
         home.scale.set(100, 100, 100);
-        home.rotation.y = -.35;
+        home.rotation.y = -Math.PI;
+        home.rotation.z = Math.PI;
+
     });
 }
 
@@ -623,6 +912,10 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
         enceinte.position.set(-9.2, 5.2,-5)
         enceinte.scale.set(0.0001, 0.0001, 0.0001);
         enceinte.rotation.y = .3*Math.PI;
+
+        enceinte.on('click', function() {
+            rpzMusic.play();                  
+        })
     });
 }
 
@@ -633,6 +926,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // let enceinteMesh = new THREE.Mesh(enceinte, enceinteMaterial);
 // scene.add(enceinteMesh)
+
+
 
 // RIGHT DOOR MODEL
 var rightDoor;
@@ -1115,7 +1410,7 @@ planeMesh14.position.y = 17;
 scene.add(planeMeshPanneau)
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
 planeMeshPanneau.rotation.set(-.035, -.74, -.07);
-planeMeshPanneau.scale.set(0,0,0);
+planeMeshPanneau.scale.set(0.0001,0.0001,0.0001);
 
 // sign.position.set(7.8, -3.05, -4)
 
@@ -1186,6 +1481,8 @@ let particleMaterial = new THREE.PointsMaterial({
 let particleMesh = new THREE.Points(particleGeo, particleMaterial);
 particleMesh.name = 'ParticleObjects';
 scene.add(particleMesh);
+particleMesh.scale.set(8,8,8);
+scene.remove(scene.getObjectByName("ParticleObjects"));
 
 
 /////// VARIABLES EVENTS ///////
@@ -1197,7 +1494,9 @@ let titleSvgLine = document.querySelector('.title line');
 let littleTitleSvg = document.querySelector('.littleTitle');
 let littleTitleSvgPath = document.querySelectorAll('.littleTitle path');
 let littleTitleSvgLine = document.querySelector('.littleTitle line');
-let buttons = document.querySelectorAll('button');
+let btnMainStart = document.querySelector('.btn__mainStart');
+let spanContainerMainStart = document.querySelector('.spanContainerMainStart')
+let spanContainerFirstSlogan = document.querySelector('.firstSlogan')
 let btnStart = document.querySelector('.btn__start');
 let spanContainerStartMouseOver = document.querySelector('.spanContainerStartMouseover')
 let spanContainerStartMouseOut = document.querySelector('.spanContainerStartMouseout')
@@ -1226,8 +1525,14 @@ let bgRow = document.querySelectorAll('.rowContainer .row');
 let cursor = document.querySelector('.cursor');
 let cursorShapeIn = document.querySelector('.cursor-shape_in');
 let cursorShapeOut = document.querySelector('.cursor-shape_out');
-let tailleBoulette = document.querySelector('.tailleBoulette');
+let cursorSize = document.querySelector('.cursorSize');
 let containerTimeline = document.querySelector('.containerTimeline');
+let containerTimelineMobile = document.querySelector('.containerTimelineMobile');
+let hamburgerContainer = document.querySelector('.hamburgerContainer');
+let hamburgerContainerLine = document.querySelector('.hamburgerContainer .line');
+let hamburgerContainerLine2 = document.querySelector('.hamburgerContainer .line2');
+let hamburgerContainerCroix = document.querySelector('.hamburgerContainer .croix');
+let hamburgerContainerCroix2 = document.querySelector('.hamburgerContainer .croix2');
 let workShopButton = document.querySelectorAll('.workShopButton');
 let workShopButtonMask = document.querySelectorAll('.mask');
 let workShopButton1 = document.querySelector('.workShopButton__1');
@@ -1245,9 +1550,27 @@ let workShopButton12 = document.querySelector('.workShopButton__12');
 let workShopButton13 = document.querySelector('.workShopButton__13');
 let workShopButton14 = document.querySelector('.workShopButton__14');
 
+let mobileWorkShopButton = document.querySelectorAll('.mobileWorkShopButton');
+let mobileWorkShopButton1 = document.querySelector('.mobileWorkShopButton__1');
+let mobileWorkShopButton2 = document.querySelector('.mobileWorkShopButton__2');
+let mobileWorkShopButton3 = document.querySelector('.mobileWorkShopButton__3');
+let mobileWorkShopButton4 = document.querySelector('.mobileWorkShopButton__4');
+let mobileWorkShopButton5 = document.querySelector('.mobileWorkShopButton__5');
+let mobileWorkShopButton6 = document.querySelector('.mobileWorkShopButton__6');
+let mobileWorkShopButton7 = document.querySelector('.mobileWorkShopButton__7');
+let mobileWorkShopButton8 = document.querySelector('.mobileWorkShopButton__8');
+let mobileWorkShopButton9 = document.querySelector('.mobileWorkShopButton__9');
+let mobileWorkShopButton10 = document.querySelector('.mobileWorkShopButton__10');
+let mobileWorkShopButton11 = document.querySelector('.mobileWorkShopButton__11');
+let mobileWorkShopButton12 = document.querySelector('.mobileWorkShopButton__12');
+let mobileWorkShopButton13 = document.querySelector('.mobileWorkShopButton__13');
+let mobileWorkShopButton14 = document.querySelector('.mobileWorkShopButton__14');
+
+
 let indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 let timelineIndication = document.querySelector('.indication');
 let cursorIndication = document.querySelector('.cursorIndication');
+let mobileIndication = document.querySelector('.mobileIndication');
 
 let workShopContainer = document.querySelector('.workShopContainer');
 let creditContainer = document.querySelector('.creditContainer');
@@ -1308,270 +1631,310 @@ let contentContainer__1 = document.querySelector('.contentContainer__1');
 let scrollContainer__1 = document.querySelector('.scrollContainer__1');
 let scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
 
+let switchHamburger = false;
+
+hamburgerContainer.addEventListener('click', function(){
+    if( switchHamburger == false){
+        if (window.matchMedia("(max-width: 1024px)").matches) {
+            soundHover.play();
+        }
+    hamburgerContainerLine.classList.toggle('switch')
+    hamburgerContainerLine2.classList.toggle('switch')
+    switchHamburger = true;
+    setTimeout(function(){
+    gsap.to('.mobileWorkShopButton', .5, {  opacity: 1, stagger: { each: .05, from: 'edges'}, ease: "power3.easeOut"}) 
+    containerTimelineMobile.classList.toggle('switch');
+    },100)
+    containerTimelineMobile.style.zIndex = 4;
+    setTimeout(function(){
+    hamburgerContainerCroix.classList.toggle('switch')
+    hamburgerContainerCroix2.classList.toggle('switch')
+    },350)      
+    }
+    else{
+        if (window.matchMedia("(max-width: 1024px)").matches) {
+            soundHover.play();
+        }
+            hamburgerContainerCroix.classList.toggle('switch')
+            hamburgerContainerCroix2.classList.toggle('switch')
+            switchHamburger = false; 
+          
+            gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+            setTimeout(function(){
+            hamburgerContainerLine.classList.toggle('switch')
+            hamburgerContainerLine2.classList.toggle('switch')
+            },350)  
+            setTimeout(function(){
+                containerTimelineMobile.classList.toggle('switch');
+                containerTimelineMobile.style.zIndex = -1;
+                },700)
+    }
+})
+
 /////// IMAGES HOVER ///////
 scrollContainerContentImg__14.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__13.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__12.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__11.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__10.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__9.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__8.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__7.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__6.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__5.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__4.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__3.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__2.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
 scrollContainerContentImg__1.forEach(e => {
-    e.children[2].children[3].addEventListener('mouseenter', function () {
+    e.children[2].children[2].addEventListener('mouseenter', function () {
         e.children[0].classList.add('switch')
         e.children[1].classList.add('switch')
         e.children[2].classList.add('switch')
         e.children[2].children[0].classList.add('switch')
         e.children[2].children[1].classList.add('switch')
-        e.children[2].children[3].classList.add('switch')
+        e.children[2].children[2].classList.add('switch')
     })
-    e.children[2].children[3].addEventListener('mouseleave', function () {
+    e.children[2].children[2].addEventListener('mouseleave', function () {
         e.children[0].classList.remove('switch')
         e.children[1].classList.remove('switch')
         e.children[2].classList.remove('switch')
         e.children[2].children[0].classList.remove('switch')
         e.children[2].children[1].classList.remove('switch')
-        e.children[2].children[3].classList.remove('switch')
+        e.children[2].children[2].classList.remove('switch')
     })
 });
 
@@ -1595,39 +1958,45 @@ let idPlane = [
 
 let varDelay = .0
 
-window.addEventListener('load', function() {
-    TweenMax.to(bgCol, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.02 });
-    TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.02 });
-    TweenMax.to(bgCol, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.02 });
-    TweenMax.to(bgRow, { duration: 1, clipPath: "inset(0% 0% 0% 0%)", stagger: 0.0355555 });
-    TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .325, stagger: 0.0355555 });
-    TweenMax.to(bgRow, { duration: .5, background: '#0d0437', opacity: .65, stagger: 0.0355555 });
-    TweenMax.to(bgCol, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.02, delay: 2 });
-    TweenMax.to(bgRow, { duration: .5, background: '#f72585', opacity: .05, stagger: 0.0355555, delay: 2 });
-    if (!window.matchMedia("(max-width: 1024px)").matches) {
-        TweenMax.to(bgCol, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.02, repeat: -1, yoyo: true, delay: 2 });
-        TweenMax.to(bgRow, { duration: 1.5, background: '#f72585', opacity: .05, stagger: 0.0355555, repeat: -1, yoyo: true, delay: 2 });
-        canvas.classList.add('hologramActive')
-        cursor.style.opacity = 1
-        cursorShapeOut.style.opacity = 1
-        setTimeout(function() {
-            const _cursorIn = new Cursor(cursorShapeIn);
-            updateCursor();
-        }, 4000)
-    }
-})
-
-
 musicBtn.addEventListener('click', function(){
     if(switchBtn == false){
     TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 });   
+    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 }); 
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
+    bgMusic.play();
+    rpzMusic.volume = volume; 
+    soundHover.volume = volumeBtn;
+    soundHoverPlane.volume = volumePlane;
+    soundOutPlane.volume = volumePlane;  
     switchBtn = true;    
     } else {
     TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
     TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 }); 
+    TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 });
+
+    // test pour le easing du son
+    // var i = setInterval(function () {
+    
+    //   volume-= 0.1
+    //   bgMusic.volume = volume;
+
+    //   console.log(volume)
+
+    
+    //   if (volume <=0) {
+    //     clearInterval(i);
+    //     bgMusic.pause();
+    //   }
+    // }, 200);
+                
+    bgMusic.pause(); 
+    rpzMusic.volume = 0; 
+    soundHover.volume = 0;
+    soundHoverPlane.volume = 0;
+    soundOutPlane.volume = 0;
     switchBtn = false;
     }
 
@@ -1641,60 +2010,31 @@ musicBtn.addEventListener('click', function(){
     },350)   
 })
 
-let soundEffectRpz = new Audio(rpz)
-soundEffectRpz.volume = 0.4
-// let test = scene.children[33]
-// console.log(scene.children)
-// console.log(planeMeshPanneau)
-// console.log(enceinteMesh)
-// enceinteMesh.on('click', function(ev) {
-//     soundEffectRpz.play();
-//     console.log(ev)
-// })
-// var shouldStop = false;
-
-  
-
-
-// function checkShouldStop() {
-//     if(shouldStop) {
-//       tl.pause();
-//     }else {
-//       tl.resume();
-//     }
-//   }
-
-
-//   musicBtn.addEventListener('click', function(){
-//     shouldStop = true;
-//     gsap.staggerTo(lineMusicBtn, .5, { clipPath: "inset(95% 0% 0% 0%)"}, 0.12)
-   
-//   })
-
-// //   musicBtn.addEventListener('mouseout', function(){
-// //     shouldStop = false;
-// //     tl.resume();
-   
-// //   })
-
+musicBtn.addEventListener('mouseenter', function(){
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+    soundHover.play();
+    }
+})
 
 function cursorHoverIn() {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-        gsap.to(tailleBoulette, 0.75, { padding: 50, ease: "Power3.easeOut"})
+        gsap.to(cursorSize, 0.75, { padding: 50, ease: "Power3.easeOut"})
         gsap.to(cursorShapeIn, 0.75, { background: colorCursorHover, padding: 50, ease: "Power3.easeOut"})
         gsap.to(cursorShapeOut, 0.50, { opacity: 0, ease: "Power3.easeOut"})
         gsap.to(indicClickOnPlane, .75, { scale: 1, ease: "Power3.easeOut", delay: .05})
         indicClickOnPlane.classList.add("planeHover")
+        soundHoverPlane.play(); 
     }
 }
 
 function cursorHoverOut() {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-        gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+        gsap.to(cursorSize, 0.75, {padding: 0, ease: "Power3.easeOut"})
         gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
         gsap.to(cursorShapeOut, 0.25, { opacity: 1,  delay: 0.25, ease: "Power3.easeOut"})
         gsap.to(indicClickOnPlane, 0.75, { scale: 0, ease: "Power3.easeOut"})
         indicClickOnPlane.classList.remove("planeHover")
+        soundOutPlane.play(); 
     }
 }
 
@@ -2005,20 +2345,28 @@ function animationEnterWorkshop() {
         scrollContainer__1.style.display = "flex"
     }
 
-    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut"})
     gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+    gsap.to(logo.scale, 1.5, { z:0, y:0, x: 0,ease: "power3.inOut" })
     gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
-    gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+    }
+
     
     TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
     TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
 
     cursorIndication.classList.remove('switch')
+    mobileIndication.classList.remove('switch')
 
     hideTimeline()
 
     if (!window.matchMedia("(max-width: 1024px)").matches) {
-        gsap.to(tailleBoulette, 0.75, {padding: 0, ease: "Power3.easeOut"})
+        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
+        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+        gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
+        gsap.to(cursorSize, 0.75, {padding: 0, ease: "Power3.easeOut"})
         gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
         gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
         gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
@@ -2246,24 +2594,22 @@ function functionBtnBackHome() {
     gsap.to(materialPlane13.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut" });
     gsap.to(materialPlane14.uniforms.alpha, 0.75, { value: 1.0, ease: "power3.inOut" });
 
-    TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
-    TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
-
-    setTimeout(function() {
-        discordContainer.classList.remove('close')
-        iutContainer.classList.remove('close')
-    }, 3000)
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power3.inOut", delay: 1.5 })
+    TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power3.inOut", delay: 1.5 })
 
     canvas.classList.remove('hologramDefault')
     canvas.classList.add('hologramActive')
     btnBackHome.classList.add('close')
     btnBackHome.disabled = true;
     
+    
     setTimeout(function(){
+        discordContainer.classList.add('switchPointer')
+        iutContainer.classList.add('switchPointer')
         btnStart.disabled = false;
         btnStart.classList.remove('close')
         littleTitleSvg.classList.add('close')
-    }, 3000)
+    }, 2800)
 
     hideTimeline()
 
@@ -2284,11 +2630,7 @@ function functionBtnBackHome() {
     }
 
     //CAMERA ANIM
-    if (window.matchMedia("(max-width: 600px)").matches) {
-        gsap.to(camera.position, 2.95, { z: 11.3, ease: "power3.inOut" })
-    } else {
-        gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
-    }
+    gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
 
      //RAJOUT DES PARTICULES
      scene.add(particleMesh);
@@ -2310,8 +2652,10 @@ function functionBtnBackHome() {
     littleTitleSvgLine.classList.add("pathLineOut")
 
     cursorIndication.classList.remove('switch')
+    mobileIndication.classList.remove('switch')
+    
 
-    TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
+    TweenMax.to(btnStart, 1.5, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
     TweenMax.to(homeMask, 2.95, { opacity: 1, ease: "power3.inOut" })
     TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
         //PLANE ROTATION Z ANIM
@@ -2377,24 +2721,30 @@ function functionBtnBackHome() {
     TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
     //SWITCH ELEMENTS ON CLICK
     canvas.style.zIndex = -1;
-    homeContainer.style.zIndex = 2;
-    homeMask.style.zIndex = 1;
+    homeContainer.style.zIndex = 3;
+    homeMask.style.zIndex = 2;
 }
 
 function revealTimeline(){
-    TweenMax.to(workShopButton, 1, {  x: 0, opacity: 1, webkitFilter: 'blur(0)', stagger: { each: 0.03, from: "edges" }, ease: "power3.inOut", delay: 2 })
-    TweenMax.to(timelineIndication,1, { opacity: 1,  webkitFilter: 'blur(0)', ease: "power3.inOut", delay: 2.5 });
+    TweenMax.to(workShopButton, 1, {  x: 0, opacity: 1, stagger: { each: 0.03, from: "edges" }, ease: "power3.inOut", delay: 1.5 })
+    TweenMax.to(timelineIndication,1, { opacity: 1, ease: "power3.inOut", delay: 2 });
     setTimeout(function(){
         containerTimeline.classList.add('switch');
-    }, 4000)
+        hamburgerContainer.classList.add('switchPointer');
+    }, 3500)
+    gsap.to(hamburgerContainer, 1, {opacity: 1, ease: "Power3.easeOut", delay: 3})
+
 }
 
 function hideTimeline(){
-    TweenMax.to(workShopButton, 1, {  x: '25%', opacity: 0, webkitFilter: 'blur(2px)', stagger: { each: 0.03, from: "center" }, ease: "power3.inOut" })
-    TweenMax.to(timelineIndication,1, { opacity: 0,  webkitFilter: 'blur(2px)', ease: "power3.inOut" });
+    TweenMax.to(workShopButton, 1, {  x: '25%', opacity: 0,  stagger: { each: 0.03, from: "center" }, ease: "power3.inOut" })
+    TweenMax.to(timelineIndication,1, { opacity: 0, ease: "power3.inOut" });
     setTimeout(function(){
         containerTimeline.classList.remove('switch');
+        hamburgerContainer.classList.remove('switchPointer')
     }, 1000)
+    gsap.to(hamburgerContainer, 1, {opacity: 0, ease: "Power3.easeOut"})
+
 }
 
 ///// START BUTTON EVENTS /////
@@ -2433,11 +2783,11 @@ function functionBtnStart() {
 
     revealTimeline()
 
-    TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .0, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut" })
-    TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .0, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut" })
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .0, stagger: { each: 0.07, from: 'random' }, ease: "power3.inOut" })
+    TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .0, stagger: { each: 0.05, from: 'random' }, ease: "power3.inOut" })
 
-    discordContainer.classList.add('close')
-    iutContainer.classList.add('close')
+    discordContainer.classList.remove('switchPointer')
+    iutContainer.classList.remove('switchPointer')
 
     setTimeout(function() {
     // SUPPRESSIONS DES PARTICULES
@@ -2451,7 +2801,7 @@ function functionBtnStart() {
         
             //CAMERA ANIM
         if (window.matchMedia("(max-width: 600px)").matches) {
-            gsap.to(camera.position, 3, { z: 4.5, ease: "power3.inOut" })
+            gsap.to(camera.position, 3, { z: 4.3, ease: "power3.inOut" })
         } else {
             gsap.to(camera.position, 3, { z: 3.7, ease: "power3.inOut" })
         }
@@ -2524,7 +2874,8 @@ function functionBtnStart() {
             homeMask.style.zIndex = -1;
             setTimeout(function(){
                 cursorIndication.classList.add('switch')
-            },1500)
+                mobileIndication.classList.add('switch')
+            },1000)
         }, 1500)
     }, 1000)
 }
@@ -2532,66 +2883,84 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function() {
     functionBtnStart();
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
     TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
-
-    handleMouseLeave();
-    btnStart.classList.remove('hover')
-    cursorShapeIn.classList.remove('mouseover');
+    TweenMax.to(btnStart, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
     setTimeout(function() {
         spanContainerStartMouseOut.classList.remove('neonText');
     }, 750)
+    handleMouseLeave();
+    btnStart.classList.remove('hover')
+    cursorShapeIn.classList.remove('mouseover');
+    }
 })
 
 btnStart.addEventListener('mouseenter', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: -40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
     TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnStart, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+    TweenMax.to(btnStart, .5, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
     btnStart.classList.add('hover')
     spanContainerStartMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
+    soundHover.play();
+    }
 })
 
 btnStart.addEventListener('mouseleave', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
     TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnStart, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+    TweenMax.to(btnStart, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
     btnStart.classList.remove('hover')
     spanContainerStartMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
+    }
 })
 
 btnBackHome.addEventListener('click', function() {
     functionBtnBackHome();
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.027, from: "center" }, ease: "power3.inOut" });
     TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.027, from: "center" }, ease: "power3.inOut" });
-    TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
-
-    handleMouseLeave();
-    btnBackHome.classList.remove('hover')
-    cursorShapeIn.classList.remove('mouseover')
+    TweenMax.to(btnBackHome, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
     setTimeout(function() {
         spanContainerBackMouseOut.classList.remove('neonText');
     }, 750)
+    handleMouseLeave();
+    btnBackHome.classList.remove('hover')
+    cursorShapeIn.classList.remove('mouseover')
+    }
 })
 
 btnBackHome.addEventListener('mouseenter', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power3.inOut" });
     TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(btnBackHome, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+    TweenMax.to(btnBackHome, .5, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
     btnBackHome.classList.add('hover')
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
+    soundHover.play();
+    }
 })
 
 btnBackHome.addEventListener('mouseleave', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
     TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power3.inOut" });
-    TweenMax.to(btnBackHome, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
+    TweenMax.to(btnBackHome, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
     btnBackHome.classList.remove('hover')
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
+    }
 })
 
 btnBackWorkshop.addEventListener('click', function() {
@@ -2600,6 +2969,10 @@ btnBackWorkshop.addEventListener('click', function() {
     } else if (workshopActive && creditActive) {
         backToWorkshop();
     }
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
         handleMouseLeave();
         btnBackWorkshop.classList.remove('hover')
@@ -2607,24 +2980,30 @@ btnBackWorkshop.addEventListener('click', function() {
     setTimeout(function() {
         spanContainerBackMouseOut.classList.remove('neonText');
     }, 750)    
+}
 })
 
 btnBackWorkshop.addEventListener('mouseenter', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power3.inOut" });
     TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
     TweenMax.to(btnBackWorkshop, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
     btnBackWorkshop.classList.add('hover')
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
+    soundHover.play();
+    }
 })
 
 btnBackWorkshop.addEventListener('mouseleave', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
     TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power3.inOut" });
     TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut" });
     btnBackWorkshop.classList.remove('hover')
     spanContainerBackMouseOut.classList.remove('neonText');
     cursorShapeIn.classList.remove('mouseover');
+    }
 })
 
 function posComparedToElementHeight(el) {
@@ -2734,23 +3113,33 @@ function backToPlane() {
         gsap.to(leftDoor.position, 1.5, { x: .3, ease: "power3.inOut", delay: 0.75 + varDelay })
         gsap.to(rightDoor.position, 1.5, { x: .3, ease: "power3.inOut", delay: 0.75 + varDelay })
         gsap.to(camera.position, 3 , { z: 3.7, ease: "power3.inOut" })
+        gsap.to(logo.position, 1.5, { x: 0, ease: "power3.inOut", delay: 0.75 + varDelay })
+        gsap.to(logo.rotation, 1.5, { z: .25, ease: "power3.inOut", delay: 1.5 + varDelay })
+        gsap.to(logo.position, 1.5, { z: 0, y: 0, ease: "power3.inOut", delay: 1.5 + varDelay })
         setTimeout(function() {
             creditContainer.classList.remove('switchStreet')
             scrollPossible = false
         }, 1500)
-    } else {
-        gsap.to(camera.position, 3, { z: 4.5, ease: "power3.inOut" })
+    } else if (window.matchMedia("(max-width: 600px)").matches){
+        gsap.to(camera.position, 3, { z: 4.3, ease: "power3.inOut" })
+        gsap.to(logo.rotation, 1.5, { z: .25, y: 0, ease: "power3.inOut", delay: 1.75})
+        gsap.to(logo.scale, 1.5, { z:.95, y:.95, x: .95,ease: "power3.inOut", delay: 1.75 })
+        gsap.to(logo.position, 1.5, { z: 0, y: 0, ease: "power3.inOut", delay: 1.75 })
     }
 
     revealTimeline()
 
     setTimeout(function(){
         cursorIndication.classList.add('switch')
-    },4000)
-    
-    gsap.to(logo.position, 1.5, { x: 0, ease: "power3.inOut", delay: 0.75 + varDelay })
-    gsap.to(logo.rotation, 1.5, { z: .25, ease: "power3.inOut", delay: 1.5 + varDelay })
-    gsap.to(logo.position, 1.5, { z: 0, y: 0, ease: "power3.inOut", delay: 1.5 + varDelay })
+        mobileIndication.classList.add('switch')
+    },3250)
+
+    if (window.matchMedia("(max-width: 1024px)").matches && window.matchMedia("(min-width: 601px)").matches) {
+        gsap.to(camera.position, 3, { z: 3.7, ease: "power3.inOut" })
+        gsap.to(logo.rotation, 1.5, { z: .25, y: 0, ease: "power3.inOut", delay: 1.75})
+        gsap.to(logo.scale, 1.5, { z:.95, y:.95, x: .95,ease: "power3.inOut", delay: 1.75 })
+        gsap.to(logo.position, 1.5, { z: 0, y: 0, ease: "power3.inOut", delay: 1.75 })
+        }
     
     if (materialPlane14.uniforms.alpha.value == 0) {
         gsap.to(materialPlane14.uniforms.dispFactor, .0, { value: 0.0, ease: "Power3.easeOut" , delay: 0 + varDelay });
@@ -2919,7 +3308,7 @@ function backToWorkshop() {
         gsap.to(rightDoor2.position, 1.5, { x: .3, ease: "power3.inOut", delay: .75 })
         gsap.to(creditContainer, 2.5, { opacity: 0, ease: "Power4.easeOut" })
 
-        for (let i=1; i <= 6; i++) {
+        for (let i=1; i <= 12; i++) {
             gsap.to(".contentImg__"+i, { opacity: 0, ease: "Power3.easeOut", delay: 2.5 })
         }
         
@@ -2935,6 +3324,27 @@ function backToWorkshop() {
         }, 1500)
     }
 }
+
+///// BUTTON MAIN START REVEAL /////
+let btnMainStartText = "Commencer l'immersion"
+let charsTextBtnMainStart = btnMainStartText.split('')
+
+charsTextBtnMainStart.forEach(letter => {
+    let btnChar = document.createElement('span')
+    btnChar.innerHTML = letter
+    spanContainerMainStart.append(btnChar)
+});
+
+///// REVEAL FIRST SLOGAN /////
+let FirstSloganText = "Le département MMI Tarbes présente"
+let charsTextFirstSlogan = FirstSloganText.split('')
+
+charsTextFirstSlogan.forEach(letter => {
+    let btnChar = document.createElement('span')
+    btnChar.innerHTML = letter
+    spanContainerFirstSlogan.append(btnChar)
+});
+
 
 ///// BUTTON START HOVER /////
 let btnStartText = "Découvrir les ateliers"
@@ -2995,7 +3405,7 @@ charsTextDiscord.forEach(letter => {
 });
 
 ///// BUTTON IUT /////
-let btnIutText = "Site Officiel"
+let btnIutText = "Site MMI Tarbes"
 let charsTextIut = btnIutText.split('')
 
 charsTextIut.forEach(letter => {
@@ -3010,7 +3420,7 @@ containerTimeline.addEventListener('mouseenter', function() {
         TweenMax.to(workShopButtonMask, { duration: .25, width: "100%", stagger: 0.013, ease: "power3.inOut" });
         TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.013, ease: "power3.inOut", delay: .5 });
         TweenMax.to(containerTimeline, { duration: .25, clipPath: "inset(0% 0% 0% 0%)", ease: "power3.inOut" });
-        TweenMax.to(timelineIndication, { duration: .25, opacity: 0,  webkitFilter: 'blur(2px)', ease: "power4.inOut" });
+        TweenMax.to(timelineIndication, { duration: .25, opacity: 0, ease: "power4.inOut" });
 })
 
 containerTimeline.addEventListener('mouseleave', function() {
@@ -3019,7 +3429,7 @@ containerTimeline.addEventListener('mouseleave', function() {
     TweenMax.to(workShopButtonMask, { duration: .25, width: "2px", stagger: 0.013, ease: "power3.inOut", delay: .4 });
     TweenMax.to(containerTimeline, { duration: .25, clipPath: "inset(0% 0% 0% 70%)", ease: "power3.inOut" });
     if(camera.position.z == 3.7){
-    TweenMax.to(timelineIndication, { duration: .4, opacity: 1,  webkitFilter: 'blur(0)', ease: "power4.inOut" });
+    TweenMax.to(timelineIndication, { duration: .4, opacity: 1,  ease: "power4.inOut" });
     }
 })
 
@@ -3029,59 +3439,88 @@ sm2.classList.add('mouseout')
 sm3.classList.add('mouseout')
 
 sm1.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 6
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     sm1.classList.add('mouseover')
     sm1.classList.remove('mouseout')
     sm1.classList.add('neonText')
+    soundHover.play();
+    }
 })
 
 sm1.addEventListener('mouseleave', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     sm1.classList.add('mouseout')
     sm1.classList.remove('mouseover')
     sm1.classList.remove('neonText')
+    }
 })
 
 sm1.addEventListener('click', function() {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
     window.open('https://www.facebook.com/mmi.tarbes.jpo', '_blank');
 })
 
 sm2.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 2
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     sm2.classList.add('mouseover')
     sm2.classList.remove('mouseout')
     sm2.classList.add('neonText')
+    soundHover.play();
+    }
 })
 
 sm2.addEventListener('mouseleave', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     sm2.classList.add('mouseout')
     sm2.classList.remove('mouseover')
     sm2.classList.remove('neonText')
+    }
 })
 
 sm2.addEventListener('click', function() {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
     window.open('https://www.instagram.com/immersions_digitales_tarbes/', '_blank');
 })
 
 sm3.addEventListener('mouseenter', function() { // POINTER SOCIAL MEDIA 3
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     sm3.classList.add('mouseover')
     sm3.classList.remove('mouseout')
     sm3.classList.add('neonText')
+    soundHover.play();
+    }
 })
 
 sm3.addEventListener('mouseleave', function() {
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
     sm3.classList.add('mouseout')
     sm3.classList.remove('mouseover')
     sm3.classList.remove('neonText')
+    }
 })
 
 sm3.addEventListener('click', function() {
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        soundHover.play();
+    }
     window.open('https://www.linkedin.com/in/immersions-digitales/', '_blank');
 })
 
 discordContainer.addEventListener('mouseenter', function() { // POINTER DISCORD
-    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: 1, stagger: { each: 0.05, from: 'end' }, ease: "power2.inOut" })
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: 1, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
+    soundHover.play();
+    }
 })
 
 discordContainer.addEventListener('mouseleave', function() {
-    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: .6, stagger: { each: 0.05, from: 'end' }, ease: "power2.inOut" })
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerDiscord span", { duration: 0.5, opacity: .6, stagger: { each: 0.05, from: 'end' }, ease: "power3.inOut" })
+    }
 })
 
 discordContainer.addEventListener('click', function() {
@@ -3089,11 +3528,16 @@ discordContainer.addEventListener('click', function() {
 })
 
 iutContainer.addEventListener('mouseenter', function() { // POINTER IUT
-    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: 1, stagger: { each: 0.037, from: 'start' }, ease: "power2.inOut" })
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: 1, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
+    soundHover.play();
+    }
 })
 
 iutContainer.addEventListener('mouseleave', function() {
-    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: .6, stagger: { each: 0.037, from: 'start' }, ease: "power2.inOut" })
+    if (!window.matchMedia("(max-width: 1024px)").matches) {
+    TweenMax.to(".spanContainerIut span", { duration: 0.5, opacity: .6, stagger: { each: 0.037, from: 'start' }, ease: "power3.inOut" })
+    }
 })
 
 iutContainer.addEventListener('click', function() {
@@ -3228,6 +3672,12 @@ workShopButton.forEach(e => {
     e.addEventListener("pointerleave", handleMouseLeave);
 })
 
+workShopButton.forEach(e=>{
+    e.addEventListener('mouseenter', function(){
+        soundHover.play();
+    })
+})
+
 discordContainer.addEventListener("pointerenter", handleMouseEnter);
 discordContainer.addEventListener("pointerleave", handleMouseLeave);
 
@@ -3246,8 +3696,8 @@ function updateCursorPosition(e) {
 
 function updateCursor() {
     let cursorInnerOriginalState = {
-        width: tailleBoulette.getBoundingClientRect().width,
-        height: tailleBoulette.getBoundingClientRect().height,
+        width: cursorSize.getBoundingClientRect().width,
+        height: cursorSize.getBoundingClientRect().height,
     };
     gsap.set(cursor, {
         x: mouse.x - cursorInnerOriginalState.width / 2,
@@ -3460,6 +3910,379 @@ workShopButton13.addEventListener('click', function() { // WORKSHOP 13
 
 workShopButton14.addEventListener('click', function() { // WORKSHOP 14
     scrollPlane14();
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture1Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture1Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+
+/////// TIMELINE MOBILE REDIRECTION ///////
+
+mobileWorkShopButton.forEach(btn=>{
+    btn.addEventListener('click', function(){
+            soundHover.play();
+    })
+})
+
+mobileWorkShopButton1.addEventListener('click', function() { // WORKSHOP 1
+    scrollPlane1();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture14Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture14Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton2.addEventListener('click', function() { // WORKSHOP 2
+    scrollPlane2();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture13Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture13Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton3.addEventListener('click', function() { // WORKSHOP 3
+    scrollPlane3();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700) 
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture12Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture12Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton4.addEventListener('click', function() { // WORKSHOP 4
+    scrollPlane4();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture11Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture11Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton5.addEventListener('click', function() { // WORKSHOP 5
+    scrollPlane5();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture10Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture10Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton6.addEventListener('click', function() { // WORKSHOP 6
+    scrollPlane6();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture9Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture9Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton7.addEventListener('click', function() { // WORKSHOP 7
+    scrollPlane7();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture8Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture8Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton8.addEventListener('click', function() { // WORKSHOP 8
+    scrollPlane8();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700) 
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture7Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture7Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton9.addEventListener('click', function() { // WORKSHOP 9
+    scrollPlane9();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture6Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture6Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton10.addEventListener('click', function() { // WORKSHOP 10
+    scrollPlane10();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture5Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture5Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton11.addEventListener('click', function() { // WORKSHOP 11
+    scrollPlane11();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture4Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture4Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton12.addEventListener('click', function() { // WORKSHOP 12
+    scrollPlane12();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture3Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture3Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton13.addEventListener('click', function() { // WORKSHOP 13
+    scrollPlane13();
+    setTimeout(function(){
+        hamburgerContainerCroix.classList.toggle('switch')
+        hamburgerContainerCroix2.classList.toggle('switch')
+        switchHamburger = false; 
+        },350) 
+      
+        gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+        setTimeout(function(){
+        hamburgerContainerLine.classList.toggle('switch')
+        hamburgerContainerLine2.classList.toggle('switch')
+        },700)  
+        setTimeout(function(){
+            containerTimelineMobile.classList.toggle('switch');
+            containerTimelineMobile.style.zIndex = -1;
+            },700)
+    if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
+        materialPlanePanneau.uniforms.imagergb.value = texture2Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
+    } else {
+        materialPlanePanneau.uniforms.imagebw.value = texture2Hover
+        gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: .0, ease: "Power3.easeOut" });
+    }
+})
+
+mobileWorkShopButton14.addEventListener('click', function() { // WORKSHOP 14
+    scrollPlane14();
+    setTimeout(function(){
+    hamburgerContainerCroix.classList.toggle('switch')
+    hamburgerContainerCroix2.classList.toggle('switch')
+    switchHamburger = false; 
+    },350) 
+  
+    gsap.to('.mobileWorkShopButton', .5, {  opacity: 0, stagger: { each: .03, from: 'center'}, ease: "power3.easeOut"})
+    setTimeout(function(){
+    hamburgerContainerLine.classList.toggle('switch')
+    hamburgerContainerLine2.classList.toggle('switch')
+    },700)  
+    setTimeout(function(){
+        containerTimelineMobile.classList.toggle('switch');
+        containerTimelineMobile.style.zIndex = -1;
+        },700) 
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
         materialPlanePanneau.uniforms.imagergb.value = texture1Hover
         gsap.to(materialPlanePanneau.uniforms.dispFactor, 1.5, { value: 1.0, ease: "Power3.easeOut" });
@@ -3777,13 +4600,10 @@ function scrollUp() {
         gsap.to(planeAxe.position, 2.25, { y: -26.5, ease: "power3.inOut" })
         gsap.to(planeAxe.rotation, 2.25, { y: 0, ease: "power3.inOut" })
             //CAMERA ANIM
-        if (window.matchMedia("(max-width: 600px)").matches) {
-            gsap.to(camera.position, 2.95, { z: 11.3, ease: "power3.inOut" })
-        } else {
             gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
-        }
         //HTML ELEMENTS ANIM
         cursorIndication.classList.remove('switch')
+        mobileIndication.classList.add('switch')
         canvas.classList.remove('hologramDefault')
         canvas.classList.add('hologramActive')
         btnBackHome.disabled = true;
@@ -3804,19 +4624,21 @@ function scrollUp() {
 
         hideTimeline()
 
-        TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
+        TweenMax.to(btnStart, 1.5, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
         TweenMax.to(homeMask, 2.95, { opacity: 1, ease: "power3.inOut" })
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
 
-        TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
-        TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+        TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power3.inOut", delay: 1.25 })
+        TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power3.inOut", delay: 1.25 })
 
-        setTimeout(function() {
+        setTimeout(function(){
             discordContainer.classList.remove('close')
             iutContainer.classList.remove('close')
+            btnStart.disabled = false;
             btnStart.classList.remove('close')
             littleTitleSvg.classList.add('close')
-        }, 2500)
+        }, 2800)
+
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -3834,7 +4656,7 @@ function scrollUp() {
         gsap.to(planeMesh14.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
             //MODELS ANIM
         gsap.to(logo.position, 2.25, { y: -9.8, ease: "power3.inOut" })
-        gsap.to(logo.scale, 2.25, { z: 0, x: 0, y: 0, ease: "power3.inOut", })
+        gsap.to(logo.scale, 2.25, { z: 0.0001, x: 0.0001, y: 0.0001, ease: "power3.inOut", })
         gsap.to(logo.rotation, 2.25, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(home.position, 2.95, { z: 0, x: -1.45, ease: "power3.inOut" })
         gsap.to(home.rotation, 2.95, { y: -.35, z: 0, ease: "power3.inOut" })
@@ -3879,8 +4701,8 @@ function scrollUp() {
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         //SWITCH ELEMENTS ON CLICK
         canvas.style.zIndex = -1;
-        homeContainer.style.zIndex = 2;
-        homeMask.style.zIndex = 1;
+        homeContainer.style.zIndex = 3;
+        homeMask.style.zIndex = 2;
     } else if (planeAxe.position.y <= -16 && planeAxe.position.y >= -17.1) {
         scrollPlane14();
         if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
@@ -4133,13 +4955,10 @@ function scrollDown() {
         gsap.to(planeAxe.position, 2.25, { y: 4.2, ease: "power3.inOut" })
         gsap.to(planeAxe.rotation, 2.25, { y: -13.5 * Math.PI, ease: "power3.inOut" })
             //CAMERA ANIM
-        if (window.matchMedia("(max-width: 600px)").matches) {
-            gsap.to(camera.position, 2.95, { z: 11.3, ease: "power3.inOut" })
-        } else {
             gsap.to(camera.position, 2.95, { z: 10, ease: "power3.inOut" })
-        }
         //HTML ELEMENTS ANIM
         cursorIndication.classList.remove('switch')
+        mobileIndication.classList.remove('switch')
         canvas.classList.remove('hologramDefault')
         canvas.classList.add('hologramActive')
         btnBackHome.disabled = true;
@@ -4160,19 +4979,21 @@ function scrollDown() {
 
         hideTimeline()
 
-        TweenMax.to(btnStart, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
+        TweenMax.to(btnStart, 1.5, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.75, ease: "power3.inOut" })
         TweenMax.to(homeMask, 2.95, { opacity: 1, ease: "power3.inOut"})
         TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
 
-        TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
-        TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power2.inOut", delay: 1.25 })
+        TweenMax.to(".spanContainerDiscord span", { duration: 0.75, opacity: .6, stagger: { each: 0.07, from: 'random' }, ease: "power3.inOut", delay: 1.25 })
+        TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power3.inOut", delay: 1.25 })
 
-        setTimeout(function() {
+        setTimeout(function(){
             discordContainer.classList.remove('close')
             iutContainer.classList.remove('close')
+            btnStart.disabled = false;
             btnStart.classList.remove('close')
             littleTitleSvg.classList.add('close')
-        }, 2500)
+        }, 2800)
+
             //PLANE ROTATION Z ANIM
         gsap.to(planeMesh1.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
         gsap.to(planeMesh2.rotation, 2.25, { z: rotateZ, ease: "power3.inOut" })
@@ -4235,8 +5056,8 @@ function scrollDown() {
         TweenMax.to(lightCenter.color, .75, { r: cyanColorReset.r, g: cyanColorReset.g, b: cyanColorReset.b, delay: .75 });
         //SWITCH ELEMENTS ON CLICK
         canvas.style.zIndex = -1;
-        homeContainer.style.zIndex = 2;
-        homeMask.style.zIndex = 1;
+        homeContainer.style.zIndex = 3;
+        homeMask.style.zIndex = 2;
         //RESET AXES POSITION 
         gsap.to(planeAxe.position, 0, { y: -26.5, delay: 3 })
         gsap.to(planeAxe.rotation, 0, { y: 0, delay: 3 })
@@ -4566,28 +5387,22 @@ contentContainer__1.addEventListener('scroll', function() {
     }
 })
 
+    ///// SMOOTH SCROLL /////
+    // Scrollbar.init(document.querySelector('#my-scrollbar'));
 
 ///// CREDIT SCROLL TRIGGER /////
 function scrollTrigger(elementContainer, elementContainerImg) {
     elementContainer.addEventListener("scroll", function() {
         if (creditActive) {
+
             elementContainerImg.forEach(e => {
-                let tl = gsap.timeline({ defaults: { ease: "Power3.InOut" }}).to(e, { opacity: 1, duration: 1 })
-                ScrollTrigger.create({
+                let tl = gsap.timeline({ defaults: { ease: "expo.InOut" }}).to(e, { opacity: 1,  duration: .5 })
+
+                  ScrollTrigger.create({
                     trigger: e.children[2].children[2],
-                    start: "10% 50%",
-                    // end: "+=300",
+                    start: "top center",
                     scroller: elementContainer,
                     animation: tl,
-                    // scrub: true,
-                })
-                ScrollTrigger.create({
-                    trigger: e.children[2].children[3],
-                    start: "10% 50%",
-                    // end: "+=300",
-                    scroller: elementContainer,
-                    animation: tl,
-                    // scrub: true,
                 })
             })
         }
@@ -4740,7 +5555,6 @@ var render = function() {
 
     renderer.render(scene, camera);
 
-    console.log(materialPlane13.uniforms.time.value)
 
 materialPlane1.uniforms.time.value = clock.running = false;
 materialPlane2.uniforms.time.value = clock.running = false;
