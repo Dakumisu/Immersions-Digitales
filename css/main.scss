@@ -22,7 +22,7 @@
         transform: translate(-50%, -50%);
         left: 50%;
         top: 50%;
-        font-family: 'littleTitle';
+        font-family: 'littleTitle'!important;
         color: $cyan;
         font-size: 12px;
         letter-spacing: 1px;
@@ -316,6 +316,7 @@
             }
 
             .title {
+               
                 text-align: center;
                 font-family: "main";
                 font-size: 5vw;
@@ -323,166 +324,253 @@
                 color: $cyan;
                 text-transform: uppercase;
                 width: fit-content;
-                opacity: 1 !important;
+                opacity: 1!important;
+                @media screen and (max-width: 539px){
+                    font-size: 7.5vw;
+                    margin: 43vh auto 0 auto;
+                }
             }
+            
 
-            iframe,
-            .contenu {
+            iframe, .contenu {
                 width: 640px;
                 height: 360px;
                 display: flex;
                 margin: 2vh 1vh 22vh 0;
                 border: none;
 
-                &__link {
-                    transition: .75s ease;
-                    color: $cyan;
-                    text-decoration: none;
-                    position: relative;
+                
 
-                    @media screen and (min-width: 1024px) {
-                        &::after {
-                            content: " ";
-                            position: absolute;
-                            left: 0;
-                            bottom: 29%;
-                            width: 100%;
-                            height: 1px;
-                            background: $cyan;
-                            clip-path: inset(0 50% 0 50%);
-                            transition: .5s cubic-bezier(.25, 0, 0, 1);
+                &__link{
+                transition: .75s ease;
+                color: $cyan;
+                text-decoration: none;
+                position: relative;
+                @media screen and (min-width: 1025px){
+                &::after{
+                    content: " ";
+                    position:absolute;
+                    left: 0;
+                    bottom: 29%;
+                    width: 100%;
+                    height: 1px;
+                    background: $cyan;
+                    clip-path: inset(0 50% 0 50%);
+                    transition: .5s cubic-bezier(.25, 0, 0, 1);
+                }
+                &:hover::after{
+                    clip-path: inset(0 0 0 0);
+                }
+                                                
+            }
+        }
+
+            }
+            
+
+            .containerPara__1 {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                @media screen and (max-width: 1024px){
+                   
+                    margin: 110% 0 40% 0;
+                }
+
+                .para {
+                    width: 25%;
+                    margin: 22vh 22vw 25vh 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    @media screen and (max-width: 1024px){
+                        margin: 5%;
+                        width: 90%!important;
+                      
+                    }
+
+                    .subtitle {
+                        font-family: "littleTitle";
+                        font-size: 25px;
+                        color: $magenta;
+                        margin: 0;
+
+                        @media screen and (max-width: 1024px){
+                            @media screen and (max-width: 539px){
+                            font-size: 5.2vw;
+                            }
                         }
+                    }
 
-                        &:hover::after {
-                            clip-path: inset(0 0 0 0);
+                    .text {
+                        font-family: "text";
+                        text-align: justify;
+                        color: $cyan;
+                        @media screen and (max-width: 1024px){
+                            @media screen and (max-width: 539px){
+                            font-size: 3.5vw;
+                            }
                         }
-
                     }
                 }
             }
 
+            .containerPara__2 {
+                width: 100%;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                @media screen and (max-width: 1024px){
+                    margin: 40% 0 40% 0;
+                  
+                }
+
+                .para {
+                    width: 25%;
+                    margin: 0 0 10vh 22vw;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 5%!important;
+                        width: 90%!important;
+                       
+
+                        iframe{
+                            margin: 2.3vh auto 2.3vh auto;
+                            width: 100%;
+                            height: 31vh;
+                        }
+                    }
+
+                    .subtitle {
+                        font-family: "littleTitle";
+                        font-size: 25px;
+                        color: $magenta;
+                        margin: 0;
+                        @media screen and (max-width: 1024px){
+                            @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                        }
+                    }
+
+                }
+            }
+
             &__14 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
 
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 25vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
 
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 0 0 10vh 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
 
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 155vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                            }
                         }
                     }
                 }
             }
 
             &__13 {
-                .containerPara__1 {
+                        .containerPara__1 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
 
+                    @media screen and (max-width: 1024px){
+                       
+                        margin: 110% 0 40% 0;
+                    }
+    
                     .para {
                         width: 25%;
-                        margin: 22vh 22vw 22vh 0;
+                        margin: 22vh 22vw 25vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%;
+                            width: 90%!important;
+                          
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
-                        }
 
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
+                        }
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
+                            }
                         }
                     }
                 }
-
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -490,14 +578,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -505,41 +604,62 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
 
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                            }
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -547,15 +667,32 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                           
+    
+                            iframe{
+                                margin: 2.3vh auto 40% auto;
+                                width: 100%;
+                                height: 31vh;
+                            }
+                        }
+    
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -566,40 +703,13 @@
             }
 
             &__12 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -607,14 +717,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -622,41 +743,62 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
 
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                            }
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -664,15 +806,32 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                           
+    
+                            iframe{
+                                margin: 2.3vh auto 40% auto;
+                                width: 100%;
+                                height: 31vh;
+                            }
+                        }
+    
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -683,40 +842,13 @@
             }
 
             &__11 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -724,14 +856,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -739,101 +882,114 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
 
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                            }
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
-                    justify-content: start;
+                    justify-content: center;
                     align-items: center;
 
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
                     .para {
-                        margin: 0 0 150vh 22vw;
                         width: 25%;
+                        margin: 0 22vw 155vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                            }
                         }
                     }
                 }
             }
 
             &__10 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -841,14 +997,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -856,41 +1023,62 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
 
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
                     .para {
                         width: 25%;
-                        margin: 0 22vw 22vh 0;
+                        margin: 0 22vw 155vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                            }
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 150vh 22vw;
                         width: 25%;
@@ -898,15 +1086,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -917,40 +1116,14 @@
             }
 
             &__9 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
 
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -958,14 +1131,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -973,27 +1157,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1001,13 +1196,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -1015,15 +1210,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
                         .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1034,40 +1240,14 @@
             }
 
             &__8 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+              
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -1075,14 +1255,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1090,27 +1281,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 26%;
                         margin: 0 22vw 120vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1121,40 +1323,14 @@
             }
 
             &__7 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+              
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -1162,14 +1338,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1177,27 +1364,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1205,13 +1403,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -1219,15 +1417,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1238,40 +1447,14 @@
             }
 
             &__6 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+              
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -1279,14 +1462,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1294,27 +1488,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1322,13 +1527,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -1336,15 +1541,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1355,40 +1571,14 @@
             }
 
             &__5 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+              
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -1396,14 +1586,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1411,27 +1612,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1439,13 +1651,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -1453,15 +1665,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1472,40 +1695,14 @@
             }
 
             &__4 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+               
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -1513,14 +1710,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1528,27 +1736,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1556,13 +1775,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -1570,15 +1789,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1589,40 +1819,14 @@
             }
 
             &__3 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+              
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -1630,14 +1834,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1645,27 +1860,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1673,13 +1899,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -1687,15 +1913,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1712,7 +1949,6 @@
                             height: 360px;
                             margin: 2vh 1vh 15vh 0;
                             display: flex;
-
                             .contenu_img--default_2 {
                                 position: absolute;
                                 // margin: 2vh 1vh 22vh 0;
@@ -1728,7 +1964,6 @@
                                 opacity: 1;
                                 // transition: opacity .75s cubic-bezier(.75, 0, 0, 1);
                             }
-
                             .contenu_img--hover_2 {
                                 position: absolute;
                                 // margin: 2vh 1vh 22vh 0;
@@ -1744,7 +1979,6 @@
                                 opacity: 0;
                                 transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
                             }
-
                             .contenu_img--default_1 {
                                 position: absolute;
                                 // margin: 2vh 1vh 22vh 0;
@@ -1760,7 +1994,6 @@
                                 opacity: 1;
                                 // transition: opacity .75s cubic-bezier(.75, 0, 0, 1);
                             }
-
                             .contenu_img--hover_1 {
                                 position: absolute;
                                 // margin: 2vh 1vh 22vh 0;
@@ -1782,40 +2015,14 @@
             }
 
             &__2 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+               
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 0 22vw;
@@ -1823,14 +2030,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1838,27 +2056,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1866,13 +2095,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 100vh 22vw;
                         width: 25%;
@@ -1880,15 +2109,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1899,40 +2139,14 @@
             }
 
             &__1 {
-                .containerPara__1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    .para {
-                        width: 25%;
-                        margin: 22vh 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-
+              
+    
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 0 22vh 22vw;
@@ -1940,14 +2154,25 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1955,27 +2180,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -1983,13 +2219,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 22vh 22vw;
                         width: 25%;
@@ -1997,15 +2233,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -2013,27 +2260,38 @@
                         }
                     }
                 }
-
+    
                 .containerPara__5 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 22vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -2041,13 +2299,13 @@
                         }
                     }
                 }
-
+    
                 .containerPara__6 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-
+                    
                     .para {
                         margin: 0 0 22vh 22vw;
                         width: 25%;
@@ -2055,15 +2313,26 @@
                         flex-direction: column;
                         align-items: start;
                         justify-content: center;
-
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
@@ -2071,56 +2340,64 @@
                         }
                     }
                 }
-
+    
                 .containerPara__7 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
-
+    
                     .para {
                         width: 25%;
                         margin: 0 22vw 100vh 0;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-end;
-
-                        .subtitle {
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                            @media screen and (max-width: 1024px){
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                            }
                         }
-
+    
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
-
-                            .greta {
+                            .greta{
                                 transition: .75s ease;
                                 color: $cyan;
                                 text-decoration: none;
                                 position: relative;
-
-                                @media screen and (min-width: 1024px) {
-                                    &::after {
-                                        content: " ";
-                                        position: absolute;
-                                        left: 0;
-                                        bottom: 0;
-                                        width: 100%;
-                                        height: 1px;
-                                        background: $cyan;
-                                        clip-path: inset(0 50% 0 50%);
-                                        transition: .5s cubic-bezier(.25, 0, 0, 1);
-                                    }
-
-                                    &:hover::after {
-                                        clip-path: inset(0 0 0 0);
-                                    }
-
+                                @media screen and (min-width: 1025px){
+                                &::after{
+                                    content: " ";
+                                    position:absolute;
+                                    left: 0;
+                                    bottom: 0;
+                                    width: 100%;
+                                    height: 1px;
+                                    background: $cyan;
+                                    clip-path: inset(0 50% 0 50%);
+                                    transition: .5s cubic-bezier(.25, 0, 0, 1);
                                 }
+                                &:hover::after{
+                                    clip-path: inset(0 0 0 0);
+                                }
+                                                                
+                            }
                             }
                         }
                     }
@@ -2128,22 +2405,19 @@
             }
 
             @media screen and (max-width : 1440px) {
-
-                .containerPara__1,
-                .containerPara__3 {
+                .containerPara__1, .containerPara__3 {
                     .para {
                         width: 35%;
                     }
                 }
             }
-
+            
             @media screen and (max-width: 1024px) {
                 .title {
-                    margin-bottom: 30vh !important;
+                    margin-bottom: 30vh!important;
                 }
-
                 .para {
-                    width: 50% !important;
+                    width: 50%!important;
                 }
 
                 &__14 {
@@ -2153,7 +2427,7 @@
                         }
                     }
                 }
-
+    
                 &__13 {
                     .containerPara__4 {
                         .para {
@@ -2161,7 +2435,7 @@
                         }
                     }
                 }
-
+    
                 &__12 {
                     .containerPara__4 {
                         .para {
@@ -2169,7 +2443,7 @@
                         }
                     }
                 }
-
+    
                 &__11 {
                     .containerPara__4 {
                         .para {
@@ -2177,7 +2451,7 @@
                         }
                     }
                 }
-
+    
                 &__10 {
                     .containerPara__4 {
                         .para {
@@ -2185,7 +2459,7 @@
                         }
                     }
                 }
-
+    
                 &__9 {
                     .containerPara__4 {
                         .para {
@@ -2193,7 +2467,7 @@
                         }
                     }
                 }
-
+    
                 &__8 {
                     .containerPara__3 {
                         .para {
@@ -2201,7 +2475,7 @@
                         }
                     }
                 }
-
+    
                 &__7 {
                     .containerPara__4 {
                         .para {
@@ -2209,19 +2483,18 @@
                         }
                     }
                 }
-
+    
                 &__6 {
                     .containerPara__4 {
                         .para {
                             margin: 0 0 22vh 22vw;
                         }
-
                         .desktop {
                             display: none;
                         }
                     }
                 }
-
+    
                 &__5 {
                     .containerPara__4 {
                         .para {
@@ -2229,7 +2502,7 @@
                         }
                     }
                 }
-
+    
                 &__4 {
                     .containerPara__4 {
                         .para {
@@ -2237,7 +2510,7 @@
                         }
                     }
                 }
-
+    
                 &__3 {
                     .containerPara__4 {
                         .para {
@@ -2245,7 +2518,7 @@
                         }
                     }
                 }
-
+    
                 &__2 {
                     .containerPara__4 {
                         .para {
@@ -2253,7 +2526,7 @@
                         }
                     }
                 }
-
+    
                 &__1 {
                     .containerPara__7 {
                         .para {
@@ -2264,7 +2537,7 @@
                 }
             }
 
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 768px) {                    
                 &__14 {
                     .containerPara__3 {
                         .para {
@@ -2272,7 +2545,7 @@
                         }
                     }
                 }
-
+    
                 &__13 {
                     .containerPara__4 {
                         .para {
@@ -2280,7 +2553,7 @@
                         }
                     }
                 }
-
+    
                 &__12 {
                     .containerPara__4 {
                         .para {
@@ -2288,7 +2561,7 @@
                         }
                     }
                 }
-
+    
                 &__11 {
                     .containerPara__4 {
                         .para {
@@ -2296,7 +2569,7 @@
                         }
                     }
                 }
-
+    
                 &__10 {
                     .containerPara__4 {
                         .para {
@@ -2304,7 +2577,7 @@
                         }
                     }
                 }
-
+    
                 &__9 {
                     .containerPara__4 {
                         .para {
@@ -2312,7 +2585,7 @@
                         }
                     }
                 }
-
+    
                 &__8 {
                     .containerPara__3 {
                         .para {
@@ -2320,7 +2593,7 @@
                         }
                     }
                 }
-
+    
                 &__7 {
                     .containerPara__4 {
                         .para {
@@ -2328,7 +2601,7 @@
                         }
                     }
                 }
-
+    
                 &__6 {
                     .containerPara__4 {
                         .para {
@@ -2336,7 +2609,7 @@
                         }
                     }
                 }
-
+    
                 &__5 {
                     .containerPara__4 {
                         .para {
@@ -2344,7 +2617,7 @@
                         }
                     }
                 }
-
+    
                 &__4 {
                     .containerPara__4 {
                         .para {
@@ -2352,7 +2625,7 @@
                         }
                     }
                 }
-
+    
                 &__3 {
                     .containerPara__4 {
                         .para {
@@ -2360,7 +2633,7 @@
                         }
                     }
                 }
-
+    
                 &__2 {
                     .containerPara__4 {
                         .para {
@@ -2368,7 +2641,7 @@
                         }
                     }
                 }
-
+    
                 &__1 {
                     .containerPara__7 {
                         .para {
@@ -2380,6 +2653,7 @@
             }
         }
     }
+
 
     .creditContainer {
         width: 100%;
@@ -4346,39 +4620,4 @@
     @font-face {
         font-family: "text";
         src: url("/assets/font/titilliumweb-regular.woff2") format("woff2"), url("/assets/font/titilliumweb-regular.woff") format("woff");
-    }
-
-
-
-    .attente {
-        display: none;
-
-        @media screen and (max-width: 1024px) {
-
-            width: 100%;
-            height: 100vh;
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: $bleu;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 50;
-
-            h3 {
-                animation: blinkBtn 4s infinite alternate;
-                text-align: center;
-                font-family: 'littleTitle';
-                color: $cyan;
-                font-size: 15px;
-                letter-spacing: 1px;
-
-                @media screen and (max-width: 539px) {
-                    font-size: 2.8vw;
-                    letter-spacing: .2vw;
-                }
-            }
-        }
-
     }

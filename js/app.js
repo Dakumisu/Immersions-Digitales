@@ -3041,6 +3041,7 @@ function functionBtnBackHome() {
         iutContainer.classList.add('switchPointer')
         btnStart.disabled = false;
         btnStart.classList.remove('close')
+        littleTitleSvg.classList.add('close')
     }, 2800)
 
     setTimeout(() => {
@@ -5364,8 +5365,8 @@ function scrollUp() {
         TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power3.inOut", delay: 1.25 })
 
         setTimeout(function(){
-            discordContainer.classList.remove('close')
-            iutContainer.classList.remove('close')
+            discordContainer.classList.add('switchPointer')
+            iutContainer.classList.add('switchPointer')
             btnStart.disabled = false;
             btnStart.classList.remove('close')
             littleTitleSvg.classList.add('close')
@@ -5730,8 +5731,8 @@ function scrollDown() {
         TweenMax.to(".spanContainerIut span", { duration: 0.75, opacity: .6, stagger: { each: 0.05, from: 'random' }, ease: "power3.inOut", delay: 1.25 })
 
         setTimeout(function(){
-            discordContainer.classList.remove('close')
-            iutContainer.classList.remove('close')
+            discordContainer.classList.add('switchPointer')
+            iutContainer.classList.add('switchPointer')
             btnStart.disabled = false;
             btnStart.classList.remove('close')
             littleTitleSvg.classList.add('close')
