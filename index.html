@@ -57,9 +57,9 @@
     <div class="cursor startHidden">
         <div class="cursor-shape_in"></div>
     </div>
-    <div class="cursor-shape_out startHidden"></div>
-    <span class="indicMouseHover indicClickOnPlane">DÉCOUVRIR</span>
-    <div class="cursorSize"></div>
+    <div class="cursor-shape_out"></div>
+    <span class="indicMouseHover indicClickOnPlane startHidden">DÉCOUVRIR</span>
+    <div class="cursorSize startHidden"></div>
 
     <!--//////////HOMEMASK//////////-->
     <div class="homeMask"></div>
@@ -695,19 +695,9 @@
                     <a class="contenu__link" href="https://openprocessing.org/sketch/1063525" target="_blank">
                         <p class="text">Clique pour lancer le programme en ligne !</p>
                     </a>
-                    <a class="contenu__link desktop" onclick="openWin()">
+                    <a class="contenu__link desktop" id="dl_artgen">
                         <p class="text">Clique pour télécharger le programme !</p>
                     </a>
-                    <script language="javascript" type="text/javascript">
-                        var myWindow;
-
-                        function openWin() {
-                            myWindow = window.open("http://artgeneratif.immersions-digitales.fr/");
-                            setTimeout(() => {
-                                myWindow.close();
-                            }, 300);
-                        }
-                    </script>
                 </div>
             </div>
         </div>
@@ -739,7 +729,7 @@
             <div class="containerPara containerPara__4">
                 <div class="para">
                     <h3 class="subtitle">Cube Musical</h3>
-                    <a href="https://cube-musical-gaming.itch.io/cube-musical" target="_blank"><img src="./assets/img/ateliers/contenu/cube.gif"
+                    <a href="https://atelier-vr-gaming.itch.io/cube-musical" target="_blank"><img src="./assets/img/ateliers/contenu/cube.gif"
                             alt="Aperçu du Cube Musical" class="contenu"></a>
                 </div>
             </div>
@@ -952,7 +942,7 @@
                 </div>
                 <div class="contentImg contentImg__droite">
                     <span class="prenom">PAOLINE</span>
-                    <span class="nom">CHEVALIER</span>
+                    <span class="nom">CHEVALLIER</span>
                     <div class="content">
                                                 
                         
@@ -965,7 +955,7 @@
                     <div class="content">
                                                 
                         
-                        <img src="./assets/img/trombi/1A/arthurT.jpg" class="faceImg" alt="Arthur Thiery">
+                        <img src="./assets/img/trombi/1A/arthur.jpg" class="faceImg" alt="Arthur Thiery">
                     </div>
                 </div>
                 <div class="contentImg contentImg__droite">
@@ -1326,7 +1316,7 @@
                     <div class="content">
                                                 
                         
-                        <img src="./assets/img/trombi/1A/arthur.jpg" class="faceImg" alt="Arthur Vitse">
+                        <img src="./assets/img/trombi/1A/arthurV.jpg" class="faceImg" alt="Arthur Vitse">
                     </div>
                 </div>
                 <div class="contentImg contentImg__gauche">

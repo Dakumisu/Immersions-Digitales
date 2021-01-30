@@ -383,7 +383,8 @@ canvas.hologramDefault {
   opacity: 1 !important;
 }
 
-.workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
+.workShopContainer .contentContainer iframe,
+.workShopContainer .contentContainer .contenu {
   width: 640px;
   height: 360px;
   display: -webkit-box;
@@ -393,7 +394,8 @@ canvas.hologramDefault {
   border: none;
 }
 
-.workShopContainer .contentContainer iframe__link, .workShopContainer .contentContainer .contenu__link {
+.workShopContainer .contentContainer iframe__link,
+.workShopContainer .contentContainer .contenu__link {
   -webkit-transition: .75s ease;
   transition: .75s ease;
   color: #4cc9f0;
@@ -402,7 +404,8 @@ canvas.hologramDefault {
 }
 
 @media screen and (min-width: 1024px) {
-  .workShopContainer .contentContainer iframe__link::after, .workShopContainer .contentContainer .contenu__link::after {
+  .workShopContainer .contentContainer iframe__link::after,
+  .workShopContainer .contentContainer .contenu__link::after {
     content: " ";
     position: absolute;
     left: 0;
@@ -415,51 +418,10 @@ canvas.hologramDefault {
     -webkit-transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
     transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
   }
-  .workShopContainer .contentContainer iframe__link:hover::after, .workShopContainer .contentContainer .contenu__link:hover::after {
+  .workShopContainer .contentContainer iframe__link:hover::after,
+  .workShopContainer .contentContainer .contenu__link:hover::after {
     -webkit-clip-path: inset(0 0 0 0);
             clip-path: inset(0 0 0 0);
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  .workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
-    width: 480px;
-    height: 270px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
-    width: 390px;
-    height: 216px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
-    width: 390px;
-    height: 216px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
-    width: 320px;
-    height: 180px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
-    width: 274px;
-    height: 154px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .workShopContainer .contentContainer iframe, .workShopContainer .contentContainer .contenu {
-    width: 240px;
-    height: 135px;
   }
 }
 
@@ -2980,7 +2942,8 @@ canvas.hologramDefault {
 }
 
 @media screen and (max-width: 1440px) {
-  .workShopContainer .contentContainer .containerPara__1 .para, .workShopContainer .contentContainer .containerPara__3 .para {
+  .workShopContainer .contentContainer .containerPara__1 .para,
+  .workShopContainer .contentContainer .containerPara__3 .para {
     width: 35%;
   }
 }
@@ -3315,7 +3278,8 @@ canvas.hologramDefault {
   opacity: 1 !important;
 }
 
-.title, .littleTitle {
+.title,
+.littleTitle {
   width: 50vw;
   -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
           animation: blinkTitle 8s infinite ease-in-out alternate;
@@ -3323,13 +3287,15 @@ canvas.hologramDefault {
 }
 
 @media screen and (max-width: 539px) {
-  .title, .littleTitle {
+  .title,
+  .littleTitle {
     width: 90vw;
   }
 }
 
 .title path,
-.title line, .littleTitle path,
+.title line,
+.littleTitle path,
 .littleTitle line {
   fill: none;
   stroke: #4CC9F0;
@@ -3585,6 +3551,10 @@ canvas.hologramDefault {
   }
 }
 
+.startHidden {
+  display: none !important;
+}
+
 .homeContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3681,7 +3651,10 @@ canvas.hologramDefault {
   border: none;
 }
 
-.btn__mainStart .borderRight, .btn__mainStart .borderTop, .btn__mainStart .borderLeft, .btn__mainStart .borderBottom {
+.btn__mainStart .borderRight,
+.btn__mainStart .borderTop,
+.btn__mainStart .borderLeft,
+.btn__mainStart .borderBottom {
   background: #4cc9f0;
   position: absolute;
 }
@@ -5475,7 +5448,10 @@ canvas.hologramDefault {
 }
 
 @media screen and (max-width: 1024px) {
-  .hamburgerContainer .line, .hamburgerContainer .line2, .hamburgerContainer .croix, .hamburgerContainer .croix2 {
+  .hamburgerContainer .line,
+  .hamburgerContainer .line2,
+  .hamburgerContainer .croix,
+  .hamburgerContainer .croix2 {
     width: 60%;
     background: #4cc9f0;
     height: 1px;
@@ -5487,7 +5463,8 @@ canvas.hologramDefault {
     -webkit-transition-delay: .12s;
             transition-delay: .12s;
   }
-  .hamburgerContainer .line.switch, .hamburgerContainer .line2.switch {
+  .hamburgerContainer .line.switch,
+  .hamburgerContainer .line2.switch {
     width: 0;
   }
   .hamburgerContainer .croix {
@@ -5502,7 +5479,8 @@ canvas.hologramDefault {
     position: absolute;
     width: 0;
   }
-  .hamburgerContainer .croix.switch, .hamburgerContainer .croix2.switch {
+  .hamburgerContainer .croix.switch,
+  .hamburgerContainer .croix2.switch {
     width: 60%;
   }
   .hamburgerContainer .croix2 {

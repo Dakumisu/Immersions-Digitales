@@ -180,7 +180,7 @@ bgLoopMusic.volume = volumeBg;
 let rpzMusic = document.createElement("audio"); 
 rpzMusic.src = rpzImport; 
 rpzMusic.loop = false;
-rpzMusic.volume = 0.05;
+rpzMusic.volume = 0.03;
 
 let soundHover = document.createElement("audio"); 
 soundHover.src = soundHoverImport; 
@@ -1843,7 +1843,9 @@ queue.on("complete", event => {
             cursor.style.opacity = 1
             cursorShapeOut.style.opacity = 1
             cursor.classList.remove('startHidden')
-            cursorShapeOut.classList.remove('startHidden')
+            // cursorShapeOut.classList.remove('startHidden')
+            indicClickOnPlane.classList.remove('startHidden')
+            cursorSize.classList.remove('startHidden')
         },50)
     }
 
@@ -2051,7 +2053,7 @@ queue.loadFile('../assets/img/tombi/1A/andreas.jpg');
 queue.loadFile('../assets/img/tombi/1A/antoine.jpg');
 queue.loadFile('../assets/img/tombi/1A/antoineM.jpg');
 queue.loadFile('../assets/img/tombi/1A/arthur.jpg');
-queue.loadFile('../assets/img/tombi/1A/arthurT.jpg');
+queue.loadFile('../assets/img/tombi/1A/arthurV.jpg');
 queue.loadFile('../assets/img/tombi/1A/auriane.jpg');
 queue.loadFile('../assets/img/tombi/1A/cantin.jpg');
 queue.loadFile('../assets/img/tombi/1A/celiaA.jpg');
@@ -6284,6 +6286,17 @@ document.onkeydown = function(e) {
             break;
     }
 };
+
+document.querySelector("#dl_artgen").addEventListener('click', function () {
+    var myWindow;
+    
+    // function openWin() {
+    myWindow = window.open("http://artgeneratif.immersions-digitales.fr/");
+    setTimeout(() => {
+        myWindow.close();
+    }, 300);
+    // }
+})
 
 let variation = 0;
 let variationShaders = 0;
