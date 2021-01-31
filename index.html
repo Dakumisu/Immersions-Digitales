@@ -2,20 +2,30 @@
 <html lang="fr">
 
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3GW528GT4Q%22%3E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3GW528GT4Q');
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Journées Portes Ouvertes de la formation MMI de Tarbes" />
+    <meta name="description" content="Journées Portes Ouvertes MMI Tarbes" />
     <meta name="keywords" content="digital,audiovisuel,etudessuperieures,design,immersionsdigitales,dutmmi,portesouvertes,tarbes,multimédia,iut,dut,art,technologie,adobe,grandecran,cameras,micro,mmi,formation,plateautv,unity,jeux,Développement,Processing,Blender,Illustrator,VR,VRgaming,gaming,caméra,plateau,courtmetrage,photographie,tournage,cameraman,fondvert,artiste,audio,projecteur,gamelight,AfterEffects,mappingart,mappingdesign,mapping,PremierePro,SonyVegasPro,photoshop,rode,sony,monteur,montageVidéo,audiovisuel,webradio,Animateur,Débats,Podcasts,radio,microphone,videogames,interactif,interactiveart,interactivegames,cubeart,Cubemusical,photoshop,lightroom,suiteadobe,adobecreation,illustrator,photos,créationvisuelle,musée,exposition,artiste,creativephotography,MuséeMMI,digitalavenir,application,developpement,DIY,animation,virtuel,DigitalDIY,FabriquetonMMI,code,coding,photos,créationvisuelle,processing,artprocessing,generativeart,IAartgénératif,draw,photos,créationvisuelle,poesie,stream,twitch,radio,Interview,showcase,visite,photos,créationvisuelle,vidéos,scénario,postproduction,videosedit,VisiteFMV,QRcode,explorepage,edit,écologie,énergierenouvelable,QRcodedesign" />
     <meta name="author" content="IUT Tarbes - MMI" />
     <meta name="publisher" content="IUT DE TARBES - MMI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#09021e">
     <meta name="msapplication-navbutton-color" content="#09021e">
     <meta name="apple-mobile-web-app-status-bar-style" content="#09021e">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
     <title>Immersions Digitales 2021</title>
     <link rel="icon" href="./assets/img/favicon.png" />
     <link rel="apple-touch-icon" href="./assets/img/favicon.png" />
@@ -23,7 +33,7 @@
 </head>
 
 <body>
-
+    
     <!--//////////LOADER//////////-->
     <span class="progress"></span>
     <div class="firstSlogan"></div>
@@ -47,18 +57,18 @@
     </div>
 
     <!--//////////CURSOR//////////-->
-    <div class="cursor">
+    <div class="cursor startHidden">
         <div class="cursor-shape_in"></div>
     </div>
     <div class="cursor-shape_out"></div>
-    <span class="indicMouseHover indicClickOnPlane">DÉCOUVRIR</span>
-    <div class="cursorSize"></div>
+    <span class="indicMouseHover indicClickOnPlane startHidden">DÉCOUVRIR</span>
+    <div class="cursorSize startHidden"></div>
 
     <!--//////////HOMEMASK//////////-->
     <div class="homeMask"></div>
 
     <!--//////////CURSOR INDICATION//////////-->
-    <div class="cursorIndication">
+    <div class="cursorIndication startHidden">
         <div class="keyboardIndicationContainer">
             <span class="up">
                 <span class="arrow"></span>
@@ -95,7 +105,7 @@
     </div>
 
     <!--//////////MOBILE INDICATION//////////-->
-    <div class="mobileIndication">
+    <div class="mobileIndication startHidden">
         <span class="mobileLine"></span>
         <span class="mobileTextIndic">TOUCHE ET DÉFILE POUR NAVIGUER</span>
     </div>
@@ -149,7 +159,7 @@
     </button>
 
     <!--////////// TIMELINE //////////-->
-    <div class="containerTimeline">
+    <div class="containerTimeline startHidden">
         <div class="timelineIndication">
             <span class="indication">ATELIERS</span>
         </div>
@@ -199,7 +209,7 @@
 
     <!--////////// TIMELINE MOBILE //////////-->
 
-    <div class="hamburgerContainer">
+    <div class="hamburgerContainer startHidden">
             <span class="line"></span>
             <span class="line2"></span>
             <span class="croix"></span>
@@ -688,19 +698,9 @@
                     <a class="contenu__link" href="https://openprocessing.org/sketch/1063525" target="_blank">
                         <p class="text">Clique pour lancer le programme en ligne !</p>
                     </a>
-                    <a class="contenu__link desktop" onclick="openWin()">
+                    <a class="contenu__link desktop" id="dl_artgen">
                         <p class="text">Clique pour télécharger le programme !</p>
                     </a>
-                    <script language="javascript" type="text/javascript">
-                        var myWindow;
-
-                        function openWin() {
-                            myWindow = window.open("http://artgeneratif.immersions-digitales.fr/");
-                            setTimeout(() => {
-                                myWindow.close();
-                            }, 300);
-                        }
-                    </script>
                 </div>
             </div>
         </div>
@@ -732,7 +732,7 @@
             <div class="containerPara containerPara__4">
                 <div class="para">
                     <h3 class="subtitle">Cube Musical</h3>
-                    <a href="https://cube-musical-gaming.itch.io/cube-musical" target="_blank"><img src="./assets/img/ateliers/contenu/cube.gif"
+                    <a href="https://atelier-vr-gaming.itch.io/cube-musical" target="_blank"><img src="./assets/img/ateliers/contenu/cube.gif"
                             alt="Aperçu du Cube Musical" class="contenu"></a>
                 </div>
             </div>
@@ -958,7 +958,7 @@
                     <div class="content">
                                                 
                         
-                        <img src="./assets/img/trombi/1A/arthurT.jpg" class="faceImg" alt="Arthur Thiery">
+                        <img src="./assets/img/trombi/1A/arthur.jpg" class="faceImg" alt="Arthur Thiery">
                     </div>
                 </div>
                 <div class="contentImg contentImg__droite">
@@ -1319,7 +1319,7 @@
                     <div class="content">
                                                 
                         
-                        <img src="./assets/img/trombi/1A/arthur.jpg" class="faceImg" alt="Arthur Vitse">
+                        <img src="./assets/img/trombi/1A/arthurV.jpg" class="faceImg" alt="Arthur Vitse">
                     </div>
                 </div>
                 <div class="contentImg contentImg__gauche">
@@ -1819,16 +1819,7 @@
     </section>
 
     <!--//////////SCRIPTS//////////-->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3GW528GT4Q%22%3E"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-3GW528GT4Q');
-    </script>
+    <!-- <script src="js/libs/preloadjs.min.js"></script> -->
     <script src="js/libs/gsap.min.js"></script>
     <script src="js/libs/ScrollTrigger.min.js"></script>
     <script src="js/app.js"></script>

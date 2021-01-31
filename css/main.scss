@@ -8,38 +8,37 @@
         user-select: none;
     }
 
-
-
     body {
         margin: 0;
         padding: 0;
         width: 100%;
         background: $bleu;
-        overflow: hidden!important;
+        overflow: hidden !important;
         height: 100vh;
     }
 
-    .progress{
+    .progress {
         position: fixed;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         left: 50%;
         top: 50%;
-        font-family: 'littleTitle';
+        font-family: 'littleTitle'!important;
         color: $cyan;
         font-size: 12px;
         letter-spacing: 1px;
-        transition:  1.5s ease-in-out;
+        transition: 1.5s ease-in-out;
+
         @media screen and (max-width: 539px) {
-        font-size: 2.6vw;
-        letter-spacing: .2vw;
+            font-size: 2.6vw;
+            letter-spacing: .2vw;
         }
 
-        &.switch{
+        &.switch {
             opacity: 0;
         }
     }
 
-    .containerAlertDiscord{
+    .containerAlertDiscord {
         position: absolute;
         right: 18px;
         width: 300px;
@@ -50,7 +49,7 @@
         border: 1px solid $cyan;
         clip-path: inset(0% 0% 0% 100%);
 
-        h3{
+        h3 {
             font-family: "littleTitle";
             font-size: 15px;
             letter-spacing: 1px;
@@ -62,7 +61,7 @@
         }
     }
 
-    .containerAlertIut{
+    .containerAlertIut {
         position: absolute;
         left: 18px;
         width: 300px;
@@ -73,7 +72,7 @@
         border: 1px solid $cyan;
         clip-path: inset(0% 100% 0% 0%);
 
-        h3{
+        h3 {
             font-family: "littleTitle";
             font-size: 15px;
             letter-spacing: 1px;
@@ -85,37 +84,38 @@
         }
     }
 
-    .indicGoDesktop{
+    .indicGoDesktop {
         display: none;
-   
 
-    @media screen and (max-width: 1024px){
-        position: absolute;
-        top: 90%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        font-family: 'littleTitle';
-        color: $cyan;
-        z-index: 3;
-        display: block;
-        text-align: center;
-        width: 80%;
-        font-size: 12px;
-        letter-spacing: 1px;
-        opacity: 0;
-        transition: .75s cubic-bezier(.25, 0, 0, 1);
 
-        @media screen and (max-width: 539px) {
-            font-size: 2.8vw;
-            letter-spacing: .2vw;
+        @media screen and (max-width: 1024px) {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'littleTitle';
+            color: $cyan;
+            z-index: 3;
+            display: block;
+            text-align: center;
+            width: 80%;
+            font-size: 12px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: .75s cubic-bezier(.25, 0, 0, 1);
+
+            @media screen and (max-width: 539px) {
+                font-size: 2.8vw;
+                letter-spacing: .2vw;
             }
 
-            &.switch{
+            &.switch {
                 opacity: 1;
             }
-        
+
+        }
     }
-}
+
     .homeMask {
         position: absolute;
         left: 0;
@@ -186,12 +186,12 @@
         }
     }
 
-    .switchPointer{
-        pointer-events: all!important;
+    .switchPointer {
+        pointer-events: all !important;
     }
 
-     ////CURSOR CUSTOM///
-     @media screen and (max-width: 1024px) {
+    ////CURSOR CUSTOM///
+    @media screen and (max-width: 1024px) {
         .cursor {
             display: none;
         }
@@ -275,7 +275,8 @@
             transition: opacity .75s cubic-bezier(.75, 0, 0, 1);
             opacity: 1;
         }
-        @media screen and (max-width: 1024px){
+
+        @media screen and (max-width: 1024px) {
             display: none;
         }
     }
@@ -329,6 +330,7 @@
                     margin: 43vh auto 0 auto;
                 }
             }
+            
 
             iframe, .contenu {
                 width: 640px;
@@ -336,6 +338,8 @@
                 display: flex;
                 margin: 2vh 1vh 22vh 0;
                 border: none;
+
+                
 
                 &__link{
                 transition: .75s ease;
@@ -490,37 +494,537 @@
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
-                            @media screen and (max-width: 1024px){
                                 @media screen and (max-width: 539px){
                                     font-size: 5.2vw;
                                     }
-                            }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
-                            @media screen and (max-width: 1024px){
                                 @media screen and (max-width: 539px){
                                     font-size: 3.5vw;
                                     }
-                            }
                         }
                     }
                 }
             }
 
             &__13 {
-                        .containerPara__1 {
+    
+                .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
 
                     @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 22vw 22vh 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
                        
-                        margin: 110% 0 40% 0;
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                        }
+                    }
+                }
+    
+                .containerPara__4 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    
+                    .para {
+                        margin: 0 0 100vh 22vw;
+                        width: 25%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                           
+    
+                            iframe{
+                                margin: 2.3vh auto 40% auto;
+                                width: 100%;
+                                height: 31vh;
+                            }
+                        }
+    
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                        }
+                    }
+                }
+            }
+
+            &__12 {
+    
+                .containerPara__3 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 22vw 22vh 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                        }
+                    }
+                }
+    
+                .containerPara__4 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    
+                    .para {
+                        margin: 0 0 100vh 22vw;
+                        width: 25%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                           
+    
+                            iframe{
+                                margin: 2.3vh auto 40% auto;
+                                width: 100%;
+                                height: 31vh;
+                            }
+                        }
+    
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                        }
+                    }
+                }
+            }
+
+            &__11 {
+    
+                .containerPara__3 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 22vw 22vh 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                        }
+                    }
+                }
+    
+                .containerPara__4 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                      
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 0 150vh 22vw;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                        }
+                    }
+                }
+            }
+
+            &__10 {
+    
+                .containerPara__3 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                     
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 22vw 22vh 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                        }
+                    }
+                }
+    
+                .containerPara__4 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                      
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 0 150vh 22vw;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                                @media screen and (max-width: 539px){
+                                    font-size: 3.5vw;
+                                    }
+                        }
+                    }
+                }
+            }
+
+            &__9 {
+    
+                .containerPara__3 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 22vw 22vh 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                       
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
+                        }
+                    }
+                }
+    
+                .containerPara__4 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                      
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 0 0 100vh 22vw;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: center;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%!important;
+                            width: 90%!important;
+                           
+    
+                            iframe{
+                                margin: 2.3vh auto 2.3vh auto;
+                                width: 100%;
+                                height: 31vh;
+                            }
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+                                @media screen and (max-width: 539px){
+                                    font-size: 5.2vw;
+                                    }
+                        }
+    
+                    }
+                }
+            }
+
+            &__8 {
+    
+                .containerPara__3 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+    
+                    @media screen and (max-width: 1024px){
+                       
+                        margin: 40% 0 40% 0;
+                    }
+    
+                    .para {
+                        width: 25%;
+                        margin: 22vh 22vw 150vh 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        @media screen and (max-width: 1024px){
+                            margin: 5%;
+                            width: 90%!important;
+                          
+                        }
+    
+                        .subtitle {
+                            font-family: "littleTitle";
+                            font-size: 25px;
+                            color: $magenta;
+                            margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
+                        }
+    
+                        .text {
+                            font-family: "text";
+                            text-align: justify;
+                            color: $cyan;
+                                @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
+                        }
+                    }
+                }
+            }
+
+            &__7 {
+    
+                .containerPara__3 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+    
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
                     }
     
                     .para {
@@ -540,78 +1044,38 @@
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
-
-                            @media screen and (max-width: 1024px){
+    
                                 @media screen and (max-width: 539px){
                                 font-size: 5.2vw;
                                 }
-                            }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
-                            @media screen and (max-width: 1024px){
                                 @media screen and (max-width: 539px){
                                 font-size: 3.5vw;
                                 }
-                            }
                         }
                     }
                 }
     
-                .containerPara__2 {
+                .containerPara__4 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__3 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
                     @media screen and (max-width: 1024px){
                         margin: 40% 0 40% 0;
-                     
                     }
-    
+                    
                     .para {
+                        margin: 0 0 100vh 22vw;
                         width: 25%;
-                        margin: 0 22vw 155vh 0;
                         display: flex;
                         flex-direction: column;
-                        align-items: flex-end;
+                        align-items: start;
                         justify-content: center;
                         @media screen and (max-width: 1024px){
                             margin: 5%!important;
@@ -619,707 +1083,40 @@
                        
                         }
     
-                        .subtitle {
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
-                            @media screen and (max-width: 1024px){
+    
                                 @media screen and (max-width: 539px){
-                                    font-size: 5.2vw;
-                                    }
-                            }
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
-                            @media screen and (max-width: 1024px){
-                                @media screen and (max-width: 539px){
-                                    font-size: 3.5vw;
-                                    }
-                            }
-                        }
-                    }
-                }
-    
-                .containerPara__4 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    
-                    .para {
-                        margin: 0 0 100vh 22vw;
-                        width: 25%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-            }
-
-            &__12 {
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__3 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__4 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    
-                    .para {
-                        margin: 0 0 100vh 22vw;
-                        width: 25%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-            }
-
-            &__11 {
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__3 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__4 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    
-                    .para {
-                        margin: 0 0 150vh 22vw;
-                        width: 25%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-            }
-
-            &__10 {
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__3 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__4 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    
-                    .para {
-                        margin: 0 0 150vh 22vw;
-                        width: 25%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-            }
-
-            &__9 {
-
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__3 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__4 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    
-                    .para {
-                        margin: 0 0 100vh 22vw;
-                        width: 25%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-            }
-
-            &__8 {
-              
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__3 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-    
-                    .para {
-                        width: 26%;
-                        margin: 0 22vw 120vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-            }
-
-            &__7 {
-              
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__3 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 22vw 22vh 0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
-                .containerPara__4 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    
-                    .para {
-                        margin: 0 0 100vh 22vw;
-                        width: 25%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
                         }
                     }
                 }
             }
 
             &__6 {
-              
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
     
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -1333,17 +1130,24 @@
                        
                         }
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
                         }
                     }
                 }
@@ -1353,6 +1157,9 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
                     
                     .para {
                         margin: 0 0 100vh 22vw;
@@ -1368,17 +1175,24 @@
                         }
     
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
                         }
                     }
                 }
@@ -1387,45 +1201,14 @@
             &__5 {
               
     
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -1439,17 +1222,24 @@
                        
                         }
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
                         }
                     }
                 }
@@ -1459,6 +1249,9 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
                     
                     .para {
                         margin: 0 0 100vh 22vw;
@@ -1470,22 +1263,26 @@
                         @media screen and (max-width: 1024px){
                             margin: 5%!important;
                             width: 90%!important;
+                            .contenu{
+                                margin: 2.3vh auto 2.3vh auto;
+                                width: 100%;
+                                height: 31vh;
+                            }
                        
                         }
     
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
                     }
                 }
             }
@@ -1493,45 +1290,14 @@
             &__4 {
                
     
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -1545,17 +1311,25 @@
                        
                         }
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
+                            
                         }
                     }
                 }
@@ -1565,6 +1339,9 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
                     
                     .para {
                         margin: 0 0 100vh 22vw;
@@ -1580,17 +1357,24 @@
                         }
     
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                }
                         }
                     }
                 }
@@ -1598,46 +1382,14 @@
 
             &__3 {
               
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
-    
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -1651,17 +1403,24 @@
                        
                         }
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                         }
                     }
                 }
@@ -1671,6 +1430,9 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
                     
                     .para {
                         margin: 0 0 100vh 22vw;
@@ -1686,11 +1448,15 @@
                         }
     
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
@@ -1709,12 +1475,17 @@
                             height: 360px;
                             margin: 2vh 1vh 15vh 0;
                             display: flex;
+
+                            @media screen and (max-width: 1024px){
+                                    margin: 2.3vh auto 2.3vh auto;
+                                    width: 100%;
+                                    height: 31vh;
+                            }
+
                             .contenu_img--default_2 {
                                 position: absolute;
-                                // margin: 2vh 1vh 22vh 0;
                                 top: 0;
                                 left: 0;
-                                // transform: translate(-50%, -50%);
                                 width: 100%;
                                 height: 100%;
                                 border: none;
@@ -1722,14 +1493,13 @@
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 opacity: 1;
-                                // transition: opacity .75s cubic-bezier(.75, 0, 0, 1);
                             }
+                            @media screen and (min-width: 1025px){
+
                             .contenu_img--hover_2 {
                                 position: absolute;
-                                // margin: 2vh 1vh 22vh 0;
                                 top: 0;
                                 left: 0;
-                                // transform: translate(-50%, -50%);
                                 width: 100%;
                                 height: 100%;
                                 background-image: url('../assets/img/ateliers/contenu/banksy_bot.gif');
@@ -1739,27 +1509,10 @@
                                 opacity: 0;
                                 transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
                             }
-                            .contenu_img--default_1 {
-                                position: absolute;
-                                // margin: 2vh 1vh 22vh 0;
-                                top: 0;
-                                left: 0;
-                                // transform: translate(-50%, -50%);
-                                width: 100%;
-                                height: 100%;
-                                border: none;
-                                background-image: url('../assets/img/ateliers/contenu/Andy_Warho-Bot.jpg');
-                                background-repeat: no-repeat;
-                                background-size: cover;
-                                opacity: 1;
-                                // transition: opacity .75s cubic-bezier(.75, 0, 0, 1);
-                            }
                             .contenu_img--hover_1 {
                                 position: absolute;
-                                // margin: 2vh 1vh 22vh 0;
                                 top: 0;
                                 left: 0;
-                                // transform: translate(-50%, -50%);
                                 width: 100%;
                                 height: 100%;
                                 background-image: url('../assets/img/ateliers/contenu/Andy.gif');
@@ -1769,53 +1522,36 @@
                                 opacity: 0;
                                 transition: opacity .75s cubic-bezier(.25, 0, 0, 1);
                             }
+                                                                                        
+                        }
+                            .contenu_img--default_1 {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                                background-image: url('../assets/img/ateliers/contenu/Andy_Warho-Bot.jpg');
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                opacity: 1;
+                            }
+
                         }
                     }
                 }
             }
 
             &__2 {
-               
-    
-                .containerPara__2 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-    
-                    .para {
-                        width: 25%;
-                        margin: 0 0 0 22vw;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: start;
-                        justify-content: center;
-                        @media screen and (max-width: 1024px){
-                            margin: 5%!important;
-                            width: 90%!important;
-                       
-                        }
-    
-                        .subtitle {
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            margin: 0;
-                        }
-    
-                        .text {
-                            font-family: "text";
-                            text-align: justify;
-                            color: $cyan;
-                        }
-                    }
-                }
     
                 .containerPara__3 {
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -1829,17 +1565,25 @@
                        
                         }
     
-                        .subtitle {
+                           .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+
+                                    @media screen and (max-width: 539px){
+                                        font-size: 3.5vw;
+                                        } 
                         }
                     }
                 }
@@ -1849,6 +1593,9 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
                     
                     .para {
                         margin: 0 0 100vh 22vw;
@@ -1864,34 +1611,44 @@
                         }
     
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                         }
                     }
                 }
             }
 
             &__1 {
-              
-    
+
+
                 .containerPara__2 {
                     width: 100%;
                     display: flex;
                     justify-content: start;
                     align-items: center;
-    
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
+                    
                     .para {
-                        width: 25%;
                         margin: 0 0 22vh 22vw;
+                        width: 25%;
                         display: flex;
                         flex-direction: column;
                         align-items: start;
@@ -1902,17 +1659,25 @@
                        
                         }
     
-                        .subtitle {
+    
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                         }
                     }
                 }
@@ -1922,6 +1687,9 @@
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -1935,17 +1703,24 @@
                        
                         }
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                         }
                     }
                 }
@@ -1955,6 +1730,9 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
                     
                     .para {
                         margin: 0 0 22vh 22vw;
@@ -1970,17 +1748,24 @@
                         }
     
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                         }
                     }
                 }
@@ -1990,6 +1775,9 @@
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -2003,17 +1791,24 @@
                        
                         }
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                         }
                     }
                 }
@@ -2023,6 +1818,9 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
                     
                     .para {
                         margin: 0 0 22vh 22vw;
@@ -2038,17 +1836,24 @@
                         }
     
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                         }
                     }
                 }
@@ -2058,6 +1863,9 @@
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    @media screen and (max-width: 1024px){
+                        margin: 40% 0 40% 0;
+                    }
     
                     .para {
                         width: 25%;
@@ -2071,17 +1879,24 @@
                        
                         }
     
-                        .subtitle {
+                                                .subtitle {
                             font-family: "littleTitle";
                             font-size: 25px;
                             color: $magenta;
                             margin: 0;
+    
+                                @media screen and (max-width: 539px){
+                                font-size: 5.2vw;
+                                }
                         }
     
                         .text {
                             font-family: "text";
                             text-align: justify;
                             color: $cyan;
+                            @media screen and (max-width: 539px){
+                                font-size: 3.5vw;
+                                } 
                             .greta{
                                 transition: .75s ease;
                                 color: $cyan;
@@ -2117,248 +1932,9 @@
                     }
                 }
             }
-            
-            @media screen and (max-width: 1024px) {
-                .title {
-                    margin-bottom: 30vh!important;
-                }
-                .para {
-                    width: 50%!important;
-                }
-
-                &__14 {
-                    .containerPara__3 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__13 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__12 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__11 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__10 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__9 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__8 {
-                    .containerPara__3 {
-                        .para {
-                            margin: 0 22vw 22vh 0;
-                        }
-                    }
-                }
-    
-                &__7 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__6 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                        .desktop {
-                            display: none;
-                        }
-                    }
-                }
-    
-                &__5 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__4 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__3 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__2 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__1 {
-                    .containerPara__7 {
-                        .para {
-                            width: 25%;
-                            margin: 0 22vw 22vh 0;
-                        }
-                    }
-                }
-            }
-
-            @media screen and (max-width: 768px) {                    
-                &__14 {
-                    .containerPara__3 {
-                        .para {
-                            margin: 0 22vw 22vh 0;
-                        }
-                    }
-                }
-    
-                &__13 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__12 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__11 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__10 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__9 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__8 {
-                    .containerPara__3 {
-                        .para {
-                            margin: 0 22vw 22vh 0;
-                        }
-                    }
-                }
-    
-                &__7 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__6 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__5 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__4 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__3 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__2 {
-                    .containerPara__4 {
-                        .para {
-                            margin: 0 0 22vh 22vw;
-                        }
-                    }
-                }
-    
-                &__1 {
-                    .containerPara__7 {
-                        .para {
-                            width: 25%;
-                            margin: 0 22vw 22vh 0;
-                        }
-                    }
-                }
-            }
         }
     }
+
 
     .creditContainer {
         width: 100%;
@@ -2385,141 +1961,143 @@
             justify-content: center;
             align-items: center;
             scrollbar-width: none;
+
             &::-webkit-scrollbar {
                 display: none;
             }
 
             .trombi {
+                display: flex;
+                justify-content: center;
+                align-items: start;
+                flex-wrap: wrap;
+                width: 100%;
+                height: 100vh;
+
+                @media screen and (max-width: 1024px) {
+                    align-items: center;
+                }
+
+                .contentImg {
                     display: flex;
                     justify-content: center;
-                    align-items: start;
+                    align-items: center;
                     flex-wrap: wrap;
-                    width: 100%;
-                    height: 100vh;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    margin-bottom: 10%;
+                    position: relative;
 
-                    @media screen and (max-width: 1024px){
-                        align-items: center;
+                    @media screen and (max-width: 1440px) {
+                        &__droite {
+                            margin-top: 0 !important;
+                        }
+
+                        &__gauche {
+                            margin-bottom: 0 !important;
+                        }
                     }
 
-                    .contentImg {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        flex-wrap: wrap;
-                        margin-left: 10%;
-                        margin-right: 10%;
-                        margin-bottom: 10%;
+                    &__droite {
+                        margin-top: 17.75%;
+                    }
+
+                    &__gauche {
+                        margin-bottom: 17.75%;
+                    }
+
+                    .prenom {
+                        color: $cyan;
+                        position: absolute;
+                        left: 13.7%;
+                        top: 60%;
+                        writing-mode: vertical-rl;
+                        text-orientation: mixed;
+                        font-family: "littleTitle";
+                        font-size: 25px;
+                        color: $magenta;
+                        font-weight: bold;
+                        letter-spacing: 25px;
+                        opacity: 0;
+                        transform: translate(-50%, -50%) rotate(180deg);
+                        transition: .5s cubic-bezier(.25, 0, 0, 1);
+
+                        &.switch {
+                            top: 50%;
+                            letter-spacing: 10px;
+                            opacity: 1;
+                        }
+                    }
+
+                    .nom {
+                        color: $cyan;
+                        position: absolute;
+                        right: 6%;
+                        top: 40%;
+                        opacity: 0;
+                        writing-mode: vertical-rl;
+                        text-orientation: mixed;
+                        font-family: "littleTitle";
+                        font-size: 25px;
+                        color: $magenta;
+                        font-weight: bold;
+                        letter-spacing: 25px;
+                        transform: translate(-50%, -50%);
+                        transition: .5s cubic-bezier(.25, 0, 0, 1);
+
+                        &.switch {
+                            top: 50%;
+                            letter-spacing: 10px;
+                            opacity: 1;
+                        }
+                    }
+
+                    .content {
+                        width: 450px;
+                        height: 100%;
+                        clip-path: inset(4% 4% 4% 4%);
+                        transition: .5s ease;
+                        margin: 20%;
                         position: relative;
 
-                        @media screen and (max-width: 1440px) {      
-                            &__droite {
-                                margin-top: 0 !important;
-                            }
-                            
-                            &__gauche {
-                                margin-bottom: 0 !important;
-                            }
-                        }
-                        
-                        &__droite {
-                            margin-top: 17.75%;
-                        }
-                        
-                        &__gauche {
-                            margin-bottom: 17.75%;
+                        &.switch {
+                            clip-path: inset(1% 1% 1% 1%);
                         }
 
-                        .prenom {
-                            color: $cyan;
+                        &::after {
+                            content: "";
                             position: absolute;
-                            left: 13.7%;
-                            top: 60%;
-                            writing-mode: vertical-rl;
-                            text-orientation: mixed;
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            font-weight: bold;
-                            letter-spacing: 25px;
-                            opacity: 0;
-                            transform: translate(-50%, -50%) rotate(180deg);
-                            transition: .5s cubic-bezier(.25, 0, 0, 1);
-
-                            &.switch {
-                                top: 50%;
-                                letter-spacing: 10px;
-                                opacity: 1;
-                            }
-                        }
-
-                        .nom {
-                            color: $cyan;
-                            position: absolute;
-                            right: 6%;
-                            top: 40%;
-                            opacity: 0;
-                            writing-mode: vertical-rl;
-                            text-orientation: mixed;
-                            font-family: "littleTitle";
-                            font-size: 25px;
-                            color: $magenta;
-                            font-weight: bold;
-                            letter-spacing: 25px;
-                            transform: translate(-50%, -50%);
-                            transition: .5s cubic-bezier(.25, 0, 0, 1);
-
-                            &.switch {
-                                top: 50%;
-                                letter-spacing: 10px;
-                                opacity: 1;
-                            }
-                        }
-
-                        .content {
-                            width: 450px;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
                             height: 100%;
-                            clip-path: inset(4% 4% 4% 4%);
-                            transition: .5s ease;
-                            margin: 20%;
-                            position: relative;
+                            background: #09021e;
+                            z-index: -1;
+                        }
+
+                        .faceImg {
+                            width: 100%;
+                            opacity: 1;
+                            transform: scale(1.3);
+                            transition: 1s cubic-bezier(.25, 0, 0, 1);
 
                             &.switch {
-                                clip-path: inset(1% 1% 1% 1%);
-                            }
-
-                            &::after {
-                                content: "";
-                                position: absolute;
-                                left: 0;
-                                top: 0;
-                                width: 100%;
-                                height: 100%;
-                                background: #09021e;
-                                z-index: -1;
-                            }
-
-                            .faceImg {
-                                width: 100%;
-                                opacity: 1;
-                                transform: scale(1.3);
-                                transition: 1s cubic-bezier(.25, 0, 0, 1);
-
-                                &.switch {
-                                    transform: scale(1);
-                                    opacity: 0.5;
-                                }
+                                transform: scale(1);
+                                opacity: 0.5;
                             }
                         }
                     }
+                }
             }
 
         }
     }
 
+
     .littleTitle {
-        z-index: 3!important;
-        width: 150px!important;
-        opacity: 1!important;
+        z-index: 3 !important;
+        width: 150px !important;
+        opacity: 1 !important;
         position: absolute;
         right: 18px;
         top: 1.2%;
@@ -2530,11 +2108,12 @@
         }
     }
 
-    .switchTitle{
-        opacity: 1!important;
+    .switchTitle {
+        opacity: 1 !important;
     }
 
-    .title, .littleTitle {
+    .title,
+    .littleTitle {
         width: 50vw;
         animation: blinkTitle 8s infinite ease-in-out alternate;
         opacity: 0;
@@ -2543,7 +2122,7 @@
             width: 90vw;
         }
 
- 
+
 
         path,
         line {
@@ -2700,6 +2279,10 @@
         }
     }
 
+    .startHidden {
+        display: none!important;
+    }
+
     .homeContainer {
         display: flex;
         align-items: center;
@@ -2712,11 +2295,11 @@
         z-index: 2;
     }
 
-    .firstSlogan{
+    .firstSlogan {
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         font-family: "main";
         font-size: 35px;
         width: fit-content;
@@ -2725,7 +2308,7 @@
         animation: blinkSlogan 4s infinite alternate;
 
         @media screen and (max-width: 539px) {
-            font-size: 4.2vw!important;
+            font-size: 4.2vw !important;
             letter-spacing: .5vw;
         }
 
@@ -2734,7 +2317,7 @@
             letter-spacing: .3vw;
         }
 
-        span{
+        span {
             opacity: 0;
         }
     }
@@ -2763,21 +2346,24 @@
             letter-spacing: .3vw;
         }
 
-        &__mainStart{
-            position: absolute!important;
+        &__mainStart {
+            position: absolute !important;
             background: none;
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             clip-path: none;
-            border:none;
+            border: none;
 
-            .borderRight, .borderTop, .borderLeft, .borderBottom{
+            .borderRight,
+            .borderTop,
+            .borderLeft,
+            .borderBottom {
                 background: $cyan;
                 position: absolute;
             }
 
-            .borderRight{
+            .borderRight {
                 width: 1.5px;
                 height: 100%;
                 right: 0;
@@ -2785,7 +2371,7 @@
                 clip-path: inset(100% 0 0 0);
             }
 
-            .borderTop{
+            .borderTop {
                 width: 100%;
                 height: 1.5px;
                 left: 0;
@@ -2793,7 +2379,7 @@
                 clip-path: inset(0 0 0 100%);
             }
 
-            .borderLeft{
+            .borderLeft {
                 width: 1.5px;
                 height: 100%;
                 left: 0;
@@ -2801,7 +2387,7 @@
                 clip-path: inset(0 0 100% 0);
             }
 
-            .borderBottom{
+            .borderBottom {
                 width: 100%;
                 height: 1.5px;
                 left: 0;
@@ -2822,7 +2408,7 @@
                 height: 100%;
             }
 
-            .spanContainerMainStart span{
+            .spanContainerMainStart span {
                 display: inline-block;
                 line-height: 53px;
                 opacity: 0;
@@ -2872,7 +2458,7 @@
             .spanContainerStartMouseout span {
                 transform: translateY(40px);
             }
-  
+
         }
 
         &__backHome {
@@ -2880,7 +2466,7 @@
             height: 55px;
             top: 2.25%;
             left: 30px;
-            z-index: 3!important;
+            z-index: 3 !important;
             position: absolute;
             clip-path: inset(0% 100% 0% 0%);
             transition: border .75s cubic-bezier(.25, 0, 0, 1);
@@ -2891,7 +2477,7 @@
                 height: 6.3vh;
                 left: 0;
                 top: 0;
-                background: transparent!important;
+                background: transparent !important;
                 border: none;
             }
 
@@ -2940,7 +2526,7 @@
                 height: 6.3vh;
                 left: 0;
                 top: 0;
-                background: transparent!important;
+                background: transparent !important;
                 border: none;
             }
 
@@ -3122,92 +2708,88 @@
 
     @media screen and (max-width: 1024px) {
         .mobileIndication {
+            position: absolute;
+            top: 13%;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            height: 20px;
+            width: fit-content;
+            height: fit-content;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            display: flex;
+            opacity: 0;
+            transition: 1.5s cubic-bezier(.25, 0, 0, 1);
 
-            display: none;
-
-            &.visible{
-                position: absolute;
-                top: 13%;
-                left: 50%;
-                z-index: 1;
-                transform: translate(-50%, -50%);
-                height: 20px;
-                width: fit-content;
-                height: fit-content;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center;
-                opacity: 0;
-                transition: 1.5s cubic-bezier(.25, 0, 0, 1);
-                display: flex;
-            }
-            @media screen and (max-width: 539px){
+            @media screen and (max-width: 539px) {
                 top: 16.5%;
             }
 
             &.switch {
-            opacity: 1;
-        }
+                opacity: 1;
+            }
 
-            .mobileLine{
+            .mobileLine {
                 width: 50%;
                 height: 1px;
                 margin: 0 0 10px 0;
                 position: relative;
-                
-                &::after{
+
+                &::after {
                     content: " ";
                     position: absolute;
                     width: 12px;
                     height: 6px;
                     background: $cyan;
                     left: 3%;
-                    transform: translate(-50%,-50%);
+                    transform: translate(-50%, -50%);
                     opacity: 0;
                     animation: pointLine 7s cubic-bezier(.75, 0, 0, 1) infinite;
 
                     @keyframes pointLine {
-                        0%{
-                            
+                        0% {
+
                             left: 3%;
                             opacity: 0;
                         }
 
-                        10%{
+                        10% {
                             opacity: 1;
                         }
-             
-                        20%{
-                            
+
+                        20% {
+
                             left: 97%;
                             opacity: 0;
                         }
 
-                        
 
-                        50%{
+
+                        50% {
                             opacity: 0;
                             left: 97%;
-                           
+
                         }
 
-                        60%{
+                        60% {
                             opacity: 1;
                         }
 
-                        70%{
-                            
+                        70% {
+
                             left: 3%;
                             opacity: 0;
                         }
 
 
-                        100%{
-                            
+                        100% {
+
                             left: 3%;
                             opacity: 0;
                         }
-                        
+
                     }
                 }
             }
@@ -3220,7 +2802,7 @@
                 letter-spacing: 2px;
                 font-size: 13px;
 
-                @media screen and (max-width: 539px){
+                @media screen and (max-width: 539px) {
                     font-size: 2.6vw;
                     letter-spacing: .2vw;
                 }
@@ -3229,28 +2811,20 @@
     }
 
     .cursorIndication {
-        display: none;
-
-@media screen and (min-width: 1025px){
-
-        &.visible{
-            position: absolute;
-            top: 6.8%;
-            left: 50%;
-            z-index: 10;
-            transform: translate(-50%, -50%);
-            height: 20px;
-            width: fit-content;
-            height: fit-content;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            opacity: 0;
-            transition: 1.5s cubic-bezier(.25, 0, 0, 1);
-            display: flex;
-        }
-    
-}
+        position: absolute;
+        top: 6.8%;
+        left: 50%;
+        z-index: 10;
+        transform: translate(-50%, -50%);
+        height: 20px;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        opacity: 0;
+        transition: 1.5s cubic-bezier(.25, 0, 0, 1);
 
         &.switch {
             opacity: 1;
@@ -4046,12 +3620,13 @@
         }
     }
 
-    .containerTimelineMobile{
+    .containerTimelineMobile {
         display: none;
     }
-    @media screen and (max-width: 1024px){
 
-        .hamburgerContainer{
+    @media screen and (max-width: 1024px) {
+
+        .hamburgerContainer {
             position: fixed;
             width: 42px;
             height: 42px;
@@ -4071,7 +3646,10 @@
                 top: 0;
             }
 
-            .line, .line2, .croix, .croix2{
+            .line,
+            .line2,
+            .croix,
+            .croix2 {
                 width: 60%;
                 background: $cyan;
                 height: 1px;
@@ -4079,118 +3657,112 @@
                 transition: .3s cubic-bezier(.25, 0, 0, 1);
             }
 
-            .line2{
+            .line2 {
                 transition-delay: .12s;
             }
 
-            .line, .line2{
-                &.switch{
+            .line,
+            .line2 {
+                &.switch {
                     width: 0;
                 }
             }
 
-            .croix{
+            .croix {
                 transform: rotate(45deg);
                 position: absolute;
                 width: 0;
             }
 
-            .croix2{
+            .croix2 {
                 transform: rotate(-45deg);
                 position: absolute;
                 width: 0;
             }
 
-            .croix, .croix2{
-                &.switch{
+            .croix,
+            .croix2 {
+                &.switch {
                     width: 60%;
                 }
             }
 
-            .croix2{
+            .croix2 {
                 transition-delay: .12s;
             }
         }
 
-    .containerTimelineMobile{
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        left: 0;
-        top: 0;
-        z-index: -1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: $bleu;
-        opacity: 0;
-        transition: .75s cubic-bezier(.25, 0, 0, 1);
-
-        &.switch{
-            opacity: .9;
-        }
-
-        .wrapperTimelineMobile{
-            width: fit-content;
-            height: fit-content;
+        .containerTimelineMobile {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: -1;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            flex-direction: column;
-            margin: 5%;
+            align-items: center;
+            background: $bleu;
+            opacity: 0;
+            transition: .75s cubic-bezier(.25, 0, 0, 1);
 
-            &__1{
-                align-items: start;
+            &.switch {
+                opacity: .9;
             }
 
-            .mobileWorkShopButton{
-                display: block;
-                font-size: 15px;
-                letter-spacing: 1px;
-                color: $cyan;
-                font-family: 'littleTitle';
-                margin: 10% 0 10% 0;
-                opacity: 0;
-                padding: 10px;
+            .wrapperTimelineMobile {
+                width: fit-content;
+                height: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                flex-direction: column;
+                margin: 5%;
 
-                @media screen and (max-width: 539px) {
-                    font-size: 3.7vw;
-                    letter-spacing: .2vw;
-                    margin: 7% 0 7% 0;
+                &__1 {
+                    align-items: start;
+                }
+
+                .mobileWorkShopButton {
+                    display: block;
+                    font-size: 15px;
+                    letter-spacing: 1px;
+                    color: $cyan;
+                    font-family: 'littleTitle';
+                    margin: 10% 0 10% 0;
+                    opacity: 0;
+                    padding: 10px;
+
+                    @media screen and (max-width: 539px) {
+                        font-size: 3.5vw;
+                        letter-spacing: .2vw;
+                        margin: 7% 0 7% 0;
+                    }
+
                 }
 
             }
 
         }
-
     }
-}
 
     ////TIMELINE///
     .containerTimeline {
-        @media screen and(min-width: 1025px){
-
-        display: none;
-        &.visible{
-            width: fit-content;
-            height: fit-content;
-            position: absolute;
-            top: 27.7vh;
-            z-index: 10;
-            display: flex;
-            right: 0;
-            flex-direction: column;
-            align-items: flex-end;
-            padding: 25px 18px 25px 25px;
-            overflow: hidden;
-            transition: .75s cubic-bezier(.75, 0, 0, 1);
-            clip-path: inset(0 0 0 70%);
-            text-align: center;
-            pointer-events: none;
-            display: flex;
-        }
-                    
-    }
+        width: fit-content;
+        height: fit-content;
+        position: absolute;
+        top: 27.7vh;
+        z-index: 10;
+        display: flex;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 25px 18px 25px 25px;
+        overflow: hidden;
+        transition: .75s cubic-bezier(.75, 0, 0, 1);
+        clip-path: inset(0 0 0 70%);
+        text-align: center;
+        pointer-events: none;
 
         @media screen and (max-width: 1024px) {
             display: none;
@@ -4318,4 +3890,3 @@
         font-family: "text";
         src: url("/assets/font/titilliumweb-regular.woff2") format("woff2"), url("/assets/font/titilliumweb-regular.woff") format("woff");
     }
-
