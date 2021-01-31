@@ -607,7 +607,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__14 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -619,7 +619,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__14 .containerPara__3 .para .text {
     font-size: 3.5vw;
   }
@@ -673,7 +673,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__13 .containerPara__1 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -736,7 +736,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__13 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -746,6 +746,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__13 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__13 .containerPara__3 {
@@ -799,7 +805,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__13 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -811,7 +817,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__13 .containerPara__3 .para .text {
     font-size: 3.5vw;
   }
@@ -867,7 +873,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__13 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -877,6 +883,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__13 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__12 .containerPara__2 {
@@ -924,7 +936,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__12 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -934,6 +946,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__12 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__12 .containerPara__3 {
@@ -987,7 +1005,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__12 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -999,7 +1017,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__12 .containerPara__3 .para .text {
     font-size: 3.5vw;
   }
@@ -1055,7 +1073,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__12 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1065,6 +1083,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__12 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__11 .containerPara__2 {
@@ -1112,7 +1136,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__11 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1122,6 +1146,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__11 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__11 .containerPara__3 {
@@ -1175,7 +1205,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__11 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1187,7 +1217,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__11 .containerPara__3 .para .text {
     font-size: 3.5vw;
   }
@@ -1198,9 +1228,9 @@ canvas.hologramDefault {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1213,8 +1243,8 @@ canvas.hologramDefault {
 }
 
 .workShopContainer .contentContainer__11 .containerPara__4 .para {
+  margin: 0 0 155vh 22vw !important;
   width: 25%;
-  margin: 0 22vw 155vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1244,7 +1274,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__11 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1256,7 +1286,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__11 .containerPara__4 .para .text {
     font-size: 3.5vw;
   }
@@ -1307,7 +1337,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__10 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1317,6 +1347,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__10 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__10 .containerPara__3 {
@@ -1340,7 +1376,7 @@ canvas.hologramDefault {
 
 .workShopContainer .contentContainer__10 .containerPara__3 .para {
   width: 25%;
-  margin: 0 22vw 155vh 0;
+  margin: 0 22vw 22vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1370,7 +1406,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__10 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1382,7 +1418,7 @@ canvas.hologramDefault {
   color: #4cc9f0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__10 .containerPara__3 .para .text {
     font-size: 3.5vw;
   }
@@ -1401,8 +1437,14 @@ canvas.hologramDefault {
           align-items: center;
 }
 
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__10 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
+}
+
 .workShopContainer .contentContainer__10 .containerPara__4 .para {
-  margin: 0 0 150vh 22vw;
+  margin: 0 0 155vh 22vw !important;
   width: 25%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1433,7 +1475,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__10 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1443,6 +1485,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__10 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__9 .containerPara__2 {
@@ -1490,7 +1538,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__9 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1500,6 +1548,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__9 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__9 .containerPara__3 {
@@ -1544,7 +1598,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__9 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1554,6 +1608,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__9 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__9 .containerPara__4 {
@@ -1569,9 +1629,15 @@ canvas.hologramDefault {
           align-items: center;
 }
 
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__9 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
+}
+
 .workShopContainer .contentContainer__9 .containerPara__4 .para {
-  margin: 0 0 100vh 22vw;
   width: 25%;
+  margin: 0 0 0 22vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1592,6 +1658,11 @@ canvas.hologramDefault {
     margin: 5% !important;
     width: 90% !important;
   }
+  .workShopContainer .contentContainer__9 .containerPara__4 .para iframe {
+    margin: 2.3vh auto 2.3vh auto;
+    width: 100%;
+    height: 31vh;
+  }
 }
 
 .workShopContainer .contentContainer__9 .containerPara__4 .para .subtitle {
@@ -1601,7 +1672,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__9 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1611,6 +1682,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__9 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__8 .containerPara__2 {
@@ -1658,7 +1735,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__8 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1668,6 +1745,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__8 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__8 .containerPara__3 {
@@ -1681,6 +1764,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__8 .containerPara__3 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__8 .containerPara__3 .para {
@@ -1712,7 +1801,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__8 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1722,6 +1811,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__8 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__7 .containerPara__2 {
@@ -1769,7 +1864,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__7 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1779,6 +1874,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__7 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__7 .containerPara__3 {
@@ -1823,7 +1924,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__7 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1833,6 +1934,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__7 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__7 .containerPara__4 {
@@ -1846,6 +1953,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__7 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__7 .containerPara__4 .para {
@@ -1880,7 +1993,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__7 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1890,6 +2003,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__7 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__6 .containerPara__2 {
@@ -1937,7 +2056,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__6 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -1947,6 +2066,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__6 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__6 .containerPara__3 {
@@ -1991,7 +2116,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__6 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2001,6 +2126,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__6 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__6 .containerPara__4 {
@@ -2014,6 +2145,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__6 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__6 .containerPara__4 .para {
@@ -2048,7 +2185,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__6 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2058,6 +2195,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__6 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__5 .containerPara__2 {
@@ -2105,7 +2248,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__5 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2115,6 +2258,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__5 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__5 .containerPara__3 {
@@ -2159,7 +2308,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__5 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2169,6 +2318,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__5 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__5 .containerPara__4 {
@@ -2182,6 +2337,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__5 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__5 .containerPara__4 .para {
@@ -2207,6 +2368,11 @@ canvas.hologramDefault {
     margin: 5% !important;
     width: 90% !important;
   }
+  .workShopContainer .contentContainer__5 .containerPara__4 .para .contenu {
+    margin: 2.3vh auto 2.3vh auto;
+    width: 109%;
+    height: 31vh;
+  }
 }
 
 .workShopContainer .contentContainer__5 .containerPara__4 .para .subtitle {
@@ -2216,7 +2382,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__5 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2226,6 +2392,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__5 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__4 .containerPara__2 {
@@ -2273,7 +2445,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__4 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2283,6 +2455,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__4 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__4 .containerPara__3 {
@@ -2327,7 +2505,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__4 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2337,6 +2515,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__4 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__4 .containerPara__4 {
@@ -2350,6 +2534,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__4 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__4 .containerPara__4 .para {
@@ -2384,7 +2574,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__4 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2394,6 +2584,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__4 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__2 {
@@ -2441,7 +2637,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__3 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2451,6 +2647,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__3 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__3 {
@@ -2495,7 +2697,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__3 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2505,6 +2707,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__3 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__4 {
@@ -2518,6 +2726,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__3 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__4 .para {
@@ -2552,7 +2766,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__3 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2562,6 +2776,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__3 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__4 .para #vr {
@@ -2578,6 +2798,14 @@ canvas.hologramDefault {
   display: flex;
 }
 
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__3 .containerPara__4 .para .contenu {
+    margin: 2.3vh auto 2.3vh auto;
+    width: 100%;
+    height: 31vh;
+  }
+}
+
 .workShopContainer .contentContainer__3 .containerPara__4 .para .contenu .contenu_img--default_2 {
   position: absolute;
   top: 0;
@@ -2591,19 +2819,35 @@ canvas.hologramDefault {
   opacity: 1;
 }
 
-.workShopContainer .contentContainer__3 .containerPara__4 .para .contenu .contenu_img--hover_2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/banksy_bot.e8abe959.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 5;
-  opacity: 0;
-  -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+@media screen and (min-width: 1025px) {
+  .workShopContainer .contentContainer__3 .containerPara__4 .para .contenu .contenu_img--hover_2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/banksy_bot.e8abe959.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 5;
+    opacity: 0;
+    -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+    transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+  }
+  .workShopContainer .contentContainer__3 .containerPara__4 .para .contenu .contenu_img--hover_1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/Andy.93304aac.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 5;
+    opacity: 0;
+    -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+    transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
+  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__4 .para .contenu .contenu_img--default_1 {
@@ -2617,21 +2861,6 @@ canvas.hologramDefault {
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 1;
-}
-
-.workShopContainer .contentContainer__3 .containerPara__4 .para .contenu .contenu_img--hover_1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/Andy.93304aac.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 5;
-  opacity: 0;
-  -webkit-transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
-  transition: opacity 0.75s cubic-bezier(0.25, 0, 0, 1);
 }
 
 .workShopContainer .contentContainer__2 .containerPara__2 {
@@ -2679,7 +2908,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__2 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2689,6 +2918,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__2 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__2 .containerPara__3 {
@@ -2733,7 +2968,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__2 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2743,6 +2978,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__2 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__2 .containerPara__4 {
@@ -2756,6 +2997,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__2 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__2 .containerPara__4 .para {
@@ -2790,7 +3037,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__2 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2800,6 +3047,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__2 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__2 {
@@ -2847,7 +3100,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__1 .containerPara__2 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2857,6 +3110,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__1 .containerPara__2 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__3 {
@@ -2870,6 +3129,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__1 .containerPara__3 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__3 .para {
@@ -2901,7 +3166,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__1 .containerPara__3 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2911,6 +3176,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__1 .containerPara__3 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__4 {
@@ -2924,6 +3195,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__1 .containerPara__4 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__4 .para {
@@ -2958,7 +3235,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__1 .containerPara__4 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -2968,6 +3245,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__1 .containerPara__4 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__5 {
@@ -2981,6 +3264,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__1 .containerPara__5 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__5 .para {
@@ -3012,7 +3301,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__1 .containerPara__5 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -3022,6 +3311,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__1 .containerPara__5 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__6 {
@@ -3035,6 +3330,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__1 .containerPara__6 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__6 .para {
@@ -3069,7 +3370,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__1 .containerPara__6 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -3079,6 +3380,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__1 .containerPara__6 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__7 {
@@ -3092,6 +3399,12 @@ canvas.hologramDefault {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .workShopContainer .contentContainer__1 .containerPara__7 {
+    margin: 40% 0 40% 0;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__7 .para {
@@ -3123,7 +3436,7 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
+@media screen and (max-width: 539px) {
   .workShopContainer .contentContainer__1 .containerPara__7 .para .subtitle {
     font-size: 5.2vw;
   }
@@ -3133,6 +3446,12 @@ canvas.hologramDefault {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
+}
+
+@media screen and (max-width: 539px) {
+  .workShopContainer .contentContainer__1 .containerPara__7 .para .text {
+    font-size: 3.5vw;
+  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__7 .para .text .greta {
@@ -3166,107 +3485,6 @@ canvas.hologramDefault {
 @media screen and (max-width: 1440px) {
   .workShopContainer .contentContainer .containerPara__1 .para, .workShopContainer .contentContainer .containerPara__3 .para {
     width: 35%;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .workShopContainer .contentContainer .title {
-    margin-bottom: 30vh !important;
-  }
-  .workShopContainer .contentContainer .para {
-    width: 50% !important;
-  }
-  .workShopContainer .contentContainer__14 .containerPara__3 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__13 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__12 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__11 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__10 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__9 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__8 .containerPara__3 .para {
-    margin: 0 22vw 22vh 0;
-  }
-  .workShopContainer .contentContainer__7 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__6 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__6 .containerPara__4 .desktop {
-    display: none;
-  }
-  .workShopContainer .contentContainer__5 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__4 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__3 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__2 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__1 .containerPara__7 .para {
-    width: 25%;
-    margin: 0 22vw 22vh 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .workShopContainer .contentContainer__14 .containerPara__3 .para {
-    margin: 0 22vw 22vh 0;
-  }
-  .workShopContainer .contentContainer__13 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__12 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__11 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__10 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__9 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__8 .containerPara__3 .para {
-    margin: 0 22vw 22vh 0;
-  }
-  .workShopContainer .contentContainer__7 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__6 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__5 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__4 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__3 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__2 .containerPara__4 .para {
-    margin: 0 0 22vh 22vw;
-  }
-  .workShopContainer .contentContainer__1 .containerPara__7 .para {
-    width: 25%;
-    margin: 0 22vw 22vh 0;
   }
 }
 
@@ -3465,17 +3683,6 @@ canvas.hologramDefault {
   -webkit-transform: scale(1);
           transform: scale(1);
   opacity: 0.5;
-}
-
-.creditContainer .scrollContainer__7 .r1, .creditContainer .scrollContainer__13 .r1 {
-  bottom: 10%;
-  left: 50% !important;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.creditContainer .scrollContainer__7 .r2, .creditContainer .scrollContainer__13 .r2 {
-  display: none;
 }
 
 .littleTitle {
@@ -3769,6 +3976,48 @@ canvas.hologramDefault {
   100% {
     -webkit-filter: drop-shadow(0 0 4px #4cc9f0);
             filter: drop-shadow(0 0 4px #4cc9f0);
+  }
+}
+
+@-webkit-keyframes blinkLine {
+  0% {
+    opacity: .8;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: .8;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blinkLine {
+  0% {
+    opacity: .8;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: .8;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -5773,7 +6022,7 @@ canvas.hologramDefault {
 
 @media screen and (max-width: 1024px) and (max-width: 539px) {
   .containerTimelineMobile .wrapperTimelineMobile .mobileWorkShopButton {
-    font-size: 3.7vw;
+    font-size: 3.5vw;
     letter-spacing: .2vw;
     margin: 7% 0 7% 0;
   }

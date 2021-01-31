@@ -24,7 +24,7 @@ body {
           transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  font-family: "littleTitle" !important;
+  font-family: 'littleTitle';
   color: #4cc9f0;
   font-size: 12px;
   letter-spacing: 1px;
@@ -736,12 +736,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__13 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__13 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -769,7 +763,7 @@ canvas.hologramDefault {
 
 .workShopContainer .contentContainer__13 .containerPara__3 .para {
   width: 25%;
-  margin: 0 22vw 22vh 0;
+  margin: 0 22vw 155vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -853,11 +847,6 @@ canvas.hologramDefault {
     margin: 5% !important;
     width: 90% !important;
   }
-  .workShopContainer .contentContainer__13 .containerPara__4 .para iframe {
-    margin: 2.3vh auto 40% auto;
-    width: 100%;
-    height: 31vh;
-  }
 }
 
 .workShopContainer .contentContainer__13 .containerPara__4 .para .subtitle {
@@ -865,12 +854,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__13 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__13 .containerPara__4 .para .text {
@@ -924,12 +907,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__12 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__12 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -949,12 +926,6 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-@media screen and (max-width: 1024px) {
-  .workShopContainer .contentContainer__12 .containerPara__3 {
-    margin: 40% 0 40% 0;
-  }
-}
-
 .workShopContainer .contentContainer__12 .containerPara__3 .para {
   width: 25%;
   margin: 0 22vw 22vh 0;
@@ -968,9 +939,6 @@ canvas.hologramDefault {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 @media screen and (max-width: 1024px) {
@@ -987,22 +955,10 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__12 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__12 .containerPara__3 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__12 .containerPara__3 .para .text {
-    font-size: 3.5vw;
-  }
 }
 
 .workShopContainer .contentContainer__12 .containerPara__4 {
@@ -1041,11 +997,6 @@ canvas.hologramDefault {
     margin: 5% !important;
     width: 90% !important;
   }
-  .workShopContainer .contentContainer__12 .containerPara__4 .para iframe {
-    margin: 2.3vh auto 40% auto;
-    width: 100%;
-    height: 31vh;
-  }
 }
 
 .workShopContainer .contentContainer__12 .containerPara__4 .para .subtitle {
@@ -1053,12 +1004,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__12 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__12 .containerPara__4 .para .text {
@@ -1112,12 +1057,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__11 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__11 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1137,12 +1076,6 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-@media screen and (max-width: 1024px) {
-  .workShopContainer .contentContainer__11 .containerPara__3 {
-    margin: 40% 0 40% 0;
-  }
-}
-
 .workShopContainer .contentContainer__11 .containerPara__3 .para {
   width: 25%;
   margin: 0 22vw 22vh 0;
@@ -1156,9 +1089,6 @@ canvas.hologramDefault {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 @media screen and (max-width: 1024px) {
@@ -1175,22 +1105,10 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__11 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__11 .containerPara__3 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__11 .containerPara__3 .para .text {
-    font-size: 3.5vw;
-  }
 }
 
 .workShopContainer .contentContainer__11 .containerPara__4 {
@@ -1198,23 +1116,17 @@ canvas.hologramDefault {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-@media screen and (max-width: 1024px) {
-  .workShopContainer .contentContainer__11 .containerPara__4 {
-    margin: 40% 0 40% 0;
-  }
-}
-
 .workShopContainer .contentContainer__11 .containerPara__4 .para {
+  margin: 0 0 150vh 22vw;
   width: 25%;
-  margin: 0 22vw 155vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1244,22 +1156,10 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__11 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__11 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__11 .containerPara__4 .para .text {
-    font-size: 3.5vw;
-  }
 }
 
 .workShopContainer .contentContainer__10 .containerPara__2 {
@@ -1307,12 +1207,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__10 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__10 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1332,15 +1226,9 @@ canvas.hologramDefault {
           align-items: center;
 }
 
-@media screen and (max-width: 1024px) {
-  .workShopContainer .contentContainer__10 .containerPara__3 {
-    margin: 40% 0 40% 0;
-  }
-}
-
 .workShopContainer .contentContainer__10 .containerPara__3 .para {
   width: 25%;
-  margin: 0 22vw 155vh 0;
+  margin: 0 22vw 22vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1351,9 +1239,6 @@ canvas.hologramDefault {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 @media screen and (max-width: 1024px) {
@@ -1370,22 +1255,10 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__10 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__10 .containerPara__3 .para .text {
   font-family: "text";
   text-align: justify;
   color: #4cc9f0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__10 .containerPara__3 .para .text {
-    font-size: 3.5vw;
-  }
 }
 
 .workShopContainer .contentContainer__10 .containerPara__4 {
@@ -1431,12 +1304,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__10 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__10 .containerPara__4 .para .text {
@@ -1490,12 +1357,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__9 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__9 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1542,12 +1403,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__9 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__9 .containerPara__3 .para .text {
@@ -1601,12 +1456,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__9 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__9 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1658,12 +1507,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__8 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__8 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1710,12 +1553,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__8 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__8 .containerPara__3 .para .text {
@@ -1769,12 +1606,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__7 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__7 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1821,12 +1652,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__7 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__7 .containerPara__3 .para .text {
@@ -1880,12 +1705,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__7 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__7 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1937,12 +1756,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__6 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__6 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -1989,12 +1802,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__6 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__6 .containerPara__3 .para .text {
@@ -2048,12 +1855,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__6 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__6 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2105,12 +1906,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__5 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__5 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2157,12 +1952,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__5 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__5 .containerPara__3 .para .text {
@@ -2216,12 +2005,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__5 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__5 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2273,12 +2056,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__4 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__4 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2325,12 +2102,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__4 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__4 .containerPara__3 .para .text {
@@ -2384,12 +2155,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__4 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__4 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2441,12 +2206,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__3 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__3 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2493,12 +2252,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__3 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__3 .para .text {
@@ -2550,12 +2303,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__3 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__3 .containerPara__4 .para .text {
@@ -2679,12 +2426,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__2 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__2 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2731,12 +2472,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__2 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__2 .containerPara__3 .para .text {
@@ -2790,12 +2525,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__2 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__2 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2847,12 +2576,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__1 .containerPara__2 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__1 .containerPara__2 .para .text {
   font-family: "text";
   text-align: justify;
@@ -2899,12 +2622,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__1 .containerPara__3 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__3 .para .text {
@@ -2958,12 +2675,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__1 .containerPara__4 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__1 .containerPara__4 .para .text {
   font-family: "text";
   text-align: justify;
@@ -3010,12 +2721,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__1 .containerPara__5 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__5 .para .text {
@@ -3069,12 +2774,6 @@ canvas.hologramDefault {
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__1 .containerPara__6 .para .subtitle {
-    font-size: 5.2vw;
-  }
-}
-
 .workShopContainer .contentContainer__1 .containerPara__6 .para .text {
   font-family: "text";
   text-align: justify;
@@ -3121,12 +2820,6 @@ canvas.hologramDefault {
   font-size: 25px;
   color: #f72585;
   margin: 0;
-}
-
-@media screen and (max-width: 1024px) and (max-width: 539px) {
-  .workShopContainer .contentContainer__1 .containerPara__7 .para .subtitle {
-    font-size: 5.2vw;
-  }
 }
 
 .workShopContainer .contentContainer__1 .containerPara__7 .para .text {
@@ -3467,17 +3160,6 @@ canvas.hologramDefault {
   opacity: 0.5;
 }
 
-.creditContainer .scrollContainer__7 .r1, .creditContainer .scrollContainer__13 .r1 {
-  bottom: 10%;
-  left: 50% !important;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.creditContainer .scrollContainer__7 .r2, .creditContainer .scrollContainer__13 .r2 {
-  display: none;
-}
-
 .littleTitle {
   z-index: 3 !important;
   width: 150px !important;
@@ -3499,8 +3181,7 @@ canvas.hologramDefault {
   opacity: 1 !important;
 }
 
-.title,
-.littleTitle {
+.title, .littleTitle {
   width: 50vw;
   -webkit-animation: blinkTitle 8s infinite ease-in-out alternate;
           animation: blinkTitle 8s infinite ease-in-out alternate;
@@ -3508,15 +3189,13 @@ canvas.hologramDefault {
 }
 
 @media screen and (max-width: 539px) {
-  .title,
-  .littleTitle {
+  .title, .littleTitle {
     width: 90vw;
   }
 }
 
 .title path,
-.title line,
-.littleTitle path,
+.title line, .littleTitle path,
 .littleTitle line {
   fill: none;
   stroke: #4CC9F0;
@@ -3772,10 +3451,6 @@ canvas.hologramDefault {
   }
 }
 
-.startHidden {
-  display: none !important;
-}
-
 .homeContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3872,10 +3547,7 @@ canvas.hologramDefault {
   border: none;
 }
 
-.btn__mainStart .borderRight,
-.btn__mainStart .borderTop,
-.btn__mainStart .borderLeft,
-.btn__mainStart .borderBottom {
+.btn__mainStart .borderRight, .btn__mainStart .borderTop, .btn__mainStart .borderLeft, .btn__mainStart .borderBottom {
   background: #4cc9f0;
   position: absolute;
 }
@@ -4269,6 +3941,9 @@ canvas.hologramDefault {
 
 @media screen and (max-width: 1024px) {
   .mobileIndication {
+    display: none;
+  }
+  .mobileIndication.visible {
     position: absolute;
     top: 13%;
     left: 50%;
@@ -4292,12 +3967,12 @@ canvas.hologramDefault {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     opacity: 0;
     -webkit-transition: 1.5s cubic-bezier(0.25, 0, 0, 1);
     transition: 1.5s cubic-bezier(0.25, 0, 0, 1);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 
@@ -4403,35 +4078,41 @@ canvas.hologramDefault {
 }
 
 .cursorIndication {
-  position: absolute;
-  top: 6.8%;
-  left: 50%;
-  z-index: 10;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  height: 20px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  opacity: 0;
-  -webkit-transition: 1.5s cubic-bezier(0.25, 0, 0, 1);
-  transition: 1.5s cubic-bezier(0.25, 0, 0, 1);
+  display: none;
+}
+
+@media screen and (min-width: 1025px) {
+  .cursorIndication.visible {
+    position: absolute;
+    top: 6.8%;
+    left: 50%;
+    z-index: 10;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    height: 20px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    opacity: 0;
+    -webkit-transition: 1.5s cubic-bezier(0.25, 0, 0, 1);
+    transition: 1.5s cubic-bezier(0.25, 0, 0, 1);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 .cursorIndication.switch {
@@ -5669,10 +5350,7 @@ canvas.hologramDefault {
 }
 
 @media screen and (max-width: 1024px) {
-  .hamburgerContainer .line,
-  .hamburgerContainer .line2,
-  .hamburgerContainer .croix,
-  .hamburgerContainer .croix2 {
+  .hamburgerContainer .line, .hamburgerContainer .line2, .hamburgerContainer .croix, .hamburgerContainer .croix2 {
     width: 60%;
     background: #4cc9f0;
     height: 1px;
@@ -5684,8 +5362,7 @@ canvas.hologramDefault {
     -webkit-transition-delay: .12s;
             transition-delay: .12s;
   }
-  .hamburgerContainer .line.switch,
-  .hamburgerContainer .line2.switch {
+  .hamburgerContainer .line.switch, .hamburgerContainer .line2.switch {
     width: 0;
   }
   .hamburgerContainer .croix {
@@ -5700,8 +5377,7 @@ canvas.hologramDefault {
     position: absolute;
     width: 0;
   }
-  .hamburgerContainer .croix.switch,
-  .hamburgerContainer .croix2.switch {
+  .hamburgerContainer .croix.switch, .hamburgerContainer .croix2.switch {
     width: 60%;
   }
   .hamburgerContainer .croix2 {
@@ -5779,35 +5455,41 @@ canvas.hologramDefault {
   }
 }
 
-.containerTimeline {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  position: absolute;
-  top: 27.7vh;
-  z-index: 10;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  right: 0;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  padding: 25px 18px 25px 25px;
-  overflow: hidden;
-  -webkit-transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
-  transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
-  -webkit-clip-path: inset(0 0 0 70%);
-          clip-path: inset(0 0 0 70%);
-  text-align: center;
-  pointer-events: none;
+@media screen and (min-width: 1025px) {
+  .containerTimeline {
+    display: none;
+  }
+  .containerTimeline.visible {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 27.7vh;
+    z-index: 10;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    right: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    padding: 25px 18px 25px 25px;
+    overflow: hidden;
+    -webkit-transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
+    transition: 0.75s cubic-bezier(0.75, 0, 0, 1);
+    -webkit-clip-path: inset(0 0 0 70%);
+            clip-path: inset(0 0 0 70%);
+    text-align: center;
+    pointer-events: none;
+    display: flex;
+  }
 }
 
 @media screen and (max-width: 1024px) {

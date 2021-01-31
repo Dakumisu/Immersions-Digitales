@@ -49643,8 +49643,7 @@ var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1);
 var planePanneauRue1 = new THREE.PlaneGeometry(11.92, 3.6, 1, 1);
 var planePanneauRue2 = new THREE.PlaneGeometry(2.75, 5.9, 1, 1);
 var planePanneauRue3 = new THREE.PlaneGeometry(34.75, 3.2, 1, 1);
-var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1); // var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
-
+var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
 var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
 var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1); /////// INITIATION DES TEXTURES ///////
 
@@ -50498,8 +50497,7 @@ planeMesh14.position.y = 17;
 scene.add(planeMeshPanneau);
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
 planeMeshPanneau.rotation.set(-.035, -.74, -.07);
-planeMeshPanneau.scale.set(0.0001, 0.0001, 0.0001); // sign.position.set(7.8, -3.05, -4)
-
+planeMeshPanneau.scale.set(0.0001, 0.0001, 0.0001);
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
 planeMesh4.rotation.y = Math.PI / 2;
@@ -52246,11 +52244,11 @@ function animationEnterWorkshop() {
   } else if (idPlane[11]) {
     contentContainer__11.style.display = "block";
     scrollContainer__11.style.display = "flex";
-    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM"; // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
+    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM";
   } else if (idPlane[10]) {
     contentContainer__10.style.display = "block";
     scrollContainer__10.style.display = "flex";
-    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA"; // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
+    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA";
   } else if (idPlane[9]) {
     contentContainer__9.style.display = "block";
     scrollContainer__9.style.display = "flex";
@@ -55487,7 +55485,11 @@ function handleMouseLeave(e) {
 document.addEventListener('mousemove', function (e) {
   indicClickOnPlane.style.top = e.pageY - 20 / 2 + "px";
   indicClickOnPlane.style.left = e.pageX - 20 / 2 + "px";
-}); /////// TIMELINE REDIRECTION ///////
+}); // var timelineLineIndication = gsap.timeline({repeat: -1});
+// timelineLineIndication.to('.lineIndication', { duration: 1, clipPath: "inset(100% 0% 0% 0%)",  ease: "expo.inOut", delay: -.65 });
+// timelineLineIndication.to('.lineIndication', { duration: 0, clipPath: "inset(0% 0% 100% 0%)",  ease: "expo.inOut" });
+// timelineLineIndication.to('.lineIndication', { duration: 1.5, clipPath: "inset(0% 0% 0% 0%)",  ease: "expo.inOut" });
+/////// TIMELINE REDIRECTION ///////
 
 workShopButton1.addEventListener('click', function () {
   // WORKSHOP 1
@@ -59266,7 +59268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56641" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7623" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

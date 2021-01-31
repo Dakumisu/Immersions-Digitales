@@ -180,7 +180,7 @@ bgLoopMusic.volume = volumeBg;
 let rpzMusic = document.createElement("audio"); 
 rpzMusic.src = rpzImport; 
 rpzMusic.loop = false;
-rpzMusic.volume = 0.03;
+rpzMusic.volume = 0.05;
 
 let soundHover = document.createElement("audio"); 
 soundHover.src = soundHoverImport; 
@@ -1843,9 +1843,7 @@ queue.on("complete", event => {
             cursor.style.opacity = 1
             cursorShapeOut.style.opacity = 1
             cursor.classList.remove('startHidden')
-            // cursorShapeOut.classList.remove('startHidden')
-            indicClickOnPlane.classList.remove('startHidden')
-            cursorSize.classList.remove('startHidden')
+            cursorShapeOut.classList.remove('startHidden')
         },50)
     }
 
@@ -2053,7 +2051,7 @@ queue.loadFile('../assets/img/tombi/1A/andreas.jpg');
 queue.loadFile('../assets/img/tombi/1A/antoine.jpg');
 queue.loadFile('../assets/img/tombi/1A/antoineM.jpg');
 queue.loadFile('../assets/img/tombi/1A/arthur.jpg');
-queue.loadFile('../assets/img/tombi/1A/arthurV.jpg');
+queue.loadFile('../assets/img/tombi/1A/arthurT.jpg');
 queue.loadFile('../assets/img/tombi/1A/auriane.jpg');
 queue.loadFile('../assets/img/tombi/1A/cantin.jpg');
 queue.loadFile('../assets/img/tombi/1A/celiaA.jpg');
@@ -2144,10 +2142,9 @@ function handleFileComplete(){}
 
 function startImmersion() {
 
-        cursorIndication.classList.remove('startHidden')
-        mobileIndication.classList.remove('startHidden')
-        containerTimeline.classList.remove('startHidden')
-        hamburgerContainer.classList.remove('startHidden')
+        cursorIndication.classList.add('visible')
+        mobileIndication.classList.add('visible')
+        containerTimeline.classList.add('visible')
 
         startMenuActive = false;
         bgMusic.play();
@@ -2707,12 +2704,10 @@ function animationEnterWorkshop() {
         contentContainer__11.style.display = "block"
         scrollContainer__11.style.display = "flex"
         contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM"
-        // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
     } else if (idPlane[10]) {
         contentContainer__10.style.display = "block"
         scrollContainer__10.style.display = "flex"
         contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA"
-        // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
     } else if (idPlane[9]) {
         contentContainer__9.style.display = "block"
         scrollContainer__9.style.display = "flex"
@@ -2762,8 +2757,8 @@ function animationEnterWorkshop() {
     if (window.matchMedia("(max-width: 1024px)").matches) {
     gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut"})
     gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-    gsap.to(logo.scale, 1.5, { z:0, y:0, x: 0,ease: "power3.inOut" })
-    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    gsap.to(logo.scale, 1.5, { z:0.0001, y:0.0001, x: 0.0001,ease: "power3.inOut" })
+    gsap.to(logo.position, 1.5, { z: -20, y: .35, ease: "power3.inOut" })
     }
 
     
@@ -3003,8 +2998,6 @@ function functionBtnBackHome() {
     
     workshopActive = false
     homeActive = true;
-
-    // fadeInAudio(bgLoopMusic)
 
     cursorOnVideo = false
     if (!cursorOnVideo) {
@@ -3272,9 +3265,6 @@ function functionBtnStart() {
     if (switchBtn) {
         bgLoopMusic.play();
     }
-
-    // fadeInAudio(bgLoopMusic)
-
 
     TweenMax.to(btnStart, 1.7, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
     TweenMax.to(homeMask, 3, { opacity: 0, ease: "power3.inOut" })
@@ -6287,17 +6277,6 @@ document.onkeydown = function(e) {
             break;
     }
 };
-
-document.querySelector("#dl_artgen").addEventListener('click', function () {
-    var myWindow;
-    
-    // function openWin() {
-    myWindow = window.open("http://artgeneratif.immersions-digitales.fr/");
-    setTimeout(() => {
-        myWindow.close();
-    }, 300);
-    // }
-})
 
 let variation = 0;
 let variationShaders = 0;
