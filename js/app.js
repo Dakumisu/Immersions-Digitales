@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import * as POSTPROCESSING from "postprocessing";
 import { Interaction } from 'three.interaction';
 import TouchSweep from 'touchsweep';
 import createjs from 'preload-js';
@@ -315,7 +314,6 @@ var soundOutPlane = new Howl({
     volume: volumePlane
 });
 
-
 ////////// SCENE //////////
 var scene = new THREE.Scene();
 
@@ -349,24 +347,6 @@ window.addEventListener('resize', () => {
 
 /////// MESH INTERACTION ///////
 const interaction = new Interaction(renderer, scene, camera);
-
-// /////// POSTPROCESSING ///////
-// let composer = new POSTPROCESSING.EffectComposer(renderer);
-
-// composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
-
-// const effectPass = new POSTPROCESSING.EffectPass(
-//     camera,
-//     new POSTPROCESSING.RealisticBokehEffect()
-// );
-// effectPass.renderToScreen = true;
-
-// composer.addPass(effectPass);
-
-// //POUR LES SHADERS
-// let customPass = new POSTPROCESSING.ShaderPass({ vertexShader, fragmentShader });
-// customPass.renderToScreen = true;
-// composer.addPass(customPass);
 
 let rotateZ = -.2; // PLANES ROTATION
 
@@ -903,7 +883,6 @@ var planePanneauRue1 = new THREE.PlaneGeometry(11.92, 3.6, 1, 1);
 var planePanneauRue2 = new THREE.PlaneGeometry(2.75, 5.9, 1, 1);
 var planePanneauRue3 = new THREE.PlaneGeometry(34.75, 3.2, 1, 1);
 var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
-// var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
 var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
 var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1);
 
@@ -1644,6 +1623,7 @@ let indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 let timelineIndication = document.querySelector('.indication');
 let cursorIndication = document.querySelector('.cursorIndication');
 let mobileIndication = document.querySelector('.mobileIndication');
+let containerArrowIndication = document.querySelector('.containerArrowIndication');
 
 let workShopContainer = document.querySelector('.workShopContainer');
 let creditContainer = document.querySelector('.creditContainer');
@@ -1706,6 +1686,9 @@ let contentContainer__1 = document.querySelector('.contentContainer__1');
 let scrollContainer__1 = document.querySelector('.scrollContainer__1');
 let scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
 
+let timelineArrowIndication = gsap.timeline({ repeat: -1, paused: true});
+timelineArrowIndication.to('.containerArrowIndication .arrow', 1, { opacity: 1, stagger: 0.3, ease: "expo.easeOut"  })
+timelineArrowIndication.to('.containerArrowIndication .arrow', 1, { opacity: 0, stagger: 0.3, ease: "expo.easeOut", delay: -.5})
 
 hamburgerContainer.addEventListener('click', function(){
     if( switchHamburger == false){
@@ -2301,7 +2284,6 @@ queue.loadFile(yvan1A);
 
 queue.loadFile(GLTFLoader);
 queue.loadFile(THREE);
-// queue.loadFile(POSTPROCESSING);
 queue.loadFile(Interaction);
 queue.loadFile(createjs);
 queue.loadFile(TouchSweep);
@@ -2415,7 +2397,7 @@ function startImmersion() {
                 sm2.classList.add('switchPointer')
                 sm3.classList.add('switchPointer')
                 musicBtn.classList.add('switchPointer')
-            }, 550)
+            }, 350)
             }, 3200)
                             
         }, 4500)
@@ -2495,6 +2477,22 @@ function switchMusic() {
     }, 1000);
 }
 
+window.addEventListener('click', function(){
+    
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        let html = document.querySelector('html');
+            if (html.requestFullscreen) {
+                html.requestFullscreen();
+            } else if (html.mozRequestFullScreen) {
+                html.mozRequestFullScreen();
+            } else if (html.webkitRequestFullscreen) {
+                html.webkitRequestFullscreen();
+            } else if (html.msRequestFullscreen) {
+                html.msRequestFullscreen();
+            }
+        }
+})
+
 musicBtn.addEventListener('click', function(){
     switchMusic() 
     if (!stopMusic) {
@@ -2538,7 +2536,6 @@ function cursorHoverOut() {
         if (indicHover == "plane") { 
             soundOutPlane.play(); 
         }
-        // indicClickOnID.classList.remove("planeHover")
         indicHover = ""
     }
 }
@@ -2879,12 +2876,10 @@ function animationEnterWorkshop() {
         contentContainer__11.style.display = "block"
         scrollContainer__11.style.display = "flex"
         contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM?enablejsapi=1&html5=1"
-        // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
     } else if (idPlane[10]) {
         contentContainer__10.style.display = "block"
         scrollContainer__10.style.display = "flex"
         contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA?enablejsapi=1&html5=1"
-        // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
     } else if (idPlane[9]) {
         contentContainer__9.style.display = "block"
         scrollContainer__9.style.display = "flex"
@@ -2969,7 +2964,42 @@ function animationEnterWorkshop() {
 
     }
 
-    gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 1.75 })
+        TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 1.5, ease: "power3.inOut" })
+        setTimeout(function() {
+            btnBackWorkshop.classList.remove('close')
+            btnBackWorkshop.disabled = false
+            clickPossible = true
+            containerArrowIndication.classList.add('switch')
+            timelineArrowIndication.play();
+        }, 2000)
+    
+        setTimeout(function() {
+            if(workshopActive) {
+                workShopContainer.classList.add('switchPlane');
+                scrollPossible = true
+            }
+        }, 2750)
+    }
+    else{
+        gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2.75 })
+            TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
+        setTimeout(function() {
+            btnBackWorkshop.classList.remove('close')
+            btnBackWorkshop.disabled = false
+            clickPossible = true
+            containerArrowIndication.classList.add('switch')
+            timelineArrowIndication.play();
+        }, 3000)
+    
+        setTimeout(function() {
+            if(workshopActive) {
+                workShopContainer.classList.add('switchPlane');
+                scrollPossible = true
+            }
+        }, 3750)
+    }
 
     btnBackWorkshop.classList.add('close')
     btnBackWorkshop.disabled = true
@@ -3549,6 +3579,14 @@ btnStart.addEventListener('mouseenter', function() {
     cursorShapeIn.classList.add('mouseover');
     soundHover.play();
     }
+    else  {
+        TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: -40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
+        TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut" });
+        TweenMax.to(btnStart, .5, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+        TweenMax.to(".spanContainerStartMouseover span", { duration: .5, translateY: 0, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut", delay: 1 });
+        TweenMax.to(".spanContainerStartMouseout span", { duration: .5, translateY: 40, stagger: { each: 0.01, from: "center" }, ease: "power3.inOut", delay: 1 });
+        TweenMax.to(btnStart, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut", delay: 1 });
+        }
 })
 
 btnStart.addEventListener('mouseleave', function() {
@@ -3589,6 +3627,14 @@ btnBackHome.addEventListener('mouseenter', function() {
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
     soundHover.play();
+    }
+    else{
+        TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power3.inOut" });
+        TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
+        TweenMax.to(btnBackHome, .5, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+        TweenMax.to(".spanContainerBackMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut", delay:1 });
+        TweenMax.to(".spanContainerBackMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power3.inOut" , delay:1});
+        TweenMax.to(btnBackHome, .5, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut", delay:1 });
     }
 })
 
@@ -3642,6 +3688,14 @@ btnBackWorkshop.addEventListener('mouseenter', function() {
     cursorShapeIn.classList.add('mouseover');
     soundHover.play();
     }
+    else{
+        TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: -40, stagger: .027, ease: "power3.inOut" });
+        TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut" });
+        TweenMax.to(btnBackWorkshop, { color: "#09021e", background: "#4cc9f0", ease: "power3.inOut" });
+        TweenMax.to(".spanContainerBackWorkshopMouseover span", { duration: .5, translateY: 0, stagger: .027, ease: "power3.inOut", delay: 1 });
+        TweenMax.to(".spanContainerBackWorkshopMouseout span", { duration: .5, translateY: 40, stagger: .027, ease: "power3.inOut", delay: 1 });
+        TweenMax.to(btnBackWorkshop, { color: "#4cc9f0", background: "#09021e", ease: "power3.inOut", delay: 1 });
+    }
 })
 
 btnBackWorkshop.addEventListener('mouseleave', function() {
@@ -3659,10 +3713,10 @@ function posComparedToElementHeight(el) {
     let taillePopUpSplit = el.scrollHeight / 4
 
     if (camera.position.z >= -106 && el.scrollTop >= taillePopUpSplit * 2 && el.scrollTop < taillePopUpSplit * 3) {
-        varDelay = 1
+        varDelay = 1.4
         gsap.to(el, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
     } else if (el.scrollTop < taillePopUpSplit * 2 && el.scrollTop >= taillePopUpSplit) {
-        varDelay = .50
+        varDelay = .5
         gsap.to(el, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
     } else {
         gsap.to(el, 3, { opacity: 0, ease: "Power3.easeOut", delay: 0.25})
@@ -3900,6 +3954,13 @@ function backToPlane() {
     TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
     gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut", delay: 0.5 })
     
+    containerArrowIndication.classList.remove('switch')
+    setTimeout(function() {
+    timelineArrowIndication.restart();
+    timelineArrowIndication.pause();
+    containerArrowIndication.style.bottom = '-1.5%';
+    }, 750)
+    
     clickPossible = false
     
     setTimeout(function() {
@@ -3945,10 +4006,8 @@ function backToPlane() {
             contentContainer__12.children[4].children[0].children[1].src = ""
         } else if (idPlane[11]) {
             contentContainer__11.children[2].children[0].children[1].src = ""
-            // contentContainer__11.children[4].children[0].children[1].src = ""
         } else if (idPlane[10]) {
             contentContainer__10.children[2].children[0].children[1].src = ""
-            // contentContainer__10.children[4].children[0].children[1].src = ""
         } else if (idPlane[9]) {
             contentContainer__9.children[2].children[0].children[1].src = ""
             contentContainer__9.children[4].children[0].children[1].src = ""
@@ -4302,6 +4361,7 @@ littleTitleSvg.addEventListener('click', function() {
     window.location.replace('https://www.immersions-digitales.fr/');
 })
 
+
 ///// CUSTOM CURSOR /////
 const pixelRatio = window.devicePixelRatio;
 
@@ -4311,7 +4371,6 @@ Math.dist = (dx, dy) => {
 
 class Cursor {
     constructor(cursor) {
-        // this.container = window["cursor"];
         this.shape = cursor;
         this.translation = {
             x: 1,
@@ -4380,7 +4439,6 @@ let mouse = {
     y: -100,
 };
 
-// Just in case you need to scroll
 let scrollHeight = 0;
 window.addEventListener('scroll', function(e) {
     scrollHeight = window.scrollY
@@ -6096,6 +6154,12 @@ function checkScrollDirection(elContent) {
 }
 
 function scrollIntoWorkshop(elContent, elCredit) {
+    containerArrowIndication.classList.remove('switch')
+    setTimeout(function(){
+        containerArrowIndication.style.bottom = '-1.5%';
+    },750)
+
+    containerArrowIndication.style.bottom = elContent.scrollTop + 'px';
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         camera.position.z = scrollWorkshop(elContent)
         if (checkScrollDirection(elContent) == "down") {
@@ -6110,10 +6174,8 @@ function scrollIntoWorkshop(elContent, elCredit) {
                             contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
                 } else if (idPlane[11]) {
                             contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
-                            // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
                 } else if (idPlane[10]) {
                             contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
-                            // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
                 } else if (idPlane[9]) {
                             contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
                             contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
@@ -6121,25 +6183,18 @@ function scrollIntoWorkshop(elContent, elCredit) {
                             contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
                 } else if (idPlane[7]) {
                             contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
-                            // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
                 } else if (idPlane[6]) {
                             contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
-                            // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
                 } else if (idPlane[5]) {
                             contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
-                            // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
                 } else if (idPlane[4]) {
                             contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
-                            // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
                 } else if (idPlane[3]) {
                             contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
-                            // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
                 } else if (idPlane[2]) {
                             contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
-                            // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
                 } else if (idPlane[1]) {
                             contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
-                            // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
                 }
 
                 cursorOnVideo = false
@@ -6389,12 +6444,10 @@ document.onkeydown = function(e) {
 document.querySelector("#dl_artgen").addEventListener('click', function () {
     var myWindow;
     
-    // function openWin() {
     myWindow = window.open("http://artgeneratif.immersions-digitales.fr/");
     setTimeout(() => {
         myWindow.close();
     }, 300);
-    // }
 })
 
 
