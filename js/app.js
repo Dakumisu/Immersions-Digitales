@@ -1,9 +1,10 @@
 import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import * as POSTPROCESSING from "postprocessing";
+// import * as POSTPROCESSING from "postprocessing";
 import { Interaction } from 'three.interaction';
 import TouchSweep from 'touchsweep';
 import createjs from 'preload-js';
+import howlerjs from 'howler';
 
 import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
@@ -126,6 +127,111 @@ import credits from "../assets/img/ruelle/credits.jpg";
 
 import particle from "../assets/img/particle.png";
 
+// TROMBI 2A
+import alex2A from '../assets/img/trombi/2A/alex.jpg';
+import amandine2A from '../assets/img/trombi/2A/amandine.jpg'; 
+import annie2A from '../assets/img/trombi/2A/annie.jpg';
+import annita2A from '../assets/img/trombi/2A/annita.jpg';
+import aurore2A from '../assets/img/trombi/2A/aurore.jpg';
+import ben2A from '../assets/img/trombi/2A/ben.jpg';
+import carlaA2A from '../assets/img/trombi/2A/carlaA.jpg'; 
+import carlaS2A from '../assets/img/trombi/2A/carlaS.jpg';
+import clara2A from '../assets/img/trombi/2A/clara.jpg';
+import clemo2A from '../assets/img/trombi/2A/clemo.jpg';
+import eliottis2A from '../assets/img/trombi/2A/eliottis.jpg';
+import emeric2A from '../assets/img/trombi/2A/emeric.jpg';
+import enzoD2A from '../assets/img/trombi/2A/enzoD.jpg';
+import enzoF2A from '../assets/img/trombi/2A/enzoF.jpg';
+import flo2A from '../assets/img/trombi/2A/flo.jpg';
+import gael2A from '../assets/img/trombi/2A/gael.jpg';
+import gregoire2A from '../assets/img/trombi/2A/gregoire.jpg';
+import guigui2A from '../assets/img/trombi/2A/guigui.jpg';
+import helder2A from '../assets/img/trombi/2A/helder.jpg';
+import jules2A from '../assets/img/trombi/2A/jules.jpg';
+import kikinou2A from '../assets/img/trombi/2A/kikinou.jpg';
+import lena2A from '../assets/img/trombi/2A/lena.jpg';
+import lucas2A from '../assets/img/trombi/2A/lucas.jpg';
+import lucile2A from '../assets/img/trombi/2A/lucile.jpg';
+import mael2A from '../assets/img/trombi/2A/mael.jpg';
+import martin2A from '../assets/img/trombi/2A/martin.jpg';
+import matteo2A from '../assets/img/trombi/2A/matteo.jpg';
+import max2A from '../assets/img/trombi/2A/max.jpg';
+import moyi2A from '../assets/img/trombi/2A/moyi.jpg';
+import nathan2A from '../assets/img/trombi/2A/nathan.jpg';
+import nicoFe2A from '../assets/img/trombi/2A/nicoFe.jpg';
+import nicoFi2A from '../assets/img/trombi/2A/nicoFi.jpg';
+import ossian2A from '../assets/img/trombi/2A/ossian.jpg';
+import paoline2A from '../assets/img/trombi/2A/paoline.jpg';
+import quentin2A from '../assets/img/trombi/2A/quentin.jpg';
+import raito2A from '../assets/img/trombi/2A/raito.jpg';
+import raphL2A from '../assets/img/trombi/2A/raphL.jpg';
+import raphO2A from '../assets/img/trombi/2A/raphO.jpg';
+import romane2A from '../assets/img/trombi/2A/romane.jpg';
+import sam2A from '../assets/img/trombi/2A/sam.jpg';
+import soba2A from '../assets/img/trombi/2A/soba.jpg';
+import theo2A from '../assets/img/trombi/2A/theo.jpg';
+import thoma2A from '../assets/img/trombi/2A/thoma.jpg';
+import thomas2A from '../assets/img/trombi/2A/thomas.jpg'; 
+import tistouille2A from '../assets/img/trombi/2A/tistouille.jpg';
+import tristan2A from '../assets/img/trombi/2A/tristan.jpg';
+import valPl2A from '../assets/img/trombi/2A/valPl.jpg';
+import valPr2A from '../assets/img/trombi/2A/valPr.jpg';
+import yuxuan2A from '../assets/img/trombi/2A/yuxuan.jpg';
+import zoe2A from '../assets/img/trombi/2A/zoe.jpg';
+
+// TROMBI 1A
+import alexia1A from '../assets/img/trombi/1A/alexia.jpg';
+import alexis1A from '../assets/img/trombi/1A/alexis.jpg';
+import alexL1A from '../assets/img/trombi/1A/alexL.jpg';
+import alexM1A from '../assets/img/trombi/1A/alexM.jpg';
+import alexP1A from '../assets/img/trombi/1A/alexP.jpg';
+import alize1A from '../assets/img/trombi/1A/alize.jpg';
+import andreas1A from '../assets/img/trombi/1A/andreas.jpg';
+import antoine1A from '../assets/img/trombi/1A/antoine.jpg';
+import antoineM1A from '../assets/img/trombi/1A/antoineM.jpg';
+import arthur1A from '../assets/img/trombi/1A/arthur.jpg';
+import arthurV1A from '../assets/img/trombi/1A/arthurV.jpg';
+import auriane1A from '../assets/img/trombi/1A/auriane.jpg';
+import cantin1A from '../assets/img/trombi/1A/cantin.jpg';
+import celiaA1A from '../assets/img/trombi/1A/celiaA.jpg';
+import celiaV1A from '../assets/img/trombi/1A/celiaV.jpg';
+import coline1A from '../assets/img/trombi/1A/coline.jpg';
+import corentin1A from '../assets/img/trombi/1A/corentin.jpg';
+import eliott1A from '../assets/img/trombi/1A/eliott.jpg';
+import elodie1A from '../assets/img/trombi/1A/elodie.jpg';
+import enora1A from '../assets/img/trombi/1A/enora.jpg';
+import eva1A from '../assets/img/trombi/1A/eva.jpg';
+import ezekel1A from '../assets/img/trombi/1A/ezekel.jpg';
+import florian1A from '../assets/img/trombi/1A/florian.jpg';
+import gilles1A from '../assets/img/trombi/1A/gilles.jpg';
+import guillaume1A from '../assets/img/trombi/1A/guillaume.jpg';
+import hugoL1A from '../assets/img/trombi/1A/hugoL.jpg';
+import hugoT1A from '../assets/img/trombi/1A/hugoT.jpg';
+import jossua1A from '../assets/img/trombi/1A/jossua.jpg';
+import julesL1A from '../assets/img/trombi/1A/julesL.jpg';
+import latrique1A from '../assets/img/trombi/1A/latrique.jpg';
+import lea1A from '../assets/img/trombi/1A/lea.jpg';
+import lorie1A from '../assets/img/trombi/1A/lorie.jpg';
+import lucasF1A from '../assets/img/trombi/1A/lucasF.jpg';
+import maissane1A from '../assets/img/trombi/1A/maissane.jpg';
+import nina1A from '../assets/img/trombi/1A/nina.jpg';
+import pablo1A from '../assets/img/trombi/1A/pablo.jpg';
+import robinB1A from '../assets/img/trombi/1A/robinB.jpg';
+import robinP1A from '../assets/img/trombi/1A/robinP.jpg';
+import romain1A from '../assets/img/trombi/1A/romain.jpg';
+import romainB1A from '../assets/img/trombi/1A/romainB.jpg';
+import sacha1A from '../assets/img/trombi/1A/sacha.jpg';
+import sarah1A from '../assets/img/trombi/1A/sarah.jpg';
+import selmene1A from '../assets/img/trombi/1A/selmene.jpg';
+import solene1A from '../assets/img/trombi/1A/solene.jpg';
+import teva1A from '../assets/img/trombi/1A/teva.jpg';
+import thibaut1A from '../assets/img/trombi/1A/thibaut.jpg';
+import thomasB1A from '../assets/img/trombi/1A/thomasB.jpg';
+import thomasF1A from '../assets/img/trombi/1A/thomasF.jpg';
+import valM1A from '../assets/img/trombi/1A/valM.jpg';
+import vincent1A from '../assets/img/trombi/1A/vincent.jpg';
+import yvan1A from '../assets/img/trombi/1A/yvan.jpg';
+
 import socleModel from "../assets/model/socle.gltf";
 import logoModel from "../assets/model/logo.glb";
 import homeModel from "../assets/model/home.gltf";
@@ -134,7 +240,7 @@ import rightDoorModel from "../assets/model/rightDoor.gltf";
 import rightDoor2Model from "../assets/model/rightDoor2.gltf";
 import leftDoorModel from "../assets/model/leftDoor.gltf";
 import leftDoor2Model from "../assets/model/leftDoor2.gltf";
-
+ 
 import pyloneModel from "../assets/model/navigation/pylone.gltf";
 import gridModel from "../assets/model/navigation/grid.gltf";
 import tableModel from "../assets/model/navigation/table.gltf";
@@ -167,35 +273,47 @@ let volumeBg = .04;
 let volumePlane = .025;
 let volumeBtn = .5;
 
-let bgMusic = document.createElement("audio"); 
-bgMusic.src = bgMusicImport; 
-bgMusic.loop = false;
-bgMusic.volume = volume;
+var bgMusic = new Howl({
+    src: [bgMusicImport],
+    autoplay: false,
+    loop: true,
+    volume: volume
+});
 
-let bgLoopMusic = document.createElement("audio"); 
-bgLoopMusic.src = bgLoopMusicImport; 
-bgLoopMusic.loop = true;
-bgLoopMusic.volume = volumeBg;
+var bgLoopMusic = new Howl({
+    src: [bgLoopMusicImport],
+    autoplay: false,
+    loop: true,
+    volume: volumeBg
+});
 
-let rpzMusic = document.createElement("audio"); 
-rpzMusic.src = rpzImport; 
-rpzMusic.loop = false;
-rpzMusic.volume = 0.03;
+var rpzMusic = new Howl({
+    src: [rpzImport],
+    autoplay: false,
+    loop: false,
+    volume: 0.03
+});
 
-let soundHover = document.createElement("audio"); 
-soundHover.src = soundHoverImport; 
-soundHover.loop = false;
-soundHover.volume = volumeBtn; 
+var soundHover = new Howl({
+    src: [soundHoverImport],
+    autoplay: false,
+    loop: false,
+    volume: volumeBtn
+});
 
-let soundHoverPlane = document.createElement("audio"); 
-soundHoverPlane.src = soundHoverPlaneImport; 
-soundHoverPlane.loop = false;
-soundHoverPlane.volume = volumePlane; 
+var soundHoverPlane = new Howl({
+    src: [soundHoverPlaneImport],
+    autoplay: false,
+    loop: false,
+    volume: volumePlane
+});
 
-let soundOutPlane = document.createElement("audio"); 
-soundOutPlane.src = soundOutPlaneImport; 
-soundOutPlane.loop = false;
-soundOutPlane.volume = volumePlane; 
+var soundOutPlane = new Howl({
+    src: [soundOutPlaneImport],
+    autoplay: false,
+    loop: false,
+    volume: volumePlane
+});
 
 
 ////////// SCENE //////////
@@ -208,7 +326,7 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 var clock = new THREE.Clock();
 
 if (window.matchMedia("(max-width: 600px)").matches) {
-camera.position.set(0, 0, 4.3);
+    camera.position.set(0, 0, 4.3);
 }else{
     camera.position.set(0, 0, 3.7);
 }
@@ -232,23 +350,23 @@ window.addEventListener('resize', () => {
 /////// MESH INTERACTION ///////
 const interaction = new Interaction(renderer, scene, camera);
 
-/////// POSTPROCESSING ///////
-let composer = new POSTPROCESSING.EffectComposer(renderer);
+// /////// POSTPROCESSING ///////
+// let composer = new POSTPROCESSING.EffectComposer(renderer);
 
-composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
+// composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
 
-const effectPass = new POSTPROCESSING.EffectPass(
-    camera,
-    new POSTPROCESSING.RealisticBokehEffect()
-);
-effectPass.renderToScreen = true;
+// const effectPass = new POSTPROCESSING.EffectPass(
+//     camera,
+//     new POSTPROCESSING.RealisticBokehEffect()
+// );
+// effectPass.renderToScreen = true;
 
-composer.addPass(effectPass);
+// composer.addPass(effectPass);
 
-//POUR LES SHADERS
-let customPass = new POSTPROCESSING.ShaderPass({ vertexShader, fragmentShader });
-customPass.renderToScreen = true;
-composer.addPass(customPass);
+// //POUR LES SHADERS
+// let customPass = new POSTPROCESSING.ShaderPass({ vertexShader, fragmentShader });
+// customPass.renderToScreen = true;
+// composer.addPass(customPass);
 
 let rotateZ = -.2; // PLANES ROTATION
 
@@ -791,45 +909,87 @@ var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1);
 
 /////// INITIATION DES TEXTURES ///////
 let texture1Default = new THREE.TextureLoader().load(atelier1Default)
+texture1Default.generateMipmaps = false;
+texture1Default.wrapS = texture1Default.wrapT = THREE.ClampToEdgeWrapping;
+texture1Default.minFilter = THREE.LinearFilter;
 let texture1Hover = new THREE.TextureLoader().load(atelier1Hover)
 
 let texture2Default = new THREE.TextureLoader().load(atelier2Default)
+texture2Default.generateMipmaps = false;
+texture2Default.wrapS = texture2Default.wrapT = THREE.ClampToEdgeWrapping;
+texture2Default.minFilter = THREE.LinearFilter;
 let texture2Hover = new THREE.TextureLoader().load(atelier2Hover)
 
 let texture3Default = new THREE.TextureLoader().load(atelier3Default)
+texture3Default.generateMipmaps = false;
+texture3Default.wrapS = texture3Default.wrapT = THREE.ClampToEdgeWrapping;
+texture3Default.minFilter = THREE.LinearFilter;
 let texture3Hover = new THREE.TextureLoader().load(atelier3Hover)
 
 let texture4Default = new THREE.TextureLoader().load(atelier4Default)
+texture4Default.generateMipmaps = false;
+texture4Default.wrapS = texture4Default.wrapT = THREE.ClampToEdgeWrapping;
+texture4Default.minFilter = THREE.LinearFilter;
 let texture4Hover = new THREE.TextureLoader().load(atelier4Hover)
 
 let texture5Default = new THREE.TextureLoader().load(atelier5Default)
+texture5Default.generateMipmaps = false;
+texture5Default.wrapS = texture5Default.wrapT = THREE.ClampToEdgeWrapping;
+texture5Default.minFilter = THREE.LinearFilter;
 let texture5Hover = new THREE.TextureLoader().load(atelier5Hover)
 
 let texture6Default = new THREE.TextureLoader().load(atelier6Default)
+texture6Default.generateMipmaps = false;
+texture6Default.wrapS = texture6Default.wrapT = THREE.ClampToEdgeWrapping;
+texture6Default.minFilter = THREE.LinearFilter;
 let texture6Hover = new THREE.TextureLoader().load(atelier6Hover)
 
 let texture7Default = new THREE.TextureLoader().load(atelier7Default)
+texture7Default.generateMipmaps = false;
+texture7Default.wrapS = texture7Default.wrapT = THREE.ClampToEdgeWrapping;
+texture7Default.minFilter = THREE.LinearFilter;
 let texture7Hover = new THREE.TextureLoader().load(atelier7Hover)
 
 let texture8Default = new THREE.TextureLoader().load(atelier8Default)
+texture8Default.generateMipmaps = false;
+texture8Default.wrapS = texture8Default.wrapT = THREE.ClampToEdgeWrapping;
+texture8Default.minFilter = THREE.LinearFilter;
 let texture8Hover = new THREE.TextureLoader().load(atelier8Hover)
 
 let texture9Default = new THREE.TextureLoader().load(atelier9Default)
+texture9Default.generateMipmaps = false;
+texture9Default.wrapS = texture9Default.wrapT = THREE.ClampToEdgeWrapping;
+texture9Default.minFilter = THREE.LinearFilter;
 let texture9Hover = new THREE.TextureLoader().load(atelier9Hover)
 
 let texture10Default = new THREE.TextureLoader().load(atelier10Default)
+texture10Default.generateMipmaps = false;
+texture10Default.wrapS = texture10Default.wrapT = THREE.ClampToEdgeWrapping;
+texture10Default.minFilter = THREE.LinearFilter;
 let texture10Hover = new THREE.TextureLoader().load(atelier10Hover)
 
 let texture11Default = new THREE.TextureLoader().load(atelier11Default)
+texture11Default.generateMipmaps = false;
+texture11Default.wrapS = texture11Default.wrapT = THREE.ClampToEdgeWrapping;
+texture11Default.minFilter = THREE.LinearFilter;
 let texture11Hover = new THREE.TextureLoader().load(atelier11Hover)
 
 let texture12Default = new THREE.TextureLoader().load(atelier12Default)
+texture12Default.generateMipmaps = false;
+texture12Default.wrapS = texture12Default.wrapT = THREE.ClampToEdgeWrapping;
+texture12Default.minFilter = THREE.LinearFilter;
 let texture12Hover = new THREE.TextureLoader().load(atelier12Hover)
 
 let texture13Default = new THREE.TextureLoader().load(atelier13Default)
+texture13Default.generateMipmaps = false;
+texture13Default.wrapS = texture13Default.wrapT = THREE.ClampToEdgeWrapping;
+texture13Default.minFilter = THREE.LinearFilter;
 let texture13Hover = new THREE.TextureLoader().load(atelier13Hover)
 
 let texture14Default = new THREE.TextureLoader().load(atelier14Default)
+texture14Default.generateMipmaps = false;
+texture14Default.wrapS = texture14Default.wrapT = THREE.ClampToEdgeWrapping;
+texture14Default.minFilter = THREE.LinearFilter;
 let texture14Hover = new THREE.TextureLoader().load(atelier14Hover)
 
 var texturebaniere14 = new THREE.TextureLoader().load(atelierbaniere1);
@@ -913,7 +1073,7 @@ var texturecredits = new THREE.TextureLoader().load(credits);
 /////// PLANES MATERIALS ///////
 let planeOpacityDefault;
 
-if (window.matchMedia("(max-width: 1024px)").matches) {
+if (window.matchMedia("(max-width: 1025px)").matches) {
     planeOpacityDefault = 0.95;
 } else {
     planeOpacityDefault = 0.9;
@@ -1459,9 +1619,10 @@ let workShopButton14 = document.querySelector('.workShopButton__14');
 let iframe = document.querySelectorAll('iframe');
 let contenu = document.querySelectorAll('.contenu');
 let contenu_link = document.querySelectorAll('.contenu__link');
-let greta = document.querySelector('.greta');
+let greta = document.querySelectorAll('.greta');
 
-let contenu_vr = document.querySelectorAll('.vr');
+let contenu_vr = document.querySelectorAll('.imgIntoGif');
+let imagesOnPreload = document.querySelectorAll('img')
 
 let mobileWorkShopButton = document.querySelectorAll('.mobileWorkShopButton');
 let mobileWorkShopButton1 = document.querySelector('.mobileWorkShopButton__1');
@@ -1548,7 +1709,7 @@ let scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__
 
 hamburgerContainer.addEventListener('click', function(){
     if( switchHamburger == false){
-        if (window.matchMedia("(max-width: 1024px)").matches) {
+        if (window.matchMedia("(max-width: 1025px)").matches) {
             soundHover.play();
         }
     hamburgerContainerLine.classList.toggle('switch')
@@ -1565,7 +1726,7 @@ hamburgerContainer.addEventListener('click', function(){
     },350)      
     }
     else{
-        if (window.matchMedia("(max-width: 1024px)").matches) {
+        if (window.matchMedia("(max-width: 1025px)").matches) {
             soundHover.play();
         }
             hamburgerContainerCroix.classList.toggle('switch')
@@ -1804,13 +1965,15 @@ let switchBtn = true;
 let stopMusic = false;
 let cursorOnVideo = false;
 let switchHamburger = false;
-let fisrtStart = true;
+let loadComplete = false;
+let wavyPlane = false;
 
 let backPossible = true;
 let clickPossible = true;
 let scrollPossible = false;
 let planeScrollPossible = true;
 let btnPressed = false;
+let switchPossible = true;
 
 let isScrollDown = false;
 let isScrollUp = false;
@@ -1877,9 +2040,14 @@ queue.on("complete", event => {
         })
 
         btnMainStart.addEventListener('click', function() {
-            startImmersion()
+            if (!homeActive && startMenuActive && loadComplete) {
+                startImmersion()
+            }
         })
     }, 750)
+
+    loadComplete = true
+
 })
 
 ////////// LOAD FILES //////////
@@ -1990,111 +2158,6 @@ queue.loadFile(atelierchiffre12);
 queue.loadFile(atelierchiffre13);
 queue.loadFile(atelierchiffre14);
 
-queue.loadFile('../assets/img/tombi/2A/alex.jpg');
-queue.loadFile('../assets/img/tombi/2A/amadine.jpg');
-queue.loadFile('../assets/img/tombi/2A/annie.jpg');
-queue.loadFile('../assets/img/tombi/2A/annita.jpg');
-queue.loadFile('../assets/img/tombi/2A/aurore.jpg');
-queue.loadFile('../assets/img/tombi/2A/ben.jpg');
-queue.loadFile('../assets/img/tombi/2A/carlaA.jpg');
-queue.loadFile('../assets/img/tombi/2A/carlaS.jpg');
-queue.loadFile('../assets/img/tombi/2A/carla.jpg');
-queue.loadFile('../assets/img/tombi/2A/clemo.jpg');
-queue.loadFile('../assets/img/tombi/2A/alex.jpg');
-queue.loadFile('../assets/img/tombi/2A/eliottis.jpg');
-queue.loadFile('../assets/img/tombi/2A/emeric.jpg');
-queue.loadFile('../assets/img/tombi/2A/enzoD.jpg');
-queue.loadFile('../assets/img/tombi/2A/enzoF.jpg');
-queue.loadFile('../assets/img/tombi/2A/flo.jpg');
-queue.loadFile('../assets/img/tombi/2A/gael.jpg');
-queue.loadFile('../assets/img/tombi/2A/gregoire.jpg');
-queue.loadFile('../assets/img/tombi/2A/guigui.jpg');
-queue.loadFile('../assets/img/tombi/2A/helder.jpg');
-queue.loadFile('../assets/img/tombi/2A/jules.jpg');
-queue.loadFile('../assets/img/tombi/2A/kikinou.jpg');
-queue.loadFile('../assets/img/tombi/2A/lena.jpg');
-queue.loadFile('../assets/img/tombi/2A/lucas.jpg');
-queue.loadFile('../assets/img/tombi/2A/lucile.jpg');
-queue.loadFile('../assets/img/tombi/2A/mael.jpg');
-queue.loadFile('../assets/img/tombi/2A/martin.jpg');
-queue.loadFile('../assets/img/tombi/2A/matteo.jpg');
-queue.loadFile('../assets/img/tombi/2A/max.jpg');
-queue.loadFile('../assets/img/tombi/2A/moyi.jpg');
-queue.loadFile('../assets/img/tombi/2A/nathan.jpg');
-queue.loadFile('../assets/img/tombi/2A/nicoFe.jpg');
-queue.loadFile('../assets/img/tombi/2A/nicoFi.jpg');
-queue.loadFile('../assets/img/tombi/2A/ossian.jpg');
-queue.loadFile('../assets/img/tombi/2A/paoline.jpg');
-queue.loadFile('../assets/img/tombi/2A/quentin.jpg');
-queue.loadFile('../assets/img/tombi/2A/raito.jpg');
-queue.loadFile('../assets/img/tombi/2A/rahpL.jpg');
-queue.loadFile('../assets/img/tombi/2A/raphO.jpg');
-queue.loadFile('../assets/img/tombi/2A/romane.jpg');
-queue.loadFile('../assets/img/tombi/2A/sam.jpg');
-queue.loadFile('../assets/img/tombi/2A/soba.jpg');
-queue.loadFile('../assets/img/tombi/2A/theo.jpg');
-queue.loadFile('../assets/img/tombi/2A/thoma.jpg');
-queue.loadFile('../assets/img/tombi/2A/thomas.jpg');
-queue.loadFile('../assets/img/tombi/2A/tistouille.jpg');
-queue.loadFile('../assets/img/tombi/2A/tristan.jpg');
-queue.loadFile('../assets/img/tombi/2A/valPl.jpg');
-queue.loadFile('../assets/img/tombi/2A/valPr.jpg');
-queue.loadFile('../assets/img/tombi/2A/yuxuan.jpg');
-queue.loadFile('../assets/img/tombi/2A/zoe.jpg');
-
-
-queue.loadFile('../assets/img/tombi/1A/alexia.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexis.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexL.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexM.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexP.jpg');
-queue.loadFile('../assets/img/tombi/1A/alize.jpg');
-queue.loadFile('../assets/img/tombi/1A/andreas.jpg');
-queue.loadFile('../assets/img/tombi/1A/antoine.jpg');
-queue.loadFile('../assets/img/tombi/1A/antoineM.jpg');
-queue.loadFile('../assets/img/tombi/1A/arthur.jpg');
-queue.loadFile('../assets/img/tombi/1A/arthurV.jpg');
-queue.loadFile('../assets/img/tombi/1A/auriane.jpg');
-queue.loadFile('../assets/img/tombi/1A/cantin.jpg');
-queue.loadFile('../assets/img/tombi/1A/celiaA.jpg');
-queue.loadFile('../assets/img/tombi/1A/celiaV.jpg');
-queue.loadFile('../assets/img/tombi/1A/coline.jpg');
-queue.loadFile('../assets/img/tombi/1A/corentin.jpg');
-queue.loadFile('../assets/img/tombi/1A/eliott.jpg');
-queue.loadFile('../assets/img/tombi/1A/elodie.jpg');
-queue.loadFile('../assets/img/tombi/1A/enora.jpg');
-queue.loadFile('../assets/img/tombi/1A/eva.jpg');
-queue.loadFile('../assets/img/tombi/1A/ezekel.jpg');
-queue.loadFile('../assets/img/tombi/1A/florian.jpg');
-queue.loadFile('../assets/img/tombi/1A/gilles.jpg');
-queue.loadFile('../assets/img/tombi/1A/guillaume.jpg');
-queue.loadFile('../assets/img/tombi/1A/hugoL.jpg');
-queue.loadFile('../assets/img/tombi/1A/hugoT.jpg');
-queue.loadFile('../assets/img/tombi/1A/jossua.jpg');
-queue.loadFile('../assets/img/tombi/1A/julesL.jpg');
-queue.loadFile('../assets/img/tombi/1A/latrique.jpg');
-queue.loadFile('../assets/img/tombi/1A/lea.jpg');
-queue.loadFile('../assets/img/tombi/1A/lorie.jpg');
-queue.loadFile('../assets/img/tombi/1A/lucasF.jpg');
-queue.loadFile('../assets/img/tombi/1A/maissane.jpg');
-queue.loadFile('../assets/img/tombi/1A/nina.jpg');
-queue.loadFile('../assets/img/tombi/1A/pablo.jpg');
-queue.loadFile('../assets/img/tombi/1A/robinB.jpg');
-queue.loadFile('../assets/img/tombi/1A/robinP.jpg');
-queue.loadFile('../assets/img/tombi/1A/romain.jpg');
-queue.loadFile('../assets/img/tombi/1A/romainB.jpg');
-queue.loadFile('../assets/img/tombi/1A/sacha.jpg');
-queue.loadFile('../assets/img/tombi/1A/sarah.jpg');
-queue.loadFile('../assets/img/tombi/1A/selmene.jpg');
-queue.loadFile('../assets/img/tombi/1A/solene.jpg');
-queue.loadFile('../assets/img/tombi/1A/teva.jpg');
-queue.loadFile('../assets/img/tombi/1A/thibaut.jpg');
-queue.loadFile('../assets/img/tombi/1A/thomasB.jpg');
-queue.loadFile('../assets/img/tombi/1A/thomasF.jpg');
-queue.loadFile('../assets/img/tombi/1A/valM.jpg');
-queue.loadFile('../assets/img/tombi/1A/vincent.jpg');
-queue.loadFile('../assets/img/tombi/1A/yvan.jpg');
-
 queue.loadFile(displacement2);
 queue.loadFile(displacement4);
 
@@ -2133,9 +2196,112 @@ queue.loadFile(soundHoverImport);
 queue.loadFile(soundHoverPlaneImport);
 queue.loadFile(soundOutPlaneImport);
 
+queue.loadFile(alex2A);
+queue.loadFile(amandine2A);
+queue.loadFile(annie2A);
+queue.loadFile(annita2A);
+queue.loadFile(aurore2A);
+queue.loadFile(ben2A);
+queue.loadFile(carlaA2A);
+queue.loadFile(carlaS2A);
+queue.loadFile(clara2A);
+queue.loadFile(clemo2A);
+queue.loadFile(eliottis2A);
+queue.loadFile(emeric2A);
+queue.loadFile(enzoD2A);
+queue.loadFile(enzoF2A);
+queue.loadFile(flo2A);
+queue.loadFile(gael2A);
+queue.loadFile(gregoire2A);
+queue.loadFile(guigui2A);
+queue.loadFile(helder2A);
+queue.loadFile(jules2A);
+queue.loadFile(kikinou2A);
+queue.loadFile(lena2A);
+queue.loadFile(lucas2A);
+queue.loadFile(lucile2A);
+queue.loadFile(mael2A);
+queue.loadFile(martin2A);
+queue.loadFile(matteo2A);
+queue.loadFile(max2A);
+queue.loadFile(moyi2A);
+queue.loadFile(nathan2A);
+queue.loadFile(nicoFe2A);
+queue.loadFile(nicoFi2A);
+queue.loadFile(ossian2A);
+queue.loadFile(paoline2A);
+queue.loadFile(quentin2A);
+queue.loadFile(raito2A);
+queue.loadFile(raphL2A);
+queue.loadFile(raphO2A);
+queue.loadFile(romane2A);
+queue.loadFile(sam2A);
+queue.loadFile(soba2A);
+queue.loadFile(theo2A);
+queue.loadFile(thoma2A);
+queue.loadFile(thomas2A);
+queue.loadFile(tistouille2A);
+queue.loadFile(tristan2A);
+queue.loadFile(valPl2A);
+queue.loadFile(valPr2A);
+queue.loadFile(yuxuan2A);
+queue.loadFile(zoe2A);
+
+queue.loadFile(alexia1A);
+queue.loadFile(alexis1A);
+queue.loadFile(alexL1A);
+queue.loadFile(alexM1A);
+queue.loadFile(alexP1A);
+queue.loadFile(alize1A);
+queue.loadFile(andreas1A);
+queue.loadFile(antoine1A);
+queue.loadFile(antoineM1A);
+queue.loadFile(arthur1A);
+queue.loadFile(arthurV1A);
+queue.loadFile(auriane1A);
+queue.loadFile(cantin1A);
+queue.loadFile(celiaA1A);
+queue.loadFile(celiaV1A);
+queue.loadFile(coline1A);
+queue.loadFile(corentin1A);
+queue.loadFile(eliott1A);
+queue.loadFile(elodie1A);
+queue.loadFile(enora1A);
+queue.loadFile(eva1A);
+queue.loadFile(ezekel1A);
+queue.loadFile(florian1A);
+queue.loadFile(gilles1A);
+queue.loadFile(guillaume1A);
+queue.loadFile(hugoL1A);
+queue.loadFile(hugoT1A);
+queue.loadFile(jossua1A);
+queue.loadFile(julesL1A);
+queue.loadFile(latrique1A);
+queue.loadFile(lea1A);
+queue.loadFile(lorie1A);
+queue.loadFile(lucasF1A);
+queue.loadFile(maissane1A);
+queue.loadFile(nina1A);
+queue.loadFile(pablo1A);
+queue.loadFile(robinB1A);
+queue.loadFile(robinP1A);
+queue.loadFile(romain1A);
+queue.loadFile(romainB1A);
+queue.loadFile(sacha1A);
+queue.loadFile(sarah1A);
+queue.loadFile(selmene1A);
+queue.loadFile(solene1A);
+queue.loadFile(teva1A);
+queue.loadFile(thibaut1A);
+queue.loadFile(thomasB1A);
+queue.loadFile(thomasF1A);
+queue.loadFile(valM1A);
+queue.loadFile(vincent1A);
+queue.loadFile(yvan1A);
+
 queue.loadFile(GLTFLoader);
 queue.loadFile(THREE);
-queue.loadFile(POSTPROCESSING);
+// queue.loadFile(POSTPROCESSING);
 queue.loadFile(Interaction);
 queue.loadFile(createjs);
 queue.loadFile(TouchSweep);
@@ -2143,14 +2309,18 @@ queue.loadFile(TouchSweep);
 function handleFileComplete(){}
 
 function startImmersion() {
-
         cursorIndication.classList.remove('startHidden')
         mobileIndication.classList.remove('startHidden')
         containerTimeline.classList.remove('startHidden')
         hamburgerContainer.classList.remove('startHidden')
 
         startMenuActive = false;
+
         bgMusic.play();
+        bgMusic.fade(0, volume, 1000)
+
+        bgLoopMusic.volume(0)
+        bgLoopMusic.play();
 
         TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
         TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
@@ -2165,7 +2335,7 @@ function startImmersion() {
             })
         },350) 
 
-        if (window.matchMedia("(max-width: 1024px)").matches) {
+        if (window.matchMedia("(max-width: 1025px)").matches) {
             let html = document.querySelector('html');
                 if (html.requestFullscreen) {
                     html.requestFullscreen();
@@ -2264,63 +2434,65 @@ function startImmersion() {
         }, 750)
 }
 
+let switchMusicInterval
+
 function switchMusic() {
-    if (switchBtn == false) {
-        TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
-        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 }); 
-        if (window.matchMedia("(max-width: 1024px)").matches) {
-            soundHover.play();
-        }
-        if (fisrtStart) {
+    if (switchPossible) {
+        switchPossible = false
+        if (switchBtn == false) {
+            TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut" });
+            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
+            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut", delay: .5 }); 
+            if (window.matchMedia("(max-width: 1025px)").matches) {
+                soundHover.play();
+            }
+            if (!workshopActive) {
+                bgMusic.fade(0, volume, 1000);
+            } else {
+                bgLoopMusic.fade(0, volumeBg, 1000);
+            }
             bgMusic.play();
-            var fadeAudio = setInterval(function () {
-                if (bgMusic.volume >= volume) {
-                    clearInterval(fadeAudio);
-                } else if (bgMusic.volume < volume) {
-                    bgMusic.volume += 0.1;
-                }
-            }, 500);
+            bgLoopMusic.play();
+            switchBtn = true;
+            rpzMusic.volume(volume); 
+            soundHover.volume(volumeBtn);
+            soundHoverPlane.volume(volumePlane);
+            soundOutPlane.volume(volumePlane);
         } else {
-            fadeInAudio(bgLoopMusic)
-        }
-        switchBtn = true;
-        rpzMusic.volume = volume; 
-        soundHover.volume = volumeBtn;
-        soundHoverPlane.volume = volumePlane;
-        soundOutPlane.volume = volumePlane;
-    } else {
-        TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
-        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
-        TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 });
-     
-        if (fisrtStart) {
-            var fadeAudio = setInterval(function () {
-                if (bgMusic.volume < 0.1) {
-                    clearInterval(fadeAudio);
-                    bgMusic.pause();
-                } else if (bgMusic.volume >= .1) {
-                    bgMusic.volume -= .1;
-                }
-            }, 300);
-        } else {
-            fadeOutAudio(bgLoopMusic)
-        }
-        switchBtn = false;
-        rpzMusic.volume = 0; 
-        soundHover.volume = 0;
-        soundHoverPlane.volume = 0;
-        soundOutPlane.volume = 0;
-        }
+            TweenMax.to(maskMusicBtn, { duration: .35, clipPath: "inset(0% 0% 100% 0%)",ease: "power3.easeOut" });
+            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(0% 0% 0% 0%)",ease: "power3.easeOut", delay: .15 });
+            TweenMax.to(maskMusicBtn, { duration: .25, clipPath: "inset(100% 0% 0% 0%)",ease: "power3.easeOut", delay: .5 });
+            
+            if (!workshopActive) {
+                bgMusic.fade(volume, 0, 1000);
+            } else {
+                bgLoopMusic.fade(volumeBg, 0, 1000);
+            }
+            setTimeout(() => {
+                bgMusic.pause()
+                bgLoopMusic.pause()
+            }, 1000);
+            switchBtn = false;
+            rpzMusic.volume(0); 
+            soundHover.volume(0);
+            soundHoverPlane.volume(0);
+            soundOutPlane.volume(0);
+            }
+    
+            onMusic.classList.toggle('switch');
+            offMusic.classList.toggle('switch')
+    
+        setTimeout(function(){
+            lineMusicBtn.forEach(line=>{
+                line.classList.toggle('switch');
+            })
+        }, 350)   
+    }
 
-        onMusic.classList.toggle('switch');
-        offMusic.classList.toggle('switch')
-
-    setTimeout(function(){
-        lineMusicBtn.forEach(line=>{
-            line.classList.toggle('switch');
-        })
-    }, 350)   
+    clearInterval(switchMusicInterval)
+    switchMusicInterval = setInterval(() => {
+        switchPossible = true
+    }, 1000);
 }
 
 musicBtn.addEventListener('click', function(){
@@ -2692,95 +2864,102 @@ function animationEnterWorkshop() {
     if (idPlane[14]) {
         contentContainer__14.style.display = "block"
         scrollContainer__14.style.display = "flex"
-        contentContainer__14.children[2].children[0].children[1].src = "https://www.youtube.com/embed/Q0gk3DylOsM"
+        contentContainer__14.children[2].children[0].children[1].src = "https://www.youtube.com/embed/Q0gk3DylOsM?enablejsapi=1&html5=1"
     } else if (idPlane[13]) {
         contentContainer__13.style.display = "block"
         scrollContainer__13.style.display = "flex"
-        contentContainer__13.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
-        contentContainer__13.children[4].children[0].children[1].src = "https://www.youtube.com/embed/KaS6BTJNLUQ"
+        contentContainer__13.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU?enablejsapi=1&html5=1"
+        contentContainer__13.children[4].children[0].children[1].src = "https://www.youtube.com/embed/KaS6BTJNLUQ?enablejsapi=1&html5=1"
     } else if (idPlane[12]) {
         contentContainer__12.style.display = "block"
         scrollContainer__12.style.display = "flex"
-        contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/8tyYcjwssfA"
-        contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/bkc_MHKCavg"
+        contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/8tyYcjwssfA?enablejsapi=1&html5=1"
+        contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/bkc_MHKCavg?enablejsapi=1&html5=1"
     } else if (idPlane[11]) {
         contentContainer__11.style.display = "block"
         scrollContainer__11.style.display = "flex"
-        contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM"
+        contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM?enablejsapi=1&html5=1"
         // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
     } else if (idPlane[10]) {
         contentContainer__10.style.display = "block"
         scrollContainer__10.style.display = "flex"
-        contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA"
+        contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA?enablejsapi=1&html5=1"
         // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
     } else if (idPlane[9]) {
         contentContainer__9.style.display = "block"
         scrollContainer__9.style.display = "flex"
-        contentContainer__9.children[2].children[0].children[1].src = "https://www.youtube.com/embed/0Aa3iRMg8-E"
-        contentContainer__9.children[4].children[0].children[1].src = "https://www.youtube.com/embed/N6c2qao9yaM"
+        contentContainer__9.children[2].children[0].children[1].src = "https://www.youtube.com/embed/0Aa3iRMg8-E?enablejsapi=1&html5=1"
+        contentContainer__9.children[4].children[0].children[1].src = "https://www.youtube.com/embed/N6c2qao9yaM?enablejsapi=1&html5=1"
     } else if (idPlane[8]) {
         contentContainer__8.style.display = "block"
         scrollContainer__8.style.display = "flex"
-        contentContainer__8.children[2].children[0].children[1].src = "https://www.youtube.com/embed/-byRWG9-gjw"
+        contentContainer__8.children[2].children[0].children[1].src = "https://www.youtube.com/embed/-byRWG9-gjw?enablejsapi=1&html5=1"
     } else if (idPlane[7]) {
         contentContainer__7.style.display = "block"
         scrollContainer__7.style.display = "flex"
-        contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY"
+        contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY?enablejsapi=1&html5=1"
     
     } else if (idPlane[6]) {
         contentContainer__6.style.display = "block"
         scrollContainer__6.style.display = "flex"
-        contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ"
+        contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ?enablejsapi=1&html5=1"
     
     } else if (idPlane[5]) {
         contentContainer__5.style.display = "block"
         scrollContainer__5.style.display = "flex"
-        contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y"
+        contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y?enablejsapi=1&html5=1"
     
     } else if (idPlane[4]) {
         contentContainer__4.style.display = "block"
         scrollContainer__4.style.display = "flex"
-        contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM"
+        contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM?enablejsapi=1&html5=1"
     
     } else if (idPlane[3]) {
         contentContainer__3.style.display = "block"
         scrollContainer__3.style.display = "flex"
-        contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI"
+        contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI?enablejsapi=1&html5=1"
     
     } else if (idPlane[2]) {
         contentContainer__2.style.display = "block"
         scrollContainer__2.style.display = "flex"
-        contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g"
+        contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g?enablejsapi=1&html5=1"
     
     } else if (idPlane[1]) {
         contentContainer__1.style.display = "block"
         scrollContainer__1.style.display = "flex"
-        contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU"
+        contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU?enablejsapi=1&html5=1"
     
     }
 
-    if (window.matchMedia("(max-width: 1024px)").matches) {
-    gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut"})
-    gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
-    gsap.to(logo.scale, 1.5, { z:0.0001, y:0.0001, x: 0.0001,ease: "power3.inOut" })
-    gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
+    if (window.matchMedia("(max-width: 1025px)").matches) {
+        gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut"})
+        gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
+        gsap.to(logo.scale, 1.5, { z:0.0001, y:0.0001, x: 0.0001,ease: "power3.inOut" })
+        gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
     }
 
     
     TweenMax.to(btnBackHome, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-    TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
+    TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 3.5, ease: "power3.inOut" })
 
     cursorIndication.classList.remove('switch')
     mobileIndication.classList.remove('switch')
 
     hideTimeline()
 
+    bgMusic.fade(volume, 0, 1500);
+
+    setTimeout(() => {
+        bgLoopMusic.fade(0, volumeBg, 1500);
+        wavyPlane = false
+    }, 1500);
+
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         gsap.to(camera.position, 3, { z: -20, ease: "power3.inOut", delay: .75 })
         gsap.to(logo.rotation, 1.5, { z: -.725, y: 0, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { z: -15, y: .35, ease: "power3.inOut" })
         gsap.to(logo.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
-        gsap.to(cursorSize, 0.75, {padding: 0, ease: "Power3.easeOut"})
+        gsap.to(cursorSize, 0.75, { padding: 0, ease: "Power3.easeOut"})
         gsap.to(leftDoor.position, 1.5, { x: -15, ease: "power3.inOut", delay: 1.5 })
         gsap.to(rightDoor.position, 1.5, { x: 15, ease: "power3.inOut", delay: 1.5 })
         gsap.to(cursorShapeIn, 0.75, { background: colorCursorDefault, padding: 0, ease: "Power3.easeOut"})
@@ -2800,14 +2979,16 @@ function animationEnterWorkshop() {
         btnBackWorkshop.disabled = false
         clickPossible = true
     }, 3000)
-
+    
     setTimeout(function() {
         if(workshopActive) {
             workShopContainer.classList.add('switchPlane');
             scrollPossible = true
+            btnPressed = false
         }
     }, 3750)
     
+    btnPressed = true
     planeScrollPossible = false
     workshopActive = true
     hoverPlane = false
@@ -3004,8 +3185,6 @@ function functionBtnBackHome() {
     workshopActive = false
     homeActive = true;
 
-    // fadeInAudio(bgLoopMusic)
-
     cursorOnVideo = false
     if (!cursorOnVideo) {
         gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
@@ -3042,6 +3221,7 @@ function functionBtnBackHome() {
         btnStart.disabled = false;
         btnStart.classList.remove('close')
         littleTitleSvg.classList.add('close')
+        wavyPlane = false
     }, 2800)
 
     setTimeout(() => {
@@ -3197,34 +3377,11 @@ function hideTimeline(){
 
 }
 
-
-function fadeOutAudio(elementMusic) {
-        var sound = elementMusic
-        var fadeAudio = setInterval(function () {
-            if (sound.volume < .005) {
-                clearInterval(fadeAudio);
-                sound.pause();
-            } else if (sound.volume >= .002) {
-                sound.volume -= .002;
-            }
-        }, 100);
-}
-
-function fadeInAudio(elementMusic) {
-        var sound = elementMusic
-        sound.play();
-        var fadeAudio = setInterval(function () {
-            if (sound.volume >= volumeBg) {
-                clearInterval(fadeAudio);
-            } else if (sound.volume < volumeBg) {
-                sound.volume += 0.01;
-            }
-        }, 500);
-}
-
 ///// START BUTTON EVENTS /////
+
 function functionBtnStart() {
     homeActive = false;
+    wavyPlane = true
 
     //HTML ELEMENTS ANIM
     titleSvgPath.forEach(e => {
@@ -3256,25 +3413,6 @@ function functionBtnStart() {
             backPossible = true
         }, 500)
     }, 4000)
-
-    if (switchBtn && fisrtStart) {
-        var fadeAudio = setInterval(function () {
-            if (bgMusic.volume < 0.1) {
-                clearInterval(fadeAudio);
-                bgMusic.pause();
-            } else if (bgMusic.volume >= .1) {
-                bgMusic.volume -= .1;
-            }
-        }, 300);
-    }
-    fisrtStart = false
-
-    if (switchBtn) {
-        bgLoopMusic.play();
-    }
-
-    // fadeInAudio(bgLoopMusic)
-
 
     TweenMax.to(btnStart, 1.7, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)", ease: "power3.inOut" })
     TweenMax.to(homeMask, 3, { opacity: 0, ease: "power3.inOut" })
@@ -3385,7 +3523,7 @@ function functionBtnStart() {
 
 btnStart.addEventListener('click', function() {
     functionBtnStart();
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -3426,7 +3564,7 @@ btnStart.addEventListener('mouseleave', function() {
 
 btnBackHome.addEventListener('click', function() {
     functionBtnBackHome();
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -3473,7 +3611,7 @@ btnBackWorkshop.addEventListener('click', function() {
         btnPressed = true
         backToWorkshop();
     }
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -3668,12 +3806,19 @@ function backToPlane() {
 
     revealTimeline()
 
+    bgLoopMusic.fade(volumeBg, 0, 1500);
+
+    setTimeout(() => {
+        bgMusic.fade(0, volume, 1500);
+        wavyPlane = true
+    }, 1500+varDelay);
+
     setTimeout(function(){
         cursorIndication.classList.add('switch')
         mobileIndication.classList.add('switch')
     },3250)
 
-    if (window.matchMedia("(max-width: 1024px)").matches && window.matchMedia("(min-width: 601px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches && window.matchMedia("(min-width: 601px)").matches) {
         gsap.to(camera.position, 3, { z: 3.7, ease: "power3.inOut" })
         gsap.to(logo.rotation, 1.5, { z: .25, y: 0, ease: "power3.inOut", delay: 1.75})
         gsap.to(logo.scale, 1.5, { z:.95, y:.95, x: .95,ease: "power3.inOut", delay: 1.75 })
@@ -3906,6 +4051,7 @@ function backToWorkshop() {
         
         gsap.to(workShopContainer, 1.5, { opacity: 1, ease: "Power3.easeOut", delay: 2 })
         
+        creditContainer.style.pointerEvents = 'none'
         setTimeout(function() {
             creditActive = false;
         }, 3000)
@@ -4048,7 +4194,7 @@ sm1.addEventListener('mouseleave', function() {
 })
 
 sm1.addEventListener('click', function() {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     window.open('https://www.facebook.com/mmi.tarbes.jpo');
@@ -4072,7 +4218,7 @@ sm2.addEventListener('mouseleave', function() {
 })
 
 sm2.addEventListener('click', function() {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     window.open('https://www.instagram.com/immersions_digitales_tarbes/');
@@ -4096,7 +4242,7 @@ sm3.addEventListener('mouseleave', function() {
 })
 
 sm3.addEventListener('click', function() {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     window.open('https://www.linkedin.com/in/immersions-digitales/');
@@ -4121,7 +4267,7 @@ discordContainer.addEventListener('mouseleave', function() {
 })
 
 discordContainer.addEventListener('click', function() {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     window.open('https://discord.com/invite/QSTbcG7PeJ');
@@ -4146,7 +4292,7 @@ iutContainer.addEventListener('mouseleave', function() {
 })
 
 iutContainer.addEventListener('click', function() {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
         soundHover.play();
     }
     window.open('https://www.iut-tarbes.fr/');
@@ -4305,14 +4451,15 @@ contenu_link.forEach(e => {
     });
 })
 
-greta.addEventListener('pointerenter', function(){
-    indicHover = "ID";
-    cursorHoverIn();
-})
-
-greta.addEventListener('pointerleave', function(){
-    cursorHoverOut();
-})
+greta.forEach(element => {
+    element.addEventListener('pointerenter', function(){
+        indicHover = "ID";
+        cursorHoverIn();
+    })
+    element.addEventListener('pointerleave', function(){
+        cursorHoverOut();
+    })
+});
 
 faceImg.forEach(e => {
     e.addEventListener("pointerenter", function() {
@@ -4344,7 +4491,6 @@ iframe.forEach(e => {
             gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
             gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
         }
-
     });
 });
 
@@ -5946,164 +6092,89 @@ function checkScrollDirection(elContent) {
             direction = "up"
         }
         scrollPos = elContent.scrollTop;
-    // })
     return direction
 }
 
 function scrollIntoWorkshop(elContent, elCredit) {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         camera.position.z = scrollWorkshop(elContent)
-        if (window.matchMedia("(max-width: 1440px)").matches) {
-            if (checkScrollDirection(elContent) == "down") {
-                if (camera.position.z <= -108) {
-                    if (idPlane[14]) {
-                        contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
-                            } else if (idPlane[13]) {
-                                contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src
-                                contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src
-                            } else if (idPlane[12]) {
-                                contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src
-                                contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
-                            } else if (idPlane[11]) {
-                                contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
-                                // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
-                            } else if (idPlane[10]) {
-                                contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
-                                // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
-                            } else if (idPlane[9]) {
-                                contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
-                                contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
-                            } else if (idPlane[8]) {
-                                contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
-                            } else if (idPlane[7]) {
-                                contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
-                                // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-                            } else if (idPlane[6]) {
-                                contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
-                                // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-                            } else if (idPlane[5]) {
-                                contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
-                                // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-                            } else if (idPlane[4]) {
-                                contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
-                                // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-                            } else if (idPlane[3]) {
-                                contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
-                                // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-                            } else if (idPlane[2]) {
-                                contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
-                                // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-                            } else if (idPlane[1]) {
-                                contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
-                                // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-                            }
-    
-                            cursorOnVideo = false
-                            if (!cursorOnVideo) {
-                                gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                                gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                            }
-                            workShopContainer.classList.remove('switchPlane')
-                            btnBackWorkshop.classList.add('close')
-                            gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-                            gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-                            gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
-                            gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
-                            gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
-                
-                            TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-                            TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-                
-                            backPossible = false;
-                            clickPossible = false;
-                            setTimeout(function() {
-                                creditActive = true
-                                creditContainer.classList.add('switchStreet')
-                                elCredit.scrollTop = 0
-                            }, 1000)
-                            setTimeout(function() {
-                                backPossible = true
-                                clickPossible = true;
-                                btnBackWorkshop.classList.remove('close')
-                            }, 3000)
-                        } 
+        if (checkScrollDirection(elContent) == "down") {
+            if (camera.position.z <= -108) {
+                if (idPlane[14]) {
+                    contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
+                } else if (idPlane[13]) {
+                            contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src
+                            contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src
+                } else if (idPlane[12]) {
+                            contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src
+                            contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
+                } else if (idPlane[11]) {
+                            contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
+                            // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
+                } else if (idPlane[10]) {
+                            contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
+                            // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
+                } else if (idPlane[9]) {
+                            contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
+                            contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
+                } else if (idPlane[8]) {
+                            contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
+                } else if (idPlane[7]) {
+                            contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
+                            // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+                } else if (idPlane[6]) {
+                            contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
+                            // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+                } else if (idPlane[5]) {
+                            contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
+                            // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+                } else if (idPlane[4]) {
+                            contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
+                            // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+                } else if (idPlane[3]) {
+                            contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
+                            // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+                } else if (idPlane[2]) {
+                            contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
+                            // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+                } else if (idPlane[1]) {
+                            contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
+                            // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+                }
+
+                cursorOnVideo = false
+                if (!cursorOnVideo) {
+                    gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+                    gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
+                }
+                workShopContainer.classList.remove('switchPlane')
+                btnBackWorkshop.classList.add('close')
+                gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
+                gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
+                gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
+                gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
+                gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+            
+                TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
+                TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
+            
+                backPossible = false;
+                clickPossible = false;
+                setTimeout(function() {
+                    creditActive = true
+                    creditContainer.classList.add('switchStreet')
+                    elCredit.scrollTop = 0
+                    setTimeout(() => {
+                        creditContainer.style.pointerEvents = "all"
+                    }, 1000);
+                }, 1000)
+                setTimeout(function() {
+                    backPossible = true
+                    clickPossible = true;
+                    btnBackWorkshop.classList.remove('close')
+                }, 3000)
             } 
-        } else {
-            if (checkScrollDirection(elContent) == "down") {
-                        if (camera.position.z <= -106) {
-                            if (idPlane[14]) {
-                                contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
-                            } else if (idPlane[13]) {
-                                contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src
-                                contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src
-                            } else if (idPlane[12]) {
-                                contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src
-                                contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src
-                            } else if (idPlane[11]) {
-                                contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src
-                                // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
-                            } else if (idPlane[10]) {
-                                contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src
-                                // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
-                            } else if (idPlane[9]) {
-                                contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src
-                                contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src
-                            } else if (idPlane[8]) {
-                                contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src
-                            } else if (idPlane[7]) {
-                                contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src
-                                // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-                            } else if (idPlane[6]) {
-                                contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src
-                                // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-                            } else if (idPlane[5]) {
-                                contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src
-                                // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-                            } else if (idPlane[4]) {
-                                contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src
-                                // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-                            } else if (idPlane[3]) {
-                                contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src
-                                // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-                            } else if (idPlane[2]) {
-                                contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src
-                                // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-                            } else if (idPlane[1]) {
-                                contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src
-                                // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-                            }
-                            
-                            cursorOnVideo = false
-                            if (!cursorOnVideo) {
-                                gsap.to(cursor, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                                gsap.to(cursorShapeOut, 0.50, { opacity: 1, ease: "Power3.easeOut"})
-                            }
-                            workShopContainer.classList.remove('switchPlane')
-                            btnBackWorkshop.classList.add('close')
-                            gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-                            gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-                            gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
-                            gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
-                            gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
-                            
-                            TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
-                            TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })
-                            
-                            backPossible = false;
-                            clickPossible = false;
-                            setTimeout(function() {
-                                creditContainer.classList.add('switchStreet')
-                                creditActive = true
-                                elCredit.scrollTop = 0
-                            }, 1000)
-                            setTimeout(function() {
-                                backPossible = true
-                                clickPossible = true;
-                                btnBackWorkshop.classList.remove('close')
-                            }, 3000)
-                        } 
-            }
-        }
+        } 
     }
 }
 
@@ -6230,23 +6301,47 @@ function scrollWorkshop(el) {
 document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 37:
-            if (!workshopActive) {
-                scrollUp();
+            if (!isScrollUp && planeScrollPossible) {
+                if (!workshopActive) {
+                    scrollUp();
+                    isScrollUp = true
+                    setTimeout(function () {
+                        isScrollUp = false
+                    }, 750)
+                }
             }
             break;
         case 38: // SCROLL UP
-            if (!workshopActive) {
-                scrollUp();
+            if (!isScrollUp && planeScrollPossible) {
+                if (!workshopActive) {
+                    scrollUp();
+                    isScrollUp = true
+                    setTimeout(function () {
+                        isScrollUp = false
+                    }, 750)
+                }
             }
             break;
         case 39:
-            if (!workshopActive) {
-                scrollDown();
+            if (!isScrollDown && planeScrollPossible) {
+                if (!workshopActive) {
+                    scrollDown();
+                    isScrollDown = true
+                    setTimeout(function () {
+                        isScrollDown = false
+                    }, 750)
+                }
             }
             break;
         case 40: // SCROLL DOWN
-            if (!workshopActive) {
-                scrollDown();
+            if (!isScrollDown && planeScrollPossible) {
+                if (!workshopActive) {
+                    scrollDown();
+                    isScrollDown = true
+                    setTimeout(function () {
+                        isScrollDown = false
+                    }, 750)
+                }
             }
             break;
         case 27:
@@ -6262,7 +6357,7 @@ document.onkeydown = function(e) {
             }
             break;
         case 13:
-            if (!homeActive && startMenuActive) {
+            if (!homeActive && startMenuActive && loadComplete) {
                 startImmersion();
             }
             if (camera.position.z == 10 && homeActive && !startMenuActive) {
@@ -6285,6 +6380,9 @@ document.onkeydown = function(e) {
                 plane1Click();
             }
             break;
+        case 77:
+            switchMusic();
+        break;
     }
 };
 
@@ -6298,6 +6396,66 @@ document.querySelector("#dl_artgen").addEventListener('click', function () {
     }, 300);
     // }
 })
+
+
+// global variable for the player
+var player;
+
+// this function gets called when API is ready to use
+function onYouTubePlayerAPIReady() {
+    // create the global player from the specific iframe (#video)
+    player = new YT.Player('video', {
+        events: {
+            // call this function when player is ready to use
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    // bind events
+    // var playButton = document.getElementById("play-button");
+    iframe.forEach(element => {        
+        element.addEventListener("click", function() {
+            // player.playVideo();
+            console.log('ueueue')
+            switchMusic()
+        });
+    });
+
+    musicBtn.addEventListener('click', function(){
+        switchMusic() 
+        if (!stopMusic) {
+            stopMusic = true
+        } else {
+            stopMusic = false
+        }
+        player.pauseVideo();
+    })
+    
+
+    // var pauseButton = document.getElementById("pause-button");
+    // pauseButton.addEventListener("click", function() {
+    //     player.pauseVideo();
+    // });
+
+    // var stopButton = document.getElementById("stop-button");
+    // stopButton.addEventListener("click", function() {
+    //     player.stopVideo();
+    // });
+}
+
+// Inject YouTube API script
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+
+
+
+
 
 let variation = 0;
 let variationShaders = 0;
@@ -6338,38 +6496,38 @@ var render = function() {
     materialPlane13.uniforms.time.value = clock.running = false;
     materialPlane14.uniforms.time.value = clock.running = false;
 
-        if (camera.position.z >= 0 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
-            materialPlane1.uniforms.time.value = clock.running = true;
-            materialPlane2.uniforms.time.value = clock.running = true;
-            materialPlane3.uniforms.time.value = clock.running = true;
-            materialPlane4.uniforms.time.value = clock.running = true;
-            materialPlane5.uniforms.time.value = clock.running = true;
-            materialPlane6.uniforms.time.value = clock.running = true;
-            materialPlane7.uniforms.time.value = clock.running = true;
-            materialPlane8.uniforms.time.value = clock.running = true;
-            materialPlane9.uniforms.time.value = clock.running = true;
-            materialPlane10.uniforms.time.value = clock.running = true;
-            materialPlane11.uniforms.time.value = clock.running = true;
-            materialPlane12.uniforms.time.value = clock.running = true;
-            materialPlane13.uniforms.time.value = clock.running = true;
-            materialPlane14.uniforms.time.value = clock.running = true;
-            materialPlane1.uniforms.time.value = clock.getElapsedTime();
-            materialPlane2.uniforms.time.value = clock.getElapsedTime();
-            materialPlane3.uniforms.time.value = clock.getElapsedTime();
-            materialPlane4.uniforms.time.value = clock.getElapsedTime();
-            materialPlane5.uniforms.time.value = clock.getElapsedTime();
-            materialPlane6.uniforms.time.value = clock.getElapsedTime();
-            materialPlane7.uniforms.time.value = clock.getElapsedTime();
-            materialPlane8.uniforms.time.value = clock.getElapsedTime();
-            materialPlane9.uniforms.time.value = clock.getElapsedTime();
-            materialPlane10.uniforms.time.value = clock.getElapsedTime();
-            materialPlane11.uniforms.time.value = clock.getElapsedTime();
-            materialPlane12.uniforms.time.value = clock.getElapsedTime();
-            materialPlane13.uniforms.time.value = clock.getElapsedTime();
-            materialPlane14.uniforms.time.value = clock.getElapsedTime();
-        }
+    if (wavyPlane) {
+        materialPlane1.uniforms.time.value = clock.running = true;
+        materialPlane2.uniforms.time.value = clock.running = true;
+        materialPlane3.uniforms.time.value = clock.running = true;
+        materialPlane4.uniforms.time.value = clock.running = true;
+        materialPlane5.uniforms.time.value = clock.running = true;
+        materialPlane6.uniforms.time.value = clock.running = true;
+        materialPlane7.uniforms.time.value = clock.running = true;
+        materialPlane8.uniforms.time.value = clock.running = true;
+        materialPlane9.uniforms.time.value = clock.running = true;
+        materialPlane10.uniforms.time.value = clock.running = true;
+        materialPlane11.uniforms.time.value = clock.running = true;
+        materialPlane12.uniforms.time.value = clock.running = true;
+        materialPlane13.uniforms.time.value = clock.running = true;
+        materialPlane14.uniforms.time.value = clock.running = true;
+        materialPlane1.uniforms.time.value = clock.getElapsedTime();
+        materialPlane2.uniforms.time.value = clock.getElapsedTime();
+        materialPlane3.uniforms.time.value = clock.getElapsedTime();
+        materialPlane4.uniforms.time.value = clock.getElapsedTime();
+        materialPlane5.uniforms.time.value = clock.getElapsedTime();
+        materialPlane6.uniforms.time.value = clock.getElapsedTime();
+        materialPlane7.uniforms.time.value = clock.getElapsedTime();
+        materialPlane8.uniforms.time.value = clock.getElapsedTime();
+        materialPlane9.uniforms.time.value = clock.getElapsedTime();
+        materialPlane10.uniforms.time.value = clock.getElapsedTime();
+        materialPlane11.uniforms.time.value = clock.getElapsedTime();
+        materialPlane12.uniforms.time.value = clock.getElapsedTime();
+        materialPlane13.uniforms.time.value = clock.getElapsedTime();
+        materialPlane14.uniforms.time.value = clock.getElapsedTime();
+    }
 
-    composer.render();
+    // composer.render();
 
     requestAnimationFrame(render);
 

@@ -8,17 +8,13 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "draco": "0.0.1",
     "glsl-noise": "0.0.0",
-    "gltf-pipeline": "^3.0.2",
     "gsap": "^3.5.1",
+    "howler": "^2.2.1",
     "postprocessing": "^6.19.0",
-    "scroll-triggers": "^4.4.0",
+    "preload-js": "^0.6.3",
     "three": "^0.114.0",
     "three-gltf-loader": "^1.111.0",
-    "three-loaders": "^1.0.9",
-    "three-orbit-controls": "^82.1.0",
-    "three-orbitcontrols": "^2.110.3",
     "three.interaction": "^0.2.3",
     "touchsweep": "^1.1.0"
   },

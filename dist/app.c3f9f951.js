@@ -8313,17 +8313,17 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new BufferGeometry().copy(this);
   },
@@ -9513,17 +9513,17 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   clone: function () {
     /*
      // Handle primitives
-    		 var parameters = this.parameters;
-    		 if ( parameters !== undefined ) {
-    		 var values = [];
-    		 for ( var key in parameters ) {
-    		 values.push( parameters[ key ] );
-    		 }
-    		 var geometry = Object.create( this.constructor.prototype );
+    	 var parameters = this.parameters;
+    	 if ( parameters !== undefined ) {
+    	 var values = [];
+    	 for ( var key in parameters ) {
+    	 values.push( parameters[ key ] );
+    	 }
+    	 var geometry = Object.create( this.constructor.prototype );
      this.constructor.apply( geometry, values );
      return geometry;
-    		 }
-    		 return new this.constructor().copy( this );
+    	 }
+    	 return new this.constructor().copy( this );
      */
     return new Geometry().copy(this);
   },
@@ -32462,23 +32462,15 @@ function PointLightHelper(light, sphereSize, color) {
   /*
   var distanceGeometry = new THREE.IcosahedronBufferGeometry( 1, 2 );
   var distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-  
-  this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+  	this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
   this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-  
-  var d = light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.scale.set( d, d, d );
-  
-  }
-  
-  this.add( this.lightDistance );
+  	var d = light.distance;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.scale.set( d, d, d );
+  	}
+  	this.add( this.lightDistance );
   */
 }
 
@@ -32498,17 +32490,12 @@ PointLightHelper.prototype.update = function () {
   }
   /*
   var d = this.light.distance;
-  
-  if ( d === 0.0 ) {
-  
-  	this.lightDistance.visible = false;
-  
-  } else {
-  
-  	this.lightDistance.visible = true;
+  	if ( d === 0.0 ) {
+  		this.lightDistance.visible = false;
+  	} else {
+  		this.lightDistance.visible = true;
   	this.lightDistance.scale.set( d, d, d );
-  
-  }
+  	}
   */
 
 };
@@ -32939,8 +32926,7 @@ BoxHelper.prototype.update = function (object) {
   1/___0/|
   | 6__|_7
   2/___3/
-  
-  0: max.x, max.y, max.z
+  	0: max.x, max.y, max.z
   1: min.x, max.y, max.z
   2: min.x, min.y, max.z
   3: max.x, min.y, max.z
@@ -37606,6508 +37592,7 @@ var GLTFLoader = function () {
 }();
 
 exports.GLTFLoader = GLTFLoader;
-},{"../../../build/three.module.js":"node_modules/three/build/three.module.js"}],"node_modules/postprocessing/build/postprocessing.esm.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.WebGLExtension = exports.VignetteEffect = exports.ToneMappingMode = exports.ToneMappingEffect = exports.TextureEffect = exports.TetrahedralUpscaler = exports.ShockWaveEffect = exports.ShaderPass = exports.SepiaEffect = exports.SelectiveBloomEffect = exports.Selection = exports.Section = exports.ScanlineEffect = exports.SavePass = exports.SSAOMaterial = exports.SSAOEffect = exports.SMAAWeightsMaterial = exports.SMAASearchImageData = exports.SMAAPreset = exports.SMAAImageLoader = exports.SMAAEffect = exports.SMAAAreaImageData = exports.Resizer = exports.Resizable = exports.RenderPass = exports.RealisticBokehEffect = exports.RawImageData = exports.PredicationMode = exports.PixelationEffect = exports.Pass = exports.OverrideMaterialManager = exports.OutlineMaterial = exports.OutlineEffect = exports.OutlineEdgesMaterial = exports.NormalPass = exports.NoiseTexture = exports.NoiseEffect = exports.MaskPass = exports.MaskMaterial = exports.MaskFunction = exports.LuminanceMaterial = exports.LookupTexture3D = exports.LambdaPass = exports.LUTOperation = exports.LUTEffect = exports.LUTCubeLoader = exports.LUT3dlLoader = exports.KernelSize = exports.Initializable = exports.HueSaturationEffect = exports.GridEffect = exports.GodRaysMaterial = exports.GodRaysEffect = exports.GlitchMode = exports.GlitchEffect = exports.GammaCorrectionEffect = exports.EffectPass = exports.EffectMaterial = exports.EffectComposer = exports.EffectAttribute = exports.Effect = exports.EdgeDetectionMode = exports.EdgeDetectionMaterial = exports.DotScreenEffect = exports.Disposable = exports.DepthPass = exports.DepthOfFieldEffect = exports.DepthMaskMaterial = exports.DepthEffect = exports.DepthDownsamplingPass = exports.DepthDownsamplingMaterial = exports.DepthComparisonMaterial = exports.CopyMaterial = exports.ConvolutionMaterial = exports.ColorEdgesMaterial = exports.ColorDepthEffect = exports.ColorChannel = exports.ColorAverageEffect = exports.ClearPass = exports.ClearMaskPass = exports.CircleOfConfusionMaterial = exports.ChromaticAberrationEffect = exports.BrightnessContrastEffect = exports.BokehMaterial = exports.BokehEffect = exports.BlurPass = exports.BloomEffect = exports.BlendMode = exports.BlendFunction = exports.AdaptiveLuminancePass = exports.AdaptiveLuminanceMaterial = void 0;
-
-var _three = require("three");
-
-/**
- * postprocessing v6.19.0 build Sun Jan 03 2021
- * https://github.com/vanruesc/postprocessing
- * Copyright 2021 Raoul van Rüschen
- * @license Zlib
- */
-// src/core/ColorChannel.js
-var ColorChannel = {
-  RED: 0,
-  GREEN: 1,
-  BLUE: 2,
-  ALPHA: 3
-}; // src/core/Disposable.js
-
-exports.ColorChannel = ColorChannel;
-var Disposable = class {
-  dispose() {}
-
-}; // src/core/EffectComposer.js
-
-exports.Disposable = Disposable;
-// src/materials/glsl/adaptive-luminance/shader.frag
-var shader_default = "uniform mediump sampler2D luminanceBuffer0;uniform sampler2D luminanceBuffer1;uniform float minLuminance;uniform float deltaTime;uniform float tau;varying vec2 vUv;void main(){float l0=texture2D(luminanceBuffer0,vUv).r;\n#if __VERSION__ < 300\nfloat l1=texture2DLodEXT(luminanceBuffer1,vUv,MIP_LEVEL_1X1).r;\n#else\nfloat l1=textureLod(luminanceBuffer1,vUv,MIP_LEVEL_1X1).r;\n#endif\nl0=max(minLuminance,l0);l1=max(minLuminance,l1);float adaptedLum=l0+(l1-l0)*(1.0-exp(-deltaTime*tau));gl_FragColor.r=adaptedLum;}"; // src/materials/glsl/common/shader.vert
-
-var shader_default2 = "varying vec2 vUv;void main(){vUv=position.xy*0.5+0.5;gl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/AdaptiveLuminanceMaterial.js
-
-var AdaptiveLuminanceMaterial = class extends _three.ShaderMaterial {
-  constructor() {
-    super({
-      type: "AdaptiveLuminanceMaterial",
-      defines: {
-        MIP_LEVEL_1X1: "0.0"
-      },
-      uniforms: {
-        luminanceBuffer0: new _three.Uniform(null),
-        luminanceBuffer1: new _three.Uniform(null),
-        minLuminance: new _three.Uniform(0.01),
-        deltaTime: new _three.Uniform(0),
-        tau: new _three.Uniform(1)
-      },
-      fragmentShader: shader_default,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false,
-      extensions: {
-        shaderTextureLOD: true
-      }
-    });
-    this.toneMapped = false;
-  }
-
-}; // src/materials/BokehMaterial.js
-
-exports.AdaptiveLuminanceMaterial = AdaptiveLuminanceMaterial;
-// src/materials/glsl/bokeh/shader.frag
-var shader_default3 = "uniform sampler2D inputBuffer;uniform sampler2D cocBuffer;uniform vec2 texelSize;uniform float scale;\n#if PASS == 1\nuniform vec4 kernel64[32];\n#else\nuniform vec4 kernel16[8];\n#endif\nvarying vec2 vUv;void main(){\n#ifdef FOREGROUND\nvec2 CoCNearFar=texture2D(cocBuffer,vUv).rg;float CoC=CoCNearFar.r*scale;\n#else\nfloat CoC=texture2D(cocBuffer,vUv).g*scale;\n#endif\nif(CoC==0.0){gl_FragColor=texture2D(inputBuffer,vUv);}else{\n#ifdef FOREGROUND\nvec2 step=texelSize*max(CoC,CoCNearFar.g*scale);\n#else\nvec2 step=texelSize*CoC;\n#endif\n#if PASS == 1\nvec4 acc=vec4(0.0);for(int i=0;i<32;++i){vec4 kernel=kernel64[i];vec2 uv=step*kernel.xy+vUv;acc+=texture2D(inputBuffer,uv);uv=step*kernel.zw+vUv;acc+=texture2D(inputBuffer,uv);}gl_FragColor=acc/64.0;\n#else\nvec4 maxValue=texture2D(inputBuffer,vUv);for(int i=0;i<8;++i){vec4 kernel=kernel16[i];vec2 uv=step*kernel.xy+vUv;maxValue=max(texture2D(inputBuffer,uv),maxValue);uv=step*kernel.zw+vUv;maxValue=max(texture2D(inputBuffer,uv),maxValue);}gl_FragColor=maxValue;\n#endif\n}}"; // src/materials/BokehMaterial.js
-
-var BokehMaterial = class extends _three.ShaderMaterial {
-  constructor(fill = false, foreground = false) {
-    super({
-      type: "BokehMaterial",
-      defines: {
-        PASS: fill ? "2" : "1"
-      },
-      uniforms: {
-        kernel64: new _three.Uniform(null),
-        kernel16: new _three.Uniform(null),
-        inputBuffer: new _three.Uniform(null),
-        cocBuffer: new _three.Uniform(null),
-        texelSize: new _three.Uniform(new _three.Vector2()),
-        scale: new _three.Uniform(1)
-      },
-      fragmentShader: shader_default3,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-
-    if (foreground) {
-      this.defines.FOREGROUND = "1";
-    }
-
-    this.generateKernel();
-  }
-
-  generateKernel() {
-    const GOLDEN_ANGLE = 2.39996323;
-    const points64 = new Float32Array(128);
-    const points16 = new Float32Array(32);
-    let i64 = 0,
-        i16 = 0;
-
-    for (let i = 0; i < 80; ++i) {
-      const theta = i * GOLDEN_ANGLE;
-      const r = Math.sqrt(i) / Math.sqrt(80);
-      const u = r * Math.cos(theta),
-            v3 = r * Math.sin(theta);
-
-      if (i % 5 === 0) {
-        points16[i16++] = u;
-        points16[i16++] = v3;
-      } else {
-        points64[i64++] = u;
-        points64[i64++] = v3;
-      }
-    }
-
-    const kernel64 = [];
-    const kernel16 = [];
-
-    for (let i = 0; i < 128;) {
-      kernel64.push(new _three.Vector4(points64[i++], points64[i++], points64[i++], points64[i++]));
-    }
-
-    for (let i = 0; i < 32;) {
-      kernel16.push(new _three.Vector4(points16[i++], points16[i++], points16[i++], points16[i++]));
-    }
-
-    this.uniforms.kernel64.value = kernel64;
-    this.uniforms.kernel16.value = kernel16;
-  }
-
-  setTexelSize(x, y) {
-    this.uniforms.texelSize.value.set(x, y);
-  }
-
-}; // src/materials/CircleOfConfusionMaterial.js
-
-exports.BokehMaterial = BokehMaterial;
-// src/materials/glsl/circle-of-confusion/shader.frag
-var shader_default4 = "#include <common>\n#include <packing>\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D depthBuffer;\n#else\nuniform mediump sampler2D depthBuffer;\n#endif\nuniform float focusDistance;uniform float focalLength;uniform float cameraNear;uniform float cameraFar;varying vec2 vUv;float readDepth(const in vec2 uv){\n#if DEPTH_PACKING == 3201\nreturn unpackRGBAToDepth(texture2D(depthBuffer,uv));\n#else\nreturn texture2D(depthBuffer,uv).r;\n#endif\n}void main(){float depth=readDepth(vUv);\n#ifdef PERSPECTIVE_CAMERA\nfloat viewZ=perspectiveDepthToViewZ(depth,cameraNear,cameraFar);float linearDepth=viewZToOrthographicDepth(viewZ,cameraNear,cameraFar);\n#else\nfloat linearDepth=depth;\n#endif\nfloat signedDistance=linearDepth-focusDistance;float magnitude=smoothstep(0.0,focalLength,abs(signedDistance));gl_FragColor.rg=vec2(step(signedDistance,0.0)*magnitude,step(0.0,signedDistance)*magnitude);}"; // src/materials/CircleOfConfusionMaterial.js
-
-var CircleOfConfusionMaterial = class extends _three.ShaderMaterial {
-  constructor(camera) {
-    super({
-      type: "CircleOfConfusionMaterial",
-      defines: {
-        DEPTH_PACKING: "0"
-      },
-      uniforms: {
-        depthBuffer: new _three.Uniform(null),
-        focusDistance: new _three.Uniform(0),
-        focalLength: new _three.Uniform(0),
-        cameraNear: new _three.Uniform(0.3),
-        cameraFar: new _three.Uniform(1e3)
-      },
-      fragmentShader: shader_default4,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-    this.adoptCameraSettings(camera);
-  }
-
-  get depthPacking() {
-    return Number(this.defines.DEPTH_PACKING);
-  }
-
-  set depthPacking(value) {
-    this.defines.DEPTH_PACKING = value.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  adoptCameraSettings(camera = null) {
-    if (camera !== null) {
-      this.uniforms.cameraNear.value = camera.near;
-      this.uniforms.cameraFar.value = camera.far;
-
-      if (camera instanceof _three.PerspectiveCamera) {
-        this.defines.PERSPECTIVE_CAMERA = "1";
-      } else {
-        delete this.defines.PERSPECTIVE_CAMERA;
-      }
-
-      this.needsUpdate = true;
-    }
-  }
-
-}; // src/materials/ColorEdgesMaterial.js
-
-exports.CircleOfConfusionMaterial = CircleOfConfusionMaterial;
-// src/materials/glsl/edge-detection/shader.frag
-var shader_default5 = "varying vec2 vUv;varying vec2 vUv0;varying vec2 vUv1;\n#if EDGE_DETECTION_MODE != 0\nvarying vec2 vUv2;varying vec2 vUv3;varying vec2 vUv4;varying vec2 vUv5;\n#endif\n#if EDGE_DETECTION_MODE == 1\n#include <common>\n#endif\n#if EDGE_DETECTION_MODE == 0 || PREDICATION_MODE == 1\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D depthBuffer;\n#else\nuniform mediump sampler2D depthBuffer;\n#endif\nfloat readDepth(const in vec2 uv){\n#if DEPTH_PACKING == 3201\nreturn unpackRGBAToDepth(texture2D(depthBuffer,uv));\n#else\nreturn texture2D(depthBuffer,uv).r;\n#endif\n}vec3 gatherNeighbors(){float p=readDepth(vUv);float pLeft=readDepth(vUv0);float pTop=readDepth(vUv1);return vec3(p,pLeft,pTop);}\n#elif PREDICATION_MODE == 2\nuniform sampler2D predicationBuffer;vec3 gatherNeighbors(){float p=texture2D(predicationBuffer,vUv).r;float pLeft=texture2D(predicationBuffer,vUv0).r;float pTop=texture2D(predicationBuffer,vUv1).r;return vec3(p,pLeft,pTop);}\n#endif\n#if PREDICATION_MODE != 0\nvec2 calculatePredicatedThreshold(){vec3 neighbours=gatherNeighbors();vec2 delta=abs(neighbours.xx-neighbours.yz);vec2 edges=step(PREDICATION_THRESHOLD,delta);return PREDICATION_SCALE*EDGE_THRESHOLD*(1.0-PREDICATION_STRENGTH*edges);}\n#endif\n#if EDGE_DETECTION_MODE != 0\nuniform sampler2D inputBuffer;\n#endif\nvoid main(){\n#if EDGE_DETECTION_MODE == 0\nconst vec2 threshold=vec2(DEPTH_THRESHOLD);\n#elif PREDICATION_MODE != 0\nvec2 threshold=calculatePredicatedThreshold();\n#else\nconst vec2 threshold=vec2(EDGE_THRESHOLD);\n#endif\n#if EDGE_DETECTION_MODE == 0\nvec3 neighbors=gatherNeighbors();vec2 delta=abs(neighbors.xx-vec2(neighbors.y,neighbors.z));vec2 edges=step(threshold,delta);if(dot(edges,vec2(1.0))==0.0){discard;}gl_FragColor=vec4(edges,0.0,1.0);\n#elif EDGE_DETECTION_MODE == 1\nfloat l=linearToRelativeLuminance(texture2D(inputBuffer,vUv).rgb);float lLeft=linearToRelativeLuminance(texture2D(inputBuffer,vUv0).rgb);float lTop=linearToRelativeLuminance(texture2D(inputBuffer,vUv1).rgb);vec4 delta;delta.xy=abs(l-vec2(lLeft,lTop));vec2 edges=step(threshold,delta.xy);if(dot(edges,vec2(1.0))==0.0){discard;}float lRight=linearToRelativeLuminance(texture2D(inputBuffer,vUv2).rgb);float lBottom=linearToRelativeLuminance(texture2D(inputBuffer,vUv3).rgb);delta.zw=abs(l-vec2(lRight,lBottom));vec2 maxDelta=max(delta.xy,delta.zw);float lLeftLeft=linearToRelativeLuminance(texture2D(inputBuffer,vUv4).rgb);float lTopTop=linearToRelativeLuminance(texture2D(inputBuffer,vUv5).rgb);delta.zw=abs(vec2(lLeft,lTop)-vec2(lLeftLeft,lTopTop));maxDelta=max(maxDelta.xy,delta.zw);float finalDelta=max(maxDelta.x,maxDelta.y);edges.xy*=step(finalDelta,LOCAL_CONTRAST_ADAPTATION_FACTOR*delta.xy);gl_FragColor=vec4(edges,0.0,1.0);\n#elif EDGE_DETECTION_MODE == 2\nvec4 delta;vec3 c=texture2D(inputBuffer,vUv).rgb;vec3 cLeft=texture2D(inputBuffer,vUv0).rgb;vec3 t=abs(c-cLeft);delta.x=max(max(t.r,t.g),t.b);vec3 cTop=texture2D(inputBuffer,vUv1).rgb;t=abs(c-cTop);delta.y=max(max(t.r,t.g),t.b);vec2 edges=step(threshold,delta.xy);if(dot(edges,vec2(1.0))==0.0){discard;}vec3 cRight=texture2D(inputBuffer,vUv2).rgb;t=abs(c-cRight);delta.z=max(max(t.r,t.g),t.b);vec3 cBottom=texture2D(inputBuffer,vUv3).rgb;t=abs(c-cBottom);delta.w=max(max(t.r,t.g),t.b);vec2 maxDelta=max(delta.xy,delta.zw);vec3 cLeftLeft=texture2D(inputBuffer,vUv4).rgb;t=abs(c-cLeftLeft);delta.z=max(max(t.r,t.g),t.b);vec3 cTopTop=texture2D(inputBuffer,vUv5).rgb;t=abs(c-cTopTop);delta.w=max(max(t.r,t.g),t.b);maxDelta=max(maxDelta.xy,delta.zw);float finalDelta=max(maxDelta.x,maxDelta.y);edges*=step(finalDelta,LOCAL_CONTRAST_ADAPTATION_FACTOR*delta.xy);gl_FragColor=vec4(edges,0.0,1.0);\n#endif\n}"; // src/materials/glsl/edge-detection/shader.vert
-
-var shader_default6 = "uniform vec2 texelSize;varying vec2 vUv;varying vec2 vUv0;varying vec2 vUv1;\n#if EDGE_DETECTION_MODE != 0\nvarying vec2 vUv2;varying vec2 vUv3;varying vec2 vUv4;varying vec2 vUv5;\n#endif\nvoid main(){vUv=position.xy*0.5+0.5;vUv0=vUv+texelSize*vec2(-1.0,0.0);vUv1=vUv+texelSize*vec2(0.0,-1.0);\n#if EDGE_DETECTION_MODE != 0\nvUv2=vUv+texelSize*vec2(1.0,0.0);vUv3=vUv+texelSize*vec2(0.0,1.0);vUv4=vUv+texelSize*vec2(-2.0,0.0);vUv5=vUv+texelSize*vec2(0.0,-2.0);\n#endif\ngl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/ColorEdgesMaterial.js
-
-var ColorEdgesMaterial = class extends _three.ShaderMaterial {
-  constructor(texelSize = new _three.Vector2()) {
-    super({
-      type: "ColorEdgesMaterial",
-      defines: {
-        EDGE_DETECTION_MODE: "2",
-        LOCAL_CONTRAST_ADAPTATION_FACTOR: "2.0",
-        EDGE_THRESHOLD: "0.1"
-      },
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        texelSize: new _three.Uniform(texelSize)
-      },
-      fragmentShader: shader_default5,
-      vertexShader: shader_default6,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-  }
-
-  setLocalContrastAdaptationFactor(factor) {
-    this.defines.LOCAL_CONTRAST_ADAPTATION_FACTOR = factor.toFixed("2");
-    this.needsUpdate = true;
-  }
-
-  setEdgeDetectionThreshold(threshold) {
-    const t = Math.min(Math.max(threshold, 0.05), 0.5);
-    this.defines.EDGE_THRESHOLD = t.toFixed("2");
-    this.needsUpdate = true;
-  }
-
-}; // src/materials/ConvolutionMaterial.js
-
-exports.ColorEdgesMaterial = ColorEdgesMaterial;
-// src/materials/glsl/convolution/shader.frag
-var shader_default7 = "#include <common>\n#include <dithering_pars_fragment>\nuniform sampler2D inputBuffer;varying vec2 vUv0;varying vec2 vUv1;varying vec2 vUv2;varying vec2 vUv3;void main(){vec4 sum=texture2D(inputBuffer,vUv0);sum+=texture2D(inputBuffer,vUv1);sum+=texture2D(inputBuffer,vUv2);sum+=texture2D(inputBuffer,vUv3);gl_FragColor=sum*0.25;\n#include <dithering_fragment>\n}"; // src/materials/glsl/convolution/shader.vert
-
-var shader_default8 = "uniform vec2 texelSize;uniform vec2 halfTexelSize;uniform float kernel;uniform float scale;varying vec2 vUv0;varying vec2 vUv1;varying vec2 vUv2;varying vec2 vUv3;void main(){vec2 uv=position.xy*0.5+0.5;vec2 dUv=(texelSize*vec2(kernel)+halfTexelSize)*scale;vUv0=vec2(uv.x-dUv.x,uv.y+dUv.y);vUv1=vec2(uv.x+dUv.x,uv.y+dUv.y);vUv2=vec2(uv.x+dUv.x,uv.y-dUv.y);vUv3=vec2(uv.x-dUv.x,uv.y-dUv.y);gl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/ConvolutionMaterial.js
-
-var ConvolutionMaterial = class extends _three.ShaderMaterial {
-  constructor(texelSize = new _three.Vector2()) {
-    super({
-      type: "ConvolutionMaterial",
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        texelSize: new _three.Uniform(new _three.Vector2()),
-        halfTexelSize: new _three.Uniform(new _three.Vector2()),
-        kernel: new _three.Uniform(0),
-        scale: new _three.Uniform(1)
-      },
-      fragmentShader: shader_default7,
-      vertexShader: shader_default8,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-    this.setTexelSize(texelSize.x, texelSize.y);
-    this.kernelSize = KernelSize.LARGE;
-  }
-
-  getKernel() {
-    return kernelPresets[this.kernelSize];
-  }
-
-  setTexelSize(x, y) {
-    this.uniforms.texelSize.value.set(x, y);
-    this.uniforms.halfTexelSize.value.set(x, y).multiplyScalar(0.5);
-  }
-
-};
-exports.ConvolutionMaterial = ConvolutionMaterial;
-var kernelPresets = [new Float32Array([0, 0]), new Float32Array([0, 1, 1]), new Float32Array([0, 1, 1, 2]), new Float32Array([0, 1, 2, 2, 3]), new Float32Array([0, 1, 2, 3, 4, 4, 5]), new Float32Array([0, 1, 2, 3, 4, 5, 7, 8, 9, 10])];
-var KernelSize = {
-  VERY_SMALL: 0,
-  SMALL: 1,
-  MEDIUM: 2,
-  LARGE: 3,
-  VERY_LARGE: 4,
-  HUGE: 5
-}; // src/materials/CopyMaterial.js
-
-exports.KernelSize = KernelSize;
-// src/materials/glsl/copy/shader.frag
-var shader_default9 = "uniform sampler2D inputBuffer;uniform float opacity;varying vec2 vUv;void main(){vec4 texel=texture2D(inputBuffer,vUv);gl_FragColor=opacity*texel;\n#include <encodings_fragment>\n}"; // src/materials/CopyMaterial.js
-
-var CopyMaterial = class extends _three.ShaderMaterial {
-  constructor() {
-    super({
-      type: "CopyMaterial",
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        opacity: new _three.Uniform(1)
-      },
-      fragmentShader: shader_default9,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-  }
-
-}; // src/materials/DepthComparisonMaterial.js
-
-exports.CopyMaterial = CopyMaterial;
-// src/materials/glsl/depth-comparison/shader.frag
-var shader_default10 = "#include <packing>\n#include <clipping_planes_pars_fragment>\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D depthBuffer;\n#else\nuniform mediump sampler2D depthBuffer;\n#endif\nuniform float cameraNear;uniform float cameraFar;varying float vViewZ;varying vec4 vProjTexCoord;void main(){\n#include <clipping_planes_fragment>\nvec2 projTexCoord=(vProjTexCoord.xy/vProjTexCoord.w)*0.5+0.5;projTexCoord=clamp(projTexCoord,0.002,0.998);float fragCoordZ=unpackRGBAToDepth(texture2D(depthBuffer,projTexCoord));\n#ifdef PERSPECTIVE_CAMERA\nfloat viewZ=perspectiveDepthToViewZ(fragCoordZ,cameraNear,cameraFar);\n#else\nfloat viewZ=orthographicDepthToViewZ(fragCoordZ,cameraNear,cameraFar);\n#endif\nfloat depthTest=(-vViewZ>-viewZ)? 1.0 : 0.0;gl_FragColor.rg=vec2(0.0,depthTest);}"; // src/materials/glsl/depth-comparison/shader.vert
-
-var shader_default11 = "#include <common>\n#include <morphtarget_pars_vertex>\n#include <skinning_pars_vertex>\n#include <clipping_planes_pars_vertex>\nvarying float vViewZ;varying vec4 vProjTexCoord;void main(){\n#include <skinbase_vertex>\n#include <begin_vertex>\n#include <morphtarget_vertex>\n#include <skinning_vertex>\n#include <project_vertex>\nvViewZ=mvPosition.z;vProjTexCoord=gl_Position;\n#include <clipping_planes_vertex>\n}"; // src/materials/DepthComparisonMaterial.js
-
-var DepthComparisonMaterial = class extends _three.ShaderMaterial {
-  constructor(depthTexture = null, camera) {
-    super({
-      type: "DepthComparisonMaterial",
-      uniforms: {
-        depthBuffer: new _three.Uniform(depthTexture),
-        cameraNear: new _three.Uniform(0.3),
-        cameraFar: new _three.Uniform(1e3)
-      },
-      fragmentShader: shader_default10,
-      vertexShader: shader_default11,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false,
-      morphTargets: true,
-      skinning: true
-    });
-    this.toneMapped = false;
-    this.adoptCameraSettings(camera);
-  }
-
-  adoptCameraSettings(camera = null) {
-    if (camera !== null) {
-      this.uniforms.cameraNear.value = camera.near;
-      this.uniforms.cameraFar.value = camera.far;
-
-      if (camera instanceof _three.PerspectiveCamera) {
-        this.defines.PERSPECTIVE_CAMERA = "1";
-      } else {
-        delete this.defines.PERSPECTIVE_CAMERA;
-      }
-    }
-  }
-
-}; // src/materials/DepthDownsamplingMaterial.js
-
-exports.DepthComparisonMaterial = DepthComparisonMaterial;
-// src/materials/glsl/depth-downsampling/shader.frag
-var shader_default12 = "#include <packing>\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D depthBuffer;\n#else\nuniform mediump sampler2D depthBuffer;\n#endif\n#ifdef DOWNSAMPLE_NORMALS\nuniform sampler2D normalBuffer;\n#endif\nvarying vec2 vUv0;varying vec2 vUv1;varying vec2 vUv2;varying vec2 vUv3;float readDepth(const in vec2 uv){\n#if DEPTH_PACKING == 3201\nreturn unpackRGBAToDepth(texture2D(depthBuffer,uv));\n#else\nreturn texture2D(depthBuffer,uv).r;\n#endif\n}int findBestDepth(const in float samples[4]){float c=(samples[0]+samples[1]+samples[2]+samples[3])/4.0;float distances[4]=float[](abs(c-samples[0]),abs(c-samples[1]),abs(c-samples[2]),abs(c-samples[3]));float maxDistance=max(max(distances[0],distances[1]),max(distances[2],distances[3]));int remaining[3];int rejected[3];int i,j,k;for(i=0,j=0,k=0;i<4;++i){if(distances[i]<maxDistance){remaining[j++]=i;}else{rejected[k++]=i;}}for(;j<3;++j){remaining[j]=rejected[--k];}vec3 s=vec3(samples[remaining[0]],samples[remaining[1]],samples[remaining[2]]);c=(s.x+s.y+s.z)/3.0;distances[0]=abs(c-s.x);distances[1]=abs(c-s.y);distances[2]=abs(c-s.z);float minDistance=min(distances[0],min(distances[1],distances[2]));for(i=0;i<3;++i){if(distances[i]==minDistance){break;}}return remaining[i];}void main(){float d[4]=float[](readDepth(vUv0),readDepth(vUv1),readDepth(vUv2),readDepth(vUv3));int index=findBestDepth(d);\n#ifdef DOWNSAMPLE_NORMALS\nvec2 uvs[4]=vec2[](vUv0,vUv1,vUv2,vUv3);vec3 n=texture2D(normalBuffer,uvs[index]).rgb;\n#else\nvec3 n=vec3(0.0);\n#endif\ngl_FragColor=vec4(n,d[index]);}"; // src/materials/glsl/depth-downsampling/shader.vert
-
-var shader_default13 = "uniform vec2 texelSize;varying vec2 vUv0;varying vec2 vUv1;varying vec2 vUv2;varying vec2 vUv3;void main(){vec2 uv=position.xy*0.5+0.5;vUv0=uv;vUv1=vec2(uv.x,uv.y+texelSize.y);vUv2=vec2(uv.x+texelSize.x,uv.y);vUv3=uv+texelSize;gl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/DepthDownsamplingMaterial.js
-
-var DepthDownsamplingMaterial = class extends _three.ShaderMaterial {
-  constructor() {
-    super({
-      type: "DepthDownsamplingMaterial",
-      defines: {
-        DEPTH_PACKING: "0"
-      },
-      uniforms: {
-        depthBuffer: new _three.Uniform(null),
-        normalBuffer: new _three.Uniform(null),
-        texelSize: new _three.Uniform(new _three.Vector2())
-      },
-      fragmentShader: shader_default12,
-      vertexShader: shader_default13,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-  }
-
-  get depthPacking() {
-    return Number(this.defines.DEPTH_PACKING);
-  }
-
-  set depthPacking(value) {
-    this.defines.DEPTH_PACKING = value.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  setTexelSize(x, y) {
-    this.uniforms.texelSize.value.set(x, y);
-  }
-
-}; // src/materials/DepthMaskMaterial.js
-
-exports.DepthDownsamplingMaterial = DepthDownsamplingMaterial;
-// src/materials/glsl/depth-mask/shader.frag
-var shader_default14 = "#include <common>\n#include <packing>\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D depthBuffer0;uniform highp sampler2D depthBuffer1;\n#else\nuniform mediump sampler2D depthBuffer0;uniform mediump sampler2D depthBuffer1;\n#endif\nuniform sampler2D inputBuffer;varying vec2 vUv;void main(){\n#if DEPTH_PACKING_0 == 3201\nfloat d0=unpackRGBAToDepth(texture2D(depthBuffer0,vUv));\n#else\nfloat d0=texture2D(depthBuffer0,vUv).r;\n#endif\n#if DEPTH_PACKING_1 == 3201\nfloat d1=unpackRGBAToDepth(texture2D(depthBuffer1,vUv));\n#else\nfloat d1=texture2D(depthBuffer1,vUv).r;\n#endif\nif(d0<d1){discard;}gl_FragColor=texture2D(inputBuffer,vUv);}"; // src/materials/DepthMaskMaterial.js
-
-var DepthMaskMaterial = class extends _three.ShaderMaterial {
-  constructor() {
-    super({
-      type: "DepthMaskMaterial",
-      defines: {
-        DEPTH_PACKING_0: "0",
-        DEPTH_PACKING_1: "0"
-      },
-      uniforms: {
-        depthBuffer0: new _three.Uniform(null),
-        depthBuffer1: new _three.Uniform(null),
-        inputBuffer: new _three.Uniform(null)
-      },
-      fragmentShader: shader_default14,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-  }
-
-}; // src/materials/EdgeDetectionMaterial.js
-
-exports.DepthMaskMaterial = DepthMaskMaterial;
-var EdgeDetectionMaterial = class extends _three.ShaderMaterial {
-  constructor(texelSize = new _three.Vector2(), mode = EdgeDetectionMode.COLOR) {
-    super({
-      type: "EdgeDetectionMaterial",
-      defines: {
-        LOCAL_CONTRAST_ADAPTATION_FACTOR: "2.0",
-        EDGE_THRESHOLD: "0.1",
-        DEPTH_THRESHOLD: "0.01",
-        PREDICATION_MODE: "0",
-        PREDICATION_THRESHOLD: "0.01",
-        PREDICATION_SCALE: "2.0",
-        PREDICATION_STRENGTH: "1.0",
-        DEPTH_PACKING: "0"
-      },
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        depthBuffer: new _three.Uniform(null),
-        predicationBuffer: new _three.Uniform(null),
-        texelSize: new _three.Uniform(texelSize)
-      },
-      fragmentShader: shader_default5,
-      vertexShader: shader_default6,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-    this.setEdgeDetectionMode(mode);
-  }
-
-  get depthPacking() {
-    return Number(this.defines.DEPTH_PACKING);
-  }
-
-  set depthPacking(value) {
-    this.defines.DEPTH_PACKING = value.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  setEdgeDetectionMode(mode) {
-    this.defines.EDGE_DETECTION_MODE = mode.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  setLocalContrastAdaptationFactor(factor) {
-    this.defines.LOCAL_CONTRAST_ADAPTATION_FACTOR = factor.toFixed("6");
-    this.needsUpdate = true;
-  }
-
-  setEdgeDetectionThreshold(threshold) {
-    this.defines.EDGE_THRESHOLD = threshold.toFixed("6");
-    this.defines.DEPTH_THRESHOLD = (threshold * 0.1).toFixed("6");
-    this.needsUpdate = true;
-  }
-
-  setPredicationMode(mode) {
-    this.defines.PREDICATION_MODE = mode.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  setPredicationBuffer(predicationBuffer) {
-    this.uniforms.predicationBuffer.value = predicationBuffer;
-  }
-
-  setPredicationThreshold(threshold) {
-    this.defines.PREDICATION_THRESHOLD = threshold.toFixed("6");
-    this.needsUpdate = true;
-  }
-
-  setPredicationScale(scale) {
-    this.defines.PREDICATION_SCALE = scale.toFixed("6");
-    this.needsUpdate = true;
-  }
-
-  setPredicationStrength(strength) {
-    this.defines.PREDICATION_STRENGTH = strength.toFixed("6");
-    this.needsUpdate = true;
-  }
-
-};
-exports.EdgeDetectionMaterial = EdgeDetectionMaterial;
-var EdgeDetectionMode = {
-  DEPTH: 0,
-  LUMA: 1,
-  COLOR: 2
-};
-exports.EdgeDetectionMode = EdgeDetectionMode;
-var PredicationMode = {
-  DISABLED: 0,
-  DEPTH: 1,
-  CUSTOM: 2
-}; // src/materials/EffectMaterial.js
-
-exports.PredicationMode = PredicationMode;
-// src/materials/glsl/effect/shader.frag
-var shader_default15 = "#include <common>\n#include <packing>\n#include <dithering_pars_fragment>\nuniform sampler2D inputBuffer;\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D depthBuffer;\n#else\nuniform mediump sampler2D depthBuffer;\n#endif\nuniform vec2 resolution;uniform vec2 texelSize;uniform float cameraNear;uniform float cameraFar;uniform float aspect;uniform float time;varying vec2 vUv;float readDepth(const in vec2 uv){\n#if DEPTH_PACKING == 3201\nreturn unpackRGBAToDepth(texture2D(depthBuffer,uv));\n#else\nreturn texture2D(depthBuffer,uv).r;\n#endif\n}float getViewZ(const in float depth){\n#ifdef PERSPECTIVE_CAMERA\nreturn perspectiveDepthToViewZ(depth,cameraNear,cameraFar);\n#else\nreturn orthographicDepthToViewZ(depth,cameraNear,cameraFar);\n#endif\n}FRAGMENT_HEADvoid main(){FRAGMENT_MAIN_UVvec4 color0=texture2D(inputBuffer,UV);vec4 color1=vec4(0.0);FRAGMENT_MAIN_IMAGEgl_FragColor=color0;\n#ifdef ENCODE_OUTPUT\n#include <encodings_fragment>\n#endif\n#include <dithering_fragment>\n}"; // src/materials/glsl/effect/shader.vert
-
-var shader_default16 = "uniform vec2 resolution;uniform vec2 texelSize;uniform float cameraNear;uniform float cameraFar;uniform float aspect;uniform float time;varying vec2 vUv;VERTEX_HEADvoid main(){vUv=position.xy*0.5+0.5;VERTEX_MAIN_SUPPORTgl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/EffectMaterial.js
-
-var EffectMaterial = class extends _three.ShaderMaterial {
-  constructor(shaderParts = null, defines = null, uniforms = null, camera, dithering = false) {
-    super({
-      type: "EffectMaterial",
-      defines: {
-        DEPTH_PACKING: "0",
-        ENCODE_OUTPUT: "1"
-      },
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        depthBuffer: new _three.Uniform(null),
-        resolution: new _three.Uniform(new _three.Vector2()),
-        texelSize: new _three.Uniform(new _three.Vector2()),
-        cameraNear: new _three.Uniform(0.3),
-        cameraFar: new _three.Uniform(1e3),
-        aspect: new _three.Uniform(1),
-        time: new _three.Uniform(0)
-      },
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false,
-      dithering
-    });
-    this.toneMapped = false;
-
-    if (shaderParts !== null) {
-      this.setShaderParts(shaderParts);
-    }
-
-    if (defines !== null) {
-      this.setDefines(defines);
-    }
-
-    if (uniforms !== null) {
-      this.setUniforms(uniforms);
-    }
-
-    this.adoptCameraSettings(camera);
-  }
-
-  get depthPacking() {
-    return Number(this.defines.DEPTH_PACKING);
-  }
-
-  set depthPacking(value) {
-    this.defines.DEPTH_PACKING = value.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  setShaderParts(shaderParts) {
-    this.fragmentShader = shader_default15.replace(Section.FRAGMENT_HEAD, shaderParts.get(Section.FRAGMENT_HEAD)).replace(Section.FRAGMENT_MAIN_UV, shaderParts.get(Section.FRAGMENT_MAIN_UV)).replace(Section.FRAGMENT_MAIN_IMAGE, shaderParts.get(Section.FRAGMENT_MAIN_IMAGE));
-    this.vertexShader = shader_default16.replace(Section.VERTEX_HEAD, shaderParts.get(Section.VERTEX_HEAD)).replace(Section.VERTEX_MAIN_SUPPORT, shaderParts.get(Section.VERTEX_MAIN_SUPPORT));
-    this.needsUpdate = true;
-    return this;
-  }
-
-  setDefines(defines) {
-    for (const entry of defines.entries()) {
-      this.defines[entry[0]] = entry[1];
-    }
-
-    this.needsUpdate = true;
-    return this;
-  }
-
-  setUniforms(uniforms) {
-    for (const entry of uniforms.entries()) {
-      this.uniforms[entry[0]] = entry[1];
-    }
-
-    return this;
-  }
-
-  adoptCameraSettings(camera = null) {
-    if (camera !== null) {
-      this.uniforms.cameraNear.value = camera.near;
-      this.uniforms.cameraFar.value = camera.far;
-
-      if (camera instanceof _three.PerspectiveCamera) {
-        this.defines.PERSPECTIVE_CAMERA = "1";
-      } else {
-        delete this.defines.PERSPECTIVE_CAMERA;
-      }
-
-      this.needsUpdate = true;
-    }
-  }
-
-  setSize(width, height) {
-    const w = Math.max(width, 1);
-    const h = Math.max(height, 1);
-    this.uniforms.resolution.value.set(w, h);
-    this.uniforms.texelSize.value.set(1 / w, 1 / h);
-    this.uniforms.aspect.value = w / h;
-  }
-
-};
-exports.EffectMaterial = EffectMaterial;
-var Section = {
-  FRAGMENT_HEAD: "FRAGMENT_HEAD",
-  FRAGMENT_MAIN_UV: "FRAGMENT_MAIN_UV",
-  FRAGMENT_MAIN_IMAGE: "FRAGMENT_MAIN_IMAGE",
-  VERTEX_HEAD: "VERTEX_HEAD",
-  VERTEX_MAIN_SUPPORT: "VERTEX_MAIN_SUPPORT"
-}; // src/materials/GodRaysMaterial.js
-
-exports.Section = Section;
-// src/materials/glsl/god-rays/shader.frag
-var shader_default17 = "#include <common>\n#include <dithering_pars_fragment>\nuniform sampler2D inputBuffer;uniform vec2 lightPosition;uniform float exposure;uniform float decay;uniform float density;uniform float weight;uniform float clampMax;varying vec2 vUv;void main(){vec2 coord=vUv;vec2 delta=lightPosition-coord;delta*=1.0/SAMPLES_FLOAT*density;float illuminationDecay=1.0;vec4 color=vec4(0.0);for(int i=0;i<SAMPLES_INT;++i){coord+=delta;vec4 texel=texture2D(inputBuffer,coord);texel*=illuminationDecay*weight;color+=texel;illuminationDecay*=decay;}gl_FragColor=clamp(color*exposure,0.0,clampMax);\n#include <dithering_fragment>\n}"; // src/materials/GodRaysMaterial.js
-
-var GodRaysMaterial = class extends _three.ShaderMaterial {
-  constructor(lightPosition) {
-    super({
-      type: "GodRaysMaterial",
-      defines: {
-        SAMPLES_INT: "60",
-        SAMPLES_FLOAT: "60.0"
-      },
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        lightPosition: new _three.Uniform(lightPosition),
-        density: new _three.Uniform(1),
-        decay: new _three.Uniform(1),
-        weight: new _three.Uniform(1),
-        exposure: new _three.Uniform(1),
-        clampMax: new _three.Uniform(1)
-      },
-      fragmentShader: shader_default17,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-  }
-
-  get samples() {
-    return Number(this.defines.SAMPLES_INT);
-  }
-
-  set samples(value) {
-    const s = Math.floor(value);
-    this.defines.SAMPLES_INT = s.toFixed(0);
-    this.defines.SAMPLES_FLOAT = s.toFixed(1);
-    this.needsUpdate = true;
-  }
-
-}; // src/materials/LuminanceMaterial.js
-
-exports.GodRaysMaterial = GodRaysMaterial;
-// src/materials/glsl/luminance/shader.frag
-var shader_default18 = "#include <common>\nuniform sampler2D inputBuffer;\n#ifdef RANGE\nuniform vec2 range;\n#elif defined(THRESHOLD)\nuniform float threshold;uniform float smoothing;\n#endif\nvarying vec2 vUv;void main(){vec4 texel=texture2D(inputBuffer,vUv);float l=linearToRelativeLuminance(texel.rgb);\n#ifdef RANGE\nfloat low=step(range.x,l);float high=step(l,range.y);l*=low*high;\n#elif defined(THRESHOLD)\nl=smoothstep(threshold,threshold+smoothing,l);\n#endif\n#ifdef COLOR\ngl_FragColor=vec4(texel.rgb*l,l);\n#else\ngl_FragColor=vec4(l);\n#endif\n}"; // src/materials/LuminanceMaterial.js
-
-var LuminanceMaterial = class extends _three.ShaderMaterial {
-  constructor(colorOutput = false, luminanceRange = null) {
-    const useRange = luminanceRange !== null;
-    super({
-      type: "LuminanceMaterial",
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        threshold: new _three.Uniform(0),
-        smoothing: new _three.Uniform(1),
-        range: new _three.Uniform(useRange ? luminanceRange : new _three.Vector2())
-      },
-      fragmentShader: shader_default18,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-    this.colorOutput = colorOutput;
-    this.useThreshold = true;
-    this.useRange = useRange;
-  }
-
-  get threshold() {
-    return this.uniforms.threshold.value;
-  }
-
-  set threshold(value) {
-    this.uniforms.threshold.value = value;
-  }
-
-  get smoothing() {
-    return this.uniforms.smoothing.value;
-  }
-
-  set smoothing(value) {
-    this.uniforms.smoothing.value = value;
-  }
-
-  get useThreshold() {
-    return this.defines.THRESHOLD !== void 0;
-  }
-
-  set useThreshold(value) {
-    if (value) {
-      this.defines.THRESHOLD = "1";
-    } else {
-      delete this.defines.THRESHOLD;
-    }
-
-    this.needsUpdate = true;
-  }
-
-  get colorOutput() {
-    return this.defines.COLOR !== void 0;
-  }
-
-  set colorOutput(value) {
-    if (value) {
-      this.defines.COLOR = "1";
-    } else {
-      delete this.defines.COLOR;
-    }
-
-    this.needsUpdate = true;
-  }
-
-  setColorOutputEnabled(enabled) {
-    this.colorOutput = enabled;
-  }
-
-  get useRange() {
-    return this.defines.RANGE !== void 0;
-  }
-
-  set useRange(value) {
-    if (value) {
-      this.defines.RANGE = "1";
-    } else {
-      delete this.defines.RANGE;
-    }
-
-    this.needsUpdate = true;
-  }
-
-  get luminanceRange() {
-    return this.useRange;
-  }
-
-  set luminanceRange(value) {
-    this.useRange = value;
-  }
-
-  setLuminanceRangeEnabled(enabled) {
-    this.useRange = enabled;
-  }
-
-}; // src/materials/MaskMaterial.js
-
-exports.LuminanceMaterial = LuminanceMaterial;
-// src/materials/glsl/mask/shader.frag
-var shader_default19 = "uniform sampler2D maskTexture;uniform sampler2D inputBuffer;\n#if MASK_FUNCTION != 0\nuniform float strength;\n#endif\nvarying vec2 vUv;void main(){\n#if COLOR_CHANNEL == 0\nfloat mask=texture2D(maskTexture,vUv).r;\n#elif COLOR_CHANNEL == 1\nfloat mask=texture2D(maskTexture,vUv).g;\n#elif COLOR_CHANNEL == 2\nfloat mask=texture2D(maskTexture,vUv).b;\n#else\nfloat mask=texture2D(maskTexture,vUv).a;\n#endif\n#if MASK_FUNCTION == 0\n#ifdef INVERTED\nif(mask>0.0){discard;}\n#else\nif(mask==0.0){discard;}\n#endif\n#else\nmask=clamp(mask*strength,0.0,1.0);\n#ifdef INVERTED\nmask=(1.0-mask);\n#endif\n#if MASK_FUNCTION == 1\ngl_FragColor=mask*texture2D(inputBuffer,vUv);\n#else\ngl_FragColor=vec4(mask*texture2D(inputBuffer,vUv).rgb,mask);\n#endif\n#endif\n}"; // src/materials/MaskMaterial.js
-
-var MaskMaterial = class extends _three.ShaderMaterial {
-  constructor(maskTexture = null) {
-    super({
-      type: "MaskMaterial",
-      uniforms: {
-        maskTexture: new _three.Uniform(maskTexture),
-        inputBuffer: new _three.Uniform(null),
-        strength: new _three.Uniform(1)
-      },
-      fragmentShader: shader_default19,
-      vertexShader: shader_default2,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-    this.colorChannel = ColorChannel.RED;
-    this.maskFunction = MaskFunction.DISCARD;
-  }
-
-  set maskTexture(value) {
-    this.uniforms.maskTexture.value = value;
-  }
-
-  set colorChannel(value) {
-    this.defines.COLOR_CHANNEL = value.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  set maskFunction(value) {
-    this.defines.MASK_FUNCTION = value.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  get inverted() {
-    return this.defines.INVERTED !== void 0;
-  }
-
-  set inverted(value) {
-    if (this.inverted && !value) {
-      delete this.defines.INVERTED;
-    } else if (value) {
-      this.defines.INVERTED = "1";
-    }
-
-    this.needsUpdate = true;
-  }
-
-  get strength() {
-    return this.uniforms.strength.value;
-  }
-
-  set strength(value) {
-    this.uniforms.strength.value = value;
-  }
-
-};
-exports.MaskMaterial = MaskMaterial;
-var MaskFunction = {
-  DISCARD: 0,
-  MULTIPLY: 1,
-  MULTIPLY_RGB_SET_ALPHA: 2
-}; // src/materials/OutlineMaterial.js
-
-exports.MaskFunction = MaskFunction;
-// src/materials/glsl/outline/shader.frag
-var shader_default20 = "uniform sampler2D inputBuffer;varying vec2 vUv0;varying vec2 vUv1;varying vec2 vUv2;varying vec2 vUv3;void main(){vec2 c0=texture2D(inputBuffer,vUv0).rg;vec2 c1=texture2D(inputBuffer,vUv1).rg;vec2 c2=texture2D(inputBuffer,vUv2).rg;vec2 c3=texture2D(inputBuffer,vUv3).rg;float d0=(c0.x-c1.x)*0.5;float d1=(c2.x-c3.x)*0.5;float d=length(vec2(d0,d1));float a0=min(c0.y,c1.y);float a1=min(c2.y,c3.y);float visibilityFactor=min(a0,a1);gl_FragColor.rg=(1.0-visibilityFactor>0.001)? vec2(d,0.0): vec2(0.0,d);}"; // src/materials/glsl/outline/shader.vert
-
-var shader_default21 = "uniform vec2 texelSize;varying vec2 vUv0;varying vec2 vUv1;varying vec2 vUv2;varying vec2 vUv3;void main(){vec2 uv=position.xy*0.5+0.5;vUv0=vec2(uv.x+texelSize.x,uv.y);vUv1=vec2(uv.x-texelSize.x,uv.y);vUv2=vec2(uv.x,uv.y+texelSize.y);vUv3=vec2(uv.x,uv.y-texelSize.y);gl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/OutlineMaterial.js
-
-var OutlineMaterial = class extends _three.ShaderMaterial {
-  constructor(texelSize = new _three.Vector2()) {
-    super({
-      type: "OutlineMaterial",
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        texelSize: new _three.Uniform(new _three.Vector2())
-      },
-      fragmentShader: shader_default20,
-      vertexShader: shader_default21,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-    this.setTexelSize(texelSize.x, texelSize.y);
-    this.uniforms.maskTexture = this.uniforms.inputBuffer;
-  }
-
-  setTexelSize(x, y) {
-    this.uniforms.texelSize.value.set(x, y);
-  }
-
-};
-exports.OutlineMaterial = OutlineMaterial;
-var OutlineEdgesMaterial = OutlineMaterial; // src/materials/SMAAWeightsMaterial.js
-
-exports.OutlineEdgesMaterial = OutlineEdgesMaterial;
-// src/materials/glsl/smaa-weights/shader.frag
-var shader_default22 = "#define sampleLevelZeroOffset(t, coord, offset) texture2D(t, coord + offset * texelSize)\n#if __VERSION__ < 300\n#define round(v) floor(v + 0.5)\n#endif\nuniform sampler2D inputBuffer;uniform sampler2D areaTexture;uniform sampler2D searchTexture;uniform vec2 texelSize;uniform vec2 resolution;varying vec2 vUv;varying vec4 vOffset[3];varying vec2 vPixCoord;void movec(const in bvec2 c,inout vec2 variable,const in vec2 value){if(c.x){variable.x=value.x;}if(c.y){variable.y=value.y;}}void movec(const in bvec4 c,inout vec4 variable,const in vec4 value){movec(c.xy,variable.xy,value.xy);movec(c.zw,variable.zw,value.zw);}vec2 decodeDiagBilinearAccess(in vec2 e){e.r=e.r*abs(5.0*e.r-5.0*0.75);return round(e);}vec4 decodeDiagBilinearAccess(in vec4 e){e.rb=e.rb*abs(5.0*e.rb-5.0*0.75);return round(e);}vec2 searchDiag1(const in vec2 texCoord,const in vec2 dir,out vec2 e){vec4 coord=vec4(texCoord,-1.0,1.0);vec3 t=vec3(texelSize,1.0);for(int i=0;i<MAX_SEARCH_STEPS_INT;++i){if(!(coord.z<float(MAX_SEARCH_STEPS_DIAG_INT-1)&&coord.w>0.9)){break;}coord.xyz=t*vec3(dir,1.0)+coord.xyz;e=texture2D(inputBuffer,coord.xy).rg;coord.w=dot(e,vec2(0.5));}return coord.zw;}vec2 searchDiag2(const in vec2 texCoord,const in vec2 dir,out vec2 e){vec4 coord=vec4(texCoord,-1.0,1.0);coord.x+=0.25*texelSize.x;vec3 t=vec3(texelSize,1.0);for(int i=0;i<MAX_SEARCH_STEPS_INT;++i){if(!(coord.z<float(MAX_SEARCH_STEPS_DIAG_INT-1)&&coord.w>0.9)){break;}coord.xyz=t*vec3(dir,1.0)+coord.xyz;e=texture2D(inputBuffer,coord.xy).rg;e=decodeDiagBilinearAccess(e);coord.w=dot(e,vec2(0.5));}return coord.zw;}vec2 areaDiag(const in vec2 dist,const in vec2 e,const in float offset){vec2 texCoord=vec2(AREATEX_MAX_DISTANCE_DIAG,AREATEX_MAX_DISTANCE_DIAG)*e+dist;texCoord=AREATEX_PIXEL_SIZE*texCoord+0.5*AREATEX_PIXEL_SIZE;texCoord.x+=0.5;texCoord.y+=AREATEX_SUBTEX_SIZE*offset;return texture2D(areaTexture,texCoord).rg;}vec2 calculateDiagWeights(const in vec2 texCoord,const in vec2 e,const in vec4 subsampleIndices){vec2 weights=vec2(0.0);vec4 d;vec2 end;if(e.r>0.0){d.xz=searchDiag1(texCoord,vec2(-1.0,1.0),end);d.x+=float(end.y>0.9);}else{d.xz=vec2(0.0);}d.yw=searchDiag1(texCoord,vec2(1.0,-1.0),end);if(d.x+d.y>2.0){vec4 coords=vec4(-d.x+0.25,d.x,d.y,-d.y-0.25)*texelSize.xyxy+texCoord.xyxy;vec4 c;c.xy=sampleLevelZeroOffset(inputBuffer,coords.xy,vec2(-1,0)).rg;c.zw=sampleLevelZeroOffset(inputBuffer,coords.zw,vec2(1,0)).rg;c.yxwz=decodeDiagBilinearAccess(c.xyzw);vec2 cc=vec2(2.0)*c.xz+c.yw;movec(bvec2(step(0.9,d.zw)),cc,vec2(0.0));weights+=areaDiag(d.xy,cc,subsampleIndices.z);}d.xz=searchDiag2(texCoord,vec2(-1.0,-1.0),end);if(sampleLevelZeroOffset(inputBuffer,texCoord,vec2(1,0)).r>0.0){d.yw=searchDiag2(texCoord,vec2(1.0),end);d.y+=float(end.y>0.9);}else{d.yw=vec2(0.0);}if(d.x+d.y>2.0){vec4 coords=vec4(-d.x,-d.x,d.y,d.y)*texelSize.xyxy+texCoord.xyxy;vec4 c;c.x=sampleLevelZeroOffset(inputBuffer,coords.xy,vec2(-1,0)).g;c.y=sampleLevelZeroOffset(inputBuffer,coords.xy,vec2(0,-1)).r;c.zw=sampleLevelZeroOffset(inputBuffer,coords.zw,vec2(1,0)).gr;vec2 cc=vec2(2.0)*c.xz+c.yw;movec(bvec2(step(0.9,d.zw)),cc,vec2(0.0));weights+=areaDiag(d.xy,cc,subsampleIndices.w).gr;}return weights;}float searchLength(const in vec2 e,const in float offset){vec2 scale=SEARCHTEX_SIZE*vec2(0.5,-1.0);vec2 bias=SEARCHTEX_SIZE*vec2(offset,1.0);scale+=vec2(-1.0,1.0);bias+=vec2(0.5,-0.5);scale*=1.0/SEARCHTEX_PACKED_SIZE;bias*=1.0/SEARCHTEX_PACKED_SIZE;return texture2D(searchTexture,scale*e+bias).r;}float searchXLeft(in vec2 texCoord,const in float end){vec2 e=vec2(0.0,1.0);for(int i=0;i<MAX_SEARCH_STEPS_INT;++i){if(!(texCoord.x>end&&e.g>0.8281&&e.r==0.0)){break;}e=texture2D(inputBuffer,texCoord).rg;texCoord=vec2(-2.0,0.0)*texelSize+texCoord;}float offset=-(255.0/127.0)*searchLength(e,0.0)+3.25;return texelSize.x*offset+texCoord.x;}float searchXRight(vec2 texCoord,const in float end){vec2 e=vec2(0.0,1.0);for(int i=0;i<MAX_SEARCH_STEPS_INT;++i){if(!(texCoord.x<end&&e.g>0.8281&&e.r==0.0)){break;}e=texture2D(inputBuffer,texCoord).rg;texCoord=vec2(2.0,0.0)*texelSize.xy+texCoord;}float offset=-(255.0/127.0)*searchLength(e,0.5)+3.25;return-texelSize.x*offset+texCoord.x;}float searchYUp(vec2 texCoord,const in float end){vec2 e=vec2(1.0,0.0);for(int i=0;i<MAX_SEARCH_STEPS_INT;++i){if(!(texCoord.y>end&&e.r>0.8281&&e.g==0.0)){break;}e=texture2D(inputBuffer,texCoord).rg;texCoord=-vec2(0.0,2.0)*texelSize.xy+texCoord;}float offset=-(255.0/127.0)*searchLength(e.gr,0.0)+3.25;return texelSize.y*offset+texCoord.y;}float searchYDown(vec2 texCoord,const in float end){vec2 e=vec2(1.0,0.0);for(int i=0;i<MAX_SEARCH_STEPS_INT;i++){if(!(texCoord.y<end&&e.r>0.8281&&e.g==0.0)){break;}e=texture2D(inputBuffer,texCoord).rg;texCoord=vec2(0.0,2.0)*texelSize.xy+texCoord;}float offset=-(255.0/127.0)*searchLength(e.gr,0.5)+3.25;return-texelSize.y*offset+texCoord.y;}vec2 area(const in vec2 dist,const in float e1,const in float e2,const in float offset){vec2 texCoord=vec2(AREATEX_MAX_DISTANCE)*round(4.0*vec2(e1,e2))+dist;texCoord=AREATEX_PIXEL_SIZE*texCoord+0.5*AREATEX_PIXEL_SIZE;texCoord.y=AREATEX_SUBTEX_SIZE*offset+texCoord.y;return texture2D(areaTexture,texCoord).rg;}void detectHorizontalCornerPattern(inout vec2 weights,const in vec4 texCoord,const in vec2 d){\n#if !defined(DISABLE_CORNER_DETECTION)\nvec2 leftRight=step(d.xy,d.yx);vec2 rounding=(1.0-CORNER_ROUNDING_NORM)*leftRight;rounding/=leftRight.x+leftRight.y;vec2 factor=vec2(1.0);factor.x-=rounding.x*sampleLevelZeroOffset(inputBuffer,texCoord.xy,vec2(0,1)).r;factor.x-=rounding.y*sampleLevelZeroOffset(inputBuffer,texCoord.zw,vec2(1,1)).r;factor.y-=rounding.x*sampleLevelZeroOffset(inputBuffer,texCoord.xy,vec2(0,-2)).r;factor.y-=rounding.y*sampleLevelZeroOffset(inputBuffer,texCoord.zw,vec2(1,-2)).r;weights*=clamp(factor,0.0,1.0);\n#endif\n}void detectVerticalCornerPattern(inout vec2 weights,const in vec4 texCoord,const in vec2 d){\n#if !defined(DISABLE_CORNER_DETECTION)\nvec2 leftRight=step(d.xy,d.yx);vec2 rounding=(1.0-CORNER_ROUNDING_NORM)*leftRight;rounding/=leftRight.x+leftRight.y;vec2 factor=vec2(1.0);factor.x-=rounding.x*sampleLevelZeroOffset(inputBuffer,texCoord.xy,vec2(1,0)).g;factor.x-=rounding.y*sampleLevelZeroOffset(inputBuffer,texCoord.zw,vec2(1,1)).g;factor.y-=rounding.x*sampleLevelZeroOffset(inputBuffer,texCoord.xy,vec2(-2,0)).g;factor.y-=rounding.y*sampleLevelZeroOffset(inputBuffer,texCoord.zw,vec2(-2,1)).g;weights*=clamp(factor,0.0,1.0);\n#endif\n}void main(){vec4 weights=vec4(0.0);vec4 subsampleIndices=vec4(0.0);vec2 e=texture2D(inputBuffer,vUv).rg;if(e.g>0.0){\n#if !defined(DISABLE_DIAG_DETECTION)\nweights.rg=calculateDiagWeights(vUv,e,subsampleIndices);if(weights.r==-weights.g){\n#endif\nvec2 d;vec3 coords;coords.x=searchXLeft(vOffset[0].xy,vOffset[2].x);coords.y=vOffset[1].y;d.x=coords.x;float e1=texture2D(inputBuffer,coords.xy).r;coords.z=searchXRight(vOffset[0].zw,vOffset[2].y);d.y=coords.z;d=round(resolution.xx*d+-vPixCoord.xx);vec2 sqrtD=sqrt(abs(d));float e2=sampleLevelZeroOffset(inputBuffer,coords.zy,vec2(1,0)).r;weights.rg=area(sqrtD,e1,e2,subsampleIndices.y);coords.y=vUv.y;detectHorizontalCornerPattern(weights.rg,coords.xyzy,d);\n#if !defined(DISABLE_DIAG_DETECTION)\n}else{e.r=0.0;}\n#endif\n}if(e.r>0.0){vec2 d;vec3 coords;coords.y=searchYUp(vOffset[1].xy,vOffset[2].z);coords.x=vOffset[0].x;d.x=coords.y;float e1=texture2D(inputBuffer,coords.xy).g;coords.z=searchYDown(vOffset[1].zw,vOffset[2].w);d.y=coords.z;d=round(resolution.yy*d-vPixCoord.yy);vec2 sqrtD=sqrt(abs(d));float e2=sampleLevelZeroOffset(inputBuffer,coords.xz,vec2(0,1)).g;weights.ba=area(sqrtD,e1,e2,subsampleIndices.x);coords.x=vUv.x;detectVerticalCornerPattern(weights.ba,coords.xyxz,d);}gl_FragColor=weights;}"; // src/materials/glsl/smaa-weights/shader.vert
-
-var shader_default23 = "uniform vec2 texelSize;uniform vec2 resolution;varying vec2 vUv;varying vec4 vOffset[3];varying vec2 vPixCoord;void main(){vUv=position.xy*0.5+0.5;vPixCoord=vUv*resolution;vOffset[0]=vUv.xyxy+texelSize.xyxy*vec4(-0.25,-0.125,1.25,-0.125);vOffset[1]=vUv.xyxy+texelSize.xyxy*vec4(-0.125,-0.25,-0.125,1.25);vOffset[2]=vec4(vOffset[0].xz,vOffset[1].yw)+vec4(-2.0,2.0,-2.0,2.0)*texelSize.xxyy*MAX_SEARCH_STEPS_FLOAT;gl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/SMAAWeightsMaterial.js
-
-var SMAAWeightsMaterial = class extends _three.ShaderMaterial {
-  constructor(texelSize = new _three.Vector2(), resolution = new _three.Vector2()) {
-    super({
-      type: "SMAAWeightsMaterial",
-      defines: {
-        MAX_SEARCH_STEPS_INT: "16",
-        MAX_SEARCH_STEPS_FLOAT: "16.0",
-        MAX_SEARCH_STEPS_DIAG_INT: "8",
-        MAX_SEARCH_STEPS_DIAG_FLOAT: "8.0",
-        CORNER_ROUNDING: "25",
-        CORNER_ROUNDING_NORM: "0.25",
-        AREATEX_MAX_DISTANCE: "16.0",
-        AREATEX_MAX_DISTANCE_DIAG: "20.0",
-        AREATEX_PIXEL_SIZE: "(1.0 / vec2(160.0, 560.0))",
-        AREATEX_SUBTEX_SIZE: "(1.0 / 7.0)",
-        SEARCHTEX_SIZE: "vec2(66.0, 33.0)",
-        SEARCHTEX_PACKED_SIZE: "vec2(64.0, 16.0)"
-      },
-      uniforms: {
-        inputBuffer: new _three.Uniform(null),
-        areaTexture: new _three.Uniform(null),
-        searchTexture: new _three.Uniform(null),
-        texelSize: new _three.Uniform(texelSize),
-        resolution: new _three.Uniform(resolution)
-      },
-      fragmentShader: shader_default22,
-      vertexShader: shader_default23,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-  }
-
-  setOrthogonalSearchSteps(steps) {
-    const s = Math.min(Math.max(steps, 0), 112);
-    this.defines.MAX_SEARCH_STEPS_INT = s.toFixed("0");
-    this.defines.MAX_SEARCH_STEPS_FLOAT = s.toFixed("1");
-    this.needsUpdate = true;
-  }
-
-  setDiagonalSearchSteps(steps) {
-    const s = Math.min(Math.max(steps, 0), 20);
-    this.defines.MAX_SEARCH_STEPS_DIAG_INT = s.toFixed("0");
-    this.defines.MAX_SEARCH_STEPS_DIAG_FLOAT = s.toFixed("1");
-    this.needsUpdate = true;
-  }
-
-  setCornerRounding(rounding) {
-    const r = Math.min(Math.max(rounding, 0), 100);
-    this.defines.CORNER_ROUNDING = r.toFixed("4");
-    this.defines.CORNER_ROUNDING_NORM = (r / 100).toFixed("4");
-    this.needsUpdate = true;
-  }
-
-  get diagonalDetection() {
-    return this.defines.DISABLE_DIAG_DETECTION === void 0;
-  }
-
-  set diagonalDetection(value) {
-    if (value) {
-      delete this.defines.DISABLE_DIAG_DETECTION;
-    } else {
-      this.defines.DISABLE_DIAG_DETECTION = "1";
-    }
-
-    this.needsUpdate = true;
-  }
-
-  get cornerRounding() {
-    return this.defines.DISABLE_CORNER_DETECTION === void 0;
-  }
-
-  set cornerRounding(value) {
-    if (value) {
-      delete this.defines.DISABLE_CORNER_DETECTION;
-    } else {
-      this.defines.DISABLE_CORNER_DETECTION = "1";
-    }
-
-    this.needsUpdate = true;
-  }
-
-}; // src/materials/SSAOMaterial.js
-
-exports.SMAAWeightsMaterial = SMAAWeightsMaterial;
-// src/materials/glsl/ssao/shader.frag
-var shader_default24 = "#include <common>\n#include <packing>\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D normalDepthBuffer;\n#else\nuniform mediump sampler2D normalDepthBuffer;\n#endif\n#ifndef NORMAL_DEPTH\nuniform sampler2D normalBuffer;float readDepth(const in vec2 uv){\n#if DEPTH_PACKING == 3201\nreturn unpackRGBAToDepth(texture2D(normalDepthBuffer,uv));\n#else\nreturn texture2D(normalDepthBuffer,uv).r;\n#endif\n}\n#endif\nuniform sampler2D noiseTexture;uniform mat4 inverseProjectionMatrix;uniform mat4 projectionMatrix;uniform vec2 texelSize;uniform float cameraNear;uniform float cameraFar;uniform float minRadiusScale;uniform float intensity;uniform float fade;uniform float bias;uniform vec2 distanceCutoff;uniform vec2 proximityCutoff;varying vec2 vUv;varying vec2 vUv2;float getViewZ(const in float depth){\n#ifdef PERSPECTIVE_CAMERA\nreturn perspectiveDepthToViewZ(depth,cameraNear,cameraFar);\n#else\nreturn orthographicDepthToViewZ(depth,cameraNear,cameraFar);\n#endif\n}vec3 getViewPosition(const in vec2 screenPosition,const in float depth,const in float viewZ){float clipW=projectionMatrix[2][3]*viewZ+projectionMatrix[3][3];vec4 clipPosition=vec4((vec3(screenPosition,depth)-0.5)*2.0,1.0);clipPosition*=clipW;return(inverseProjectionMatrix*clipPosition).xyz;}float getAmbientOcclusion(const in vec3 p,const in vec3 n,const in float depth,const in vec2 uv){\n#ifdef DISTANCE_SCALING\nfloat radiusScale=1.0-smoothstep(0.0,distanceCutoff.y,depth);radiusScale=radiusScale*(1.0-minRadiusScale)+minRadiusScale;float radius=RADIUS*radiusScale;\n#else\nfloat radius=RADIUS;\n#endif\nfloat noise=texture2D(noiseTexture,vUv2).r;float baseAngle=noise*PI2;float invSamples=1.0/SAMPLES_FLOAT;float rings=SPIRAL_TURNS*PI2;float occlusion=0.0;int taps=0;for(int i=0;i<SAMPLES_INT;++i){float alpha=(float(i)+0.5)*invSamples;float angle=alpha*rings+baseAngle;vec2 coord=alpha*radius*vec2(cos(angle),sin(angle))*texelSize+uv;if(coord.s<0.0||coord.s>1.0||coord.t<0.0||coord.t>1.0){continue;}\n#ifdef NORMAL_DEPTH\nfloat sampleDepth=texture2D(normalDepthBuffer,coord).a;\n#else\nfloat sampleDepth=readDepth(coord);\n#endif\nfloat viewZ=getViewZ(sampleDepth);\n#ifdef PERSPECTIVE_CAMERA\nfloat linearSampleDepth=viewZToOrthographicDepth(viewZ,cameraNear,cameraFar);\n#else\nfloat linearSampleDepth=sampleDepth;\n#endif\nfloat proximity=abs(depth-linearSampleDepth);if(proximity<proximityCutoff.y){float falloff=1.0-smoothstep(proximityCutoff.x,proximityCutoff.y,proximity);vec3 Q=getViewPosition(coord,sampleDepth,viewZ);vec3 v=Q-p;float vv=dot(v,v);float vn=dot(v,n)-bias;float f=max(RADIUS_SQ-vv,0.0)/RADIUS_SQ;occlusion+=(f*f*f*max(vn/(fade+vv),0.0))*falloff;}++taps;}return occlusion/(4.0*max(float(taps),1.0));}void main(){\n#ifdef NORMAL_DEPTH\nvec4 normalDepth=texture2D(normalDepthBuffer,vUv);\n#else\nvec4 normalDepth=vec4(texture2D(normalBuffer,vUv).rgb,readDepth(vUv));\n#endif\nfloat ao=1.0;float depth=normalDepth.a;float viewZ=getViewZ(depth);\n#ifdef PERSPECTIVE_CAMERA\nfloat linearDepth=viewZToOrthographicDepth(viewZ,cameraNear,cameraFar);\n#else\nfloat linearDepth=depth;\n#endif\nif(linearDepth<distanceCutoff.y){vec3 viewPosition=getViewPosition(vUv,depth,viewZ);vec3 viewNormal=unpackRGBToNormal(normalDepth.rgb);ao-=getAmbientOcclusion(viewPosition,viewNormal,linearDepth,vUv);float d=smoothstep(distanceCutoff.x,distanceCutoff.y,linearDepth);ao=mix(ao,1.0,d);ao=clamp(pow(ao,abs(intensity)),0.0,1.0);}gl_FragColor.r=ao;}"; // src/materials/glsl/ssao/shader.vert
-
-var shader_default25 = "uniform vec2 noiseScale;varying vec2 vUv;varying vec2 vUv2;void main(){vUv=position.xy*0.5+0.5;vUv2=vUv*noiseScale;gl_Position=vec4(position.xy,1.0,1.0);}"; // src/materials/SSAOMaterial.js
-
-var SSAOMaterial = class extends _three.ShaderMaterial {
-  constructor(camera) {
-    super({
-      type: "SSAOMaterial",
-      defines: {
-        SAMPLES_INT: "0",
-        SAMPLES_FLOAT: "0.0",
-        SPIRAL_TURNS: "0.0",
-        RADIUS: "1.0",
-        RADIUS_SQ: "1.0",
-        DISTANCE_SCALING: "1",
-        DEPTH_PACKING: "0"
-      },
-      uniforms: {
-        normalBuffer: new _three.Uniform(null),
-        normalDepthBuffer: new _three.Uniform(null),
-        noiseTexture: new _three.Uniform(null),
-        inverseProjectionMatrix: new _three.Uniform(new _three.Matrix4()),
-        projectionMatrix: new _three.Uniform(new _three.Matrix4()),
-        texelSize: new _three.Uniform(new _three.Vector2()),
-        cameraNear: new _three.Uniform(0),
-        cameraFar: new _three.Uniform(0),
-        distanceCutoff: new _three.Uniform(new _three.Vector2()),
-        proximityCutoff: new _three.Uniform(new _three.Vector2()),
-        noiseScale: new _three.Uniform(new _three.Vector2()),
-        minRadiusScale: new _three.Uniform(0.33),
-        intensity: new _three.Uniform(1),
-        fade: new _three.Uniform(0.01),
-        bias: new _three.Uniform(0)
-      },
-      fragmentShader: shader_default24,
-      vertexShader: shader_default25,
-      blending: _three.NoBlending,
-      depthWrite: false,
-      depthTest: false
-    });
-    this.toneMapped = false;
-    this.adoptCameraSettings(camera);
-  }
-
-  get depthPacking() {
-    return Number(this.defines.DEPTH_PACKING);
-  }
-
-  set depthPacking(value) {
-    this.defines.DEPTH_PACKING = value.toFixed(0);
-    this.needsUpdate = true;
-  }
-
-  setTexelSize(x, y) {
-    this.uniforms.texelSize.value.set(x, y);
-  }
-
-  adoptCameraSettings(camera = null) {
-    if (camera !== null) {
-      const uniforms = this.uniforms;
-      uniforms.cameraNear.value = camera.near;
-      uniforms.cameraFar.value = camera.far;
-
-      if (camera instanceof _three.PerspectiveCamera) {
-        this.defines.PERSPECTIVE_CAMERA = "1";
-      } else {
-        delete this.defines.PERSPECTIVE_CAMERA;
-      }
-
-      this.needsUpdate = true;
-    }
-  }
-
-}; // src/passes/Pass.js
-
-exports.SSAOMaterial = SSAOMaterial;
-var dummyCamera = new _three.Camera();
-var geometry = null;
-
-function getFullscreenTriangle() {
-  if (geometry === null) {
-    const vertices = new Float32Array([-1, -1, 0, 3, -1, 0, -1, 3, 0]);
-    const uvs = new Float32Array([0, 0, 2, 0, 0, 2]);
-    geometry = new _three.BufferGeometry();
-
-    if (geometry.setAttribute !== void 0) {
-      geometry.setAttribute("position", new _three.BufferAttribute(vertices, 3));
-      geometry.setAttribute("uv", new _three.BufferAttribute(uvs, 2));
-    } else {
-      geometry.addAttribute("position", new _three.BufferAttribute(vertices, 3));
-      geometry.addAttribute("uv", new _three.BufferAttribute(uvs, 2));
-    }
-  }
-
-  return geometry;
-}
-
-var Pass = class {
-  constructor(name = "Pass", scene = new _three.Scene(), camera = dummyCamera) {
-    this.name = name;
-    this.scene = scene;
-    this.camera = camera;
-    this.screen = null;
-    this.rtt = true;
-    this.needsSwap = true;
-    this.needsDepthTexture = false;
-    this.enabled = true;
-  }
-
-  get renderToScreen() {
-    return !this.rtt;
-  }
-
-  set renderToScreen(value) {
-    if (this.rtt === value) {
-      const material = this.getFullscreenMaterial();
-
-      if (material !== null) {
-        material.needsUpdate = true;
-      }
-
-      this.rtt = !value;
-    }
-  }
-
-  getFullscreenMaterial() {
-    return this.screen !== null ? this.screen.material : null;
-  }
-
-  setFullscreenMaterial(material) {
-    let screen = this.screen;
-
-    if (screen !== null) {
-      screen.material = material;
-    } else {
-      screen = new _three.Mesh(getFullscreenTriangle(), material);
-      screen.frustumCulled = false;
-
-      if (this.scene === null) {
-        this.scene = new _three.Scene();
-      }
-
-      this.scene.add(screen);
-      this.screen = screen;
-    }
-  }
-
-  getDepthTexture() {
-    return null;
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {}
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    throw new Error("Render method not implemented!");
-  }
-
-  setSize(width, height) {}
-
-  initialize(renderer, alpha, frameBufferType) {}
-
-  dispose() {
-    const material = this.getFullscreenMaterial();
-
-    if (material !== null) {
-      material.dispose();
-    }
-
-    for (const key of Object.keys(this)) {
-      const property = this[key];
-
-      if (property !== null && typeof property.dispose === "function") {
-        if (property instanceof _three.Scene) {
-          continue;
-        }
-
-        this[key].dispose();
-      }
-    }
-  }
-
-}; // src/passes/SavePass.js
-
-exports.Pass = Pass;
-var SavePass = class extends Pass {
-  constructor(renderTarget, resize = true) {
-    super("SavePass");
-    this.setFullscreenMaterial(new CopyMaterial());
-    this.needsSwap = false;
-    this.renderTarget = renderTarget;
-
-    if (renderTarget === void 0) {
-      this.renderTarget = new _three.WebGLRenderTarget(1, 1, {
-        minFilter: _three.LinearFilter,
-        magFilter: _three.LinearFilter,
-        stencilBuffer: false,
-        depthBuffer: false
-      });
-      this.renderTarget.texture.name = "SavePass.Target";
-    }
-
-    this.resize = resize;
-  }
-
-  get texture() {
-    return this.renderTarget.texture;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    this.getFullscreenMaterial().uniforms.inputBuffer.value = inputBuffer.texture;
-    renderer.setRenderTarget(this.renderToScreen ? null : this.renderTarget);
-    renderer.render(this.scene, this.camera);
-  }
-
-  setSize(width, height) {
-    if (this.resize) {
-      const w = Math.max(width, 1);
-      const h = Math.max(height, 1);
-      this.renderTarget.setSize(w, h);
-    }
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    if (!alpha && frameBufferType === _three.UnsignedByteType) {
-      this.renderTarget.texture.format = _three.RGBFormat;
-    }
-
-    if (frameBufferType !== void 0) {
-      this.renderTarget.texture.type = frameBufferType;
-    }
-  }
-
-}; // src/passes/AdaptiveLuminancePass.js
-
-exports.SavePass = SavePass;
-var AdaptiveLuminancePass = class extends Pass {
-  constructor(luminanceBuffer, {
-    minLuminance = 0.01,
-    adaptationRate = 1
-  } = {}) {
-    super("AdaptiveLuminancePass");
-    this.setFullscreenMaterial(new AdaptiveLuminanceMaterial());
-    this.needsSwap = false;
-    this.renderTargetPrevious = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.NearestFilter,
-      magFilter: _three.NearestFilter,
-      type: _three.HalfFloatType,
-      stencilBuffer: false,
-      depthBuffer: false,
-      format: _three.RGBAFormat
-    });
-    this.renderTargetPrevious.texture.name = "Luminance.Previous";
-    const uniforms = this.getFullscreenMaterial().uniforms;
-    uniforms.luminanceBuffer0.value = this.renderTargetPrevious.texture;
-    uniforms.luminanceBuffer1.value = luminanceBuffer;
-    uniforms.minLuminance.value = minLuminance;
-    this.renderTargetAdapted = this.renderTargetPrevious.clone();
-    this.renderTargetAdapted.texture.name = "Luminance.Adapted";
-    this.savePass = new SavePass(this.renderTargetPrevious, false);
-    this.adaptationRate = adaptationRate;
-  }
-
-  get texture() {
-    return this.renderTargetAdapted.texture;
-  }
-
-  set mipLevel1x1(value) {
-    const material = this.getFullscreenMaterial();
-    material.defines.MIP_LEVEL_1X1 = value.toFixed(1);
-    material.needsUpdate = true;
-  }
-
-  get adaptationRate() {
-    return this.getFullscreenMaterial().uniforms.tau.value;
-  }
-
-  set adaptationRate(value) {
-    this.getFullscreenMaterial().uniforms.tau.value = value;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    this.getFullscreenMaterial().uniforms.deltaTime.value = deltaTime;
-    renderer.setRenderTarget(this.renderToScreen ? null : this.renderTargetAdapted);
-    renderer.render(this.scene, this.camera);
-    this.savePass.render(renderer, this.renderTargetAdapted);
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    if (frameBufferType !== _three.HalfFloatType) {
-      const capabilities = renderer.capabilities;
-      const context = renderer.getContext();
-
-      if (capabilities.isWebGL2) {
-        context.getExtension("EXT_color_buffer_float");
-      } else {
-        context.getExtension("EXT_color_buffer_half_float");
-      }
-    }
-  }
-
-}; // src/passes/BlurPass.js
-
-exports.AdaptiveLuminancePass = AdaptiveLuminancePass;
-var AUTO_SIZE = -1;
-var Resizer = class {
-  constructor(resizable, width = AUTO_SIZE, height = AUTO_SIZE, scale = 1) {
-    this.resizable = resizable;
-    this.base = new _three.Vector2(1, 1);
-    this.target = new _three.Vector2(width, height);
-    this.s = scale;
-  }
-
-  get scale() {
-    return this.s;
-  }
-
-  set scale(value) {
-    this.s = value;
-    this.target.x = AUTO_SIZE;
-    this.target.y = AUTO_SIZE;
-    this.resizable.setSize(this.base.x, this.base.y);
-  }
-
-  get width() {
-    const base = this.base;
-    const target = this.target;
-    let result;
-
-    if (target.x !== AUTO_SIZE) {
-      result = target.x;
-    } else if (target.y !== AUTO_SIZE) {
-      result = Math.round(target.y * (base.x / base.y));
-    } else {
-      result = Math.round(base.x * this.s);
-    }
-
-    return result;
-  }
-
-  set width(value) {
-    this.target.x = value;
-    this.resizable.setSize(this.base.x, this.base.y);
-  }
-
-  get height() {
-    const base = this.base;
-    const target = this.target;
-    let result;
-
-    if (target.y !== AUTO_SIZE) {
-      result = target.y;
-    } else if (target.x !== AUTO_SIZE) {
-      result = Math.round(target.x / (base.x / base.y));
-    } else {
-      result = Math.round(base.y * this.s);
-    }
-
-    return result;
-  }
-
-  set height(value) {
-    this.target.y = value;
-    this.resizable.setSize(this.base.x, this.base.y);
-  }
-
-  static get AUTO_SIZE() {
-    return AUTO_SIZE;
-  }
-
-}; // src/passes/BlurPass.js
-
-exports.Resizer = Resizer;
-var BlurPass = class extends Pass {
-  constructor({
-    resolutionScale = 0.5,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE,
-    kernelSize = KernelSize.LARGE
-  } = {}) {
-    super("BlurPass");
-    this.renderTargetA = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: false
-    });
-    this.renderTargetA.texture.name = "Blur.Target.A";
-    this.renderTargetB = this.renderTargetA.clone();
-    this.renderTargetB.texture.name = "Blur.Target.B";
-    this.resolution = new Resizer(this, width, height, resolutionScale);
-    this.convolutionMaterial = new ConvolutionMaterial();
-    this.ditheredConvolutionMaterial = new ConvolutionMaterial();
-    this.ditheredConvolutionMaterial.dithering = true;
-    this.dithering = false;
-    this.kernelSize = kernelSize;
-  }
-
-  get width() {
-    return this.resolution.width;
-  }
-
-  set width(value) {
-    this.resolution.width = value;
-  }
-
-  get height() {
-    return this.resolution.height;
-  }
-
-  set height(value) {
-    this.resolution.height = value;
-  }
-
-  get scale() {
-    return this.convolutionMaterial.uniforms.scale.value;
-  }
-
-  set scale(value) {
-    this.convolutionMaterial.uniforms.scale.value = value;
-    this.ditheredConvolutionMaterial.uniforms.scale.value = value;
-  }
-
-  get kernelSize() {
-    return this.convolutionMaterial.kernelSize;
-  }
-
-  set kernelSize(value) {
-    this.convolutionMaterial.kernelSize = value;
-    this.ditheredConvolutionMaterial.kernelSize = value;
-  }
-
-  getResolutionScale() {
-    return this.resolution.scale;
-  }
-
-  setResolutionScale(scale) {
-    this.resolution.scale = scale;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const scene = this.scene;
-    const camera = this.camera;
-    const renderTargetA = this.renderTargetA;
-    const renderTargetB = this.renderTargetB;
-    let material = this.convolutionMaterial;
-    let uniforms = material.uniforms;
-    const kernel = material.getKernel();
-    let lastRT = inputBuffer;
-    let destRT;
-    let i, l;
-    this.setFullscreenMaterial(material);
-
-    for (i = 0, l = kernel.length - 1; i < l; ++i) {
-      destRT = (i & 1) === 0 ? renderTargetA : renderTargetB;
-      uniforms.kernel.value = kernel[i];
-      uniforms.inputBuffer.value = lastRT.texture;
-      renderer.setRenderTarget(destRT);
-      renderer.render(scene, camera);
-      lastRT = destRT;
-    }
-
-    if (this.dithering) {
-      material = this.ditheredConvolutionMaterial;
-      uniforms = material.uniforms;
-      this.setFullscreenMaterial(material);
-    }
-
-    uniforms.kernel.value = kernel[i];
-    uniforms.inputBuffer.value = lastRT.texture;
-    renderer.setRenderTarget(this.renderToScreen ? null : outputBuffer);
-    renderer.render(scene, camera);
-  }
-
-  setSize(width, height) {
-    const resolution = this.resolution;
-    resolution.base.set(width, height);
-    const w = resolution.width;
-    const h = resolution.height;
-    this.renderTargetA.setSize(w, h);
-    this.renderTargetB.setSize(w, h);
-    this.convolutionMaterial.setTexelSize(1 / w, 1 / h);
-    this.ditheredConvolutionMaterial.setTexelSize(1 / w, 1 / h);
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    if (!alpha && frameBufferType === _three.UnsignedByteType) {
-      this.renderTargetA.texture.format = _three.RGBFormat;
-      this.renderTargetB.texture.format = _three.RGBFormat;
-    }
-
-    if (frameBufferType !== void 0) {
-      this.renderTargetA.texture.type = frameBufferType;
-      this.renderTargetB.texture.type = frameBufferType;
-    }
-  }
-
-  static get AUTO_SIZE() {
-    return Resizer.AUTO_SIZE;
-  }
-
-}; // src/passes/ClearMaskPass.js
-
-exports.BlurPass = BlurPass;
-var ClearMaskPass = class extends Pass {
-  constructor() {
-    super("ClearMaskPass", null, null);
-    this.needsSwap = false;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const stencil = renderer.state.buffers.stencil;
-    stencil.setLocked(false);
-    stencil.setTest(false);
-  }
-
-}; // src/passes/ClearPass.js
-
-exports.ClearMaskPass = ClearMaskPass;
-var color = new _three.Color();
-var ClearPass = class extends Pass {
-  constructor(color2 = true, depth = true, stencil = false) {
-    super("ClearPass", null, null);
-    this.needsSwap = false;
-    this.color = color2;
-    this.depth = depth;
-    this.stencil = stencil;
-    this.overrideClearColor = null;
-    this.overrideClearAlpha = -1;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const overrideClearColor = this.overrideClearColor;
-    const overrideClearAlpha = this.overrideClearAlpha;
-    const clearAlpha = renderer.getClearAlpha();
-    const hasOverrideClearColor = overrideClearColor !== null;
-    const hasOverrideClearAlpha = overrideClearAlpha >= 0;
-
-    if (hasOverrideClearColor) {
-      color.copy(renderer.getClearColor(color));
-      renderer.setClearColor(overrideClearColor, hasOverrideClearAlpha ? overrideClearAlpha : clearAlpha);
-    } else if (hasOverrideClearAlpha) {
-      renderer.setClearAlpha(overrideClearAlpha);
-    }
-
-    renderer.setRenderTarget(this.renderToScreen ? null : inputBuffer);
-    renderer.clear(this.color, this.depth, this.stencil);
-
-    if (hasOverrideClearColor) {
-      renderer.setClearColor(color, clearAlpha);
-    } else if (hasOverrideClearAlpha) {
-      renderer.setClearAlpha(clearAlpha);
-    }
-  }
-
-}; // src/passes/DepthPass.js
-
-exports.ClearPass = ClearPass;
-// src/core/OverrideMaterialManager.js
-var workaroundEnabled = false;
-var OverrideMaterialManager = class {
-  constructor(material = null) {
-    this.originalMaterials = new Map();
-    this.material = null;
-    this.materialInstanced = null;
-    this.materialSkinning = null;
-    this.setMaterial(material);
-    this.meshCount = 0;
-
-    this.replaceMaterial = node => {
-      if (node.isMesh) {
-        this.originalMaterials.set(node, node.material);
-
-        if (node.isInstancedMesh) {
-          node.material = this.materialInstanced;
-        } else if (node.isSkinnedMesh) {
-          node.material = this.materialSkinning;
-        } else {
-          node.material = this.material;
-        }
-
-        ++this.meshCount;
-      }
-    };
-  }
-
-  setMaterial(material) {
-    this.disposeMaterials();
-
-    if (material !== null) {
-      this.material = material;
-      this.materialInstanced = material.clone();
-      this.materialInstanced.uniforms = Object.assign({}, material.uniforms);
-      this.materialSkinning = material.clone();
-      this.materialSkinning.uniforms = Object.assign({}, material.uniforms);
-      this.materialSkinning.skinning = true;
-    }
-  }
-
-  render(renderer, scene, camera) {
-    const shadowMapEnabled = renderer.shadowMap.enabled;
-    renderer.shadowMap.enabled = false;
-
-    if (workaroundEnabled) {
-      const originalMaterials = this.originalMaterials;
-      this.meshCount = 0;
-      scene.traverse(this.replaceMaterial);
-      renderer.render(scene, camera);
-
-      for (const entry of originalMaterials) {
-        entry[0].material = entry[1];
-      }
-
-      if (this.meshCount !== originalMaterials.size) {
-        originalMaterials.clear();
-      }
-    } else {
-      const overrideMaterial = scene.overrideMaterial;
-      scene.overrideMaterial = this.material;
-      renderer.render(scene, camera);
-      scene.overrideMaterial = overrideMaterial;
-    }
-
-    renderer.shadowMap.enabled = shadowMapEnabled;
-  }
-
-  disposeMaterials() {
-    if (this.materialInstanced !== null) {
-      this.materialInstanced.dispose();
-    }
-
-    if (this.materialSkinning !== null) {
-      this.materialSkinning.dispose();
-    }
-  }
-
-  dispose() {
-    this.originalMaterials.clear();
-    this.disposeMaterials();
-  }
-
-  static get workaroundEnabled() {
-    return workaroundEnabled;
-  }
-
-  static set workaroundEnabled(value) {
-    workaroundEnabled = value;
-  }
-
-}; // src/passes/RenderPass.js
-
-exports.OverrideMaterialManager = OverrideMaterialManager;
-var RenderPass = class extends Pass {
-  constructor(scene, camera, overrideMaterial = null) {
-    super("RenderPass", scene, camera);
-    this.needsSwap = false;
-    this.clearPass = new ClearPass();
-    this.overrideMaterialManager = overrideMaterial === null ? null : new OverrideMaterialManager(overrideMaterial);
-  }
-
-  get renderToScreen() {
-    return super.renderToScreen;
-  }
-
-  set renderToScreen(value) {
-    super.renderToScreen = value;
-    this.clearPass.renderToScreen = value;
-  }
-
-  get overrideMaterial() {
-    const manager = this.overrideMaterialManager;
-    return manager !== null ? manager.material : null;
-  }
-
-  set overrideMaterial(value) {
-    const manager = this.overrideMaterialManager;
-
-    if (value !== null) {
-      if (manager !== null) {
-        manager.setMaterial(value);
-      } else {
-        this.overrideMaterialManager = new OverrideMaterialManager(value);
-      }
-    } else if (manager !== null) {
-      manager.dispose();
-      this.overrideMaterialManager = null;
-    }
-  }
-
-  get clear() {
-    return this.clearPass.enabled;
-  }
-
-  set clear(value) {
-    this.clearPass.enabled = value;
-  }
-
-  getClearPass() {
-    return this.clearPass;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const scene = this.scene;
-    const camera = this.camera;
-    const background = scene.background;
-    const renderTarget = this.renderToScreen ? null : inputBuffer;
-
-    if (this.clear) {
-      if (this.clearPass.overrideClearColor !== null) {
-        scene.background = null;
-      }
-
-      this.clearPass.render(renderer, inputBuffer);
-    }
-
-    renderer.setRenderTarget(renderTarget);
-
-    if (this.overrideMaterialManager !== null) {
-      this.overrideMaterialManager.render(renderer, scene, camera);
-    } else {
-      renderer.render(scene, camera);
-    }
-
-    if (scene.background !== background) {
-      scene.background = background;
-    }
-  }
-
-}; // src/passes/DepthPass.js
-
-exports.RenderPass = RenderPass;
-var DepthPass = class extends Pass {
-  constructor(scene, camera, {
-    resolutionScale = 1,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE,
-    renderTarget
-  } = {}) {
-    super("DepthPass");
-    this.needsSwap = false;
-    this.renderPass = new RenderPass(scene, camera, new _three.MeshDepthMaterial({
-      depthPacking: _three.RGBADepthPacking
-    }));
-    const clearPass = this.renderPass.getClearPass();
-    clearPass.overrideClearColor = new _three.Color(16777215);
-    clearPass.overrideClearAlpha = 1;
-    this.renderTarget = renderTarget;
-
-    if (this.renderTarget === void 0) {
-      this.renderTarget = new _three.WebGLRenderTarget(1, 1, {
-        minFilter: _three.NearestFilter,
-        magFilter: _three.NearestFilter,
-        stencilBuffer: false
-      });
-      this.renderTarget.texture.name = "DepthPass.Target";
-    }
-
-    this.resolution = new Resizer(this, width, height, resolutionScale);
-  }
-
-  get texture() {
-    return this.renderTarget.texture;
-  }
-
-  getResolutionScale() {
-    return this.resolutionScale;
-  }
-
-  setResolutionScale(scale) {
-    this.resolutionScale = scale;
-    this.setSize(this.resolution.base.x, this.resolution.base.y);
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const renderTarget = this.renderToScreen ? null : this.renderTarget;
-    this.renderPass.render(renderer, renderTarget);
-  }
-
-  setSize(width, height) {
-    const resolution = this.resolution;
-    resolution.base.set(width, height);
-    this.renderTarget.setSize(resolution.width, resolution.height);
-  }
-
-}; // src/passes/DepthDownsamplingPass.js
-
-exports.DepthPass = DepthPass;
-var DepthDownsamplingPass = class extends Pass {
-  constructor({
-    normalBuffer = null,
-    resolutionScale = 0.5,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE
-  } = {}) {
-    super("DepthDownsamplingPass");
-    this.setFullscreenMaterial(new DepthDownsamplingMaterial());
-    this.needsDepthTexture = true;
-    this.needsSwap = false;
-
-    if (normalBuffer !== null) {
-      const material = this.getFullscreenMaterial();
-      material.uniforms.normalBuffer.value = normalBuffer;
-      material.defines.DOWNSAMPLE_NORMALS = "1";
-    }
-
-    this.renderTarget = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.NearestFilter,
-      magFilter: _three.NearestFilter,
-      stencilBuffer: false,
-      depthBuffer: false,
-      type: _three.FloatType
-    });
-    this.renderTarget.texture.name = "DepthDownsamplingPass.Target";
-    this.renderTarget.texture.generateMipmaps = false;
-    this.resolution = new Resizer(this, width, height);
-    this.resolution.scale = resolutionScale;
-  }
-
-  get texture() {
-    return this.renderTarget.texture;
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {
-    const material = this.getFullscreenMaterial();
-    material.uniforms.depthBuffer.value = depthTexture;
-    material.depthPacking = depthPacking;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    renderer.setRenderTarget(this.renderToScreen ? null : this.renderTarget);
-    renderer.render(this.scene, this.camera);
-  }
-
-  setSize(width, height) {
-    const resolution = this.resolution;
-    resolution.base.set(width, height);
-    this.getFullscreenMaterial().setTexelSize(1 / width, 1 / height);
-    this.renderTarget.setSize(resolution.width, resolution.height);
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    if (!renderer.capabilities.isWebGL2) {
-      console.error("The DepthDownsamplingPass requires WebGL 2");
-    }
-  }
-
-}; // src/effects/blending/BlendFunction.js
-
-exports.DepthDownsamplingPass = DepthDownsamplingPass;
-var BlendFunction = {
-  SKIP: 0,
-  ADD: 1,
-  ALPHA: 2,
-  AVERAGE: 3,
-  COLOR_BURN: 4,
-  COLOR_DODGE: 5,
-  DARKEN: 6,
-  DIFFERENCE: 7,
-  EXCLUSION: 8,
-  LIGHTEN: 9,
-  MULTIPLY: 10,
-  DIVIDE: 11,
-  NEGATION: 12,
-  NORMAL: 13,
-  OVERLAY: 14,
-  REFLECT: 15,
-  SCREEN: 16,
-  SOFT_LIGHT: 17,
-  SUBTRACT: 18
-}; // src/effects/blending/BlendMode.js
-
-exports.BlendFunction = BlendFunction;
-// src/effects/blending/glsl/add/shader.frag
-var shader_default26 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return min(x+y,1.0)*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/alpha/shader.frag
-
-var shader_default27 = "vec3 blend(const in vec3 x,const in vec3 y,const in float opacity){return y*opacity+x*(1.0-opacity);}vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){float a=min(y.a,opacity);return vec4(blend(x.rgb,y.rgb,a),max(x.a,a));}"; // src/effects/blending/glsl/average/shader.frag
-
-var shader_default28 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return(x+y)*0.5*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/color-burn/shader.frag
-
-var shader_default29 = "float blend(const in float x,const in float y){return(y==0.0)? y : max(1.0-(1.0-x)/y,0.0);}vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){vec4 z=vec4(blend(x.r,y.r),blend(x.g,y.g),blend(x.b,y.b),blend(x.a,y.a));return z*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/color-dodge/shader.frag
-
-var shader_default30 = "float blend(const in float x,const in float y){return(y==1.0)? y : min(x/(1.0-y),1.0);}vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){vec4 z=vec4(blend(x.r,y.r),blend(x.g,y.g),blend(x.b,y.b),blend(x.a,y.a));return z*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/darken/shader.frag
-
-var shader_default31 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return min(x,y)*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/difference/shader.frag
-
-var shader_default32 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return abs(x-y)*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/exclusion/shader.frag
-
-var shader_default33 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return(x+y-2.0*x*y)*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/lighten/shader.frag
-
-var shader_default34 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return max(x,y)*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/multiply/shader.frag
-
-var shader_default35 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return x*y*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/divide/shader.frag
-
-var shader_default36 = "float blend(const in float x,const in float y){return(y>0.0)? min(x/y,1.0): 1.0;}vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){vec4 z=vec4(blend(x.r,y.r),blend(x.g,y.g),blend(x.b,y.b),blend(x.a,y.a));return z*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/negation/shader.frag
-
-var shader_default37 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return(1.0-abs(1.0-x-y))*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/normal/shader.frag
-
-var shader_default38 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return y*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/overlay/shader.frag
-
-var shader_default39 = "float blend(const in float x,const in float y){return(x<0.5)?(2.0*x*y):(1.0-2.0*(1.0-x)*(1.0-y));}vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){vec4 z=vec4(blend(x.r,y.r),blend(x.g,y.g),blend(x.b,y.b),blend(x.a,y.a));return z*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/reflect/shader.frag
-
-var shader_default40 = "float blend(const in float x,const in float y){return(y==1.0)? y : min(x*x/(1.0-y),1.0);}vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){vec4 z=vec4(blend(x.r,y.r),blend(x.g,y.g),blend(x.b,y.b),blend(x.a,y.a));return z*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/screen/shader.frag
-
-var shader_default41 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return(1.0-(1.0-x)*(1.0-y))*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/soft-light/shader.frag
-
-var shader_default42 = "float blend(const in float x,const in float y){return(y<0.5)?(2.0*x*y+x*x*(1.0-2.0*y)):(sqrt(x)*(2.0*y-1.0)+2.0*x*(1.0-y));}vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){vec4 z=vec4(blend(x.r,y.r),blend(x.g,y.g),blend(x.b,y.b),blend(x.a,y.a));return z*opacity+x*(1.0-opacity);}"; // src/effects/blending/glsl/subtract/shader.frag
-
-var shader_default43 = "vec4 blend(const in vec4 x,const in vec4 y,const in float opacity){return max(x+y-1.0,0.0)*opacity+x*(1.0-opacity);}"; // src/effects/blending/BlendMode.js
-
-var blendFunctions = new Map([[BlendFunction.SKIP, null], [BlendFunction.ADD, shader_default26], [BlendFunction.ALPHA, shader_default27], [BlendFunction.AVERAGE, shader_default28], [BlendFunction.COLOR_BURN, shader_default29], [BlendFunction.COLOR_DODGE, shader_default30], [BlendFunction.DARKEN, shader_default31], [BlendFunction.DIFFERENCE, shader_default32], [BlendFunction.EXCLUSION, shader_default33], [BlendFunction.LIGHTEN, shader_default34], [BlendFunction.MULTIPLY, shader_default35], [BlendFunction.DIVIDE, shader_default36], [BlendFunction.NEGATION, shader_default37], [BlendFunction.NORMAL, shader_default38], [BlendFunction.OVERLAY, shader_default39], [BlendFunction.REFLECT, shader_default40], [BlendFunction.SCREEN, shader_default41], [BlendFunction.SOFT_LIGHT, shader_default42], [BlendFunction.SUBTRACT, shader_default43]]);
-var BlendMode = class extends _three.EventDispatcher {
-  constructor(blendFunction, opacity = 1) {
-    super();
-    this.blendFunction = blendFunction;
-    this.opacity = new _three.Uniform(opacity);
-  }
-
-  getBlendFunction() {
-    return this.blendFunction;
-  }
-
-  setBlendFunction(blendFunction) {
-    this.blendFunction = blendFunction;
-    this.dispatchEvent({
-      type: "change"
-    });
-  }
-
-  getShaderCode() {
-    return blendFunctions.get(this.blendFunction);
-  }
-
-}; // src/effects/Effect.js
-
-exports.BlendMode = BlendMode;
-var Effect = class extends _three.EventDispatcher {
-  constructor(name, fragmentShader, {
-    attributes = EffectAttribute.NONE,
-    blendFunction = BlendFunction.SCREEN,
-    defines = new Map(),
-    uniforms = new Map(),
-    extensions = null,
-    vertexShader = null
-  } = {}) {
-    super();
-    this.name = name;
-    this.attributes = attributes;
-    this.fragmentShader = fragmentShader;
-    this.vertexShader = vertexShader;
-    this.defines = defines;
-    this.uniforms = uniforms;
-    this.extensions = extensions;
-    this.blendMode = new BlendMode(blendFunction);
-    this.blendMode.addEventListener("change", event => this.setChanged());
-  }
-
-  setChanged() {
-    this.dispatchEvent({
-      type: "change"
-    });
-  }
-
-  getAttributes() {
-    return this.attributes;
-  }
-
-  setAttributes(attributes) {
-    this.attributes = attributes;
-    this.setChanged();
-  }
-
-  getFragmentShader() {
-    return this.fragmentShader;
-  }
-
-  setFragmentShader(fragmentShader) {
-    this.fragmentShader = fragmentShader;
-    this.setChanged();
-  }
-
-  getVertexShader() {
-    return this.vertexShader;
-  }
-
-  setVertexShader(vertexShader) {
-    this.vertexShader = vertexShader;
-    this.setChanged();
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {}
-
-  update(renderer, inputBuffer, deltaTime) {}
-
-  setSize(width, height) {}
-
-  initialize(renderer, alpha, frameBufferType) {}
-
-  dispose() {
-    for (const key of Object.keys(this)) {
-      const property = this[key];
-
-      if (property !== null && typeof property.dispose === "function") {
-        if (property instanceof _three.Scene) {
-          continue;
-        }
-
-        this[key].dispose();
-      }
-    }
-  }
-
-};
-exports.Effect = Effect;
-var EffectAttribute = {
-  NONE: 0,
-  DEPTH: 1,
-  CONVOLUTION: 2
-};
-exports.EffectAttribute = EffectAttribute;
-var WebGLExtension = {
-  DERIVATIVES: "derivatives",
-  FRAG_DEPTH: "fragDepth",
-  DRAW_BUFFERS: "drawBuffers",
-  SHADER_TEXTURE_LOD: "shaderTextureLOD"
-}; // src/passes/EffectPass.js
-
-exports.WebGLExtension = WebGLExtension;
-
-function findSubstrings(regExp, string) {
-  const substrings = [];
-  let result;
-
-  while ((result = regExp.exec(string)) !== null) {
-    substrings.push(result[1]);
-  }
-
-  return substrings;
-}
-
-function prefixSubstrings(prefix, substrings, strings) {
-  let prefixed, regExp;
-
-  for (const substring of substrings) {
-    prefixed = "$1" + prefix + substring.charAt(0).toUpperCase() + substring.slice(1);
-    regExp = new RegExp("([^\\.])(\\b" + substring + "\\b)", "g");
-
-    for (const entry of strings.entries()) {
-      if (entry[1] !== null) {
-        strings.set(entry[0], entry[1].replace(regExp, prefixed));
-      }
-    }
-  }
-}
-
-function integrateEffect(prefix, effect, shaderParts, blendModes, defines, uniforms, attributes) {
-  const functionRegExp = /(?:\w+\s+(\w+)\([\w\s,]*\)\s*{[^}]+})/g;
-  const varyingRegExp = /(?:varying\s+\w+\s+(\w*))/g;
-  const blendMode = effect.blendMode;
-  const shaders = new Map([["fragment", effect.getFragmentShader()], ["vertex", effect.getVertexShader()]]);
-  const mainImageExists = shaders.get("fragment") !== void 0 && /mainImage/.test(shaders.get("fragment"));
-  const mainUvExists = shaders.get("fragment") !== void 0 && /mainUv/.test(shaders.get("fragment"));
-  let varyings = [],
-      names = [];
-  let transformedUv = false;
-  let readDepth = false;
-
-  if (shaders.get("fragment") === void 0) {
-    console.error("Missing fragment shader", effect);
-  } else if (mainUvExists && (attributes & EffectAttribute.CONVOLUTION) !== 0) {
-    console.error("Effects that transform UV coordinates are incompatible with convolution effects", effect);
-  } else if (!mainImageExists && !mainUvExists) {
-    console.error("The fragment shader contains neither a mainImage nor a mainUv function", effect);
-  } else {
-    if (mainUvExists) {
-      shaderParts.set(Section.FRAGMENT_MAIN_UV, shaderParts.get(Section.FRAGMENT_MAIN_UV) + "	" + prefix + "MainUv(UV);\n");
-      transformedUv = true;
-    }
-
-    if (shaders.get("vertex") !== null && /mainSupport/.test(shaders.get("vertex"))) {
-      let string = "	" + prefix + "MainSupport(";
-
-      if (/mainSupport *\([\w\s]*?uv\s*?\)/.test(shaders.get("vertex"))) {
-        string += "vUv";
-      }
-
-      string += ");\n";
-      shaderParts.set(Section.VERTEX_MAIN_SUPPORT, shaderParts.get(Section.VERTEX_MAIN_SUPPORT) + string);
-      varyings = varyings.concat(findSubstrings(varyingRegExp, shaders.get("vertex")));
-      names = names.concat(varyings).concat(findSubstrings(functionRegExp, shaders.get("vertex")));
-    }
-
-    names = names.concat(findSubstrings(functionRegExp, shaders.get("fragment"))).concat(Array.from(effect.defines.keys()).map(s => s.replace(/\([\w\s,]*\)/g, ""))).concat(Array.from(effect.uniforms.keys()));
-    effect.uniforms.forEach((value, key) => uniforms.set(prefix + key.charAt(0).toUpperCase() + key.slice(1), value));
-    effect.defines.forEach((value, key) => defines.set(prefix + key.charAt(0).toUpperCase() + key.slice(1), value));
-    prefixSubstrings(prefix, names, defines);
-    prefixSubstrings(prefix, names, shaders);
-    blendModes.set(blendMode.blendFunction, blendMode);
-
-    if (mainImageExists) {
-      const depthParamRegExp = /MainImage *\([\w\s,]*?depth[\w\s,]*?\)/;
-      let string = prefix + "MainImage(color0, UV, ";
-
-      if ((attributes & EffectAttribute.DEPTH) !== 0 && depthParamRegExp.test(shaders.get("fragment"))) {
-        string += "depth, ";
-        readDepth = true;
-      }
-
-      string += "color1);\n	";
-      const blendOpacity = prefix + "BlendOpacity";
-      uniforms.set(blendOpacity, blendMode.opacity);
-      string += "color0 = blend" + blendMode.getBlendFunction() + "(color0, color1, " + blendOpacity + ");\n\n	";
-      shaderParts.set(Section.FRAGMENT_MAIN_IMAGE, shaderParts.get(Section.FRAGMENT_MAIN_IMAGE) + string);
-      shaderParts.set(Section.FRAGMENT_HEAD, shaderParts.get(Section.FRAGMENT_HEAD) + "uniform float " + blendOpacity + ";\n\n");
-    }
-
-    shaderParts.set(Section.FRAGMENT_HEAD, shaderParts.get(Section.FRAGMENT_HEAD) + shaders.get("fragment") + "\n");
-
-    if (shaders.get("vertex") !== null) {
-      shaderParts.set(Section.VERTEX_HEAD, shaderParts.get(Section.VERTEX_HEAD) + shaders.get("vertex") + "\n");
-    }
-  }
-
-  return {
-    varyings,
-    transformedUv,
-    readDepth
-  };
-}
-
-var EffectPass = class extends Pass {
-  constructor(camera, ...effects) {
-    super("EffectPass");
-    this.setFullscreenMaterial(new EffectMaterial(null, null, null, camera));
-    this.effects = effects.sort((a, b) => b.attributes - a.attributes);
-    this.skipRendering = false;
-    this.uniforms = 0;
-    this.varyings = 0;
-    this.minTime = 1;
-    this.maxTime = Number.POSITIVE_INFINITY;
-  }
-
-  get encodeOutput() {
-    return this.getFullscreenMaterial().defines.ENCODE_OUTPUT !== void 0;
-  }
-
-  set encodeOutput(value) {
-    if (this.encodeOutput !== value) {
-      const material = this.getFullscreenMaterial();
-      material.needsUpdate = true;
-
-      if (value) {
-        material.defines.ENCODE_OUTPUT = "1";
-      } else {
-        delete material.defines.ENCODE_OUTPUT;
-      }
-    }
-  }
-
-  get dithering() {
-    return this.getFullscreenMaterial().dithering;
-  }
-
-  set dithering(value) {
-    const material = this.getFullscreenMaterial();
-
-    if (material.dithering !== value) {
-      material.dithering = value;
-      material.needsUpdate = true;
-    }
-  }
-
-  verifyResources(renderer) {
-    const capabilities = renderer.capabilities;
-    let max = Math.min(capabilities.maxFragmentUniforms, capabilities.maxVertexUniforms);
-
-    if (this.uniforms > max) {
-      console.warn("The current rendering context doesn't support more than " + max + " uniforms, but " + this.uniforms + " were defined");
-    }
-
-    max = capabilities.maxVaryings;
-
-    if (this.varyings > max) {
-      console.warn("The current rendering context doesn't support more than " + max + " varyings, but " + this.varyings + " were defined");
-    }
-  }
-
-  updateMaterial() {
-    const blendRegExp = /\bblend\b/g;
-    const shaderParts = new Map([[Section.FRAGMENT_HEAD, ""], [Section.FRAGMENT_MAIN_UV, ""], [Section.FRAGMENT_MAIN_IMAGE, ""], [Section.VERTEX_HEAD, ""], [Section.VERTEX_MAIN_SUPPORT, ""]]);
-    const blendModes = new Map();
-    const defines = new Map();
-    const uniforms = new Map();
-    const extensions = new Set();
-    let id = 0,
-        varyings = 0,
-        attributes = 0;
-    let transformedUv = false;
-    let readDepth = false;
-    let result;
-
-    for (const effect of this.effects) {
-      if (effect.blendMode.getBlendFunction() === BlendFunction.SKIP) {
-        attributes |= effect.getAttributes() & EffectAttribute.DEPTH;
-      } else if ((attributes & EffectAttribute.CONVOLUTION) !== 0 && (effect.getAttributes() & EffectAttribute.CONVOLUTION) !== 0) {
-        console.error("Convolution effects cannot be merged", effect);
-      } else {
-        attributes |= effect.getAttributes();
-        result = integrateEffect("e" + id++, effect, shaderParts, blendModes, defines, uniforms, attributes);
-        varyings += result.varyings.length;
-        transformedUv = transformedUv || result.transformedUv;
-        readDepth = readDepth || result.readDepth;
-
-        if (effect.extensions !== null) {
-          for (const extension of effect.extensions) {
-            extensions.add(extension);
-          }
-        }
-      }
-    }
-
-    for (const blendMode of blendModes.values()) {
-      shaderParts.set(Section.FRAGMENT_HEAD, shaderParts.get(Section.FRAGMENT_HEAD) + blendMode.getShaderCode().replace(blendRegExp, "blend" + blendMode.getBlendFunction()) + "\n");
-    }
-
-    if ((attributes & EffectAttribute.DEPTH) !== 0) {
-      if (readDepth) {
-        shaderParts.set(Section.FRAGMENT_MAIN_IMAGE, "float depth = readDepth(UV);\n\n	" + shaderParts.get(Section.FRAGMENT_MAIN_IMAGE));
-      }
-
-      this.needsDepthTexture = this.getDepthTexture() === null;
-    } else {
-      this.needsDepthTexture = false;
-    }
-
-    if (transformedUv) {
-      shaderParts.set(Section.FRAGMENT_MAIN_UV, "vec2 transformedUv = vUv;\n" + shaderParts.get(Section.FRAGMENT_MAIN_UV));
-      defines.set("UV", "transformedUv");
-    } else {
-      defines.set("UV", "vUv");
-    }
-
-    shaderParts.forEach((value, key, map) => map.set(key, value.trim().replace(/^#/, "\n#")));
-    this.uniforms = uniforms.size;
-    this.varyings = varyings;
-    this.skipRendering = id === 0;
-    this.needsSwap = !this.skipRendering;
-    const material = this.getFullscreenMaterial();
-    material.setShaderParts(shaderParts).setDefines(defines).setUniforms(uniforms);
-    material.extensions = {};
-
-    if (extensions.size > 0) {
-      for (const extension of extensions) {
-        material.extensions[extension] = true;
-      }
-    }
-
-    this.needsUpdate = false;
-  }
-
-  recompile(renderer) {
-    this.updateMaterial();
-
-    if (renderer !== void 0) {
-      this.verifyResources(renderer);
-    }
-  }
-
-  getDepthTexture() {
-    return this.getFullscreenMaterial().uniforms.depthBuffer.value;
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {
-    const material = this.getFullscreenMaterial();
-    material.uniforms.depthBuffer.value = depthTexture;
-    material.depthPacking = depthPacking;
-    material.needsUpdate = true;
-
-    for (const effect of this.effects) {
-      effect.setDepthTexture(depthTexture, depthPacking);
-    }
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const material = this.getFullscreenMaterial();
-    const time = material.uniforms.time.value + deltaTime;
-
-    if (this.needsUpdate) {
-      this.recompile(renderer);
-    }
-
-    for (const effect of this.effects) {
-      effect.update(renderer, inputBuffer, deltaTime);
-    }
-
-    if (!this.skipRendering || this.renderToScreen) {
-      material.uniforms.inputBuffer.value = inputBuffer.texture;
-      material.uniforms.time.value = time <= this.maxTime ? time : this.minTime;
-      renderer.setRenderTarget(this.renderToScreen ? null : outputBuffer);
-      renderer.render(this.scene, this.camera);
-    }
-  }
-
-  setSize(width, height) {
-    this.getFullscreenMaterial().setSize(width, height);
-
-    for (const effect of this.effects) {
-      effect.setSize(width, height);
-    }
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    this.capabilities = renderer.capabilities;
-
-    for (const effect of this.effects) {
-      effect.initialize(renderer, alpha, frameBufferType);
-      effect.addEventListener("change", event => this.handleEvent(event));
-    }
-
-    this.updateMaterial();
-    this.verifyResources(renderer);
-  }
-
-  dispose() {
-    super.dispose();
-
-    for (const effect of this.effects) {
-      effect.dispose();
-    }
-  }
-
-  handleEvent(event) {
-    switch (event.type) {
-      case "change":
-        this.needsUpdate = true;
-        break;
-    }
-  }
-
-}; // src/passes/LambdaPass.js
-
-exports.EffectPass = EffectPass;
-var LambdaPass = class extends Pass {
-  constructor(f) {
-    super("LambdaPass", null, null);
-    this.needsSwap = false;
-    this.f = f;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    this.f();
-  }
-
-}; // src/passes/MaskPass.js
-
-exports.LambdaPass = LambdaPass;
-var MaskPass = class extends Pass {
-  constructor(scene, camera) {
-    super("MaskPass", scene, camera);
-    this.needsSwap = false;
-    this.clearPass = new ClearPass(false, false, true);
-    this.inverse = false;
-  }
-
-  get clear() {
-    return this.clearPass.enabled;
-  }
-
-  set clear(value) {
-    this.clearPass.enabled = value;
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const context = renderer.getContext();
-    const buffers = renderer.state.buffers;
-    const scene = this.scene;
-    const camera = this.camera;
-    const clearPass = this.clearPass;
-    const writeValue = this.inverse ? 0 : 1;
-    const clearValue = 1 - writeValue;
-    buffers.color.setMask(false);
-    buffers.depth.setMask(false);
-    buffers.color.setLocked(true);
-    buffers.depth.setLocked(true);
-    buffers.stencil.setTest(true);
-    buffers.stencil.setOp(context.REPLACE, context.REPLACE, context.REPLACE);
-    buffers.stencil.setFunc(context.ALWAYS, writeValue, 4294967295);
-    buffers.stencil.setClear(clearValue);
-    buffers.stencil.setLocked(true);
-
-    if (this.clear) {
-      if (this.renderToScreen) {
-        clearPass.render(renderer, null);
-      } else {
-        clearPass.render(renderer, inputBuffer);
-        clearPass.render(renderer, outputBuffer);
-      }
-    }
-
-    if (this.renderToScreen) {
-      renderer.setRenderTarget(null);
-      renderer.render(scene, camera);
-    } else {
-      renderer.setRenderTarget(inputBuffer);
-      renderer.render(scene, camera);
-      renderer.setRenderTarget(outputBuffer);
-      renderer.render(scene, camera);
-    }
-
-    buffers.color.setLocked(false);
-    buffers.depth.setLocked(false);
-    buffers.stencil.setLocked(false);
-    buffers.stencil.setFunc(context.EQUAL, 1, 4294967295);
-    buffers.stencil.setOp(context.KEEP, context.KEEP, context.KEEP);
-    buffers.stencil.setLocked(true);
-  }
-
-}; // src/passes/NormalPass.js
-
-exports.MaskPass = MaskPass;
-var NormalPass = class extends Pass {
-  constructor(scene, camera, {
-    resolutionScale = 1,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE,
-    renderTarget
-  } = {}) {
-    super("NormalPass");
-    this.needsSwap = false;
-    this.renderPass = new RenderPass(scene, camera, new _three.MeshNormalMaterial());
-    const clearPass = this.renderPass.getClearPass();
-    clearPass.overrideClearColor = new _three.Color(7829503);
-    clearPass.overrideClearAlpha = 1;
-    this.renderTarget = renderTarget;
-
-    if (this.renderTarget === void 0) {
-      this.renderTarget = new _three.WebGLRenderTarget(1, 1, {
-        minFilter: _three.NearestFilter,
-        magFilter: _three.NearestFilter,
-        format: _three.RGBFormat,
-        stencilBuffer: false
-      });
-      this.renderTarget.texture.name = "NormalPass.Target";
-    }
-
-    this.resolution = new Resizer(this, width, height, resolutionScale);
-  }
-
-  get texture() {
-    return this.renderTarget.texture;
-  }
-
-  getResolutionScale() {
-    return this.resolutionScale;
-  }
-
-  setResolutionScale(scale) {
-    this.resolutionScale = scale;
-    this.setSize(this.resolution.base.x, this.resolution.base.y);
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    const renderTarget = this.renderToScreen ? null : this.renderTarget;
-    this.renderPass.render(renderer, renderTarget, renderTarget);
-  }
-
-  setSize(width, height) {
-    const resolution = this.resolution;
-    resolution.base.set(width, height);
-    this.renderTarget.setSize(resolution.width, resolution.height);
-  }
-
-}; // src/passes/ShaderPass.js
-
-exports.NormalPass = NormalPass;
-var ShaderPass = class extends Pass {
-  constructor(material, input = "inputBuffer") {
-    super("ShaderPass");
-    this.setFullscreenMaterial(material);
-    this.uniform = null;
-    this.setInput(input);
-  }
-
-  setInput(input) {
-    const material = this.getFullscreenMaterial();
-    this.uniform = null;
-
-    if (material !== null) {
-      const uniforms = material.uniforms;
-
-      if (uniforms !== void 0 && uniforms[input] !== void 0) {
-        this.uniform = uniforms[input];
-      }
-    }
-  }
-
-  render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest) {
-    if (this.uniform !== null && inputBuffer !== null) {
-      this.uniform.value = inputBuffer.texture;
-    }
-
-    renderer.setRenderTarget(this.renderToScreen ? null : outputBuffer);
-    renderer.render(this.scene, this.camera);
-  }
-
-}; // src/core/EffectComposer.js
-
-exports.ShaderPass = ShaderPass;
-var EffectComposer = class {
-  constructor(renderer = null, {
-    depthBuffer = true,
-    stencilBuffer = false,
-    multisampling = 0,
-    frameBufferType
-  } = {}) {
-    this.renderer = renderer;
-    this.inputBuffer = null;
-    this.outputBuffer = null;
-
-    if (this.renderer !== null) {
-      this.renderer.autoClear = false;
-      this.inputBuffer = this.createBuffer(depthBuffer, stencilBuffer, frameBufferType, multisampling);
-      this.outputBuffer = this.inputBuffer.clone();
-      this.enableExtensions();
-    }
-
-    this.copyPass = new ShaderPass(new CopyMaterial());
-    this.depthTexture = null;
-    this.passes = [];
-    this.autoRenderToScreen = true;
-  }
-
-  get multisampling() {
-    return this.inputBuffer instanceof _three.WebGLMultisampleRenderTarget ? this.inputBuffer.samples : 0;
-  }
-
-  set multisampling(value) {
-    const buffer = this.inputBuffer;
-    const multisampling = this.multisampling;
-
-    if (multisampling > 0 && value > 0) {
-      this.inputBuffer.samples = value;
-      this.outputBuffer.samples = value;
-    } else if (multisampling !== value) {
-      this.inputBuffer.dispose();
-      this.outputBuffer.dispose();
-      this.inputBuffer = this.createBuffer(buffer.depthBuffer, buffer.stencilBuffer, buffer.texture.type, value);
-      this.inputBuffer.depthTexture = this.depthTexture;
-      this.outputBuffer = this.inputBuffer.clone();
-    }
-  }
-
-  getRenderer() {
-    return this.renderer;
-  }
-
-  enableExtensions() {
-    const frameBufferType = this.inputBuffer.texture.type;
-    const capabilities = this.renderer.capabilities;
-    const context = this.renderer.getContext();
-
-    if (frameBufferType !== _three.UnsignedByteType) {
-      if (capabilities.isWebGL2) {
-        context.getExtension("EXT_color_buffer_float");
-      } else {
-        context.getExtension("EXT_color_buffer_half_float");
-      }
-    }
-  }
-
-  replaceRenderer(renderer, updateDOM = true) {
-    const oldRenderer = this.renderer;
-
-    if (oldRenderer !== null && oldRenderer !== renderer) {
-      const oldSize = oldRenderer.getSize(new _three.Vector2());
-      const newSize = renderer.getSize(new _three.Vector2());
-      const parent = oldRenderer.domElement.parentNode;
-      this.renderer = renderer;
-      this.renderer.autoClear = false;
-
-      if (!oldSize.equals(newSize)) {
-        this.setSize();
-      }
-
-      if (updateDOM && parent !== null) {
-        parent.removeChild(oldRenderer.domElement);
-        parent.appendChild(renderer.domElement);
-      }
-
-      this.enableExtensions();
-    }
-
-    return oldRenderer;
-  }
-
-  createDepthTexture() {
-    const depthTexture = this.depthTexture = new _three.DepthTexture();
-    this.inputBuffer.depthTexture = depthTexture;
-    this.inputBuffer.dispose();
-
-    if (this.inputBuffer.stencilBuffer) {
-      depthTexture.format = _three.DepthStencilFormat;
-      depthTexture.type = _three.UnsignedInt248Type;
-    } else {
-      depthTexture.type = _three.UnsignedIntType;
-    }
-
-    return depthTexture;
-  }
-
-  deleteDepthTexture() {
-    if (this.depthTexture !== null) {
-      this.depthTexture.dispose();
-      this.depthTexture = null;
-      this.inputBuffer.depthTexture = null;
-      this.inputBuffer.dispose();
-
-      for (const pass of this.passes) {
-        pass.setDepthTexture(null);
-      }
-    }
-  }
-
-  createBuffer(depthBuffer, stencilBuffer, type, multisampling) {
-    const size = this.renderer.getDrawingBufferSize(new _three.Vector2());
-    const alpha = this.renderer.getContext().getContextAttributes().alpha;
-    const options = {
-      format: !alpha && type === _three.UnsignedByteType ? _three.RGBFormat : _three.RGBAFormat,
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer,
-      depthBuffer,
-      type
-    };
-    const renderTarget = multisampling > 0 ? new _three.WebGLMultisampleRenderTarget(size.width, size.height, options) : new _three.WebGLRenderTarget(size.width, size.height, options);
-
-    if (multisampling > 0) {
-      renderTarget.samples = multisampling;
-    }
-
-    renderTarget.texture.name = "EffectComposer.Buffer";
-    renderTarget.texture.generateMipmaps = false;
-    return renderTarget;
-  }
-
-  addPass(pass, index) {
-    const passes = this.passes;
-    const renderer = this.renderer;
-    const alpha = renderer.getContext().getContextAttributes().alpha;
-    const frameBufferType = this.inputBuffer.texture.type;
-    const drawingBufferSize = renderer.getDrawingBufferSize(new _three.Vector2());
-    pass.setSize(drawingBufferSize.width, drawingBufferSize.height);
-    pass.initialize(renderer, alpha, frameBufferType);
-
-    if (this.autoRenderToScreen) {
-      if (passes.length > 0) {
-        passes[passes.length - 1].renderToScreen = false;
-      }
-
-      if (pass.renderToScreen) {
-        this.autoRenderToScreen = false;
-      }
-    }
-
-    if (index !== void 0) {
-      passes.splice(index, 0, pass);
-    } else {
-      passes.push(pass);
-    }
-
-    if (this.autoRenderToScreen) {
-      passes[passes.length - 1].renderToScreen = true;
-    }
-
-    if (pass.needsDepthTexture || this.depthTexture !== null) {
-      if (this.depthTexture === null) {
-        const depthTexture = this.createDepthTexture();
-
-        for (pass of passes) {
-          pass.setDepthTexture(depthTexture);
-        }
-      } else {
-        pass.setDepthTexture(this.depthTexture);
-      }
-    }
-  }
-
-  removePass(pass) {
-    const passes = this.passes;
-    const index = passes.indexOf(pass);
-    const removed = passes.splice(index, 1).length > 0;
-
-    if (removed) {
-      if (this.depthTexture !== null) {
-        const reducer = (a, b) => a || b.needsDepthTexture;
-
-        const depthTextureRequired = passes.reduce(reducer, false);
-
-        if (!depthTextureRequired) {
-          if (pass.getDepthTexture() === this.depthTexture) {
-            pass.setDepthTexture(null);
-          }
-
-          this.deleteDepthTexture();
-        }
-      }
-
-      if (this.autoRenderToScreen) {
-        if (index === passes.length) {
-          pass.renderToScreen = false;
-
-          if (passes.length > 0) {
-            passes[passes.length - 1].renderToScreen = true;
-          }
-        }
-      }
-    }
-  }
-
-  removeAllPasses() {
-    const passes = this.passes;
-    this.deleteDepthTexture();
-
-    if (passes.length > 0) {
-      if (this.autoRenderToScreen) {
-        passes[passes.length - 1].renderToScreen = false;
-      }
-
-      this.passes = [];
-    }
-  }
-
-  render(deltaTime) {
-    const renderer = this.renderer;
-    const copyPass = this.copyPass;
-    let inputBuffer = this.inputBuffer;
-    let outputBuffer = this.outputBuffer;
-    let stencilTest = false;
-    let context, stencil, buffer;
-
-    for (const pass of this.passes) {
-      if (pass.enabled) {
-        pass.render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest);
-
-        if (pass.needsSwap) {
-          if (stencilTest) {
-            copyPass.renderToScreen = pass.renderToScreen;
-            context = renderer.getContext();
-            stencil = renderer.state.buffers.stencil;
-            stencil.setFunc(context.NOTEQUAL, 1, 4294967295);
-            copyPass.render(renderer, inputBuffer, outputBuffer, deltaTime, stencilTest);
-            stencil.setFunc(context.EQUAL, 1, 4294967295);
-          }
-
-          buffer = inputBuffer;
-          inputBuffer = outputBuffer;
-          outputBuffer = buffer;
-        }
-
-        if (pass instanceof MaskPass) {
-          stencilTest = true;
-        } else if (pass instanceof ClearMaskPass) {
-          stencilTest = false;
-        }
-      }
-    }
-  }
-
-  setSize(width, height, updateStyle) {
-    const renderer = this.renderer;
-
-    if (width === void 0 || height === void 0) {
-      const size = renderer.getSize(new _three.Vector2());
-      width = size.width;
-      height = size.height;
-    } else {
-      renderer.setSize(width, height, updateStyle);
-    }
-
-    const drawingBufferSize = renderer.getDrawingBufferSize(new _three.Vector2());
-    this.inputBuffer.setSize(drawingBufferSize.width, drawingBufferSize.height);
-    this.outputBuffer.setSize(drawingBufferSize.width, drawingBufferSize.height);
-
-    for (const pass of this.passes) {
-      pass.setSize(drawingBufferSize.width, drawingBufferSize.height);
-    }
-  }
-
-  reset() {
-    this.dispose();
-    this.autoRenderToScreen = true;
-  }
-
-  dispose() {
-    for (const pass of this.passes) {
-      pass.dispose();
-    }
-
-    this.passes = [];
-
-    if (this.inputBuffer !== null) {
-      this.inputBuffer.dispose();
-    }
-
-    if (this.outputBuffer !== null) {
-      this.outputBuffer.dispose();
-    }
-
-    this.deleteDepthTexture();
-    this.copyPass.dispose();
-  }
-
-}; // src/core/Initializable.js
-
-exports.EffectComposer = EffectComposer;
-var Initializable = class {
-  initialize(renderer, alpha, frameBufferType) {}
-
-}; // src/core/Resizable.js
-
-exports.Initializable = Initializable;
-var Resizable = class {
-  setSize(width, height) {}
-
-}; // src/core/Selection.js
-
-exports.Resizable = Resizable;
-var Selection = class extends Set {
-  constructor(iterable, layer = 10) {
-    super();
-    this.currentLayer = layer;
-
-    if (iterable !== void 0) {
-      this.set(iterable);
-    }
-  }
-
-  get layer() {
-    return this.currentLayer;
-  }
-
-  set layer(value) {
-    const currentLayer = this.currentLayer;
-
-    for (const object of this) {
-      object.layers.disable(currentLayer);
-      object.layers.enable(value);
-    }
-
-    this.currentLayer = value;
-  }
-
-  clear() {
-    const layer = this.layer;
-
-    for (const object of this) {
-      object.layers.disable(layer);
-    }
-
-    return super.clear();
-  }
-
-  set(objects) {
-    this.clear();
-
-    for (const object of objects) {
-      this.add(object);
-    }
-
-    return this;
-  }
-
-  indexOf(object) {
-    return this.has(object) ? 0 : -1;
-  }
-
-  add(object) {
-    object.layers.enable(this.layer);
-    super.add(object);
-    return this;
-  }
-
-  delete(object) {
-    if (this.has(object)) {
-      object.layers.disable(this.layer);
-    }
-
-    return super.delete(object);
-  }
-
-  setVisible(visible) {
-    for (const object of this) {
-      if (visible) {
-        object.layers.enable(0);
-      } else {
-        object.layers.disable(0);
-      }
-    }
-
-    return this;
-  }
-
-}; // src/effects/BloomEffect.js
-
-exports.Selection = Selection;
-// src/effects/glsl/bloom/shader.frag
-var shader_default44 = "uniform sampler2D texture;uniform float intensity;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){outputColor=clamp(texture2D(texture,uv)*intensity,0.0,1.0);}"; // src/effects/BloomEffect.js
-
-var BloomEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.SCREEN,
-    luminanceThreshold = 0.9,
-    luminanceSmoothing = 0.025,
-    resolutionScale = 0.5,
-    intensity = 1,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE,
-    kernelSize = KernelSize.LARGE
-  } = {}) {
-    super("BloomEffect", shader_default44, {
-      blendFunction,
-      uniforms: new Map([["texture", new _three.Uniform(null)], ["intensity", new _three.Uniform(intensity)]])
-    });
-    this.renderTarget = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: false
-    });
-    this.renderTarget.texture.name = "Bloom.Target";
-    this.renderTarget.texture.generateMipmaps = false;
-    this.uniforms.get("texture").value = this.renderTarget.texture;
-    this.blurPass = new BlurPass({
-      resolutionScale,
-      width,
-      height,
-      kernelSize
-    });
-    this.blurPass.resolution.resizable = this;
-    this.luminancePass = new ShaderPass(new LuminanceMaterial(true));
-    this.luminanceMaterial.threshold = luminanceThreshold;
-    this.luminanceMaterial.smoothing = luminanceSmoothing;
-  }
-
-  get texture() {
-    return this.renderTarget.texture;
-  }
-
-  get luminanceMaterial() {
-    return this.luminancePass.getFullscreenMaterial();
-  }
-
-  get resolution() {
-    return this.blurPass.resolution;
-  }
-
-  get width() {
-    return this.resolution.width;
-  }
-
-  set width(value) {
-    this.resolution.width = value;
-  }
-
-  get height() {
-    return this.resolution.height;
-  }
-
-  set height(value) {
-    this.resolution.height = value;
-  }
-
-  get dithering() {
-    return this.blurPass.dithering;
-  }
-
-  set dithering(value) {
-    this.blurPass.dithering = value;
-  }
-
-  get kernelSize() {
-    return this.blurPass.kernelSize;
-  }
-
-  set kernelSize(value) {
-    this.blurPass.kernelSize = value;
-  }
-
-  get distinction() {
-    console.warn(this.name, "The distinction field has been removed, use luminanceMaterial.threshold and luminanceMaterial.smoothing instead.");
-    return 1;
-  }
-
-  set distinction(value) {
-    console.warn(this.name, "The distinction field has been removed, use luminanceMaterial.threshold and luminanceMaterial.smoothing instead.");
-  }
-
-  get intensity() {
-    return this.uniforms.get("intensity").value;
-  }
-
-  set intensity(value) {
-    this.uniforms.get("intensity").value = value;
-  }
-
-  getResolutionScale() {
-    return this.resolution.scale;
-  }
-
-  setResolutionScale(scale) {
-    this.resolution.scale = scale;
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    const renderTarget = this.renderTarget;
-
-    if (this.luminancePass.enabled) {
-      this.luminancePass.render(renderer, inputBuffer, renderTarget);
-      this.blurPass.render(renderer, renderTarget, renderTarget);
-    } else {
-      this.blurPass.render(renderer, inputBuffer, renderTarget);
-    }
-  }
-
-  setSize(width, height) {
-    this.blurPass.setSize(width, height);
-    this.renderTarget.setSize(this.resolution.width, this.resolution.height);
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    this.blurPass.initialize(renderer, alpha, frameBufferType);
-
-    if (!alpha && frameBufferType === _three.UnsignedByteType) {
-      this.renderTarget.texture.format = _three.RGBFormat;
-    }
-
-    if (frameBufferType !== void 0) {
-      this.renderTarget.texture.type = frameBufferType;
-    }
-  }
-
-}; // src/effects/BokehEffect.js
-
-exports.BloomEffect = BloomEffect;
-// src/effects/glsl/bokeh/shader.frag
-var shader_default45 = "uniform float focus;uniform float dof;uniform float aperture;uniform float maxBlur;void mainImage(const in vec4 inputColor,const in vec2 uv,const in float depth,out vec4 outputColor){vec2 aspectCorrection=vec2(1.0,aspect);\n#ifdef PERSPECTIVE_CAMERA\nfloat viewZ=perspectiveDepthToViewZ(depth,cameraNear,cameraFar);float linearDepth=viewZToOrthographicDepth(viewZ,cameraNear,cameraFar);\n#else\nfloat linearDepth=depth;\n#endif\nfloat focusNear=clamp(focus-dof,0.0,1.0);float focusFar=clamp(focus+dof,0.0,1.0);float low=step(linearDepth,focusNear);float high=step(focusFar,linearDepth);float factor=(linearDepth-focusNear)*low+(linearDepth-focusFar)*high;vec2 dofBlur=vec2(clamp(factor*aperture,-maxBlur,maxBlur));vec2 dofblur9=dofBlur*0.9;vec2 dofblur7=dofBlur*0.7;vec2 dofblur4=dofBlur*0.4;vec4 color=inputColor;color+=texture2D(inputBuffer,uv+(vec2(0.0,0.4)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.15,0.37)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.29,0.29)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(-0.37,0.15)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.40,0.0)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.37,-0.15)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.29,-0.29)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(-0.15,-0.37)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.0,-0.4)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(-0.15,0.37)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(-0.29,0.29)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.37,0.15)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(-0.4,0.0)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(-0.37,-0.15)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(-0.29,-0.29)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.15,-0.37)*aspectCorrection)*dofBlur);color+=texture2D(inputBuffer,uv+(vec2(0.15,0.37)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(-0.37,0.15)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(0.37,-0.15)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(-0.15,-0.37)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(-0.15,0.37)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(0.37,0.15)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(-0.37,-0.15)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(0.15,-0.37)*aspectCorrection)*dofblur9);color+=texture2D(inputBuffer,uv+(vec2(0.29,0.29)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(0.40,0.0)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(0.29,-0.29)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(0.0,-0.4)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(-0.29,0.29)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(-0.4,0.0)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(-0.29,-0.29)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(0.0,0.4)*aspectCorrection)*dofblur7);color+=texture2D(inputBuffer,uv+(vec2(0.29,0.29)*aspectCorrection)*dofblur4);color+=texture2D(inputBuffer,uv+(vec2(0.4,0.0)*aspectCorrection)*dofblur4);color+=texture2D(inputBuffer,uv+(vec2(0.29,-0.29)*aspectCorrection)*dofblur4);color+=texture2D(inputBuffer,uv+(vec2(0.0,-0.4)*aspectCorrection)*dofblur4);color+=texture2D(inputBuffer,uv+(vec2(-0.29,0.29)*aspectCorrection)*dofblur4);color+=texture2D(inputBuffer,uv+(vec2(-0.4,0.0)*aspectCorrection)*dofblur4);color+=texture2D(inputBuffer,uv+(vec2(-0.29,-0.29)*aspectCorrection)*dofblur4);color+=texture2D(inputBuffer,uv+(vec2(0.0,0.4)*aspectCorrection)*dofblur4);outputColor=color/41.0;}"; // src/effects/BokehEffect.js
-
-var BokehEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    focus = 0.5,
-    dof = 0.02,
-    aperture = 0.015,
-    maxBlur = 1
-  } = {}) {
-    super("BokehEffect", shader_default45, {
-      blendFunction,
-      attributes: EffectAttribute.CONVOLUTION | EffectAttribute.DEPTH,
-      uniforms: new Map([["focus", new _three.Uniform(focus)], ["dof", new _three.Uniform(dof)], ["aperture", new _three.Uniform(aperture)], ["maxBlur", new _three.Uniform(maxBlur)]])
-    });
-  }
-
-}; // src/effects/BrightnessContrastEffect.js
-
-exports.BokehEffect = BokehEffect;
-// src/effects/glsl/brightness-contrast/shader.frag
-var shader_default46 = "uniform float brightness;uniform float contrast;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec3 color=inputColor.rgb+vec3(brightness-0.5);if(contrast>0.0){color/=vec3(1.0-contrast);}else{color*=vec3(1.0+contrast);}outputColor=vec4(min(color+vec3(0.5),1.0),inputColor.a);}"; // src/effects/BrightnessContrastEffect.js
-
-var BrightnessContrastEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    brightness = 0,
-    contrast = 0
-  } = {}) {
-    super("BrightnessContrastEffect", shader_default46, {
-      blendFunction,
-      uniforms: new Map([["brightness", new _three.Uniform(brightness)], ["contrast", new _three.Uniform(contrast)]])
-    });
-  }
-
-}; // src/effects/glsl/color-average/shader.frag
-
-exports.BrightnessContrastEffect = BrightnessContrastEffect;
-var shader_default47 = "void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){float sum=inputColor.r+inputColor.g+inputColor.b;outputColor=vec4(vec3(sum/3.0),inputColor.a);}"; // src/effects/ColorAverageEffect.js
-
-var ColorAverageEffect = class extends Effect {
-  constructor(blendFunction = BlendFunction.NORMAL) {
-    super("ColorAverageEffect", shader_default47, {
-      blendFunction
-    });
-  }
-
-}; // src/effects/ColorDepthEffect.js
-
-exports.ColorAverageEffect = ColorAverageEffect;
-// src/effects/glsl/color-depth/shader.frag
-var shader_default48 = "uniform float factor;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){outputColor=vec4(floor(inputColor.rgb*factor+0.5)/factor,inputColor.a);}"; // src/effects/ColorDepthEffect.js
-
-var ColorDepthEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    bits = 16
-  } = {}) {
-    super("ColorDepthEffect", shader_default48, {
-      blendFunction,
-      uniforms: new Map([["factor", new _three.Uniform(1)]])
-    });
-    this.bits = 0;
-    this.setBitDepth(bits);
-  }
-
-  getBitDepth() {
-    return this.bits;
-  }
-
-  setBitDepth(bits) {
-    this.bits = bits;
-    this.uniforms.get("factor").value = Math.pow(2, bits / 3);
-  }
-
-}; // src/effects/ChromaticAberrationEffect.js
-
-exports.ColorDepthEffect = ColorDepthEffect;
-// src/effects/glsl/chromatic-aberration/shader.frag
-var shader_default49 = "varying vec2 vUvR;varying vec2 vUvB;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec4 color=inputColor;\n#ifdef ALPHA\nvec2 ra=texture2D(inputBuffer,vUvR).ra;vec2 ba=texture2D(inputBuffer,vUvB).ba;color.r=ra.x;color.b=ba.x;color.a=max(max(ra.y,ba.y),inputColor.a);\n#else\ncolor.r=texture2D(inputBuffer,vUvR).r;color.b=texture2D(inputBuffer,vUvB).b;\n#endif\noutputColor=color;}"; // src/effects/glsl/chromatic-aberration/shader.vert
-
-var shader_default50 = "uniform vec2 offset;varying vec2 vUvR;varying vec2 vUvB;void mainSupport(const in vec2 uv){vUvR=uv+offset;vUvB=uv-offset;}"; // src/effects/ChromaticAberrationEffect.js
-
-var ChromaticAberrationEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    offset = new _three.Vector2(1e-3, 5e-4)
-  } = {}) {
-    super("ChromaticAberrationEffect", shader_default49, {
-      vertexShader: shader_default50,
-      blendFunction,
-      attributes: EffectAttribute.CONVOLUTION,
-      uniforms: new Map([["offset", new _three.Uniform(offset)]])
-    });
-  }
-
-  get offset() {
-    return this.uniforms.get("offset").value;
-  }
-
-  set offset(value) {
-    this.uniforms.get("offset").value = value;
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    if (alpha) {
-      this.defines.set("ALPHA", "1");
-    } else {
-      this.defines.delete("ALPHA");
-    }
-  }
-
-}; // src/effects/glsl/depth/shader.frag
-
-exports.ChromaticAberrationEffect = ChromaticAberrationEffect;
-var shader_default51 = "void mainImage(const in vec4 inputColor,const in vec2 uv,const in float depth,out vec4 outputColor){\n#ifdef INVERTED\nvec3 color=vec3(1.0-depth);\n#else\nvec3 color=vec3(depth);\n#endif\noutputColor=vec4(color,inputColor.a);}"; // src/effects/DepthEffect.js
-
-var DepthEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    inverted = false
-  } = {}) {
-    super("DepthEffect", shader_default51, {
-      blendFunction,
-      attributes: EffectAttribute.DEPTH
-    });
-    this.inverted = inverted;
-  }
-
-  get inverted() {
-    return this.defines.has("INVERTED");
-  }
-
-  set inverted(value) {
-    if (this.inverted !== value) {
-      if (value) {
-        this.defines.set("INVERTED", "1");
-      } else {
-        this.defines.delete("INVERTED");
-      }
-
-      this.setChanged();
-    }
-  }
-
-}; // src/effects/DepthOfFieldEffect.js
-
-exports.DepthEffect = DepthEffect;
-// src/effects/glsl/depth-of-field/shader.frag
-var shader_default52 = "uniform sampler2D nearColorBuffer;uniform sampler2D farColorBuffer;uniform sampler2D nearCoCBuffer;uniform float scale;void mainImage(const in vec4 inputColor,const in vec2 uv,const in float depth,out vec4 outputColor){vec4 colorNear=texture2D(nearColorBuffer,uv);vec4 colorFar=texture2D(farColorBuffer,uv);float CoCNear=texture2D(nearCoCBuffer,uv).r;CoCNear=min(CoCNear*scale,1.0);vec4 result=inputColor*(1.0-colorFar.a)+colorFar;result=mix(result,colorNear,CoCNear);outputColor=result;}"; // src/effects/DepthOfFieldEffect.js
-
-var DepthOfFieldEffect = class extends Effect {
-  constructor(camera, {
-    blendFunction = BlendFunction.NORMAL,
-    focusDistance = 0,
-    focalLength = 0.1,
-    bokehScale = 1,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE
-  } = {}) {
-    super("DepthOfFieldEffect", shader_default52, {
-      blendFunction,
-      attributes: EffectAttribute.DEPTH,
-      uniforms: new Map([["nearColorBuffer", new _three.Uniform(null)], ["farColorBuffer", new _three.Uniform(null)], ["nearCoCBuffer", new _three.Uniform(null)], ["scale", new _three.Uniform(1)]])
-    });
-    this.camera = camera;
-    this.renderTarget = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: false
-    });
-    this.renderTarget.texture.name = "DoF.Intermediate";
-    this.renderTarget.texture.generateMipmaps = false;
-    this.renderTargetMasked = this.renderTarget.clone();
-    this.renderTargetMasked.texture.name = "DoF.Masked.Far";
-    this.renderTargetNear = this.renderTarget.clone();
-    this.renderTargetNear.texture.name = "DoF.Bokeh.Near";
-    this.uniforms.get("nearColorBuffer").value = this.renderTargetNear.texture;
-    this.renderTargetFar = this.renderTarget.clone();
-    this.renderTargetFar.texture.name = "DoF.Bokeh.Far";
-    this.uniforms.get("farColorBuffer").value = this.renderTargetFar.texture;
-    this.renderTargetCoC = this.renderTarget.clone();
-    this.renderTargetCoC.texture.format = _three.RGBFormat;
-    this.renderTargetCoC.texture.name = "DoF.CoC";
-    this.renderTargetCoCBlurred = this.renderTargetCoC.clone();
-    this.renderTargetCoCBlurred.texture.name = "DoF.CoC.Blurred";
-    this.uniforms.get("nearCoCBuffer").value = this.renderTargetCoCBlurred.texture;
-    this.cocPass = new ShaderPass(new CircleOfConfusionMaterial(camera));
-    const cocMaterial = this.circleOfConfusionMaterial;
-    cocMaterial.uniforms.focusDistance.value = focusDistance;
-    cocMaterial.uniforms.focalLength.value = focalLength;
-    this.blurPass = new BlurPass({
-      width,
-      height,
-      kernelSize: KernelSize.MEDIUM
-    });
-    this.blurPass.resolution.resizable = this;
-    this.maskPass = new ShaderPass(new MaskMaterial(this.renderTargetCoC.texture));
-    const maskMaterial = this.maskPass.getFullscreenMaterial();
-    maskMaterial.maskFunction = MaskFunction.MULTIPLY_RGB_SET_ALPHA;
-    maskMaterial.colorChannel = ColorChannel.GREEN;
-    this.bokehNearBasePass = new ShaderPass(new BokehMaterial(false, true));
-    this.bokehNearFillPass = new ShaderPass(new BokehMaterial(true, true));
-    this.bokehFarBasePass = new ShaderPass(new BokehMaterial(false, false));
-    this.bokehFarFillPass = new ShaderPass(new BokehMaterial(true, false));
-    this.bokehScale = bokehScale;
-    this.target = null;
-  }
-
-  get circleOfConfusionMaterial() {
-    return this.cocPass.getFullscreenMaterial();
-  }
-
-  get resolution() {
-    return this.blurPass.resolution;
-  }
-
-  get bokehScale() {
-    return this.uniforms.get("scale").value;
-  }
-
-  set bokehScale(value) {
-    const passes = [this.bokehNearBasePass, this.bokehNearFillPass, this.bokehFarBasePass, this.bokehFarFillPass];
-    passes.map(p => p.getFullscreenMaterial().uniforms.scale).forEach(u => {
-      u.value = value;
-    });
-    this.maskPass.getFullscreenMaterial().uniforms.strength.value = value;
-    this.uniforms.get("scale").value = value;
-  }
-
-  calculateFocusDistance(target) {
-    const camera = this.camera;
-    const viewDistance = camera.far - camera.near;
-    const distance = camera.position.distanceTo(target);
-    return Math.min(Math.max(distance / viewDistance, 0), 1);
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {
-    const material = this.circleOfConfusionMaterial;
-    material.uniforms.depthBuffer.value = depthTexture;
-    material.depthPacking = depthPacking;
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    const renderTarget = this.renderTarget;
-    const renderTargetCoC = this.renderTargetCoC;
-    const renderTargetCoCBlurred = this.renderTargetCoCBlurred;
-    const renderTargetMasked = this.renderTargetMasked;
-    const bokehFarBasePass = this.bokehFarBasePass;
-    const bokehFarFillPass = this.bokehFarFillPass;
-    const farBaseUniforms = bokehFarBasePass.getFullscreenMaterial().uniforms;
-    const farFillUniforms = bokehFarFillPass.getFullscreenMaterial().uniforms;
-    const bokehNearBasePass = this.bokehNearBasePass;
-    const bokehNearFillPass = this.bokehNearFillPass;
-    const nearBaseUniforms = bokehNearBasePass.getFullscreenMaterial().uniforms;
-    const nearFillUniforms = bokehNearFillPass.getFullscreenMaterial().uniforms;
-
-    if (this.target !== null) {
-      const distance = this.calculateFocusDistance(this.target);
-      this.circleOfConfusionMaterial.uniforms.focusDistance.value = distance;
-    }
-
-    this.cocPass.render(renderer, null, renderTargetCoC);
-    this.blurPass.render(renderer, renderTargetCoC, renderTargetCoCBlurred);
-    this.maskPass.render(renderer, inputBuffer, renderTargetMasked);
-    farBaseUniforms.cocBuffer.value = farFillUniforms.cocBuffer.value = renderTargetCoC.texture;
-    bokehFarBasePass.render(renderer, renderTargetMasked, renderTarget);
-    bokehFarFillPass.render(renderer, renderTarget, this.renderTargetFar);
-    nearBaseUniforms.cocBuffer.value = nearFillUniforms.cocBuffer.value = renderTargetCoCBlurred.texture;
-    bokehNearBasePass.render(renderer, inputBuffer, renderTarget);
-    bokehNearFillPass.render(renderer, renderTarget, this.renderTargetNear);
-  }
-
-  setSize(width, height) {
-    const resolution = this.resolution;
-    let resizables = [this.cocPass, this.blurPass, this.maskPass, this.bokehNearBasePass, this.bokehNearFillPass, this.bokehFarBasePass, this.bokehFarFillPass];
-    resizables.push(this.renderTargetCoC, this.renderTargetMasked);
-    resizables.forEach(r => r.setSize(width, height));
-    const w = resolution.width;
-    const h = resolution.height;
-    resizables = [this.renderTarget, this.renderTargetNear, this.renderTargetFar, this.renderTargetCoCBlurred];
-    resizables.forEach(r => r.setSize(w, h));
-    const passes = [this.bokehNearBasePass, this.bokehNearFillPass, this.bokehFarBasePass, this.bokehFarFillPass];
-    passes.forEach(p => p.getFullscreenMaterial().setTexelSize(1 / w, 1 / h));
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    const initializables = [this.cocPass, this.maskPass, this.bokehNearBasePass, this.bokehNearFillPass, this.bokehFarBasePass, this.bokehFarFillPass];
-    initializables.forEach(i => i.initialize(renderer, alpha, frameBufferType));
-    this.blurPass.initialize(renderer, alpha, _three.UnsignedByteType);
-
-    if (!alpha && frameBufferType === _three.UnsignedByteType) {
-      this.renderTargetNear.texture.type = _three.RGBFormat;
-    }
-
-    if (frameBufferType !== void 0) {
-      this.renderTarget.texture.type = frameBufferType;
-      this.renderTargetNear.texture.type = frameBufferType;
-      this.renderTargetFar.texture.type = frameBufferType;
-      this.renderTargetMasked.texture.type = frameBufferType;
-    }
-  }
-
-}; // src/effects/DotScreenEffect.js
-
-exports.DepthOfFieldEffect = DepthOfFieldEffect;
-// src/effects/glsl/dot-screen/shader.frag
-var shader_default53 = "uniform vec2 angle;uniform float scale;float pattern(const in vec2 uv){vec2 point=scale*vec2(dot(angle.yx,vec2(uv.x,-uv.y)),dot(angle,uv));return(sin(point.x)*sin(point.y))*4.0;}void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec3 color=vec3(inputColor.rgb*10.0-5.0+pattern(uv*resolution));outputColor=vec4(color,inputColor.a);}"; // src/effects/DotScreenEffect.js
-
-var DotScreenEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    angle = Math.PI * 0.5,
-    scale = 1
-  } = {}) {
-    super("DotScreenEffect", shader_default53, {
-      blendFunction,
-      uniforms: new Map([["angle", new _three.Uniform(new _three.Vector2())], ["scale", new _three.Uniform(scale)]])
-    });
-    this.setAngle(angle);
-  }
-
-  setAngle(angle) {
-    this.uniforms.get("angle").value.set(Math.sin(angle), Math.cos(angle));
-  }
-
-}; // src/effects/GammaCorrectionEffect.js
-
-exports.DotScreenEffect = DotScreenEffect;
-// src/effects/glsl/gamma-correction/shader.frag
-var shader_default54 = "uniform float gamma;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){outputColor=LinearToGamma(max(inputColor,0.0),gamma);}"; // src/effects/GammaCorrectionEffect.js
-
-var GammaCorrectionEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    gamma = 2
-  } = {}) {
-    super("GammaCorrectionEffect", shader_default54, {
-      blendFunction,
-      uniforms: new Map([["gamma", new _three.Uniform(gamma)]])
-    });
-  }
-
-}; // src/effects/GlitchEffect.js
-
-exports.GammaCorrectionEffect = GammaCorrectionEffect;
-
-function getNoise(size, format, type) {
-  const channels = new Map([[_three.LuminanceFormat, 1], [_three.RedFormat, 1], [_three.RGFormat, 2], [_three.RGBFormat, 3], [_three.RGBAFormat, 4]]);
-  let data;
-
-  if (!channels.has(format)) {
-    console.error("Invalid noise texture format");
-  }
-
-  if (type === _three.UnsignedByteType) {
-    data = new Uint8Array(size * channels.get(format));
-
-    for (let i = 0, l = data.length; i < l; ++i) {
-      data[i] = Math.random() * 255;
-    }
-  } else {
-    data = new Float32Array(size * channels.get(format));
-
-    for (let i = 0, l = data.length; i < l; ++i) {
-      data[i] = Math.random();
-    }
-  }
-
-  return data;
-}
-
-var NoiseTexture = class extends _three.DataTexture {
-  constructor(width, height, format = _three.LuminanceFormat, type = _three.UnsignedByteType) {
-    super(getNoise(width * height, format, type), width, height, format, type);
-  }
-
-}; // src/effects/glsl/glitch/shader.frag
-
-exports.NoiseTexture = NoiseTexture;
-var shader_default55 = "uniform sampler2D perturbationMap;uniform bool active;uniform float columns;uniform float random;uniform vec2 seed;uniform vec2 distortion;void mainUv(inout vec2 uv){if(active){if(uv.y<distortion.x+columns&&uv.y>distortion.x-columns*random){float sx=clamp(ceil(seed.x),0.0,1.0);uv.y=sx*(1.0-(uv.y+distortion.y))+(1.0-sx)*distortion.y;}if(uv.x<distortion.y+columns&&uv.x>distortion.y-columns*random){float sy=clamp(ceil(seed.y),0.0,1.0);uv.x=sy*distortion.x+(1.0-sy)*(1.0-(uv.x+distortion.x));}vec2 normal=texture2D(perturbationMap,uv*random*random).rg;uv+=normal*seed*(random*0.2);}}"; // src/effects/GlitchEffect.js
-
-var tag = "Glitch.Generated";
-
-function randomFloat(low, high) {
-  return low + Math.random() * (high - low);
-}
-
-var GlitchEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    chromaticAberrationOffset = null,
-    delay = new _three.Vector2(1.5, 3.5),
-    duration = new _three.Vector2(0.6, 1),
-    strength = new _three.Vector2(0.3, 1),
-    columns = 0.05,
-    ratio = 0.85,
-    perturbationMap = null,
-    dtSize = 64
-  } = {}) {
-    super("GlitchEffect", shader_default55, {
-      blendFunction,
-      uniforms: new Map([["perturbationMap", new _three.Uniform(null)], ["columns", new _three.Uniform(columns)], ["active", new _three.Uniform(false)], ["random", new _three.Uniform(1)], ["seed", new _three.Uniform(new _three.Vector2())], ["distortion", new _three.Uniform(new _three.Vector2())]])
-    });
-    this.setPerturbationMap(perturbationMap === null ? this.generatePerturbationMap(dtSize) : perturbationMap);
-    this.delay = delay;
-    this.duration = duration;
-    this.breakPoint = new _three.Vector2(randomFloat(this.delay.x, this.delay.y), randomFloat(this.duration.x, this.duration.y));
-    this.time = 0;
-    this.seed = this.uniforms.get("seed").value;
-    this.distortion = this.uniforms.get("distortion").value;
-    this.mode = GlitchMode.SPORADIC;
-    this.strength = strength;
-    this.ratio = ratio;
-    this.chromaticAberrationOffset = chromaticAberrationOffset;
-  }
-
-  get active() {
-    return this.uniforms.get("active").value;
-  }
-
-  getPerturbationMap() {
-    return this.uniforms.get("perturbationMap").value;
-  }
-
-  setPerturbationMap(map) {
-    const currentMap = this.getPerturbationMap();
-
-    if (currentMap !== null && currentMap.name === tag) {
-      currentMap.dispose();
-    }
-
-    map.minFilter = map.magFilter = _three.NearestFilter;
-    map.wrapS = map.wrapT = _three.RepeatWrapping;
-    map.generateMipmaps = false;
-    this.uniforms.get("perturbationMap").value = map;
-  }
-
-  generatePerturbationMap(size = 64) {
-    const map = new NoiseTexture(size, size, _three.RGBFormat);
-    map.name = tag;
-    return map;
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    const mode = this.mode;
-    const breakPoint = this.breakPoint;
-    const offset = this.chromaticAberrationOffset;
-    const s = this.strength;
-    let time = this.time;
-    let active = false;
-    let r = 0,
-        a = 0;
-    let trigger;
-
-    if (mode !== GlitchMode.DISABLED) {
-      if (mode === GlitchMode.SPORADIC) {
-        time += deltaTime;
-        trigger = time > breakPoint.x;
-
-        if (time >= breakPoint.x + breakPoint.y) {
-          breakPoint.set(randomFloat(this.delay.x, this.delay.y), randomFloat(this.duration.x, this.duration.y));
-          time = 0;
-        }
-      }
-
-      r = Math.random();
-      this.uniforms.get("random").value = r;
-
-      if (trigger && r > this.ratio || mode === GlitchMode.CONSTANT_WILD) {
-        active = true;
-        r *= s.y * 0.03;
-        a = randomFloat(-Math.PI, Math.PI);
-        this.seed.set(randomFloat(-s.y, s.y), randomFloat(-s.y, s.y));
-        this.distortion.set(randomFloat(0, 1), randomFloat(0, 1));
-      } else if (trigger || mode === GlitchMode.CONSTANT_MILD) {
-        active = true;
-        r *= s.x * 0.03;
-        a = randomFloat(-Math.PI, Math.PI);
-        this.seed.set(randomFloat(-s.x, s.x), randomFloat(-s.x, s.x));
-        this.distortion.set(randomFloat(0, 1), randomFloat(0, 1));
-      }
-
-      this.time = time;
-    }
-
-    if (offset !== null) {
-      if (active) {
-        offset.set(Math.cos(a), Math.sin(a)).multiplyScalar(r);
-      } else {
-        offset.set(0, 0);
-      }
-    }
-
-    this.uniforms.get("active").value = active;
-  }
-
-};
-exports.GlitchEffect = GlitchEffect;
-var GlitchMode = {
-  DISABLED: 0,
-  SPORADIC: 1,
-  CONSTANT_MILD: 2,
-  CONSTANT_WILD: 3
-}; // src/effects/GodRaysEffect.js
-
-exports.GlitchMode = GlitchMode;
-// src/effects/glsl/god-rays/shader.frag
-var shader_default56 = "uniform sampler2D texture;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){outputColor=texture2D(texture,uv);}"; // src/effects/GodRaysEffect.js
-
-var v = new _three.Vector3();
-var m = new _three.Matrix4();
-var GodRaysEffect = class extends Effect {
-  constructor(camera, lightSource, {
-    blendFunction = BlendFunction.SCREEN,
-    samples = 60,
-    density = 0.96,
-    decay = 0.9,
-    weight = 0.4,
-    exposure = 0.6,
-    clampMax = 1,
-    resolutionScale = 0.5,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE,
-    kernelSize = KernelSize.SMALL,
-    blur = true
-  } = {}) {
-    super("GodRaysEffect", shader_default56, {
-      blendFunction,
-      attributes: EffectAttribute.DEPTH,
-      uniforms: new Map([["texture", new _three.Uniform(null)]])
-    });
-    this.camera = camera;
-    this.lightSource = lightSource;
-    this.lightSource.material.depthWrite = false;
-    this.lightSource.material.transparent = true;
-    this.lightScene = new _three.Scene();
-    this.screenPosition = new _three.Vector2();
-    this.renderTargetA = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: false
-    });
-    this.renderTargetA.texture.name = "GodRays.Target.A";
-    this.renderTargetB = this.renderTargetA.clone();
-    this.renderTargetB.texture.name = "GodRays.Target.B";
-    this.uniforms.get("texture").value = this.renderTargetB.texture;
-    this.renderTargetLight = this.renderTargetA.clone();
-    this.renderTargetLight.texture.name = "GodRays.Light";
-    this.renderTargetLight.depthBuffer = true;
-    this.renderTargetLight.depthTexture = new _three.DepthTexture();
-    this.renderPassLight = new RenderPass(this.lightScene, camera);
-    this.renderPassLight.getClearPass().overrideClearColor = new _three.Color(0);
-    this.clearPass = new ClearPass(true, false, false);
-    this.clearPass.overrideClearColor = new _three.Color(0);
-    this.blurPass = new BlurPass({
-      resolutionScale,
-      width,
-      height,
-      kernelSize
-    });
-    this.blurPass.resolution.resizable = this;
-    this.depthMaskPass = new ShaderPass((depthTexture => {
-      const material = new DepthMaskMaterial();
-      material.uniforms.depthBuffer1.value = depthTexture;
-      return material;
-    })(this.renderTargetLight.depthTexture));
-    this.godRaysPass = new ShaderPass((() => {
-      const material = new GodRaysMaterial(this.screenPosition);
-      material.uniforms.density.value = density;
-      material.uniforms.decay.value = decay;
-      material.uniforms.weight.value = weight;
-      material.uniforms.exposure.value = exposure;
-      material.uniforms.clampMax.value = clampMax;
-      return material;
-    })());
-    this.samples = samples;
-    this.blur = blur;
-  }
-
-  get texture() {
-    return this.renderTargetB.texture;
-  }
-
-  get godRaysMaterial() {
-    return this.godRaysPass.getFullscreenMaterial();
-  }
-
-  get resolution() {
-    return this.blurPass.resolution;
-  }
-
-  get width() {
-    return this.resolution.width;
-  }
-
-  set width(value) {
-    this.resolution.width = value;
-  }
-
-  get height() {
-    return this.resolution.height;
-  }
-
-  set height(value) {
-    this.resolution.height = value;
-  }
-
-  get dithering() {
-    return this.godRaysMaterial.dithering;
-  }
-
-  set dithering(value) {
-    const material = this.godRaysMaterial;
-    material.dithering = value;
-    material.needsUpdate = true;
-  }
-
-  get blur() {
-    return this.blurPass.enabled;
-  }
-
-  set blur(value) {
-    this.blurPass.enabled = value;
-  }
-
-  get kernelSize() {
-    return this.blurPass.kernelSize;
-  }
-
-  set kernelSize(value) {
-    this.blurPass.kernelSize = value;
-  }
-
-  getResolutionScale() {
-    return this.resolution.scale;
-  }
-
-  setResolutionScale(scale) {
-    this.resolution.scale = scale;
-  }
-
-  get samples() {
-    return this.godRaysMaterial.samples;
-  }
-
-  set samples(value) {
-    this.godRaysMaterial.samples = value;
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {
-    const material = this.depthMaskPass.getFullscreenMaterial();
-    material.uniforms.depthBuffer0.value = depthTexture;
-    material.defines.DEPTH_PACKING_0 = depthPacking.toFixed(0);
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    const lightSource = this.lightSource;
-    const parent = lightSource.parent;
-    const matrixAutoUpdate = lightSource.matrixAutoUpdate;
-    const renderTargetA = this.renderTargetA;
-    const renderTargetLight = this.renderTargetLight;
-    lightSource.material.depthWrite = true;
-    lightSource.matrixAutoUpdate = false;
-    lightSource.updateWorldMatrix(true, false);
-
-    if (parent !== null) {
-      if (!matrixAutoUpdate) {
-        m.copy(lightSource.matrix);
-      }
-
-      lightSource.matrix.copy(lightSource.matrixWorld);
-    }
-
-    this.lightScene.add(lightSource);
-    this.renderPassLight.render(renderer, renderTargetLight);
-    this.clearPass.render(renderer, renderTargetA);
-    this.depthMaskPass.render(renderer, renderTargetLight, renderTargetA);
-    lightSource.material.depthWrite = false;
-    lightSource.matrixAutoUpdate = matrixAutoUpdate;
-
-    if (parent !== null) {
-      if (!matrixAutoUpdate) {
-        lightSource.matrix.copy(m);
-      }
-
-      parent.add(lightSource);
-    }
-
-    v.setFromMatrixPosition(lightSource.matrixWorld).project(this.camera);
-    this.screenPosition.set(Math.min(Math.max((v.x + 1) * 0.5, -1), 2), Math.min(Math.max((v.y + 1) * 0.5, -1), 2));
-
-    if (this.blur) {
-      this.blurPass.render(renderer, renderTargetA, renderTargetA);
-    }
-
-    this.godRaysPass.render(renderer, renderTargetA, this.renderTargetB);
-  }
-
-  setSize(width, height) {
-    this.blurPass.setSize(width, height);
-    this.renderPassLight.setSize(width, height);
-    this.depthMaskPass.setSize(width, height);
-    this.godRaysPass.setSize(width, height);
-    const w = this.resolution.width;
-    const h = this.resolution.height;
-    this.renderTargetA.setSize(w, h);
-    this.renderTargetB.setSize(w, h);
-    this.renderTargetLight.setSize(w, h);
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    this.blurPass.initialize(renderer, alpha, frameBufferType);
-    this.renderPassLight.initialize(renderer, alpha, frameBufferType);
-    this.depthMaskPass.initialize(renderer, alpha, frameBufferType);
-    this.godRaysPass.initialize(renderer, alpha, frameBufferType);
-
-    if (!alpha && frameBufferType === _three.UnsignedByteType) {
-      this.renderTargetA.texture.format = _three.RGBFormat;
-      this.renderTargetB.texture.format = _three.RGBFormat;
-      this.renderTargetLight.texture.format = _three.RGBFormat;
-    }
-
-    if (frameBufferType !== void 0) {
-      this.renderTargetA.texture.type = frameBufferType;
-      this.renderTargetB.texture.type = frameBufferType;
-      this.renderTargetLight.texture.type = frameBufferType;
-    }
-  }
-
-}; // src/effects/GridEffect.js
-
-exports.GodRaysEffect = GodRaysEffect;
-// src/effects/glsl/grid/shader.frag
-var shader_default57 = "uniform vec2 scale;uniform float lineWidth;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){float grid=0.5-max(abs(mod(uv.x*scale.x,1.0)-0.5),abs(mod(uv.y*scale.y,1.0)-0.5));outputColor=vec4(vec3(smoothstep(0.0,lineWidth,grid)),inputColor.a);}"; // src/effects/GridEffect.js
-
-var GridEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.OVERLAY,
-    scale = 1,
-    lineWidth = 0
-  } = {}) {
-    super("GridEffect", shader_default57, {
-      blendFunction,
-      uniforms: new Map([["scale", new _three.Uniform(new _three.Vector2())], ["lineWidth", new _three.Uniform(lineWidth)]])
-    });
-    this.resolution = new _three.Vector2();
-    this.scale = Math.max(scale, 1e-6);
-    this.lineWidth = Math.max(lineWidth, 0);
-  }
-
-  getScale() {
-    return this.scale;
-  }
-
-  setScale(scale) {
-    this.scale = scale;
-    this.setSize(this.resolution.x, this.resolution.y);
-  }
-
-  getLineWidth() {
-    return this.lineWidth;
-  }
-
-  setLineWidth(lineWidth) {
-    this.lineWidth = lineWidth;
-    this.setSize(this.resolution.x, this.resolution.y);
-  }
-
-  setSize(width, height) {
-    this.resolution.set(width, height);
-    const aspect = width / height;
-    const scale = this.scale * (height * 0.125);
-    this.uniforms.get("scale").value.set(aspect * scale, scale);
-    this.uniforms.get("lineWidth").value = scale / height + this.lineWidth;
-  }
-
-}; // src/effects/HueSaturationEffect.js
-
-exports.GridEffect = GridEffect;
-// src/effects/glsl/hue-saturation/shader.frag
-var shader_default58 = "uniform vec3 hue;uniform float saturation;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec3 color=vec3(dot(inputColor.rgb,hue.xyz),dot(inputColor.rgb,hue.zxy),dot(inputColor.rgb,hue.yzx));float average=(color.r+color.g+color.b)/3.0;vec3 diff=average-color;if(saturation>0.0){color+=diff*(1.0-1.0/(1.001-saturation));}else{color+=diff*-saturation;}outputColor=vec4(min(color,1.0),inputColor.a);}"; // src/effects/HueSaturationEffect.js
-
-var HueSaturationEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    hue = 0,
-    saturation = 0
-  } = {}) {
-    super("HueSaturationEffect", shader_default58, {
-      blendFunction,
-      uniforms: new Map([["hue", new _three.Uniform(new _three.Vector3())], ["saturation", new _three.Uniform(saturation)]])
-    });
-    this.setHue(hue);
-  }
-
-  setHue(hue) {
-    const s = Math.sin(hue),
-          c2 = Math.cos(hue);
-    this.uniforms.get("hue").value.set(2 * c2, -Math.sqrt(3) * s - c2, Math.sqrt(3) * s - c2).addScalar(1).divideScalar(3);
-  }
-
-}; // src/effects/LUTEffect.js
-
-exports.HueSaturationEffect = HueSaturationEffect;
-// src/effects/glsl/lut/shader.frag
-var shader_default59 = "#ifdef LUT_3D\n#ifdef LUT_PRECISION_HIGH\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler3D lut;\n#else\nuniform mediump sampler3D lut;\n#endif\n#else\nuniform lowp sampler3D lut;\n#endif\nvec4 applyLUT(vec3 rgb){return texture(lut,rgb);}\n#else\n#ifdef LUT_PRECISION_HIGH\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D lut;\n#else\nuniform mediump sampler2D lut;\n#endif\n#else\nuniform lowp sampler2D lut;\n#endif\nvec4 applyLUT(vec3 rgb){rgb.xy=clamp(rgb.xy,LUT_HALF_TEXEL_SIZE,1.0-LUT_HALF_TEXEL_SIZE);float zNormalized=rgb.z*LUT_SIZE;float zSlice=min(floor(zNormalized),LUT_SIZE-1.0);float zMix=(zNormalized-zSlice)*LUT_TEXEL_SIZE;float z1=zSlice*LUT_TEXEL_SIZE;float z2=(zSlice+1.0)*LUT_TEXEL_SIZE;\n#ifdef LUT_STRIP_HORIZONTAL\nfloat xOffset=rgb.x*LUT_TEXEL_SIZE;vec2 uv1=vec2(xOffset,rgb.y);vec2 uv2=vec2(uv1);uv1.x+=z1;uv2.x+=z2;\n#else\nfloat yOffset=rgb.y*LUT_TEXEL_SIZE;vec2 uv1=vec2(rgb.x,yOffset);vec2 uv2=vec2(uv1);uv1.y+=z1;uv2.y+=z2;\n#endif\nvec4 sample1=texture2D(lut,uv1);vec4 sample2=texture2D(lut,uv2);return mix(sample1,sample2,zMix);}\n#endif\nvoid mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec3 c=linearToInputTexel(inputColor).rgb;c=texelToLinear(applyLUT(c)).rgb;outputColor=vec4(c,inputColor.a);}"; // src/effects/LUTEffect.js
-
-var LUTEffect = class extends Effect {
-  constructor(lut, {
-    blendFunction = BlendFunction.NORMAL
-  } = {}) {
-    super("LUTEffect", shader_default59, {
-      blendFunction,
-      uniforms: new Map([["lut", new _three.Uniform(null)]])
-    });
-    this.inputEncoding = _three.sRGBEncoding;
-    this.setInputEncoding(_three.sRGBEncoding);
-    this.setLUT(lut);
-  }
-
-  getInputEncoding() {
-    return this.inputEncoding;
-  }
-
-  setInputEncoding(value) {
-    const defines = this.defines;
-
-    switch (value) {
-      case _three.sRGBEncoding:
-        defines.set("linearToInputTexel(texel)", "LinearTosRGB(texel)");
-        break;
-
-      case _three.LinearEncoding:
-        defines.set("linearToInputTexel(texel)", "texel");
-        break;
-
-      default:
-        console.error("Unsupported encoding:", value);
-        break;
-    }
-
-    if (this.inputEncoding !== value) {
-      this.inputEncoding = value;
-      this.setChanged();
-    }
-  }
-
-  getLUT() {
-    return this.uniforms.get("lut").value;
-  }
-
-  setLUT(value) {
-    const defines = this.defines;
-
-    if (this.getLUT() !== value) {
-      this.uniforms.get("lut").value = value;
-      defines.clear();
-      this.setInputEncoding(this.inputEncoding);
-
-      if (value.isDataTexture3D) {
-        defines.set("LUT_3D", "1");
-      } else {
-        let size = value.image.width;
-
-        if (size > value.image.height) {
-          defines.set("LUT_STRIP_HORIZONTAL", "1");
-          size = value.image.height;
-        }
-
-        defines.set("LUT_SIZE", size.toFixed(11));
-        defines.set("LUT_TEXEL_SIZE", (1 / size).toFixed(11));
-        defines.set("LUT_HALF_TEXEL_SIZE", (0.5 / size).toFixed(11));
-      }
-
-      switch (value.encoding) {
-        case _three.sRGBEncoding:
-          defines.set("texelToLinear(texel)", "sRGBToLinear(texel)");
-          break;
-
-        case _three.LinearEncoding:
-          defines.set("texelToLinear(texel)", "texel");
-          break;
-
-        default:
-          console.error("Unsupported encoding:", value.encoding);
-          break;
-      }
-
-      if (value.type === _three.FloatType) {
-        defines.set("LUT_PRECISION_HIGH", "1");
-      }
-
-      this.setChanged();
-    }
-  }
-
-}; // src/effects/glsl/noise/shader.frag
-
-exports.LUTEffect = LUTEffect;
-var shader_default60 = "void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec3 noise=vec3(rand(uv*time));\n#ifdef PREMULTIPLY\noutputColor=vec4(min(inputColor.rgb*noise,vec3(1.0)),inputColor.a);\n#else\noutputColor=vec4(noise,inputColor.a);\n#endif\n}"; // src/effects/NoiseEffect.js
-
-var NoiseEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.SCREEN,
-    premultiply = false
-  } = {}) {
-    super("NoiseEffect", shader_default60, {
-      blendFunction
-    });
-    this.premultiply = premultiply;
-  }
-
-  get premultiply() {
-    return this.defines.has("PREMULTIPLY");
-  }
-
-  set premultiply(value) {
-    if (this.premultiply !== value) {
-      if (value) {
-        this.defines.set("PREMULTIPLY", "1");
-      } else {
-        this.defines.delete("PREMULTIPLY");
-      }
-
-      this.setChanged();
-    }
-  }
-
-}; // src/effects/OutlineEffect.js
-
-exports.NoiseEffect = NoiseEffect;
-// src/effects/glsl/outline/shader.frag
-var shader_default61 = "uniform sampler2D edgeTexture;uniform sampler2D maskTexture;uniform vec3 visibleEdgeColor;uniform vec3 hiddenEdgeColor;uniform float pulse;uniform float edgeStrength;\n#ifdef USE_PATTERN\nuniform sampler2D patternTexture;varying vec2 vUvPattern;\n#endif\nvoid mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec2 edge=texture2D(edgeTexture,uv).rg;vec2 mask=texture2D(maskTexture,uv).rg;\n#ifndef X_RAY\nedge.y=0.0;\n#endif\nedge*=(edgeStrength*mask.x*pulse);vec3 color=edge.x*visibleEdgeColor+edge.y*hiddenEdgeColor;float visibilityFactor=0.0;\n#ifdef USE_PATTERN\nvec4 patternColor=texture2D(patternTexture,vUvPattern);\n#ifdef X_RAY\nfloat hiddenFactor=0.5;\n#else\nfloat hiddenFactor=0.0;\n#endif\nvisibilityFactor=(1.0-mask.y>0.0)? 1.0 : hiddenFactor;visibilityFactor*=(1.0-mask.x)*patternColor.a;color+=visibilityFactor*patternColor.rgb;\n#endif\nfloat alpha=max(max(edge.x,edge.y),visibilityFactor);\n#ifdef ALPHA\noutputColor=vec4(color,alpha);\n#else\noutputColor=vec4(color,max(alpha,inputColor.a));\n#endif\n}"; // src/effects/glsl/outline/shader.vert
-
-var shader_default62 = "uniform float patternScale;varying vec2 vUvPattern;void mainSupport(const in vec2 uv){vUvPattern=uv*vec2(aspect,1.0)*patternScale;}"; // src/effects/OutlineEffect.js
-
-var OutlineEffect = class extends Effect {
-  constructor(scene, camera, {
-    blendFunction = BlendFunction.SCREEN,
-    patternTexture = null,
-    edgeStrength = 1,
-    pulseSpeed = 0,
-    visibleEdgeColor = 16777215,
-    hiddenEdgeColor = 2230538,
-    resolutionScale = 0.5,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE,
-    kernelSize = KernelSize.VERY_SMALL,
-    blur = false,
-    xRay = true
-  } = {}) {
-    super("OutlineEffect", shader_default61, {
-      uniforms: new Map([["maskTexture", new _three.Uniform(null)], ["edgeTexture", new _three.Uniform(null)], ["edgeStrength", new _three.Uniform(edgeStrength)], ["visibleEdgeColor", new _three.Uniform(new _three.Color(visibleEdgeColor))], ["hiddenEdgeColor", new _three.Uniform(new _three.Color(hiddenEdgeColor))], ["pulse", new _three.Uniform(1)], ["patternScale", new _three.Uniform(1)], ["patternTexture", new _three.Uniform(null)]])
-    });
-    this.blendMode.addEventListener("change", event => {
-      if (this.blendMode.getBlendFunction() === BlendFunction.ALPHA) {
-        this.defines.set("ALPHA", "1");
-      } else {
-        this.defines.delete("ALPHA");
-      }
-
-      this.setChanged();
-    });
-    this.blendMode.setBlendFunction(blendFunction);
-    this.setPatternTexture(patternTexture);
-    this.xRay = xRay;
-    this.scene = scene;
-    this.camera = camera;
-    this.renderTargetMask = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      format: _three.RGBFormat
-    });
-    this.renderTargetMask.texture.name = "Outline.Mask";
-    this.uniforms.get("maskTexture").value = this.renderTargetMask.texture;
-    this.renderTargetOutline = this.renderTargetMask.clone();
-    this.renderTargetOutline.texture.name = "Outline.Edges";
-    this.renderTargetOutline.depthBuffer = false;
-    this.renderTargetBlurredOutline = this.renderTargetOutline.clone();
-    this.renderTargetBlurredOutline.texture.name = "Outline.BlurredEdges";
-    this.clearPass = new ClearPass();
-    this.clearPass.overrideClearColor = new _three.Color(0);
-    this.clearPass.overrideClearAlpha = 1;
-    this.depthPass = new DepthPass(scene, camera);
-    this.maskPass = new RenderPass(scene, camera, new DepthComparisonMaterial(this.depthPass.texture, camera));
-    const clearPass = this.maskPass.getClearPass();
-    clearPass.overrideClearColor = new _three.Color(16777215);
-    clearPass.overrideClearAlpha = 1;
-    this.blurPass = new BlurPass({
-      resolutionScale,
-      width,
-      height,
-      kernelSize
-    });
-    this.blurPass.resolution.resizable = this;
-    this.blur = blur;
-    this.outlinePass = new ShaderPass(new OutlineMaterial());
-    this.outlinePass.getFullscreenMaterial().uniforms.inputBuffer.value = this.renderTargetMask.texture;
-    this.time = 0;
-    this.selection = new Selection();
-    this.pulseSpeed = pulseSpeed;
-  }
-
-  get resolution() {
-    return this.blurPass.resolution;
-  }
-
-  get width() {
-    return this.resolution.width;
-  }
-
-  set width(value) {
-    this.resolution.width = value;
-  }
-
-  get height() {
-    return this.resolution.height;
-  }
-
-  set height(value) {
-    this.resolution.height = value;
-  }
-
-  get selectionLayer() {
-    return this.selection.layer;
-  }
-
-  set selectionLayer(value) {
-    this.selection.layer = value;
-  }
-
-  get dithering() {
-    return this.blurPass.dithering;
-  }
-
-  set dithering(value) {
-    this.blurPass.dithering = value;
-  }
-
-  get kernelSize() {
-    return this.blurPass.kernelSize;
-  }
-
-  set kernelSize(value) {
-    this.blurPass.kernelSize = value;
-  }
-
-  get blur() {
-    return this.blurPass.enabled;
-  }
-
-  set blur(value) {
-    this.blurPass.enabled = value;
-    this.uniforms.get("edgeTexture").value = value ? this.renderTargetBlurredOutline.texture : this.renderTargetOutline.texture;
-  }
-
-  get xRay() {
-    return this.defines.has("X_RAY");
-  }
-
-  set xRay(value) {
-    if (this.xRay !== value) {
-      if (value) {
-        this.defines.set("X_RAY", "1");
-      } else {
-        this.defines.delete("X_RAY");
-      }
-
-      this.setChanged();
-    }
-  }
-
-  setPatternTexture(texture) {
-    if (texture !== null) {
-      texture.wrapS = texture.wrapT = _three.RepeatWrapping;
-      this.defines.set("USE_PATTERN", "1");
-      this.uniforms.get("patternTexture").value = texture;
-      this.setVertexShader(shader_default62);
-    } else {
-      this.defines.delete("USE_PATTERN");
-      this.uniforms.get("patternTexture").value = null;
-      this.setVertexShader(null);
-    }
-
-    this.setChanged();
-  }
-
-  getResolutionScale() {
-    return this.resolution.scale;
-  }
-
-  setResolutionScale(scale) {
-    this.resolution.scale = scale;
-  }
-
-  setSelection(objects) {
-    this.selection.set(objects);
-    return this;
-  }
-
-  clearSelection() {
-    this.selection.clear();
-    return this;
-  }
-
-  selectObject(object) {
-    this.selection.add(object);
-    return this;
-  }
-
-  deselectObject(object) {
-    this.selection.delete(object);
-    return this;
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    const scene = this.scene;
-    const camera = this.camera;
-    const selection = this.selection;
-    const pulse = this.uniforms.get("pulse");
-    const background = scene.background;
-    const mask = camera.layers.mask;
-
-    if (selection.size > 0) {
-      scene.background = null;
-      pulse.value = 1;
-
-      if (this.pulseSpeed > 0) {
-        pulse.value = 0.625 + Math.cos(this.time * this.pulseSpeed * 10) * 0.375;
-      }
-
-      this.time += deltaTime;
-      selection.setVisible(false);
-      this.depthPass.render(renderer);
-      selection.setVisible(true);
-      camera.layers.set(selection.layer);
-      this.maskPass.render(renderer, this.renderTargetMask);
-      camera.layers.mask = mask;
-      scene.background = background;
-      this.outlinePass.render(renderer, null, this.renderTargetOutline);
-
-      if (this.blur) {
-        this.blurPass.render(renderer, this.renderTargetOutline, this.renderTargetBlurredOutline);
-      }
-    } else if (this.time > 0) {
-      this.clearPass.render(renderer, this.renderTargetMask);
-      this.time = 0;
-    }
-  }
-
-  setSize(width, height) {
-    this.blurPass.setSize(width, height);
-    this.renderTargetMask.setSize(width, height);
-    const w = this.resolution.width;
-    const h = this.resolution.height;
-    this.depthPass.setSize(w, h);
-    this.renderTargetOutline.setSize(w, h);
-    this.renderTargetBlurredOutline.setSize(w, h);
-    this.outlinePass.getFullscreenMaterial().setTexelSize(1 / w, 1 / h);
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    this.blurPass.initialize(renderer, alpha, _three.UnsignedByteType);
-
-    if (frameBufferType !== void 0) {
-      this.depthPass.initialize(renderer, alpha, frameBufferType);
-      this.maskPass.initialize(renderer, alpha, frameBufferType);
-      this.outlinePass.initialize(renderer, alpha, frameBufferType);
-    }
-  }
-
-}; // src/effects/PixelationEffect.js
-
-exports.OutlineEffect = OutlineEffect;
-// src/effects/glsl/pixelation/shader.frag
-var shader_default63 = "uniform bool active;uniform vec2 d;void mainUv(inout vec2 uv){if(active){uv=vec2(d.x*(floor(uv.x/d.x)+0.5),d.y*(floor(uv.y/d.y)+0.5));}}"; // src/effects/PixelationEffect.js
-
-var PixelationEffect = class extends Effect {
-  constructor(granularity = 30) {
-    super("PixelationEffect", shader_default63, {
-      uniforms: new Map([["active", new _three.Uniform(false)], ["d", new _three.Uniform(new _three.Vector2())]])
-    });
-    this.resolution = new _three.Vector2();
-    this.granularity = granularity;
-  }
-
-  getGranularity() {
-    return this.granularity;
-  }
-
-  setGranularity(granularity) {
-    granularity = Math.floor(granularity);
-
-    if (granularity % 2 > 0) {
-      granularity += 1;
-    }
-
-    const uniforms = this.uniforms;
-    uniforms.get("active").value = granularity > 0;
-    uniforms.get("d").value.set(granularity, granularity).divide(this.resolution);
-    this.granularity = granularity;
-  }
-
-  setSize(width, height) {
-    this.resolution.set(width, height);
-    this.setGranularity(this.granularity);
-  }
-
-}; // src/effects/RealisticBokehEffect.js
-
-exports.PixelationEffect = PixelationEffect;
-// src/effects/glsl/realistic-bokeh/shader.frag
-var shader_default64 = "uniform float focus;uniform float focalLength;uniform float fStop;uniform float maxBlur;uniform float luminanceThreshold;uniform float luminanceGain;uniform float bias;uniform float fringe;\n#ifdef MANUAL_DOF\nuniform vec4 dof;\n#endif\n#ifdef PENTAGON\nfloat pentagon(const in vec2 coords){const vec4 HS0=vec4(1.0,0.0,0.0,1.0);const vec4 HS1=vec4(0.309016994,0.951056516,0.0,1.0);const vec4 HS2=vec4(-0.809016994,0.587785252,0.0,1.0);const vec4 HS3=vec4(-0.809016994,-0.587785252,0.0,1.0);const vec4 HS4=vec4(0.309016994,-0.951056516,0.0,1.0);const vec4 HS5=vec4(0.0,0.0,1.0,1.0);const vec4 ONE=vec4(1.0);const float P_FEATHER=0.4;const float N_FEATHER=-P_FEATHER;float inOrOut=-4.0;vec4 P=vec4(coords,vec2(RINGS_FLOAT-1.3));vec4 dist=vec4(dot(P,HS0),dot(P,HS1),dot(P,HS2),dot(P,HS3));dist=smoothstep(N_FEATHER,P_FEATHER,dist);inOrOut+=dot(dist,ONE);dist.x=dot(P,HS4);dist.y=HS5.w-abs(P.z);dist=smoothstep(N_FEATHER,P_FEATHER,dist);inOrOut+=dist.x;return clamp(inOrOut,0.0,1.0);}\n#endif\nvec3 processTexel(const in vec2 coords,const in float blur){vec2 scale=texelSize*fringe*blur;vec3 c=vec3(texture2D(inputBuffer,coords+vec2(0.0,1.0)*scale).r,texture2D(inputBuffer,coords+vec2(-0.866,-0.5)*scale).g,texture2D(inputBuffer,coords+vec2(0.866,-0.5)*scale).b);float luminance=linearToRelativeLuminance(c);float threshold=max((luminance-luminanceThreshold)*luminanceGain,0.0);return c+mix(vec3(0.0),c,threshold*blur);}float gather(const in float i,const in float j,const in float ringSamples,const in vec2 uv,const in vec2 blurFactor,const in float blur,inout vec3 color){float step=PI2/ringSamples;vec2 wh=vec2(cos(j*step)*i,sin(j*step)*i);\n#ifdef PENTAGON\nfloat p=pentagon(wh);\n#else\nfloat p=1.0;\n#endif\ncolor+=processTexel(wh*blurFactor+uv,blur)*mix(1.0,i/RINGS_FLOAT,bias)*p;return mix(1.0,i/RINGS_FLOAT,bias)*p;}void mainImage(const in vec4 inputColor,const in vec2 uv,const in float depth,out vec4 outputColor){\n#ifdef PERSPECTIVE_CAMERA\nfloat viewZ=perspectiveDepthToViewZ(depth,cameraNear,cameraFar);float linearDepth=viewZToOrthographicDepth(viewZ,cameraNear,cameraFar);\n#else\nfloat linearDepth=depth;\n#endif\n#ifdef MANUAL_DOF\nfloat focalPlane=linearDepth-focus;float farDoF=(focalPlane-dof.z)/dof.w;float nearDoF=(-focalPlane-dof.x)/dof.y;float blur=(focalPlane>0.0)? farDoF : nearDoF;\n#else\nconst float CIRCLE_OF_CONFUSION=0.03;float focalPlaneMM=focus*1000.0;float depthMM=linearDepth*1000.0;float focalPlane=(depthMM*focalLength)/(depthMM-focalLength);float farDoF=(focalPlaneMM*focalLength)/(focalPlaneMM-focalLength);float nearDoF=(focalPlaneMM-focalLength)/(focalPlaneMM*fStop*CIRCLE_OF_CONFUSION);float blur=abs(focalPlane-farDoF)*nearDoF;\n#endif\nconst int MAX_RING_SAMPLES=RINGS_INT*SAMPLES_INT;blur=clamp(blur,0.0,1.0);vec3 color=inputColor.rgb;if(blur>=0.05){vec2 blurFactor=blur*maxBlur*texelSize;float s=1.0;int ringSamples;for(int i=1;i<=RINGS_INT;i++){ringSamples=i*SAMPLES_INT;for(int j=0;j<MAX_RING_SAMPLES;j++){if(j>=ringSamples){break;}s+=gather(float(i),float(j),float(ringSamples),uv,blurFactor,blur,color);}}color/=s;}\n#ifdef SHOW_FOCUS\nfloat edge=0.002*linearDepth;float m=clamp(smoothstep(0.0,edge,blur),0.0,1.0);float e=clamp(smoothstep(1.0-edge,1.0,blur),0.0,1.0);color=mix(color,vec3(1.0,0.5,0.0),(1.0-m)*0.6);color=mix(color,vec3(0.0,0.5,1.0),((1.0-e)-(1.0-m))*0.2);\n#endif\noutputColor=vec4(color,inputColor.a);}"; // src/effects/RealisticBokehEffect.js
-
-var RealisticBokehEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    focus = 1,
-    focalLength = 24,
-    fStop = 0.9,
-    luminanceThreshold = 0.5,
-    luminanceGain = 2,
-    bias = 0.5,
-    fringe = 0.7,
-    maxBlur = 1,
-    rings = 3,
-    samples = 2,
-    showFocus = false,
-    manualDoF = false,
-    pentagon = false
-  } = {}) {
-    super("RealisticBokehEffect", shader_default64, {
-      blendFunction,
-      attributes: EffectAttribute.CONVOLUTION | EffectAttribute.DEPTH,
-      uniforms: new Map([["focus", new _three.Uniform(focus)], ["focalLength", new _three.Uniform(focalLength)], ["fStop", new _three.Uniform(fStop)], ["luminanceThreshold", new _three.Uniform(luminanceThreshold)], ["luminanceGain", new _three.Uniform(luminanceGain)], ["bias", new _three.Uniform(bias)], ["fringe", new _three.Uniform(fringe)], ["maxBlur", new _three.Uniform(maxBlur)], ["dof", new _three.Uniform(null)]])
-    });
-    this.rings = rings;
-    this.samples = samples;
-    this.showFocus = showFocus;
-    this.manualDoF = manualDoF;
-    this.pentagon = pentagon;
-  }
-
-  get rings() {
-    return Number.parseInt(this.defines.get("RINGS_INT"));
-  }
-
-  set rings(value) {
-    const r = Math.floor(value);
-    this.defines.set("RINGS_INT", r.toFixed(0));
-    this.defines.set("RINGS_FLOAT", r.toFixed(1));
-    this.setChanged();
-  }
-
-  get samples() {
-    return Number.parseInt(this.defines.get("SAMPLES_INT"));
-  }
-
-  set samples(value) {
-    const s = Math.floor(value);
-    this.defines.set("SAMPLES_INT", s.toFixed(0));
-    this.defines.set("SAMPLES_FLOAT", s.toFixed(1));
-    this.setChanged();
-  }
-
-  get showFocus() {
-    return this.defines.has("SHOW_FOCUS");
-  }
-
-  set showFocus(value) {
-    if (this.showFocus !== value) {
-      if (value) {
-        this.defines.set("SHOW_FOCUS", "1");
-      } else {
-        this.defines.delete("SHOW_FOCUS");
-      }
-
-      this.setChanged();
-    }
-  }
-
-  get manualDoF() {
-    return this.defines.has("MANUAL_DOF");
-  }
-
-  set manualDoF(value) {
-    if (this.manualDoF !== value) {
-      if (value) {
-        this.defines.set("MANUAL_DOF", "1");
-        this.uniforms.get("dof").value = new _three.Vector4(0.2, 1, 0.2, 2);
-      } else {
-        this.defines.delete("MANUAL_DOF");
-        this.uniforms.get("dof").value = null;
-      }
-
-      this.setChanged();
-    }
-  }
-
-  get pentagon() {
-    return this.defines.has("PENTAGON");
-  }
-
-  set pentagon(value) {
-    if (this.pentagon !== value) {
-      if (value) {
-        this.defines.set("PENTAGON", "1");
-      } else {
-        this.defines.delete("PENTAGON");
-      }
-
-      this.setChanged();
-    }
-  }
-
-}; // src/effects/ScanlineEffect.js
-
-exports.RealisticBokehEffect = RealisticBokehEffect;
-// src/effects/glsl/scanlines/shader.frag
-var shader_default65 = "uniform float count;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec2 sl=vec2(sin(uv.y*count),cos(uv.y*count));vec3 scanlines=vec3(sl.x,sl.y,sl.x);outputColor=vec4(scanlines,inputColor.a);}"; // src/effects/ScanlineEffect.js
-
-var ScanlineEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.OVERLAY,
-    density = 1.25
-  } = {}) {
-    super("ScanlineEffect", shader_default65, {
-      blendFunction,
-      uniforms: new Map([["count", new _three.Uniform(0)]])
-    });
-    this.resolution = new _three.Vector2();
-    this.density = density;
-  }
-
-  getDensity() {
-    return this.density;
-  }
-
-  setDensity(density) {
-    this.density = density;
-    this.setSize(this.resolution.x, this.resolution.y);
-  }
-
-  setSize(width, height) {
-    this.resolution.set(width, height);
-    this.uniforms.get("count").value = Math.round(height * this.density);
-  }
-
-}; // src/effects/ShockWaveEffect.js
-
-exports.ScanlineEffect = ScanlineEffect;
-// src/effects/glsl/shock-wave/shader.frag
-var shader_default66 = "uniform bool active;uniform vec2 center;uniform float waveSize;uniform float radius;uniform float maxRadius;uniform float amplitude;varying float vSize;void mainUv(inout vec2 uv){if(active){vec2 aspectCorrection=vec2(aspect,1.0);vec2 difference=uv*aspectCorrection-center*aspectCorrection;float distance=sqrt(dot(difference,difference))*vSize;if(distance>radius){if(distance<radius+waveSize){float angle=(distance-radius)*PI2/waveSize;float cosSin=(1.0-cos(angle))*0.5;float extent=maxRadius+waveSize;float decay=max(extent-distance*distance,0.0)/extent;uv-=((cosSin*amplitude*difference)/distance)*decay;}}}}"; // src/effects/glsl/shock-wave/shader.vert
-
-var shader_default67 = "uniform float size;uniform float cameraDistance;varying float vSize;void mainSupport(){vSize=(0.1*cameraDistance)/size;}"; // src/effects/ShockWaveEffect.js
-
-var HALF_PI = Math.PI * 0.5;
-var v2 = new _three.Vector3();
-var ab = new _three.Vector3();
-var ShockWaveEffect = class extends Effect {
-  constructor(camera, epicenter = new _three.Vector3(), {
-    speed = 2,
-    maxRadius = 1,
-    waveSize = 0.2,
-    amplitude = 0.05
-  } = {}) {
-    super("ShockWaveEffect", shader_default66, {
-      vertexShader: shader_default67,
-      uniforms: new Map([["active", new _three.Uniform(false)], ["center", new _three.Uniform(new _three.Vector2(0.5, 0.5))], ["cameraDistance", new _three.Uniform(1)], ["size", new _three.Uniform(1)], ["radius", new _three.Uniform(-waveSize)], ["maxRadius", new _three.Uniform(maxRadius)], ["waveSize", new _three.Uniform(waveSize)], ["amplitude", new _three.Uniform(amplitude)]])
-    });
-    this.camera = camera;
-    this.epicenter = epicenter;
-    this.screenPosition = this.uniforms.get("center").value;
-    this.speed = speed;
-    this.time = 0;
-    this.active = false;
-  }
-
-  explode() {
-    this.time = 0;
-    this.active = true;
-    this.uniforms.get("active").value = true;
-  }
-
-  update(renderer, inputBuffer, delta) {
-    const epicenter = this.epicenter;
-    const camera = this.camera;
-    const uniforms = this.uniforms;
-    const uniformActive = uniforms.get("active");
-
-    if (this.active) {
-      const waveSize = uniforms.get("waveSize").value;
-      camera.getWorldDirection(v2);
-      ab.copy(camera.position).sub(epicenter);
-      uniformActive.value = v2.angleTo(ab) > HALF_PI;
-
-      if (uniformActive.value) {
-        uniforms.get("cameraDistance").value = camera.position.distanceTo(epicenter);
-        v2.copy(epicenter).project(camera);
-        this.screenPosition.set((v2.x + 1) * 0.5, (v2.y + 1) * 0.5);
-      }
-
-      this.time += delta * this.speed;
-      const radius = this.time - waveSize;
-      uniforms.get("radius").value = radius;
-
-      if (radius >= (uniforms.get("maxRadius").value + waveSize) * 2) {
-        this.active = false;
-        uniformActive.value = false;
-      }
-    }
-  }
-
-}; // src/effects/SelectiveBloomEffect.js
-
-exports.ShockWaveEffect = ShockWaveEffect;
-var SelectiveBloomEffect = class extends BloomEffect {
-  constructor(scene, camera, options) {
-    super(options);
-    this.scene = scene;
-    this.camera = camera;
-    this.clearPass = new ClearPass(true, true, false);
-    this.clearPass.overrideClearColor = new _three.Color(0);
-    this.renderPass = new RenderPass(scene, camera);
-    this.renderPass.clear = false;
-    this.blackoutPass = new RenderPass(scene, camera, new _three.MeshBasicMaterial({
-      color: 0
-    }));
-    this.blackoutPass.clear = false;
-
-    this.backgroundPass = (() => {
-      const backgroundScene = new _three.Scene();
-      const pass = new RenderPass(backgroundScene, camera);
-      backgroundScene.background = scene.background;
-      pass.clear = false;
-      return pass;
-    })();
-
-    this.renderTargetSelection = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: true
-    });
-    this.renderTargetSelection.texture.name = "Bloom.Selection";
-    this.renderTargetSelection.texture.generateMipmaps = false;
-    this.selection = new Selection();
-    this.inverted = false;
-  }
-
-  get ignoreBackground() {
-    return !this.backgroundPass.enabled;
-  }
-
-  set ignoreBackground(value) {
-    this.backgroundPass.enabled = !value;
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    const scene = this.scene;
-    const camera = this.camera;
-    const selection = this.selection;
-    const renderTarget = this.renderTargetSelection;
-    const background = scene.background;
-    const mask = camera.layers.mask;
-    this.clearPass.render(renderer, renderTarget);
-
-    if (!this.ignoreBackground) {
-      this.backgroundPass.render(renderer, renderTarget);
-    }
-
-    scene.background = null;
-
-    if (this.inverted) {
-      camera.layers.set(selection.layer);
-      this.blackoutPass.render(renderer, renderTarget);
-      camera.layers.mask = mask;
-      selection.setVisible(false);
-      this.renderPass.render(renderer, renderTarget);
-      selection.setVisible(true);
-    } else {
-      selection.setVisible(false);
-      this.blackoutPass.render(renderer, renderTarget);
-      selection.setVisible(true);
-      camera.layers.set(selection.layer);
-      this.renderPass.render(renderer, renderTarget);
-      camera.layers.mask = mask;
-    }
-
-    scene.background = background;
-    super.update(renderer, renderTarget, deltaTime);
-  }
-
-  setSize(width, height) {
-    super.setSize(width, height);
-    this.backgroundPass.setSize(width, height);
-    this.blackoutPass.setSize(width, height);
-    this.renderPass.setSize(width, height);
-    this.renderTargetSelection.setSize(this.resolution.width, this.resolution.height);
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    super.initialize(renderer, alpha, frameBufferType);
-    this.backgroundPass.initialize(renderer, alpha, frameBufferType);
-    this.blackoutPass.initialize(renderer, alpha, frameBufferType);
-    this.renderPass.initialize(renderer, alpha, frameBufferType);
-
-    if (!alpha && frameBufferType === _three.UnsignedByteType) {
-      this.renderTargetSelection.texture.format = _three.RGBFormat;
-    }
-
-    if (frameBufferType !== void 0) {
-      this.renderTargetSelection.texture.type = frameBufferType;
-    }
-  }
-
-}; // src/effects/SepiaEffect.js
-
-exports.SelectiveBloomEffect = SelectiveBloomEffect;
-// src/effects/glsl/sepia/shader.frag
-var shader_default68 = "uniform float intensity;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec3 color=vec3(dot(inputColor.rgb,vec3(1.0-0.607*intensity,0.769*intensity,0.189*intensity)),dot(inputColor.rgb,vec3(0.349*intensity,1.0-0.314*intensity,0.168*intensity)),dot(inputColor.rgb,vec3(0.272*intensity,0.534*intensity,1.0-0.869*intensity)));outputColor=vec4(color,inputColor.a);}"; // src/effects/SepiaEffect.js
-
-var SepiaEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    intensity = 1
-  } = {}) {
-    super("SepiaEffect", shader_default68, {
-      blendFunction,
-      uniforms: new Map([["intensity", new _three.Uniform(intensity)]])
-    });
-  }
-
-}; // src/effects/SMAAEffect.js
-
-exports.SepiaEffect = SepiaEffect;
-// src/images/smaa/searchImageDataURL.js
-var searchImageDataURL_default = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAYAAACm53kpAAAAeElEQVRYR+2XSwqAMAxEJ168ePEqwRSKhIIiuHjJqiU0gWE+1CQdApcVAMUAuARaMGCX1MIL/Ow13++9lW2s3mW9MWvsnWc/2fvGygwPAN4E8QzAA4CXAB6AHjG4JTHYI1ey3pcx6FHnEfhLDOIBKAmUBK6/ANUDTlROXAHd9EC1AAAAAElFTkSuQmCC"; // src/images/smaa/areaImageDataURL.js
-
-var areaImageDataURL_default = "data:image/png;base64,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"; // src/effects/glsl/smaa/shader.frag
-
-var shader_default69 = "uniform sampler2D weightMap;varying vec2 vOffset0;varying vec2 vOffset1;void movec(const in bvec2 c,inout vec2 variable,const in vec2 value){if(c.x){variable.x=value.x;}if(c.y){variable.y=value.y;}}void movec(const in bvec4 c,inout vec4 variable,const in vec4 value){movec(c.xy,variable.xy,value.xy);movec(c.zw,variable.zw,value.zw);}void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){vec4 a;a.x=texture2D(weightMap,vOffset0).a;a.y=texture2D(weightMap,vOffset1).g;a.wz=texture2D(weightMap,uv).rb;vec4 color=inputColor;if(dot(a,vec4(1.0))>=1e-5){bool h=max(a.x,a.z)>max(a.y,a.w);vec4 blendingOffset=vec4(0.0,a.y,0.0,a.w);vec2 blendingWeight=a.yw;movec(bvec4(h),blendingOffset,vec4(a.x,0.0,a.z,0.0));movec(bvec2(h),blendingWeight,a.xz);blendingWeight/=dot(blendingWeight,vec2(1.0));vec4 blendingCoord=blendingOffset*vec4(texelSize,-texelSize)+uv.xyxy;color=blendingWeight.x*texture2D(inputBuffer,blendingCoord.xy);color+=blendingWeight.y*texture2D(inputBuffer,blendingCoord.zw);}outputColor=color;}"; // src/effects/glsl/smaa/shader.vert
-
-var shader_default70 = "varying vec2 vOffset0;varying vec2 vOffset1;void mainSupport(const in vec2 uv){vOffset0=uv+texelSize*vec2(1.0,0.0);vOffset1=uv+texelSize*vec2(0.0,1.0);}"; // src/effects/SMAAEffect.js
-
-var SMAAEffect = class extends Effect {
-  constructor(searchImage, areaImage, preset = SMAAPreset.HIGH, edgeDetectionMode = EdgeDetectionMode.COLOR) {
-    super("SMAAEffect", shader_default69, {
-      vertexShader: shader_default70,
-      blendFunction: BlendFunction.NORMAL,
-      attributes: EffectAttribute.CONVOLUTION | EffectAttribute.DEPTH,
-      uniforms: new Map([["weightMap", new _three.Uniform(null)]])
-    });
-    this.renderTargetEdges = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: false,
-      format: _three.RGBFormat
-    });
-    this.renderTargetEdges.texture.name = "SMAA.Edges";
-    this.renderTargetWeights = this.renderTargetEdges.clone();
-    this.renderTargetWeights.texture.name = "SMAA.Weights";
-    this.renderTargetWeights.texture.format = _three.RGBAFormat;
-    this.uniforms.get("weightMap").value = this.renderTargetWeights.texture;
-    this.clearPass = new ClearPass(true, false, false);
-    this.clearPass.overrideClearColor = new _three.Color(0);
-    this.clearPass.overrideClearAlpha = 1;
-    this.edgeDetectionPass = new ShaderPass(new EdgeDetectionMaterial(new _three.Vector2(), edgeDetectionMode));
-    this.weightsPass = new ShaderPass(new SMAAWeightsMaterial());
-    const searchTexture = new _three.Texture(searchImage);
-    searchTexture.name = "SMAA.Search";
-    searchTexture.magFilter = _three.NearestFilter;
-    searchTexture.minFilter = _three.NearestFilter;
-    searchTexture.format = _three.RGBAFormat;
-    searchTexture.generateMipmaps = false;
-    searchTexture.needsUpdate = true;
-    searchTexture.flipY = true;
-    const areaTexture = new _three.Texture(areaImage);
-    areaTexture.name = "SMAA.Area";
-    areaTexture.minFilter = _three.LinearFilter;
-    areaTexture.format = _three.RGBAFormat;
-    areaTexture.generateMipmaps = false;
-    areaTexture.needsUpdate = true;
-    areaTexture.flipY = false;
-    const weightsMaterial = this.weightsPass.getFullscreenMaterial();
-    weightsMaterial.uniforms.searchTexture.value = searchTexture;
-    weightsMaterial.uniforms.areaTexture.value = areaTexture;
-    this.applyPreset(preset);
-  }
-
-  get edgeDetectionMaterial() {
-    return this.edgeDetectionPass.getFullscreenMaterial();
-  }
-
-  get colorEdgesMaterial() {
-    return this.edgeDetectionMaterial;
-  }
-
-  get weightsMaterial() {
-    return this.weightsPass.getFullscreenMaterial();
-  }
-
-  setEdgeDetectionThreshold(threshold) {
-    this.edgeDetectionPass.getFullscreenMaterial().setEdgeDetectionThreshold(threshold);
-  }
-
-  setOrthogonalSearchSteps(steps) {
-    this.weightsPass.getFullscreenMaterial().setOrthogonalSearchSteps(steps);
-  }
-
-  applyPreset(preset) {
-    const edgeDetectionMaterial = this.edgeDetectionMaterial;
-    const weightsMaterial = this.weightsMaterial;
-
-    switch (preset) {
-      case SMAAPreset.LOW:
-        edgeDetectionMaterial.setEdgeDetectionThreshold(0.15);
-        weightsMaterial.setOrthogonalSearchSteps(4);
-        weightsMaterial.diagonalDetection = false;
-        weightsMaterial.cornerRounding = false;
-        break;
-
-      case SMAAPreset.MEDIUM:
-        edgeDetectionMaterial.setEdgeDetectionThreshold(0.1);
-        weightsMaterial.setOrthogonalSearchSteps(8);
-        weightsMaterial.diagonalDetection = false;
-        weightsMaterial.cornerRounding = false;
-        break;
-
-      case SMAAPreset.HIGH:
-        edgeDetectionMaterial.setEdgeDetectionThreshold(0.1);
-        weightsMaterial.setOrthogonalSearchSteps(16);
-        weightsMaterial.setDiagonalSearchSteps(8);
-        weightsMaterial.setCornerRounding(25);
-        weightsMaterial.diagonalDetection = true;
-        weightsMaterial.cornerRounding = true;
-        break;
-
-      case SMAAPreset.ULTRA:
-        edgeDetectionMaterial.setEdgeDetectionThreshold(0.05);
-        weightsMaterial.setOrthogonalSearchSteps(32);
-        weightsMaterial.setDiagonalSearchSteps(16);
-        weightsMaterial.setCornerRounding(25);
-        weightsMaterial.diagonalDetection = true;
-        weightsMaterial.cornerRounding = true;
-        break;
-    }
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {
-    const material = this.edgeDetectionMaterial;
-    material.uniforms.depthBuffer.value = depthTexture;
-    material.depthPacking = depthPacking;
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    this.clearPass.render(renderer, this.renderTargetEdges);
-    this.edgeDetectionPass.render(renderer, inputBuffer, this.renderTargetEdges);
-    this.weightsPass.render(renderer, this.renderTargetEdges, this.renderTargetWeights);
-  }
-
-  setSize(width, height) {
-    const edgeDetectionMaterial = this.edgeDetectionPass.getFullscreenMaterial();
-    const weightsMaterial = this.weightsPass.getFullscreenMaterial();
-    this.renderTargetEdges.setSize(width, height);
-    this.renderTargetWeights.setSize(width, height);
-    weightsMaterial.uniforms.resolution.value.set(width, height);
-    weightsMaterial.uniforms.texelSize.value.set(1 / width, 1 / height);
-    edgeDetectionMaterial.uniforms.texelSize.value.copy(weightsMaterial.uniforms.texelSize.value);
-  }
-
-  dispose() {
-    const uniforms = this.weightsPass.getFullscreenMaterial().uniforms;
-    uniforms.searchTexture.value.dispose();
-    uniforms.areaTexture.value.dispose();
-    super.dispose();
-  }
-
-  static get searchImageDataURL() {
-    return searchImageDataURL_default;
-  }
-
-  static get areaImageDataURL() {
-    return areaImageDataURL_default;
-  }
-
-};
-exports.SMAAEffect = SMAAEffect;
-var SMAAPreset = {
-  LOW: 0,
-  MEDIUM: 1,
-  HIGH: 2,
-  ULTRA: 3
-}; // src/effects/SSAOEffect.js
-
-exports.SMAAPreset = SMAAPreset;
-// src/effects/glsl/ssao/shader.frag
-var shader_default71 = "uniform sampler2D aoBuffer;uniform float luminanceInfluence;\n#ifdef DEPTH_AWARE_UPSAMPLING\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nuniform highp sampler2D normalDepthBuffer;\n#else\nuniform mediump sampler2D normalDepthBuffer;\n#endif\n#endif\n#ifdef COLORIZE\nuniform vec3 color;\n#endif\nvoid mainImage(const in vec4 inputColor,const in vec2 uv,const in float depth,out vec4 outputColor){float aoLinear=texture2D(aoBuffer,uv).r;\n#if defined(DEPTH_AWARE_UPSAMPLING) && __VERSION__ == 300\nvec4 normalDepth[4]=vec4[](textureOffset(normalDepthBuffer,uv,ivec2(0,0)),textureOffset(normalDepthBuffer,uv,ivec2(0,1)),textureOffset(normalDepthBuffer,uv,ivec2(1,0)),textureOffset(normalDepthBuffer,uv,ivec2(1,1)));float dot01=dot(normalDepth[0].rgb,normalDepth[1].rgb);float dot02=dot(normalDepth[0].rgb,normalDepth[2].rgb);float dot03=dot(normalDepth[0].rgb,normalDepth[3].rgb);float minDot=min(dot01,min(dot02,dot03));float s=step(THRESHOLD,minDot);float smallestDistance=1.0;int index;for(int i=0;i<4;++i){float distance=abs(depth-normalDepth[i].a);if(distance<smallestDistance){smallestDistance=distance;index=i;}}ivec2 offsets[4]=ivec2[](ivec2(0,0),ivec2(0,1),ivec2(1,0),ivec2(1,1));ivec2 coord=ivec2(uv*vec2(textureSize(aoBuffer,0)))+offsets[index];float aoNearest=texelFetch(aoBuffer,coord,0).r;float ao=mix(aoNearest,aoLinear,s);\n#else\nfloat ao=aoLinear;\n#endif\nfloat l=linearToRelativeLuminance(inputColor.rgb);ao=mix(ao,1.0,l*luminanceInfluence);\n#ifdef COLORIZE\noutputColor=vec4(1.0-(1.0-ao)*(1.0-color),inputColor.a);\n#else\noutputColor=vec4(vec3(ao),inputColor.a);\n#endif\n}"; // src/effects/SSAOEffect.js
-
-var NOISE_TEXTURE_SIZE = 64;
-var SSAOEffect = class extends Effect {
-  constructor(camera, normalBuffer, {
-    blendFunction = BlendFunction.MULTIPLY,
-    distanceScaling = true,
-    depthAwareUpsampling = true,
-    normalDepthBuffer = null,
-    samples = 9,
-    rings = 7,
-    distanceThreshold = 0.97,
-    distanceFalloff = 0.03,
-    rangeThreshold = 5e-4,
-    rangeFalloff = 1e-3,
-    minRadiusScale = 0.33,
-    luminanceInfluence = 0.7,
-    radius = 0.1825,
-    intensity = 1,
-    bias = 0.025,
-    fade = 0.01,
-    color: color2 = null,
-    resolutionScale = 1,
-    width = Resizer.AUTO_SIZE,
-    height = Resizer.AUTO_SIZE
-  } = {}) {
-    super("SSAOEffect", shader_default71, {
-      blendFunction,
-      attributes: EffectAttribute.DEPTH,
-      uniforms: new Map([["aoBuffer", new _three.Uniform(null)], ["normalDepthBuffer", new _three.Uniform(null)], ["luminanceInfluence", new _three.Uniform(luminanceInfluence)], ["color", new _three.Uniform(null)], ["scale", new _three.Uniform(0)]])
-    });
-    this.renderTargetAO = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: false,
-      format: _three.RGBFormat
-    });
-    this.renderTargetAO.texture.name = "AO.Target";
-    this.renderTargetAO.texture.generateMipmaps = false;
-    this.uniforms.get("aoBuffer").value = this.renderTargetAO.texture;
-    this.resolution = new Resizer(this, width, height, resolutionScale);
-    this.r = 1;
-    this.camera = camera;
-    this.ssaoPass = new ShaderPass((() => {
-      const noiseTexture = new NoiseTexture(NOISE_TEXTURE_SIZE, NOISE_TEXTURE_SIZE);
-      noiseTexture.wrapS = noiseTexture.wrapT = _three.RepeatWrapping;
-      const material = new SSAOMaterial(camera);
-      material.uniforms.noiseTexture.value = noiseTexture;
-      material.uniforms.intensity.value = intensity;
-      material.uniforms.minRadiusScale.value = minRadiusScale;
-      material.uniforms.fade.value = fade;
-      material.uniforms.bias.value = bias;
-
-      if (normalDepthBuffer !== null) {
-        material.uniforms.normalDepthBuffer.value = normalDepthBuffer;
-        material.defines.NORMAL_DEPTH = "1";
-
-        if (depthAwareUpsampling) {
-          this.depthAwareUpsampling = depthAwareUpsampling;
-          this.uniforms.get("normalDepthBuffer").value = normalDepthBuffer;
-          this.defines.set("THRESHOLD", "0.997");
-        }
-      } else {
-        material.uniforms.normalBuffer.value = normalBuffer;
-      }
-
-      return material;
-    })());
-    this.distanceScaling = distanceScaling;
-    this.samples = samples;
-    this.rings = rings;
-    this.color = color2;
-    this.radius = radius > 1 ? radius / 100 : radius;
-    this.setDistanceCutoff(distanceThreshold, distanceFalloff);
-    this.setProximityCutoff(rangeThreshold, rangeFalloff);
-  }
-
-  get ssaoMaterial() {
-    return this.ssaoPass.getFullscreenMaterial();
-  }
-
-  get samples() {
-    return Number(this.ssaoMaterial.defines.SAMPLES_INT);
-  }
-
-  set samples(value) {
-    const material = this.ssaoMaterial;
-    material.defines.SAMPLES_INT = value.toFixed(0);
-    material.defines.SAMPLES_FLOAT = value.toFixed(1);
-    material.needsUpdate = true;
-  }
-
-  get rings() {
-    return Number(this.ssaoMaterial.defines.SPIRAL_TURNS);
-  }
-
-  set rings(value) {
-    const material = this.ssaoMaterial;
-    material.defines.SPIRAL_TURNS = value.toFixed(1);
-    material.needsUpdate = true;
-  }
-
-  get radius() {
-    return this.r;
-  }
-
-  set radius(value) {
-    this.r = Math.min(Math.max(value, 1e-6), 1);
-    const radius = this.r * this.resolution.height;
-    const material = this.ssaoMaterial;
-    material.defines.RADIUS = radius.toFixed(11);
-    material.defines.RADIUS_SQ = (radius * radius).toFixed(11);
-    material.needsUpdate = true;
-  }
-
-  get depthAwareUpsampling() {
-    return this.defines.has("DEPTH_AWARE_UPSAMPLING");
-  }
-
-  set depthAwareUpsampling(value) {
-    if (this.depthAwareUpsampling !== value) {
-      if (value) {
-        this.defines.set("DEPTH_AWARE_UPSAMPLING", "1");
-      } else {
-        this.defines.delete("DEPTH_AWARE_UPSAMPLING");
-      }
-
-      this.setChanged();
-    }
-  }
-
-  get distanceScaling() {
-    return this.ssaoMaterial.defines.DISTANCE_SCALING !== void 0;
-  }
-
-  set distanceScaling(value) {
-    if (this.distanceScaling !== value) {
-      const material = this.ssaoMaterial;
-
-      if (value) {
-        material.defines.DISTANCE_SCALING = "1";
-      } else {
-        delete material.defines.DISTANCE_SCALING;
-      }
-
-      material.needsUpdate = true;
-    }
-  }
-
-  get color() {
-    return this.uniforms.get("color").value;
-  }
-
-  set color(value) {
-    const uniforms = this.uniforms;
-    const defines = this.defines;
-
-    if (value !== null) {
-      if (defines.has("COLORIZE")) {
-        uniforms.get("color").value.set(value);
-      } else {
-        defines.set("COLORIZE", "1");
-        uniforms.get("color").value = new _three.Color(value);
-        this.setChanged();
-      }
-    } else if (defines.has("COLORIZE")) {
-      defines.delete("COLORIZE");
-      uniforms.get("color").value = null;
-      this.setChanged();
-    }
-  }
-
-  setDistanceCutoff(threshold, falloff) {
-    this.ssaoMaterial.uniforms.distanceCutoff.value.set(Math.min(Math.max(threshold, 0), 1), Math.min(Math.max(threshold + falloff, 0), 1));
-  }
-
-  setProximityCutoff(threshold, falloff) {
-    this.ssaoMaterial.uniforms.proximityCutoff.value.set(Math.min(Math.max(threshold, 0), 1), Math.min(Math.max(threshold + falloff, 0), 1));
-  }
-
-  setDepthTexture(depthTexture, depthPacking = 0) {
-    const material = this.ssaoMaterial;
-
-    if (material.defines.NORMAL_DEPTH === void 0) {
-      material.uniforms.normalDepthBuffer.value = depthTexture;
-      material.depthPacking = depthPacking;
-    }
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    this.ssaoPass.render(renderer, null, this.renderTargetAO);
-  }
-
-  setSize(width, height) {
-    const resolution = this.resolution;
-    resolution.base.set(width, height);
-    const w = resolution.width;
-    const h = resolution.height;
-    this.renderTargetAO.setSize(w, h);
-    this.ssaoMaterial.setTexelSize(1 / w, 1 / h);
-    const camera = this.camera;
-    const uniforms = this.ssaoMaterial.uniforms;
-    uniforms.noiseScale.value.set(w, h).divideScalar(NOISE_TEXTURE_SIZE);
-    uniforms.inverseProjectionMatrix.value.copy(camera.projectionMatrix).invert();
-    uniforms.projectionMatrix.value.copy(camera.projectionMatrix);
-    this.radius = this.r;
-  }
-
-}; // src/effects/TextureEffect.js
-
-exports.SSAOEffect = SSAOEffect;
-// src/effects/glsl/texture/shader.frag
-var shader_default72 = "uniform sampler2D texture;\n#if defined(ASPECT_CORRECTION) || defined(UV_TRANSFORM)\nvarying vec2 vUv2;\n#endif\nvoid mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){\n#if defined(ASPECT_CORRECTION) || defined(UV_TRANSFORM)\nvec4 texel=texelToLinear(texture2D(texture,vUv2));\n#else\nvec4 texel=texelToLinear(texture2D(texture,uv));\n#endif\noutputColor=TEXEL;}"; // src/effects/glsl/texture/shader.vert
-
-var shader_default73 = "#ifdef ASPECT_CORRECTION\nuniform float scale;\n#else\nuniform mat3 uvTransform;\n#endif\nvarying vec2 vUv2;void mainSupport(const in vec2 uv){\n#ifdef ASPECT_CORRECTION\nvUv2=uv*vec2(aspect,1.0)*scale;\n#else\nvUv2=(uvTransform*vec3(uv,1.0)).xy;\n#endif\n}"; // src/effects/TextureEffect.js
-
-var TextureEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    texture = null,
-    aspectCorrection = false
-  } = {}) {
-    super("TextureEffect", shader_default72, {
-      blendFunction,
-      defines: new Map([["TEXEL", "texel"]]),
-      uniforms: new Map([["texture", new _three.Uniform(null)], ["scale", new _three.Uniform(1)], ["uvTransform", new _three.Uniform(null)]])
-    });
-    this.texture = texture;
-    this.aspectCorrection = aspectCorrection;
-  }
-
-  get texture() {
-    return this.uniforms.get("texture").value;
-  }
-
-  set texture(value) {
-    const currentTexture = this.texture;
-
-    if (currentTexture !== value) {
-      const previousEncoding = currentTexture !== null ? currentTexture.encoding : null;
-      this.uniforms.get("texture").value = value;
-
-      if (value !== null) {
-        switch (value.encoding) {
-          case _three.sRGBEncoding:
-            this.defines.set("texelToLinear(texel)", "sRGBToLinear(texel)");
-            break;
-
-          case _three.LinearEncoding:
-            this.defines.set("texelToLinear(texel)", "texel");
-            break;
-
-          default:
-            console.error("Unsupported encoding:", value.encoding);
-            break;
-        }
-
-        if (previousEncoding !== value.encoding) {
-          this.setChanged();
-        }
-      }
-    }
-  }
-
-  get aspectCorrection() {
-    return this.defines.has("ASPECT_CORRECTION");
-  }
-
-  set aspectCorrection(value) {
-    if (this.aspectCorrection !== value) {
-      if (value) {
-        if (this.uvTransform) {
-          this.uvTransform = false;
-        }
-
-        this.defines.set("ASPECT_CORRECTION", "1");
-        this.setVertexShader(shader_default73);
-      } else {
-        this.defines.delete("ASPECT_CORRECTION");
-        this.setVertexShader(null);
-      }
-
-      this.setChanged();
-    }
-  }
-
-  get uvTransform() {
-    return this.defines.has("UV_TRANSFORM");
-  }
-
-  set uvTransform(value) {
-    if (this.uvTransform !== value) {
-      if (value) {
-        if (this.aspectCorrection) {
-          this.aspectCorrection = false;
-        }
-
-        this.defines.set("UV_TRANSFORM", "1");
-        this.uniforms.get("uvTransform").value = new _three.Matrix3();
-        this.setVertexShader(shader_default73);
-      } else {
-        this.defines.delete("UV_TRANSFORM");
-        this.uniforms.get("uvTransform").value = null;
-        this.setVertexShader(null);
-      }
-
-      this.setChanged();
-    }
-  }
-
-  setTextureSwizzleRGBA(r, g = r, b = r, a = r) {
-    const rgba = "rgba";
-    let swizzle = "";
-
-    if (r !== ColorChannel.RED || g !== ColorChannel.GREEN || b !== ColorChannel.BLUE || a !== ColorChannel.ALPHA) {
-      swizzle = [".", rgba[r], rgba[g], rgba[b], rgba[a]].join("");
-    }
-
-    this.defines.set("TEXEL", "texel" + swizzle);
-    this.setChanged();
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    const texture = this.uniforms.get("texture").value;
-
-    if (this.uvTransform && texture.matrixAutoUpdate) {
-      texture.updateMatrix();
-      this.uniforms.get("uvTransform").value.copy(texture.matrix);
-    }
-  }
-
-}; // src/effects/ToneMappingEffect.js
-
-exports.TextureEffect = TextureEffect;
-// src/effects/glsl/tone-mapping/shader.frag
-var shader_default74 = "#include <tonemapping_pars_fragment>\nuniform sampler2D luminanceBuffer;uniform float toneMappingExposure;uniform float whitePoint;uniform float middleGrey;\n#ifndef ADAPTIVE\nuniform float averageLuminance;\n#endif\nvec3 Reinhard2ToneMapping(vec3 color){color*=toneMappingExposure;float l=linearToRelativeLuminance(color);\n#ifdef ADAPTIVE\nfloat lumAvg=texture2D(luminanceBuffer,vec2(0.5)).r;lumAvg=max(lumAvg,1e-6);\n#else\nfloat lumAvg=averageLuminance;\n#endif\nfloat lumScaled=(l*middleGrey)/lumAvg;float lumCompressed=lumScaled*(1.0+lumScaled/(whitePoint*whitePoint));lumCompressed/=(1.0+lumScaled);return lumCompressed*color;}void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){\n#ifdef REINHARD2\noutputColor=vec4(Reinhard2ToneMapping(inputColor.rgb),inputColor.a);\n#else\noutputColor=vec4(toneMapping(inputColor.rgb),inputColor.a);\n#endif\n}"; // src/effects/ToneMappingEffect.js
-
-var ToneMappingEffect = class extends Effect {
-  constructor({
-    blendFunction = BlendFunction.NORMAL,
-    adaptive = true,
-    mode = adaptive ? ToneMappingMode.REINHARD2_ADAPTIVE : ToneMappingMode.REINHARD2,
-    resolution = 256,
-    maxLuminance = 16,
-    whitePoint = maxLuminance,
-    middleGrey = 0.6,
-    minLuminance = 0.01,
-    averageLuminance = 1,
-    adaptationRate = 1
-  } = {}) {
-    super("ToneMappingEffect", shader_default74, {
-      blendFunction,
-      uniforms: new Map([["luminanceBuffer", new _three.Uniform(null)], ["toneMappingExposure", new _three.Uniform(1)], ["maxLuminance", new _three.Uniform(maxLuminance)], ["whitePoint", new _three.Uniform(whitePoint)], ["middleGrey", new _three.Uniform(middleGrey)], ["averageLuminance", new _three.Uniform(averageLuminance)]])
-    });
-    this.renderTargetLuminance = new _three.WebGLRenderTarget(1, 1, {
-      minFilter: _three.LinearMipmapLinearFilter !== void 0 ? _three.LinearMipmapLinearFilter : _three.LinearMipMapLinearFilter,
-      magFilter: _three.LinearFilter,
-      stencilBuffer: false,
-      depthBuffer: false,
-      format: _three.RGBFormat
-    });
-    this.renderTargetLuminance.texture.name = "Luminance";
-    this.renderTargetLuminance.texture.generateMipmaps = true;
-    this.luminancePass = new ShaderPass(new LuminanceMaterial());
-    this.adaptiveLuminancePass = new AdaptiveLuminancePass(this.renderTargetLuminance.texture, {
-      minLuminance,
-      adaptationRate
-    });
-    this.uniforms.get("luminanceBuffer").value = this.adaptiveLuminancePass.texture;
-    this.mode = null;
-    this.setMode(mode);
-    this.resolution = resolution;
-  }
-
-  getMode() {
-    return this.mode;
-  }
-
-  setMode(value) {
-    const currentMode = this.mode;
-
-    if (currentMode !== value) {
-      this.defines.clear();
-
-      switch (value) {
-        case ToneMappingMode.REINHARD:
-          this.defines.set("toneMapping(texel)", "ReinhardToneMapping(texel)");
-          break;
-
-        case ToneMappingMode.OPTIMIZED_CINEON:
-          this.defines.set("toneMapping(texel)", "OptimizedCineonToneMapping(texel)");
-          break;
-
-        case ToneMappingMode.ACES_FILMIC:
-          this.defines.set("toneMapping(texel)", "ACESFilmicToneMapping(texel)");
-          break;
-
-        default:
-          this.defines.set("toneMapping(texel)", "texel");
-          break;
-      }
-
-      if (value === ToneMappingMode.REINHARD2) {
-        this.defines.set("REINHARD2", "1");
-      } else if (value === ToneMappingMode.REINHARD2_ADAPTIVE) {
-        this.defines.set("REINHARD2", "1");
-        this.defines.set("ADAPTIVE", "1");
-      }
-
-      this.mode = value;
-      this.setChanged();
-    }
-  }
-
-  get resolution() {
-    return this.renderTargetLuminance.width;
-  }
-
-  set resolution(value) {
-    const exponent = Math.max(0, Math.ceil(Math.log2(value)));
-    const size = Math.pow(2, exponent);
-    this.renderTargetLuminance.setSize(size, size);
-    this.adaptiveLuminancePass.mipLevel1x1 = exponent;
-  }
-
-  get adaptive() {
-    return this.defines.has("ADAPTIVE");
-  }
-
-  set adaptive(value) {
-    this.mode = value ? ToneMappingMode.REINHARD2_ADAPTIVE : ToneMappingMode.REINHARD2;
-  }
-
-  get adaptationRate() {
-    return this.adaptiveLuminancePass.adaptationRate;
-  }
-
-  set adaptationRate(value) {
-    this.adaptiveLuminancePass.adaptationRate = value;
-  }
-
-  get distinction() {
-    console.warn(this.name, "The distinction field has been removed.");
-    return 1;
-  }
-
-  set distinction(value) {
-    console.warn(this.name, "The distinction field has been removed.");
-  }
-
-  update(renderer, inputBuffer, deltaTime) {
-    if (this.mode === ToneMappingMode.REINHARD2_ADAPTIVE) {
-      this.luminancePass.render(renderer, inputBuffer, this.renderTargetLuminance);
-      this.adaptiveLuminancePass.render(renderer, null, null, deltaTime);
-    }
-  }
-
-  initialize(renderer, alpha, frameBufferType) {
-    this.adaptiveLuminancePass.initialize(renderer, alpha, frameBufferType);
-  }
-
-};
-exports.ToneMappingEffect = ToneMappingEffect;
-var ToneMappingMode = {
-  REINHARD: 0,
-  REINHARD2: 1,
-  REINHARD2_ADAPTIVE: 2,
-  OPTIMIZED_CINEON: 3,
-  ACES_FILMIC: 4
-}; // src/effects/VignetteEffect.js
-
-exports.ToneMappingMode = ToneMappingMode;
-// src/effects/glsl/vignette/shader.frag
-var shader_default75 = "uniform float offset;uniform float darkness;void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){const vec2 center=vec2(0.5);vec3 color=inputColor.rgb;\n#ifdef ESKIL\nvec2 coord=(uv-center)*vec2(offset);color=mix(color,vec3(1.0-darkness),dot(coord,coord));\n#else\nfloat d=distance(uv,center);color*=smoothstep(0.8,offset*0.799,d*(darkness+offset));\n#endif\noutputColor=vec4(color,inputColor.a);}"; // src/effects/VignetteEffect.js
-
-var VignetteEffect = class extends Effect {
-  constructor(options = {}) {
-    const settings = Object.assign({
-      blendFunction: BlendFunction.NORMAL,
-      eskil: false,
-      offset: 0.5,
-      darkness: 0.5
-    }, options);
-    super("VignetteEffect", shader_default75, {
-      blendFunction: settings.blendFunction,
-      uniforms: new Map([["offset", new _three.Uniform(settings.offset)], ["darkness", new _three.Uniform(settings.darkness)]])
-    });
-    this.eskil = settings.eskil;
-  }
-
-  get eskil() {
-    return this.defines.has("ESKIL");
-  }
-
-  set eskil(value) {
-    if (this.eskil !== value) {
-      if (value) {
-        this.defines.set("ESKIL", "1");
-      } else {
-        this.defines.delete("ESKIL");
-      }
-
-      this.setChanged();
-    }
-  }
-
-}; // src/images/lut/LUTOperation.js
-
-exports.VignetteEffect = VignetteEffect;
-var LUTOperation = {
-  SCALE_UP: "lut.scaleup"
-}; // src/images/lut/TetrahedralUpscaler.js
-
-exports.LUTOperation = LUTOperation;
-var P = [new Float32Array(3), new Float32Array(3)];
-var C = [new Float32Array(3), new Float32Array(3), new Float32Array(3), new Float32Array(3)];
-var T = [[new Float32Array([0, 0, 0]), new Float32Array([1, 0, 0]), new Float32Array([1, 1, 0]), new Float32Array([1, 1, 1])], [new Float32Array([0, 0, 0]), new Float32Array([1, 0, 0]), new Float32Array([1, 0, 1]), new Float32Array([1, 1, 1])], [new Float32Array([0, 0, 0]), new Float32Array([0, 0, 1]), new Float32Array([1, 0, 1]), new Float32Array([1, 1, 1])], [new Float32Array([0, 0, 0]), new Float32Array([0, 1, 0]), new Float32Array([1, 1, 0]), new Float32Array([1, 1, 1])], [new Float32Array([0, 0, 0]), new Float32Array([0, 1, 0]), new Float32Array([0, 1, 1]), new Float32Array([1, 1, 1])], [new Float32Array([0, 0, 0]), new Float32Array([0, 0, 1]), new Float32Array([0, 1, 1]), new Float32Array([1, 1, 1])]];
-
-function calculateTetrahedronVolume(a, b, c2, d) {
-  const bcX = c2[0] - b[0];
-  const bcY = c2[1] - b[1];
-  const bcZ = c2[2] - b[2];
-  const baX = a[0] - b[0];
-  const baY = a[1] - b[1];
-  const baZ = a[2] - b[2];
-  const crossX = bcY * baZ - bcZ * baY;
-  const crossY = bcZ * baX - bcX * baZ;
-  const crossZ = bcX * baY - bcY * baX;
-  const length = Math.sqrt(crossX * crossX + crossY * crossY + crossZ * crossZ);
-  const triangleArea = length * 0.5;
-  const normalX = crossX / length;
-  const normalY = crossY / length;
-  const normalZ = crossZ / length;
-  const constant = -(a[0] * normalX + a[1] * normalY + a[2] * normalZ);
-  const dot = d[0] * normalX + d[1] * normalY + d[2] * normalZ;
-  const height = Math.abs(dot + constant);
-  return height * triangleArea / 3;
-}
-
-function sample(data, size, x, y, z, color2) {
-  const i3 = (x + y * size + z * size * size) * 3;
-  color2[0] = data[i3 + 0];
-  color2[1] = data[i3 + 1];
-  color2[2] = data[i3 + 2];
-}
-
-function tetrahedralSample(data, size, u, v3, w, color2) {
-  const px = u * (size - 1);
-  const py = v3 * (size - 1);
-  const pz = w * (size - 1);
-  const minX = Math.floor(px);
-  const minY = Math.floor(py);
-  const minZ = Math.floor(pz);
-  const maxX = Math.ceil(px);
-  const maxY = Math.ceil(py);
-  const maxZ = Math.ceil(pz);
-
-  if (minX === px && minY === py && minZ === pz) {
-    sample(data, size, px, py, pz, color2);
-  } else {
-    let vertices;
-
-    if (u >= v3 && v3 >= w) {
-      vertices = T[0];
-    } else if (u >= w && w >= v3) {
-      vertices = T[1];
-    } else if (w >= u && u >= v3) {
-      vertices = T[2];
-    } else if (v3 >= u && u >= w) {
-      vertices = T[3];
-    } else if (v3 >= w && w >= u) {
-      vertices = T[4];
-    } else if (w >= v3 && v3 >= u) {
-      vertices = T[5];
-    }
-
-    const [P0, P1, P2, P3] = vertices;
-    const coords = P[0];
-    coords[0] = u;
-    coords[1] = v3;
-    coords[2] = w;
-    const tmp = P[1];
-    const diffX = maxX - minX;
-    const diffY = maxY - minY;
-    const diffZ = maxZ - minZ;
-    tmp[0] = diffX * P0[0] + minX;
-    tmp[1] = diffY * P0[1] + minY;
-    tmp[2] = diffZ * P0[2] + minZ;
-    sample(data, size, tmp[0], tmp[1], tmp[2], C[0]);
-    tmp[0] = diffX * P1[0] + minX;
-    tmp[1] = diffY * P1[1] + minY;
-    tmp[2] = diffZ * P1[2] + minZ;
-    sample(data, size, tmp[0], tmp[1], tmp[2], C[1]);
-    tmp[0] = diffX * P2[0] + minX;
-    tmp[1] = diffY * P2[1] + minY;
-    tmp[2] = diffZ * P2[2] + minZ;
-    sample(data, size, tmp[0], tmp[1], tmp[2], C[2]);
-    tmp[0] = diffX * P3[0] + minX;
-    tmp[1] = diffY * P3[1] + minY;
-    tmp[2] = diffZ * P3[2] + minZ;
-    sample(data, size, tmp[0], tmp[1], tmp[2], C[3]);
-    const V0 = calculateTetrahedronVolume(P1, P2, P3, coords) * 6;
-    const V1 = calculateTetrahedronVolume(P0, P2, P3, coords) * 6;
-    const V2 = calculateTetrahedronVolume(P0, P1, P3, coords) * 6;
-    const V3 = calculateTetrahedronVolume(P0, P1, P2, coords) * 6;
-    C[0][0] *= V0;
-    C[0][1] *= V0;
-    C[0][2] *= V0;
-    C[1][0] *= V1;
-    C[1][1] *= V1;
-    C[1][2] *= V1;
-    C[2][0] *= V2;
-    C[2][1] *= V2;
-    C[2][2] *= V2;
-    C[3][0] *= V3;
-    C[3][1] *= V3;
-    C[3][2] *= V3;
-    color2[0] = C[0][0] + C[1][0] + C[2][0] + C[3][0];
-    color2[1] = C[0][1] + C[1][1] + C[2][1] + C[3][1];
-    color2[2] = C[0][2] + C[1][2] + C[2][2] + C[3][2];
-  }
-}
-
-var TetrahedralUpscaler = class {
-  static expand(data, size) {
-    const originalSize = Math.cbrt(data.length / 3);
-    const rgb = new Float32Array(3);
-    const array = new data.constructor(size ** 3 * 3);
-    const s = 1 / (size - 1);
-
-    for (let z = 0; z < size; ++z) {
-      for (let y = 0; y < size; ++y) {
-        for (let x = 0; x < size; ++x) {
-          const u = x * s;
-          const v3 = y * s;
-          const w = z * s;
-          const i3 = Math.round(x + y * size + z * size * size) * 3;
-          tetrahedralSample(data, originalSize, u, v3, w, rgb);
-          array[i3 + 0] = rgb[0];
-          array[i3 + 1] = rgb[1];
-          array[i3 + 2] = rgb[2];
-        }
-      }
-    }
-
-    return array;
-  }
-
-}; // src/images/RawImageData.js
-
-exports.TetrahedralUpscaler = TetrahedralUpscaler;
-
-function createCanvas(width, height, data) {
-  const canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
-  const context = canvas.getContext("2d");
-  canvas.width = width;
-  canvas.height = height;
-
-  if (data instanceof Image) {
-    context.drawImage(data, 0, 0);
-  } else {
-    const imageData = context.createImageData(width, height);
-    imageData.data.set(data);
-    context.putImageData(imageData, 0, 0);
-  }
-
-  return canvas;
-}
-
-var RawImageData = class {
-  constructor(width = 0, height = 0, data = null) {
-    this.width = width;
-    this.height = height;
-    this.data = data;
-  }
-
-  toCanvas() {
-    return typeof document === "undefined" ? null : createCanvas(this.width, this.height, this.data);
-  }
-
-  static from(image) {
-    let {
-      width,
-      height
-    } = image;
-    let data;
-
-    if (image instanceof Image) {
-      const canvas = createCanvas(width, height, image);
-
-      if (canvas !== null) {
-        const context = canvas.getContext("2d");
-        data = context.getImageData(0, 0, width, height).data;
-      }
-    } else {
-      data = image.data;
-    }
-
-    return new RawImageData(width, height, data);
-  }
-
-}; // src/images/smaa/SMAAAreaImageData.js
-
-exports.RawImageData = RawImageData;
-var Vector222 = class {
-  constructor(x = 0, y = 0) {
-    this.x = x;
-    this.y = y;
-  }
-
-  set(x, y) {
-    this.x = x;
-    this.y = y;
-    return this;
-  }
-
-  equals(v3) {
-    return this === v3 || this.x === v3.x && this.y === v3.y;
-  }
-
-};
-var Box2 = class {
-  constructor() {
-    this.min = new Vector222();
-    this.max = new Vector222();
-  }
-
-};
-var b0 = new Box2();
-var b1 = new Box2();
-var ORTHOGONAL_SIZE = 16;
-var DIAGONAL_SIZE = 20;
-var DIAGONAL_SAMPLES = 30;
-var SMOOTH_MAX_DISTANCE = 32;
-var orthogonalSubsamplingOffsets = new Float32Array([0, -0.25, 0.25, -0.125, 0.125, -0.375, 0.375]);
-var diagonalSubsamplingOffsets = [new Float32Array([0, 0]), new Float32Array([0.25, -0.25]), new Float32Array([-0.25, 0.25]), new Float32Array([0.125, -0.125]), new Float32Array([-0.125, 0.125])];
-var orthogonalEdges = [new Uint8Array([0, 0]), new Uint8Array([3, 0]), new Uint8Array([0, 3]), new Uint8Array([3, 3]), new Uint8Array([1, 0]), new Uint8Array([4, 0]), new Uint8Array([1, 3]), new Uint8Array([4, 3]), new Uint8Array([0, 1]), new Uint8Array([3, 1]), new Uint8Array([0, 4]), new Uint8Array([3, 4]), new Uint8Array([1, 1]), new Uint8Array([4, 1]), new Uint8Array([1, 4]), new Uint8Array([4, 4])];
-var diagonalEdges = [new Uint8Array([0, 0]), new Uint8Array([1, 0]), new Uint8Array([0, 2]), new Uint8Array([1, 2]), new Uint8Array([2, 0]), new Uint8Array([3, 0]), new Uint8Array([2, 2]), new Uint8Array([3, 2]), new Uint8Array([0, 1]), new Uint8Array([1, 1]), new Uint8Array([0, 3]), new Uint8Array([1, 3]), new Uint8Array([2, 1]), new Uint8Array([3, 1]), new Uint8Array([2, 3]), new Uint8Array([3, 3])];
-
-function lerp(a, b, p) {
-  return a + (b - a) * p;
-}
-
-function saturate(a) {
-  return Math.min(Math.max(a, 0), 1);
-}
-
-function smoothArea(d, b) {
-  const a1 = b.min;
-  const a2 = b.max;
-  const b1X = Math.sqrt(a1.x * 2) * 0.5;
-  const b1Y = Math.sqrt(a1.y * 2) * 0.5;
-  const b2X = Math.sqrt(a2.x * 2) * 0.5;
-  const b2Y = Math.sqrt(a2.y * 2) * 0.5;
-  const p = saturate(d / SMOOTH_MAX_DISTANCE);
-  a1.set(lerp(b1X, a1.x, p), lerp(b1Y, a1.y, p));
-  a2.set(lerp(b2X, a2.x, p), lerp(b2Y, a2.y, p));
-  return b;
-}
-
-function calculateOrthogonalArea(p1, p2, x, result) {
-  const dX = p2.x - p1.x;
-  const dY = p2.y - p1.y;
-  const x1 = x;
-  const x2 = x + 1;
-  const y1 = p1.y + dY * (x1 - p1.x) / dX;
-  const y2 = p1.y + dY * (x2 - p1.x) / dX;
-  let a, a1, a2, t;
-
-  if (x1 >= p1.x && x1 < p2.x || x2 > p1.x && x2 <= p2.x) {
-    if (Math.sign(y1) === Math.sign(y2) || Math.abs(y1) < 1e-4 || Math.abs(y2) < 1e-4) {
-      a = (y1 + y2) / 2;
-
-      if (a < 0) {
-        result.set(Math.abs(a), 0);
-      } else {
-        result.set(0, Math.abs(a));
-      }
-    } else {
-      t = -p1.y * dX / dY + p1.x;
-      a1 = t > p1.x ? y1 * (t - Math.trunc(t)) / 2 : 0;
-      a2 = t < p2.x ? y2 * (1 - (t - Math.trunc(t))) / 2 : 0;
-      a = Math.abs(a1) > Math.abs(a2) ? a1 : -a2;
-
-      if (a < 0) {
-        result.set(Math.abs(a1), Math.abs(a2));
-      } else {
-        result.set(Math.abs(a2), Math.abs(a1));
-      }
-    }
-  } else {
-    result.set(0, 0);
-  }
-
-  return result;
-}
-
-function calculateOrthogonalAreaForPattern(pattern, left, right, offset, result) {
-  const p1 = b0.min;
-  const p2 = b0.max;
-  const a1 = b1.min;
-  const a2 = b1.max;
-  const a = b1;
-  const o1 = 0.5 + offset;
-  const o2 = 0.5 + offset - 1;
-  const d = left + right + 1;
-
-  switch (pattern) {
-    case 0:
-      {
-        result.set(0, 0);
-        break;
-      }
-
-    case 1:
-      {
-        if (left <= right) {
-          calculateOrthogonalArea(p1.set(0, o2), p2.set(d / 2, 0), left, result);
-        } else {
-          result.set(0, 0);
-        }
-
-        break;
-      }
-
-    case 2:
-      {
-        if (left >= right) {
-          calculateOrthogonalArea(p1.set(d / 2, 0), p2.set(d, o2), left, result);
-        } else {
-          result.set(0, 0);
-        }
-
-        break;
-      }
-
-    case 3:
-      {
-        calculateOrthogonalArea(p1.set(0, o2), p2.set(d / 2, 0), left, a1);
-        calculateOrthogonalArea(p1.set(d / 2, 0), p2.set(d, o2), left, a2);
-        smoothArea(d, a);
-        result.set(a1.x + a2.x, a1.y + a2.y);
-        break;
-      }
-
-    case 4:
-      {
-        if (left <= right) {
-          calculateOrthogonalArea(p1.set(0, o1), p2.set(d / 2, 0), left, result);
-        } else {
-          result.set(0, 0);
-        }
-
-        break;
-      }
-
-    case 5:
-      {
-        result.set(0, 0);
-        break;
-      }
-
-    case 6:
-      {
-        if (Math.abs(offset) > 0) {
-          calculateOrthogonalArea(p1.set(0, o1), p2.set(d, o2), left, a1);
-          calculateOrthogonalArea(p1.set(0, o1), p2.set(d / 2, 0), left, a2);
-          calculateOrthogonalArea(p1.set(d / 2, 0), p2.set(d, o2), left, result);
-          a2.set(a2.x + result.x, a2.y + result.y);
-          result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        } else {
-          calculateOrthogonalArea(p1.set(0, o1), p2.set(d, o2), left, result);
-        }
-
-        break;
-      }
-
-    case 7:
-      {
-        calculateOrthogonalArea(p1.set(0, o1), p2.set(d, o2), left, result);
-        break;
-      }
-
-    case 8:
-      {
-        if (left >= right) {
-          calculateOrthogonalArea(p1.set(d / 2, 0), p2.set(d, o1), left, result);
-        } else {
-          result.set(0, 0);
-        }
-
-        break;
-      }
-
-    case 9:
-      {
-        if (Math.abs(offset) > 0) {
-          calculateOrthogonalArea(p1.set(0, o2), p2.set(d, o1), left, a1);
-          calculateOrthogonalArea(p1.set(0, o2), p2.set(d / 2, 0), left, a2);
-          calculateOrthogonalArea(p1.set(d / 2, 0), p2.set(d, o1), left, result);
-          a2.set(a2.x + result.x, a2.y + result.y);
-          result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        } else {
-          calculateOrthogonalArea(p1.set(0, o2), p2.set(d, o1), left, result);
-        }
-
-        break;
-      }
-
-    case 10:
-      {
-        result.set(0, 0);
-        break;
-      }
-
-    case 11:
-      {
-        calculateOrthogonalArea(p1.set(0, o2), p2.set(d, o1), left, result);
-        break;
-      }
-
-    case 12:
-      {
-        calculateOrthogonalArea(p1.set(0, o1), p2.set(d / 2, 0), left, a1);
-        calculateOrthogonalArea(p1.set(d / 2, 0), p2.set(d, o1), left, a2);
-        smoothArea(d, a);
-        result.set(a1.x + a2.x, a1.y + a2.y);
-        break;
-      }
-
-    case 13:
-      {
-        calculateOrthogonalArea(p1.set(0, o2), p2.set(d, o1), left, result);
-        break;
-      }
-
-    case 14:
-      {
-        calculateOrthogonalArea(p1.set(0, o1), p2.set(d, o2), left, result);
-        break;
-      }
-
-    case 15:
-      {
-        result.set(0, 0);
-        break;
-      }
-  }
-
-  return result;
-}
-
-function isInsideArea(p1, p2, x, y) {
-  let result = p1.equals(p2);
-
-  if (!result) {
-    let xm = (p1.x + p2.x) / 2;
-    let ym = (p1.y + p2.y) / 2;
-    let a = p2.y - p1.y;
-    let b = p1.x - p2.x;
-    let c2 = a * (x - xm) + b * (y - ym);
-    result = c2 > 0;
-  }
-
-  return result;
-}
-
-function calculateDiagonalAreaForPixel(p1, p2, pX, pY) {
-  let a;
-  let x, y;
-  let offsetX, offsetY;
-
-  for (a = 0, y = 0; y < DIAGONAL_SAMPLES; ++y) {
-    for (x = 0; x < DIAGONAL_SAMPLES; ++x) {
-      offsetX = x / (DIAGONAL_SAMPLES - 1);
-      offsetY = y / (DIAGONAL_SAMPLES - 1);
-
-      if (isInsideArea(p1, p2, pX + offsetX, pY + offsetY)) {
-        ++a;
-      }
-    }
-  }
-
-  return a / (DIAGONAL_SAMPLES * DIAGONAL_SAMPLES);
-}
-
-function calculateDiagonalArea(pattern, p1, p2, left, offset, result) {
-  const e = diagonalEdges[pattern];
-  const e1 = e[0];
-  const e2 = e[1];
-
-  if (e1 > 0) {
-    p1.x += offset[0];
-    p1.y += offset[1];
-  }
-
-  if (e2 > 0) {
-    p2.x += offset[0];
-    p2.y += offset[1];
-  }
-
-  return result.set(1 - calculateDiagonalAreaForPixel(p1, p2, 1 + left, 0 + left), calculateDiagonalAreaForPixel(p1, p2, 1 + left, 1 + left));
-}
-
-function calculateDiagonalAreaForPattern(pattern, left, right, offset, result) {
-  const p1 = b0.min;
-  const p2 = b0.max;
-  const a1 = b1.min;
-  const a2 = b1.max;
-  const d = left + right + 1;
-
-  switch (pattern) {
-    case 0:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 1 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 1:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(0 + d, 0 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 2:
-      {
-        calculateDiagonalArea(pattern, p1.set(0, 0), p2.set(1 + d, 0 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 3:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, result);
-        break;
-      }
-
-    case 4:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(0 + d, 0 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 5:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(0 + d, 0 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 6:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 0 + d), left, offset, result);
-        break;
-      }
-
-    case 7:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 0 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 8:
-      {
-        calculateDiagonalArea(pattern, p1.set(0, 0), p2.set(1 + d, 1 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 1 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 9:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 1 + d), left, offset, result);
-        break;
-      }
-
-    case 10:
-      {
-        calculateDiagonalArea(pattern, p1.set(0, 0), p2.set(1 + d, 1 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 11:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 1 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 12:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 1 + d), left, offset, result);
-        break;
-      }
-
-    case 13:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 1 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 1 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 14:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 1 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-
-    case 15:
-      {
-        calculateDiagonalArea(pattern, p1.set(1, 1), p2.set(1 + d, 1 + d), left, offset, a1);
-        calculateDiagonalArea(pattern, p1.set(1, 0), p2.set(1 + d, 0 + d), left, offset, a2);
-        result.set((a1.x + a2.x) / 2, (a1.y + a2.y) / 2);
-        break;
-      }
-  }
-
-  return result;
-}
-
-function generatePatterns(patterns, offset, orthogonal) {
-  const result = new Vector222();
-  let i, l;
-  let x, y;
-  let c2;
-  let pattern;
-  let data, size;
-
-  for (i = 0, l = patterns.length; i < l; ++i) {
-    pattern = patterns[i];
-    data = pattern.data;
-    size = pattern.width;
-
-    for (y = 0; y < size; ++y) {
-      for (x = 0; x < size; ++x) {
-        if (orthogonal) {
-          calculateOrthogonalAreaForPattern(i, x, y, offset, result);
-        } else {
-          calculateDiagonalAreaForPattern(i, x, y, offset, result);
-        }
-
-        c2 = (y * size + x) * 2;
-        data[c2] = result.x * 255;
-        data[c2 + 1] = result.y * 255;
-      }
-    }
-  }
-}
-
-function assemble(base, patterns, edges2, size, orthogonal, target) {
-  const p = new Vector222();
-  const dstData = target.data;
-  const dstWidth = target.width;
-  let i, l;
-  let x, y;
-  let c2, d;
-  let edge;
-  let pattern;
-  let srcData, srcWidth;
-
-  for (i = 0, l = patterns.length; i < l; ++i) {
-    edge = edges2[i];
-    pattern = patterns[i];
-    srcData = pattern.data;
-    srcWidth = pattern.width;
-
-    for (y = 0; y < size; ++y) {
-      for (x = 0; x < size; ++x) {
-        p.set(edge[0] * size + base.x + x, edge[1] * size + base.y + y);
-        c2 = (p.y * dstWidth + p.x) * 4;
-        d = orthogonal ? (y * y * srcWidth + x * x) * 2 : (y * srcWidth + x) * 2;
-        dstData[c2] = srcData[d];
-        dstData[c2 + 1] = srcData[d + 1];
-        dstData[c2 + 2] = 0;
-        dstData[c2 + 3] = 255;
-      }
-    }
-  }
-}
-
-var SMAAAreaImageData = class {
-  static generate() {
-    const width = 2 * 5 * ORTHOGONAL_SIZE;
-    const height = orthogonalSubsamplingOffsets.length * 5 * ORTHOGONAL_SIZE;
-    const data = new Uint8ClampedArray(width * height * 4);
-    const result = new RawImageData(width, height, data);
-    const orthogonalPatternSize = Math.pow(ORTHOGONAL_SIZE - 1, 2) + 1;
-    const diagonalPatternSize = DIAGONAL_SIZE;
-    const orthogonalPatterns = [];
-    const diagonalPatterns = [];
-    const base = new Vector222();
-    let i, l;
-
-    for (i = 0; i < 16; ++i) {
-      orthogonalPatterns.push(new RawImageData(orthogonalPatternSize, orthogonalPatternSize, new Uint8ClampedArray(orthogonalPatternSize * orthogonalPatternSize * 2), 2));
-      diagonalPatterns.push(new RawImageData(diagonalPatternSize, diagonalPatternSize, new Uint8ClampedArray(diagonalPatternSize * diagonalPatternSize * 2), 2));
-    }
-
-    for (i = 0, l = orthogonalSubsamplingOffsets.length; i < l; ++i) {
-      generatePatterns(orthogonalPatterns, orthogonalSubsamplingOffsets[i], true);
-      base.set(0, 5 * ORTHOGONAL_SIZE * i);
-      assemble(base, orthogonalPatterns, orthogonalEdges, ORTHOGONAL_SIZE, true, result);
-    }
-
-    for (i = 0, l = diagonalSubsamplingOffsets.length; i < l; ++i) {
-      generatePatterns(diagonalPatterns, diagonalSubsamplingOffsets[i], false);
-      base.set(5 * ORTHOGONAL_SIZE, 4 * DIAGONAL_SIZE * i);
-      assemble(base, diagonalPatterns, diagonalEdges, DIAGONAL_SIZE, false, result);
-    }
-
-    return result;
-  }
-
-}; // src/images/smaa/SMAASearchImageData.js
-
-exports.SMAAAreaImageData = SMAAAreaImageData;
-var edges = new Map([[bilinear([0, 0, 0, 0]), [0, 0, 0, 0]], [bilinear([0, 0, 0, 1]), [0, 0, 0, 1]], [bilinear([0, 0, 1, 0]), [0, 0, 1, 0]], [bilinear([0, 0, 1, 1]), [0, 0, 1, 1]], [bilinear([0, 1, 0, 0]), [0, 1, 0, 0]], [bilinear([0, 1, 0, 1]), [0, 1, 0, 1]], [bilinear([0, 1, 1, 0]), [0, 1, 1, 0]], [bilinear([0, 1, 1, 1]), [0, 1, 1, 1]], [bilinear([1, 0, 0, 0]), [1, 0, 0, 0]], [bilinear([1, 0, 0, 1]), [1, 0, 0, 1]], [bilinear([1, 0, 1, 0]), [1, 0, 1, 0]], [bilinear([1, 0, 1, 1]), [1, 0, 1, 1]], [bilinear([1, 1, 0, 0]), [1, 1, 0, 0]], [bilinear([1, 1, 0, 1]), [1, 1, 0, 1]], [bilinear([1, 1, 1, 0]), [1, 1, 1, 0]], [bilinear([1, 1, 1, 1]), [1, 1, 1, 1]]]);
-
-function lerp2(a, b, p) {
-  return a + (b - a) * p;
-}
-
-function bilinear(e) {
-  const a = lerp2(e[0], e[1], 1 - 0.25);
-  const b = lerp2(e[2], e[3], 1 - 0.25);
-  return lerp2(a, b, 1 - 0.125);
-}
-
-function deltaLeft(left, top) {
-  let d = 0;
-
-  if (top[3] === 1) {
-    d += 1;
-  }
-
-  if (d === 1 && top[2] === 1 && left[1] !== 1 && left[3] !== 1) {
-    d += 1;
-  }
-
-  return d;
-}
-
-function deltaRight(left, top) {
-  let d = 0;
-
-  if (top[3] === 1 && left[1] !== 1 && left[3] !== 1) {
-    d += 1;
-  }
-
-  if (d === 1 && top[2] === 1 && left[0] !== 1 && left[2] !== 1) {
-    d += 1;
-  }
-
-  return d;
-}
-
-var SMAASearchImageData = class {
-  static generate() {
-    const width = 66;
-    const height = 33;
-    const halfWidth = width / 2;
-    const croppedWidth = 64;
-    const croppedHeight = 16;
-    const data = new Uint8ClampedArray(width * height);
-    const croppedData = new Uint8ClampedArray(croppedWidth * croppedHeight * 4);
-    let x, y;
-    let s, t, i;
-    let e1, e2;
-
-    for (y = 0; y < height; ++y) {
-      for (x = 0; x < width; ++x) {
-        s = 0.03125 * x;
-        t = 0.03125 * y;
-
-        if (edges.has(s) && edges.has(t)) {
-          e1 = edges.get(s);
-          e2 = edges.get(t);
-          i = y * width + x;
-          data[i] = 127 * deltaLeft(e1, e2);
-          data[i + halfWidth] = 127 * deltaRight(e1, e2);
-        }
-      }
-    }
-
-    for (i = 0, y = height - croppedHeight; y < height; ++y) {
-      for (x = 0; x < croppedWidth; ++x, i += 4) {
-        croppedData[i] = data[y * width + x];
-        croppedData[i + 3] = 255;
-      }
-    }
-
-    return new RawImageData(croppedWidth, croppedHeight, croppedData);
-  }
-
-}; // src/images/textures/LookupTexture3D.js
-
-exports.SMAASearchImageData = SMAASearchImageData;
-// tmp/lut.worker
-var lut_default = '(()=>{var E={SCALE_UP:"lut.scaleup"},O=[new Float32Array(3),new Float32Array(3)],n=[new Float32Array(3),new Float32Array(3),new Float32Array(3),new Float32Array(3)],P=[[new Float32Array([0,0,0]),new Float32Array([1,0,0]),new Float32Array([1,1,0]),new Float32Array([1,1,1])],[new Float32Array([0,0,0]),new Float32Array([1,0,0]),new Float32Array([1,0,1]),new Float32Array([1,1,1])],[new Float32Array([0,0,0]),new Float32Array([0,0,1]),new Float32Array([1,0,1]),new Float32Array([1,1,1])],[new Float32Array([0,0,0]),new Float32Array([0,1,0]),new Float32Array([1,1,0]),new Float32Array([1,1,1])],[new Float32Array([0,0,0]),new Float32Array([0,1,0]),new Float32Array([0,1,1]),new Float32Array([1,1,1])],[new Float32Array([0,0,0]),new Float32Array([0,0,1]),new Float32Array([0,1,1]),new Float32Array([1,1,1])]];function Z(e,o,t,s){let a=t[0]-o[0],c=t[1]-o[1],l=t[2]-o[2],A=e[0]-o[0],F=e[1]-o[1],y=e[2]-o[2],f=c*y-l*F,w=l*A-a*y,d=a*F-c*A,i=Math.sqrt(f*f+w*w+d*d),b=i*.5,h=f/i,p=w/i,m=d/i,M=-(e[0]*h+e[1]*p+e[2]*m),g=s[0]*h+s[1]*p+s[2]*m;return Math.abs(g+M)*b/3}function T(e,o,t,s,a,c){let l=(t+s*o+a*o*o)*3;c[0]=e[l+0],c[1]=e[l+1],c[2]=e[l+2]}function q(e,o,t,s,a,c){let l=t*(o-1),A=s*(o-1),F=a*(o-1),y=Math.floor(l),f=Math.floor(A),w=Math.floor(F),d=Math.ceil(l),i=Math.ceil(A),b=Math.ceil(F);if(y===l&&f===A&&w===F)T(e,o,l,A,F,c);else{let h;t>=s&&s>=a?h=P[0]:t>=a&&a>=s?h=P[1]:a>=t&&t>=s?h=P[2]:s>=t&&t>=a?h=P[3]:s>=a&&a>=t?h=P[4]:a>=s&&s>=t&&(h=P[5]);let[p,m,M,g]=h,x=O[0];x[0]=t,x[1]=s,x[2]=a;let r=O[1],U=d-y,X=i-f,Y=b-w;r[0]=U*p[0]+y,r[1]=X*p[1]+f,r[2]=Y*p[2]+w,T(e,o,r[0],r[1],r[2],n[0]),r[0]=U*m[0]+y,r[1]=X*m[1]+f,r[2]=Y*m[2]+w,T(e,o,r[0],r[1],r[2],n[1]),r[0]=U*M[0]+y,r[1]=X*M[1]+f,r[2]=Y*M[2]+w,T(e,o,r[0],r[1],r[2],n[2]),r[0]=U*g[0]+y,r[1]=X*g[1]+f,r[2]=Y*g[2]+w,T(e,o,r[0],r[1],r[2],n[3]);let L=Z(m,M,g,x)*6,u=Z(p,M,g,x)*6,V=Z(p,m,g,x)*6,S=Z(p,m,M,x)*6;n[0][0]*=L,n[0][1]*=L,n[0][2]*=L,n[1][0]*=u,n[1][1]*=u,n[1][2]*=u,n[2][0]*=V,n[2][1]*=V,n[2][2]*=V,n[3][0]*=S,n[3][1]*=S,n[3][2]*=S,c[0]=n[0][0]+n[1][0]+n[2][0]+n[3][0],c[1]=n[0][1]+n[1][1]+n[2][1]+n[3][1],c[2]=n[0][2]+n[1][2]+n[2][2]+n[3][2]}}var C=class{static expand(o,t){let s=Math.cbrt(o.length/3),a=new Float32Array(3),c=new o.constructor(t**3*3),l=1/(t-1);for(let A=0;A<t;++A)for(let F=0;F<t;++F)for(let y=0;y<t;++y){let f=y*l,w=F*l,d=A*l,i=Math.round(y+F*t+A*t*t)*3;q(o,s,f,w,d,a),c[i+0]=a[0],c[i+1]=a[1],c[i+2]=a[2]}return c}};self.addEventListener("message",e=>{let o=e.data,t=o.data;switch(o.operation){case E.SCALE_UP:t=C.expand(t,o.size);break}postMessage(t,[t.buffer]),close()});})();\n'; // src/images/textures/LookupTexture3D.js
-
-var c = new _three.Color();
-var LookupTexture3D = class extends _three.DataTexture3D {
-  constructor(data, size) {
-    super(data, size, size, size);
-    this.type = _three.FloatType;
-    this.format = _three.RGBFormat;
-    this.encoding = _three.LinearEncoding;
-    this.magFilter = _three.LinearFilter;
-    this.wrapS = _three.ClampToEdgeWrapping;
-    this.wrapT = _three.ClampToEdgeWrapping;
-    this.wrapR = _three.ClampToEdgeWrapping;
-    this.unpackAlignment = 1;
-  }
-
-  get isLookupTexture3D() {
-    return true;
-  }
-
-  scaleUp(size, transferData = true) {
-    const image = this.image;
-    let promise;
-
-    if (size <= image.width) {
-      promise = Promise.reject(new Error("The target size must be larger than the current size"));
-    } else if (size > image.width) {
-      const workerURL = URL.createObjectURL(new Blob([lut_default], {
-        type: "text/javascript"
-      }));
-      const worker = new Worker(workerURL);
-      promise = new Promise((resolve, reject) => {
-        worker.addEventListener("error", event => reject(event.error));
-        worker.addEventListener("message", event => {
-          const lut = new LookupTexture3D(event.data, size);
-          lut.encoding = this.encoding;
-          lut.type = this.type;
-          lut.name = this.name;
-          URL.revokeObjectURL(workerURL);
-          resolve(lut);
-        });
-        const transferList = transferData ? [image.data.buffer] : [];
-        worker.postMessage({
-          operation: LUTOperation.SCALE_UP,
-          data: image.data,
-          size
-        }, transferList);
-      });
-    }
-
-    return promise;
-  }
-
-  applyLUT(lut) {
-    const img0 = this.image;
-    const img1 = lut.image;
-    const size0 = Math.min(img0.width, img0.height, img0.depth);
-    const size1 = Math.min(img1.width, img1.height, img1.depth);
-
-    if (size0 !== size1) {
-      console.error("Size mismatch");
-    } else if (lut.type !== _three.FloatType || this.type !== _three.FloatType) {
-      console.error("Both LUTs must be FloatType textures");
-    } else {
-      const data0 = img0.data;
-      const data1 = img1.data;
-      const size = size0;
-      const s = size - 1;
-
-      for (let i = 0, l = size ** 3; i < l; ++i) {
-        const i3 = i * 3;
-        const r = data0[i3 + 0] * s;
-        const g = data0[i3 + 1] * s;
-        const b = data0[i3 + 2] * s;
-        const iRGB = Math.round(r + g * size + b * size * size) * 3;
-        data0[i3 + 0] = data1[iRGB + 0];
-        data0[i3 + 1] = data1[iRGB + 1];
-        data0[i3 + 2] = data1[iRGB + 2];
-      }
-    }
-  }
-
-  convertToUint8() {
-    if (this.type === _three.FloatType) {
-      const floatData = this.image.data;
-      const uint8Data = new Uint8ClampedArray(floatData.length);
-
-      for (let i = 0, l = floatData.length; i < l; ++i) {
-        uint8Data[i] = floatData[i] * 255;
-      }
-
-      this.image.data = uint8Data;
-      this.type = _three.UnsignedByteType;
-    }
-
-    return this;
-  }
-
-  convertToFloat() {
-    if (this.type === _three.UnsignedByteType) {
-      const uint8Data = this.image.data;
-      const floatData = new Float32Array(uint8Data.length);
-
-      for (let i = 0, l = uint8Data.length; i < l; ++i) {
-        floatData[i] = uint8Data[i] / 255;
-      }
-
-      this.image.data = floatData;
-      this.type = _three.FloatType;
-    }
-
-    return this;
-  }
-
-  convertLinearToSRGB() {
-    const data = this.image.data;
-
-    if (this.type === _three.FloatType) {
-      for (let i = 0, l = data.length; i < l; i += 3) {
-        c.fromArray(data, i).convertLinearToSRGB().toArray(data, i);
-      }
-
-      this.encoding = _three.sRGBEncoding;
-    } else {
-      console.error("Color space conversion requires FloatType data");
-    }
-
-    return this;
-  }
-
-  convertSRGBToLinear() {
-    const data = this.image.data;
-
-    if (this.type === _three.FloatType) {
-      for (let i = 0, l = data.length; i < l; i += 3) {
-        c.fromArray(data, i).convertSRGBToLinear().toArray(data, i);
-      }
-
-      this.encoding = _three.LinearEncoding;
-    } else {
-      console.error("Color space conversion requires FloatType data");
-    }
-
-    return this;
-  }
-
-  toDataTexture() {
-    const width = this.image.width;
-    const height = this.image.height * this.image.depth;
-    const texture = new _three.DataTexture(this.image.data, width, height);
-    texture.type = this.type;
-    texture.format = this.format;
-    texture.encoding = this.encoding;
-    texture.magFilter = this.magFilter;
-    texture.wrapS = this.wrapS;
-    texture.wrapT = this.wrapT;
-    texture.generateMipmaps = false;
-    return texture;
-  }
-
-  static from(texture) {
-    const image = texture.image;
-    const {
-      width,
-      height
-    } = image;
-    const size = Math.min(width, height);
-    let data;
-
-    if (image instanceof Image) {
-      const rawImageData = RawImageData.from(image);
-      data = rawImageData.data;
-      const rearrangedData = new Uint8Array(size ** 3 * 3);
-
-      if (width > height) {
-        for (let z = 0; z < size; ++z) {
-          for (let y = 0; y < size; ++y) {
-            for (let x = 0; x < size; ++x) {
-              const i4 = (x + z * size + y * size * size) * 4;
-              const i3 = (x + y * size + z * size * size) * 3;
-              rearrangedData[i3 + 0] = data[i4 + 0];
-              rearrangedData[i3 + 1] = data[i4 + 1];
-              rearrangedData[i3 + 2] = data[i4 + 2];
-            }
-          }
-        }
-      } else {
-        for (let i = 0, l = size ** 3; i < l; ++i) {
-          const i4 = i * 4;
-          const i3 = i * 3;
-          rearrangedData[i3 + 0] = data[i4 + 0];
-          rearrangedData[i3 + 1] = data[i4 + 1];
-          rearrangedData[i3 + 2] = data[i4 + 2];
-        }
-      }
-
-      data = rearrangedData;
-    } else {
-      data = image.data.slice();
-    }
-
-    const lut = new LookupTexture3D(data, size);
-    lut.type = texture.type;
-    lut.encoding = texture.encoding;
-    lut.name = texture.name;
-    return lut;
-  }
-
-  static createNeutral(size) {
-    const data = new Float32Array(size ** 3 * 3);
-    const s = 1 / (size - 1);
-
-    for (let r = 0; r < size; ++r) {
-      for (let g = 0; g < size; ++g) {
-        for (let b = 0; b < size; ++b) {
-          const i3 = (r + g * size + b * size * size) * 3;
-          data[i3 + 0] = r * s;
-          data[i3 + 1] = g * s;
-          data[i3 + 2] = b * s;
-        }
-      }
-    }
-
-    const lut = new LookupTexture3D(data, size);
-    lut.name = "neutral";
-    return lut;
-  }
-
-}; // src/loaders/LUT3dlLoader.js
-
-exports.LookupTexture3D = LookupTexture3D;
-var LUT3dlLoader = class extends _three.Loader {
-  load(url, onLoad = () => {}, onProgress = () => {}, onError = () => {}) {
-    const externalManager = this.manager;
-    const internalManager = new _three.LoadingManager();
-    const loader = new _three.FileLoader(internalManager);
-    loader.setPath(this.path);
-    loader.setResponseType("text");
-    return new Promise((resolve, reject) => {
-      internalManager.onError = error => {
-        externalManager.itemError(url);
-        onError(error);
-        reject(error);
-      };
-
-      externalManager.itemStart(url);
-      loader.load(url, data => {
-        try {
-          const result = this.parse(data);
-          externalManager.itemEnd(url);
-          onLoad(result);
-          resolve(result);
-        } catch (error) {
-          internalManager.onError(error);
-        }
-      }, onProgress);
-    });
-  }
-
-  parse(input) {
-    const regExpGridInfo = /^[\d ]+$/m;
-    const regExpDataPoints = /^([\d.]+) +([\d.]+) +([\d.]+) *$/gm;
-    let result = regExpGridInfo.exec(input);
-
-    if (result === null) {
-      throw Error("Missing grid information");
-    }
-
-    const gridLines = result[0].trim().split(/\s+/g).map(n => Number(n));
-    const gridStep = gridLines[1] - gridLines[0];
-    const size = gridLines.length;
-
-    for (let i = 1, l = gridLines.length; i < l; ++i) {
-      if (gridStep !== gridLines[i] - gridLines[i - 1]) {
-        throw new Error("Inconsistent grid size");
-      }
-    }
-
-    const data = new Float32Array(size ** 3 * 3);
-    let maxValue = 0;
-    let index = 0;
-
-    while ((result = regExpDataPoints.exec(input)) !== null) {
-      const r = Number(result[1]);
-      const g = Number(result[2]);
-      const b = Number(result[3]);
-      maxValue = Math.max(maxValue, r, g, b);
-      const bLayer = index % size;
-      const gLayer = Math.floor(index / size) % size;
-      const rLayer = Math.floor(index / (size * size)) % size;
-      const d = bLayer * size * size + gLayer * size + rLayer;
-      data[3 * d + 0] = r;
-      data[3 * d + 1] = g;
-      data[3 * d + 2] = b;
-      ++index;
-    }
-
-    const bits = Math.ceil(Math.log2(maxValue));
-    const maxBitValue = Math.pow(2, bits);
-
-    for (let i = 0, l = data.length; i < l; ++i) {
-      data[i] /= maxBitValue;
-    }
-
-    const lut = new LookupTexture3D(data, size, size, size);
-    lut.encoding = _three.sRGBEncoding;
-    return lut;
-  }
-
-}; // src/loaders/LUTCubeLoader.js
-
-exports.LUT3dlLoader = LUT3dlLoader;
-var LUTCubeLoader = class extends _three.Loader {
-  load(url, onLoad = () => {}, onProgress = () => {}, onError = () => {}) {
-    const externalManager = this.manager;
-    const internalManager = new _three.LoadingManager();
-    const loader = new _three.FileLoader(internalManager);
-    loader.setPath(this.path);
-    loader.setResponseType("text");
-    return new Promise((resolve, reject) => {
-      internalManager.onError = error => {
-        externalManager.itemError(url);
-        onError(error);
-        reject(error);
-      };
-
-      externalManager.itemStart(url);
-      loader.load(url, data => {
-        try {
-          const result = this.parse(data);
-          externalManager.itemEnd(url);
-          onLoad(result);
-          resolve(result);
-        } catch (error) {
-          internalManager.onError(error);
-        }
-      }, onProgress);
-    });
-  }
-
-  parse(input) {
-    const regExpTitle = /TITLE +"([^"]*)"/;
-    const regExpSize = /LUT_3D_SIZE +(\d+)/;
-    const regExpDomainMin = /DOMAIN_MIN +([\d.]+) +([\d.]+) +([\d.]+)/;
-    const regExpDomainMax = /DOMAIN_MAX +([\d.]+) +([\d.]+) +([\d.]+)/;
-    const regExpDataPoints = /^([\d.]+) +([\d.]+) +([\d.]+) *$/gm;
-    let result = regExpTitle.exec(input);
-    const title = result !== null ? result[1] : null;
-    result = regExpSize.exec(input);
-
-    if (result === null) {
-      throw Error("Missing LUT_3D_SIZE information");
-    }
-
-    const size = Number(result[1]);
-    const data = new Float32Array(size ** 3 * 3);
-    const domainMin = new _three.Vector3(0, 0, 0);
-    const domainMax = new _three.Vector3(1, 1, 1);
-    result = regExpDomainMin.exec(input);
-
-    if (result !== null) {
-      domainMin.set(Number(result[1]), Number(result[2]), Number(result[3]));
-    }
-
-    result = regExpDomainMax.exec(input);
-
-    if (result !== null) {
-      domainMax.set(Number(result[1]), Number(result[2]), Number(result[3]));
-    }
-
-    if (domainMin.x !== 0 || domainMin.y !== 0 || domainMin.z !== 0 || domainMax.x !== 1 || domainMax.y !== 1 || domainMax.z !== 1) {
-      throw Error("Non-normalized input domain not supported");
-    }
-
-    let i = 0;
-
-    while ((result = regExpDataPoints.exec(input)) !== null) {
-      data[i++] = Number(result[1]);
-      data[i++] = Number(result[2]);
-      data[i++] = Number(result[3]);
-    }
-
-    const lut = new LookupTexture3D(data, size, size, size);
-    lut.encoding = _three.sRGBEncoding;
-
-    if (title !== null) {
-      lut.name = title;
-    }
-
-    return lut;
-  }
-
-}; // src/loaders/SMAAImageLoader.js
-
-exports.LUTCubeLoader = LUTCubeLoader;
-// tmp/smaa.worker
-var smaa_default = '(()=>{function X(s,a,y){let o=document.createElementNS("http://www.w3.org/1999/xhtml","canvas"),t=o.getContext("2d");if(o.width=s,o.height=a,y instanceof Image)t.drawImage(y,0,0);else{let r=t.createImageData(s,a);r.data.set(y),t.putImageData(r,0,0)}return o}var m=class{constructor(a=0,y=0,o=null){this.width=a,this.height=y,this.data=o}toCanvas(){return typeof document=="undefined"?null:X(this.width,this.height,this.data)}static from(a){let{width:y,height:o}=a,t;if(a instanceof Image){let r=X(y,o,a);r!==null&&(t=r.getContext("2d").getImageData(0,0,y,o).data)}else t=a.data;return new m(y,o,t)}},k=class{constructor(a=0,y=0){this.x=a,this.y=y}set(a,y){return this.x=a,this.y=y,this}equals(a){return this===a||this.x===a.x&&this.y===a.y}},E=class{constructor(){this.min=new k,this.max=new k}},u=new E,I=new E,M=16,q=20,D=30,Z=32,L=new Float32Array([0,-.25,.25,-.125,.125,-.375,.375]),_=[new Float32Array([0,0]),new Float32Array([.25,-.25]),new Float32Array([-.25,.25]),new Float32Array([.125,-.125]),new Float32Array([-.125,.125])],j=[new Uint8Array([0,0]),new Uint8Array([3,0]),new Uint8Array([0,3]),new Uint8Array([3,3]),new Uint8Array([1,0]),new Uint8Array([4,0]),new Uint8Array([1,3]),new Uint8Array([4,3]),new Uint8Array([0,1]),new Uint8Array([3,1]),new Uint8Array([0,4]),new Uint8Array([3,4]),new Uint8Array([1,1]),new Uint8Array([4,1]),new Uint8Array([1,4]),new Uint8Array([4,4])],W=[new Uint8Array([0,0]),new Uint8Array([1,0]),new Uint8Array([0,2]),new Uint8Array([1,2]),new Uint8Array([2,0]),new Uint8Array([3,0]),new Uint8Array([2,2]),new Uint8Array([3,2]),new Uint8Array([0,1]),new Uint8Array([1,1]),new Uint8Array([0,3]),new Uint8Array([1,3]),new Uint8Array([2,1]),new Uint8Array([3,1]),new Uint8Array([2,3]),new Uint8Array([3,3])];function S(s,a,y){return s+(a-s)*y}function z(s){return Math.min(Math.max(s,0),1)}function Y(s,a){let y=a.min,o=a.max,t=Math.sqrt(y.x*2)*.5,r=Math.sqrt(y.y*2)*.5,c=Math.sqrt(o.x*2)*.5,i=Math.sqrt(o.y*2)*.5,e=z(s/Z);return y.set(S(t,y.x,e),S(r,y.y,e)),o.set(S(c,o.x,e),S(i,o.y,e)),a}function d(s,a,y,o){let t=a.x-s.x,r=a.y-s.y,c=y,i=y+1,e=s.y+r*(c-s.x)/t,n=s.y+r*(i-s.x)/t,h,w,x,b;return c>=s.x&&c<a.x||i>s.x&&i<=a.x?Math.sign(e)===Math.sign(n)||Math.abs(e)<1e-4||Math.abs(n)<1e-4?(h=(e+n)/2,h<0?o.set(Math.abs(h),0):o.set(0,Math.abs(h))):(b=-s.y*t/r+s.x,w=b>s.x?e*(b-Math.trunc(b))/2:0,x=b<a.x?n*(1-(b-Math.trunc(b)))/2:0,h=Math.abs(w)>Math.abs(x)?w:-x,h<0?o.set(Math.abs(w),Math.abs(x)):o.set(Math.abs(x),Math.abs(w))):o.set(0,0),o}function B(s,a,y,o,t){let r=u.min,c=u.max,i=I.min,e=I.max,n=I,h=.5+o,w=.5+o-1,x=a+y+1;switch(s){case 0:{t.set(0,0);break}case 1:{a<=y?d(r.set(0,w),c.set(x/2,0),a,t):t.set(0,0);break}case 2:{a>=y?d(r.set(x/2,0),c.set(x,w),a,t):t.set(0,0);break}case 3:{d(r.set(0,w),c.set(x/2,0),a,i),d(r.set(x/2,0),c.set(x,w),a,e),Y(x,n),t.set(i.x+e.x,i.y+e.y);break}case 4:{a<=y?d(r.set(0,h),c.set(x/2,0),a,t):t.set(0,0);break}case 5:{t.set(0,0);break}case 6:{Math.abs(o)>0?(d(r.set(0,h),c.set(x,w),a,i),d(r.set(0,h),c.set(x/2,0),a,e),d(r.set(x/2,0),c.set(x,w),a,t),e.set(e.x+t.x,e.y+t.y),t.set((i.x+e.x)/2,(i.y+e.y)/2)):d(r.set(0,h),c.set(x,w),a,t);break}case 7:{d(r.set(0,h),c.set(x,w),a,t);break}case 8:{a>=y?d(r.set(x/2,0),c.set(x,h),a,t):t.set(0,0);break}case 9:{Math.abs(o)>0?(d(r.set(0,w),c.set(x,h),a,i),d(r.set(0,w),c.set(x/2,0),a,e),d(r.set(x/2,0),c.set(x,h),a,t),e.set(e.x+t.x,e.y+t.y),t.set((i.x+e.x)/2,(i.y+e.y)/2)):d(r.set(0,w),c.set(x,h),a,t);break}case 10:{t.set(0,0);break}case 11:{d(r.set(0,w),c.set(x,h),a,t);break}case 12:{d(r.set(0,h),c.set(x/2,0),a,i),d(r.set(x/2,0),c.set(x,h),a,e),Y(x,n),t.set(i.x+e.x,i.y+e.y);break}case 13:{d(r.set(0,w),c.set(x,h),a,t);break}case 14:{d(r.set(0,h),c.set(x,w),a,t);break}case 15:{t.set(0,0);break}}return t}function J(s,a,y,o){let t=s.equals(a);if(!t){let r=(s.x+a.x)/2,c=(s.y+a.y)/2,i=a.y-s.y,e=s.x-a.x;t=i*(y-r)+e*(o-c)>0}return t}function G(s,a,y,o){let t,r,c,i,e;for(t=0,c=0;c<D;++c)for(r=0;r<D;++r)i=r/(D-1),e=c/(D-1),J(s,a,y+i,o+e)&&++t;return t/(D*D)}function A(s,a,y,o,t,r){let c=W[s],i=c[0],e=c[1];return i>0&&(a.x+=t[0],a.y+=t[1]),e>0&&(y.x+=t[0],y.y+=t[1]),r.set(1-G(a,y,1+o,0+o),G(a,y,1+o,1+o))}function K(s,a,y,o,t){let r=u.min,c=u.max,i=I.min,e=I.max,n=a+y+1;switch(s){case 0:{A(s,r.set(1,1),c.set(1+n,1+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 1:{A(s,r.set(1,0),c.set(0+n,0+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 2:{A(s,r.set(0,0),c.set(1+n,0+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 3:{A(s,r.set(1,0),c.set(1+n,0+n),a,o,t);break}case 4:{A(s,r.set(1,1),c.set(0+n,0+n),a,o,i),A(s,r.set(1,1),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 5:{A(s,r.set(1,1),c.set(0+n,0+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 6:{A(s,r.set(1,1),c.set(1+n,0+n),a,o,t);break}case 7:{A(s,r.set(1,1),c.set(1+n,0+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 8:{A(s,r.set(0,0),c.set(1+n,1+n),a,o,i),A(s,r.set(1,0),c.set(1+n,1+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 9:{A(s,r.set(1,0),c.set(1+n,1+n),a,o,t);break}case 10:{A(s,r.set(0,0),c.set(1+n,1+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 11:{A(s,r.set(1,0),c.set(1+n,1+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 12:{A(s,r.set(1,1),c.set(1+n,1+n),a,o,t);break}case 13:{A(s,r.set(1,1),c.set(1+n,1+n),a,o,i),A(s,r.set(1,0),c.set(1+n,1+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 14:{A(s,r.set(1,1),c.set(1+n,1+n),a,o,i),A(s,r.set(1,1),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}case 15:{A(s,r.set(1,1),c.set(1+n,1+n),a,o,i),A(s,r.set(1,0),c.set(1+n,0+n),a,o,e),t.set((i.x+e.x)/2,(i.y+e.y)/2);break}}return t}function H(s,a,y){let o=new k,t,r,c,i,e,n,h,w;for(t=0,r=s.length;t<r;++t)for(n=s[t],h=n.data,w=n.width,i=0;i<w;++i)for(c=0;c<w;++c)y?B(t,c,i,a,o):K(t,c,i,a,o),e=(i*w+c)*2,h[e]=o.x*255,h[e+1]=o.y*255}function T(s,a,y,o,t,r){let c=new k,i=r.data,e=r.width,n,h,w,x,b,U,C,F,P,l;for(n=0,h=a.length;n<h;++n)for(C=y[n],F=a[n],P=F.data,l=F.width,x=0;x<o;++x)for(w=0;w<o;++w)c.set(C[0]*o+s.x+w,C[1]*o+s.y+x),b=(c.y*e+c.x)*4,U=t?(x*x*l+w*w)*2:(x*l+w)*2,i[b]=P[U],i[b+1]=P[U+1],i[b+2]=0,i[b+3]=255}var v=class{static generate(){let a=2*5*M,y=L.length*5*M,o=new Uint8ClampedArray(a*y*4),t=new m(a,y,o),r=Math.pow(M-1,2)+1,c=q,i=[],e=[],n=new k,h,w;for(h=0;h<16;++h)i.push(new m(r,r,new Uint8ClampedArray(r*r*2),2)),e.push(new m(c,c,new Uint8ClampedArray(c*c*2),2));for(h=0,w=L.length;h<w;++h)H(i,L[h],!0),n.set(0,5*M*h),T(n,i,j,M,!0,t);for(h=0,w=_.length;h<w;++h)H(e,_[h],!1),n.set(5*M,4*q*h),T(n,e,W,q,!1,t);return t}},O=new Map([[g([0,0,0,0]),[0,0,0,0]],[g([0,0,0,1]),[0,0,0,1]],[g([0,0,1,0]),[0,0,1,0]],[g([0,0,1,1]),[0,0,1,1]],[g([0,1,0,0]),[0,1,0,0]],[g([0,1,0,1]),[0,1,0,1]],[g([0,1,1,0]),[0,1,1,0]],[g([0,1,1,1]),[0,1,1,1]],[g([1,0,0,0]),[1,0,0,0]],[g([1,0,0,1]),[1,0,0,1]],[g([1,0,1,0]),[1,0,1,0]],[g([1,0,1,1]),[1,0,1,1]],[g([1,1,0,0]),[1,1,0,0]],[g([1,1,0,1]),[1,1,0,1]],[g([1,1,1,0]),[1,1,1,0]],[g([1,1,1,1]),[1,1,1,1]]]);function N(s,a,y){return s+(a-s)*y}function g(s){let a=N(s[0],s[1],1-.25),y=N(s[2],s[3],1-.25);return N(a,y,1-.125)}function Q(s,a){let y=0;return a[3]===1&&(y+=1),y===1&&a[2]===1&&s[1]!==1&&s[3]!==1&&(y+=1),y}function V(s,a){let y=0;return a[3]===1&&s[1]!==1&&s[3]!==1&&(y+=1),y===1&&a[2]===1&&s[0]!==1&&s[2]!==1&&(y+=1),y}var R=class{static generate(){let a=66,y=33,o=a/2,t=64,r=16,c=new Uint8ClampedArray(a*y),i=new Uint8ClampedArray(t*r*4),e,n,h,w,x,b,U;for(n=0;n<y;++n)for(e=0;e<a;++e)h=.03125*e,w=.03125*n,O.has(h)&&O.has(w)&&(b=O.get(h),U=O.get(w),x=n*a+e,c[x]=127*Q(b,U),c[x+o]=127*V(b,U));for(x=0,n=y-r;n<y;++n)for(e=0;e<t;++e,x+=4)i[x]=c[n*a+e],i[x+3]=255;return new m(t,r,i)}};self.addEventListener("message",s=>{let a=v.generate(),y=R.generate();postMessage({areaImageData:a,searchImageData:y},[a.data.buffer,y.data.buffer]),close()});})();\n'; // src/loaders/SMAAImageLoader.js
-
-function generate(disableCache = false) {
-  const workerURL = URL.createObjectURL(new Blob([smaa_default], {
-    type: "text/javascript"
-  }));
-  const worker = new Worker(workerURL);
-  return new Promise((resolve, reject) => {
-    worker.addEventListener("error", event => reject(event.error));
-    worker.addEventListener("message", event => {
-      const searchImageData = RawImageData.from(event.data.searchImageData);
-      const areaImageData = RawImageData.from(event.data.areaImageData);
-      const urls = [searchImageData.toCanvas().toDataURL(), areaImageData.toCanvas().toDataURL()];
-
-      if (!disableCache && window.localStorage !== void 0) {
-        localStorage.setItem("smaa-search", urls[0]);
-        localStorage.setItem("smaa-area", urls[1]);
-      }
-
-      URL.revokeObjectURL(workerURL);
-      resolve(urls);
-    });
-    worker.postMessage(null);
-  });
-}
-
-var SMAAImageLoader = class extends _three.Loader {
-  constructor(manager) {
-    super(manager);
-    this.disableCache = false;
-  }
-
-  load(onLoad = () => {}, onError = () => {}) {
-    if (arguments.length === 4) {
-      onLoad = arguments[1];
-      onError = arguments[3];
-    } else if (arguments.length === 3 || typeof arguments[0] !== "function") {
-      onLoad = arguments[1];
-
-      onError = () => {};
-    }
-
-    const externalManager = this.manager;
-    const internalManager = new _three.LoadingManager();
-    externalManager.itemStart("smaa-search");
-    externalManager.itemStart("smaa-area");
-    internalManager.itemStart("smaa-search");
-    internalManager.itemStart("smaa-area");
-    return new Promise((resolve, reject) => {
-      const cachedURLs = !this.disableCache && window.localStorage !== void 0 ? [localStorage.getItem("smaa-search"), localStorage.getItem("smaa-area")] : [null, null];
-      const promise = cachedURLs[0] !== null && cachedURLs[1] !== null ? Promise.resolve(cachedURLs) : generate(this.disableCache);
-      promise.then(urls => {
-        const result = [new Image(), new Image()];
-
-        internalManager.onLoad = () => {
-          onLoad(result);
-          resolve(result);
-        };
-
-        result[0].addEventListener("load", () => {
-          externalManager.itemEnd("smaa-search");
-          internalManager.itemEnd("smaa-search");
-        });
-        result[1].addEventListener("load", () => {
-          externalManager.itemEnd("smaa-area");
-          internalManager.itemEnd("smaa-area");
-        });
-        result[0].src = urls[0];
-        result[1].src = urls[1];
-      }).catch(error => {
-        externalManager.itemError("smaa-search");
-        externalManager.itemError("smaa-area");
-        onError(error);
-        reject(error);
-      });
-    });
-  }
-
-};
-exports.SMAAImageLoader = SMAAImageLoader;
-},{"three":"node_modules/three/build/three.module.js"}],"node_modules/three.interaction/build/three.interaction.module.js":[function(require,module,exports) {
+},{"../../../build/three.module.js":"node_modules/three/build/three.module.js"}],"node_modules/three.interaction/build/three.interaction.module.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48521,6 +42006,3235 @@ var global = arguments[3];
 */
 window.createjs=window.createjs||{},function(){"use strict";var a=createjs.PreloadJS=createjs.PreloadJS||{};a.version="0.4.1",a.buildDate="Thu, 12 Dec 2013 23:33:38 GMT"}(),function(){"use strict";var a=function(a,b,c){this.initialize(a,b,c)},b=a.prototype;b.type=null,b.target=null,b.currentTarget=null,b.eventPhase=0,b.bubbles=!1,b.cancelable=!1,b.timeStamp=0,b.defaultPrevented=!1,b.propagationStopped=!1,b.immediatePropagationStopped=!1,b.removed=!1,b.initialize=function(a,b,c){this.type=a,this.bubbles=b,this.cancelable=c,this.timeStamp=(new Date).getTime()},b.preventDefault=function(){this.defaultPrevented=!0},b.stopPropagation=function(){this.propagationStopped=!0},b.stopImmediatePropagation=function(){this.immediatePropagationStopped=this.propagationStopped=!0},b.remove=function(){this.removed=!0},b.clone=function(){return new a(this.type,this.bubbles,this.cancelable)},b.toString=function(){return"[Event (type="+this.type+")]"},createjs.Event=a}(),function(){"use strict";var a=function(){},b=a.prototype;a.initialize=function(a){a.addEventListener=b.addEventListener,a.on=b.on,a.removeEventListener=a.off=b.removeEventListener,a.removeAllEventListeners=b.removeAllEventListeners,a.hasEventListener=b.hasEventListener,a.dispatchEvent=b.dispatchEvent,a._dispatchEvent=b._dispatchEvent,a.willTrigger=b.willTrigger},b._listeners=null,b._captureListeners=null,b.initialize=function(){},b.addEventListener=function(a,b,c){var d;d=c?this._captureListeners=this._captureListeners||{}:this._listeners=this._listeners||{};var e=d[a];return e&&this.removeEventListener(a,b,c),e=d[a],e?e.push(b):d[a]=[b],b},b.on=function(a,b,c,d,e,f){return b.handleEvent&&(c=c||b,b=b.handleEvent),c=c||this,this.addEventListener(a,function(a){b.call(c,a,e),d&&a.remove()},f)},b.removeEventListener=function(a,b,c){var d=c?this._captureListeners:this._listeners;if(d){var e=d[a];if(e)for(var f=0,g=e.length;g>f;f++)if(e[f]==b){1==g?delete d[a]:e.splice(f,1);break}}},b.off=b.removeEventListener,b.removeAllEventListeners=function(a){a?(this._listeners&&delete this._listeners[a],this._captureListeners&&delete this._captureListeners[a]):this._listeners=this._captureListeners=null},b.dispatchEvent=function(a,b){if("string"==typeof a){var c=this._listeners;if(!c||!c[a])return!1;a=new createjs.Event(a)}if(a.target=b||this,a.bubbles&&this.parent){for(var d=this,e=[d];d.parent;)e.push(d=d.parent);var f,g=e.length;for(f=g-1;f>=0&&!a.propagationStopped;f--)e[f]._dispatchEvent(a,1+(0==f));for(f=1;g>f&&!a.propagationStopped;f++)e[f]._dispatchEvent(a,3)}else this._dispatchEvent(a,2);return a.defaultPrevented},b.hasEventListener=function(a){var b=this._listeners,c=this._captureListeners;return!!(b&&b[a]||c&&c[a])},b.willTrigger=function(a){for(var b=this;b;){if(b.hasEventListener(a))return!0;b=b.parent}return!1},b.toString=function(){return"[EventDispatcher]"},b._dispatchEvent=function(a,b){var c,d=1==b?this._captureListeners:this._listeners;if(a&&d){var e=d[a.type];if(!e||!(c=e.length))return;a.currentTarget=this,a.eventPhase=b,a.removed=!1,e=e.slice();for(var f=0;c>f&&!a.immediatePropagationStopped;f++){var g=e[f];g.handleEvent?g.handleEvent(a):g(a),a.removed&&(this.off(a.type,g,1==b),a.removed=!1)}}},createjs.EventDispatcher=a}(),function(){"use strict";createjs.indexOf=function(a,b){for(var c=0,d=a.length;d>c;c++)if(b===a[c])return c;return-1}}(),function(){"use strict";createjs.proxy=function(a,b){var c=Array.prototype.slice.call(arguments,2);return function(){return a.apply(b,Array.prototype.slice.call(arguments,0).concat(c))}}}(),function(){"use strict";var a=function(){this.init()};a.prototype=new createjs.EventDispatcher;var b=a.prototype,c=a;c.FILE_PATTERN=/^(?:(\w+:)\/{2}(\w+(?:\.\w+)*\/?)|(.{0,2}\/{1}))?([/.]*?(?:[^?]+)?\/)?((?:[^/?]+)\.(\w+))(?:\?(\S+)?)?$/,c.PATH_PATTERN=/^(?:(\w+:)\/{2})|(.{0,2}\/{1})?([/.]*?(?:[^?]+)?\/?)?$/,b.loaded=!1,b.canceled=!1,b.progress=0,b._item=null,b.getItem=function(){return this._item},b.init=function(){},b.load=function(){},b.close=function(){},b._sendLoadStart=function(){this._isCanceled()||this.dispatchEvent("loadstart")},b._sendProgress=function(a){if(!this._isCanceled()){var b=null;"number"==typeof a?(this.progress=a,b=new createjs.Event("progress"),b.loaded=this.progress,b.total=1):(b=a,this.progress=a.loaded/a.total,(isNaN(this.progress)||1/0==this.progress)&&(this.progress=0)),b.progress=this.progress,this.hasEventListener("progress")&&this.dispatchEvent(b)}},b._sendComplete=function(){this._isCanceled()||this.dispatchEvent("complete")},b._sendError=function(a){!this._isCanceled()&&this.hasEventListener("error")&&(null==a&&(a=new createjs.Event("error")),this.dispatchEvent(a))},b._isCanceled=function(){return null==window.createjs||this.canceled?!0:!1},b._parseURI=function(a){return a?a.match(c.FILE_PATTERN):null},b._parsePath=function(a){return a?a.match(c.PATH_PATTERN):null},b._formatQueryString=function(a,b){if(null==a)throw new Error("You must specify data.");var c=[];for(var d in a)c.push(d+"="+escape(a[d]));return b&&(c=c.concat(b)),c.join("&")},b.buildPath=function(a,b){if(null==b)return a;var c=[],d=a.indexOf("?");if(-1!=d){var e=a.slice(d+1);c=c.concat(e.split("&"))}return-1!=d?a.slice(0,d)+"?"+this._formatQueryString(b,c):a+"?"+this._formatQueryString(b,c)},b._isCrossDomain=function(a){var b=document.createElement("a");b.href=a.src;var c=document.createElement("a");c.href=location.href;var d=""!=b.hostname&&(b.port!=c.port||b.protocol!=c.protocol||b.hostname!=c.hostname);return d},b._isLocal=function(a){var b=document.createElement("a");return b.href=a.src,""==b.hostname&&"file:"==b.protocol},b.toString=function(){return"[PreloadJS AbstractLoader]"},createjs.AbstractLoader=a}(),function(){"use strict";var a=function(a,b,c){this.init(a,b,c)},b=a.prototype=new createjs.AbstractLoader,c=a;c.loadTimeout=8e3,c.LOAD_TIMEOUT=0,c.BINARY="binary",c.CSS="css",c.IMAGE="image",c.JAVASCRIPT="javascript",c.JSON="json",c.JSONP="jsonp",c.MANIFEST="manifest",c.SOUND="sound",c.SVG="svg",c.TEXT="text",c.XML="xml",c.POST="POST",c.GET="GET",b._basePath=null,b._crossOrigin="",b.useXHR=!0,b.stopOnError=!1,b.maintainScriptOrder=!0,b.next=null,b._typeCallbacks=null,b._extensionCallbacks=null,b._loadStartWasDispatched=!1,b._maxConnections=1,b._currentlyLoadingScript=null,b._currentLoads=null,b._loadQueue=null,b._loadQueueBackup=null,b._loadItemsById=null,b._loadItemsBySrc=null,b._loadedResults=null,b._loadedRawResults=null,b._numItems=0,b._numItemsLoaded=0,b._scriptOrder=null,b._loadedScripts=null,b.init=function(a,b,c){this._numItems=this._numItemsLoaded=0,this._paused=!1,this._loadStartWasDispatched=!1,this._currentLoads=[],this._loadQueue=[],this._loadQueueBackup=[],this._scriptOrder=[],this._loadedScripts=[],this._loadItemsById={},this._loadItemsBySrc={},this._loadedResults={},this._loadedRawResults={},this._typeCallbacks={},this._extensionCallbacks={},this._basePath=b,this.setUseXHR(a),this._crossOrigin=c===!0?"Anonymous":c===!1||null==c?"":c},b.setUseXHR=function(a){return this.useXHR=0!=a&&null!=window.XMLHttpRequest,this.useXHR},b.removeAll=function(){this.remove()},b.remove=function(a){var b=null;if(!a||a instanceof Array){if(a)b=a;else if(arguments.length>0)return}else b=[a];var c=!1;if(b){for(;b.length;){var d=b.pop(),e=this.getResult(d);for(f=this._loadQueue.length-1;f>=0;f--)if(g=this._loadQueue[f].getItem(),g.id==d||g.src==d){this._loadQueue.splice(f,1)[0].cancel();break}for(f=this._loadQueueBackup.length-1;f>=0;f--)if(g=this._loadQueueBackup[f].getItem(),g.id==d||g.src==d){this._loadQueueBackup.splice(f,1)[0].cancel();break}if(e)delete this._loadItemsById[e.id],delete this._loadItemsBySrc[e.src],this._disposeItem(e);else for(var f=this._currentLoads.length-1;f>=0;f--){var g=this._currentLoads[f].getItem();if(g.id==d||g.src==d){this._currentLoads.splice(f,1)[0].cancel(),c=!0;break}}}c&&this._loadNext()}else{this.close();for(var h in this._loadItemsById)this._disposeItem(this._loadItemsById[h]);this.init(this.useXHR)}},b.reset=function(){this.close();for(var a in this._loadItemsById)this._disposeItem(this._loadItemsById[a]);for(var b=[],c=0,d=this._loadQueueBackup.length;d>c;c++)b.push(this._loadQueueBackup[c].getItem());this.loadManifest(b,!1)},c.isBinary=function(a){switch(a){case createjs.LoadQueue.IMAGE:case createjs.LoadQueue.BINARY:return!0;default:return!1}},c.isText=function(a){switch(a){case createjs.LoadQueue.TEXT:case createjs.LoadQueue.JSON:case createjs.LoadQueue.MANIFEST:case createjs.LoadQueue.XML:case createjs.LoadQueue.HTML:case createjs.LoadQueue.CSS:case createjs.LoadQueue.SVG:case createjs.LoadQueue.JAVASCRIPT:return!0;default:return!1}},b.installPlugin=function(a){if(null!=a&&null!=a.getPreloadHandlers){var b=a.getPreloadHandlers();if(b.scope=a,null!=b.types)for(var c=0,d=b.types.length;d>c;c++)this._typeCallbacks[b.types[c]]=b;if(null!=b.extensions)for(c=0,d=b.extensions.length;d>c;c++)this._extensionCallbacks[b.extensions[c]]=b}},b.setMaxConnections=function(a){this._maxConnections=a,!this._paused&&this._loadQueue.length>0&&this._loadNext()},b.loadFile=function(a,b,c){if(null==a){var d=new createjs.Event("error");return d.text="PRELOAD_NO_FILE",this._sendError(d),void 0}this._addItem(a,null,c),b!==!1?this.setPaused(!1):this.setPaused(!0)},b.loadManifest=function(a,b,d){var e=null,f=null;if(a instanceof Array){if(0==a.length){var g=new createjs.Event("error");return g.text="PRELOAD_MANIFEST_EMPTY",this._sendError(g),void 0}e=a}else if("string"==typeof a)e=[{src:a,type:c.MANIFEST}];else{if("object"!=typeof a){var g=new createjs.Event("error");return g.text="PRELOAD_MANIFEST_NULL",this._sendError(g),void 0}if(void 0!==a.src){if(null==a.type)a.type=c.MANIFEST;else if(a.type!=c.MANIFEST){var g=new createjs.Event("error");g.text="PRELOAD_MANIFEST_ERROR",this._sendError(g)}e=[a]}else void 0!==a.manifest&&(e=a.manifest,f=a.path)}for(var h=0,i=e.length;i>h;h++)this._addItem(e[h],f,d);b!==!1?this.setPaused(!1):this.setPaused(!0)},b.load=function(){this.setPaused(!1)},b.getItem=function(a){return this._loadItemsById[a]||this._loadItemsBySrc[a]},b.getResult=function(a,b){var c=this._loadItemsById[a]||this._loadItemsBySrc[a];if(null==c)return null;var d=c.id;return b&&this._loadedRawResults[d]?this._loadedRawResults[d]:this._loadedResults[d]},b.setPaused=function(a){this._paused=a,this._paused||this._loadNext()},b.close=function(){for(;this._currentLoads.length;)this._currentLoads.pop().cancel();this._scriptOrder.length=0,this._loadedScripts.length=0,this.loadStartWasDispatched=!1},b._addItem=function(a,b,c){var d=this._createLoadItem(a,b,c);if(null!=d){var e=this._createLoader(d);null!=e&&(this._loadQueue.push(e),this._loadQueueBackup.push(e),this._numItems++,this._updateProgress(),this.maintainScriptOrder&&d.type==createjs.LoadQueue.JAVASCRIPT&&e instanceof createjs.XHRLoader&&(this._scriptOrder.push(d),this._loadedScripts.push(null)))}},b._createLoadItem=function(a,b,c){var d=null;switch(typeof a){case"string":d={src:a};break;case"object":d=window.HTMLAudioElement&&a instanceof window.HTMLAudioElement?{tag:a,src:d.tag.src,type:createjs.LoadQueue.SOUND}:a;break;default:return null}var e=this._parseURI(d.src);null!=e&&(d.ext=e[6]),null==d.type&&(d.type=this._getTypeByExtension(d.ext));var f="",g=c||this._basePath,h=d.src;if(e&&null==e[1]&&null==e[3])if(b){f=b;var i=this._parsePath(b);h=b+h,null!=g&&i&&null==i[1]&&null==i[2]&&(f=g+f)}else null!=g&&(f=g);if(d.src=f+d.src,d.path=f,(d.type==createjs.LoadQueue.JSON||d.type==createjs.LoadQueue.MANIFEST)&&(d._loadAsJSONP=null!=d.callback),d.type==createjs.LoadQueue.JSONP&&null==d.callback)throw new Error("callback is required for loading JSONP requests.");(void 0===d.tag||null===d.tag)&&(d.tag=this._createTag(d)),(void 0===d.id||null===d.id||""===d.id)&&(d.id=h);var j=this._typeCallbacks[d.type]||this._extensionCallbacks[d.ext];if(j){var k=j.callback.call(j.scope,d.src,d.type,d.id,d.data,f,this);if(k===!1)return null;k===!0||(null!=k.src&&(d.src=k.src),null!=k.id&&(d.id=k.id),null!=k.tag&&(d.tag=k.tag),null!=k.completeHandler&&(d.completeHandler=k.completeHandler),k.type&&(d.type=k.type),e=this._parseURI(d.src),null!=e&&null!=e[6]&&(d.ext=e[6].toLowerCase()))}return this._loadItemsById[d.id]=d,this._loadItemsBySrc[d.src]=d,d},b._createLoader=function(a){var b=this.useXHR;switch(a.type){case createjs.LoadQueue.JSON:case createjs.LoadQueue.MANIFEST:b=!a._loadAsJSONP;break;case createjs.LoadQueue.XML:case createjs.LoadQueue.TEXT:b=!0;break;case createjs.LoadQueue.SOUND:case createjs.LoadQueue.JSONP:b=!1;break;case null:return null}return b?new createjs.XHRLoader(a,this._crossOrigin):new createjs.TagLoader(a)},b._loadNext=function(){if(!this._paused){this._loadStartWasDispatched||(this._sendLoadStart(),this._loadStartWasDispatched=!0),this._numItems==this._numItemsLoaded?(this.loaded=!0,this._sendComplete(),this.next&&this.next.load&&this.next.load()):this.loaded=!1;for(var a=0;a<this._loadQueue.length&&!(this._currentLoads.length>=this._maxConnections);a++){var b=this._loadQueue[a];if(this.maintainScriptOrder&&b instanceof createjs.TagLoader&&b.getItem().type==createjs.LoadQueue.JAVASCRIPT){if(this._currentlyLoadingScript)continue;this._currentlyLoadingScript=!0}this._loadQueue.splice(a,1),a--,this._loadItem(b)}}},b._loadItem=function(a){a.on("progress",this._handleProgress,this),a.on("complete",this._handleFileComplete,this),a.on("error",this._handleFileError,this),this._currentLoads.push(a),this._sendFileStart(a.getItem()),a.load()},b._handleFileError=function(a){var b=a.target;this._numItemsLoaded++,this._updateProgress();var c=new createjs.Event("error");c.text="FILE_LOAD_ERROR",c.item=b.getItem(),this._sendError(c),this.stopOnError||(this._removeLoadItem(b),this._loadNext())},b._handleFileComplete=function(a){var b=a.target,c=b.getItem();if(this._loadedResults[c.id]=b.getResult(),b instanceof createjs.XHRLoader&&(this._loadedRawResults[c.id]=b.getResult(!0)),this._removeLoadItem(b),this.maintainScriptOrder&&c.type==createjs.LoadQueue.JAVASCRIPT){if(!(b instanceof createjs.TagLoader))return this._loadedScripts[createjs.indexOf(this._scriptOrder,c)]=c,this._checkScriptLoadOrder(b),void 0;this._currentlyLoadingScript=!1}if(delete c._loadAsJSONP,c.type==createjs.LoadQueue.MANIFEST){var d=b.getResult();null!=d&&void 0!==d.manifest&&this.loadManifest(d,!0)}this._processFinishedLoad(c,b)},b._processFinishedLoad=function(a,b){this._numItemsLoaded++,this._updateProgress(),this._sendFileComplete(a,b),this._loadNext()},b._checkScriptLoadOrder=function(){for(var a=this._loadedScripts.length,b=0;a>b;b++){var c=this._loadedScripts[b];if(null===c)break;if(c!==!0){var d=this._loadedResults[c.id];(document.body||document.getElementsByTagName("body")[0]).appendChild(d),this._processFinishedLoad(c),this._loadedScripts[b]=!0}}},b._removeLoadItem=function(a){for(var b=this._currentLoads.length,c=0;b>c;c++)if(this._currentLoads[c]==a){this._currentLoads.splice(c,1);break}},b._handleProgress=function(a){var b=a.target;this._sendFileProgress(b.getItem(),b.progress),this._updateProgress()},b._updateProgress=function(){var a=this._numItemsLoaded/this._numItems,b=this._numItems-this._numItemsLoaded;if(b>0){for(var c=0,d=0,e=this._currentLoads.length;e>d;d++)c+=this._currentLoads[d].progress;a+=c/b*(b/this._numItems)}this._sendProgress(a)},b._disposeItem=function(a){delete this._loadedResults[a.id],delete this._loadedRawResults[a.id],delete this._loadItemsById[a.id],delete this._loadItemsBySrc[a.src]},b._createTag=function(a){var b=null;switch(a.type){case createjs.LoadQueue.IMAGE:return b=document.createElement("img"),""==this._crossOrigin||this._isLocal(a)||(b.crossOrigin=this._crossOrigin),b;case createjs.LoadQueue.SOUND:return b=document.createElement("audio"),b.autoplay=!1,b;case createjs.LoadQueue.JSON:case createjs.LoadQueue.JSONP:case createjs.LoadQueue.JAVASCRIPT:case createjs.LoadQueue.MANIFEST:return b=document.createElement("script"),b.type="text/javascript",b;case createjs.LoadQueue.CSS:return b=this.useXHR?document.createElement("style"):document.createElement("link"),b.rel="stylesheet",b.type="text/css",b;case createjs.LoadQueue.SVG:return this.useXHR?b=document.createElement("svg"):(b=document.createElement("object"),b.type="image/svg+xml"),b}return null},b._getTypeByExtension=function(a){if(null==a)return createjs.LoadQueue.TEXT;switch(a.toLowerCase()){case"jpeg":case"jpg":case"gif":case"png":case"webp":case"bmp":return createjs.LoadQueue.IMAGE;case"ogg":case"mp3":case"wav":return createjs.LoadQueue.SOUND;case"json":return createjs.LoadQueue.JSON;case"xml":return createjs.LoadQueue.XML;case"css":return createjs.LoadQueue.CSS;case"js":return createjs.LoadQueue.JAVASCRIPT;case"svg":return createjs.LoadQueue.SVG;default:return createjs.LoadQueue.TEXT}},b._sendFileProgress=function(a,b){if(this._isCanceled())return this._cleanUp(),void 0;if(this.hasEventListener("fileprogress")){var c=new createjs.Event("fileprogress");c.progress=b,c.loaded=b,c.total=1,c.item=a,this.dispatchEvent(c)}},b._sendFileComplete=function(a,b){if(!this._isCanceled()){var c=new createjs.Event("fileload");c.loader=b,c.item=a,c.result=this._loadedResults[a.id],c.rawResult=this._loadedRawResults[a.id],a.completeHandler&&a.completeHandler(c),this.hasEventListener("fileload")&&this.dispatchEvent(c)}},b._sendFileStart=function(a){var b=new createjs.Event("filestart");b.item=a,this.hasEventListener("filestart")&&this.dispatchEvent(b)},b.toString=function(){return"[PreloadJS LoadQueue]"},createjs.LoadQueue=a;var d=function(){};d.init=function(){var a=navigator.userAgent;d.isFirefox=a.indexOf("Firefox")>-1,d.isOpera=null!=window.opera,d.isChrome=a.indexOf("Chrome")>-1,d.isIOS=a.indexOf("iPod")>-1||a.indexOf("iPhone")>-1||a.indexOf("iPad")>-1},d.init(),createjs.LoadQueue.BrowserDetect=d}(),function(){"use strict";var a=function(a){this.init(a)},b=a.prototype=new createjs.AbstractLoader;b._loadTimeout=null,b._tagCompleteProxy=null,b._isAudio=!1,b._tag=null,b._jsonResult=null,b.init=function(a){this._item=a,this._tag=a.tag,this._isAudio=window.HTMLAudioElement&&a.tag instanceof window.HTMLAudioElement,this._tagCompleteProxy=createjs.proxy(this._handleLoad,this)},b.getResult=function(){return this._item.type==createjs.LoadQueue.JSONP||this._item.type==createjs.LoadQueue.MANIFEST?this._jsonResult:this._tag},b.cancel=function(){this.canceled=!0,this._clean()},b.load=function(){var a=this._item,b=this._tag;clearTimeout(this._loadTimeout);var c=createjs.LoadQueue.LOAD_TIMEOUT;0==c&&(c=createjs.LoadQueue.loadTimeout),this._loadTimeout=setTimeout(createjs.proxy(this._handleTimeout,this),c),this._isAudio&&(b.src=null,b.preload="auto"),b.onerror=createjs.proxy(this._handleError,this),this._isAudio?(b.onstalled=createjs.proxy(this._handleStalled,this),b.addEventListener("canplaythrough",this._tagCompleteProxy,!1)):(b.onload=createjs.proxy(this._handleLoad,this),b.onreadystatechange=createjs.proxy(this._handleReadyStateChange,this));var d=this.buildPath(a.src,a.values);switch(a.type){case createjs.LoadQueue.CSS:b.href=d;break;case createjs.LoadQueue.SVG:b.data=d;break;default:b.src=d}if(a.type==createjs.LoadQueue.JSONP||a.type==createjs.LoadQueue.JSON||a.type==createjs.LoadQueue.MANIFEST){if(null==a.callback)throw new Error("callback is required for loading JSONP requests.");if(null!=window[a.callback])throw new Error('JSONP callback "'+a.callback+'" already exists on window. You need to specify a different callback. Or re-name the current one.');window[a.callback]=createjs.proxy(this._handleJSONPLoad,this)}(a.type==createjs.LoadQueue.SVG||a.type==createjs.LoadQueue.JSONP||a.type==createjs.LoadQueue.JSON||a.type==createjs.LoadQueue.MANIFEST||a.type==createjs.LoadQueue.JAVASCRIPT||a.type==createjs.LoadQueue.CSS)&&(this._startTagVisibility=b.style.visibility,b.style.visibility="hidden",(document.body||document.getElementsByTagName("body")[0]).appendChild(b)),null!=b.load&&b.load()},b._handleJSONPLoad=function(a){this._jsonResult=a},b._handleTimeout=function(){this._clean();var a=new createjs.Event("error");a.text="PRELOAD_TIMEOUT",this._sendError(a)},b._handleStalled=function(){},b._handleError=function(){this._clean();var a=new createjs.Event("error");this._sendError(a)},b._handleReadyStateChange=function(){clearTimeout(this._loadTimeout);var a=this.getItem().tag;("loaded"==a.readyState||"complete"==a.readyState)&&this._handleLoad()},b._handleLoad=function(){if(!this._isCanceled()){var a=this.getItem(),b=a.tag;if(!(this.loaded||this._isAudio&&4!==b.readyState)){switch(this.loaded=!0,a.type){case createjs.LoadQueue.SVG:case createjs.LoadQueue.JSON:case createjs.LoadQueue.JSONP:case createjs.LoadQueue.MANIFEST:case createjs.LoadQueue.CSS:b.style.visibility=this._startTagVisibility,(document.body||document.getElementsByTagName("body")[0]).removeChild(b)}this._clean(),this._sendComplete()}}},b._clean=function(){clearTimeout(this._loadTimeout);var a=this.getItem(),b=a.tag;null!=b&&(b.onload=null,b.removeEventListener&&b.removeEventListener("canplaythrough",this._tagCompleteProxy,!1),b.onstalled=null,b.onprogress=null,b.onerror=null,null!=b.parentNode&&a.type==createjs.LoadQueue.SVG&&a.type==createjs.LoadQueue.JSON&&a.type==createjs.LoadQueue.MANIFEST&&a.type==createjs.LoadQueue.CSS&&a.type==createjs.LoadQueue.JSONP&&b.parentNode.removeChild(b));var a=this.getItem();(a.type==createjs.LoadQueue.JSONP||a.type==createjs.LoadQueue.MANIFEST)&&(window[a.callback]=null)},b.toString=function(){return"[PreloadJS TagLoader]"},createjs.TagLoader=a}(),function(){"use strict";var a=function(a,b){this.init(a,b)},b=a.prototype=new createjs.AbstractLoader;b._request=null,b._loadTimeout=null,b._xhrLevel=1,b._response=null,b._rawResponse=null,b._crossOrigin="",b.init=function(a,b){this._item=a,this._crossOrigin=b,!this._createXHR(a)},b.getResult=function(a){return a&&this._rawResponse?this._rawResponse:this._response},b.cancel=function(){this.canceled=!0,this._clean(),this._request.abort()},b.load=function(){if(null==this._request)return this._handleError(),void 0;if(this._request.onloadstart=createjs.proxy(this._handleLoadStart,this),this._request.onprogress=createjs.proxy(this._handleProgress,this),this._request.onabort=createjs.proxy(this._handleAbort,this),this._request.onerror=createjs.proxy(this._handleError,this),this._request.ontimeout=createjs.proxy(this._handleTimeout,this),1==this._xhrLevel){var a=createjs.LoadQueue.LOAD_TIMEOUT;if(0==a)a=createjs.LoadQueue.loadTimeout;else try{console.warn("LoadQueue.LOAD_TIMEOUT has been deprecated in favor of LoadQueue.loadTimeout")}catch(b){}this._loadTimeout=setTimeout(createjs.proxy(this._handleTimeout,this),a)}this._request.onload=createjs.proxy(this._handleLoad,this),this._request.onreadystatechange=createjs.proxy(this._handleReadyStateChange,this);try{this._item.values&&this._item.method!=createjs.LoadQueue.GET?this._item.method==createjs.LoadQueue.POST&&this._request.send(this._formatQueryString(this._item.values)):this._request.send()}catch(c){var d=new createjs.Event("error");d.error=c,this._sendError(d)}},b.getAllResponseHeaders=function(){return this._request.getAllResponseHeaders instanceof Function?this._request.getAllResponseHeaders():null},b.getResponseHeader=function(a){return this._request.getResponseHeader instanceof Function?this._request.getResponseHeader(a):null},b._handleProgress=function(a){if(a&&!(a.loaded>0&&0==a.total)){var b=new createjs.Event("progress");b.loaded=a.loaded,b.total=a.total,this._sendProgress(b)}},b._handleLoadStart=function(){clearTimeout(this._loadTimeout),this._sendLoadStart()},b._handleAbort=function(){this._clean();var a=new createjs.Event("error");a.text="XHR_ABORTED",this._sendError(a)},b._handleError=function(){this._clean();var a=new createjs.Event("error");this._sendError(a)},b._handleReadyStateChange=function(){4==this._request.readyState&&this._handleLoad()},b._handleLoad=function(){if(!this.loaded){if(this.loaded=!0,!this._checkError())return this._handleError(),void 0;this._response=this._getResponse(),this._clean();var a=this._generateTag();a&&this._sendComplete()}},b._handleTimeout=function(a){this._clean();var b=new createjs.Event("error");b.text="PRELOAD_TIMEOUT",this._sendError(a)},b._checkError=function(){var a=parseInt(this._request.status);switch(a){case 404:case 0:return!1}return!0},b._getResponse=function(){if(null!=this._response)return this._response;if(null!=this._request.response)return this._request.response;try{if(null!=this._request.responseText)return this._request.responseText}catch(a){}try{if(null!=this._request.responseXML)return this._request.responseXML}catch(a){}return null},b._createXHR=function(a){var b=this._isCrossDomain(a),c=null;if(b&&window.XDomainRequest)c=new XDomainRequest;else if(window.XMLHttpRequest)c=new XMLHttpRequest;else try{c=new ActiveXObject("Msxml2.XMLHTTP.6.0")}catch(d){try{c=new ActiveXObject("Msxml2.XMLHTTP.3.0")}catch(d){try{c=new ActiveXObject("Msxml2.XMLHTTP")}catch(d){return!1}}}createjs.LoadQueue.isText(a.type)&&c.overrideMimeType&&c.overrideMimeType("text/plain; charset=utf-8"),this._xhrLevel="string"==typeof c.responseType?2:1;var e=null;return e=a.method==createjs.LoadQueue.GET?this.buildPath(a.src,a.values):a.src,c.open(a.method||createjs.LoadQueue.GET,e,!0),b&&c instanceof XMLHttpRequest&&1==this._xhrLevel&&c.setRequestHeader("Origin",location.origin),a.values&&a.method==createjs.LoadQueue.POST&&c.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),createjs.LoadQueue.isBinary(a.type)&&(c.responseType="arraybuffer"),this._request=c,!0},b._clean=function(){clearTimeout(this._loadTimeout);var a=this._request;a.onloadstart=null,a.onprogress=null,a.onabort=null,a.onerror=null,a.onload=null,a.ontimeout=null,a.onloadend=null,a.onreadystatechange=null},b._generateTag=function(){var a=this._item.type,b=this._item.tag;switch(a){case createjs.LoadQueue.IMAGE:return b.onload=createjs.proxy(this._handleTagReady,this),""!=this._crossOrigin&&(b.crossOrigin="Anonymous"),b.src=this.buildPath(this._item.src,this._item.values),this._rawResponse=this._response,this._response=b,!1;case createjs.LoadQueue.JAVASCRIPT:return b=document.createElement("script"),b.text=this._response,this._rawResponse=this._response,this._response=b,!0;case createjs.LoadQueue.CSS:var c=document.getElementsByTagName("head")[0];if(c.appendChild(b),b.styleSheet)b.styleSheet.cssText=this._response;else{var d=document.createTextNode(this._response);b.appendChild(d)}return this._rawResponse=this._response,this._response=b,!0;case createjs.LoadQueue.XML:var e=this._parseXML(this._response,"text/xml");return this._rawResponse=this._response,this._response=e,!0;case createjs.LoadQueue.SVG:var e=this._parseXML(this._response,"image/svg+xml");return this._rawResponse=this._response,null!=e.documentElement?(b.appendChild(e.documentElement),this._response=b):this._response=e,!0;case createjs.LoadQueue.JSON:case createjs.LoadQueue.MANIFEST:var f={};try{f=JSON.parse(this._response)}catch(g){f=g}return this._rawResponse=this._response,this._response=f,!0}return!0},b._parseXML=function(a,b){var c=null;try{if(window.DOMParser){var d=new DOMParser;c=d.parseFromString(a,b)}else c=new ActiveXObject("Microsoft.XMLDOM"),c.async=!1,c.loadXML(a)}catch(e){}return c},b._handleTagReady=function(){this._sendComplete()},b.toString=function(){return"[PreloadJS XHRLoader]"},createjs.XHRLoader=a}(),"object"!=typeof JSON&&(JSON={}),function(){"use strict";function f(a){return 10>a?"0"+a:a}function quote(a){return escapable.lastIndex=0,escapable.test(a)?'"'+a.replace(escapable,function(a){var b=meta[a];return"string"==typeof b?b:"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4)})+'"':'"'+a+'"'}function str(a,b){var c,d,e,f,g,h=gap,i=b[a];switch(i&&"object"==typeof i&&"function"==typeof i.toJSON&&(i=i.toJSON(a)),"function"==typeof rep&&(i=rep.call(b,a,i)),typeof i){case"string":return quote(i);case"number":return isFinite(i)?String(i):"null";case"boolean":case"null":return String(i);case"object":if(!i)return"null";if(gap+=indent,g=[],"[object Array]"===Object.prototype.toString.apply(i)){for(f=i.length,c=0;f>c;c+=1)g[c]=str(c,i)||"null";return e=0===g.length?"[]":gap?"[\n"+gap+g.join(",\n"+gap)+"\n"+h+"]":"["+g.join(",")+"]",gap=h,e}if(rep&&"object"==typeof rep)for(f=rep.length,c=0;f>c;c+=1)"string"==typeof rep[c]&&(d=rep[c],e=str(d,i),e&&g.push(quote(d)+(gap?": ":":")+e));else for(d in i)Object.prototype.hasOwnProperty.call(i,d)&&(e=str(d,i),e&&g.push(quote(d)+(gap?": ":":")+e));return e=0===g.length?"{}":gap?"{\n"+gap+g.join(",\n"+gap)+"\n"+h+"}":"{"+g.join(",")+"}",gap=h,e}}"function"!=typeof Date.prototype.toJSON&&(Date.prototype.toJSON=function(){return isFinite(this.valueOf())?this.getUTCFullYear()+"-"+f(this.getUTCMonth()+1)+"-"+f(this.getUTCDate())+"T"+f(this.getUTCHours())+":"+f(this.getUTCMinutes())+":"+f(this.getUTCSeconds())+"Z":null},String.prototype.toJSON=Number.prototype.toJSON=Boolean.prototype.toJSON=function(){return this.valueOf()});var cx=/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,escapable=/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,gap,indent,meta={"\b":"\\b","	":"\\t","\n":"\\n","\f":"\\f","\r":"\\r",'"':'\\"',"\\":"\\\\"},rep;"function"!=typeof JSON.stringify&&(JSON.stringify=function(a,b,c){var d;if(gap="",indent="","number"==typeof c)for(d=0;c>d;d+=1)indent+=" ";else"string"==typeof c&&(indent=c);if(rep=b,b&&"function"!=typeof b&&("object"!=typeof b||"number"!=typeof b.length))throw new Error("JSON.stringify");return str("",{"":a})}),"function"!=typeof JSON.parse&&(JSON.parse=function(text,reviver){function walk(a,b){var c,d,e=a[b];if(e&&"object"==typeof e)for(c in e)Object.prototype.hasOwnProperty.call(e,c)&&(d=walk(e,c),void 0!==d?e[c]=d:delete e[c]);return reviver.call(a,b,e)}var j;if(text=String(text),cx.lastIndex=0,cx.test(text)&&(text=text.replace(cx,function(a){return"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4)})),/^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,"")))return j=eval("("+text+")"),"function"==typeof reviver?walk({"":j},""):j;throw new SyntaxError("JSON.parse")})}();module.exports=window.createjs;
 
+},{}],"node_modules/howler/dist/howler.js":[function(require,module,exports) {
+var define;
+var global = arguments[3];
+/*!
+ *  howler.js v2.2.1
+ *  howlerjs.com
+ *
+ *  (c) 2013-2020, James Simpson of GoldFire Studios
+ *  goldfirestudios.com
+ *
+ *  MIT License
+ */
+
+(function() {
+
+  'use strict';
+
+  /** Global Methods **/
+  /***************************************************************************/
+
+  /**
+   * Create the global controller. All contained methods and properties apply
+   * to all sounds that are currently playing or will be in the future.
+   */
+  var HowlerGlobal = function() {
+    this.init();
+  };
+  HowlerGlobal.prototype = {
+    /**
+     * Initialize the global Howler object.
+     * @return {Howler}
+     */
+    init: function() {
+      var self = this || Howler;
+
+      // Create a global ID counter.
+      self._counter = 1000;
+
+      // Pool of unlocked HTML5 Audio objects.
+      self._html5AudioPool = [];
+      self.html5PoolSize = 10;
+
+      // Internal properties.
+      self._codecs = {};
+      self._howls = [];
+      self._muted = false;
+      self._volume = 1;
+      self._canPlayEvent = 'canplaythrough';
+      self._navigator = (typeof window !== 'undefined' && window.navigator) ? window.navigator : null;
+
+      // Public properties.
+      self.masterGain = null;
+      self.noAudio = false;
+      self.usingWebAudio = true;
+      self.autoSuspend = true;
+      self.ctx = null;
+
+      // Set to false to disable the auto audio unlocker.
+      self.autoUnlock = true;
+
+      // Setup the various state values for global tracking.
+      self._setup();
+
+      return self;
+    },
+
+    /**
+     * Get/set the global volume for all sounds.
+     * @param  {Float} vol Volume from 0.0 to 1.0.
+     * @return {Howler/Float}     Returns self or current volume.
+     */
+    volume: function(vol) {
+      var self = this || Howler;
+      vol = parseFloat(vol);
+
+      // If we don't have an AudioContext created yet, run the setup.
+      if (!self.ctx) {
+        setupAudioContext();
+      }
+
+      if (typeof vol !== 'undefined' && vol >= 0 && vol <= 1) {
+        self._volume = vol;
+
+        // Don't update any of the nodes if we are muted.
+        if (self._muted) {
+          return self;
+        }
+
+        // When using Web Audio, we just need to adjust the master gain.
+        if (self.usingWebAudio) {
+          self.masterGain.gain.setValueAtTime(vol, Howler.ctx.currentTime);
+        }
+
+        // Loop through and change volume for all HTML5 audio nodes.
+        for (var i=0; i<self._howls.length; i++) {
+          if (!self._howls[i]._webAudio) {
+            // Get all of the sounds in this Howl group.
+            var ids = self._howls[i]._getSoundIds();
+
+            // Loop through all sounds and change the volumes.
+            for (var j=0; j<ids.length; j++) {
+              var sound = self._howls[i]._soundById(ids[j]);
+
+              if (sound && sound._node) {
+                sound._node.volume = sound._volume * vol;
+              }
+            }
+          }
+        }
+
+        return self;
+      }
+
+      return self._volume;
+    },
+
+    /**
+     * Handle muting and unmuting globally.
+     * @param  {Boolean} muted Is muted or not.
+     */
+    mute: function(muted) {
+      var self = this || Howler;
+
+      // If we don't have an AudioContext created yet, run the setup.
+      if (!self.ctx) {
+        setupAudioContext();
+      }
+
+      self._muted = muted;
+
+      // With Web Audio, we just need to mute the master gain.
+      if (self.usingWebAudio) {
+        self.masterGain.gain.setValueAtTime(muted ? 0 : self._volume, Howler.ctx.currentTime);
+      }
+
+      // Loop through and mute all HTML5 Audio nodes.
+      for (var i=0; i<self._howls.length; i++) {
+        if (!self._howls[i]._webAudio) {
+          // Get all of the sounds in this Howl group.
+          var ids = self._howls[i]._getSoundIds();
+
+          // Loop through all sounds and mark the audio node as muted.
+          for (var j=0; j<ids.length; j++) {
+            var sound = self._howls[i]._soundById(ids[j]);
+
+            if (sound && sound._node) {
+              sound._node.muted = (muted) ? true : sound._muted;
+            }
+          }
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Handle stopping all sounds globally.
+     */
+    stop: function() {
+      var self = this || Howler;
+
+      // Loop through all Howls and stop them.
+      for (var i=0; i<self._howls.length; i++) {
+        self._howls[i].stop();
+      }
+
+      return self;
+    },
+
+    /**
+     * Unload and destroy all currently loaded Howl objects.
+     * @return {Howler}
+     */
+    unload: function() {
+      var self = this || Howler;
+
+      for (var i=self._howls.length-1; i>=0; i--) {
+        self._howls[i].unload();
+      }
+
+      // Create a new AudioContext to make sure it is fully reset.
+      if (self.usingWebAudio && self.ctx && typeof self.ctx.close !== 'undefined') {
+        self.ctx.close();
+        self.ctx = null;
+        setupAudioContext();
+      }
+
+      return self;
+    },
+
+    /**
+     * Check for codec support of specific extension.
+     * @param  {String} ext Audio file extention.
+     * @return {Boolean}
+     */
+    codecs: function(ext) {
+      return (this || Howler)._codecs[ext.replace(/^x-/, '')];
+    },
+
+    /**
+     * Setup various state values for global tracking.
+     * @return {Howler}
+     */
+    _setup: function() {
+      var self = this || Howler;
+
+      // Keeps track of the suspend/resume state of the AudioContext.
+      self.state = self.ctx ? self.ctx.state || 'suspended' : 'suspended';
+
+      // Automatically begin the 30-second suspend process
+      self._autoSuspend();
+
+      // Check if audio is available.
+      if (!self.usingWebAudio) {
+        // No audio is available on this system if noAudio is set to true.
+        if (typeof Audio !== 'undefined') {
+          try {
+            var test = new Audio();
+
+            // Check if the canplaythrough event is available.
+            if (typeof test.oncanplaythrough === 'undefined') {
+              self._canPlayEvent = 'canplay';
+            }
+          } catch(e) {
+            self.noAudio = true;
+          }
+        } else {
+          self.noAudio = true;
+        }
+      }
+
+      // Test to make sure audio isn't disabled in Internet Explorer.
+      try {
+        var test = new Audio();
+        if (test.muted) {
+          self.noAudio = true;
+        }
+      } catch (e) {}
+
+      // Check for supported codecs.
+      if (!self.noAudio) {
+        self._setupCodecs();
+      }
+
+      return self;
+    },
+
+    /**
+     * Check for browser support for various codecs and cache the results.
+     * @return {Howler}
+     */
+    _setupCodecs: function() {
+      var self = this || Howler;
+      var audioTest = null;
+
+      // Must wrap in a try/catch because IE11 in server mode throws an error.
+      try {
+        audioTest = (typeof Audio !== 'undefined') ? new Audio() : null;
+      } catch (err) {
+        return self;
+      }
+
+      if (!audioTest || typeof audioTest.canPlayType !== 'function') {
+        return self;
+      }
+
+      var mpegTest = audioTest.canPlayType('audio/mpeg;').replace(/^no$/, '');
+
+      // Opera version <33 has mixed MP3 support, so we need to check for and block it.
+      var checkOpera = self._navigator && self._navigator.userAgent.match(/OPR\/([0-6].)/g);
+      var isOldOpera = (checkOpera && parseInt(checkOpera[0].split('/')[1], 10) < 33);
+
+      self._codecs = {
+        mp3: !!(!isOldOpera && (mpegTest || audioTest.canPlayType('audio/mp3;').replace(/^no$/, ''))),
+        mpeg: !!mpegTest,
+        opus: !!audioTest.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, ''),
+        ogg: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
+        oga: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
+        wav: !!(audioTest.canPlayType('audio/wav; codecs="1"') || audioTest.canPlayType('audio/wav')).replace(/^no$/, ''),
+        aac: !!audioTest.canPlayType('audio/aac;').replace(/^no$/, ''),
+        caf: !!audioTest.canPlayType('audio/x-caf;').replace(/^no$/, ''),
+        m4a: !!(audioTest.canPlayType('audio/x-m4a;') || audioTest.canPlayType('audio/m4a;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
+        m4b: !!(audioTest.canPlayType('audio/x-m4b;') || audioTest.canPlayType('audio/m4b;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
+        mp4: !!(audioTest.canPlayType('audio/x-mp4;') || audioTest.canPlayType('audio/mp4;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
+        weba: !!audioTest.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, ''),
+        webm: !!audioTest.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, ''),
+        dolby: !!audioTest.canPlayType('audio/mp4; codecs="ec-3"').replace(/^no$/, ''),
+        flac: !!(audioTest.canPlayType('audio/x-flac;') || audioTest.canPlayType('audio/flac;')).replace(/^no$/, '')
+      };
+
+      return self;
+    },
+
+    /**
+     * Some browsers/devices will only allow audio to be played after a user interaction.
+     * Attempt to automatically unlock audio on the first user interaction.
+     * Concept from: http://paulbakaus.com/tutorials/html5/web-audio-on-ios/
+     * @return {Howler}
+     */
+    _unlockAudio: function() {
+      var self = this || Howler;
+
+      // Only run this if Web Audio is supported and it hasn't already been unlocked.
+      if (self._audioUnlocked || !self.ctx) {
+        return;
+      }
+
+      self._audioUnlocked = false;
+      self.autoUnlock = false;
+
+      // Some mobile devices/platforms have distortion issues when opening/closing tabs and/or web views.
+      // Bugs in the browser (especially Mobile Safari) can cause the sampleRate to change from 44100 to 48000.
+      // By calling Howler.unload(), we create a new AudioContext with the correct sampleRate.
+      if (!self._mobileUnloaded && self.ctx.sampleRate !== 44100) {
+        self._mobileUnloaded = true;
+        self.unload();
+      }
+
+      // Scratch buffer for enabling iOS to dispose of web audio buffers correctly, as per:
+      // http://stackoverflow.com/questions/24119684
+      self._scratchBuffer = self.ctx.createBuffer(1, 1, 22050);
+
+      // Call this method on touch start to create and play a buffer,
+      // then check if the audio actually played to determine if
+      // audio has now been unlocked on iOS, Android, etc.
+      var unlock = function(e) {
+        // Create a pool of unlocked HTML5 Audio objects that can
+        // be used for playing sounds without user interaction. HTML5
+        // Audio objects must be individually unlocked, as opposed
+        // to the WebAudio API which only needs a single activation.
+        // This must occur before WebAudio setup or the source.onended
+        // event will not fire.
+        while (self._html5AudioPool.length < self.html5PoolSize) {
+          try {
+            var audioNode = new Audio();
+
+            // Mark this Audio object as unlocked to ensure it can get returned
+            // to the unlocked pool when released.
+            audioNode._unlocked = true;
+
+            // Add the audio node to the pool.
+            self._releaseHtml5Audio(audioNode);
+          } catch (e) {
+            self.noAudio = true;
+            break;
+          }
+        }
+
+        // Loop through any assigned audio nodes and unlock them.
+        for (var i=0; i<self._howls.length; i++) {
+          if (!self._howls[i]._webAudio) {
+            // Get all of the sounds in this Howl group.
+            var ids = self._howls[i]._getSoundIds();
+
+            // Loop through all sounds and unlock the audio nodes.
+            for (var j=0; j<ids.length; j++) {
+              var sound = self._howls[i]._soundById(ids[j]);
+
+              if (sound && sound._node && !sound._node._unlocked) {
+                sound._node._unlocked = true;
+                sound._node.load();
+              }
+            }
+          }
+        }
+
+        // Fix Android can not play in suspend state.
+        self._autoResume();
+
+        // Create an empty buffer.
+        var source = self.ctx.createBufferSource();
+        source.buffer = self._scratchBuffer;
+        source.connect(self.ctx.destination);
+
+        // Play the empty buffer.
+        if (typeof source.start === 'undefined') {
+          source.noteOn(0);
+        } else {
+          source.start(0);
+        }
+
+        // Calling resume() on a stack initiated by user gesture is what actually unlocks the audio on Android Chrome >= 55.
+        if (typeof self.ctx.resume === 'function') {
+          self.ctx.resume();
+        }
+
+        // Setup a timeout to check that we are unlocked on the next event loop.
+        source.onended = function() {
+          source.disconnect(0);
+
+          // Update the unlocked state and prevent this check from happening again.
+          self._audioUnlocked = true;
+
+          // Remove the touch start listener.
+          document.removeEventListener('touchstart', unlock, true);
+          document.removeEventListener('touchend', unlock, true);
+          document.removeEventListener('click', unlock, true);
+
+          // Let all sounds know that audio has been unlocked.
+          for (var i=0; i<self._howls.length; i++) {
+            self._howls[i]._emit('unlock');
+          }
+        };
+      };
+
+      // Setup a touch start listener to attempt an unlock in.
+      document.addEventListener('touchstart', unlock, true);
+      document.addEventListener('touchend', unlock, true);
+      document.addEventListener('click', unlock, true);
+
+      return self;
+    },
+
+    /**
+     * Get an unlocked HTML5 Audio object from the pool. If none are left,
+     * return a new Audio object and throw a warning.
+     * @return {Audio} HTML5 Audio object.
+     */
+    _obtainHtml5Audio: function() {
+      var self = this || Howler;
+
+      // Return the next object from the pool if one exists.
+      if (self._html5AudioPool.length) {
+        return self._html5AudioPool.pop();
+      }
+
+      //.Check if the audio is locked and throw a warning.
+      var testPlay = new Audio().play();
+      if (testPlay && typeof Promise !== 'undefined' && (testPlay instanceof Promise || typeof testPlay.then === 'function')) {
+        testPlay.catch(function() {
+          console.warn('HTML5 Audio pool exhausted, returning potentially locked audio object.');
+        });
+      }
+
+      return new Audio();
+    },
+
+    /**
+     * Return an activated HTML5 Audio object to the pool.
+     * @return {Howler}
+     */
+    _releaseHtml5Audio: function(audio) {
+      var self = this || Howler;
+
+      // Don't add audio to the pool if we don't know if it has been unlocked.
+      if (audio._unlocked) {
+        self._html5AudioPool.push(audio);
+      }
+
+      return self;
+    },
+
+    /**
+     * Automatically suspend the Web Audio AudioContext after no sound has played for 30 seconds.
+     * This saves processing/energy and fixes various browser-specific bugs with audio getting stuck.
+     * @return {Howler}
+     */
+    _autoSuspend: function() {
+      var self = this;
+
+      if (!self.autoSuspend || !self.ctx || typeof self.ctx.suspend === 'undefined' || !Howler.usingWebAudio) {
+        return;
+      }
+
+      // Check if any sounds are playing.
+      for (var i=0; i<self._howls.length; i++) {
+        if (self._howls[i]._webAudio) {
+          for (var j=0; j<self._howls[i]._sounds.length; j++) {
+            if (!self._howls[i]._sounds[j]._paused) {
+              return self;
+            }
+          }
+        }
+      }
+
+      if (self._suspendTimer) {
+        clearTimeout(self._suspendTimer);
+      }
+
+      // If no sound has played after 30 seconds, suspend the context.
+      self._suspendTimer = setTimeout(function() {
+        if (!self.autoSuspend) {
+          return;
+        }
+
+        self._suspendTimer = null;
+        self.state = 'suspending';
+
+        // Handle updating the state of the audio context after suspending.
+        var handleSuspension = function() {
+          self.state = 'suspended';
+
+          if (self._resumeAfterSuspend) {
+            delete self._resumeAfterSuspend;
+            self._autoResume();
+          }
+        };
+
+        // Either the state gets suspended or it is interrupted.
+        // Either way, we need to update the state to suspended.
+        self.ctx.suspend().then(handleSuspension, handleSuspension);
+      }, 30000);
+
+      return self;
+    },
+
+    /**
+     * Automatically resume the Web Audio AudioContext when a new sound is played.
+     * @return {Howler}
+     */
+    _autoResume: function() {
+      var self = this;
+
+      if (!self.ctx || typeof self.ctx.resume === 'undefined' || !Howler.usingWebAudio) {
+        return;
+      }
+
+      if (self.state === 'running' && self.ctx.state !== 'interrupted' && self._suspendTimer) {
+        clearTimeout(self._suspendTimer);
+        self._suspendTimer = null;
+      } else if (self.state === 'suspended' || self.state === 'running' && self.ctx.state === 'interrupted') {
+        self.ctx.resume().then(function() {
+          self.state = 'running';
+
+          // Emit to all Howls that the audio has resumed.
+          for (var i=0; i<self._howls.length; i++) {
+            self._howls[i]._emit('resume');
+          }
+        });
+
+        if (self._suspendTimer) {
+          clearTimeout(self._suspendTimer);
+          self._suspendTimer = null;
+        }
+      } else if (self.state === 'suspending') {
+        self._resumeAfterSuspend = true;
+      }
+
+      return self;
+    }
+  };
+
+  // Setup the global audio controller.
+  var Howler = new HowlerGlobal();
+
+  /** Group Methods **/
+  /***************************************************************************/
+
+  /**
+   * Create an audio group controller.
+   * @param {Object} o Passed in properties for this group.
+   */
+  var Howl = function(o) {
+    var self = this;
+
+    // Throw an error if no source is provided.
+    if (!o.src || o.src.length === 0) {
+      console.error('An array of source files must be passed with any new Howl.');
+      return;
+    }
+
+    self.init(o);
+  };
+  Howl.prototype = {
+    /**
+     * Initialize a new Howl group object.
+     * @param  {Object} o Passed in properties for this group.
+     * @return {Howl}
+     */
+    init: function(o) {
+      var self = this;
+
+      // If we don't have an AudioContext created yet, run the setup.
+      if (!Howler.ctx) {
+        setupAudioContext();
+      }
+
+      // Setup user-defined default properties.
+      self._autoplay = o.autoplay || false;
+      self._format = (typeof o.format !== 'string') ? o.format : [o.format];
+      self._html5 = o.html5 || false;
+      self._muted = o.mute || false;
+      self._loop = o.loop || false;
+      self._pool = o.pool || 5;
+      self._preload = (typeof o.preload === 'boolean' || o.preload === 'metadata') ? o.preload : true;
+      self._rate = o.rate || 1;
+      self._sprite = o.sprite || {};
+      self._src = (typeof o.src !== 'string') ? o.src : [o.src];
+      self._volume = o.volume !== undefined ? o.volume : 1;
+      self._xhr = {
+        method: o.xhr && o.xhr.method ? o.xhr.method : 'GET',
+        headers: o.xhr && o.xhr.headers ? o.xhr.headers : null,
+        withCredentials: o.xhr && o.xhr.withCredentials ? o.xhr.withCredentials : false,
+      };
+
+      // Setup all other default properties.
+      self._duration = 0;
+      self._state = 'unloaded';
+      self._sounds = [];
+      self._endTimers = {};
+      self._queue = [];
+      self._playLock = false;
+
+      // Setup event listeners.
+      self._onend = o.onend ? [{fn: o.onend}] : [];
+      self._onfade = o.onfade ? [{fn: o.onfade}] : [];
+      self._onload = o.onload ? [{fn: o.onload}] : [];
+      self._onloaderror = o.onloaderror ? [{fn: o.onloaderror}] : [];
+      self._onplayerror = o.onplayerror ? [{fn: o.onplayerror}] : [];
+      self._onpause = o.onpause ? [{fn: o.onpause}] : [];
+      self._onplay = o.onplay ? [{fn: o.onplay}] : [];
+      self._onstop = o.onstop ? [{fn: o.onstop}] : [];
+      self._onmute = o.onmute ? [{fn: o.onmute}] : [];
+      self._onvolume = o.onvolume ? [{fn: o.onvolume}] : [];
+      self._onrate = o.onrate ? [{fn: o.onrate}] : [];
+      self._onseek = o.onseek ? [{fn: o.onseek}] : [];
+      self._onunlock = o.onunlock ? [{fn: o.onunlock}] : [];
+      self._onresume = [];
+
+      // Web Audio or HTML5 Audio?
+      self._webAudio = Howler.usingWebAudio && !self._html5;
+
+      // Automatically try to enable audio.
+      if (typeof Howler.ctx !== 'undefined' && Howler.ctx && Howler.autoUnlock) {
+        Howler._unlockAudio();
+      }
+
+      // Keep track of this Howl group in the global controller.
+      Howler._howls.push(self);
+
+      // If they selected autoplay, add a play event to the load queue.
+      if (self._autoplay) {
+        self._queue.push({
+          event: 'play',
+          action: function() {
+            self.play();
+          }
+        });
+      }
+
+      // Load the source file unless otherwise specified.
+      if (self._preload && self._preload !== 'none') {
+        self.load();
+      }
+
+      return self;
+    },
+
+    /**
+     * Load the audio file.
+     * @return {Howler}
+     */
+    load: function() {
+      var self = this;
+      var url = null;
+
+      // If no audio is available, quit immediately.
+      if (Howler.noAudio) {
+        self._emit('loaderror', null, 'No audio support.');
+        return;
+      }
+
+      // Make sure our source is in an array.
+      if (typeof self._src === 'string') {
+        self._src = [self._src];
+      }
+
+      // Loop through the sources and pick the first one that is compatible.
+      for (var i=0; i<self._src.length; i++) {
+        var ext, str;
+
+        if (self._format && self._format[i]) {
+          // If an extension was specified, use that instead.
+          ext = self._format[i];
+        } else {
+          // Make sure the source is a string.
+          str = self._src[i];
+          if (typeof str !== 'string') {
+            self._emit('loaderror', null, 'Non-string found in selected audio sources - ignoring.');
+            continue;
+          }
+
+          // Extract the file extension from the URL or base64 data URI.
+          ext = /^data:audio\/([^;,]+);/i.exec(str);
+          if (!ext) {
+            ext = /\.([^.]+)$/.exec(str.split('?', 1)[0]);
+          }
+
+          if (ext) {
+            ext = ext[1].toLowerCase();
+          }
+        }
+
+        // Log a warning if no extension was found.
+        if (!ext) {
+          console.warn('No file extension was found. Consider using the "format" property or specify an extension.');
+        }
+
+        // Check if this extension is available.
+        if (ext && Howler.codecs(ext)) {
+          url = self._src[i];
+          break;
+        }
+      }
+
+      if (!url) {
+        self._emit('loaderror', null, 'No codec support for selected audio sources.');
+        return;
+      }
+
+      self._src = url;
+      self._state = 'loading';
+
+      // If the hosting page is HTTPS and the source isn't,
+      // drop down to HTML5 Audio to avoid Mixed Content errors.
+      if (window.location.protocol === 'https:' && url.slice(0, 5) === 'http:') {
+        self._html5 = true;
+        self._webAudio = false;
+      }
+
+      // Create a new sound object and add it to the pool.
+      new Sound(self);
+
+      // Load and decode the audio data for playback.
+      if (self._webAudio) {
+        loadBuffer(self);
+      }
+
+      return self;
+    },
+
+    /**
+     * Play a sound or resume previous playback.
+     * @param  {String/Number} sprite   Sprite name for sprite playback or sound id to continue previous.
+     * @param  {Boolean} internal Internal Use: true prevents event firing.
+     * @return {Number}          Sound ID.
+     */
+    play: function(sprite, internal) {
+      var self = this;
+      var id = null;
+
+      // Determine if a sprite, sound id or nothing was passed
+      if (typeof sprite === 'number') {
+        id = sprite;
+        sprite = null;
+      } else if (typeof sprite === 'string' && self._state === 'loaded' && !self._sprite[sprite]) {
+        // If the passed sprite doesn't exist, do nothing.
+        return null;
+      } else if (typeof sprite === 'undefined') {
+        // Use the default sound sprite (plays the full audio length).
+        sprite = '__default';
+
+        // Check if there is a single paused sound that isn't ended.
+        // If there is, play that sound. If not, continue as usual.
+        if (!self._playLock) {
+          var num = 0;
+          for (var i=0; i<self._sounds.length; i++) {
+            if (self._sounds[i]._paused && !self._sounds[i]._ended) {
+              num++;
+              id = self._sounds[i]._id;
+            }
+          }
+
+          if (num === 1) {
+            sprite = null;
+          } else {
+            id = null;
+          }
+        }
+      }
+
+      // Get the selected node, or get one from the pool.
+      var sound = id ? self._soundById(id) : self._inactiveSound();
+
+      // If the sound doesn't exist, do nothing.
+      if (!sound) {
+        return null;
+      }
+
+      // Select the sprite definition.
+      if (id && !sprite) {
+        sprite = sound._sprite || '__default';
+      }
+
+      // If the sound hasn't loaded, we must wait to get the audio's duration.
+      // We also need to wait to make sure we don't run into race conditions with
+      // the order of function calls.
+      if (self._state !== 'loaded') {
+        // Set the sprite value on this sound.
+        sound._sprite = sprite;
+
+        // Mark this sound as not ended in case another sound is played before this one loads.
+        sound._ended = false;
+
+        // Add the sound to the queue to be played on load.
+        var soundId = sound._id;
+        self._queue.push({
+          event: 'play',
+          action: function() {
+            self.play(soundId);
+          }
+        });
+
+        return soundId;
+      }
+
+      // Don't play the sound if an id was passed and it is already playing.
+      if (id && !sound._paused) {
+        // Trigger the play event, in order to keep iterating through queue.
+        if (!internal) {
+          self._loadQueue('play');
+        }
+
+        return sound._id;
+      }
+
+      // Make sure the AudioContext isn't suspended, and resume it if it is.
+      if (self._webAudio) {
+        Howler._autoResume();
+      }
+
+      // Determine how long to play for and where to start playing.
+      var seek = Math.max(0, sound._seek > 0 ? sound._seek : self._sprite[sprite][0] / 1000);
+      var duration = Math.max(0, ((self._sprite[sprite][0] + self._sprite[sprite][1]) / 1000) - seek);
+      var timeout = (duration * 1000) / Math.abs(sound._rate);
+      var start = self._sprite[sprite][0] / 1000;
+      var stop = (self._sprite[sprite][0] + self._sprite[sprite][1]) / 1000;
+      sound._sprite = sprite;
+
+      // Mark the sound as ended instantly so that this async playback
+      // doesn't get grabbed by another call to play while this one waits to start.
+      sound._ended = false;
+
+      // Update the parameters of the sound.
+      var setParams = function() {
+        sound._paused = false;
+        sound._seek = seek;
+        sound._start = start;
+        sound._stop = stop;
+        sound._loop = !!(sound._loop || self._sprite[sprite][2]);
+      };
+
+      // End the sound instantly if seek is at the end.
+      if (seek >= stop) {
+        self._ended(sound);
+        return;
+      }
+
+      // Begin the actual playback.
+      var node = sound._node;
+      if (self._webAudio) {
+        // Fire this when the sound is ready to play to begin Web Audio playback.
+        var playWebAudio = function() {
+          self._playLock = false;
+          setParams();
+          self._refreshBuffer(sound);
+
+          // Setup the playback params.
+          var vol = (sound._muted || self._muted) ? 0 : sound._volume;
+          node.gain.setValueAtTime(vol, Howler.ctx.currentTime);
+          sound._playStart = Howler.ctx.currentTime;
+
+          // Play the sound using the supported method.
+          if (typeof node.bufferSource.start === 'undefined') {
+            sound._loop ? node.bufferSource.noteGrainOn(0, seek, 86400) : node.bufferSource.noteGrainOn(0, seek, duration);
+          } else {
+            sound._loop ? node.bufferSource.start(0, seek, 86400) : node.bufferSource.start(0, seek, duration);
+          }
+
+          // Start a new timer if none is present.
+          if (timeout !== Infinity) {
+            self._endTimers[sound._id] = setTimeout(self._ended.bind(self, sound), timeout);
+          }
+
+          if (!internal) {
+            setTimeout(function() {
+              self._emit('play', sound._id);
+              self._loadQueue();
+            }, 0);
+          }
+        };
+
+        if (Howler.state === 'running' && Howler.ctx.state !== 'interrupted') {
+          playWebAudio();
+        } else {
+          self._playLock = true;
+
+          // Wait for the audio context to resume before playing.
+          self.once('resume', playWebAudio);
+
+          // Cancel the end timer.
+          self._clearTimer(sound._id);
+        }
+      } else {
+        // Fire this when the sound is ready to play to begin HTML5 Audio playback.
+        var playHtml5 = function() {
+          node.currentTime = seek;
+          node.muted = sound._muted || self._muted || Howler._muted || node.muted;
+          node.volume = sound._volume * Howler.volume();
+          node.playbackRate = sound._rate;
+
+          // Some browsers will throw an error if this is called without user interaction.
+          try {
+            var play = node.play();
+
+            // Support older browsers that don't support promises, and thus don't have this issue.
+            if (play && typeof Promise !== 'undefined' && (play instanceof Promise || typeof play.then === 'function')) {
+              // Implements a lock to prevent DOMException: The play() request was interrupted by a call to pause().
+              self._playLock = true;
+
+              // Set param values immediately.
+              setParams();
+
+              // Releases the lock and executes queued actions.
+              play
+                .then(function() {
+                  self._playLock = false;
+                  node._unlocked = true;
+                  if (!internal) {
+                    self._emit('play', sound._id);
+                    self._loadQueue();
+                  }
+                })
+                .catch(function() {
+                  self._playLock = false;
+                  self._emit('playerror', sound._id, 'Playback was unable to start. This is most commonly an issue ' +
+                    'on mobile devices and Chrome where playback was not within a user interaction.');
+
+                  // Reset the ended and paused values.
+                  sound._ended = true;
+                  sound._paused = true;
+                });
+            } else if (!internal) {
+              self._playLock = false;
+              setParams();
+              self._emit('play', sound._id);
+              self._loadQueue();
+            }
+
+            // Setting rate before playing won't work in IE, so we set it again here.
+            node.playbackRate = sound._rate;
+
+            // If the node is still paused, then we can assume there was a playback issue.
+            if (node.paused) {
+              self._emit('playerror', sound._id, 'Playback was unable to start. This is most commonly an issue ' +
+                'on mobile devices and Chrome where playback was not within a user interaction.');
+              return;
+            }
+
+            // Setup the end timer on sprites or listen for the ended event.
+            if (sprite !== '__default' || sound._loop) {
+              self._endTimers[sound._id] = setTimeout(self._ended.bind(self, sound), timeout);
+            } else {
+              self._endTimers[sound._id] = function() {
+                // Fire ended on this audio node.
+                self._ended(sound);
+
+                // Clear this listener.
+                node.removeEventListener('ended', self._endTimers[sound._id], false);
+              };
+              node.addEventListener('ended', self._endTimers[sound._id], false);
+            }
+          } catch (err) {
+            self._emit('playerror', sound._id, err);
+          }
+        };
+
+        // If this is streaming audio, make sure the src is set and load again.
+        if (node.src === 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA') {
+          node.src = self._src;
+          node.load();
+        }
+
+        // Play immediately if ready, or wait for the 'canplaythrough'e vent.
+        var loadedNoReadyState = (window && window.ejecta) || (!node.readyState && Howler._navigator.isCocoonJS);
+        if (node.readyState >= 3 || loadedNoReadyState) {
+          playHtml5();
+        } else {
+          self._playLock = true;
+
+          var listener = function() {
+            // Begin playback.
+            playHtml5();
+
+            // Clear this listener.
+            node.removeEventListener(Howler._canPlayEvent, listener, false);
+          };
+          node.addEventListener(Howler._canPlayEvent, listener, false);
+
+          // Cancel the end timer.
+          self._clearTimer(sound._id);
+        }
+      }
+
+      return sound._id;
+    },
+
+    /**
+     * Pause playback and save current position.
+     * @param  {Number} id The sound ID (empty to pause all in group).
+     * @return {Howl}
+     */
+    pause: function(id) {
+      var self = this;
+
+      // If the sound hasn't loaded or a play() promise is pending, add it to the load queue to pause when capable.
+      if (self._state !== 'loaded' || self._playLock) {
+        self._queue.push({
+          event: 'pause',
+          action: function() {
+            self.pause(id);
+          }
+        });
+
+        return self;
+      }
+
+      // If no id is passed, get all ID's to be paused.
+      var ids = self._getSoundIds(id);
+
+      for (var i=0; i<ids.length; i++) {
+        // Clear the end timer.
+        self._clearTimer(ids[i]);
+
+        // Get the sound.
+        var sound = self._soundById(ids[i]);
+
+        if (sound && !sound._paused) {
+          // Reset the seek position.
+          sound._seek = self.seek(ids[i]);
+          sound._rateSeek = 0;
+          sound._paused = true;
+
+          // Stop currently running fades.
+          self._stopFade(ids[i]);
+
+          if (sound._node) {
+            if (self._webAudio) {
+              // Make sure the sound has been created.
+              if (!sound._node.bufferSource) {
+                continue;
+              }
+
+              if (typeof sound._node.bufferSource.stop === 'undefined') {
+                sound._node.bufferSource.noteOff(0);
+              } else {
+                sound._node.bufferSource.stop(0);
+              }
+
+              // Clean up the buffer source.
+              self._cleanBuffer(sound._node);
+            } else if (!isNaN(sound._node.duration) || sound._node.duration === Infinity) {
+              sound._node.pause();
+            }
+          }
+        }
+
+        // Fire the pause event, unless `true` is passed as the 2nd argument.
+        if (!arguments[1]) {
+          self._emit('pause', sound ? sound._id : null);
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Stop playback and reset to start.
+     * @param  {Number} id The sound ID (empty to stop all in group).
+     * @param  {Boolean} internal Internal Use: true prevents event firing.
+     * @return {Howl}
+     */
+    stop: function(id, internal) {
+      var self = this;
+
+      // If the sound hasn't loaded, add it to the load queue to stop when capable.
+      if (self._state !== 'loaded' || self._playLock) {
+        self._queue.push({
+          event: 'stop',
+          action: function() {
+            self.stop(id);
+          }
+        });
+
+        return self;
+      }
+
+      // If no id is passed, get all ID's to be stopped.
+      var ids = self._getSoundIds(id);
+
+      for (var i=0; i<ids.length; i++) {
+        // Clear the end timer.
+        self._clearTimer(ids[i]);
+
+        // Get the sound.
+        var sound = self._soundById(ids[i]);
+
+        if (sound) {
+          // Reset the seek position.
+          sound._seek = sound._start || 0;
+          sound._rateSeek = 0;
+          sound._paused = true;
+          sound._ended = true;
+
+          // Stop currently running fades.
+          self._stopFade(ids[i]);
+
+          if (sound._node) {
+            if (self._webAudio) {
+              // Make sure the sound's AudioBufferSourceNode has been created.
+              if (sound._node.bufferSource) {
+                if (typeof sound._node.bufferSource.stop === 'undefined') {
+                  sound._node.bufferSource.noteOff(0);
+                } else {
+                  sound._node.bufferSource.stop(0);
+                }
+
+                // Clean up the buffer source.
+                self._cleanBuffer(sound._node);
+              }
+            } else if (!isNaN(sound._node.duration) || sound._node.duration === Infinity) {
+              sound._node.currentTime = sound._start || 0;
+              sound._node.pause();
+
+              // If this is a live stream, stop download once the audio is stopped.
+              if (sound._node.duration === Infinity) {
+                self._clearSound(sound._node);
+              }
+            }
+          }
+
+          if (!internal) {
+            self._emit('stop', sound._id);
+          }
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Mute/unmute a single sound or all sounds in this Howl group.
+     * @param  {Boolean} muted Set to true to mute and false to unmute.
+     * @param  {Number} id    The sound ID to update (omit to mute/unmute all).
+     * @return {Howl}
+     */
+    mute: function(muted, id) {
+      var self = this;
+
+      // If the sound hasn't loaded, add it to the load queue to mute when capable.
+      if (self._state !== 'loaded'|| self._playLock) {
+        self._queue.push({
+          event: 'mute',
+          action: function() {
+            self.mute(muted, id);
+          }
+        });
+
+        return self;
+      }
+
+      // If applying mute/unmute to all sounds, update the group's value.
+      if (typeof id === 'undefined') {
+        if (typeof muted === 'boolean') {
+          self._muted = muted;
+        } else {
+          return self._muted;
+        }
+      }
+
+      // If no id is passed, get all ID's to be muted.
+      var ids = self._getSoundIds(id);
+
+      for (var i=0; i<ids.length; i++) {
+        // Get the sound.
+        var sound = self._soundById(ids[i]);
+
+        if (sound) {
+          sound._muted = muted;
+
+          // Cancel active fade and set the volume to the end value.
+          if (sound._interval) {
+            self._stopFade(sound._id);
+          }
+
+          if (self._webAudio && sound._node) {
+            sound._node.gain.setValueAtTime(muted ? 0 : sound._volume, Howler.ctx.currentTime);
+          } else if (sound._node) {
+            sound._node.muted = Howler._muted ? true : muted;
+          }
+
+          self._emit('mute', sound._id);
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Get/set the volume of this sound or of the Howl group. This method can optionally take 0, 1 or 2 arguments.
+     *   volume() -> Returns the group's volume value.
+     *   volume(id) -> Returns the sound id's current volume.
+     *   volume(vol) -> Sets the volume of all sounds in this Howl group.
+     *   volume(vol, id) -> Sets the volume of passed sound id.
+     * @return {Howl/Number} Returns self or current volume.
+     */
+    volume: function() {
+      var self = this;
+      var args = arguments;
+      var vol, id;
+
+      // Determine the values based on arguments.
+      if (args.length === 0) {
+        // Return the value of the groups' volume.
+        return self._volume;
+      } else if (args.length === 1 || args.length === 2 && typeof args[1] === 'undefined') {
+        // First check if this is an ID, and if not, assume it is a new volume.
+        var ids = self._getSoundIds();
+        var index = ids.indexOf(args[0]);
+        if (index >= 0) {
+          id = parseInt(args[0], 10);
+        } else {
+          vol = parseFloat(args[0]);
+        }
+      } else if (args.length >= 2) {
+        vol = parseFloat(args[0]);
+        id = parseInt(args[1], 10);
+      }
+
+      // Update the volume or return the current volume.
+      var sound;
+      if (typeof vol !== 'undefined' && vol >= 0 && vol <= 1) {
+        // If the sound hasn't loaded, add it to the load queue to change volume when capable.
+        if (self._state !== 'loaded'|| self._playLock) {
+          self._queue.push({
+            event: 'volume',
+            action: function() {
+              self.volume.apply(self, args);
+            }
+          });
+
+          return self;
+        }
+
+        // Set the group volume.
+        if (typeof id === 'undefined') {
+          self._volume = vol;
+        }
+
+        // Update one or all volumes.
+        id = self._getSoundIds(id);
+        for (var i=0; i<id.length; i++) {
+          // Get the sound.
+          sound = self._soundById(id[i]);
+
+          if (sound) {
+            sound._volume = vol;
+
+            // Stop currently running fades.
+            if (!args[2]) {
+              self._stopFade(id[i]);
+            }
+
+            if (self._webAudio && sound._node && !sound._muted) {
+              sound._node.gain.setValueAtTime(vol, Howler.ctx.currentTime);
+            } else if (sound._node && !sound._muted) {
+              sound._node.volume = vol * Howler.volume();
+            }
+
+            self._emit('volume', sound._id);
+          }
+        }
+      } else {
+        sound = id ? self._soundById(id) : self._sounds[0];
+        return sound ? sound._volume : 0;
+      }
+
+      return self;
+    },
+
+    /**
+     * Fade a currently playing sound between two volumes (if no id is passed, all sounds will fade).
+     * @param  {Number} from The value to fade from (0.0 to 1.0).
+     * @param  {Number} to   The volume to fade to (0.0 to 1.0).
+     * @param  {Number} len  Time in milliseconds to fade.
+     * @param  {Number} id   The sound id (omit to fade all sounds).
+     * @return {Howl}
+     */
+    fade: function(from, to, len, id) {
+      var self = this;
+
+      // If the sound hasn't loaded, add it to the load queue to fade when capable.
+      if (self._state !== 'loaded' || self._playLock) {
+        self._queue.push({
+          event: 'fade',
+          action: function() {
+            self.fade(from, to, len, id);
+          }
+        });
+
+        return self;
+      }
+
+      // Make sure the to/from/len values are numbers.
+      from = Math.min(Math.max(0, parseFloat(from)), 1);
+      to = Math.min(Math.max(0, parseFloat(to)), 1);
+      len = parseFloat(len);
+
+      // Set the volume to the start position.
+      self.volume(from, id);
+
+      // Fade the volume of one or all sounds.
+      var ids = self._getSoundIds(id);
+      for (var i=0; i<ids.length; i++) {
+        // Get the sound.
+        var sound = self._soundById(ids[i]);
+
+        // Create a linear fade or fall back to timeouts with HTML5 Audio.
+        if (sound) {
+          // Stop the previous fade if no sprite is being used (otherwise, volume handles this).
+          if (!id) {
+            self._stopFade(ids[i]);
+          }
+
+          // If we are using Web Audio, let the native methods do the actual fade.
+          if (self._webAudio && !sound._muted) {
+            var currentTime = Howler.ctx.currentTime;
+            var end = currentTime + (len / 1000);
+            sound._volume = from;
+            sound._node.gain.setValueAtTime(from, currentTime);
+            sound._node.gain.linearRampToValueAtTime(to, end);
+          }
+
+          self._startFadeInterval(sound, from, to, len, ids[i], typeof id === 'undefined');
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Starts the internal interval to fade a sound.
+     * @param  {Object} sound Reference to sound to fade.
+     * @param  {Number} from The value to fade from (0.0 to 1.0).
+     * @param  {Number} to   The volume to fade to (0.0 to 1.0).
+     * @param  {Number} len  Time in milliseconds to fade.
+     * @param  {Number} id   The sound id to fade.
+     * @param  {Boolean} isGroup   If true, set the volume on the group.
+     */
+    _startFadeInterval: function(sound, from, to, len, id, isGroup) {
+      var self = this;
+      var vol = from;
+      var diff = to - from;
+      var steps = Math.abs(diff / 0.01);
+      var stepLen = Math.max(4, (steps > 0) ? len / steps : len);
+      var lastTick = Date.now();
+
+      // Store the value being faded to.
+      sound._fadeTo = to;
+
+      // Update the volume value on each interval tick.
+      sound._interval = setInterval(function() {
+        // Update the volume based on the time since the last tick.
+        var tick = (Date.now() - lastTick) / len;
+        lastTick = Date.now();
+        vol += diff * tick;
+
+        // Round to within 2 decimal points.
+        vol = Math.round(vol * 100) / 100;
+
+        // Make sure the volume is in the right bounds.
+        if (diff < 0) {
+          vol = Math.max(to, vol);
+        } else {
+          vol = Math.min(to, vol);
+        }
+
+        // Change the volume.
+        if (self._webAudio) {
+          sound._volume = vol;
+        } else {
+          self.volume(vol, sound._id, true);
+        }
+
+        // Set the group's volume.
+        if (isGroup) {
+          self._volume = vol;
+        }
+
+        // When the fade is complete, stop it and fire event.
+        if ((to < from && vol <= to) || (to > from && vol >= to)) {
+          clearInterval(sound._interval);
+          sound._interval = null;
+          sound._fadeTo = null;
+          self.volume(to, sound._id);
+          self._emit('fade', sound._id);
+        }
+      }, stepLen);
+    },
+
+    /**
+     * Internal method that stops the currently playing fade when
+     * a new fade starts, volume is changed or the sound is stopped.
+     * @param  {Number} id The sound id.
+     * @return {Howl}
+     */
+    _stopFade: function(id) {
+      var self = this;
+      var sound = self._soundById(id);
+
+      if (sound && sound._interval) {
+        if (self._webAudio) {
+          sound._node.gain.cancelScheduledValues(Howler.ctx.currentTime);
+        }
+
+        clearInterval(sound._interval);
+        sound._interval = null;
+        self.volume(sound._fadeTo, id);
+        sound._fadeTo = null;
+        self._emit('fade', id);
+      }
+
+      return self;
+    },
+
+    /**
+     * Get/set the loop parameter on a sound. This method can optionally take 0, 1 or 2 arguments.
+     *   loop() -> Returns the group's loop value.
+     *   loop(id) -> Returns the sound id's loop value.
+     *   loop(loop) -> Sets the loop value for all sounds in this Howl group.
+     *   loop(loop, id) -> Sets the loop value of passed sound id.
+     * @return {Howl/Boolean} Returns self or current loop value.
+     */
+    loop: function() {
+      var self = this;
+      var args = arguments;
+      var loop, id, sound;
+
+      // Determine the values for loop and id.
+      if (args.length === 0) {
+        // Return the grou's loop value.
+        return self._loop;
+      } else if (args.length === 1) {
+        if (typeof args[0] === 'boolean') {
+          loop = args[0];
+          self._loop = loop;
+        } else {
+          // Return this sound's loop value.
+          sound = self._soundById(parseInt(args[0], 10));
+          return sound ? sound._loop : false;
+        }
+      } else if (args.length === 2) {
+        loop = args[0];
+        id = parseInt(args[1], 10);
+      }
+
+      // If no id is passed, get all ID's to be looped.
+      var ids = self._getSoundIds(id);
+      for (var i=0; i<ids.length; i++) {
+        sound = self._soundById(ids[i]);
+
+        if (sound) {
+          sound._loop = loop;
+          if (self._webAudio && sound._node && sound._node.bufferSource) {
+            sound._node.bufferSource.loop = loop;
+            if (loop) {
+              sound._node.bufferSource.loopStart = sound._start || 0;
+              sound._node.bufferSource.loopEnd = sound._stop;
+            }
+          }
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Get/set the playback rate of a sound. This method can optionally take 0, 1 or 2 arguments.
+     *   rate() -> Returns the first sound node's current playback rate.
+     *   rate(id) -> Returns the sound id's current playback rate.
+     *   rate(rate) -> Sets the playback rate of all sounds in this Howl group.
+     *   rate(rate, id) -> Sets the playback rate of passed sound id.
+     * @return {Howl/Number} Returns self or the current playback rate.
+     */
+    rate: function() {
+      var self = this;
+      var args = arguments;
+      var rate, id;
+
+      // Determine the values based on arguments.
+      if (args.length === 0) {
+        // We will simply return the current rate of the first node.
+        id = self._sounds[0]._id;
+      } else if (args.length === 1) {
+        // First check if this is an ID, and if not, assume it is a new rate value.
+        var ids = self._getSoundIds();
+        var index = ids.indexOf(args[0]);
+        if (index >= 0) {
+          id = parseInt(args[0], 10);
+        } else {
+          rate = parseFloat(args[0]);
+        }
+      } else if (args.length === 2) {
+        rate = parseFloat(args[0]);
+        id = parseInt(args[1], 10);
+      }
+
+      // Update the playback rate or return the current value.
+      var sound;
+      if (typeof rate === 'number') {
+        // If the sound hasn't loaded, add it to the load queue to change playback rate when capable.
+        if (self._state !== 'loaded' || self._playLock) {
+          self._queue.push({
+            event: 'rate',
+            action: function() {
+              self.rate.apply(self, args);
+            }
+          });
+
+          return self;
+        }
+
+        // Set the group rate.
+        if (typeof id === 'undefined') {
+          self._rate = rate;
+        }
+
+        // Update one or all volumes.
+        id = self._getSoundIds(id);
+        for (var i=0; i<id.length; i++) {
+          // Get the sound.
+          sound = self._soundById(id[i]);
+
+          if (sound) {
+            // Keep track of our position when the rate changed and update the playback
+            // start position so we can properly adjust the seek position for time elapsed.
+            if (self.playing(id[i])) {
+              sound._rateSeek = self.seek(id[i]);
+              sound._playStart = self._webAudio ? Howler.ctx.currentTime : sound._playStart;
+            }
+            sound._rate = rate;
+
+            // Change the playback rate.
+            if (self._webAudio && sound._node && sound._node.bufferSource) {
+              sound._node.bufferSource.playbackRate.setValueAtTime(rate, Howler.ctx.currentTime);
+            } else if (sound._node) {
+              sound._node.playbackRate = rate;
+            }
+
+            // Reset the timers.
+            var seek = self.seek(id[i]);
+            var duration = ((self._sprite[sound._sprite][0] + self._sprite[sound._sprite][1]) / 1000) - seek;
+            var timeout = (duration * 1000) / Math.abs(sound._rate);
+
+            // Start a new end timer if sound is already playing.
+            if (self._endTimers[id[i]] || !sound._paused) {
+              self._clearTimer(id[i]);
+              self._endTimers[id[i]] = setTimeout(self._ended.bind(self, sound), timeout);
+            }
+
+            self._emit('rate', sound._id);
+          }
+        }
+      } else {
+        sound = self._soundById(id);
+        return sound ? sound._rate : self._rate;
+      }
+
+      return self;
+    },
+
+    /**
+     * Get/set the seek position of a sound. This method can optionally take 0, 1 or 2 arguments.
+     *   seek() -> Returns the first sound node's current seek position.
+     *   seek(id) -> Returns the sound id's current seek position.
+     *   seek(seek) -> Sets the seek position of the first sound node.
+     *   seek(seek, id) -> Sets the seek position of passed sound id.
+     * @return {Howl/Number} Returns self or the current seek position.
+     */
+    seek: function() {
+      var self = this;
+      var args = arguments;
+      var seek, id;
+
+      // Determine the values based on arguments.
+      if (args.length === 0) {
+        // We will simply return the current position of the first node.
+        id = self._sounds[0]._id;
+      } else if (args.length === 1) {
+        // First check if this is an ID, and if not, assume it is a new seek position.
+        var ids = self._getSoundIds();
+        var index = ids.indexOf(args[0]);
+        if (index >= 0) {
+          id = parseInt(args[0], 10);
+        } else if (self._sounds.length) {
+          id = self._sounds[0]._id;
+          seek = parseFloat(args[0]);
+        }
+      } else if (args.length === 2) {
+        seek = parseFloat(args[0]);
+        id = parseInt(args[1], 10);
+      }
+
+      // If there is no ID, bail out.
+      if (typeof id === 'undefined') {
+        return self;
+      }
+
+      // If the sound hasn't loaded, add it to the load queue to seek when capable.
+      if (typeof seek === 'number' && (self._state !== 'loaded' || self._playLock)) {
+        self._queue.push({
+          event: 'seek',
+          action: function() {
+            self.seek.apply(self, args);
+          }
+        });
+
+        return self;
+      }
+
+      // Get the sound.
+      var sound = self._soundById(id);
+
+      if (sound) {
+        if (typeof seek === 'number' && seek >= 0) {
+          // Pause the sound and update position for restarting playback.
+          var playing = self.playing(id);
+          if (playing) {
+            self.pause(id, true);
+          }
+
+          // Move the position of the track and cancel timer.
+          sound._seek = seek;
+          sound._ended = false;
+          self._clearTimer(id);
+
+          // Update the seek position for HTML5 Audio.
+          if (!self._webAudio && sound._node && !isNaN(sound._node.duration)) {
+            sound._node.currentTime = seek;
+          }
+
+          // Seek and emit when ready.
+          var seekAndEmit = function() {
+            self._emit('seek', id);
+
+            // Restart the playback if the sound was playing.
+            if (playing) {
+              self.play(id, true);
+            }
+          };
+
+          // Wait for the play lock to be unset before emitting (HTML5 Audio).
+          if (playing && !self._webAudio) {
+            var emitSeek = function() {
+              if (!self._playLock) {
+                seekAndEmit();
+              } else {
+                setTimeout(emitSeek, 0);
+              }
+            };
+            setTimeout(emitSeek, 0);
+          } else {
+            seekAndEmit();
+          }
+        } else {
+          if (self._webAudio) {
+            var realTime = self.playing(id) ? Howler.ctx.currentTime - sound._playStart : 0;
+            var rateSeek = sound._rateSeek ? sound._rateSeek - sound._seek : 0;
+            return sound._seek + (rateSeek + realTime * Math.abs(sound._rate));
+          } else {
+            return sound._node.currentTime;
+          }
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Check if a specific sound is currently playing or not (if id is provided), or check if at least one of the sounds in the group is playing or not.
+     * @param  {Number}  id The sound id to check. If none is passed, the whole sound group is checked.
+     * @return {Boolean} True if playing and false if not.
+     */
+    playing: function(id) {
+      var self = this;
+
+      // Check the passed sound ID (if any).
+      if (typeof id === 'number') {
+        var sound = self._soundById(id);
+        return sound ? !sound._paused : false;
+      }
+
+      // Otherwise, loop through all sounds and check if any are playing.
+      for (var i=0; i<self._sounds.length; i++) {
+        if (!self._sounds[i]._paused) {
+          return true;
+        }
+      }
+
+      return false;
+    },
+
+    /**
+     * Get the duration of this sound. Passing a sound id will return the sprite duration.
+     * @param  {Number} id The sound id to check. If none is passed, return full source duration.
+     * @return {Number} Audio duration in seconds.
+     */
+    duration: function(id) {
+      var self = this;
+      var duration = self._duration;
+
+      // If we pass an ID, get the sound and return the sprite length.
+      var sound = self._soundById(id);
+      if (sound) {
+        duration = self._sprite[sound._sprite][1] / 1000;
+      }
+
+      return duration;
+    },
+
+    /**
+     * Returns the current loaded state of this Howl.
+     * @return {String} 'unloaded', 'loading', 'loaded'
+     */
+    state: function() {
+      return this._state;
+    },
+
+    /**
+     * Unload and destroy the current Howl object.
+     * This will immediately stop all sound instances attached to this group.
+     */
+    unload: function() {
+      var self = this;
+
+      // Stop playing any active sounds.
+      var sounds = self._sounds;
+      for (var i=0; i<sounds.length; i++) {
+        // Stop the sound if it is currently playing.
+        if (!sounds[i]._paused) {
+          self.stop(sounds[i]._id);
+        }
+
+        // Remove the source or disconnect.
+        if (!self._webAudio) {
+          // Set the source to 0-second silence to stop any downloading (except in IE).
+          self._clearSound(sounds[i]._node);
+
+          // Remove any event listeners.
+          sounds[i]._node.removeEventListener('error', sounds[i]._errorFn, false);
+          sounds[i]._node.removeEventListener(Howler._canPlayEvent, sounds[i]._loadFn, false);
+          sounds[i]._node.removeEventListener('ended', sounds[i]._endFn, false);
+
+          // Release the Audio object back to the pool.
+          Howler._releaseHtml5Audio(sounds[i]._node);
+        }
+
+        // Empty out all of the nodes.
+        delete sounds[i]._node;
+
+        // Make sure all timers are cleared out.
+        self._clearTimer(sounds[i]._id);
+      }
+
+      // Remove the references in the global Howler object.
+      var index = Howler._howls.indexOf(self);
+      if (index >= 0) {
+        Howler._howls.splice(index, 1);
+      }
+
+      // Delete this sound from the cache (if no other Howl is using it).
+      var remCache = true;
+      for (i=0; i<Howler._howls.length; i++) {
+        if (Howler._howls[i]._src === self._src || self._src.indexOf(Howler._howls[i]._src) >= 0) {
+          remCache = false;
+          break;
+        }
+      }
+
+      if (cache && remCache) {
+        delete cache[self._src];
+      }
+
+      // Clear global errors.
+      Howler.noAudio = false;
+
+      // Clear out `self`.
+      self._state = 'unloaded';
+      self._sounds = [];
+      self = null;
+
+      return null;
+    },
+
+    /**
+     * Listen to a custom event.
+     * @param  {String}   event Event name.
+     * @param  {Function} fn    Listener to call.
+     * @param  {Number}   id    (optional) Only listen to events for this sound.
+     * @param  {Number}   once  (INTERNAL) Marks event to fire only once.
+     * @return {Howl}
+     */
+    on: function(event, fn, id, once) {
+      var self = this;
+      var events = self['_on' + event];
+
+      if (typeof fn === 'function') {
+        events.push(once ? {id: id, fn: fn, once: once} : {id: id, fn: fn});
+      }
+
+      return self;
+    },
+
+    /**
+     * Remove a custom event. Call without parameters to remove all events.
+     * @param  {String}   event Event name.
+     * @param  {Function} fn    Listener to remove. Leave empty to remove all.
+     * @param  {Number}   id    (optional) Only remove events for this sound.
+     * @return {Howl}
+     */
+    off: function(event, fn, id) {
+      var self = this;
+      var events = self['_on' + event];
+      var i = 0;
+
+      // Allow passing just an event and ID.
+      if (typeof fn === 'number') {
+        id = fn;
+        fn = null;
+      }
+
+      if (fn || id) {
+        // Loop through event store and remove the passed function.
+        for (i=0; i<events.length; i++) {
+          var isId = (id === events[i].id);
+          if (fn === events[i].fn && isId || !fn && isId) {
+            events.splice(i, 1);
+            break;
+          }
+        }
+      } else if (event) {
+        // Clear out all events of this type.
+        self['_on' + event] = [];
+      } else {
+        // Clear out all events of every type.
+        var keys = Object.keys(self);
+        for (i=0; i<keys.length; i++) {
+          if ((keys[i].indexOf('_on') === 0) && Array.isArray(self[keys[i]])) {
+            self[keys[i]] = [];
+          }
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Listen to a custom event and remove it once fired.
+     * @param  {String}   event Event name.
+     * @param  {Function} fn    Listener to call.
+     * @param  {Number}   id    (optional) Only listen to events for this sound.
+     * @return {Howl}
+     */
+    once: function(event, fn, id) {
+      var self = this;
+
+      // Setup the event listener.
+      self.on(event, fn, id, 1);
+
+      return self;
+    },
+
+    /**
+     * Emit all events of a specific type and pass the sound id.
+     * @param  {String} event Event name.
+     * @param  {Number} id    Sound ID.
+     * @param  {Number} msg   Message to go with event.
+     * @return {Howl}
+     */
+    _emit: function(event, id, msg) {
+      var self = this;
+      var events = self['_on' + event];
+
+      // Loop through event store and fire all functions.
+      for (var i=events.length-1; i>=0; i--) {
+        // Only fire the listener if the correct ID is used.
+        if (!events[i].id || events[i].id === id || event === 'load') {
+          setTimeout(function(fn) {
+            fn.call(this, id, msg);
+          }.bind(self, events[i].fn), 0);
+
+          // If this event was setup with `once`, remove it.
+          if (events[i].once) {
+            self.off(event, events[i].fn, events[i].id);
+          }
+        }
+      }
+
+      // Pass the event type into load queue so that it can continue stepping.
+      self._loadQueue(event);
+
+      return self;
+    },
+
+    /**
+     * Queue of actions initiated before the sound has loaded.
+     * These will be called in sequence, with the next only firing
+     * after the previous has finished executing (even if async like play).
+     * @return {Howl}
+     */
+    _loadQueue: function(event) {
+      var self = this;
+
+      if (self._queue.length > 0) {
+        var task = self._queue[0];
+
+        // Remove this task if a matching event was passed.
+        if (task.event === event) {
+          self._queue.shift();
+          self._loadQueue();
+        }
+
+        // Run the task if no event type is passed.
+        if (!event) {
+          task.action();
+        }
+      }
+
+      return self;
+    },
+
+    /**
+     * Fired when playback ends at the end of the duration.
+     * @param  {Sound} sound The sound object to work with.
+     * @return {Howl}
+     */
+    _ended: function(sound) {
+      var self = this;
+      var sprite = sound._sprite;
+
+      // If we are using IE and there was network latency we may be clipping
+      // audio before it completes playing. Lets check the node to make sure it
+      // believes it has completed, before ending the playback.
+      if (!self._webAudio && sound._node && !sound._node.paused && !sound._node.ended && sound._node.currentTime < sound._stop) {
+        setTimeout(self._ended.bind(self, sound), 100);
+        return self;
+      }
+
+      // Should this sound loop?
+      var loop = !!(sound._loop || self._sprite[sprite][2]);
+
+      // Fire the ended event.
+      self._emit('end', sound._id);
+
+      // Restart the playback for HTML5 Audio loop.
+      if (!self._webAudio && loop) {
+        self.stop(sound._id, true).play(sound._id);
+      }
+
+      // Restart this timer if on a Web Audio loop.
+      if (self._webAudio && loop) {
+        self._emit('play', sound._id);
+        sound._seek = sound._start || 0;
+        sound._rateSeek = 0;
+        sound._playStart = Howler.ctx.currentTime;
+
+        var timeout = ((sound._stop - sound._start) * 1000) / Math.abs(sound._rate);
+        self._endTimers[sound._id] = setTimeout(self._ended.bind(self, sound), timeout);
+      }
+
+      // Mark the node as paused.
+      if (self._webAudio && !loop) {
+        sound._paused = true;
+        sound._ended = true;
+        sound._seek = sound._start || 0;
+        sound._rateSeek = 0;
+        self._clearTimer(sound._id);
+
+        // Clean up the buffer source.
+        self._cleanBuffer(sound._node);
+
+        // Attempt to auto-suspend AudioContext if no sounds are still playing.
+        Howler._autoSuspend();
+      }
+
+      // When using a sprite, end the track.
+      if (!self._webAudio && !loop) {
+        self.stop(sound._id, true);
+      }
+
+      return self;
+    },
+
+    /**
+     * Clear the end timer for a sound playback.
+     * @param  {Number} id The sound ID.
+     * @return {Howl}
+     */
+    _clearTimer: function(id) {
+      var self = this;
+
+      if (self._endTimers[id]) {
+        // Clear the timeout or remove the ended listener.
+        if (typeof self._endTimers[id] !== 'function') {
+          clearTimeout(self._endTimers[id]);
+        } else {
+          var sound = self._soundById(id);
+          if (sound && sound._node) {
+            sound._node.removeEventListener('ended', self._endTimers[id], false);
+          }
+        }
+
+        delete self._endTimers[id];
+      }
+
+      return self;
+    },
+
+    /**
+     * Return the sound identified by this ID, or return null.
+     * @param  {Number} id Sound ID
+     * @return {Object}    Sound object or null.
+     */
+    _soundById: function(id) {
+      var self = this;
+
+      // Loop through all sounds and find the one with this ID.
+      for (var i=0; i<self._sounds.length; i++) {
+        if (id === self._sounds[i]._id) {
+          return self._sounds[i];
+        }
+      }
+
+      return null;
+    },
+
+    /**
+     * Return an inactive sound from the pool or create a new one.
+     * @return {Sound} Sound playback object.
+     */
+    _inactiveSound: function() {
+      var self = this;
+
+      self._drain();
+
+      // Find the first inactive node to recycle.
+      for (var i=0; i<self._sounds.length; i++) {
+        if (self._sounds[i]._ended) {
+          return self._sounds[i].reset();
+        }
+      }
+
+      // If no inactive node was found, create a new one.
+      return new Sound(self);
+    },
+
+    /**
+     * Drain excess inactive sounds from the pool.
+     */
+    _drain: function() {
+      var self = this;
+      var limit = self._pool;
+      var cnt = 0;
+      var i = 0;
+
+      // If there are less sounds than the max pool size, we are done.
+      if (self._sounds.length < limit) {
+        return;
+      }
+
+      // Count the number of inactive sounds.
+      for (i=0; i<self._sounds.length; i++) {
+        if (self._sounds[i]._ended) {
+          cnt++;
+        }
+      }
+
+      // Remove excess inactive sounds, going in reverse order.
+      for (i=self._sounds.length - 1; i>=0; i--) {
+        if (cnt <= limit) {
+          return;
+        }
+
+        if (self._sounds[i]._ended) {
+          // Disconnect the audio source when using Web Audio.
+          if (self._webAudio && self._sounds[i]._node) {
+            self._sounds[i]._node.disconnect(0);
+          }
+
+          // Remove sounds until we have the pool size.
+          self._sounds.splice(i, 1);
+          cnt--;
+        }
+      }
+    },
+
+    /**
+     * Get all ID's from the sounds pool.
+     * @param  {Number} id Only return one ID if one is passed.
+     * @return {Array}    Array of IDs.
+     */
+    _getSoundIds: function(id) {
+      var self = this;
+
+      if (typeof id === 'undefined') {
+        var ids = [];
+        for (var i=0; i<self._sounds.length; i++) {
+          ids.push(self._sounds[i]._id);
+        }
+
+        return ids;
+      } else {
+        return [id];
+      }
+    },
+
+    /**
+     * Load the sound back into the buffer source.
+     * @param  {Sound} sound The sound object to work with.
+     * @return {Howl}
+     */
+    _refreshBuffer: function(sound) {
+      var self = this;
+
+      // Setup the buffer source for playback.
+      sound._node.bufferSource = Howler.ctx.createBufferSource();
+      sound._node.bufferSource.buffer = cache[self._src];
+
+      // Connect to the correct node.
+      if (sound._panner) {
+        sound._node.bufferSource.connect(sound._panner);
+      } else {
+        sound._node.bufferSource.connect(sound._node);
+      }
+
+      // Setup looping and playback rate.
+      sound._node.bufferSource.loop = sound._loop;
+      if (sound._loop) {
+        sound._node.bufferSource.loopStart = sound._start || 0;
+        sound._node.bufferSource.loopEnd = sound._stop || 0;
+      }
+      sound._node.bufferSource.playbackRate.setValueAtTime(sound._rate, Howler.ctx.currentTime);
+
+      return self;
+    },
+
+    /**
+     * Prevent memory leaks by cleaning up the buffer source after playback.
+     * @param  {Object} node Sound's audio node containing the buffer source.
+     * @return {Howl}
+     */
+    _cleanBuffer: function(node) {
+      var self = this;
+      var isIOS = Howler._navigator && Howler._navigator.vendor.indexOf('Apple') >= 0;
+
+      if (Howler._scratchBuffer && node.bufferSource) {
+        node.bufferSource.onended = null;
+        node.bufferSource.disconnect(0);
+        if (isIOS) {
+          try { node.bufferSource.buffer = Howler._scratchBuffer; } catch(e) {}
+        }
+      }
+      node.bufferSource = null;
+
+      return self;
+    },
+
+    /**
+     * Set the source to a 0-second silence to stop any downloading (except in IE).
+     * @param  {Object} node Audio node to clear.
+     */
+    _clearSound: function(node) {
+      var checkIE = /MSIE |Trident\//.test(Howler._navigator && Howler._navigator.userAgent);
+      if (!checkIE) {
+        node.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+      }
+    }
+  };
+
+  /** Single Sound Methods **/
+  /***************************************************************************/
+
+  /**
+   * Setup the sound object, which each node attached to a Howl group is contained in.
+   * @param {Object} howl The Howl parent group.
+   */
+  var Sound = function(howl) {
+    this._parent = howl;
+    this.init();
+  };
+  Sound.prototype = {
+    /**
+     * Initialize a new Sound object.
+     * @return {Sound}
+     */
+    init: function() {
+      var self = this;
+      var parent = self._parent;
+
+      // Setup the default parameters.
+      self._muted = parent._muted;
+      self._loop = parent._loop;
+      self._volume = parent._volume;
+      self._rate = parent._rate;
+      self._seek = 0;
+      self._paused = true;
+      self._ended = true;
+      self._sprite = '__default';
+
+      // Generate a unique ID for this sound.
+      self._id = ++Howler._counter;
+
+      // Add itself to the parent's pool.
+      parent._sounds.push(self);
+
+      // Create the new node.
+      self.create();
+
+      return self;
+    },
+
+    /**
+     * Create and setup a new sound object, whether HTML5 Audio or Web Audio.
+     * @return {Sound}
+     */
+    create: function() {
+      var self = this;
+      var parent = self._parent;
+      var volume = (Howler._muted || self._muted || self._parent._muted) ? 0 : self._volume;
+
+      if (parent._webAudio) {
+        // Create the gain node for controlling volume (the source will connect to this).
+        self._node = (typeof Howler.ctx.createGain === 'undefined') ? Howler.ctx.createGainNode() : Howler.ctx.createGain();
+        self._node.gain.setValueAtTime(volume, Howler.ctx.currentTime);
+        self._node.paused = true;
+        self._node.connect(Howler.masterGain);
+      } else if (!Howler.noAudio) {
+        // Get an unlocked Audio object from the pool.
+        self._node = Howler._obtainHtml5Audio();
+
+        // Listen for errors (http://dev.w3.org/html5/spec-author-view/spec.html#mediaerror).
+        self._errorFn = self._errorListener.bind(self);
+        self._node.addEventListener('error', self._errorFn, false);
+
+        // Listen for 'canplaythrough' event to let us know the sound is ready.
+        self._loadFn = self._loadListener.bind(self);
+        self._node.addEventListener(Howler._canPlayEvent, self._loadFn, false);
+
+        // Listen for the 'ended' event on the sound to account for edge-case where
+        // a finite sound has a duration of Infinity.
+        self._endFn = self._endListener.bind(self);
+        self._node.addEventListener('ended', self._endFn, false);
+
+        // Setup the new audio node.
+        self._node.src = parent._src;
+        self._node.preload = parent._preload === true ? 'auto' : parent._preload;
+        self._node.volume = volume * Howler.volume();
+
+        // Begin loading the source.
+        self._node.load();
+      }
+
+      return self;
+    },
+
+    /**
+     * Reset the parameters of this sound to the original state (for recycle).
+     * @return {Sound}
+     */
+    reset: function() {
+      var self = this;
+      var parent = self._parent;
+
+      // Reset all of the parameters of this sound.
+      self._muted = parent._muted;
+      self._loop = parent._loop;
+      self._volume = parent._volume;
+      self._rate = parent._rate;
+      self._seek = 0;
+      self._rateSeek = 0;
+      self._paused = true;
+      self._ended = true;
+      self._sprite = '__default';
+
+      // Generate a new ID so that it isn't confused with the previous sound.
+      self._id = ++Howler._counter;
+
+      return self;
+    },
+
+    /**
+     * HTML5 Audio error listener callback.
+     */
+    _errorListener: function() {
+      var self = this;
+
+      // Fire an error event and pass back the code.
+      self._parent._emit('loaderror', self._id, self._node.error ? self._node.error.code : 0);
+
+      // Clear the event listener.
+      self._node.removeEventListener('error', self._errorFn, false);
+    },
+
+    /**
+     * HTML5 Audio canplaythrough listener callback.
+     */
+    _loadListener: function() {
+      var self = this;
+      var parent = self._parent;
+
+      // Round up the duration to account for the lower precision in HTML5 Audio.
+      parent._duration = Math.ceil(self._node.duration * 10) / 10;
+
+      // Setup a sprite if none is defined.
+      if (Object.keys(parent._sprite).length === 0) {
+        parent._sprite = {__default: [0, parent._duration * 1000]};
+      }
+
+      if (parent._state !== 'loaded') {
+        parent._state = 'loaded';
+        parent._emit('load');
+        parent._loadQueue();
+      }
+
+      // Clear the event listener.
+      self._node.removeEventListener(Howler._canPlayEvent, self._loadFn, false);
+    },
+
+    /**
+     * HTML5 Audio ended listener callback.
+     */
+    _endListener: function() {
+      var self = this;
+      var parent = self._parent;
+
+      // Only handle the `ended`` event if the duration is Infinity.
+      if (parent._duration === Infinity) {
+        // Update the parent duration to match the real audio duration.
+        // Round up the duration to account for the lower precision in HTML5 Audio.
+        parent._duration = Math.ceil(self._node.duration * 10) / 10;
+
+        // Update the sprite that corresponds to the real duration.
+        if (parent._sprite.__default[1] === Infinity) {
+          parent._sprite.__default[1] = parent._duration * 1000;
+        }
+
+        // Run the regular ended method.
+        parent._ended(self);
+      }
+
+      // Clear the event listener since the duration is now correct.
+      self._node.removeEventListener('ended', self._endFn, false);
+    }
+  };
+
+  /** Helper Methods **/
+  /***************************************************************************/
+
+  var cache = {};
+
+  /**
+   * Buffer a sound from URL, Data URI or cache and decode to audio source (Web Audio API).
+   * @param  {Howl} self
+   */
+  var loadBuffer = function(self) {
+    var url = self._src;
+
+    // Check if the buffer has already been cached and use it instead.
+    if (cache[url]) {
+      // Set the duration from the cache.
+      self._duration = cache[url].duration;
+
+      // Load the sound into this Howl.
+      loadSound(self);
+
+      return;
+    }
+
+    if (/^data:[^;]+;base64,/.test(url)) {
+      // Decode the base64 data URI without XHR, since some browsers don't support it.
+      var data = atob(url.split(',')[1]);
+      var dataView = new Uint8Array(data.length);
+      for (var i=0; i<data.length; ++i) {
+        dataView[i] = data.charCodeAt(i);
+      }
+
+      decodeAudioData(dataView.buffer, self);
+    } else {
+      // Load the buffer from the URL.
+      var xhr = new XMLHttpRequest();
+      xhr.open(self._xhr.method, url, true);
+      xhr.withCredentials = self._xhr.withCredentials;
+      xhr.responseType = 'arraybuffer';
+
+      // Apply any custom headers to the request.
+      if (self._xhr.headers) {
+        Object.keys(self._xhr.headers).forEach(function(key) {
+          xhr.setRequestHeader(key, self._xhr.headers[key]);
+        });
+      }
+
+      xhr.onload = function() {
+        // Make sure we get a successful response back.
+        var code = (xhr.status + '')[0];
+        if (code !== '0' && code !== '2' && code !== '3') {
+          self._emit('loaderror', null, 'Failed loading audio file with status: ' + xhr.status + '.');
+          return;
+        }
+
+        decodeAudioData(xhr.response, self);
+      };
+      xhr.onerror = function() {
+        // If there is an error, switch to HTML5 Audio.
+        if (self._webAudio) {
+          self._html5 = true;
+          self._webAudio = false;
+          self._sounds = [];
+          delete cache[url];
+          self.load();
+        }
+      };
+      safeXhrSend(xhr);
+    }
+  };
+
+  /**
+   * Send the XHR request wrapped in a try/catch.
+   * @param  {Object} xhr XHR to send.
+   */
+  var safeXhrSend = function(xhr) {
+    try {
+      xhr.send();
+    } catch (e) {
+      xhr.onerror();
+    }
+  };
+
+  /**
+   * Decode audio data from an array buffer.
+   * @param  {ArrayBuffer} arraybuffer The audio data.
+   * @param  {Howl}        self
+   */
+  var decodeAudioData = function(arraybuffer, self) {
+    // Fire a load error if something broke.
+    var error = function() {
+      self._emit('loaderror', null, 'Decoding audio data failed.');
+    };
+
+    // Load the sound on success.
+    var success = function(buffer) {
+      if (buffer && self._sounds.length > 0) {
+        cache[self._src] = buffer;
+        loadSound(self, buffer);
+      } else {
+        error();
+      }
+    };
+
+    // Decode the buffer into an audio source.
+    if (typeof Promise !== 'undefined' && Howler.ctx.decodeAudioData.length === 1) {
+      Howler.ctx.decodeAudioData(arraybuffer).then(success).catch(error);
+    } else {
+      Howler.ctx.decodeAudioData(arraybuffer, success, error);
+    }
+  }
+
+  /**
+   * Sound is now loaded, so finish setting everything up and fire the loaded event.
+   * @param  {Howl} self
+   * @param  {Object} buffer The decoded buffer sound source.
+   */
+  var loadSound = function(self, buffer) {
+    // Set the duration.
+    if (buffer && !self._duration) {
+      self._duration = buffer.duration;
+    }
+
+    // Setup a sprite if none is defined.
+    if (Object.keys(self._sprite).length === 0) {
+      self._sprite = {__default: [0, self._duration * 1000]};
+    }
+
+    // Fire the loaded event.
+    if (self._state !== 'loaded') {
+      self._state = 'loaded';
+      self._emit('load');
+      self._loadQueue();
+    }
+  };
+
+  /**
+   * Setup the audio context when available, or switch to HTML5 Audio mode.
+   */
+  var setupAudioContext = function() {
+    // If we have already detected that Web Audio isn't supported, don't run this step again.
+    if (!Howler.usingWebAudio) {
+      return;
+    }
+
+    // Check if we are using Web Audio and setup the AudioContext if we are.
+    try {
+      if (typeof AudioContext !== 'undefined') {
+        Howler.ctx = new AudioContext();
+      } else if (typeof webkitAudioContext !== 'undefined') {
+        Howler.ctx = new webkitAudioContext();
+      } else {
+        Howler.usingWebAudio = false;
+      }
+    } catch(e) {
+      Howler.usingWebAudio = false;
+    }
+
+    // If the audio context creation still failed, set using web audio to false.
+    if (!Howler.ctx) {
+      Howler.usingWebAudio = false;
+    }
+
+    // Check if a webview is being used on iOS8 or earlier (rather than the browser).
+    // If it is, disable Web Audio as it causes crashing.
+    var iOS = (/iP(hone|od|ad)/.test(Howler._navigator && Howler._navigator.platform));
+    var appVersion = Howler._navigator && Howler._navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
+    var version = appVersion ? parseInt(appVersion[1], 10) : null;
+    if (iOS && version && version < 9) {
+      var safari = /safari/.test(Howler._navigator && Howler._navigator.userAgent.toLowerCase());
+      if (Howler._navigator && !safari) {
+        Howler.usingWebAudio = false;
+      }
+    }
+
+    // Create and expose the master GainNode when using Web Audio (useful for plugins or advanced usage).
+    if (Howler.usingWebAudio) {
+      Howler.masterGain = (typeof Howler.ctx.createGain === 'undefined') ? Howler.ctx.createGainNode() : Howler.ctx.createGain();
+      Howler.masterGain.gain.setValueAtTime(Howler._muted ? 0 : Howler._volume, Howler.ctx.currentTime);
+      Howler.masterGain.connect(Howler.ctx.destination);
+    }
+
+    // Re-run the setup on Howler.
+    Howler._setup();
+  };
+
+  // Add support for AMD (Asynchronous Module Definition) libraries such as require.js.
+  if (typeof define === 'function' && define.amd) {
+    define([], function() {
+      return {
+        Howler: Howler,
+        Howl: Howl
+      };
+    });
+  }
+
+  // Add support for CommonJS libraries such as browserify.
+  if (typeof exports !== 'undefined') {
+    exports.Howler = Howler;
+    exports.Howl = Howl;
+  }
+
+  // Add to global in Node.js (for testing, etc).
+  if (typeof global !== 'undefined') {
+    global.HowlerGlobal = HowlerGlobal;
+    global.Howler = Howler;
+    global.Howl = Howl;
+    global.Sound = Sound;
+  } else if (typeof window !== 'undefined') {  // Define globally in case AMD is not available or unused.
+    window.HowlerGlobal = HowlerGlobal;
+    window.Howler = Howler;
+    window.Howl = Howl;
+    window.Sound = Sound;
+  }
+})();
+
+
+/*!
+ *  Spatial Plugin - Adds support for stereo and 3D audio where Web Audio is supported.
+ *  
+ *  howler.js v2.2.1
+ *  howlerjs.com
+ *
+ *  (c) 2013-2020, James Simpson of GoldFire Studios
+ *  goldfirestudios.com
+ *
+ *  MIT License
+ */
+
+(function() {
+
+  'use strict';
+
+  // Setup default properties.
+  HowlerGlobal.prototype._pos = [0, 0, 0];
+  HowlerGlobal.prototype._orientation = [0, 0, -1, 0, 1, 0];
+
+  /** Global Methods **/
+  /***************************************************************************/
+
+  /**
+   * Helper method to update the stereo panning position of all current Howls.
+   * Future Howls will not use this value unless explicitly set.
+   * @param  {Number} pan A value of -1.0 is all the way left and 1.0 is all the way right.
+   * @return {Howler/Number}     Self or current stereo panning value.
+   */
+  HowlerGlobal.prototype.stereo = function(pan) {
+    var self = this;
+
+    // Stop right here if not using Web Audio.
+    if (!self.ctx || !self.ctx.listener) {
+      return self;
+    }
+
+    // Loop through all Howls and update their stereo panning.
+    for (var i=self._howls.length-1; i>=0; i--) {
+      self._howls[i].stereo(pan);
+    }
+
+    return self;
+  };
+
+  /**
+   * Get/set the position of the listener in 3D cartesian space. Sounds using
+   * 3D position will be relative to the listener's position.
+   * @param  {Number} x The x-position of the listener.
+   * @param  {Number} y The y-position of the listener.
+   * @param  {Number} z The z-position of the listener.
+   * @return {Howler/Array}   Self or current listener position.
+   */
+  HowlerGlobal.prototype.pos = function(x, y, z) {
+    var self = this;
+
+    // Stop right here if not using Web Audio.
+    if (!self.ctx || !self.ctx.listener) {
+      return self;
+    }
+
+    // Set the defaults for optional 'y' & 'z'.
+    y = (typeof y !== 'number') ? self._pos[1] : y;
+    z = (typeof z !== 'number') ? self._pos[2] : z;
+
+    if (typeof x === 'number') {
+      self._pos = [x, y, z];
+
+      if (typeof self.ctx.listener.positionX !== 'undefined') {
+        self.ctx.listener.positionX.setTargetAtTime(self._pos[0], Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.positionY.setTargetAtTime(self._pos[1], Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.positionZ.setTargetAtTime(self._pos[2], Howler.ctx.currentTime, 0.1);
+      } else {
+        self.ctx.listener.setPosition(self._pos[0], self._pos[1], self._pos[2]);
+      }
+    } else {
+      return self._pos;
+    }
+
+    return self;
+  };
+
+  /**
+   * Get/set the direction the listener is pointing in the 3D cartesian space.
+   * A front and up vector must be provided. The front is the direction the
+   * face of the listener is pointing, and up is the direction the top of the
+   * listener is pointing. Thus, these values are expected to be at right angles
+   * from each other.
+   * @param  {Number} x   The x-orientation of the listener.
+   * @param  {Number} y   The y-orientation of the listener.
+   * @param  {Number} z   The z-orientation of the listener.
+   * @param  {Number} xUp The x-orientation of the top of the listener.
+   * @param  {Number} yUp The y-orientation of the top of the listener.
+   * @param  {Number} zUp The z-orientation of the top of the listener.
+   * @return {Howler/Array}     Returns self or the current orientation vectors.
+   */
+  HowlerGlobal.prototype.orientation = function(x, y, z, xUp, yUp, zUp) {
+    var self = this;
+
+    // Stop right here if not using Web Audio.
+    if (!self.ctx || !self.ctx.listener) {
+      return self;
+    }
+
+    // Set the defaults for optional 'y' & 'z'.
+    var or = self._orientation;
+    y = (typeof y !== 'number') ? or[1] : y;
+    z = (typeof z !== 'number') ? or[2] : z;
+    xUp = (typeof xUp !== 'number') ? or[3] : xUp;
+    yUp = (typeof yUp !== 'number') ? or[4] : yUp;
+    zUp = (typeof zUp !== 'number') ? or[5] : zUp;
+
+    if (typeof x === 'number') {
+      self._orientation = [x, y, z, xUp, yUp, zUp];
+
+      if (typeof self.ctx.listener.forwardX !== 'undefined') {
+        self.ctx.listener.forwardX.setTargetAtTime(x, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.forwardY.setTargetAtTime(y, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.forwardZ.setTargetAtTime(z, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.upX.setTargetAtTime(xUp, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.upY.setTargetAtTime(yUp, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.upZ.setTargetAtTime(zUp, Howler.ctx.currentTime, 0.1);
+      } else {
+        self.ctx.listener.setOrientation(x, y, z, xUp, yUp, zUp);
+      }
+    } else {
+      return or;
+    }
+
+    return self;
+  };
+
+  /** Group Methods **/
+  /***************************************************************************/
+
+  /**
+   * Add new properties to the core init.
+   * @param  {Function} _super Core init method.
+   * @return {Howl}
+   */
+  Howl.prototype.init = (function(_super) {
+    return function(o) {
+      var self = this;
+
+      // Setup user-defined default properties.
+      self._orientation = o.orientation || [1, 0, 0];
+      self._stereo = o.stereo || null;
+      self._pos = o.pos || null;
+      self._pannerAttr = {
+        coneInnerAngle: typeof o.coneInnerAngle !== 'undefined' ? o.coneInnerAngle : 360,
+        coneOuterAngle: typeof o.coneOuterAngle !== 'undefined' ? o.coneOuterAngle : 360,
+        coneOuterGain: typeof o.coneOuterGain !== 'undefined' ? o.coneOuterGain : 0,
+        distanceModel: typeof o.distanceModel !== 'undefined' ? o.distanceModel : 'inverse',
+        maxDistance: typeof o.maxDistance !== 'undefined' ? o.maxDistance : 10000,
+        panningModel: typeof o.panningModel !== 'undefined' ? o.panningModel : 'HRTF',
+        refDistance: typeof o.refDistance !== 'undefined' ? o.refDistance : 1,
+        rolloffFactor: typeof o.rolloffFactor !== 'undefined' ? o.rolloffFactor : 1
+      };
+
+      // Setup event listeners.
+      self._onstereo = o.onstereo ? [{fn: o.onstereo}] : [];
+      self._onpos = o.onpos ? [{fn: o.onpos}] : [];
+      self._onorientation = o.onorientation ? [{fn: o.onorientation}] : [];
+
+      // Complete initilization with howler.js core's init function.
+      return _super.call(this, o);
+    };
+  })(Howl.prototype.init);
+
+  /**
+   * Get/set the stereo panning of the audio source for this sound or all in the group.
+   * @param  {Number} pan  A value of -1.0 is all the way left and 1.0 is all the way right.
+   * @param  {Number} id (optional) The sound ID. If none is passed, all in group will be updated.
+   * @return {Howl/Number}    Returns self or the current stereo panning value.
+   */
+  Howl.prototype.stereo = function(pan, id) {
+    var self = this;
+
+    // Stop right here if not using Web Audio.
+    if (!self._webAudio) {
+      return self;
+    }
+
+    // If the sound hasn't loaded, add it to the load queue to change stereo pan when capable.
+    if (self._state !== 'loaded') {
+      self._queue.push({
+        event: 'stereo',
+        action: function() {
+          self.stereo(pan, id);
+        }
+      });
+
+      return self;
+    }
+
+    // Check for PannerStereoNode support and fallback to PannerNode if it doesn't exist.
+    var pannerType = (typeof Howler.ctx.createStereoPanner === 'undefined') ? 'spatial' : 'stereo';
+
+    // Setup the group's stereo panning if no ID is passed.
+    if (typeof id === 'undefined') {
+      // Return the group's stereo panning if no parameters are passed.
+      if (typeof pan === 'number') {
+        self._stereo = pan;
+        self._pos = [pan, 0, 0];
+      } else {
+        return self._stereo;
+      }
+    }
+
+    // Change the streo panning of one or all sounds in group.
+    var ids = self._getSoundIds(id);
+    for (var i=0; i<ids.length; i++) {
+      // Get the sound.
+      var sound = self._soundById(ids[i]);
+
+      if (sound) {
+        if (typeof pan === 'number') {
+          sound._stereo = pan;
+          sound._pos = [pan, 0, 0];
+
+          if (sound._node) {
+            // If we are falling back, make sure the panningModel is equalpower.
+            sound._pannerAttr.panningModel = 'equalpower';
+
+            // Check if there is a panner setup and create a new one if not.
+            if (!sound._panner || !sound._panner.pan) {
+              setupPanner(sound, pannerType);
+            }
+
+            if (pannerType === 'spatial') {
+              if (typeof sound._panner.positionX !== 'undefined') {
+                sound._panner.positionX.setValueAtTime(pan, Howler.ctx.currentTime);
+                sound._panner.positionY.setValueAtTime(0, Howler.ctx.currentTime);
+                sound._panner.positionZ.setValueAtTime(0, Howler.ctx.currentTime);
+              } else {
+                sound._panner.setPosition(pan, 0, 0);
+              }
+            } else {
+              sound._panner.pan.setValueAtTime(pan, Howler.ctx.currentTime);
+            }
+          }
+
+          self._emit('stereo', sound._id);
+        } else {
+          return sound._stereo;
+        }
+      }
+    }
+
+    return self;
+  };
+
+  /**
+   * Get/set the 3D spatial position of the audio source for this sound or group relative to the global listener.
+   * @param  {Number} x  The x-position of the audio source.
+   * @param  {Number} y  The y-position of the audio source.
+   * @param  {Number} z  The z-position of the audio source.
+   * @param  {Number} id (optional) The sound ID. If none is passed, all in group will be updated.
+   * @return {Howl/Array}    Returns self or the current 3D spatial position: [x, y, z].
+   */
+  Howl.prototype.pos = function(x, y, z, id) {
+    var self = this;
+
+    // Stop right here if not using Web Audio.
+    if (!self._webAudio) {
+      return self;
+    }
+
+    // If the sound hasn't loaded, add it to the load queue to change position when capable.
+    if (self._state !== 'loaded') {
+      self._queue.push({
+        event: 'pos',
+        action: function() {
+          self.pos(x, y, z, id);
+        }
+      });
+
+      return self;
+    }
+
+    // Set the defaults for optional 'y' & 'z'.
+    y = (typeof y !== 'number') ? 0 : y;
+    z = (typeof z !== 'number') ? -0.5 : z;
+
+    // Setup the group's spatial position if no ID is passed.
+    if (typeof id === 'undefined') {
+      // Return the group's spatial position if no parameters are passed.
+      if (typeof x === 'number') {
+        self._pos = [x, y, z];
+      } else {
+        return self._pos;
+      }
+    }
+
+    // Change the spatial position of one or all sounds in group.
+    var ids = self._getSoundIds(id);
+    for (var i=0; i<ids.length; i++) {
+      // Get the sound.
+      var sound = self._soundById(ids[i]);
+
+      if (sound) {
+        if (typeof x === 'number') {
+          sound._pos = [x, y, z];
+
+          if (sound._node) {
+            // Check if there is a panner setup and create a new one if not.
+            if (!sound._panner || sound._panner.pan) {
+              setupPanner(sound, 'spatial');
+            }
+
+            if (typeof sound._panner.positionX !== 'undefined') {
+              sound._panner.positionX.setValueAtTime(x, Howler.ctx.currentTime);
+              sound._panner.positionY.setValueAtTime(y, Howler.ctx.currentTime);
+              sound._panner.positionZ.setValueAtTime(z, Howler.ctx.currentTime);
+            } else {
+              sound._panner.setPosition(x, y, z);
+            }
+          }
+
+          self._emit('pos', sound._id);
+        } else {
+          return sound._pos;
+        }
+      }
+    }
+
+    return self;
+  };
+
+  /**
+   * Get/set the direction the audio source is pointing in the 3D cartesian coordinate
+   * space. Depending on how direction the sound is, based on the `cone` attributes,
+   * a sound pointing away from the listener can be quiet or silent.
+   * @param  {Number} x  The x-orientation of the source.
+   * @param  {Number} y  The y-orientation of the source.
+   * @param  {Number} z  The z-orientation of the source.
+   * @param  {Number} id (optional) The sound ID. If none is passed, all in group will be updated.
+   * @return {Howl/Array}    Returns self or the current 3D spatial orientation: [x, y, z].
+   */
+  Howl.prototype.orientation = function(x, y, z, id) {
+    var self = this;
+
+    // Stop right here if not using Web Audio.
+    if (!self._webAudio) {
+      return self;
+    }
+
+    // If the sound hasn't loaded, add it to the load queue to change orientation when capable.
+    if (self._state !== 'loaded') {
+      self._queue.push({
+        event: 'orientation',
+        action: function() {
+          self.orientation(x, y, z, id);
+        }
+      });
+
+      return self;
+    }
+
+    // Set the defaults for optional 'y' & 'z'.
+    y = (typeof y !== 'number') ? self._orientation[1] : y;
+    z = (typeof z !== 'number') ? self._orientation[2] : z;
+
+    // Setup the group's spatial orientation if no ID is passed.
+    if (typeof id === 'undefined') {
+      // Return the group's spatial orientation if no parameters are passed.
+      if (typeof x === 'number') {
+        self._orientation = [x, y, z];
+      } else {
+        return self._orientation;
+      }
+    }
+
+    // Change the spatial orientation of one or all sounds in group.
+    var ids = self._getSoundIds(id);
+    for (var i=0; i<ids.length; i++) {
+      // Get the sound.
+      var sound = self._soundById(ids[i]);
+
+      if (sound) {
+        if (typeof x === 'number') {
+          sound._orientation = [x, y, z];
+
+          if (sound._node) {
+            // Check if there is a panner setup and create a new one if not.
+            if (!sound._panner) {
+              // Make sure we have a position to setup the node with.
+              if (!sound._pos) {
+                sound._pos = self._pos || [0, 0, -0.5];
+              }
+
+              setupPanner(sound, 'spatial');
+            }
+
+            if (typeof sound._panner.orientationX !== 'undefined') {
+              sound._panner.orientationX.setValueAtTime(x, Howler.ctx.currentTime);
+              sound._panner.orientationY.setValueAtTime(y, Howler.ctx.currentTime);
+              sound._panner.orientationZ.setValueAtTime(z, Howler.ctx.currentTime);
+            } else {
+              sound._panner.setOrientation(x, y, z);
+            }
+          }
+
+          self._emit('orientation', sound._id);
+        } else {
+          return sound._orientation;
+        }
+      }
+    }
+
+    return self;
+  };
+
+  /**
+   * Get/set the panner node's attributes for a sound or group of sounds.
+   * This method can optionall take 0, 1 or 2 arguments.
+   *   pannerAttr() -> Returns the group's values.
+   *   pannerAttr(id) -> Returns the sound id's values.
+   *   pannerAttr(o) -> Set's the values of all sounds in this Howl group.
+   *   pannerAttr(o, id) -> Set's the values of passed sound id.
+   *
+   *   Attributes:
+   *     coneInnerAngle - (360 by default) A parameter for directional audio sources, this is an angle, in degrees,
+   *                      inside of which there will be no volume reduction.
+   *     coneOuterAngle - (360 by default) A parameter for directional audio sources, this is an angle, in degrees,
+   *                      outside of which the volume will be reduced to a constant value of `coneOuterGain`.
+   *     coneOuterGain - (0 by default) A parameter for directional audio sources, this is the gain outside of the
+   *                     `coneOuterAngle`. It is a linear value in the range `[0, 1]`.
+   *     distanceModel - ('inverse' by default) Determines algorithm used to reduce volume as audio moves away from
+   *                     listener. Can be `linear`, `inverse` or `exponential.
+   *     maxDistance - (10000 by default) The maximum distance between source and listener, after which the volume
+   *                   will not be reduced any further.
+   *     refDistance - (1 by default) A reference distance for reducing volume as source moves further from the listener.
+   *                   This is simply a variable of the distance model and has a different effect depending on which model
+   *                   is used and the scale of your coordinates. Generally, volume will be equal to 1 at this distance.
+   *     rolloffFactor - (1 by default) How quickly the volume reduces as source moves from listener. This is simply a
+   *                     variable of the distance model and can be in the range of `[0, 1]` with `linear` and `[0, ∞]`
+   *                     with `inverse` and `exponential`.
+   *     panningModel - ('HRTF' by default) Determines which spatialization algorithm is used to position audio.
+   *                     Can be `HRTF` or `equalpower`.
+   *
+   * @return {Howl/Object} Returns self or current panner attributes.
+   */
+  Howl.prototype.pannerAttr = function() {
+    var self = this;
+    var args = arguments;
+    var o, id, sound;
+
+    // Stop right here if not using Web Audio.
+    if (!self._webAudio) {
+      return self;
+    }
+
+    // Determine the values based on arguments.
+    if (args.length === 0) {
+      // Return the group's panner attribute values.
+      return self._pannerAttr;
+    } else if (args.length === 1) {
+      if (typeof args[0] === 'object') {
+        o = args[0];
+
+        // Set the grou's panner attribute values.
+        if (typeof id === 'undefined') {
+          if (!o.pannerAttr) {
+            o.pannerAttr = {
+              coneInnerAngle: o.coneInnerAngle,
+              coneOuterAngle: o.coneOuterAngle,
+              coneOuterGain: o.coneOuterGain,
+              distanceModel: o.distanceModel,
+              maxDistance: o.maxDistance,
+              refDistance: o.refDistance,
+              rolloffFactor: o.rolloffFactor,
+              panningModel: o.panningModel
+            };
+          }
+
+          self._pannerAttr = {
+            coneInnerAngle: typeof o.pannerAttr.coneInnerAngle !== 'undefined' ? o.pannerAttr.coneInnerAngle : self._coneInnerAngle,
+            coneOuterAngle: typeof o.pannerAttr.coneOuterAngle !== 'undefined' ? o.pannerAttr.coneOuterAngle : self._coneOuterAngle,
+            coneOuterGain: typeof o.pannerAttr.coneOuterGain !== 'undefined' ? o.pannerAttr.coneOuterGain : self._coneOuterGain,
+            distanceModel: typeof o.pannerAttr.distanceModel !== 'undefined' ? o.pannerAttr.distanceModel : self._distanceModel,
+            maxDistance: typeof o.pannerAttr.maxDistance !== 'undefined' ? o.pannerAttr.maxDistance : self._maxDistance,
+            refDistance: typeof o.pannerAttr.refDistance !== 'undefined' ? o.pannerAttr.refDistance : self._refDistance,
+            rolloffFactor: typeof o.pannerAttr.rolloffFactor !== 'undefined' ? o.pannerAttr.rolloffFactor : self._rolloffFactor,
+            panningModel: typeof o.pannerAttr.panningModel !== 'undefined' ? o.pannerAttr.panningModel : self._panningModel
+          };
+        }
+      } else {
+        // Return this sound's panner attribute values.
+        sound = self._soundById(parseInt(args[0], 10));
+        return sound ? sound._pannerAttr : self._pannerAttr;
+      }
+    } else if (args.length === 2) {
+      o = args[0];
+      id = parseInt(args[1], 10);
+    }
+
+    // Update the values of the specified sounds.
+    var ids = self._getSoundIds(id);
+    for (var i=0; i<ids.length; i++) {
+      sound = self._soundById(ids[i]);
+
+      if (sound) {
+        // Merge the new values into the sound.
+        var pa = sound._pannerAttr;
+        pa = {
+          coneInnerAngle: typeof o.coneInnerAngle !== 'undefined' ? o.coneInnerAngle : pa.coneInnerAngle,
+          coneOuterAngle: typeof o.coneOuterAngle !== 'undefined' ? o.coneOuterAngle : pa.coneOuterAngle,
+          coneOuterGain: typeof o.coneOuterGain !== 'undefined' ? o.coneOuterGain : pa.coneOuterGain,
+          distanceModel: typeof o.distanceModel !== 'undefined' ? o.distanceModel : pa.distanceModel,
+          maxDistance: typeof o.maxDistance !== 'undefined' ? o.maxDistance : pa.maxDistance,
+          refDistance: typeof o.refDistance !== 'undefined' ? o.refDistance : pa.refDistance,
+          rolloffFactor: typeof o.rolloffFactor !== 'undefined' ? o.rolloffFactor : pa.rolloffFactor,
+          panningModel: typeof o.panningModel !== 'undefined' ? o.panningModel : pa.panningModel
+        };
+
+        // Update the panner values or create a new panner if none exists.
+        var panner = sound._panner;
+        if (panner) {
+          panner.coneInnerAngle = pa.coneInnerAngle;
+          panner.coneOuterAngle = pa.coneOuterAngle;
+          panner.coneOuterGain = pa.coneOuterGain;
+          panner.distanceModel = pa.distanceModel;
+          panner.maxDistance = pa.maxDistance;
+          panner.refDistance = pa.refDistance;
+          panner.rolloffFactor = pa.rolloffFactor;
+          panner.panningModel = pa.panningModel;
+        } else {
+          // Make sure we have a position to setup the node with.
+          if (!sound._pos) {
+            sound._pos = self._pos || [0, 0, -0.5];
+          }
+
+          // Create a new panner node.
+          setupPanner(sound, 'spatial');
+        }
+      }
+    }
+
+    return self;
+  };
+
+  /** Single Sound Methods **/
+  /***************************************************************************/
+
+  /**
+   * Add new properties to the core Sound init.
+   * @param  {Function} _super Core Sound init method.
+   * @return {Sound}
+   */
+  Sound.prototype.init = (function(_super) {
+    return function() {
+      var self = this;
+      var parent = self._parent;
+
+      // Setup user-defined default properties.
+      self._orientation = parent._orientation;
+      self._stereo = parent._stereo;
+      self._pos = parent._pos;
+      self._pannerAttr = parent._pannerAttr;
+
+      // Complete initilization with howler.js core Sound's init function.
+      _super.call(this);
+
+      // If a stereo or position was specified, set it up.
+      if (self._stereo) {
+        parent.stereo(self._stereo);
+      } else if (self._pos) {
+        parent.pos(self._pos[0], self._pos[1], self._pos[2], self._id);
+      }
+    };
+  })(Sound.prototype.init);
+
+  /**
+   * Override the Sound.reset method to clean up properties from the spatial plugin.
+   * @param  {Function} _super Sound reset method.
+   * @return {Sound}
+   */
+  Sound.prototype.reset = (function(_super) {
+    return function() {
+      var self = this;
+      var parent = self._parent;
+
+      // Reset all spatial plugin properties on this sound.
+      self._orientation = parent._orientation;
+      self._stereo = parent._stereo;
+      self._pos = parent._pos;
+      self._pannerAttr = parent._pannerAttr;
+
+      // If a stereo or position was specified, set it up.
+      if (self._stereo) {
+        parent.stereo(self._stereo);
+      } else if (self._pos) {
+        parent.pos(self._pos[0], self._pos[1], self._pos[2], self._id);
+      } else if (self._panner) {
+        // Disconnect the panner.
+        self._panner.disconnect(0);
+        self._panner = undefined;
+        parent._refreshBuffer(self);
+      }
+
+      // Complete resetting of the sound.
+      return _super.call(this);
+    };
+  })(Sound.prototype.reset);
+
+  /** Helper Methods **/
+  /***************************************************************************/
+
+  /**
+   * Create a new panner node and save it on the sound.
+   * @param  {Sound} sound Specific sound to setup panning on.
+   * @param {String} type Type of panner to create: 'stereo' or 'spatial'.
+   */
+  var setupPanner = function(sound, type) {
+    type = type || 'spatial';
+
+    // Create the new panner node.
+    if (type === 'spatial') {
+      sound._panner = Howler.ctx.createPanner();
+      sound._panner.coneInnerAngle = sound._pannerAttr.coneInnerAngle;
+      sound._panner.coneOuterAngle = sound._pannerAttr.coneOuterAngle;
+      sound._panner.coneOuterGain = sound._pannerAttr.coneOuterGain;
+      sound._panner.distanceModel = sound._pannerAttr.distanceModel;
+      sound._panner.maxDistance = sound._pannerAttr.maxDistance;
+      sound._panner.refDistance = sound._pannerAttr.refDistance;
+      sound._panner.rolloffFactor = sound._pannerAttr.rolloffFactor;
+      sound._panner.panningModel = sound._pannerAttr.panningModel;
+
+      if (typeof sound._panner.positionX !== 'undefined') {
+        sound._panner.positionX.setValueAtTime(sound._pos[0], Howler.ctx.currentTime);
+        sound._panner.positionY.setValueAtTime(sound._pos[1], Howler.ctx.currentTime);
+        sound._panner.positionZ.setValueAtTime(sound._pos[2], Howler.ctx.currentTime);
+      } else {
+        sound._panner.setPosition(sound._pos[0], sound._pos[1], sound._pos[2]);
+      }
+
+      if (typeof sound._panner.orientationX !== 'undefined') {
+        sound._panner.orientationX.setValueAtTime(sound._orientation[0], Howler.ctx.currentTime);
+        sound._panner.orientationY.setValueAtTime(sound._orientation[1], Howler.ctx.currentTime);
+        sound._panner.orientationZ.setValueAtTime(sound._orientation[2], Howler.ctx.currentTime);
+      } else {
+        sound._panner.setOrientation(sound._orientation[0], sound._orientation[1], sound._orientation[2]);
+      }
+    } else {
+      sound._panner = Howler.ctx.createStereoPanner();
+      sound._panner.pan.setValueAtTime(sound._stereo, Howler.ctx.currentTime);
+    }
+
+    sound._panner.connect(sound._node);
+
+    // Update the connections.
+    if (!sound._paused) {
+      sound._parent.pause(sound._id, true).play(sound._id, true);
+    }
+  };
+})();
+
 },{}],"js/libs/glsl/vertex.glsl":[function(require,module,exports) {
 module.exports = "varying vec2 vUv;\n\nuniform float time;\n\n// const float pi = 3.1415925;\n\n// void main() {\n  //   uv = vUv;\n  //   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );\n// }\n\nprecision mediump float;\n#define GLSLIFY 1\n\n// varying vec2 vUv;\n// uniform float time;\n\nvec3 mod289(vec3 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 mod289(vec4 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 permute(vec4 x){\n  return mod289(((x*34.)+1.)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159-.85373472095314*r;\n}\n\nfloat snoise(vec3 v){\n  const vec2 C=vec2(1./6.,1./3.);\n  const vec4 D=vec4(0.,.5,1.,2.);\n  \n  // First corner\n  vec3 i=floor(v+dot(v,C.yyy));\n  vec3 x0=v-i+dot(i,C.xxx);\n  \n  // Other corners\n  vec3 g=step(x0.yzx,x0.xyz);\n  vec3 l=1.-g;\n  vec3 i1=min(g.xyz,l.zxy);\n  vec3 i2=max(g.xyz,l.zxy);\n  \n  vec3 x1=x0-i1+C.xxx;\n  vec3 x2=x0-i2+C.yyy;\n  vec3 x3=x0-D.yyy;\n  \n  // Permutations\n  i=mod289(i);\n  vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));\n  // Gradients: 7x7 points over a square, mapped onto an octahedron.\n  // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_=.142857142857;\n  vec3 ns=n_*D.wyz-D.xzx;\n  \n  vec4 j=p-49.*floor(p*ns.z*ns.z);\n  \n  vec4 x_=floor(j*ns.z);\n  vec4 y_=floor(j-7.*x_);\n  \n  vec4 x=x_*ns.x+ns.yyyy;\n  vec4 y=y_*ns.x+ns.yyyy;\n  vec4 h=1.-abs(x)-abs(y);\n  \n  vec4 b0=vec4(x.xy,y.xy);\n  vec4 b1=vec4(x.zw,y.zw);\n  \n  vec4 s0=floor(b0)*2.+1.;\n  vec4 s1=floor(b1)*2.+1.;\n  vec4 sh=-step(h,vec4(0.));\n  \n  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;\n  vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;\n  \n  vec3 p0=vec3(a0.xy,h.x);\n  vec3 p1=vec3(a0.zw,h.y);\n  vec3 p2=vec3(a1.xy,h.z);\n  vec3 p3=vec3(a1.zw,h.w);\n  \n  // Normalise gradients\n  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));\n  p0*=norm.x;\n  p1*=norm.y;\n  p2*=norm.z;\n  p3*=norm.w;\n  \n  // Mix final noise value\n  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);\n  m=m*m;\n  return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),\n  dot(p2,x2),dot(p3,x3)));\n}\n\nvoid main(){\n  vUv=uv;\n  \n  vec3 pos=position;\n  float noiseFreq=.5;\n  float noiseAmp=.03;\n  vec3 noisePos=vec3(pos.x*noiseFreq+time,pos.y,pos.z);\n  pos.z+=snoise(noisePos)*noiseAmp;\n  \n  gl_Position=projectionMatrix*modelViewMatrix*vec4(pos,1.);\n}";
 },{}],"js/libs/glsl/fragment.glsl":[function(require,module,exports) {
@@ -48733,6 +45447,208 @@ module.exports = "/idbannire.0e9a4e06.jpg";
 module.exports = "/credits.8e776ed8.jpg";
 },{}],"assets/img/particle.png":[function(require,module,exports) {
 module.exports = "/particle.8e4cb102.png";
+},{}],"assets/img/trombi/2A/alex.jpg":[function(require,module,exports) {
+module.exports = "/alex.fb0f36c8.jpg";
+},{}],"assets/img/trombi/2A/amandine.jpg":[function(require,module,exports) {
+module.exports = "/amandine.88b7e788.jpg";
+},{}],"assets/img/trombi/2A/annie.jpg":[function(require,module,exports) {
+module.exports = "/annie.89eb977c.jpg";
+},{}],"assets/img/trombi/2A/annita.jpg":[function(require,module,exports) {
+module.exports = "/annita.a9269a43.jpg";
+},{}],"assets/img/trombi/2A/aurore.jpg":[function(require,module,exports) {
+module.exports = "/aurore.0fbc5307.jpg";
+},{}],"assets/img/trombi/2A/ben.jpg":[function(require,module,exports) {
+module.exports = "/ben.aa57a807.jpg";
+},{}],"assets/img/trombi/2A/carlaA.jpg":[function(require,module,exports) {
+module.exports = "/carlaA.a3009015.jpg";
+},{}],"assets/img/trombi/2A/carlaS.jpg":[function(require,module,exports) {
+module.exports = "/carlaS.ff0440aa.jpg";
+},{}],"assets/img/trombi/2A/clara.jpg":[function(require,module,exports) {
+module.exports = "/clara.90547d15.jpg";
+},{}],"assets/img/trombi/2A/clemo.jpg":[function(require,module,exports) {
+module.exports = "/clemo.d09a7195.jpg";
+},{}],"assets/img/trombi/2A/eliottis.jpg":[function(require,module,exports) {
+module.exports = "/eliottis.0e5be90a.jpg";
+},{}],"assets/img/trombi/2A/emeric.jpg":[function(require,module,exports) {
+module.exports = "/emeric.643767a6.jpg";
+},{}],"assets/img/trombi/2A/enzoD.jpg":[function(require,module,exports) {
+module.exports = "/enzoD.be0cc944.jpg";
+},{}],"assets/img/trombi/2A/enzoF.jpg":[function(require,module,exports) {
+module.exports = "/enzoF.c93997f2.jpg";
+},{}],"assets/img/trombi/2A/flo.jpg":[function(require,module,exports) {
+module.exports = "/flo.66c16bb6.jpg";
+},{}],"assets/img/trombi/2A/gael.jpg":[function(require,module,exports) {
+module.exports = "/gael.34c08b80.jpg";
+},{}],"assets/img/trombi/2A/gregoire.jpg":[function(require,module,exports) {
+module.exports = "/gregoire.4ec76a56.jpg";
+},{}],"assets/img/trombi/2A/guigui.jpg":[function(require,module,exports) {
+module.exports = "/guigui.8ccb9d7b.jpg";
+},{}],"assets/img/trombi/2A/helder.jpg":[function(require,module,exports) {
+module.exports = "/helder.a6a123a7.jpg";
+},{}],"assets/img/trombi/2A/jules.jpg":[function(require,module,exports) {
+module.exports = "/jules.32e385c9.jpg";
+},{}],"assets/img/trombi/2A/kikinou.jpg":[function(require,module,exports) {
+module.exports = "/kikinou.20de47ac.jpg";
+},{}],"assets/img/trombi/2A/lena.jpg":[function(require,module,exports) {
+module.exports = "/lena.38104583.jpg";
+},{}],"assets/img/trombi/2A/lucas.jpg":[function(require,module,exports) {
+module.exports = "/lucas.ea78a225.jpg";
+},{}],"assets/img/trombi/2A/lucile.jpg":[function(require,module,exports) {
+module.exports = "/lucile.4d5a2c7d.jpg";
+},{}],"assets/img/trombi/2A/mael.jpg":[function(require,module,exports) {
+module.exports = "/mael.80f78d04.jpg";
+},{}],"assets/img/trombi/2A/martin.jpg":[function(require,module,exports) {
+module.exports = "/martin.2a1ae514.jpg";
+},{}],"assets/img/trombi/2A/matteo.jpg":[function(require,module,exports) {
+module.exports = "/matteo.893a2de0.jpg";
+},{}],"assets/img/trombi/2A/max.jpg":[function(require,module,exports) {
+module.exports = "/max.dd3c8e3c.jpg";
+},{}],"assets/img/trombi/2A/moyi.jpg":[function(require,module,exports) {
+module.exports = "/moyi.907d28a5.jpg";
+},{}],"assets/img/trombi/2A/nathan.jpg":[function(require,module,exports) {
+module.exports = "/nathan.65671507.jpg";
+},{}],"assets/img/trombi/2A/nicoFe.jpg":[function(require,module,exports) {
+module.exports = "/nicoFe.03541782.jpg";
+},{}],"assets/img/trombi/2A/nicoFi.jpg":[function(require,module,exports) {
+module.exports = "/nicoFi.9e2be5be.jpg";
+},{}],"assets/img/trombi/2A/ossian.jpg":[function(require,module,exports) {
+module.exports = "/ossian.feb3c038.jpg";
+},{}],"assets/img/trombi/2A/paoline.jpg":[function(require,module,exports) {
+module.exports = "/paoline.8539a60a.jpg";
+},{}],"assets/img/trombi/2A/quentin.jpg":[function(require,module,exports) {
+module.exports = "/quentin.ad1284d5.jpg";
+},{}],"assets/img/trombi/2A/raito.jpg":[function(require,module,exports) {
+module.exports = "/raito.4537541d.jpg";
+},{}],"assets/img/trombi/2A/raphL.jpg":[function(require,module,exports) {
+module.exports = "/raphL.6b0bfd97.jpg";
+},{}],"assets/img/trombi/2A/raphO.jpg":[function(require,module,exports) {
+module.exports = "/raphO.a0fa27be.jpg";
+},{}],"assets/img/trombi/2A/romane.jpg":[function(require,module,exports) {
+module.exports = "/romane.66d3a1e7.jpg";
+},{}],"assets/img/trombi/2A/sam.jpg":[function(require,module,exports) {
+module.exports = "/sam.c8e3e6d2.jpg";
+},{}],"assets/img/trombi/2A/soba.jpg":[function(require,module,exports) {
+module.exports = "/soba.01b2b8ad.jpg";
+},{}],"assets/img/trombi/2A/theo.jpg":[function(require,module,exports) {
+module.exports = "/theo.e2bb97ae.jpg";
+},{}],"assets/img/trombi/2A/thoma.jpg":[function(require,module,exports) {
+module.exports = "/thoma.7f6c9d94.jpg";
+},{}],"assets/img/trombi/2A/thomas.jpg":[function(require,module,exports) {
+module.exports = "/thomas.134f1782.jpg";
+},{}],"assets/img/trombi/2A/tistouille.jpg":[function(require,module,exports) {
+module.exports = "/tistouille.0714167f.jpg";
+},{}],"assets/img/trombi/2A/tristan.jpg":[function(require,module,exports) {
+module.exports = "/tristan.1367add9.jpg";
+},{}],"assets/img/trombi/2A/valPl.jpg":[function(require,module,exports) {
+module.exports = "/valPl.c9594d26.jpg";
+},{}],"assets/img/trombi/2A/valPr.jpg":[function(require,module,exports) {
+module.exports = "/valPr.f2ce7039.jpg";
+},{}],"assets/img/trombi/2A/yuxuan.jpg":[function(require,module,exports) {
+module.exports = "/yuxuan.9af64be7.jpg";
+},{}],"assets/img/trombi/2A/zoe.jpg":[function(require,module,exports) {
+module.exports = "/zoe.bbc8f3a4.jpg";
+},{}],"assets/img/trombi/1A/alexia.jpg":[function(require,module,exports) {
+module.exports = "/alexia.2721c3a7.jpg";
+},{}],"assets/img/trombi/1A/alexis.jpg":[function(require,module,exports) {
+module.exports = "/alexis.c7376dcb.jpg";
+},{}],"assets/img/trombi/1A/alexL.jpg":[function(require,module,exports) {
+module.exports = "/alexL.0f4c6b72.jpg";
+},{}],"assets/img/trombi/1A/alexM.jpg":[function(require,module,exports) {
+module.exports = "/alexM.b04adb48.jpg";
+},{}],"assets/img/trombi/1A/alexP.jpg":[function(require,module,exports) {
+module.exports = "/alexP.9427081e.jpg";
+},{}],"assets/img/trombi/1A/alize.jpg":[function(require,module,exports) {
+module.exports = "/alize.cdb74b66.jpg";
+},{}],"assets/img/trombi/1A/andreas.jpg":[function(require,module,exports) {
+module.exports = "/andreas.e991f2e3.jpg";
+},{}],"assets/img/trombi/1A/antoine.jpg":[function(require,module,exports) {
+module.exports = "/antoine.870162cc.jpg";
+},{}],"assets/img/trombi/1A/antoineM.jpg":[function(require,module,exports) {
+module.exports = "/antoineM.29ca0e9a.jpg";
+},{}],"assets/img/trombi/1A/arthur.jpg":[function(require,module,exports) {
+module.exports = "/arthur.92f5157e.jpg";
+},{}],"assets/img/trombi/1A/arthurV.jpg":[function(require,module,exports) {
+module.exports = "/arthurV.eba94779.jpg";
+},{}],"assets/img/trombi/1A/auriane.jpg":[function(require,module,exports) {
+module.exports = "/auriane.13b0fe98.jpg";
+},{}],"assets/img/trombi/1A/cantin.jpg":[function(require,module,exports) {
+module.exports = "/cantin.9bf0ea42.jpg";
+},{}],"assets/img/trombi/1A/celiaA.jpg":[function(require,module,exports) {
+module.exports = "/celiaA.22303422.jpg";
+},{}],"assets/img/trombi/1A/celiaV.jpg":[function(require,module,exports) {
+module.exports = "/celiaV.26d35be4.jpg";
+},{}],"assets/img/trombi/1A/coline.jpg":[function(require,module,exports) {
+module.exports = "/coline.41d77b72.jpg";
+},{}],"assets/img/trombi/1A/corentin.jpg":[function(require,module,exports) {
+module.exports = "/corentin.f67d6455.jpg";
+},{}],"assets/img/trombi/1A/eliott.jpg":[function(require,module,exports) {
+module.exports = "/eliott.c8c49f8a.jpg";
+},{}],"assets/img/trombi/1A/elodie.jpg":[function(require,module,exports) {
+module.exports = "/elodie.1007bbc3.jpg";
+},{}],"assets/img/trombi/1A/enora.jpg":[function(require,module,exports) {
+module.exports = "/enora.8fdfdebe.jpg";
+},{}],"assets/img/trombi/1A/eva.jpg":[function(require,module,exports) {
+module.exports = "/eva.57cf6265.jpg";
+},{}],"assets/img/trombi/1A/ezekel.jpg":[function(require,module,exports) {
+module.exports = "/ezekel.845d2cd0.jpg";
+},{}],"assets/img/trombi/1A/florian.jpg":[function(require,module,exports) {
+module.exports = "/florian.414b3446.jpg";
+},{}],"assets/img/trombi/1A/gilles.jpg":[function(require,module,exports) {
+module.exports = "/gilles.a72aa160.jpg";
+},{}],"assets/img/trombi/1A/guillaume.jpg":[function(require,module,exports) {
+module.exports = "/guillaume.d7bb18b3.jpg";
+},{}],"assets/img/trombi/1A/hugoL.jpg":[function(require,module,exports) {
+module.exports = "/hugoL.199550e0.jpg";
+},{}],"assets/img/trombi/1A/hugoT.jpg":[function(require,module,exports) {
+module.exports = "/hugoT.888c1541.jpg";
+},{}],"assets/img/trombi/1A/jossua.jpg":[function(require,module,exports) {
+module.exports = "/jossua.4c39ea72.jpg";
+},{}],"assets/img/trombi/1A/julesL.jpg":[function(require,module,exports) {
+module.exports = "/julesL.4269260a.jpg";
+},{}],"assets/img/trombi/1A/latrique.jpg":[function(require,module,exports) {
+module.exports = "/latrique.f29ce3e2.jpg";
+},{}],"assets/img/trombi/1A/lea.jpg":[function(require,module,exports) {
+module.exports = "/lea.b47cb762.jpg";
+},{}],"assets/img/trombi/1A/lorie.jpg":[function(require,module,exports) {
+module.exports = "/lorie.43760ae4.jpg";
+},{}],"assets/img/trombi/1A/lucasF.jpg":[function(require,module,exports) {
+module.exports = "/lucasF.39bf0d8a.jpg";
+},{}],"assets/img/trombi/1A/maissane.jpg":[function(require,module,exports) {
+module.exports = "/maissane.844aaa4f.jpg";
+},{}],"assets/img/trombi/1A/nina.jpg":[function(require,module,exports) {
+module.exports = "/nina.b16f5e22.jpg";
+},{}],"assets/img/trombi/1A/pablo.jpg":[function(require,module,exports) {
+module.exports = "/pablo.86760f88.jpg";
+},{}],"assets/img/trombi/1A/robinB.jpg":[function(require,module,exports) {
+module.exports = "/robinB.7304048a.jpg";
+},{}],"assets/img/trombi/1A/robinP.jpg":[function(require,module,exports) {
+module.exports = "/robinP.e0dbc568.jpg";
+},{}],"assets/img/trombi/1A/romain.jpg":[function(require,module,exports) {
+module.exports = "/romain.4dc8e078.jpg";
+},{}],"assets/img/trombi/1A/romainB.jpg":[function(require,module,exports) {
+module.exports = "/romainB.fbecf8a3.jpg";
+},{}],"assets/img/trombi/1A/sacha.jpg":[function(require,module,exports) {
+module.exports = "/sacha.71f96eb1.jpg";
+},{}],"assets/img/trombi/1A/sarah.jpg":[function(require,module,exports) {
+module.exports = "/sarah.f4567f94.jpg";
+},{}],"assets/img/trombi/1A/selmene.jpg":[function(require,module,exports) {
+module.exports = "/selmene.55804220.jpg";
+},{}],"assets/img/trombi/1A/solene.jpg":[function(require,module,exports) {
+module.exports = "/solene.1d197763.jpg";
+},{}],"assets/img/trombi/1A/teva.jpg":[function(require,module,exports) {
+module.exports = "/teva.d6b78ae0.jpg";
+},{}],"assets/img/trombi/1A/thibaut.jpg":[function(require,module,exports) {
+module.exports = "/thibaut.83c83b99.jpg";
+},{}],"assets/img/trombi/1A/thomasB.jpg":[function(require,module,exports) {
+module.exports = "/thomasB.6d580446.jpg";
+},{}],"assets/img/trombi/1A/thomasF.jpg":[function(require,module,exports) {
+module.exports = "/thomasF.2482926a.jpg";
+},{}],"assets/img/trombi/1A/valM.jpg":[function(require,module,exports) {
+module.exports = "/valM.f1b66669.jpg";
+},{}],"assets/img/trombi/1A/vincent.jpg":[function(require,module,exports) {
+module.exports = "/vincent.7e88bf0a.jpg";
+},{}],"assets/img/trombi/1A/yvan.jpg":[function(require,module,exports) {
+module.exports = "/yvan.5c5b3fbd.jpg";
 },{}],"assets/model/socle.gltf":[function(require,module,exports) {
 module.exports = "/socle.4736dd33.gltf";
 },{}],"assets/model/logo.glb":[function(require,module,exports) {
@@ -48794,13 +45710,13 @@ var THREE = _interopRequireWildcard(require("three"));
 
 var _GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader");
 
-var POSTPROCESSING = _interopRequireWildcard(require("postprocessing"));
-
 var _three2 = require("three.interaction");
 
 var _touchsweep = _interopRequireDefault(require("touchsweep"));
 
 var _preloadJs = _interopRequireDefault(require("preload-js"));
+
+var _howler = _interopRequireDefault(require("howler"));
 
 var _vertex = _interopRequireDefault(require("./libs/glsl/vertex.glsl"));
 
@@ -49014,6 +45930,208 @@ var _credits = _interopRequireDefault(require("../assets/img/ruelle/credits.jpg"
 
 var _particle2 = _interopRequireDefault(require("../assets/img/particle.png"));
 
+var _alex = _interopRequireDefault(require("../assets/img/trombi/2A/alex.jpg"));
+
+var _amandine = _interopRequireDefault(require("../assets/img/trombi/2A/amandine.jpg"));
+
+var _annie = _interopRequireDefault(require("../assets/img/trombi/2A/annie.jpg"));
+
+var _annita = _interopRequireDefault(require("../assets/img/trombi/2A/annita.jpg"));
+
+var _aurore = _interopRequireDefault(require("../assets/img/trombi/2A/aurore.jpg"));
+
+var _ben = _interopRequireDefault(require("../assets/img/trombi/2A/ben.jpg"));
+
+var _carlaA = _interopRequireDefault(require("../assets/img/trombi/2A/carlaA.jpg"));
+
+var _carlaS = _interopRequireDefault(require("../assets/img/trombi/2A/carlaS.jpg"));
+
+var _clara = _interopRequireDefault(require("../assets/img/trombi/2A/clara.jpg"));
+
+var _clemo = _interopRequireDefault(require("../assets/img/trombi/2A/clemo.jpg"));
+
+var _eliottis = _interopRequireDefault(require("../assets/img/trombi/2A/eliottis.jpg"));
+
+var _emeric = _interopRequireDefault(require("../assets/img/trombi/2A/emeric.jpg"));
+
+var _enzoD = _interopRequireDefault(require("../assets/img/trombi/2A/enzoD.jpg"));
+
+var _enzoF = _interopRequireDefault(require("../assets/img/trombi/2A/enzoF.jpg"));
+
+var _flo = _interopRequireDefault(require("../assets/img/trombi/2A/flo.jpg"));
+
+var _gael = _interopRequireDefault(require("../assets/img/trombi/2A/gael.jpg"));
+
+var _gregoire = _interopRequireDefault(require("../assets/img/trombi/2A/gregoire.jpg"));
+
+var _guigui = _interopRequireDefault(require("../assets/img/trombi/2A/guigui.jpg"));
+
+var _helder = _interopRequireDefault(require("../assets/img/trombi/2A/helder.jpg"));
+
+var _jules = _interopRequireDefault(require("../assets/img/trombi/2A/jules.jpg"));
+
+var _kikinou = _interopRequireDefault(require("../assets/img/trombi/2A/kikinou.jpg"));
+
+var _lena = _interopRequireDefault(require("../assets/img/trombi/2A/lena.jpg"));
+
+var _lucas = _interopRequireDefault(require("../assets/img/trombi/2A/lucas.jpg"));
+
+var _lucile = _interopRequireDefault(require("../assets/img/trombi/2A/lucile.jpg"));
+
+var _mael = _interopRequireDefault(require("../assets/img/trombi/2A/mael.jpg"));
+
+var _martin = _interopRequireDefault(require("../assets/img/trombi/2A/martin.jpg"));
+
+var _matteo = _interopRequireDefault(require("../assets/img/trombi/2A/matteo.jpg"));
+
+var _max = _interopRequireDefault(require("../assets/img/trombi/2A/max.jpg"));
+
+var _moyi = _interopRequireDefault(require("../assets/img/trombi/2A/moyi.jpg"));
+
+var _nathan = _interopRequireDefault(require("../assets/img/trombi/2A/nathan.jpg"));
+
+var _nicoFe = _interopRequireDefault(require("../assets/img/trombi/2A/nicoFe.jpg"));
+
+var _nicoFi = _interopRequireDefault(require("../assets/img/trombi/2A/nicoFi.jpg"));
+
+var _ossian = _interopRequireDefault(require("../assets/img/trombi/2A/ossian.jpg"));
+
+var _paoline = _interopRequireDefault(require("../assets/img/trombi/2A/paoline.jpg"));
+
+var _quentin = _interopRequireDefault(require("../assets/img/trombi/2A/quentin.jpg"));
+
+var _raito = _interopRequireDefault(require("../assets/img/trombi/2A/raito.jpg"));
+
+var _raphL = _interopRequireDefault(require("../assets/img/trombi/2A/raphL.jpg"));
+
+var _raphO = _interopRequireDefault(require("../assets/img/trombi/2A/raphO.jpg"));
+
+var _romane = _interopRequireDefault(require("../assets/img/trombi/2A/romane.jpg"));
+
+var _sam = _interopRequireDefault(require("../assets/img/trombi/2A/sam.jpg"));
+
+var _soba = _interopRequireDefault(require("../assets/img/trombi/2A/soba.jpg"));
+
+var _theo = _interopRequireDefault(require("../assets/img/trombi/2A/theo.jpg"));
+
+var _thoma = _interopRequireDefault(require("../assets/img/trombi/2A/thoma.jpg"));
+
+var _thomas = _interopRequireDefault(require("../assets/img/trombi/2A/thomas.jpg"));
+
+var _tistouille = _interopRequireDefault(require("../assets/img/trombi/2A/tistouille.jpg"));
+
+var _tristan = _interopRequireDefault(require("../assets/img/trombi/2A/tristan.jpg"));
+
+var _valPl = _interopRequireDefault(require("../assets/img/trombi/2A/valPl.jpg"));
+
+var _valPr = _interopRequireDefault(require("../assets/img/trombi/2A/valPr.jpg"));
+
+var _yuxuan = _interopRequireDefault(require("../assets/img/trombi/2A/yuxuan.jpg"));
+
+var _zoe = _interopRequireDefault(require("../assets/img/trombi/2A/zoe.jpg"));
+
+var _alexia = _interopRequireDefault(require("../assets/img/trombi/1A/alexia.jpg"));
+
+var _alexis = _interopRequireDefault(require("../assets/img/trombi/1A/alexis.jpg"));
+
+var _alexL = _interopRequireDefault(require("../assets/img/trombi/1A/alexL.jpg"));
+
+var _alexM = _interopRequireDefault(require("../assets/img/trombi/1A/alexM.jpg"));
+
+var _alexP = _interopRequireDefault(require("../assets/img/trombi/1A/alexP.jpg"));
+
+var _alize = _interopRequireDefault(require("../assets/img/trombi/1A/alize.jpg"));
+
+var _andreas = _interopRequireDefault(require("../assets/img/trombi/1A/andreas.jpg"));
+
+var _antoine = _interopRequireDefault(require("../assets/img/trombi/1A/antoine.jpg"));
+
+var _antoineM = _interopRequireDefault(require("../assets/img/trombi/1A/antoineM.jpg"));
+
+var _arthur = _interopRequireDefault(require("../assets/img/trombi/1A/arthur.jpg"));
+
+var _arthurV = _interopRequireDefault(require("../assets/img/trombi/1A/arthurV.jpg"));
+
+var _auriane = _interopRequireDefault(require("../assets/img/trombi/1A/auriane.jpg"));
+
+var _cantin = _interopRequireDefault(require("../assets/img/trombi/1A/cantin.jpg"));
+
+var _celiaA = _interopRequireDefault(require("../assets/img/trombi/1A/celiaA.jpg"));
+
+var _celiaV = _interopRequireDefault(require("../assets/img/trombi/1A/celiaV.jpg"));
+
+var _coline = _interopRequireDefault(require("../assets/img/trombi/1A/coline.jpg"));
+
+var _corentin = _interopRequireDefault(require("../assets/img/trombi/1A/corentin.jpg"));
+
+var _eliott = _interopRequireDefault(require("../assets/img/trombi/1A/eliott.jpg"));
+
+var _elodie = _interopRequireDefault(require("../assets/img/trombi/1A/elodie.jpg"));
+
+var _enora = _interopRequireDefault(require("../assets/img/trombi/1A/enora.jpg"));
+
+var _eva = _interopRequireDefault(require("../assets/img/trombi/1A/eva.jpg"));
+
+var _ezekel = _interopRequireDefault(require("../assets/img/trombi/1A/ezekel.jpg"));
+
+var _florian = _interopRequireDefault(require("../assets/img/trombi/1A/florian.jpg"));
+
+var _gilles = _interopRequireDefault(require("../assets/img/trombi/1A/gilles.jpg"));
+
+var _guillaume = _interopRequireDefault(require("../assets/img/trombi/1A/guillaume.jpg"));
+
+var _hugoL = _interopRequireDefault(require("../assets/img/trombi/1A/hugoL.jpg"));
+
+var _hugoT = _interopRequireDefault(require("../assets/img/trombi/1A/hugoT.jpg"));
+
+var _jossua = _interopRequireDefault(require("../assets/img/trombi/1A/jossua.jpg"));
+
+var _julesL = _interopRequireDefault(require("../assets/img/trombi/1A/julesL.jpg"));
+
+var _latrique = _interopRequireDefault(require("../assets/img/trombi/1A/latrique.jpg"));
+
+var _lea = _interopRequireDefault(require("../assets/img/trombi/1A/lea.jpg"));
+
+var _lorie = _interopRequireDefault(require("../assets/img/trombi/1A/lorie.jpg"));
+
+var _lucasF = _interopRequireDefault(require("../assets/img/trombi/1A/lucasF.jpg"));
+
+var _maissane = _interopRequireDefault(require("../assets/img/trombi/1A/maissane.jpg"));
+
+var _nina = _interopRequireDefault(require("../assets/img/trombi/1A/nina.jpg"));
+
+var _pablo = _interopRequireDefault(require("../assets/img/trombi/1A/pablo.jpg"));
+
+var _robinB = _interopRequireDefault(require("../assets/img/trombi/1A/robinB.jpg"));
+
+var _robinP = _interopRequireDefault(require("../assets/img/trombi/1A/robinP.jpg"));
+
+var _romain = _interopRequireDefault(require("../assets/img/trombi/1A/romain.jpg"));
+
+var _romainB = _interopRequireDefault(require("../assets/img/trombi/1A/romainB.jpg"));
+
+var _sacha = _interopRequireDefault(require("../assets/img/trombi/1A/sacha.jpg"));
+
+var _sarah = _interopRequireDefault(require("../assets/img/trombi/1A/sarah.jpg"));
+
+var _selmene = _interopRequireDefault(require("../assets/img/trombi/1A/selmene.jpg"));
+
+var _solene = _interopRequireDefault(require("../assets/img/trombi/1A/solene.jpg"));
+
+var _teva = _interopRequireDefault(require("../assets/img/trombi/1A/teva.jpg"));
+
+var _thibaut = _interopRequireDefault(require("../assets/img/trombi/1A/thibaut.jpg"));
+
+var _thomasB = _interopRequireDefault(require("../assets/img/trombi/1A/thomasB.jpg"));
+
+var _thomasF = _interopRequireDefault(require("../assets/img/trombi/1A/thomasF.jpg"));
+
+var _valM = _interopRequireDefault(require("../assets/img/trombi/1A/valM.jpg"));
+
+var _vincent = _interopRequireDefault(require("../assets/img/trombi/1A/vincent.jpg"));
+
+var _yvan = _interopRequireDefault(require("../assets/img/trombi/1A/yvan.jpg"));
+
 var _socle = _interopRequireDefault(require("../assets/model/socle.gltf"));
 
 var _logo = _interopRequireDefault(require("../assets/model/logo.glb"));
@@ -49087,30 +46205,42 @@ var volume = 1;
 var volumeBg = .04;
 var volumePlane = .025;
 var volumeBtn = .5;
-var bgMusic = document.createElement("audio");
-bgMusic.src = _bg.default;
-bgMusic.loop = false;
-bgMusic.volume = volume;
-var bgLoopMusic = document.createElement("audio");
-bgLoopMusic.src = _bgLoop.default;
-bgLoopMusic.loop = true;
-bgLoopMusic.volume = volumeBg;
-var rpzMusic = document.createElement("audio");
-rpzMusic.src = _rpz.default;
-rpzMusic.loop = false;
-rpzMusic.volume = 0.03;
-var soundHover = document.createElement("audio");
-soundHover.src = _soundHover.default;
-soundHover.loop = false;
-soundHover.volume = volumeBtn;
-var soundHoverPlane = document.createElement("audio");
-soundHoverPlane.src = _soundHoverPlane.default;
-soundHoverPlane.loop = false;
-soundHoverPlane.volume = volumePlane;
-var soundOutPlane = document.createElement("audio");
-soundOutPlane.src = _soundOutPlane.default;
-soundOutPlane.loop = false;
-soundOutPlane.volume = volumePlane; ////////// SCENE //////////
+var bgMusic = new Howl({
+  src: [_bg.default],
+  autoplay: false,
+  loop: true,
+  volume: volume
+});
+var bgLoopMusic = new Howl({
+  src: [_bgLoop.default],
+  autoplay: false,
+  loop: true,
+  volume: volumeBg
+});
+var rpzMusic = new Howl({
+  src: [_rpz.default],
+  autoplay: false,
+  loop: false,
+  volume: 0.03
+});
+var soundHover = new Howl({
+  src: [_soundHover.default],
+  autoplay: false,
+  loop: false,
+  volume: volumeBtn
+});
+var soundHoverPlane = new Howl({
+  src: [_soundHoverPlane.default],
+  autoplay: false,
+  loop: false,
+  volume: volumePlane
+});
+var soundOutPlane = new Howl({
+  src: [_soundOutPlane.default],
+  autoplay: false,
+  loop: false,
+  volume: volumePlane
+}); ////////// SCENE //////////
 
 var scene = new THREE.Scene(); ////////// CAMERA //////////
 
@@ -49139,20 +46269,20 @@ window.addEventListener('resize', function () {
   camera.updateProjectionMatrix();
 }); /////// MESH INTERACTION ///////
 
-var interaction = new _three2.Interaction(renderer, scene, camera); /////// POSTPROCESSING ///////
+var interaction = new _three2.Interaction(renderer, scene, camera); // /////// POSTPROCESSING ///////
+// let composer = new POSTPROCESSING.EffectComposer(renderer);
+// composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
+// const effectPass = new POSTPROCESSING.EffectPass(
+//     camera,
+//     new POSTPROCESSING.RealisticBokehEffect()
+// );
+// effectPass.renderToScreen = true;
+// composer.addPass(effectPass);
+// //POUR LES SHADERS
+// let customPass = new POSTPROCESSING.ShaderPass({ vertexShader, fragmentShader });
+// customPass.renderToScreen = true;
+// composer.addPass(customPass);
 
-var composer = new POSTPROCESSING.EffectComposer(renderer);
-composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
-var effectPass = new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.RealisticBokehEffect());
-effectPass.renderToScreen = true;
-composer.addPass(effectPass); //POUR LES SHADERS
-
-var customPass = new POSTPROCESSING.ShaderPass({
-  vertexShader: _vertex.default,
-  fragmentShader: _fragment.default
-});
-customPass.renderToScreen = true;
-composer.addPass(customPass);
 var rotateZ = -.2; // PLANES ROTATION
 /////// LIGHTS ///////
 
@@ -49643,37 +46773,80 @@ var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1);
 var planePanneauRue1 = new THREE.PlaneGeometry(11.92, 3.6, 1, 1);
 var planePanneauRue2 = new THREE.PlaneGeometry(2.75, 5.9, 1, 1);
 var planePanneauRue3 = new THREE.PlaneGeometry(34.75, 3.2, 1, 1);
-var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
+var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1); // var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
+
 var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
 var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1); /////// INITIATION DES TEXTURES ///////
 
 var texture1Default = new THREE.TextureLoader().load(_atelier1Default.default);
+texture1Default.generateMipmaps = false;
+texture1Default.wrapS = texture1Default.wrapT = THREE.ClampToEdgeWrapping;
+texture1Default.minFilter = THREE.LinearFilter;
 var texture1Hover = new THREE.TextureLoader().load(_atelier1Hover.default);
 var texture2Default = new THREE.TextureLoader().load(_atelier2Default.default);
+texture2Default.generateMipmaps = false;
+texture2Default.wrapS = texture2Default.wrapT = THREE.ClampToEdgeWrapping;
+texture2Default.minFilter = THREE.LinearFilter;
 var texture2Hover = new THREE.TextureLoader().load(_atelier2Hover.default);
 var texture3Default = new THREE.TextureLoader().load(_atelier3Default.default);
+texture3Default.generateMipmaps = false;
+texture3Default.wrapS = texture3Default.wrapT = THREE.ClampToEdgeWrapping;
+texture3Default.minFilter = THREE.LinearFilter;
 var texture3Hover = new THREE.TextureLoader().load(_atelier3Hover.default);
 var texture4Default = new THREE.TextureLoader().load(_atelier4Default.default);
+texture4Default.generateMipmaps = false;
+texture4Default.wrapS = texture4Default.wrapT = THREE.ClampToEdgeWrapping;
+texture4Default.minFilter = THREE.LinearFilter;
 var texture4Hover = new THREE.TextureLoader().load(_atelier4Hover.default);
 var texture5Default = new THREE.TextureLoader().load(_atelier5Default.default);
+texture5Default.generateMipmaps = false;
+texture5Default.wrapS = texture5Default.wrapT = THREE.ClampToEdgeWrapping;
+texture5Default.minFilter = THREE.LinearFilter;
 var texture5Hover = new THREE.TextureLoader().load(_atelier5Hover.default);
 var texture6Default = new THREE.TextureLoader().load(_atelier6Default.default);
+texture6Default.generateMipmaps = false;
+texture6Default.wrapS = texture6Default.wrapT = THREE.ClampToEdgeWrapping;
+texture6Default.minFilter = THREE.LinearFilter;
 var texture6Hover = new THREE.TextureLoader().load(_atelier6Hover.default);
 var texture7Default = new THREE.TextureLoader().load(_atelier7Default.default);
+texture7Default.generateMipmaps = false;
+texture7Default.wrapS = texture7Default.wrapT = THREE.ClampToEdgeWrapping;
+texture7Default.minFilter = THREE.LinearFilter;
 var texture7Hover = new THREE.TextureLoader().load(_atelier7Hover.default);
 var texture8Default = new THREE.TextureLoader().load(_atelier8Default.default);
+texture8Default.generateMipmaps = false;
+texture8Default.wrapS = texture8Default.wrapT = THREE.ClampToEdgeWrapping;
+texture8Default.minFilter = THREE.LinearFilter;
 var texture8Hover = new THREE.TextureLoader().load(_atelier8Hover.default);
 var texture9Default = new THREE.TextureLoader().load(_atelier9Default.default);
+texture9Default.generateMipmaps = false;
+texture9Default.wrapS = texture9Default.wrapT = THREE.ClampToEdgeWrapping;
+texture9Default.minFilter = THREE.LinearFilter;
 var texture9Hover = new THREE.TextureLoader().load(_atelier9Hover.default);
 var texture10Default = new THREE.TextureLoader().load(_atelier10Default.default);
+texture10Default.generateMipmaps = false;
+texture10Default.wrapS = texture10Default.wrapT = THREE.ClampToEdgeWrapping;
+texture10Default.minFilter = THREE.LinearFilter;
 var texture10Hover = new THREE.TextureLoader().load(_atelier10Hover.default);
 var texture11Default = new THREE.TextureLoader().load(_atelier11Default.default);
+texture11Default.generateMipmaps = false;
+texture11Default.wrapS = texture11Default.wrapT = THREE.ClampToEdgeWrapping;
+texture11Default.minFilter = THREE.LinearFilter;
 var texture11Hover = new THREE.TextureLoader().load(_atelier11Hover.default);
 var texture12Default = new THREE.TextureLoader().load(_atelier12Default.default);
+texture12Default.generateMipmaps = false;
+texture12Default.wrapS = texture12Default.wrapT = THREE.ClampToEdgeWrapping;
+texture12Default.minFilter = THREE.LinearFilter;
 var texture12Hover = new THREE.TextureLoader().load(_atelier12Hover.default);
 var texture13Default = new THREE.TextureLoader().load(_atelier13Default.default);
+texture13Default.generateMipmaps = false;
+texture13Default.wrapS = texture13Default.wrapT = THREE.ClampToEdgeWrapping;
+texture13Default.minFilter = THREE.LinearFilter;
 var texture13Hover = new THREE.TextureLoader().load(_atelier13Hover.default);
 var texture14Default = new THREE.TextureLoader().load(_atelier14Default.default);
+texture14Default.generateMipmaps = false;
+texture14Default.wrapS = texture14Default.wrapT = THREE.ClampToEdgeWrapping;
+texture14Default.minFilter = THREE.LinearFilter;
 var texture14Hover = new THREE.TextureLoader().load(_atelier14Hover.default);
 var texturebaniere14 = new THREE.TextureLoader().load(_baniere_backstage.default);
 var texturebaniere13 = new THREE.TextureLoader().load(_baniere_fabriquetonmmi.default);
@@ -49750,7 +46923,7 @@ var texturecredits = new THREE.TextureLoader().load(_credits.default); /////// P
 
 var planeOpacityDefault;
 
-if (window.matchMedia("(max-width: 1024px)").matches) {
+if (window.matchMedia("(max-width: 1025px)").matches) {
   planeOpacityDefault = 0.95;
 } else {
   planeOpacityDefault = 0.9;
@@ -50497,7 +47670,8 @@ planeMesh14.position.y = 17;
 scene.add(planeMeshPanneau);
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
 planeMeshPanneau.rotation.set(-.035, -.74, -.07);
-planeMeshPanneau.scale.set(0.0001, 0.0001, 0.0001);
+planeMeshPanneau.scale.set(0.0001, 0.0001, 0.0001); // sign.position.set(7.8, -3.05, -4)
+
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
 planeMesh4.rotation.y = Math.PI / 2;
@@ -50633,8 +47807,9 @@ var workShopButton14 = document.querySelector('.workShopButton__14');
 var iframe = document.querySelectorAll('iframe');
 var contenu = document.querySelectorAll('.contenu');
 var contenu_link = document.querySelectorAll('.contenu__link');
-var greta = document.querySelector('.greta');
-var contenu_vr = document.querySelectorAll('.vr');
+var greta = document.querySelectorAll('.greta');
+var contenu_vr = document.querySelectorAll('.imgIntoGif');
+var imagesOnPreload = document.querySelectorAll('img');
 var mobileWorkShopButton = document.querySelectorAll('.mobileWorkShopButton');
 var mobileWorkShopButton1 = document.querySelector('.mobileWorkShopButton__1');
 var mobileWorkShopButton2 = document.querySelector('.mobileWorkShopButton__2');
@@ -50701,7 +47876,7 @@ var scrollContainer__1 = document.querySelector('.scrollContainer__1');
 var scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
 hamburgerContainer.addEventListener('click', function () {
   if (switchHamburger == false) {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
       soundHover.play();
     }
 
@@ -50725,7 +47900,7 @@ hamburgerContainer.addEventListener('click', function () {
       hamburgerContainerCroix2.classList.toggle('switch');
     }, 350);
   } else {
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1025px)").matches) {
       soundHover.play();
     }
 
@@ -50956,12 +48131,14 @@ var switchBtn = true;
 var stopMusic = false;
 var cursorOnVideo = false;
 var switchHamburger = false;
-var fisrtStart = true;
+var loadComplete = false;
+var wavyPlane = false;
 var backPossible = true;
 var clickPossible = true;
 var scrollPossible = false;
 var planeScrollPossible = true;
 var btnPressed = false;
+var switchPossible = true;
 var isScrollDown = false;
 var isScrollUp = false;
 var idPlane = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
@@ -51059,9 +48236,12 @@ queue.on("complete", function (event) {
       spanContainerMainStart.classList.remove('neonText');
     });
     btnMainStart.addEventListener('click', function () {
-      startImmersion();
+      if (!homeActive && startMenuActive && loadComplete) {
+        startImmersion();
+      }
     });
   }, 750);
+  loadComplete = true;
 }); ////////// LOAD FILES //////////
 
 queue.on("fileload", handleFileComplete);
@@ -51163,108 +48343,6 @@ queue.loadFile(_rond_11.default);
 queue.loadFile(_rond_12.default);
 queue.loadFile(_rond_13.default);
 queue.loadFile(_rond_14.default);
-queue.loadFile('../assets/img/tombi/2A/alex.jpg');
-queue.loadFile('../assets/img/tombi/2A/amadine.jpg');
-queue.loadFile('../assets/img/tombi/2A/annie.jpg');
-queue.loadFile('../assets/img/tombi/2A/annita.jpg');
-queue.loadFile('../assets/img/tombi/2A/aurore.jpg');
-queue.loadFile('../assets/img/tombi/2A/ben.jpg');
-queue.loadFile('../assets/img/tombi/2A/carlaA.jpg');
-queue.loadFile('../assets/img/tombi/2A/carlaS.jpg');
-queue.loadFile('../assets/img/tombi/2A/carla.jpg');
-queue.loadFile('../assets/img/tombi/2A/clemo.jpg');
-queue.loadFile('../assets/img/tombi/2A/alex.jpg');
-queue.loadFile('../assets/img/tombi/2A/eliottis.jpg');
-queue.loadFile('../assets/img/tombi/2A/emeric.jpg');
-queue.loadFile('../assets/img/tombi/2A/enzoD.jpg');
-queue.loadFile('../assets/img/tombi/2A/enzoF.jpg');
-queue.loadFile('../assets/img/tombi/2A/flo.jpg');
-queue.loadFile('../assets/img/tombi/2A/gael.jpg');
-queue.loadFile('../assets/img/tombi/2A/gregoire.jpg');
-queue.loadFile('../assets/img/tombi/2A/guigui.jpg');
-queue.loadFile('../assets/img/tombi/2A/helder.jpg');
-queue.loadFile('../assets/img/tombi/2A/jules.jpg');
-queue.loadFile('../assets/img/tombi/2A/kikinou.jpg');
-queue.loadFile('../assets/img/tombi/2A/lena.jpg');
-queue.loadFile('../assets/img/tombi/2A/lucas.jpg');
-queue.loadFile('../assets/img/tombi/2A/lucile.jpg');
-queue.loadFile('../assets/img/tombi/2A/mael.jpg');
-queue.loadFile('../assets/img/tombi/2A/martin.jpg');
-queue.loadFile('../assets/img/tombi/2A/matteo.jpg');
-queue.loadFile('../assets/img/tombi/2A/max.jpg');
-queue.loadFile('../assets/img/tombi/2A/moyi.jpg');
-queue.loadFile('../assets/img/tombi/2A/nathan.jpg');
-queue.loadFile('../assets/img/tombi/2A/nicoFe.jpg');
-queue.loadFile('../assets/img/tombi/2A/nicoFi.jpg');
-queue.loadFile('../assets/img/tombi/2A/ossian.jpg');
-queue.loadFile('../assets/img/tombi/2A/paoline.jpg');
-queue.loadFile('../assets/img/tombi/2A/quentin.jpg');
-queue.loadFile('../assets/img/tombi/2A/raito.jpg');
-queue.loadFile('../assets/img/tombi/2A/rahpL.jpg');
-queue.loadFile('../assets/img/tombi/2A/raphO.jpg');
-queue.loadFile('../assets/img/tombi/2A/romane.jpg');
-queue.loadFile('../assets/img/tombi/2A/sam.jpg');
-queue.loadFile('../assets/img/tombi/2A/soba.jpg');
-queue.loadFile('../assets/img/tombi/2A/theo.jpg');
-queue.loadFile('../assets/img/tombi/2A/thoma.jpg');
-queue.loadFile('../assets/img/tombi/2A/thomas.jpg');
-queue.loadFile('../assets/img/tombi/2A/tistouille.jpg');
-queue.loadFile('../assets/img/tombi/2A/tristan.jpg');
-queue.loadFile('../assets/img/tombi/2A/valPl.jpg');
-queue.loadFile('../assets/img/tombi/2A/valPr.jpg');
-queue.loadFile('../assets/img/tombi/2A/yuxuan.jpg');
-queue.loadFile('../assets/img/tombi/2A/zoe.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexia.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexis.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexL.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexM.jpg');
-queue.loadFile('../assets/img/tombi/1A/alexP.jpg');
-queue.loadFile('../assets/img/tombi/1A/alize.jpg');
-queue.loadFile('../assets/img/tombi/1A/andreas.jpg');
-queue.loadFile('../assets/img/tombi/1A/antoine.jpg');
-queue.loadFile('../assets/img/tombi/1A/antoineM.jpg');
-queue.loadFile('../assets/img/tombi/1A/arthur.jpg');
-queue.loadFile('../assets/img/tombi/1A/arthurV.jpg');
-queue.loadFile('../assets/img/tombi/1A/auriane.jpg');
-queue.loadFile('../assets/img/tombi/1A/cantin.jpg');
-queue.loadFile('../assets/img/tombi/1A/celiaA.jpg');
-queue.loadFile('../assets/img/tombi/1A/celiaV.jpg');
-queue.loadFile('../assets/img/tombi/1A/coline.jpg');
-queue.loadFile('../assets/img/tombi/1A/corentin.jpg');
-queue.loadFile('../assets/img/tombi/1A/eliott.jpg');
-queue.loadFile('../assets/img/tombi/1A/elodie.jpg');
-queue.loadFile('../assets/img/tombi/1A/enora.jpg');
-queue.loadFile('../assets/img/tombi/1A/eva.jpg');
-queue.loadFile('../assets/img/tombi/1A/ezekel.jpg');
-queue.loadFile('../assets/img/tombi/1A/florian.jpg');
-queue.loadFile('../assets/img/tombi/1A/gilles.jpg');
-queue.loadFile('../assets/img/tombi/1A/guillaume.jpg');
-queue.loadFile('../assets/img/tombi/1A/hugoL.jpg');
-queue.loadFile('../assets/img/tombi/1A/hugoT.jpg');
-queue.loadFile('../assets/img/tombi/1A/jossua.jpg');
-queue.loadFile('../assets/img/tombi/1A/julesL.jpg');
-queue.loadFile('../assets/img/tombi/1A/latrique.jpg');
-queue.loadFile('../assets/img/tombi/1A/lea.jpg');
-queue.loadFile('../assets/img/tombi/1A/lorie.jpg');
-queue.loadFile('../assets/img/tombi/1A/lucasF.jpg');
-queue.loadFile('../assets/img/tombi/1A/maissane.jpg');
-queue.loadFile('../assets/img/tombi/1A/nina.jpg');
-queue.loadFile('../assets/img/tombi/1A/pablo.jpg');
-queue.loadFile('../assets/img/tombi/1A/robinB.jpg');
-queue.loadFile('../assets/img/tombi/1A/robinP.jpg');
-queue.loadFile('../assets/img/tombi/1A/romain.jpg');
-queue.loadFile('../assets/img/tombi/1A/romainB.jpg');
-queue.loadFile('../assets/img/tombi/1A/sacha.jpg');
-queue.loadFile('../assets/img/tombi/1A/sarah.jpg');
-queue.loadFile('../assets/img/tombi/1A/selmene.jpg');
-queue.loadFile('../assets/img/tombi/1A/solene.jpg');
-queue.loadFile('../assets/img/tombi/1A/teva.jpg');
-queue.loadFile('../assets/img/tombi/1A/thibaut.jpg');
-queue.loadFile('../assets/img/tombi/1A/thomasB.jpg');
-queue.loadFile('../assets/img/tombi/1A/thomasF.jpg');
-queue.loadFile('../assets/img/tombi/1A/valM.jpg');
-queue.loadFile('../assets/img/tombi/1A/vincent.jpg');
-queue.loadFile('../assets/img/tombi/1A/yvan.jpg');
 queue.loadFile(_displace.default);
 queue.loadFile(_displace2.default);
 queue.loadFile(_particle2.default);
@@ -51299,9 +48377,110 @@ queue.loadFile(_rpz.default);
 queue.loadFile(_soundHover.default);
 queue.loadFile(_soundHoverPlane.default);
 queue.loadFile(_soundOutPlane.default);
+queue.loadFile(_alex.default);
+queue.loadFile(_amandine.default);
+queue.loadFile(_annie.default);
+queue.loadFile(_annita.default);
+queue.loadFile(_aurore.default);
+queue.loadFile(_ben.default);
+queue.loadFile(_carlaA.default);
+queue.loadFile(_carlaS.default);
+queue.loadFile(_clara.default);
+queue.loadFile(_clemo.default);
+queue.loadFile(_eliottis.default);
+queue.loadFile(_emeric.default);
+queue.loadFile(_enzoD.default);
+queue.loadFile(_enzoF.default);
+queue.loadFile(_flo.default);
+queue.loadFile(_gael.default);
+queue.loadFile(_gregoire.default);
+queue.loadFile(_guigui.default);
+queue.loadFile(_helder.default);
+queue.loadFile(_jules.default);
+queue.loadFile(_kikinou.default);
+queue.loadFile(_lena.default);
+queue.loadFile(_lucas.default);
+queue.loadFile(_lucile.default);
+queue.loadFile(_mael.default);
+queue.loadFile(_martin.default);
+queue.loadFile(_matteo.default);
+queue.loadFile(_max.default);
+queue.loadFile(_moyi.default);
+queue.loadFile(_nathan.default);
+queue.loadFile(_nicoFe.default);
+queue.loadFile(_nicoFi.default);
+queue.loadFile(_ossian.default);
+queue.loadFile(_paoline.default);
+queue.loadFile(_quentin.default);
+queue.loadFile(_raito.default);
+queue.loadFile(_raphL.default);
+queue.loadFile(_raphO.default);
+queue.loadFile(_romane.default);
+queue.loadFile(_sam.default);
+queue.loadFile(_soba.default);
+queue.loadFile(_theo.default);
+queue.loadFile(_thoma.default);
+queue.loadFile(_thomas.default);
+queue.loadFile(_tistouille.default);
+queue.loadFile(_tristan.default);
+queue.loadFile(_valPl.default);
+queue.loadFile(_valPr.default);
+queue.loadFile(_yuxuan.default);
+queue.loadFile(_zoe.default);
+queue.loadFile(_alexia.default);
+queue.loadFile(_alexis.default);
+queue.loadFile(_alexL.default);
+queue.loadFile(_alexM.default);
+queue.loadFile(_alexP.default);
+queue.loadFile(_alize.default);
+queue.loadFile(_andreas.default);
+queue.loadFile(_antoine.default);
+queue.loadFile(_antoineM.default);
+queue.loadFile(_arthur.default);
+queue.loadFile(_arthurV.default);
+queue.loadFile(_auriane.default);
+queue.loadFile(_cantin.default);
+queue.loadFile(_celiaA.default);
+queue.loadFile(_celiaV.default);
+queue.loadFile(_coline.default);
+queue.loadFile(_corentin.default);
+queue.loadFile(_eliott.default);
+queue.loadFile(_elodie.default);
+queue.loadFile(_enora.default);
+queue.loadFile(_eva.default);
+queue.loadFile(_ezekel.default);
+queue.loadFile(_florian.default);
+queue.loadFile(_gilles.default);
+queue.loadFile(_guillaume.default);
+queue.loadFile(_hugoL.default);
+queue.loadFile(_hugoT.default);
+queue.loadFile(_jossua.default);
+queue.loadFile(_julesL.default);
+queue.loadFile(_latrique.default);
+queue.loadFile(_lea.default);
+queue.loadFile(_lorie.default);
+queue.loadFile(_lucasF.default);
+queue.loadFile(_maissane.default);
+queue.loadFile(_nina.default);
+queue.loadFile(_pablo.default);
+queue.loadFile(_robinB.default);
+queue.loadFile(_robinP.default);
+queue.loadFile(_romain.default);
+queue.loadFile(_romainB.default);
+queue.loadFile(_sacha.default);
+queue.loadFile(_sarah.default);
+queue.loadFile(_selmene.default);
+queue.loadFile(_solene.default);
+queue.loadFile(_teva.default);
+queue.loadFile(_thibaut.default);
+queue.loadFile(_thomasB.default);
+queue.loadFile(_thomasF.default);
+queue.loadFile(_valM.default);
+queue.loadFile(_vincent.default);
+queue.loadFile(_yvan.default);
 queue.loadFile(_GLTFLoader.GLTFLoader);
-queue.loadFile(THREE);
-queue.loadFile(POSTPROCESSING);
+queue.loadFile(THREE); // queue.loadFile(POSTPROCESSING);
+
 queue.loadFile(_three2.Interaction);
 queue.loadFile(_preloadJs.default);
 queue.loadFile(_touchsweep.default);
@@ -51315,6 +48494,9 @@ function startImmersion() {
   hamburgerContainer.classList.remove('startHidden');
   startMenuActive = false;
   bgMusic.play();
+  bgMusic.fade(0, volume, 1000);
+  bgLoopMusic.volume(0);
+  bgLoopMusic.play();
   TweenMax.to(maskMusicBtn, {
     duration: .35,
     clipPath: "inset(100% 0% 0% 0%)",
@@ -51341,7 +48523,7 @@ function startImmersion() {
     });
   }, 350);
 
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     var html = document.querySelector('html');
 
     if (html.requestFullscreen) {
@@ -51571,94 +48753,97 @@ function startImmersion() {
   }, 750);
 }
 
+var switchMusicInterval;
+
 function switchMusic() {
-  if (switchBtn == false) {
-    TweenMax.to(maskMusicBtn, {
-      duration: .35,
-      clipPath: "inset(100% 0% 0% 0%)",
-      ease: "power3.easeOut"
-    });
-    TweenMax.to(maskMusicBtn, {
-      duration: .25,
-      clipPath: "inset(0% 0% 0% 0%)",
-      ease: "power3.easeOut",
-      delay: .15
-    });
-    TweenMax.to(maskMusicBtn, {
-      duration: .25,
-      clipPath: "inset(0% 0% 100% 0%)",
-      ease: "power3.easeOut",
-      delay: .5
-    });
+  if (switchPossible) {
+    switchPossible = false;
 
-    if (window.matchMedia("(max-width: 1024px)").matches) {
-      soundHover.play();
-    }
+    if (switchBtn == false) {
+      TweenMax.to(maskMusicBtn, {
+        duration: .35,
+        clipPath: "inset(100% 0% 0% 0%)",
+        ease: "power3.easeOut"
+      });
+      TweenMax.to(maskMusicBtn, {
+        duration: .25,
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "power3.easeOut",
+        delay: .15
+      });
+      TweenMax.to(maskMusicBtn, {
+        duration: .25,
+        clipPath: "inset(0% 0% 100% 0%)",
+        ease: "power3.easeOut",
+        delay: .5
+      });
 
-    if (fisrtStart) {
+      if (window.matchMedia("(max-width: 1025px)").matches) {
+        soundHover.play();
+      }
+
+      if (!workshopActive) {
+        bgMusic.fade(0, volume, 1000);
+      } else {
+        bgLoopMusic.fade(0, volumeBg, 1000);
+      }
+
       bgMusic.play();
-      var fadeAudio = setInterval(function () {
-        if (bgMusic.volume >= volume) {
-          clearInterval(fadeAudio);
-        } else if (bgMusic.volume < volume) {
-          bgMusic.volume += 0.1;
-        }
-      }, 500);
+      bgLoopMusic.play();
+      switchBtn = true;
+      rpzMusic.volume(volume);
+      soundHover.volume(volumeBtn);
+      soundHoverPlane.volume(volumePlane);
+      soundOutPlane.volume(volumePlane);
     } else {
-      fadeInAudio(bgLoopMusic);
+      TweenMax.to(maskMusicBtn, {
+        duration: .35,
+        clipPath: "inset(0% 0% 100% 0%)",
+        ease: "power3.easeOut"
+      });
+      TweenMax.to(maskMusicBtn, {
+        duration: .25,
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "power3.easeOut",
+        delay: .15
+      });
+      TweenMax.to(maskMusicBtn, {
+        duration: .25,
+        clipPath: "inset(100% 0% 0% 0%)",
+        ease: "power3.easeOut",
+        delay: .5
+      });
+
+      if (!workshopActive) {
+        bgMusic.fade(volume, 0, 1000);
+      } else {
+        bgLoopMusic.fade(volumeBg, 0, 1000);
+      }
+
+      setTimeout(function () {
+        bgMusic.pause();
+        bgLoopMusic.pause();
+      }, 1000);
+      switchBtn = false;
+      rpzMusic.volume(0);
+      soundHover.volume(0);
+      soundHoverPlane.volume(0);
+      soundOutPlane.volume(0);
     }
 
-    switchBtn = true;
-    rpzMusic.volume = volume;
-    soundHover.volume = volumeBtn;
-    soundHoverPlane.volume = volumePlane;
-    soundOutPlane.volume = volumePlane;
-  } else {
-    TweenMax.to(maskMusicBtn, {
-      duration: .35,
-      clipPath: "inset(0% 0% 100% 0%)",
-      ease: "power3.easeOut"
-    });
-    TweenMax.to(maskMusicBtn, {
-      duration: .25,
-      clipPath: "inset(0% 0% 0% 0%)",
-      ease: "power3.easeOut",
-      delay: .15
-    });
-    TweenMax.to(maskMusicBtn, {
-      duration: .25,
-      clipPath: "inset(100% 0% 0% 0%)",
-      ease: "power3.easeOut",
-      delay: .5
-    });
-
-    if (fisrtStart) {
-      var fadeAudio = setInterval(function () {
-        if (bgMusic.volume < 0.1) {
-          clearInterval(fadeAudio);
-          bgMusic.pause();
-        } else if (bgMusic.volume >= .1) {
-          bgMusic.volume -= .1;
-        }
-      }, 300);
-    } else {
-      fadeOutAudio(bgLoopMusic);
-    }
-
-    switchBtn = false;
-    rpzMusic.volume = 0;
-    soundHover.volume = 0;
-    soundHoverPlane.volume = 0;
-    soundOutPlane.volume = 0;
+    onMusic.classList.toggle('switch');
+    offMusic.classList.toggle('switch');
+    setTimeout(function () {
+      lineMusicBtn.forEach(function (line) {
+        line.classList.toggle('switch');
+      });
+    }, 350);
   }
 
-  onMusic.classList.toggle('switch');
-  offMusic.classList.toggle('switch');
-  setTimeout(function () {
-    lineMusicBtn.forEach(function (line) {
-      line.classList.toggle('switch');
-    });
-  }, 350);
+  clearInterval(switchMusicInterval);
+  switchMusicInterval = setInterval(function () {
+    switchPossible = true;
+  }, 1000);
 }
 
 musicBtn.addEventListener('click', function () {
@@ -52230,65 +49415,65 @@ function animationEnterWorkshop() {
   if (idPlane[14]) {
     contentContainer__14.style.display = "block";
     scrollContainer__14.style.display = "flex";
-    contentContainer__14.children[2].children[0].children[1].src = "https://www.youtube.com/embed/Q0gk3DylOsM";
+    contentContainer__14.children[2].children[0].children[1].src = "https://www.youtube.com/embed/Q0gk3DylOsM?enablejsapi=1&html5=1";
   } else if (idPlane[13]) {
     contentContainer__13.style.display = "block";
     scrollContainer__13.style.display = "flex";
-    contentContainer__13.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU";
-    contentContainer__13.children[4].children[0].children[1].src = "https://www.youtube.com/embed/KaS6BTJNLUQ";
+    contentContainer__13.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU?enablejsapi=1&html5=1";
+    contentContainer__13.children[4].children[0].children[1].src = "https://www.youtube.com/embed/KaS6BTJNLUQ?enablejsapi=1&html5=1";
   } else if (idPlane[12]) {
     contentContainer__12.style.display = "block";
     scrollContainer__12.style.display = "flex";
-    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/8tyYcjwssfA";
-    contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/bkc_MHKCavg";
+    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/8tyYcjwssfA?enablejsapi=1&html5=1";
+    contentContainer__12.children[4].children[0].children[1].src = "https://www.youtube.com/embed/bkc_MHKCavg?enablejsapi=1&html5=1";
   } else if (idPlane[11]) {
     contentContainer__11.style.display = "block";
     scrollContainer__11.style.display = "flex";
-    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM";
+    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM?enablejsapi=1&html5=1"; // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
   } else if (idPlane[10]) {
     contentContainer__10.style.display = "block";
     scrollContainer__10.style.display = "flex";
-    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA";
+    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA?enablejsapi=1&html5=1"; // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
   } else if (idPlane[9]) {
     contentContainer__9.style.display = "block";
     scrollContainer__9.style.display = "flex";
-    contentContainer__9.children[2].children[0].children[1].src = "https://www.youtube.com/embed/0Aa3iRMg8-E";
-    contentContainer__9.children[4].children[0].children[1].src = "https://www.youtube.com/embed/N6c2qao9yaM";
+    contentContainer__9.children[2].children[0].children[1].src = "https://www.youtube.com/embed/0Aa3iRMg8-E?enablejsapi=1&html5=1";
+    contentContainer__9.children[4].children[0].children[1].src = "https://www.youtube.com/embed/N6c2qao9yaM?enablejsapi=1&html5=1";
   } else if (idPlane[8]) {
     contentContainer__8.style.display = "block";
     scrollContainer__8.style.display = "flex";
-    contentContainer__8.children[2].children[0].children[1].src = "https://www.youtube.com/embed/-byRWG9-gjw";
+    contentContainer__8.children[2].children[0].children[1].src = "https://www.youtube.com/embed/-byRWG9-gjw?enablejsapi=1&html5=1";
   } else if (idPlane[7]) {
     contentContainer__7.style.display = "block";
     scrollContainer__7.style.display = "flex";
-    contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY";
+    contentContainer__7.children[2].children[0].children[1].src = "https://www.youtube.com/embed/RWY2GGa58xY?enablejsapi=1&html5=1";
   } else if (idPlane[6]) {
     contentContainer__6.style.display = "block";
     scrollContainer__6.style.display = "flex";
-    contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ";
+    contentContainer__6.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xbaN_JEq_vQ?enablejsapi=1&html5=1";
   } else if (idPlane[5]) {
     contentContainer__5.style.display = "block";
     scrollContainer__5.style.display = "flex";
-    contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y";
+    contentContainer__5.children[2].children[0].children[1].src = "https://www.youtube.com/embed/iapdW3VRF0Y?enablejsapi=1&html5=1";
   } else if (idPlane[4]) {
     contentContainer__4.style.display = "block";
     scrollContainer__4.style.display = "flex";
-    contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM";
+    contentContainer__4.children[2].children[0].children[1].src = "https://www.youtube.com/embed/WvFpLchljjM?enablejsapi=1&html5=1";
   } else if (idPlane[3]) {
     contentContainer__3.style.display = "block";
     scrollContainer__3.style.display = "flex";
-    contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI";
+    contentContainer__3.children[2].children[0].children[1].src = "https://www.youtube.com/embed/qSXsdwp5mMI?enablejsapi=1&html5=1";
   } else if (idPlane[2]) {
     contentContainer__2.style.display = "block";
     scrollContainer__2.style.display = "flex";
-    contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g";
+    contentContainer__2.children[2].children[0].children[1].src = "https://www.youtube.com/embed/4RtlTcbE14g?enablejsapi=1&html5=1";
   } else if (idPlane[1]) {
     contentContainer__1.style.display = "block";
     scrollContainer__1.style.display = "flex";
-    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU";
+    contentContainer__12.children[2].children[0].children[1].src = "https://www.youtube.com/embed/kmIgKwUH4kU?enablejsapi=1&html5=1";
   }
 
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     gsap.to(camera.position, 3, {
       z: -20,
       ease: "power3.inOut"
@@ -52299,9 +49484,9 @@ function animationEnterWorkshop() {
       ease: "power3.inOut"
     });
     gsap.to(logo.scale, 1.5, {
-      z: 0,
-      y: 0,
-      x: 0,
+      z: 0.0001,
+      y: 0.0001,
+      x: 0.0001,
       ease: "power3.inOut"
     });
     gsap.to(logo.position, 1.5, {
@@ -52319,12 +49504,17 @@ function animationEnterWorkshop() {
   TweenMax.to(btnBackWorkshop, .75, {
     opacity: 1,
     clipPath: "inset(0% 0% 0% 0%)",
-    delay: 2.5,
+    delay: 3.5,
     ease: "power3.inOut"
   });
   cursorIndication.classList.remove('switch');
   mobileIndication.classList.remove('switch');
   hideTimeline();
+  bgMusic.fade(volume, 0, 1500);
+  setTimeout(function () {
+    bgLoopMusic.fade(0, volumeBg, 1500);
+    wavyPlane = false;
+  }, 1500);
 
   if (!window.matchMedia("(max-width: 1024px)").matches) {
     gsap.to(camera.position, 3, {
@@ -52394,8 +49584,10 @@ function animationEnterWorkshop() {
     if (workshopActive) {
       workShopContainer.classList.add('switchPlane');
       scrollPossible = true;
+      btnPressed = false;
     }
   }, 3750);
+  btnPressed = true;
   planeScrollPossible = false;
   workshopActive = true;
   hoverPlane = false;
@@ -52755,8 +49947,7 @@ planeMesh1.on('click', function () {
 
 function functionBtnBackHome() {
   workshopActive = false;
-  homeActive = true; // fadeInAudio(bgLoopMusic)
-
+  homeActive = true;
   cursorOnVideo = false;
 
   if (!cursorOnVideo) {
@@ -52857,6 +50048,7 @@ function functionBtnBackHome() {
     btnStart.disabled = false;
     btnStart.classList.remove('close');
     littleTitleSvg.classList.add('close');
+    wavyPlane = false;
   }, 2800);
   setTimeout(function () {
     if (materialPlanePanneau.uniforms.dispFactor.value >= .0 && materialPlanePanneau.uniforms.dispFactor.value <= .2) {
@@ -53352,35 +50544,12 @@ function hideTimeline() {
     opacity: 0,
     ease: "Power3.easeOut"
   });
-}
-
-function fadeOutAudio(elementMusic) {
-  var sound = elementMusic;
-  var fadeAudio = setInterval(function () {
-    if (sound.volume < .005) {
-      clearInterval(fadeAudio);
-      sound.pause();
-    } else if (sound.volume >= .002) {
-      sound.volume -= .002;
-    }
-  }, 100);
-}
-
-function fadeInAudio(elementMusic) {
-  var sound = elementMusic;
-  sound.play();
-  var fadeAudio = setInterval(function () {
-    if (sound.volume >= volumeBg) {
-      clearInterval(fadeAudio);
-    } else if (sound.volume < volumeBg) {
-      sound.volume += 0.01;
-    }
-  }, 500);
 } ///// START BUTTON EVENTS /////
 
 
 function functionBtnStart() {
-  homeActive = false; //HTML ELEMENTS ANIM
+  homeActive = false;
+  wavyPlane = true; //HTML ELEMENTS ANIM
 
   titleSvgPath.forEach(function (e) {
     e.classList.remove("pathTitleIn");
@@ -53407,25 +50576,6 @@ function functionBtnStart() {
       backPossible = true;
     }, 500);
   }, 4000);
-
-  if (switchBtn && fisrtStart) {
-    var fadeAudio = setInterval(function () {
-      if (bgMusic.volume < 0.1) {
-        clearInterval(fadeAudio);
-        bgMusic.pause();
-      } else if (bgMusic.volume >= .1) {
-        bgMusic.volume -= .1;
-      }
-    }, 300);
-  }
-
-  fisrtStart = false;
-
-  if (switchBtn) {
-    bgLoopMusic.play();
-  } // fadeInAudio(bgLoopMusic)
-
-
   TweenMax.to(btnStart, 1.7, {
     opacity: 0,
     clipPath: "inset(0% 0% 0% 100%)",
@@ -53876,7 +51026,7 @@ function functionBtnStart() {
 btnStart.addEventListener('click', function () {
   functionBtnStart();
 
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -53976,7 +51126,7 @@ btnStart.addEventListener('mouseleave', function () {
 btnBackHome.addEventListener('click', function () {
   functionBtnBackHome();
 
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -54070,7 +51220,7 @@ btnBackWorkshop.addEventListener('click', function () {
     backToWorkshop();
   }
 
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -54367,12 +51517,17 @@ function backToPlane() {
   }
 
   revealTimeline();
+  bgLoopMusic.fade(volumeBg, 0, 1500);
+  setTimeout(function () {
+    bgMusic.fade(0, volume, 1500);
+    wavyPlane = true;
+  }, 1500 + varDelay);
   setTimeout(function () {
     cursorIndication.classList.add('switch');
     mobileIndication.classList.add('switch');
   }, 3250);
 
-  if (window.matchMedia("(max-width: 1024px)").matches && window.matchMedia("(min-width: 601px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches && window.matchMedia("(min-width: 601px)").matches) {
     gsap.to(camera.position, 3, {
       z: 3.7,
       ease: "power3.inOut"
@@ -54854,6 +52009,7 @@ function backToWorkshop() {
       ease: "Power3.easeOut",
       delay: 2
     });
+    creditContainer.style.pointerEvents = 'none';
     setTimeout(function () {
       creditActive = false;
     }, 3000);
@@ -55022,7 +52178,7 @@ sm1.addEventListener('mouseleave', function () {
   }
 });
 sm1.addEventListener('click', function () {
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -55045,7 +52201,7 @@ sm2.addEventListener('mouseleave', function () {
   }
 });
 sm2.addEventListener('click', function () {
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -55068,7 +52224,7 @@ sm3.addEventListener('mouseleave', function () {
   }
 });
 sm3.addEventListener('click', function () {
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -55129,7 +52285,7 @@ discordContainer.addEventListener('mouseleave', function () {
   }
 });
 discordContainer.addEventListener('click', function () {
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -55190,7 +52346,7 @@ iutContainer.addEventListener('mouseleave', function () {
   }
 });
 iutContainer.addEventListener('click', function () {
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1025px)").matches) {
     soundHover.play();
   }
 
@@ -55349,12 +52505,14 @@ contenu_link.forEach(function (e) {
     cursorHoverOut();
   });
 });
-greta.addEventListener('pointerenter', function () {
-  indicHover = "ID";
-  cursorHoverIn();
-});
-greta.addEventListener('pointerleave', function () {
-  cursorHoverOut();
+greta.forEach(function (element) {
+  element.addEventListener('pointerenter', function () {
+    indicHover = "ID";
+    cursorHoverIn();
+  });
+  element.addEventListener('pointerleave', function () {
+    cursorHoverOut();
+  });
 });
 faceImg.forEach(function (e) {
   e.addEventListener("pointerenter", function () {
@@ -55485,11 +52643,7 @@ function handleMouseLeave(e) {
 document.addEventListener('mousemove', function (e) {
   indicClickOnPlane.style.top = e.pageY - 20 / 2 + "px";
   indicClickOnPlane.style.left = e.pageX - 20 / 2 + "px";
-}); // var timelineLineIndication = gsap.timeline({repeat: -1});
-// timelineLineIndication.to('.lineIndication', { duration: 1, clipPath: "inset(100% 0% 0% 0%)",  ease: "expo.inOut", delay: -.65 });
-// timelineLineIndication.to('.lineIndication', { duration: 0, clipPath: "inset(0% 0% 100% 0%)",  ease: "expo.inOut" });
-// timelineLineIndication.to('.lineIndication', { duration: 1.5, clipPath: "inset(0% 0% 0% 0%)",  ease: "expo.inOut" });
-/////// TIMELINE REDIRECTION ///////
+}); /////// TIMELINE REDIRECTION ///////
 
 workShopButton1.addEventListener('click', function () {
   // WORKSHOP 1
@@ -58763,8 +55917,7 @@ function checkScrollDirection(elContent) {
     direction = "up";
   }
 
-  scrollPos = elContent.scrollTop; // })
-
+  scrollPos = elContent.scrollTop;
   return direction;
 }
 
@@ -58772,203 +55925,105 @@ function scrollIntoWorkshop(elContent, elCredit) {
   if (!window.matchMedia("(max-width: 1024px)").matches) {
     camera.position.z = scrollWorkshop(elContent);
 
-    if (window.matchMedia("(max-width: 1440px)").matches) {
-      if (checkScrollDirection(elContent) == "down") {
-        if (camera.position.z <= -108) {
-          if (idPlane[14]) {
-            contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
-          } else if (idPlane[13]) {
-            contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
-            contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
-          } else if (idPlane[12]) {
-            contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
-            contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
-          } else if (idPlane[11]) {
-            contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src; // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
-          } else if (idPlane[10]) {
-            contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src; // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
-          } else if (idPlane[9]) {
-            contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
-            contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
-          } else if (idPlane[8]) {
-            contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
-          } else if (idPlane[7]) {
-            contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-          } else if (idPlane[6]) {
-            contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-          } else if (idPlane[5]) {
-            contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-          } else if (idPlane[4]) {
-            contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-          } else if (idPlane[3]) {
-            contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-          } else if (idPlane[2]) {
-            contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-          } else if (idPlane[1]) {
-            contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-          }
+    if (checkScrollDirection(elContent) == "down") {
+      if (camera.position.z <= -108) {
+        if (idPlane[14]) {
+          contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
+        } else if (idPlane[13]) {
+          contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
+          contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
+        } else if (idPlane[12]) {
+          contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
+          contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
+        } else if (idPlane[11]) {
+          contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src; // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
+        } else if (idPlane[10]) {
+          contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src; // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
+        } else if (idPlane[9]) {
+          contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
+          contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
+        } else if (idPlane[8]) {
+          contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
+        } else if (idPlane[7]) {
+          contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+        } else if (idPlane[6]) {
+          contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+        } else if (idPlane[5]) {
+          contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+        } else if (idPlane[4]) {
+          contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+        } else if (idPlane[3]) {
+          contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+        } else if (idPlane[2]) {
+          contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+        } else if (idPlane[1]) {
+          contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+        }
 
-          cursorOnVideo = false;
+        cursorOnVideo = false;
 
-          if (!cursorOnVideo) {
-            gsap.to(cursor, 0.50, {
-              opacity: 1,
-              ease: "Power3.easeOut"
-            });
-            gsap.to(cursorShapeOut, 0.50, {
-              opacity: 1,
-              ease: "Power3.easeOut"
-            });
-          }
-
-          workShopContainer.classList.remove('switchPlane');
-          btnBackWorkshop.classList.add('close');
-          gsap.to(workShopContainer, 1.5, {
-            opacity: 0,
+        if (!cursorOnVideo) {
+          gsap.to(cursor, 0.50, {
+            opacity: 1,
             ease: "Power3.easeOut"
           });
-          gsap.to(camera.position, 3, {
-            z: -185,
-            ease: "power3.inOut"
-          });
-          gsap.to(leftDoor2.position, 1.5, {
-            x: -20,
-            ease: "power3.inOut",
-            delay: .75
-          });
-          gsap.to(rightDoor2.position, 1.5, {
-            x: 20,
-            ease: "power3.inOut",
-            delay: .75
-          });
-          gsap.to(creditContainer, 2, {
+          gsap.to(cursorShapeOut, 0.50, {
             opacity: 1,
-            ease: "Power1.easeOut",
-            delay: 2
-          });
-          TweenMax.to(btnBackWorkshop, 1, {
-            opacity: 0,
-            clipPath: "inset(0% 100% 0% 0%)",
-            ease: "power3.inOut"
-          });
-          TweenMax.to(btnBackWorkshop, .75, {
-            opacity: 1,
-            clipPath: "inset(0% 0% 0% 0%)",
-            delay: 2.5,
-            ease: "power3.inOut"
-          });
-          backPossible = false;
-          clickPossible = false;
-          setTimeout(function () {
-            creditActive = true;
-            creditContainer.classList.add('switchStreet');
-            elCredit.scrollTop = 0;
-          }, 1000);
-          setTimeout(function () {
-            backPossible = true;
-            clickPossible = true;
-            btnBackWorkshop.classList.remove('close');
-          }, 3000);
-        }
-      }
-    } else {
-      if (checkScrollDirection(elContent) == "down") {
-        if (camera.position.z <= -106) {
-          if (idPlane[14]) {
-            contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src;
-          } else if (idPlane[13]) {
-            contentContainer__13.children[2].children[0].children[1].src = contentContainer__13.children[2].children[0].children[1].src;
-            contentContainer__13.children[4].children[0].children[1].src = contentContainer__13.children[4].children[0].children[1].src;
-          } else if (idPlane[12]) {
-            contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
-            contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
-          } else if (idPlane[11]) {
-            contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src; // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
-          } else if (idPlane[10]) {
-            contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src; // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
-          } else if (idPlane[9]) {
-            contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
-            contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
-          } else if (idPlane[8]) {
-            contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
-          } else if (idPlane[7]) {
-            contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
-          } else if (idPlane[6]) {
-            contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
-          } else if (idPlane[5]) {
-            contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
-          } else if (idPlane[4]) {
-            contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
-          } else if (idPlane[3]) {
-            contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
-          } else if (idPlane[2]) {
-            contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
-          } else if (idPlane[1]) {
-            contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
-          }
-
-          cursorOnVideo = false;
-
-          if (!cursorOnVideo) {
-            gsap.to(cursor, 0.50, {
-              opacity: 1,
-              ease: "Power3.easeOut"
-            });
-            gsap.to(cursorShapeOut, 0.50, {
-              opacity: 1,
-              ease: "Power3.easeOut"
-            });
-          }
-
-          workShopContainer.classList.remove('switchPlane');
-          btnBackWorkshop.classList.add('close');
-          gsap.to(workShopContainer, 1.5, {
-            opacity: 0,
             ease: "Power3.easeOut"
           });
-          gsap.to(camera.position, 3, {
-            z: -185,
-            ease: "power3.inOut"
-          });
-          gsap.to(leftDoor2.position, 1.5, {
-            x: -20,
-            ease: "power3.inOut",
-            delay: .75
-          });
-          gsap.to(rightDoor2.position, 1.5, {
-            x: 20,
-            ease: "power3.inOut",
-            delay: .75
-          });
-          gsap.to(creditContainer, 2, {
-            opacity: 1,
-            ease: "Power1.easeOut",
-            delay: 2
-          });
-          TweenMax.to(btnBackWorkshop, 1, {
-            opacity: 0,
-            clipPath: "inset(0% 100% 0% 0%)",
-            ease: "power3.inOut"
-          });
-          TweenMax.to(btnBackWorkshop, .75, {
-            opacity: 1,
-            clipPath: "inset(0% 0% 0% 0%)",
-            delay: 2.5,
-            ease: "power3.inOut"
-          });
-          backPossible = false;
-          clickPossible = false;
-          setTimeout(function () {
-            creditContainer.classList.add('switchStreet');
-            creditActive = true;
-            elCredit.scrollTop = 0;
-          }, 1000);
-          setTimeout(function () {
-            backPossible = true;
-            clickPossible = true;
-            btnBackWorkshop.classList.remove('close');
-          }, 3000);
         }
+
+        workShopContainer.classList.remove('switchPlane');
+        btnBackWorkshop.classList.add('close');
+        gsap.to(workShopContainer, 1.5, {
+          opacity: 0,
+          ease: "Power3.easeOut"
+        });
+        gsap.to(camera.position, 3, {
+          z: -185,
+          ease: "power3.inOut"
+        });
+        gsap.to(leftDoor2.position, 1.5, {
+          x: -20,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(rightDoor2.position, 1.5, {
+          x: 20,
+          ease: "power3.inOut",
+          delay: .75
+        });
+        gsap.to(creditContainer, 2, {
+          opacity: 1,
+          ease: "Power1.easeOut",
+          delay: 2
+        });
+        TweenMax.to(btnBackWorkshop, 1, {
+          opacity: 0,
+          clipPath: "inset(0% 100% 0% 0%)",
+          ease: "power3.inOut"
+        });
+        TweenMax.to(btnBackWorkshop, .75, {
+          opacity: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          delay: 2.5,
+          ease: "power3.inOut"
+        });
+        backPossible = false;
+        clickPossible = false;
+        setTimeout(function () {
+          creditActive = true;
+          creditContainer.classList.add('switchStreet');
+          elCredit.scrollTop = 0;
+          setTimeout(function () {
+            creditContainer.style.pointerEvents = "all";
+          }, 1000);
+        }, 1000);
+        setTimeout(function () {
+          backPossible = true;
+          clickPossible = true;
+          btnBackWorkshop.classList.remove('close');
+        }, 3000);
       }
     }
   }
@@ -59083,31 +56138,55 @@ function scrollWorkshop(el) {
 document.onkeydown = function (e) {
   switch (e.keyCode) {
     case 37:
-      if (!workshopActive) {
-        scrollUp();
+      if (!isScrollUp && planeScrollPossible) {
+        if (!workshopActive) {
+          scrollUp();
+          isScrollUp = true;
+          setTimeout(function () {
+            isScrollUp = false;
+          }, 750);
+        }
       }
 
       break;
 
     case 38:
       // SCROLL UP
-      if (!workshopActive) {
-        scrollUp();
+      if (!isScrollUp && planeScrollPossible) {
+        if (!workshopActive) {
+          scrollUp();
+          isScrollUp = true;
+          setTimeout(function () {
+            isScrollUp = false;
+          }, 750);
+        }
       }
 
       break;
 
     case 39:
-      if (!workshopActive) {
-        scrollDown();
+      if (!isScrollDown && planeScrollPossible) {
+        if (!workshopActive) {
+          scrollDown();
+          isScrollDown = true;
+          setTimeout(function () {
+            isScrollDown = false;
+          }, 750);
+        }
       }
 
       break;
 
     case 40:
       // SCROLL DOWN
-      if (!workshopActive) {
-        scrollDown();
+      if (!isScrollDown && planeScrollPossible) {
+        if (!workshopActive) {
+          scrollDown();
+          isScrollDown = true;
+          setTimeout(function () {
+            isScrollDown = false;
+          }, 750);
+        }
       }
 
       break;
@@ -59128,7 +56207,7 @@ document.onkeydown = function (e) {
       break;
 
     case 13:
-      if (!homeActive && startMenuActive) {
+      if (!homeActive && startMenuActive && loadComplete) {
         startImmersion();
       }
 
@@ -59154,6 +56233,10 @@ document.onkeydown = function (e) {
       }
 
       break;
+
+    case 77:
+      switchMusic();
+      break;
   }
 };
 
@@ -59164,7 +56247,55 @@ document.querySelector("#dl_artgen").addEventListener('click', function () {
   setTimeout(function () {
     myWindow.close();
   }, 300); // }
-});
+}); // global variable for the player
+
+var player; // this function gets called when API is ready to use
+
+function onYouTubePlayerAPIReady() {
+  // create the global player from the specific iframe (#video)
+  player = new YT.Player('video', {
+    events: {
+      // call this function when player is ready to use
+      'onReady': onPlayerReady
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  // bind events
+  // var playButton = document.getElementById("play-button");
+  iframe.forEach(function (element) {
+    element.addEventListener("click", function () {
+      // player.playVideo();
+      console.log('ueueue');
+      switchMusic();
+    });
+  });
+  musicBtn.addEventListener('click', function () {
+    switchMusic();
+
+    if (!stopMusic) {
+      stopMusic = true;
+    } else {
+      stopMusic = false;
+    }
+
+    player.pauseVideo();
+  }); // var pauseButton = document.getElementById("pause-button");
+  // pauseButton.addEventListener("click", function() {
+  //     player.pauseVideo();
+  // });
+  // var stopButton = document.getElementById("stop-button");
+  // stopButton.addEventListener("click", function() {
+  //     player.stopVideo();
+  // });
+} // Inject YouTube API script
+
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var variation = 0;
 var variationShaders = 0;
 
@@ -59203,7 +56334,7 @@ var render = function render() {
   materialPlane13.uniforms.time.value = clock.running = false;
   materialPlane14.uniforms.time.value = clock.running = false;
 
-  if (camera.position.z >= 0 && camera.position.z <= 3.9 || camera.position.z == 4.5) {
+  if (wavyPlane) {
     materialPlane1.uniforms.time.value = clock.running = true;
     materialPlane2.uniforms.time.value = clock.running = true;
     materialPlane3.uniforms.time.value = clock.running = true;
@@ -59232,15 +56363,15 @@ var render = function render() {
     materialPlane12.uniforms.time.value = clock.getElapsedTime();
     materialPlane13.uniforms.time.value = clock.getElapsedTime();
     materialPlane14.uniforms.time.value = clock.getElapsedTime();
-  }
+  } // composer.render();
 
-  composer.render();
+
   requestAnimationFrame(render);
   renderer.render(scene, camera);
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","postprocessing":"node_modules/postprocessing/build/postprocessing.esm.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","preload-js":"node_modules/preload-js/index.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/ruelle/banniere/baniere_backstage.jpg":"assets/img/ruelle/banniere/baniere_backstage.jpg","../assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg":"assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg","../assets/img/ruelle/banniere/baniere_vrgaming.jpg":"assets/img/ruelle/banniere/baniere_vrgaming.jpg","../assets/img/ruelle/banniere/baniere_devweb.jpg":"assets/img/ruelle/banniere/baniere_devweb.jpg","../assets/img/ruelle/banniere/baniere_cubemusical.jpg":"assets/img/ruelle/banniere/baniere_cubemusical.jpg","../assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg":"assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg","../assets/img/ruelle/banniere/baniere_museemmi.jpg":"assets/img/ruelle/banniere/baniere_museemmi.jpg","../assets/img/ruelle/banniere/baniere_suiteadobe.jpg":"assets/img/ruelle/banniere/baniere_suiteadobe.jpg","../assets/img/ruelle/banniere/baniere_visiteguidée.jpg":"assets/img/ruelle/banniere/baniere_visiteguidée.jpg","../assets/img/ruelle/banniere/baniere_webradio.jpg":"assets/img/ruelle/banniere/baniere_webradio.jpg","../assets/img/ruelle/banniere/baniere_plateautv.jpg":"assets/img/ruelle/banniere/baniere_plateautv.jpg","../assets/img/ruelle/banniere/baniere_fondvert.jpg":"assets/img/ruelle/banniere/baniere_fondvert.jpg","../assets/img/ruelle/banniere/baniere_mapping.jpg":"assets/img/ruelle/banniere/baniere_mapping.jpg","../assets/img/ruelle/banniere/baniere_audiovisuel.jpg":"assets/img/ruelle/banniere/baniere_audiovisuel.jpg","../assets/img/ruelle/numero/rond_1.jpg":"assets/img/ruelle/numero/rond_1.jpg","../assets/img/ruelle/numero/rond_2.jpg":"assets/img/ruelle/numero/rond_2.jpg","../assets/img/ruelle/numero/rond_3.jpg":"assets/img/ruelle/numero/rond_3.jpg","../assets/img/ruelle/numero/rond_4.jpg":"assets/img/ruelle/numero/rond_4.jpg","../assets/img/ruelle/numero/rond_5.jpg":"assets/img/ruelle/numero/rond_5.jpg","../assets/img/ruelle/numero/rond_6.jpg":"assets/img/ruelle/numero/rond_6.jpg","../assets/img/ruelle/numero/rond_7.jpg":"assets/img/ruelle/numero/rond_7.jpg","../assets/img/ruelle/numero/rond_8.jpg":"assets/img/ruelle/numero/rond_8.jpg","../assets/img/ruelle/numero/rond_9.jpg":"assets/img/ruelle/numero/rond_9.jpg","../assets/img/ruelle/numero/rond_10.jpg":"assets/img/ruelle/numero/rond_10.jpg","../assets/img/ruelle/numero/rond_11.jpg":"assets/img/ruelle/numero/rond_11.jpg","../assets/img/ruelle/numero/rond_12.jpg":"assets/img/ruelle/numero/rond_12.jpg","../assets/img/ruelle/numero/rond_13.jpg":"assets/img/ruelle/numero/rond_13.jpg","../assets/img/ruelle/numero/rond_14.jpg":"assets/img/ruelle/numero/rond_14.jpg","../assets/img/ruelle/panneaux/panneau_1.jpg":"assets/img/ruelle/panneaux/panneau_1.jpg","../assets/img/ruelle/panneaux/panneau_2.jpg":"assets/img/ruelle/panneaux/panneau_2.jpg","../assets/img/ruelle/panneaux/panneau_3.jpg":"assets/img/ruelle/panneaux/panneau_3.jpg","../assets/img/ruelle/panneaux/panneau_4.jpg":"assets/img/ruelle/panneaux/panneau_4.jpg","../assets/img/ruelle/panneaux/panneau_5.jpg":"assets/img/ruelle/panneaux/panneau_5.jpg","../assets/img/ruelle/panneaux/panneau_6.jpg":"assets/img/ruelle/panneaux/panneau_6.jpg","../assets/img/ruelle/panneaux/panneau_7.jpg":"assets/img/ruelle/panneaux/panneau_7.jpg","../assets/img/ruelle/panneaux/panneau_8.jpg":"assets/img/ruelle/panneaux/panneau_8.jpg","../assets/img/ruelle/panneaux/panneau_9.jpg":"assets/img/ruelle/panneaux/panneau_9.jpg","../assets/img/ruelle/panneaux/panneau_10.jpg":"assets/img/ruelle/panneaux/panneau_10.jpg","../assets/img/ruelle/panneaux/panneau_11.jpg":"assets/img/ruelle/panneaux/panneau_11.jpg","../assets/img/ruelle/panneaux/panneau_12.jpg":"assets/img/ruelle/panneaux/panneau_12.jpg","../assets/img/ruelle/panneaux/panneau_13.jpg":"assets/img/ruelle/panneaux/panneau_13.jpg","../assets/img/ruelle/panneaux/panneau_14.jpg":"assets/img/ruelle/panneaux/panneau_14.jpg","../assets/img/panneau/panneau_1.jpg":"assets/img/panneau/panneau_1.jpg","../assets/img/panneau/panneau_2.jpg":"assets/img/panneau/panneau_2.jpg","../assets/img/panneau/panneau_3.jpg":"assets/img/panneau/panneau_3.jpg","../assets/img/panneau/panneau_4.jpg":"assets/img/panneau/panneau_4.jpg","../assets/img/panneau/panneau_5.jpg":"assets/img/panneau/panneau_5.jpg","../assets/img/panneau/panneau_6.jpg":"assets/img/panneau/panneau_6.jpg","../assets/img/panneau/panneau_7.jpg":"assets/img/panneau/panneau_7.jpg","../assets/img/panneau/panneau_8.jpg":"assets/img/panneau/panneau_8.jpg","../assets/img/panneau/panneau_9.jpg":"assets/img/panneau/panneau_9.jpg","../assets/img/panneau/panneau_10.jpg":"assets/img/panneau/panneau_10.jpg","../assets/img/panneau/panneau_11.jpg":"assets/img/panneau/panneau_11.jpg","../assets/img/panneau/panneau_12.jpg":"assets/img/panneau/panneau_12.jpg","../assets/img/panneau/panneau_13.jpg":"assets/img/panneau/panneau_13.jpg","../assets/img/panneau/panneau_14.jpg":"assets/img/panneau/panneau_14.jpg","../assets/img/ruelle/back_panneaux/panneau_1.jpg":"assets/img/ruelle/back_panneaux/panneau_1.jpg","../assets/img/ruelle/back_panneaux/panneau_2.jpg":"assets/img/ruelle/back_panneaux/panneau_2.jpg","../assets/img/ruelle/back_panneaux/panneau_3.jpg":"assets/img/ruelle/back_panneaux/panneau_3.jpg","../assets/img/ruelle/back_panneaux/panneau_4.jpg":"assets/img/ruelle/back_panneaux/panneau_4.jpg","../assets/img/ruelle/back_panneaux/panneau_5.jpg":"assets/img/ruelle/back_panneaux/panneau_5.jpg","../assets/img/ruelle/back_panneaux/panneau_6.jpg":"assets/img/ruelle/back_panneaux/panneau_6.jpg","../assets/img/ruelle/back_panneaux/panneau_7.jpg":"assets/img/ruelle/back_panneaux/panneau_7.jpg","../assets/img/ruelle/back_panneaux/panneau_8.jpg":"assets/img/ruelle/back_panneaux/panneau_8.jpg","../assets/img/ruelle/back_panneaux/panneau_9.jpg":"assets/img/ruelle/back_panneaux/panneau_9.jpg","../assets/img/ruelle/back_panneaux/panneau_10.jpg":"assets/img/ruelle/back_panneaux/panneau_10.jpg","../assets/img/ruelle/back_panneaux/panneau_11.jpg":"assets/img/ruelle/back_panneaux/panneau_11.jpg","../assets/img/ruelle/back_panneaux/panneau_12.jpg":"assets/img/ruelle/back_panneaux/panneau_12.jpg","../assets/img/ruelle/back_panneaux/panneau_13.jpg":"assets/img/ruelle/back_panneaux/panneau_13.jpg","../assets/img/ruelle/back_panneaux/panneau_14.jpg":"assets/img/ruelle/back_panneaux/panneau_14.jpg","../assets/img/ruelle/idbannire.jpg":"assets/img/ruelle/idbannire.jpg","../assets/img/ruelle/credits.jpg":"assets/img/ruelle/credits.jpg","../assets/img/particle.png":"assets/img/particle.png","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf","../assets/sound/rpz.mp3":"assets/sound/rpz.mp3","../assets/sound/bg.mp3":"assets/sound/bg.mp3","../assets/sound/bgLoop.mp3":"assets/sound/bgLoop.mp3","../assets/sound/soundHoverPlane.mp3":"assets/sound/soundHoverPlane.mp3","../assets/sound/soundOutPlane.mp3":"assets/sound/soundOutPlane.mp3","../assets/sound/soundHover.mp3":"assets/sound/soundHover.mp3"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","preload-js":"node_modules/preload-js/index.js","howler":"node_modules/howler/dist/howler.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/ruelle/banniere/baniere_backstage.jpg":"assets/img/ruelle/banniere/baniere_backstage.jpg","../assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg":"assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg","../assets/img/ruelle/banniere/baniere_vrgaming.jpg":"assets/img/ruelle/banniere/baniere_vrgaming.jpg","../assets/img/ruelle/banniere/baniere_devweb.jpg":"assets/img/ruelle/banniere/baniere_devweb.jpg","../assets/img/ruelle/banniere/baniere_cubemusical.jpg":"assets/img/ruelle/banniere/baniere_cubemusical.jpg","../assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg":"assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg","../assets/img/ruelle/banniere/baniere_museemmi.jpg":"assets/img/ruelle/banniere/baniere_museemmi.jpg","../assets/img/ruelle/banniere/baniere_suiteadobe.jpg":"assets/img/ruelle/banniere/baniere_suiteadobe.jpg","../assets/img/ruelle/banniere/baniere_visiteguidée.jpg":"assets/img/ruelle/banniere/baniere_visiteguidée.jpg","../assets/img/ruelle/banniere/baniere_webradio.jpg":"assets/img/ruelle/banniere/baniere_webradio.jpg","../assets/img/ruelle/banniere/baniere_plateautv.jpg":"assets/img/ruelle/banniere/baniere_plateautv.jpg","../assets/img/ruelle/banniere/baniere_fondvert.jpg":"assets/img/ruelle/banniere/baniere_fondvert.jpg","../assets/img/ruelle/banniere/baniere_mapping.jpg":"assets/img/ruelle/banniere/baniere_mapping.jpg","../assets/img/ruelle/banniere/baniere_audiovisuel.jpg":"assets/img/ruelle/banniere/baniere_audiovisuel.jpg","../assets/img/ruelle/numero/rond_1.jpg":"assets/img/ruelle/numero/rond_1.jpg","../assets/img/ruelle/numero/rond_2.jpg":"assets/img/ruelle/numero/rond_2.jpg","../assets/img/ruelle/numero/rond_3.jpg":"assets/img/ruelle/numero/rond_3.jpg","../assets/img/ruelle/numero/rond_4.jpg":"assets/img/ruelle/numero/rond_4.jpg","../assets/img/ruelle/numero/rond_5.jpg":"assets/img/ruelle/numero/rond_5.jpg","../assets/img/ruelle/numero/rond_6.jpg":"assets/img/ruelle/numero/rond_6.jpg","../assets/img/ruelle/numero/rond_7.jpg":"assets/img/ruelle/numero/rond_7.jpg","../assets/img/ruelle/numero/rond_8.jpg":"assets/img/ruelle/numero/rond_8.jpg","../assets/img/ruelle/numero/rond_9.jpg":"assets/img/ruelle/numero/rond_9.jpg","../assets/img/ruelle/numero/rond_10.jpg":"assets/img/ruelle/numero/rond_10.jpg","../assets/img/ruelle/numero/rond_11.jpg":"assets/img/ruelle/numero/rond_11.jpg","../assets/img/ruelle/numero/rond_12.jpg":"assets/img/ruelle/numero/rond_12.jpg","../assets/img/ruelle/numero/rond_13.jpg":"assets/img/ruelle/numero/rond_13.jpg","../assets/img/ruelle/numero/rond_14.jpg":"assets/img/ruelle/numero/rond_14.jpg","../assets/img/ruelle/panneaux/panneau_1.jpg":"assets/img/ruelle/panneaux/panneau_1.jpg","../assets/img/ruelle/panneaux/panneau_2.jpg":"assets/img/ruelle/panneaux/panneau_2.jpg","../assets/img/ruelle/panneaux/panneau_3.jpg":"assets/img/ruelle/panneaux/panneau_3.jpg","../assets/img/ruelle/panneaux/panneau_4.jpg":"assets/img/ruelle/panneaux/panneau_4.jpg","../assets/img/ruelle/panneaux/panneau_5.jpg":"assets/img/ruelle/panneaux/panneau_5.jpg","../assets/img/ruelle/panneaux/panneau_6.jpg":"assets/img/ruelle/panneaux/panneau_6.jpg","../assets/img/ruelle/panneaux/panneau_7.jpg":"assets/img/ruelle/panneaux/panneau_7.jpg","../assets/img/ruelle/panneaux/panneau_8.jpg":"assets/img/ruelle/panneaux/panneau_8.jpg","../assets/img/ruelle/panneaux/panneau_9.jpg":"assets/img/ruelle/panneaux/panneau_9.jpg","../assets/img/ruelle/panneaux/panneau_10.jpg":"assets/img/ruelle/panneaux/panneau_10.jpg","../assets/img/ruelle/panneaux/panneau_11.jpg":"assets/img/ruelle/panneaux/panneau_11.jpg","../assets/img/ruelle/panneaux/panneau_12.jpg":"assets/img/ruelle/panneaux/panneau_12.jpg","../assets/img/ruelle/panneaux/panneau_13.jpg":"assets/img/ruelle/panneaux/panneau_13.jpg","../assets/img/ruelle/panneaux/panneau_14.jpg":"assets/img/ruelle/panneaux/panneau_14.jpg","../assets/img/panneau/panneau_1.jpg":"assets/img/panneau/panneau_1.jpg","../assets/img/panneau/panneau_2.jpg":"assets/img/panneau/panneau_2.jpg","../assets/img/panneau/panneau_3.jpg":"assets/img/panneau/panneau_3.jpg","../assets/img/panneau/panneau_4.jpg":"assets/img/panneau/panneau_4.jpg","../assets/img/panneau/panneau_5.jpg":"assets/img/panneau/panneau_5.jpg","../assets/img/panneau/panneau_6.jpg":"assets/img/panneau/panneau_6.jpg","../assets/img/panneau/panneau_7.jpg":"assets/img/panneau/panneau_7.jpg","../assets/img/panneau/panneau_8.jpg":"assets/img/panneau/panneau_8.jpg","../assets/img/panneau/panneau_9.jpg":"assets/img/panneau/panneau_9.jpg","../assets/img/panneau/panneau_10.jpg":"assets/img/panneau/panneau_10.jpg","../assets/img/panneau/panneau_11.jpg":"assets/img/panneau/panneau_11.jpg","../assets/img/panneau/panneau_12.jpg":"assets/img/panneau/panneau_12.jpg","../assets/img/panneau/panneau_13.jpg":"assets/img/panneau/panneau_13.jpg","../assets/img/panneau/panneau_14.jpg":"assets/img/panneau/panneau_14.jpg","../assets/img/ruelle/back_panneaux/panneau_1.jpg":"assets/img/ruelle/back_panneaux/panneau_1.jpg","../assets/img/ruelle/back_panneaux/panneau_2.jpg":"assets/img/ruelle/back_panneaux/panneau_2.jpg","../assets/img/ruelle/back_panneaux/panneau_3.jpg":"assets/img/ruelle/back_panneaux/panneau_3.jpg","../assets/img/ruelle/back_panneaux/panneau_4.jpg":"assets/img/ruelle/back_panneaux/panneau_4.jpg","../assets/img/ruelle/back_panneaux/panneau_5.jpg":"assets/img/ruelle/back_panneaux/panneau_5.jpg","../assets/img/ruelle/back_panneaux/panneau_6.jpg":"assets/img/ruelle/back_panneaux/panneau_6.jpg","../assets/img/ruelle/back_panneaux/panneau_7.jpg":"assets/img/ruelle/back_panneaux/panneau_7.jpg","../assets/img/ruelle/back_panneaux/panneau_8.jpg":"assets/img/ruelle/back_panneaux/panneau_8.jpg","../assets/img/ruelle/back_panneaux/panneau_9.jpg":"assets/img/ruelle/back_panneaux/panneau_9.jpg","../assets/img/ruelle/back_panneaux/panneau_10.jpg":"assets/img/ruelle/back_panneaux/panneau_10.jpg","../assets/img/ruelle/back_panneaux/panneau_11.jpg":"assets/img/ruelle/back_panneaux/panneau_11.jpg","../assets/img/ruelle/back_panneaux/panneau_12.jpg":"assets/img/ruelle/back_panneaux/panneau_12.jpg","../assets/img/ruelle/back_panneaux/panneau_13.jpg":"assets/img/ruelle/back_panneaux/panneau_13.jpg","../assets/img/ruelle/back_panneaux/panneau_14.jpg":"assets/img/ruelle/back_panneaux/panneau_14.jpg","../assets/img/ruelle/idbannire.jpg":"assets/img/ruelle/idbannire.jpg","../assets/img/ruelle/credits.jpg":"assets/img/ruelle/credits.jpg","../assets/img/particle.png":"assets/img/particle.png","../assets/img/trombi/2A/alex.jpg":"assets/img/trombi/2A/alex.jpg","../assets/img/trombi/2A/amandine.jpg":"assets/img/trombi/2A/amandine.jpg","../assets/img/trombi/2A/annie.jpg":"assets/img/trombi/2A/annie.jpg","../assets/img/trombi/2A/annita.jpg":"assets/img/trombi/2A/annita.jpg","../assets/img/trombi/2A/aurore.jpg":"assets/img/trombi/2A/aurore.jpg","../assets/img/trombi/2A/ben.jpg":"assets/img/trombi/2A/ben.jpg","../assets/img/trombi/2A/carlaA.jpg":"assets/img/trombi/2A/carlaA.jpg","../assets/img/trombi/2A/carlaS.jpg":"assets/img/trombi/2A/carlaS.jpg","../assets/img/trombi/2A/clara.jpg":"assets/img/trombi/2A/clara.jpg","../assets/img/trombi/2A/clemo.jpg":"assets/img/trombi/2A/clemo.jpg","../assets/img/trombi/2A/eliottis.jpg":"assets/img/trombi/2A/eliottis.jpg","../assets/img/trombi/2A/emeric.jpg":"assets/img/trombi/2A/emeric.jpg","../assets/img/trombi/2A/enzoD.jpg":"assets/img/trombi/2A/enzoD.jpg","../assets/img/trombi/2A/enzoF.jpg":"assets/img/trombi/2A/enzoF.jpg","../assets/img/trombi/2A/flo.jpg":"assets/img/trombi/2A/flo.jpg","../assets/img/trombi/2A/gael.jpg":"assets/img/trombi/2A/gael.jpg","../assets/img/trombi/2A/gregoire.jpg":"assets/img/trombi/2A/gregoire.jpg","../assets/img/trombi/2A/guigui.jpg":"assets/img/trombi/2A/guigui.jpg","../assets/img/trombi/2A/helder.jpg":"assets/img/trombi/2A/helder.jpg","../assets/img/trombi/2A/jules.jpg":"assets/img/trombi/2A/jules.jpg","../assets/img/trombi/2A/kikinou.jpg":"assets/img/trombi/2A/kikinou.jpg","../assets/img/trombi/2A/lena.jpg":"assets/img/trombi/2A/lena.jpg","../assets/img/trombi/2A/lucas.jpg":"assets/img/trombi/2A/lucas.jpg","../assets/img/trombi/2A/lucile.jpg":"assets/img/trombi/2A/lucile.jpg","../assets/img/trombi/2A/mael.jpg":"assets/img/trombi/2A/mael.jpg","../assets/img/trombi/2A/martin.jpg":"assets/img/trombi/2A/martin.jpg","../assets/img/trombi/2A/matteo.jpg":"assets/img/trombi/2A/matteo.jpg","../assets/img/trombi/2A/max.jpg":"assets/img/trombi/2A/max.jpg","../assets/img/trombi/2A/moyi.jpg":"assets/img/trombi/2A/moyi.jpg","../assets/img/trombi/2A/nathan.jpg":"assets/img/trombi/2A/nathan.jpg","../assets/img/trombi/2A/nicoFe.jpg":"assets/img/trombi/2A/nicoFe.jpg","../assets/img/trombi/2A/nicoFi.jpg":"assets/img/trombi/2A/nicoFi.jpg","../assets/img/trombi/2A/ossian.jpg":"assets/img/trombi/2A/ossian.jpg","../assets/img/trombi/2A/paoline.jpg":"assets/img/trombi/2A/paoline.jpg","../assets/img/trombi/2A/quentin.jpg":"assets/img/trombi/2A/quentin.jpg","../assets/img/trombi/2A/raito.jpg":"assets/img/trombi/2A/raito.jpg","../assets/img/trombi/2A/raphL.jpg":"assets/img/trombi/2A/raphL.jpg","../assets/img/trombi/2A/raphO.jpg":"assets/img/trombi/2A/raphO.jpg","../assets/img/trombi/2A/romane.jpg":"assets/img/trombi/2A/romane.jpg","../assets/img/trombi/2A/sam.jpg":"assets/img/trombi/2A/sam.jpg","../assets/img/trombi/2A/soba.jpg":"assets/img/trombi/2A/soba.jpg","../assets/img/trombi/2A/theo.jpg":"assets/img/trombi/2A/theo.jpg","../assets/img/trombi/2A/thoma.jpg":"assets/img/trombi/2A/thoma.jpg","../assets/img/trombi/2A/thomas.jpg":"assets/img/trombi/2A/thomas.jpg","../assets/img/trombi/2A/tistouille.jpg":"assets/img/trombi/2A/tistouille.jpg","../assets/img/trombi/2A/tristan.jpg":"assets/img/trombi/2A/tristan.jpg","../assets/img/trombi/2A/valPl.jpg":"assets/img/trombi/2A/valPl.jpg","../assets/img/trombi/2A/valPr.jpg":"assets/img/trombi/2A/valPr.jpg","../assets/img/trombi/2A/yuxuan.jpg":"assets/img/trombi/2A/yuxuan.jpg","../assets/img/trombi/2A/zoe.jpg":"assets/img/trombi/2A/zoe.jpg","../assets/img/trombi/1A/alexia.jpg":"assets/img/trombi/1A/alexia.jpg","../assets/img/trombi/1A/alexis.jpg":"assets/img/trombi/1A/alexis.jpg","../assets/img/trombi/1A/alexL.jpg":"assets/img/trombi/1A/alexL.jpg","../assets/img/trombi/1A/alexM.jpg":"assets/img/trombi/1A/alexM.jpg","../assets/img/trombi/1A/alexP.jpg":"assets/img/trombi/1A/alexP.jpg","../assets/img/trombi/1A/alize.jpg":"assets/img/trombi/1A/alize.jpg","../assets/img/trombi/1A/andreas.jpg":"assets/img/trombi/1A/andreas.jpg","../assets/img/trombi/1A/antoine.jpg":"assets/img/trombi/1A/antoine.jpg","../assets/img/trombi/1A/antoineM.jpg":"assets/img/trombi/1A/antoineM.jpg","../assets/img/trombi/1A/arthur.jpg":"assets/img/trombi/1A/arthur.jpg","../assets/img/trombi/1A/arthurV.jpg":"assets/img/trombi/1A/arthurV.jpg","../assets/img/trombi/1A/auriane.jpg":"assets/img/trombi/1A/auriane.jpg","../assets/img/trombi/1A/cantin.jpg":"assets/img/trombi/1A/cantin.jpg","../assets/img/trombi/1A/celiaA.jpg":"assets/img/trombi/1A/celiaA.jpg","../assets/img/trombi/1A/celiaV.jpg":"assets/img/trombi/1A/celiaV.jpg","../assets/img/trombi/1A/coline.jpg":"assets/img/trombi/1A/coline.jpg","../assets/img/trombi/1A/corentin.jpg":"assets/img/trombi/1A/corentin.jpg","../assets/img/trombi/1A/eliott.jpg":"assets/img/trombi/1A/eliott.jpg","../assets/img/trombi/1A/elodie.jpg":"assets/img/trombi/1A/elodie.jpg","../assets/img/trombi/1A/enora.jpg":"assets/img/trombi/1A/enora.jpg","../assets/img/trombi/1A/eva.jpg":"assets/img/trombi/1A/eva.jpg","../assets/img/trombi/1A/ezekel.jpg":"assets/img/trombi/1A/ezekel.jpg","../assets/img/trombi/1A/florian.jpg":"assets/img/trombi/1A/florian.jpg","../assets/img/trombi/1A/gilles.jpg":"assets/img/trombi/1A/gilles.jpg","../assets/img/trombi/1A/guillaume.jpg":"assets/img/trombi/1A/guillaume.jpg","../assets/img/trombi/1A/hugoL.jpg":"assets/img/trombi/1A/hugoL.jpg","../assets/img/trombi/1A/hugoT.jpg":"assets/img/trombi/1A/hugoT.jpg","../assets/img/trombi/1A/jossua.jpg":"assets/img/trombi/1A/jossua.jpg","../assets/img/trombi/1A/julesL.jpg":"assets/img/trombi/1A/julesL.jpg","../assets/img/trombi/1A/latrique.jpg":"assets/img/trombi/1A/latrique.jpg","../assets/img/trombi/1A/lea.jpg":"assets/img/trombi/1A/lea.jpg","../assets/img/trombi/1A/lorie.jpg":"assets/img/trombi/1A/lorie.jpg","../assets/img/trombi/1A/lucasF.jpg":"assets/img/trombi/1A/lucasF.jpg","../assets/img/trombi/1A/maissane.jpg":"assets/img/trombi/1A/maissane.jpg","../assets/img/trombi/1A/nina.jpg":"assets/img/trombi/1A/nina.jpg","../assets/img/trombi/1A/pablo.jpg":"assets/img/trombi/1A/pablo.jpg","../assets/img/trombi/1A/robinB.jpg":"assets/img/trombi/1A/robinB.jpg","../assets/img/trombi/1A/robinP.jpg":"assets/img/trombi/1A/robinP.jpg","../assets/img/trombi/1A/romain.jpg":"assets/img/trombi/1A/romain.jpg","../assets/img/trombi/1A/romainB.jpg":"assets/img/trombi/1A/romainB.jpg","../assets/img/trombi/1A/sacha.jpg":"assets/img/trombi/1A/sacha.jpg","../assets/img/trombi/1A/sarah.jpg":"assets/img/trombi/1A/sarah.jpg","../assets/img/trombi/1A/selmene.jpg":"assets/img/trombi/1A/selmene.jpg","../assets/img/trombi/1A/solene.jpg":"assets/img/trombi/1A/solene.jpg","../assets/img/trombi/1A/teva.jpg":"assets/img/trombi/1A/teva.jpg","../assets/img/trombi/1A/thibaut.jpg":"assets/img/trombi/1A/thibaut.jpg","../assets/img/trombi/1A/thomasB.jpg":"assets/img/trombi/1A/thomasB.jpg","../assets/img/trombi/1A/thomasF.jpg":"assets/img/trombi/1A/thomasF.jpg","../assets/img/trombi/1A/valM.jpg":"assets/img/trombi/1A/valM.jpg","../assets/img/trombi/1A/vincent.jpg":"assets/img/trombi/1A/vincent.jpg","../assets/img/trombi/1A/yvan.jpg":"assets/img/trombi/1A/yvan.jpg","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf","../assets/sound/rpz.mp3":"assets/sound/rpz.mp3","../assets/sound/bg.mp3":"assets/sound/bg.mp3","../assets/sound/bgLoop.mp3":"assets/sound/bgLoop.mp3","../assets/sound/soundHoverPlane.mp3":"assets/sound/soundHoverPlane.mp3","../assets/sound/soundOutPlane.mp3":"assets/sound/soundOutPlane.mp3","../assets/sound/soundHover.mp3":"assets/sound/soundHover.mp3"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -59268,7 +56399,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7623" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61048" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
