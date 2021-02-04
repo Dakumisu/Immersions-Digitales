@@ -2430,13 +2430,14 @@ function switchMusic() {
             }
             if (!workshopActive) {
                 bgMusic.fade(0, volume, 1000);
+                rpzMusic.fade(0, 0.03, 1000);
             } else {
                 bgLoopMusic.fade(0, volumeBg, 1000);
+                rpzMusic.fade(0, 0.03, 1000);
             }
             bgMusic.play();
             bgLoopMusic.play();
             switchBtn = true;
-            rpzMusic.volume(volume); 
             soundHover.volume(volumeBtn);
             soundHoverPlane.volume(volumePlane);
             soundOutPlane.volume(volumePlane);
@@ -2447,15 +2448,16 @@ function switchMusic() {
             
             if (!workshopActive) {
                 bgMusic.fade(volume, 0, 1000);
+                rpzMusic.fade(0.03, 0, 1000);
             } else {
                 bgLoopMusic.fade(volumeBg, 0, 1000);
+                rpzMusic.fade(0.03, 0, 1000);
             }
             setTimeout(() => {
                 bgMusic.pause()
                 bgLoopMusic.pause()
             }, 1000);
             switchBtn = false;
-            rpzMusic.volume(0); 
             soundHover.volume(0);
             soundHoverPlane.volume(0);
             soundOutPlane.volume(0);
@@ -6157,7 +6159,7 @@ function scrollIntoWorkshop(elContent, elCredit) {
     containerArrowIndication.classList.remove('switch')
     setTimeout(function(){
         containerArrowIndication.style.bottom = '-1.5%';
-    },750)
+    }, 750)
 
     containerArrowIndication.style.bottom = elContent.scrollTop + 'px';
     if (!window.matchMedia("(max-width: 1024px)").matches) {
@@ -6205,10 +6207,10 @@ function scrollIntoWorkshop(elContent, elCredit) {
                 workShopContainer.classList.remove('switchPlane')
                 btnBackWorkshop.classList.add('close')
                 gsap.to(workShopContainer, 1.5, { opacity: 0, ease: "Power3.easeOut" })
-                gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut" })
-                gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .75 })
-                gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .75 })
-                gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2 })
+                gsap.to(camera.position, 3, { z: -185, ease: "power3.inOut", delay: .15 })
+                gsap.to(leftDoor2.position, 1.5, { x: -20, ease: "power3.inOut", delay: .9 })
+                gsap.to(rightDoor2.position, 1.5, { x: 20, ease: "power3.inOut", delay: .9 })
+                gsap.to(creditContainer, 2, { opacity: 1, ease: "Power1.easeOut", delay: 2.15 })
             
                 TweenMax.to(btnBackWorkshop, 1, { opacity: 0, clipPath: "inset(0% 100% 0% 0%)", ease: "power3.inOut" })
                 TweenMax.to(btnBackWorkshop, .75, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", delay: 2.5, ease: "power3.inOut" })

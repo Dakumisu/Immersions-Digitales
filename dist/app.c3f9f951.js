@@ -45238,9 +45238,9 @@ var global = arguments[3];
 },{}],"js/libs/glsl/vertex.glsl":[function(require,module,exports) {
 module.exports = "varying vec2 vUv;\n\nuniform float time;\n\n// const float pi = 3.1415925;\n\n// void main() {\n  //   uv = vUv;\n  //   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );\n// }\n\nprecision mediump float;\n#define GLSLIFY 1\n\n// varying vec2 vUv;\n// uniform float time;\n\nvec3 mod289(vec3 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 mod289(vec4 x){\n  return x-floor(x*(1./289.))*289.;\n}\n\nvec4 permute(vec4 x){\n  return mod289(((x*34.)+1.)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159-.85373472095314*r;\n}\n\nfloat snoise(vec3 v){\n  const vec2 C=vec2(1./6.,1./3.);\n  const vec4 D=vec4(0.,.5,1.,2.);\n  \n  // First corner\n  vec3 i=floor(v+dot(v,C.yyy));\n  vec3 x0=v-i+dot(i,C.xxx);\n  \n  // Other corners\n  vec3 g=step(x0.yzx,x0.xyz);\n  vec3 l=1.-g;\n  vec3 i1=min(g.xyz,l.zxy);\n  vec3 i2=max(g.xyz,l.zxy);\n  \n  vec3 x1=x0-i1+C.xxx;\n  vec3 x2=x0-i2+C.yyy;\n  vec3 x3=x0-D.yyy;\n  \n  // Permutations\n  i=mod289(i);\n  vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));\n  // Gradients: 7x7 points over a square, mapped onto an octahedron.\n  // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_=.142857142857;\n  vec3 ns=n_*D.wyz-D.xzx;\n  \n  vec4 j=p-49.*floor(p*ns.z*ns.z);\n  \n  vec4 x_=floor(j*ns.z);\n  vec4 y_=floor(j-7.*x_);\n  \n  vec4 x=x_*ns.x+ns.yyyy;\n  vec4 y=y_*ns.x+ns.yyyy;\n  vec4 h=1.-abs(x)-abs(y);\n  \n  vec4 b0=vec4(x.xy,y.xy);\n  vec4 b1=vec4(x.zw,y.zw);\n  \n  vec4 s0=floor(b0)*2.+1.;\n  vec4 s1=floor(b1)*2.+1.;\n  vec4 sh=-step(h,vec4(0.));\n  \n  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;\n  vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;\n  \n  vec3 p0=vec3(a0.xy,h.x);\n  vec3 p1=vec3(a0.zw,h.y);\n  vec3 p2=vec3(a1.xy,h.z);\n  vec3 p3=vec3(a1.zw,h.w);\n  \n  // Normalise gradients\n  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));\n  p0*=norm.x;\n  p1*=norm.y;\n  p2*=norm.z;\n  p3*=norm.w;\n  \n  // Mix final noise value\n  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);\n  m=m*m;\n  return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),\n  dot(p2,x2),dot(p3,x3)));\n}\n\nvoid main(){\n  vUv=uv;\n  \n  vec3 pos=position;\n  float noiseFreq=.5;\n  float noiseAmp=.03;\n  vec3 noisePos=vec3(pos.x*noiseFreq+time,pos.y,pos.z);\n  pos.z+=snoise(noisePos)*noiseAmp;\n  \n  gl_Position=projectionMatrix*modelViewMatrix*vec4(pos,1.);\n}";
 },{}],"js/libs/glsl/fragment.glsl":[function(require,module,exports) {
-module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\n// uniform float _rot;\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\n// vec2 rotate(vec2 v, float a) {\n  //  float s = sin(a);\n  //  float c = cos(a);\n  //  mat2 m = mat2(c, -s, s, c);\n  //  return m * v;\n// }\n\nvoid main(){\n  \n  vec2 uv=vUv;\n  \n  // uv -= 0.5;\n  // vec2 rotUV = rotate(uv, _rot);\n  // uv += 0.5;\n\n  //   vec4 displace = texture2D(displacement, vUv.yx);\n  \n  vec4 disp=texture2D(displacement,uv);\n  // vec2 displacedUV = vec2(vUv.x, vUv.y + disp.r);\n\n  // displacedUV.y = mix(vUv.y, disp.r, 0.1);\n  \n  //   vec4 color = texture2D(image, displacedUV);\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n  \n  // finalTexture.r = texture2D(imagergb, disp + vec2(.0, .0)).r;\n  // finalTexture.g = texture2D(imagergb, disp + vec2(.0, -0.01)).g;\n  // finalTexture.b = texture2D(imagergb, disp + vec2(.0, 0.02)).b;\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n  // gl_FragColor = disp;\n\n}\n\n// void main() {\n//   vUv = uv;\n\n//   vec3 pos = position;\n//   float noiseFreq = 3.5;\n//   float noiseAmp = 0.15; \n//   vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);\n//   pos.z += snoise(noisePos) * noiseAmp;\n\n//   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.);\n// }\n\n// =================================================================================\n// =================================================================================\n\n// uniform float time;\n// uniform float alpha;\n// uniform float displaceHover;\n// // uniform float progress;\n// uniform sampler2D image;\n// uniform sampler2D displacement;\n// uniform sampler2D tDiffuse;\n\n// uniform vec2 resolution;\n// uniform vec2 mouse;\n// // uniform float u_Velo;\n// // uniform int u_Type;\n\n// varying vec2 vUv;\n// // varying vec4 vPosition;\n\n// void main(){\n//   vec4 displace = texture2D(displacement, vUv.yx);\n//   vec2 displacedUV = vec2(vUv.x, vUv.y + displace.r);\n  \n//   displacedUV.y = mix(vUv.y, displace.r, displaceHover);\n  \n//   vec4 color = texture2D(imagebw, displacedUV);\n  \n//   // color.r = texture2D(image, displacedUV + vec2(time*.002, time*0.03)).r;\n//   // color.g = 0.;\n//   // color.b = texture2D(image, displacedUV + vec2(time*.002, time*0.07)).b;\n//   float activeRGB = displaceHover * 10.0;\n//   // color.r = texture2D(imagebw, displacedUV + vec2(.0, 0.5)*activeRGB).r;\n//   color.r = texture2D(imagebw, displacedUV + vec2(.0, -0.2) + vec2(.3, 0.)*activeRGB).r;\n//   // color.r = texture2D(imagebw, displacedUV + vec2(.3, 0.)*activeRGB).r;\n//   color.g = texture2D(imagebw, displacedUV + vec2(.0, -0.01)*activeRGB).g;\n//   color.b = texture2D(imagebw, displacedUV + vec2(.0, 0.02)*activeRGB).b;\n  \n//   color.a = alpha;\n  \n// //   // // get small circle around mouse, with distances to it\n// //   // float c=circle(uv,mouse,0.,.2);\n// //   // // get texture 3 times, each time with a different offset, depending on mouse speed:\n\n// //   // float r=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.5)).x;\n// //   // float g=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.525)).y;\n// //   // float b=texture2D(tDiffuse,uv.xy+=(mouseVelocity*.55)).z;\n// //   // // combine it all to final output\n// //   // color=vec4(r,g,b,1.);\n  \n// //   // vec2 newUV = mix(uv, mouse, circle); \n// //   // color = texture2D(tDiffuse,newUV);\n  \n//   gl_FragColor=color;\n// }\n\n// =================================================================================\n// =================================================================================\n\n// float circle(vec2 uv,vec2 disc_center,float disc_radius,float border_size){\n//   uv-=disc_center;\n//   uv*=resolution;\n//   float dist=sqrt(dot(uv,uv));\n//   return smoothstep(disc_radius+border_size,disc_radius-border_size,dist);\n// }\n\n// void main(){\n//   vec2 newUV=vUv;\n//   float c = circle(vUv,uMouse,0.,.2);\n//   float r = texture2D(tDiffuse,newUV.xy+=c*(.1*.5)).x;\n//   float g = texture2D(tDiffuse,newUV.xy+=c*(.1*.525)).y;\n//   float b = texture2D(tDiffuse,newUV.xy+=c*(.1*.55)).z;\n//   vec4 color = vec4(r,g,b,1.);\n//   gl_FragColor = color;\n// }\n\n// =================================================================================\n// =================================================================================\n\n// float circle(vec2 uv,vec2 disc_center,float disc_radius,float border_size){\n//   uv-=disc_center;\n//   uv*=resolution;\n//   float dist=sqrt(dot(uv,uv));\n//   return smoothstep(disc_radius+border_size,disc_radius-border_size,dist);\n// }\n\n// float map(float value,float min1,float max1,float min2,float max2){\n//   return min2+(value-min1)*(max2-min2)/(max1-min1);\n// }\n\n// float remap(float value,float inMin,float inMax,float outMin,float outMax){\n//   return outMin+(outMax-outMin)*(value-inMin)/(inMax-inMin);\n// }\n\n// float hash12(vec2 p){\n//   float h=dot(p,vec2(127.1,311.7));\n//   return fract(sin(h)*43758.5453123);\n// }\n\n// // #define HASHSCALE3 vec3(.1031, .1030, .0973)\n// vec2 hash2d(vec2 p)\n// {\n//   vec3 p3=fract(vec3(p.xyx)*vec3(.1031,.1030,.0973));\n//   p3+=dot(p3,p3.yzx+19.19);\n//   return fract((p3.xx+p3.yz)*p3.zy);\n// }\n\n// void main(){\n//   vec2 newUV=v_uv;\n//   vec4 color=vec4(1.,0.,0.,1.);\n  \n//   // colorful\n//   // if(uType==0){\n//     float c=circle(newUV,uMouse,0.,.2);\n//     float r=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.5)).x;\n//     float g=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.525)).y;\n//     float b=texture2D(tDiffuse,newUV.xy+=c*(uVelo*.55)).z;\n//     color=vec4(r,g,b,1.);\n//   // }\n  \n//   // zoom\n//   // if(uType==1){\n//     // \tfloat c = circle(newUV, uMouse, 0.0, 0.1+uVelo*2.)*40.*uVelo;\n//     // \tvec2 offsetVector = normalize(uMouse - v_uv);\n//     // \tvec2 warpedUV = mix(v_uv, uMouse, c * 0.99); //power\n//     // \tcolor = texture2D(tDiffuse,warpedUV) + texture2D(tDiffuse,warpedUV)*vec4(vec3(c),1.);\n//   // }\n  \n//   // // zoom\n//   // if(uType==2){\n//     // \tfloat hash = hash12(v_uv*10.);\n//     // \t// float c = -circle(newUV, uMouse, 0.0, 0.1+uVelo*2.)*40.*uVelo;\n//     // \t// vec2 offsetVector = -normalize(uMouse - v_uv);\n//     // \t// vec2 warpedUV = mix(v_uv, uMouse, c * 0.6); //power\n//     // \t// vec2 warpedUV1 = mix(v_uv, uMouse, c * 0.3); //power\n//     // \t// vec2 warpedUV2 = mix(v_uv, uMouse, c * 0.1); //power\n//     // \t// color = vec4(\n//       // \t// \ttexture2D(tDiffuse,warpedUV ).r,\n//       // \t// \ttexture2D(tDiffuse,warpedUV1 ).g,\n//       // \t// \ttexture2D(tDiffuse,warpedUV2 ).b,\n//     // \t// \t1.);\n//     // \t// color = vec4(,0.,0.,1.);\n//     // \tfloat c = circle(newUV, uMouse, 0.0, 0.1+uVelo*0.01)*10.*uVelo;\n//     // \tvec2 offsetVector = normalize(uMouse - v_uv);\n//     // \t// vec2 warpedUV = mix(v_uv, uMouse,  20.*hash*c); //power\n//     // \tvec2 warpedUV = v_uv + vec2(hash - 0.5)*c; //power\n//     // \tcolor = texture2D(tDiffuse,warpedUV) + texture2D(tDiffuse,warpedUV)*vec4(vec3(c),1.);\n//   // }\n  \n//   gl_FragColor=color;\n// }";
+module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\n\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\nvoid main(){\n  \n  vec2 uv=vUv;\n\n  \n  vec4 disp=texture2D(displacement,uv);\n\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n\n}";
 },{}],"js/libs/glsl/fragmentVertical.glsl":[function(require,module,exports) {
-module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\n// uniform float _rot;\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\nvoid main(){\n  \n  vec2 uv=vUv;\n  \n  // uv -= 0.5;\n  // vec2 rotUV = rotate(uv, _rot);\n  // uv += 0.5;\n\n  //   vec4 displace = texture2D(displacement, vUv.yx);\n  \n  vec4 disp=texture2D(displacement,uv.yx);\n  // vec2 displacedUV = vec2(vUv.x, vUv.y + disp.r);\n\n  // displacedUV.y = mix(vUv.y, disp.r, 0.1);\n  \n  //   vec4 color = texture2D(image, displacedUV);\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n  // gl_FragColor = disp;\n\n}";
+module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\nvoid main(){\n  \n  vec2 uv=vUv;\n  \n\n  \n  vec4 disp=texture2D(displacement,uv.yx);\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n\n}";
 },{}],"assets/img/displaces/displace2.png":[function(require,module,exports) {
 module.exports = "/displace2.66ac83aa.png";
 },{}],"assets/img/displaces/displace4.png":[function(require,module,exports) {
@@ -46269,20 +46269,7 @@ window.addEventListener('resize', function () {
   camera.updateProjectionMatrix();
 }); /////// MESH INTERACTION ///////
 
-var interaction = new _three2.Interaction(renderer, scene, camera); // /////// POSTPROCESSING ///////
-// let composer = new POSTPROCESSING.EffectComposer(renderer);
-// composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
-// const effectPass = new POSTPROCESSING.EffectPass(
-//     camera,
-//     new POSTPROCESSING.RealisticBokehEffect()
-// );
-// effectPass.renderToScreen = true;
-// composer.addPass(effectPass);
-// //POUR LES SHADERS
-// let customPass = new POSTPROCESSING.ShaderPass({ vertexShader, fragmentShader });
-// customPass.renderToScreen = true;
-// composer.addPass(customPass);
-
+var interaction = new _three2.Interaction(renderer, scene, camera);
 var rotateZ = -.2; // PLANES ROTATION
 /////// LIGHTS ///////
 
@@ -46773,8 +46760,7 @@ var planePanneau = new THREE.PlaneGeometry(1.75, 3.459, 1, 1);
 var planePanneauRue1 = new THREE.PlaneGeometry(11.92, 3.6, 1, 1);
 var planePanneauRue2 = new THREE.PlaneGeometry(2.75, 5.9, 1, 1);
 var planePanneauRue3 = new THREE.PlaneGeometry(34.75, 3.2, 1, 1);
-var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1); // var planePanneauRue6 = new THREE.PlaneGeometry(2.399, 7.8, 1);
-
+var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
 var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
 var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1); /////// INITIATION DES TEXTURES ///////
 
@@ -47829,6 +47815,7 @@ var indicClickOnPlane = document.querySelector('.indicClickOnPlane');
 var timelineIndication = document.querySelector('.indication');
 var cursorIndication = document.querySelector('.cursorIndication');
 var mobileIndication = document.querySelector('.mobileIndication');
+var containerArrowIndication = document.querySelector('.containerArrowIndication');
 var workShopContainer = document.querySelector('.workShopContainer');
 var creditContainer = document.querySelector('.creditContainer');
 var faceImg = document.querySelectorAll('.faceImg');
@@ -47874,6 +47861,21 @@ var scrollContainerContentImg__2 = document.querySelectorAll('.scrollContainer__
 var contentContainer__1 = document.querySelector('.contentContainer__1');
 var scrollContainer__1 = document.querySelector('.scrollContainer__1');
 var scrollContainerContentImg__1 = document.querySelectorAll('.scrollContainer__1 .contentImg');
+var timelineArrowIndication = gsap.timeline({
+  repeat: -1,
+  paused: true
+});
+timelineArrowIndication.to('.containerArrowIndication .arrow', 1, {
+  opacity: 1,
+  stagger: 0.3,
+  ease: "expo.easeOut"
+});
+timelineArrowIndication.to('.containerArrowIndication .arrow', 1, {
+  opacity: 0,
+  stagger: 0.3,
+  ease: "expo.easeOut",
+  delay: -.5
+});
 hamburgerContainer.addEventListener('click', function () {
   if (switchHamburger == false) {
     if (window.matchMedia("(max-width: 1025px)").matches) {
@@ -48479,8 +48481,7 @@ queue.loadFile(_valM.default);
 queue.loadFile(_vincent.default);
 queue.loadFile(_yvan.default);
 queue.loadFile(_GLTFLoader.GLTFLoader);
-queue.loadFile(THREE); // queue.loadFile(POSTPROCESSING);
-
+queue.loadFile(THREE);
 queue.loadFile(_three2.Interaction);
 queue.loadFile(_preloadJs.default);
 queue.loadFile(_touchsweep.default);
@@ -48720,7 +48721,7 @@ function startImmersion() {
           sm2.classList.add('switchPointer');
           sm3.classList.add('switchPointer');
           musicBtn.classList.add('switchPointer');
-        }, 550);
+        }, 350);
       }, 3200);
     }, 4500);
 
@@ -48784,14 +48785,15 @@ function switchMusic() {
 
       if (!workshopActive) {
         bgMusic.fade(0, volume, 1000);
+        rpzMusic.fade(0, 0.03, 1000);
       } else {
         bgLoopMusic.fade(0, volumeBg, 1000);
+        rpzMusic.fade(0, 0.03, 1000);
       }
 
       bgMusic.play();
       bgLoopMusic.play();
       switchBtn = true;
-      rpzMusic.volume(volume);
       soundHover.volume(volumeBtn);
       soundHoverPlane.volume(volumePlane);
       soundOutPlane.volume(volumePlane);
@@ -48816,8 +48818,10 @@ function switchMusic() {
 
       if (!workshopActive) {
         bgMusic.fade(volume, 0, 1000);
+        rpzMusic.fade(0.03, 0, 1000);
       } else {
         bgLoopMusic.fade(volumeBg, 0, 1000);
+        rpzMusic.fade(0.03, 0, 1000);
       }
 
       setTimeout(function () {
@@ -48825,7 +48829,6 @@ function switchMusic() {
         bgLoopMusic.pause();
       }, 1000);
       switchBtn = false;
-      rpzMusic.volume(0);
       soundHover.volume(0);
       soundHoverPlane.volume(0);
       soundOutPlane.volume(0);
@@ -48846,6 +48849,21 @@ function switchMusic() {
   }, 1000);
 }
 
+window.addEventListener('click', function () {
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    var html = document.querySelector('html');
+
+    if (html.requestFullscreen) {
+      html.requestFullscreen();
+    } else if (html.mozRequestFullScreen) {
+      html.mozRequestFullScreen();
+    } else if (html.webkitRequestFullscreen) {
+      html.webkitRequestFullscreen();
+    } else if (html.msRequestFullscreen) {
+      html.msRequestFullscreen();
+    }
+  }
+});
 musicBtn.addEventListener('click', function () {
   switchMusic();
 
@@ -48926,8 +48944,7 @@ function cursorHoverOut() {
 
     if (indicHover == "plane") {
       soundOutPlane.play();
-    } // indicClickOnID.classList.remove("planeHover")
-
+    }
 
     indicHover = "";
   }
@@ -49429,11 +49446,11 @@ function animationEnterWorkshop() {
   } else if (idPlane[11]) {
     contentContainer__11.style.display = "block";
     scrollContainer__11.style.display = "flex";
-    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM?enablejsapi=1&html5=1"; // contentContainer__11.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=immersionsdigitales&parent=www.id.dakumisu.fr"
+    contentContainer__11.children[2].children[0].children[1].src = "https://www.youtube.com/embed/xHP28qFL7pM?enablejsapi=1&html5=1";
   } else if (idPlane[10]) {
     contentContainer__10.style.display = "block";
     scrollContainer__10.style.display = "flex";
-    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA?enablejsapi=1&html5=1"; // contentContainer__10.children[4].children[0].children[1].src = "https://player.twitch.tv/?channel=digisoundr&parent=www.id.dakumisu.fr"
+    contentContainer__10.children[2].children[0].children[1].src = "https://www.youtube.com/embed/FjhhMMxQyzA?enablejsapi=1&html5=1";
   } else if (idPlane[9]) {
     contentContainer__9.style.display = "block";
     scrollContainer__9.style.display = "flex";
@@ -49568,11 +49585,58 @@ function animationEnterWorkshop() {
     indicClickOnPlane.classList.remove("planeHover");
   }
 
-  gsap.to(workShopContainer, 1.5, {
-    opacity: 1,
-    ease: "Power3.easeOut",
-    delay: 2
-  });
+  if (window.matchMedia("(max-width: 1024px)").matches) {
+    gsap.to(workShopContainer, 1.5, {
+      opacity: 1,
+      ease: "Power3.easeOut",
+      delay: 1.75
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 1.5,
+      ease: "power3.inOut"
+    });
+    setTimeout(function () {
+      btnBackWorkshop.classList.remove('close');
+      btnBackWorkshop.disabled = false;
+      clickPossible = true;
+      containerArrowIndication.classList.add('switch');
+      timelineArrowIndication.play();
+    }, 2000);
+    setTimeout(function () {
+      if (workshopActive) {
+        workShopContainer.classList.add('switchPlane');
+        scrollPossible = true;
+      }
+    }, 2750);
+  } else {
+    gsap.to(workShopContainer, 1.5, {
+      opacity: 1,
+      ease: "Power3.easeOut",
+      delay: 2.75
+    });
+    TweenMax.to(btnBackWorkshop, .75, {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay: 2.5,
+      ease: "power3.inOut"
+    });
+    setTimeout(function () {
+      btnBackWorkshop.classList.remove('close');
+      btnBackWorkshop.disabled = false;
+      clickPossible = true;
+      containerArrowIndication.classList.add('switch');
+      timelineArrowIndication.play();
+    }, 3000);
+    setTimeout(function () {
+      if (workshopActive) {
+        workShopContainer.classList.add('switchPlane');
+        scrollPossible = true;
+      }
+    }, 3750);
+  }
+
   btnBackWorkshop.classList.add('close');
   btnBackWorkshop.disabled = true;
   setTimeout(function () {
@@ -51091,6 +51155,56 @@ btnStart.addEventListener('mouseenter', function () {
     spanContainerStartMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
     soundHover.play();
+  } else {
+    TweenMax.to(".spanContainerStartMouseover span", {
+      duration: .5,
+      translateY: -40,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerStartMouseout span", {
+      duration: .5,
+      translateY: 0,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnStart, .5, {
+      color: "#09021e",
+      background: "#4cc9f0",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerStartMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut",
+      delay: 1
+    });
+    TweenMax.to(".spanContainerStartMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: {
+        each: 0.01,
+        from: "center"
+      },
+      ease: "power3.inOut",
+      delay: 1
+    });
+    TweenMax.to(btnStart, .5, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut",
+      delay: 1
+    });
   }
 });
 btnStart.addEventListener('mouseleave', function () {
@@ -51185,6 +51299,44 @@ btnBackHome.addEventListener('mouseenter', function () {
     spanContainerBackMouseOut.classList.add('neonText');
     cursorShapeIn.classList.add('mouseover');
     soundHover.play();
+  } else {
+    TweenMax.to(".spanContainerBackMouseover span", {
+      duration: .5,
+      translateY: -40,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackMouseout span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackHome, .5, {
+      color: "#09021e",
+      background: "#4cc9f0",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut",
+      delay: 1
+    });
+    TweenMax.to(".spanContainerBackMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: .027,
+      ease: "power3.inOut",
+      delay: 1
+    });
+    TweenMax.to(btnBackHome, .5, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut",
+      delay: 1
+    });
   }
 });
 btnBackHome.addEventListener('mouseleave', function () {
@@ -51271,6 +51423,44 @@ btnBackWorkshop.addEventListener('mouseenter', function () {
 
     cursorShapeIn.classList.add('mouseover');
     soundHover.play();
+  } else {
+    TweenMax.to(".spanContainerBackWorkshopMouseover span", {
+      duration: .5,
+      translateY: -40,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackWorkshopMouseout span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut"
+    });
+    TweenMax.to(btnBackWorkshop, {
+      color: "#09021e",
+      background: "#4cc9f0",
+      ease: "power3.inOut"
+    });
+    TweenMax.to(".spanContainerBackWorkshopMouseover span", {
+      duration: .5,
+      translateY: 0,
+      stagger: .027,
+      ease: "power3.inOut",
+      delay: 1
+    });
+    TweenMax.to(".spanContainerBackWorkshopMouseout span", {
+      duration: .5,
+      translateY: 40,
+      stagger: .027,
+      ease: "power3.inOut",
+      delay: 1
+    });
+    TweenMax.to(btnBackWorkshop, {
+      color: "#4cc9f0",
+      background: "#09021e",
+      ease: "power3.inOut",
+      delay: 1
+    });
   }
 });
 btnBackWorkshop.addEventListener('mouseleave', function () {
@@ -51302,14 +51492,14 @@ function posComparedToElementHeight(el) {
   var taillePopUpSplit = el.scrollHeight / 4;
 
   if (camera.position.z >= -106 && el.scrollTop >= taillePopUpSplit * 2 && el.scrollTop < taillePopUpSplit * 3) {
-    varDelay = 1;
+    varDelay = 1.4;
     gsap.to(el, 3, {
       opacity: 0,
       ease: "Power3.easeOut",
       delay: 0.25
     });
   } else if (el.scrollTop < taillePopUpSplit * 2 && el.scrollTop >= taillePopUpSplit) {
-    varDelay = .50;
+    varDelay = .5;
     gsap.to(el, 3, {
       opacity: 0,
       ease: "Power3.easeOut",
@@ -51809,6 +51999,12 @@ function backToPlane() {
     ease: "Power3.easeOut",
     delay: 0.5
   });
+  containerArrowIndication.classList.remove('switch');
+  setTimeout(function () {
+    timelineArrowIndication.restart();
+    timelineArrowIndication.pause();
+    containerArrowIndication.style.bottom = '-1.5%';
+  }, 750);
   clickPossible = false;
   setTimeout(function () {
     clickPossible = true;
@@ -51848,9 +52044,9 @@ function backToPlane() {
       contentContainer__12.children[2].children[0].children[1].src = "";
       contentContainer__12.children[4].children[0].children[1].src = "";
     } else if (idPlane[11]) {
-      contentContainer__11.children[2].children[0].children[1].src = ""; // contentContainer__11.children[4].children[0].children[1].src = ""
+      contentContainer__11.children[2].children[0].children[1].src = "";
     } else if (idPlane[10]) {
-      contentContainer__10.children[2].children[0].children[1].src = ""; // contentContainer__10.children[4].children[0].children[1].src = ""
+      contentContainer__10.children[2].children[0].children[1].src = "";
     } else if (idPlane[9]) {
       contentContainer__9.children[2].children[0].children[1].src = "";
       contentContainer__9.children[4].children[0].children[1].src = "";
@@ -52366,7 +52562,6 @@ var Cursor = /*#__PURE__*/function () {
   function Cursor(cursor) {
     _classCallCheck(this, Cursor);
 
-    // this.container = window["cursor"];
     this.shape = cursor;
     this.translation = {
       x: 1,
@@ -52443,8 +52638,7 @@ var isStuck = false;
 var mouse = {
   x: -100,
   y: -100
-}; // Just in case you need to scroll
-
+};
 var scrollHeight = 0;
 window.addEventListener('scroll', function (e) {
   scrollHeight = window.scrollY;
@@ -55922,6 +56116,12 @@ function checkScrollDirection(elContent) {
 }
 
 function scrollIntoWorkshop(elContent, elCredit) {
+  containerArrowIndication.classList.remove('switch');
+  setTimeout(function () {
+    containerArrowIndication.style.bottom = '-1.5%';
+  }, 750);
+  containerArrowIndication.style.bottom = elContent.scrollTop + 'px';
+
   if (!window.matchMedia("(max-width: 1024px)").matches) {
     camera.position.z = scrollWorkshop(elContent);
 
@@ -55936,28 +56136,28 @@ function scrollIntoWorkshop(elContent, elCredit) {
           contentContainer__12.children[2].children[0].children[1].src = contentContainer__12.children[2].children[0].children[1].src;
           contentContainer__12.children[4].children[0].children[1].src = contentContainer__12.children[4].children[0].children[1].src;
         } else if (idPlane[11]) {
-          contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src; // contentContainer__11.children[4].children[0].children[1].src = contentContainer__11.children[4].children[0].children[1].src
+          contentContainer__11.children[2].children[0].children[1].src = contentContainer__11.children[2].children[0].children[1].src;
         } else if (idPlane[10]) {
-          contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src; // contentContainer__10.children[4].children[0].children[1].src = contentContainer__10.children[4].children[0].children[1].src
+          contentContainer__10.children[2].children[0].children[1].src = contentContainer__10.children[2].children[0].children[1].src;
         } else if (idPlane[9]) {
           contentContainer__9.children[2].children[0].children[1].src = contentContainer__9.children[2].children[0].children[1].src;
           contentContainer__9.children[4].children[0].children[1].src = contentContainer__9.children[4].children[0].children[1].src;
         } else if (idPlane[8]) {
           contentContainer__8.children[2].children[0].children[1].src = contentContainer__8.children[2].children[0].children[1].src;
         } else if (idPlane[7]) {
-          contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src; // contentContainer__7.children[4].children[0].children[1].src = contentContainer__7.children[4].children[0].children[1].src
+          contentContainer__7.children[2].children[0].children[1].src = contentContainer__7.children[2].children[0].children[1].src;
         } else if (idPlane[6]) {
-          contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src; // contentContainer__6.children[4].children[0].children[1].src = contentContainer__6.children[4].children[0].children[1].src
+          contentContainer__6.children[2].children[0].children[1].src = contentContainer__6.children[2].children[0].children[1].src;
         } else if (idPlane[5]) {
-          contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src; // contentContainer__5.children[4].children[0].children[1].src = contentContainer__5.children[4].children[0].children[1].src
+          contentContainer__5.children[2].children[0].children[1].src = contentContainer__5.children[2].children[0].children[1].src;
         } else if (idPlane[4]) {
-          contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src; // contentContainer__4.children[4].children[0].children[1].src = contentContainer__4.children[4].children[0].children[1].src
+          contentContainer__4.children[2].children[0].children[1].src = contentContainer__4.children[2].children[0].children[1].src;
         } else if (idPlane[3]) {
-          contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src; // contentContainer__3.children[4].children[0].children[1].src = contentContainer__3.children[4].children[0].children[1].src
+          contentContainer__3.children[2].children[0].children[1].src = contentContainer__3.children[2].children[0].children[1].src;
         } else if (idPlane[2]) {
-          contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src; // contentContainer__2.children[4].children[0].children[1].src = contentContainer__2.children[4].children[0].children[1].src
+          contentContainer__2.children[2].children[0].children[1].src = contentContainer__2.children[2].children[0].children[1].src;
         } else if (idPlane[1]) {
-          contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src; // contentContainer__1.children[4].children[0].children[1].src = contentContainer__1.children[4].children[0].children[1].src
+          contentContainer__1.children[2].children[0].children[1].src = contentContainer__1.children[2].children[0].children[1].src;
         }
 
         cursorOnVideo = false;
@@ -55981,22 +56181,23 @@ function scrollIntoWorkshop(elContent, elCredit) {
         });
         gsap.to(camera.position, 3, {
           z: -185,
-          ease: "power3.inOut"
+          ease: "power3.inOut",
+          delay: .15
         });
         gsap.to(leftDoor2.position, 1.5, {
           x: -20,
           ease: "power3.inOut",
-          delay: .75
+          delay: .9
         });
         gsap.to(rightDoor2.position, 1.5, {
           x: 20,
           ease: "power3.inOut",
-          delay: .75
+          delay: .9
         });
         gsap.to(creditContainer, 2, {
           opacity: 1,
           ease: "Power1.easeOut",
-          delay: 2
+          delay: 2.15
         });
         TweenMax.to(btnBackWorkshop, 1, {
           opacity: 0,
@@ -56241,12 +56442,11 @@ document.onkeydown = function (e) {
 };
 
 document.querySelector("#dl_artgen").addEventListener('click', function () {
-  var myWindow; // function openWin() {
-
+  var myWindow;
   myWindow = window.open("http://artgeneratif.immersions-digitales.fr/");
   setTimeout(function () {
     myWindow.close();
-  }, 300); // }
+  }, 300);
 }); // global variable for the player
 
 var player; // this function gets called when API is ready to use
@@ -56399,7 +56599,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61048" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49186" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
