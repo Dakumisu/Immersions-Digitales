@@ -2372,6 +2372,11 @@
         }
     }
 
+    @media screen and (max-width: 1024px) {
+        .creditContainer {
+            display: none;
+        }
+    }
 
     .littleTitle {
         z-index: 3 !important;

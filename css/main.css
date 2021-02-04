@@ -3173,6 +3173,12 @@ canvas.hologramDefault {
   opacity: 0.5;
 }
 
+@media screen and (max-width: 1024px) {
+  .creditContainer {
+    display: none;
+  }
+}
+
 .littleTitle {
   z-index: 3 !important;
   width: 150px !important;
