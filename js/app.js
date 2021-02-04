@@ -6165,7 +6165,7 @@ function scrollIntoWorkshop(elContent, elCredit) {
     if (!window.matchMedia("(max-width: 1024px)").matches) {
         camera.position.z = scrollWorkshop(elContent)
         if (checkScrollDirection(elContent) == "down") {
-            if (camera.position.z <= -108) {
+            if (camera.position.z <= -106) {
                 if (idPlane[14]) {
                     contentContainer__14.children[2].children[0].children[1].src = contentContainer__14.children[2].children[0].children[1].src
                 } else if (idPlane[13]) {
@@ -6439,7 +6439,7 @@ document.onkeydown = function(e) {
             break;
         case 77:
             switchMusic();
-        break;
+            break;
     }
 };
 
