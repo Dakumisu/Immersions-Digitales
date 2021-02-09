@@ -268,9 +268,9 @@ let indicGoDesktop = document.querySelector('.indicGoDesktop');
 let progress = document.querySelector('.progress');
 
 let volume = 1;
-let volumeBg = .04;
-let volumePlane = .025;
-let volumeBtn = .5;
+let volumeBg = .05;
+let volumePlane = .04;
+let volumeBtn = .55;
 
 var bgMusic = new Howl({
     src: [bgMusicImport],
@@ -338,10 +338,10 @@ document.body.appendChild(renderer.domElement);
 
 /////// RESIZE EVENT ///////
 window.addEventListener('resize', () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
 
@@ -1989,7 +1989,6 @@ queue.on("complete", event => {
             cursor.style.opacity = 1
             cursorShapeOut.style.opacity = 1
             cursor.classList.remove('startHidden')
-            // cursorShapeOut.classList.remove('startHidden')
             indicClickOnPlane.classList.remove('startHidden')
             cursorSize.classList.remove('startHidden')
         },50)
@@ -2290,6 +2289,18 @@ queue.loadFile(TouchSweep);
 
 function handleFileComplete(){}
 
+if (window.matchMedia("(max-width: 1025px)").matches) {
+    let html = document.querySelector('html');
+        if (html.requestFullscreen) {
+        } else if (html.mozRequestFullScreen) {
+            html.mozRequestFullScreen();
+        } else if (html.webkitRequestFullscreen) {
+            html.webkitRequestFullscreen();
+        } else if (html.msRequestFullscreen) {
+            html.msRequestFullscreen();
+        }
+    }
+
 function startImmersion() {
         cursorIndication.classList.remove('startHidden')
         mobileIndication.classList.remove('startHidden')
@@ -2316,19 +2327,6 @@ function startImmersion() {
                 line.classList.toggle('switch');
             })
         },350) 
-
-        if (window.matchMedia("(max-width: 1025px)").matches) {
-            let html = document.querySelector('html');
-                if (html.requestFullscreen) {
-                    html.requestFullscreen();
-                } else if (html.mozRequestFullScreen) {
-                    html.mozRequestFullScreen();
-                } else if (html.webkitRequestFullscreen) {
-                    html.webkitRequestFullscreen();
-                } else if (html.msRequestFullscreen) {
-                    html.msRequestFullscreen();
-                }
-            }
         
         handleMouseLeave();
         TweenMax.to(".spanContainerMainStart span", { duration: .5, opacity: 0, stagger: { each: 0.04, from: 'random' }, ease: "power3.inOut" })
@@ -2430,10 +2428,10 @@ function switchMusic() {
             }
             if (!workshopActive) {
                 bgMusic.fade(0, volume, 1000);
-                rpzMusic.fade(0, 0.03, 1000);
+                rpzMusic.fade(0, 0.04, 1000);
             } else {
                 bgLoopMusic.fade(0, volumeBg, 1000);
-                rpzMusic.fade(0, 0.03, 1000);
+                rpzMusic.fade(0, 0.04, 1000);
             }
             bgMusic.play();
             bgLoopMusic.play();
@@ -2448,10 +2446,10 @@ function switchMusic() {
             
             if (!workshopActive) {
                 bgMusic.fade(volume, 0, 1000);
-                rpzMusic.fade(0.03, 0, 1000);
+                rpzMusic.fade(0.04, 0, 1000);
             } else {
                 bgLoopMusic.fade(volumeBg, 0, 1000);
-                rpzMusic.fade(0.03, 0, 1000);
+                rpzMusic.fade(0.04, 0, 1000);
             }
             setTimeout(() => {
                 bgMusic.pause()
