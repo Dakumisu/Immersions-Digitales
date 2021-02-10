@@ -9,53 +9,53 @@ import vertexShader from "./libs/glsl/vertex.glsl";
 import fragmentShader from "./libs/glsl/fragment.glsl";
 import fragmentShaderVertical from "./libs/glsl/fragmentVertical.glsl";
 
-import displacement2 from "../assets/img/displaces/displace2.png"; // Pour le panneau
-import displacement4 from "../assets/img/displaces/displace4.png"; // Pour les planes
+import displacement2 from "../assets/img/displaces/displace2-min.jpg"; // Pour le panneau
+import displacement4 from "../assets/img/displaces/displace5-min.jpg"; // Pour les planes
 
-import atelier1Default from "../assets/img/ateliers/atelier1Default.png"; // Backstage
-import atelier2Default from "../assets/img/ateliers/atelier2Default.png"; // FTM
-import atelier3Default from "../assets/img/ateliers/atelier3Default.png"; // VR
-import atelier4Default from "../assets/img/ateliers/atelier4Default.png"; // init dev web
-import atelier5Default from "../assets/img/ateliers/atelier5Default.png"; // cube musicale
-import atelier6Default from "../assets/img/ateliers/atelier6Default.png"; // ia art gen
-import atelier7Default from "../assets/img/ateliers/atelier7Default.png"; // musée mmi
-import atelier8Default from "../assets/img/ateliers/atelier8Default.png"; // suite adobe
-import atelier9Default from "../assets/img/ateliers/atelier9Default.png"; // fmv
-import atelier10Default from "../assets/img/ateliers/atelier10Default.png"; // webradio
-import atelier11Default from "../assets/img/ateliers/atelier11Default.png"; // ptv
-import atelier12Default from "../assets/img/ateliers/atelier12Default.png"; // fond vert
-import atelier13Default from "../assets/img/ateliers/atelier13Default.png"; // mapping
-import atelier14Default from "../assets/img/ateliers/atelier14Default.png"; // audiovisuel
+import atelier1Default from "../assets/img/ateliers/atelier1Default-min.png"; // Backstage
+import atelier2Default from "../assets/img/ateliers/atelier2Default-min.png"; // FTM
+import atelier3Default from "../assets/img/ateliers/atelier3Default-min.png"; // VR
+import atelier4Default from "../assets/img/ateliers/atelier4Default-min.png"; // init dev web
+import atelier5Default from "../assets/img/ateliers/atelier5Default-min.png"; // cube musicale
+import atelier6Default from "../assets/img/ateliers/atelier6Default-min.png"; // ia art gen
+import atelier7Default from "../assets/img/ateliers/atelier7Default-min.png"; // musée mmi
+import atelier8Default from "../assets/img/ateliers/atelier8Default-min.png"; // suite adobe
+import atelier9Default from "../assets/img/ateliers/atelier9Default-min.png"; // fmv
+import atelier10Default from "../assets/img/ateliers/atelier10Default-min.png"; // webradio
+import atelier11Default from "../assets/img/ateliers/atelier11Default-min.png"; // ptv
+import atelier12Default from "../assets/img/ateliers/atelier12Default-min.png"; // fond vert
+import atelier13Default from "../assets/img/ateliers/atelier13Default-min.png"; // mapping
+import atelier14Default from "../assets/img/ateliers/atelier14Default-min.png"; // audiovisuel
 
-import atelier1Hover from "../assets/img/ateliers/atelier1Hover.png"; // Backstage
-import atelier2Hover from "../assets/img/ateliers/atelier2Hover.png"; // FTM
-import atelier3Hover from "../assets/img/ateliers/atelier3Hover.png"; // VR
-import atelier4Hover from "../assets/img/ateliers/atelier4Hover.png"; // init dev web
-import atelier5Hover from "../assets/img/ateliers/atelier5Hover.png"; // cube musicale
-import atelier6Hover from "../assets/img/ateliers/atelier6Hover.png"; // ia art gen
-import atelier7Hover from "../assets/img/ateliers/atelier7Hover.png"; // musée mmi
-import atelier8Hover from "../assets/img/ateliers/atelier8Hover.png"; // suite adobe
-import atelier9Hover from "../assets/img/ateliers/atelier9Hover.png"; // fmv
-import atelier10Hover from "../assets/img/ateliers/atelier10Hover.png"; // webradio
-import atelier11Hover from "../assets/img/ateliers/atelier11Hover.png"; // ptv
-import atelier12Hover from "../assets/img/ateliers/atelier12Hover.png"; // fond vert
-import atelier13Hover from "../assets/img/ateliers/atelier13Hover.png"; // mapping
-import atelier14Hover from "../assets/img/ateliers/atelier14Hover.png"; // audiovisuel
+import atelier1Hover from "../assets/img/ateliers/atelier1Hover-min.jpg"; // Backstage
+import atelier2Hover from "../assets/img/ateliers/atelier2Hover-min.jpg"; // FTM
+import atelier3Hover from "../assets/img/ateliers/atelier3Hover-min.jpg"; // VR
+import atelier4Hover from "../assets/img/ateliers/atelier4Hover-min.jpg"; // init dev web
+import atelier5Hover from "../assets/img/ateliers/atelier5Hover-min.jpg"; // cube musicale
+import atelier6Hover from "../assets/img/ateliers/atelier6Hover-min.jpg"; // ia art gen
+import atelier7Hover from "../assets/img/ateliers/atelier7Hover-min.jpg"; // musée mmi
+import atelier8Hover from "../assets/img/ateliers/atelier8Hover-min.jpg"; // suite adobe
+import atelier9Hover from "../assets/img/ateliers/atelier9Hover-min.jpg"; // fmv
+import atelier10Hover from "../assets/img/ateliers/atelier10Hover-min.jpg"; // webradio
+import atelier11Hover from "../assets/img/ateliers/atelier11Hover-min.jpg"; // ptv
+import atelier12Hover from "../assets/img/ateliers/atelier12Hover-min.jpg"; // fond vert
+import atelier13Hover from "../assets/img/ateliers/atelier13Hover-min.jpg"; // mapping
+import atelier14Hover from "../assets/img/ateliers/atelier14Hover-min.jpg"; // audiovisuel
 
-import atelierbaniere1 from "../assets/img/ruelle/banniere/baniere_backstage.jpg"; 
-import atelierbaniere2 from "../assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg"; 
-import atelierbaniere3 from "../assets/img/ruelle/banniere/baniere_vrgaming.jpg"; 
-import atelierbaniere4 from "../assets/img/ruelle/banniere/baniere_devweb.jpg"; 
-import atelierbaniere5 from "../assets/img/ruelle/banniere/baniere_cubemusical.jpg"; 
-import atelierbaniere6 from "../assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg"; 
-import atelierbaniere7 from "../assets/img/ruelle/banniere/baniere_museemmi.jpg"; 
-import atelierbaniere8 from "../assets/img/ruelle/banniere/baniere_suiteadobe.jpg"; 
-import atelierbaniere9 from "../assets/img/ruelle/banniere/baniere_visiteguidée.jpg"; 
-import atelierbaniere10 from "../assets/img/ruelle/banniere/baniere_webradio.jpg"; 
-import atelierbaniere11 from "../assets/img/ruelle/banniere/baniere_plateautv.jpg"; 
-import atelierbaniere12 from "../assets/img/ruelle/banniere/baniere_fondvert.jpg"; 
-import atelierbaniere13 from "../assets/img/ruelle/banniere/baniere_mapping.jpg"; 
-import atelierbaniere14 from "../assets/img/ruelle/banniere/baniere_audiovisuel.jpg";
+import atelierbaniere1 from "../assets/img/ruelle/banniere/banniere_1-min.jpg";
+import atelierbaniere2 from "../assets/img/ruelle/banniere/banniere_2-min.jpg";
+import atelierbaniere3 from "../assets/img/ruelle/banniere/banniere_3-min.jpg";
+import atelierbaniere4 from "../assets/img/ruelle/banniere/banniere_4-min.jpg";
+import atelierbaniere5 from "../assets/img/ruelle/banniere/banniere_5-min.jpg";
+import atelierbaniere6 from "../assets/img/ruelle/banniere/banniere_6-min.jpg";
+import atelierbaniere7 from "../assets/img/ruelle/banniere/banniere_7-min.jpg";
+import atelierbaniere8 from "../assets/img/ruelle/banniere/banniere_8-min.jpg";
+import atelierbaniere9 from "../assets/img/ruelle/banniere/banniere_9-min.jpg";
+import atelierbaniere10 from "../assets/img/ruelle/banniere/banniere_10-min.jpg";
+import atelierbaniere11 from "../assets/img/ruelle/banniere/banniere_11-min.jpg";
+import atelierbaniere12 from "../assets/img/ruelle/banniere/banniere_12-min.jpg";
+import atelierbaniere13 from "../assets/img/ruelle/banniere/banniere_13-min.jpg";
+import atelierbaniere14 from "../assets/img/ruelle/banniere/banniere_14-min.jpg";
 
 /////// IMAGES NUMERO ATELIER ////////
 import atelierchiffre1 from "../assets/img/ruelle/numero/rond_1.jpg"; 
@@ -74,57 +74,57 @@ import atelierchiffre13 from "../assets/img/ruelle/numero/rond_13.jpg";
 import atelierchiffre14 from "../assets/img/ruelle/numero/rond_14.jpg";
 
 /////// IMAGES PANNEAUX RUELLE ////////
-import atelierpanneaurue1 from "../assets/img/ruelle/panneaux/panneau_1.jpg";
-import atelierpanneaurue2 from "../assets/img/ruelle/panneaux/panneau_2.jpg"; 
-import atelierpanneaurue3 from "../assets/img/ruelle/panneaux/panneau_3.jpg"; 
-import atelierpanneaurue4 from "../assets/img/ruelle/panneaux/panneau_4.jpg"; 
-import atelierpanneaurue5 from "../assets/img/ruelle/panneaux/panneau_5.jpg"; 
-import atelierpanneaurue6 from "../assets/img/ruelle/panneaux/panneau_6.jpg"; 
-import atelierpanneaurue7 from "../assets/img/ruelle/panneaux/panneau_7.jpg"; 
-import atelierpanneaurue8 from "../assets/img/ruelle/panneaux/panneau_8.jpg"; 
-import atelierpanneaurue9 from "../assets/img/ruelle/panneaux/panneau_9.jpg"; 
-import atelierpanneaurue10 from "../assets/img/ruelle/panneaux/panneau_10.jpg"; 
-import atelierpanneaurue11 from "../assets/img/ruelle/panneaux/panneau_11.jpg"; 
-import atelierpanneaurue12 from "../assets/img/ruelle/panneaux/panneau_12.jpg"; 
-import atelierpanneaurue13 from "../assets/img/ruelle/panneaux/panneau_13.jpg"; 
-import atelierpanneaurue14 from "../assets/img/ruelle/panneaux/panneau_14.jpg";
+import atelierpanneaurue1 from "../assets/img/ruelle/panneaux/panneau_1-min.jpg";
+import atelierpanneaurue2 from "../assets/img/ruelle/panneaux/panneau_2-min.jpg"; 
+import atelierpanneaurue3 from "../assets/img/ruelle/panneaux/panneau_3-min.jpg"; 
+import atelierpanneaurue4 from "../assets/img/ruelle/panneaux/panneau_4-min.jpg"; 
+import atelierpanneaurue5 from "../assets/img/ruelle/panneaux/panneau_5-min.jpg"; 
+import atelierpanneaurue6 from "../assets/img/ruelle/panneaux/panneau_6-min.jpg"; 
+import atelierpanneaurue7 from "../assets/img/ruelle/panneaux/panneau_7-min.jpg"; 
+import atelierpanneaurue8 from "../assets/img/ruelle/panneaux/panneau_8-min.jpg"; 
+import atelierpanneaurue9 from "../assets/img/ruelle/panneaux/panneau_9-min.jpg"; 
+import atelierpanneaurue10 from "../assets/img/ruelle/panneaux/panneau_10-min.jpg"; 
+import atelierpanneaurue11 from "../assets/img/ruelle/panneaux/panneau_11-min.jpg"; 
+import atelierpanneaurue12 from "../assets/img/ruelle/panneaux/panneau_12-min.jpg"; 
+import atelierpanneaurue13 from "../assets/img/ruelle/panneaux/panneau_13-min.jpg"; 
+import atelierpanneaurue14 from "../assets/img/ruelle/panneaux/panneau_14-min.jpg";
 
 /////// IMAGES PANNEAU ////////
-import atelierpanneau1 from "../assets/img/panneau/panneau_1.jpg";
-import atelierpanneau2 from "../assets/img/panneau/panneau_2.jpg"; 
-import atelierpanneau3 from "../assets/img/panneau/panneau_3.jpg"; 
-import atelierpanneau4 from "../assets/img/panneau/panneau_4.jpg"; 
-import atelierpanneau5 from "../assets/img/panneau/panneau_5.jpg"; 
-import atelierpanneau6 from "../assets/img/panneau/panneau_6.jpg"; 
-import atelierpanneau7 from "../assets/img/panneau/panneau_7.jpg"; 
-import atelierpanneau8 from "../assets/img/panneau/panneau_8.jpg"; 
-import atelierpanneau9 from "../assets/img/panneau/panneau_9.jpg"; 
-import atelierpanneau10 from "../assets/img/panneau/panneau_10.jpg"; 
-import atelierpanneau11 from "../assets/img/panneau/panneau_11.jpg"; 
-import atelierpanneau12 from "../assets/img/panneau/panneau_12.jpg"; 
-import atelierpanneau13 from "../assets/img/panneau/panneau_13.jpg"; 
-import atelierpanneau14 from "../assets/img/panneau/panneau_14.jpg";
+import atelierpanneau1 from "../assets/img/panneau/panneau_1-min.jpg";
+import atelierpanneau2 from "../assets/img/panneau/panneau_2-min.jpg"; 
+import atelierpanneau3 from "../assets/img/panneau/panneau_3-min.jpg"; 
+import atelierpanneau4 from "../assets/img/panneau/panneau_4-min.jpg"; 
+import atelierpanneau5 from "../assets/img/panneau/panneau_5-min.jpg"; 
+import atelierpanneau6 from "../assets/img/panneau/panneau_6-min.jpg"; 
+import atelierpanneau7 from "../assets/img/panneau/panneau_7-min.jpg"; 
+import atelierpanneau8 from "../assets/img/panneau/panneau_8-min.jpg"; 
+import atelierpanneau9 from "../assets/img/panneau/panneau_9-min.jpg"; 
+import atelierpanneau10 from "../assets/img/panneau/panneau_10-min.jpg"; 
+import atelierpanneau11 from "../assets/img/panneau/panneau_11-min.jpg"; 
+import atelierpanneau12 from "../assets/img/panneau/panneau_12-min.jpg"; 
+import atelierpanneau13 from "../assets/img/panneau/panneau_13-min.jpg"; 
+import atelierpanneau14 from "../assets/img/panneau/panneau_14-min.jpg";
 
 /////// IMAGES BACK PANNEAU ////////
-import atelierpanneau2rue1 from "../assets/img/ruelle/back_panneaux/panneau_1.jpg";
-import atelierpanneau2rue2 from "../assets/img/ruelle/back_panneaux/panneau_2.jpg"; 
-import atelierpanneau2rue3 from "../assets/img/ruelle/back_panneaux/panneau_3.jpg"; 
-import atelierpanneau2rue4 from "../assets/img/ruelle/back_panneaux/panneau_4.jpg"; 
-import atelierpanneau2rue5 from "../assets/img/ruelle/back_panneaux/panneau_5.jpg"; 
-import atelierpanneau2rue6 from "../assets/img/ruelle/back_panneaux/panneau_6.jpg"; 
-import atelierpanneau2rue7 from "../assets/img/ruelle/back_panneaux/panneau_7.jpg"; 
-import atelierpanneau2rue8 from "../assets/img/ruelle/back_panneaux/panneau_8.jpg"; 
-import atelierpanneau2rue9 from "../assets/img/ruelle/back_panneaux/panneau_9.jpg"; 
-import atelierpanneau2rue10 from "../assets/img/ruelle/back_panneaux/panneau_10.jpg"; 
-import atelierpanneau2rue11 from "../assets/img/ruelle/back_panneaux/panneau_11.jpg"; 
-import atelierpanneau2rue12 from "../assets/img/ruelle/back_panneaux/panneau_12.jpg"; 
-import atelierpanneau2rue13 from "../assets/img/ruelle/back_panneaux/panneau_13.jpg"; 
-import atelierpanneau2rue14 from "../assets/img/ruelle/back_panneaux/panneau_14.jpg";
+import atelierpanneau2rue1 from "../assets/img/ruelle/back_panneaux/panneau_1-min.jpg";
+import atelierpanneau2rue2 from "../assets/img/ruelle/back_panneaux/panneau_2-min.jpg"; 
+import atelierpanneau2rue3 from "../assets/img/ruelle/back_panneaux/panneau_3-min.jpg"; 
+import atelierpanneau2rue4 from "../assets/img/ruelle/back_panneaux/panneau_4-min.jpg"; 
+import atelierpanneau2rue5 from "../assets/img/ruelle/back_panneaux/panneau_5-min.jpg"; 
+import atelierpanneau2rue6 from "../assets/img/ruelle/back_panneaux/panneau_6-min.jpg"; 
+import atelierpanneau2rue7 from "../assets/img/ruelle/back_panneaux/panneau_7-min.jpg"; 
+import atelierpanneau2rue8 from "../assets/img/ruelle/back_panneaux/panneau_8-min.jpg"; 
+import atelierpanneau2rue9 from "../assets/img/ruelle/back_panneaux/panneau_9-min.jpg"; 
+import atelierpanneau2rue10 from "../assets/img/ruelle/back_panneaux/panneau_10-min.jpg"; 
+import atelierpanneau2rue11 from "../assets/img/ruelle/back_panneaux/panneau_11-min.jpg"; 
+import atelierpanneau2rue12 from "../assets/img/ruelle/back_panneaux/panneau_12-min.jpg"; 
+import atelierpanneau2rue13 from "../assets/img/ruelle/back_panneaux/panneau_13-min.jpg"; 
+import atelierpanneau2rue14 from "../assets/img/ruelle/back_panneaux/panneau_14-min.jpg";
 
-import idbaniere from "../assets/img/ruelle/idbannire.jpg";
-import credits from "../assets/img/ruelle/credits.jpg";
+import idbaniere from "../assets/img/ruelle/idbannire-min.jpg";
+import credits from "../assets/img/ruelle/credits-min.jpg";
 
-import particle from "../assets/img/particle.png";
+import particle from "../assets/img/particle-min.png";
 
 // TROMBI 2A
 import alex2A from '../assets/img/trombi/2A/alex.jpg';
@@ -2023,7 +2023,28 @@ queue.loadFile(atelier12Hover);
 queue.loadFile(atelier13Hover);
 queue.loadFile(atelier14Hover);
 
-queue.loadFile(atelierpanneau1);
+queue.loadFile(displacement2);
+queue.loadFile(displacement4);
+
+queue.loadFile(particle);
+queue.loadFile(socleModel);
+queue.loadFile(logoModel);
+
+
+queue.loadFile(fragmentShaderVertical);
+queue.loadFile(fragmentShader);
+queue.loadFile(vertexShader);
+
+queue.loadFile(rpzImport);
+queue.loadFile(bgMusicImport);
+queue.loadFile(bgLoopMusicImport);
+queue.loadFile(rpzImport);
+queue.loadFile(soundHoverImport);
+queue.loadFile(soundHoverPlaneImport);
+queue.loadFile(soundOutPlaneImport);
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+    queue.loadFile(atelierpanneau1);
 queue.loadFile(atelierpanneau2);
 queue.loadFile(atelierpanneau3);
 queue.loadFile(atelierpanneau4);
@@ -2098,12 +2119,6 @@ queue.loadFile(atelierchiffre12);
 queue.loadFile(atelierchiffre13);
 queue.loadFile(atelierchiffre14);
 
-queue.loadFile(displacement2);
-queue.loadFile(displacement4);
-
-queue.loadFile(particle);
-queue.loadFile(socleModel);
-queue.loadFile(logoModel);
 queue.loadFile(homeModel);
 queue.loadFile(streetModel);
 queue.loadFile(rightDoorModel);
@@ -2123,18 +2138,6 @@ queue.loadFile(tabProgModel);
 queue.loadFile(tvModel);
 queue.loadFile(camModel);
 queue.loadFile(enceinteModel);
-
-queue.loadFile(fragmentShaderVertical);
-queue.loadFile(fragmentShader);
-queue.loadFile(vertexShader);
-
-queue.loadFile(rpzImport);
-queue.loadFile(bgMusicImport);
-queue.loadFile(bgLoopMusicImport);
-queue.loadFile(rpzImport);
-queue.loadFile(soundHoverImport);
-queue.loadFile(soundHoverPlaneImport);
-queue.loadFile(soundOutPlaneImport);
 
 queue.loadFile(alex2A);
 queue.loadFile(amandine2A);
@@ -2238,6 +2241,7 @@ queue.loadFile(thomasF1A);
 queue.loadFile(valM1A);
 queue.loadFile(vincent1A);
 queue.loadFile(yvan1A);
+}
 
 queue.loadFile(GLTFLoader);
 queue.loadFile(THREE);

@@ -45255,94 +45255,94 @@ module.exports = "varying vec2 vUv;\n\nuniform float time;\n\n// const float pi 
 module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\n\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\nvoid main(){\n  \n  vec2 uv=vUv;\n\n  \n  vec4 disp=texture2D(displacement,uv);\n\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n\n}";
 },{}],"js/libs/glsl/fragmentVertical.glsl":[function(require,module,exports) {
 module.exports = "#define GLSLIFY 1\nvarying vec2 vUv;\n\nuniform sampler2D imagebw;\nuniform sampler2D imagergb;\nuniform sampler2D displacement;\n\nuniform float time;\nuniform float dispFactor;\nuniform float effectFactor;\nuniform float alpha;\n\nvoid main(){\n  \n  vec2 uv=vUv;\n  \n\n  \n  vec4 disp=texture2D(displacement,uv.yx);\n  \n  vec2 distortedPosition=vec2(uv.x+dispFactor*(disp.r*effectFactor),uv.y);\n  vec2 distortedPosition2=vec2(uv.x-(1.-dispFactor)*(disp.r*effectFactor),uv.y);\n  \n  vec4 _texture=texture2D(imagebw,distortedPosition);\n  vec4 _texture2=texture2D(imagergb,distortedPosition2);\n  \n  vec4 finalTexture=mix(_texture,_texture2,dispFactor);\n\n  finalTexture.a = alpha;\n\n  gl_FragColor=finalTexture;\n\n}";
-},{}],"assets/img/displaces/displace2.png":[function(require,module,exports) {
-module.exports = "/displace2.66ac83aa.png";
-},{}],"assets/img/displaces/displace4.png":[function(require,module,exports) {
-module.exports = "/displace4.23e6f4a0.png";
-},{}],"assets/img/ateliers/atelier1Default.png":[function(require,module,exports) {
-module.exports = "/atelier1Default.083cf2f9.png";
-},{}],"assets/img/ateliers/atelier2Default.png":[function(require,module,exports) {
-module.exports = "/atelier2Default.31e4411d.png";
-},{}],"assets/img/ateliers/atelier3Default.png":[function(require,module,exports) {
-module.exports = "/atelier3Default.a47c79c8.png";
-},{}],"assets/img/ateliers/atelier4Default.png":[function(require,module,exports) {
-module.exports = "/atelier4Default.72c0f6c7.png";
-},{}],"assets/img/ateliers/atelier5Default.png":[function(require,module,exports) {
-module.exports = "/atelier5Default.72a26ee0.png";
-},{}],"assets/img/ateliers/atelier6Default.png":[function(require,module,exports) {
-module.exports = "/atelier6Default.4ff36c07.png";
-},{}],"assets/img/ateliers/atelier7Default.png":[function(require,module,exports) {
-module.exports = "/atelier7Default.1b20539b.png";
-},{}],"assets/img/ateliers/atelier8Default.png":[function(require,module,exports) {
-module.exports = "/atelier8Default.7694cc7a.png";
-},{}],"assets/img/ateliers/atelier9Default.png":[function(require,module,exports) {
-module.exports = "/atelier9Default.4d8241f2.png";
-},{}],"assets/img/ateliers/atelier10Default.png":[function(require,module,exports) {
-module.exports = "/atelier10Default.5f32588e.png";
-},{}],"assets/img/ateliers/atelier11Default.png":[function(require,module,exports) {
-module.exports = "/atelier11Default.8cdebb5f.png";
-},{}],"assets/img/ateliers/atelier12Default.png":[function(require,module,exports) {
-module.exports = "/atelier12Default.e738f7c2.png";
-},{}],"assets/img/ateliers/atelier13Default.png":[function(require,module,exports) {
-module.exports = "/atelier13Default.ec9069df.png";
-},{}],"assets/img/ateliers/atelier14Default.png":[function(require,module,exports) {
-module.exports = "/atelier14Default.89291e58.png";
-},{}],"assets/img/ateliers/atelier1Hover.png":[function(require,module,exports) {
-module.exports = "/atelier1Hover.ec3259e4.png";
-},{}],"assets/img/ateliers/atelier2Hover.png":[function(require,module,exports) {
-module.exports = "/atelier2Hover.112e2299.png";
-},{}],"assets/img/ateliers/atelier3Hover.png":[function(require,module,exports) {
-module.exports = "/atelier3Hover.53d4bd3d.png";
-},{}],"assets/img/ateliers/atelier4Hover.png":[function(require,module,exports) {
-module.exports = "/atelier4Hover.4ee2559a.png";
-},{}],"assets/img/ateliers/atelier5Hover.png":[function(require,module,exports) {
-module.exports = "/atelier5Hover.f6b2916d.png";
-},{}],"assets/img/ateliers/atelier6Hover.png":[function(require,module,exports) {
-module.exports = "/atelier6Hover.5507e0d4.png";
-},{}],"assets/img/ateliers/atelier7Hover.png":[function(require,module,exports) {
-module.exports = "/atelier7Hover.adb19d1e.png";
-},{}],"assets/img/ateliers/atelier8Hover.png":[function(require,module,exports) {
-module.exports = "/atelier8Hover.e6d71c75.png";
-},{}],"assets/img/ateliers/atelier9Hover.png":[function(require,module,exports) {
-module.exports = "/atelier9Hover.d606e8bf.png";
-},{}],"assets/img/ateliers/atelier10Hover.png":[function(require,module,exports) {
-module.exports = "/atelier10Hover.d0550741.png";
-},{}],"assets/img/ateliers/atelier11Hover.png":[function(require,module,exports) {
-module.exports = "/atelier11Hover.f2ea3cf2.png";
-},{}],"assets/img/ateliers/atelier12Hover.png":[function(require,module,exports) {
-module.exports = "/atelier12Hover.8ae78073.png";
-},{}],"assets/img/ateliers/atelier13Hover.png":[function(require,module,exports) {
-module.exports = "/atelier13Hover.37f453a6.png";
-},{}],"assets/img/ateliers/atelier14Hover.png":[function(require,module,exports) {
-module.exports = "/atelier14Hover.cf4e0176.png";
-},{}],"assets/img/ruelle/banniere/baniere_backstage.jpg":[function(require,module,exports) {
-module.exports = "/baniere_backstage.6ee0ca2e.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg":[function(require,module,exports) {
-module.exports = "/baniere_fabriquetonmmi.92d69c1f.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_vrgaming.jpg":[function(require,module,exports) {
-module.exports = "/baniere_vrgaming.d997f775.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_devweb.jpg":[function(require,module,exports) {
-module.exports = "/baniere_devweb.d2932b15.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_cubemusical.jpg":[function(require,module,exports) {
-module.exports = "/baniere_cubemusical.b247b9bb.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg":[function(require,module,exports) {
-module.exports = "/baniere_iaartgeneratif.3e63200b.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_museemmi.jpg":[function(require,module,exports) {
-module.exports = "/baniere_museemmi.494a347c.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_suiteadobe.jpg":[function(require,module,exports) {
-module.exports = "/baniere_suiteadobe.3ed73083.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_visiteguidée.jpg":[function(require,module,exports) {
-module.exports = "/baniere_visiteguidée.6840924d.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_webradio.jpg":[function(require,module,exports) {
-module.exports = "/baniere_webradio.5098c087.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_plateautv.jpg":[function(require,module,exports) {
-module.exports = "/baniere_plateautv.65d5cb5b.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_fondvert.jpg":[function(require,module,exports) {
-module.exports = "/baniere_fondvert.e54ad5b5.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_mapping.jpg":[function(require,module,exports) {
-module.exports = "/baniere_mapping.b23b6858.jpg";
-},{}],"assets/img/ruelle/banniere/baniere_audiovisuel.jpg":[function(require,module,exports) {
-module.exports = "/baniere_audiovisuel.ab79a4ae.jpg";
+},{}],"assets/img/displaces/displace2-min.jpg":[function(require,module,exports) {
+module.exports = "/displace2-min.03bb7f63.jpg";
+},{}],"assets/img/displaces/displace5-min.jpg":[function(require,module,exports) {
+module.exports = "/displace5-min.949da1ae.jpg";
+},{}],"assets/img/ateliers/atelier1Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier1Default-min.3da0792c.png";
+},{}],"assets/img/ateliers/atelier2Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier2Default-min.884bceba.png";
+},{}],"assets/img/ateliers/atelier3Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier3Default-min.e6fe22ab.png";
+},{}],"assets/img/ateliers/atelier4Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier4Default-min.95445ad8.png";
+},{}],"assets/img/ateliers/atelier5Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier5Default-min.8f2735e1.png";
+},{}],"assets/img/ateliers/atelier6Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier6Default-min.82cb9768.png";
+},{}],"assets/img/ateliers/atelier7Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier7Default-min.5dd76a4d.png";
+},{}],"assets/img/ateliers/atelier8Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier8Default-min.c82a1bf7.png";
+},{}],"assets/img/ateliers/atelier9Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier9Default-min.323dd2b1.png";
+},{}],"assets/img/ateliers/atelier10Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier10Default-min.b9bfdad6.png";
+},{}],"assets/img/ateliers/atelier11Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier11Default-min.81fe9c46.png";
+},{}],"assets/img/ateliers/atelier12Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier12Default-min.94263d1f.png";
+},{}],"assets/img/ateliers/atelier13Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier13Default-min.a3ab07d3.png";
+},{}],"assets/img/ateliers/atelier14Default-min.png":[function(require,module,exports) {
+module.exports = "/atelier14Default-min.ea7c2a69.png";
+},{}],"assets/img/ateliers/atelier1Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier1Hover-min.f6f809e6.jpg";
+},{}],"assets/img/ateliers/atelier2Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier2Hover-min.9b5f244a.jpg";
+},{}],"assets/img/ateliers/atelier3Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier3Hover-min.e64833d9.jpg";
+},{}],"assets/img/ateliers/atelier4Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier4Hover-min.da5978dd.jpg";
+},{}],"assets/img/ateliers/atelier5Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier5Hover-min.8bde04ae.jpg";
+},{}],"assets/img/ateliers/atelier6Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier6Hover-min.6a14923a.jpg";
+},{}],"assets/img/ateliers/atelier7Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier7Hover-min.21686a93.jpg";
+},{}],"assets/img/ateliers/atelier8Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier8Hover-min.c8b029cf.jpg";
+},{}],"assets/img/ateliers/atelier9Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier9Hover-min.ab14215d.jpg";
+},{}],"assets/img/ateliers/atelier10Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier10Hover-min.13ee482e.jpg";
+},{}],"assets/img/ateliers/atelier11Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier11Hover-min.c70380e3.jpg";
+},{}],"assets/img/ateliers/atelier12Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier12Hover-min.9b7de4b1.jpg";
+},{}],"assets/img/ateliers/atelier13Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier13Hover-min.754b3e85.jpg";
+},{}],"assets/img/ateliers/atelier14Hover-min.jpg":[function(require,module,exports) {
+module.exports = "/atelier14Hover-min.7bfba2f3.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_1-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_1-min.58ace83c.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_2-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_2-min.5d8c4bf7.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_3-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_3-min.b93c88d3.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_4-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_4-min.f7df8d43.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_5-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_5-min.25d68a56.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_6-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_6-min.cb626ba6.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_7-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_7-min.7f84f8f4.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_8-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_8-min.f8986b0f.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_9-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_9-min.3ba5236c.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_10-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_10-min.ed1214b9.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_11-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_11-min.28e53c4b.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_12-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_12-min.f9730aa4.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_13-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_13-min.4d3419af.jpg";
+},{}],"assets/img/ruelle/banniere/banniere_14-min.jpg":[function(require,module,exports) {
+module.exports = "/banniere_14-min.d235d7d3.jpg";
 },{}],"assets/img/ruelle/numero/rond_1.jpg":[function(require,module,exports) {
 module.exports = "/rond_1.b1859381.jpg";
 },{}],"assets/img/ruelle/numero/rond_2.jpg":[function(require,module,exports) {
@@ -45371,96 +45371,96 @@ module.exports = "/rond_12.d68c17ae.jpg";
 module.exports = "/rond_13.810f57c0.jpg";
 },{}],"assets/img/ruelle/numero/rond_14.jpg":[function(require,module,exports) {
 module.exports = "/rond_14.8319b838.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_1.jpg":[function(require,module,exports) {
-module.exports = "/panneau_1.bd46ce46.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_2.jpg":[function(require,module,exports) {
-module.exports = "/panneau_2.cf84c849.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_3.jpg":[function(require,module,exports) {
-module.exports = "/panneau_3.6b7aeae7.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_4.jpg":[function(require,module,exports) {
-module.exports = "/panneau_4.bb9f4e8d.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_5.jpg":[function(require,module,exports) {
-module.exports = "/panneau_5.5af23ca0.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_6.jpg":[function(require,module,exports) {
-module.exports = "/panneau_6.f3de0681.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_7.jpg":[function(require,module,exports) {
-module.exports = "/panneau_7.78c6beb0.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_8.jpg":[function(require,module,exports) {
-module.exports = "/panneau_8.55871260.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_9.jpg":[function(require,module,exports) {
-module.exports = "/panneau_9.1c81d8f0.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_10.jpg":[function(require,module,exports) {
-module.exports = "/panneau_10.ade043fa.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_11.jpg":[function(require,module,exports) {
-module.exports = "/panneau_11.80237183.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_12.jpg":[function(require,module,exports) {
-module.exports = "/panneau_12.6eb2d07e.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_13.jpg":[function(require,module,exports) {
-module.exports = "/panneau_13.1108b84b.jpg";
-},{}],"assets/img/ruelle/panneaux/panneau_14.jpg":[function(require,module,exports) {
-module.exports = "/panneau_14.c91e2127.jpg";
-},{}],"assets/img/panneau/panneau_1.jpg":[function(require,module,exports) {
-module.exports = "/panneau_1.82e23151.jpg";
-},{}],"assets/img/panneau/panneau_2.jpg":[function(require,module,exports) {
-module.exports = "/panneau_2.f22ee5d4.jpg";
-},{}],"assets/img/panneau/panneau_3.jpg":[function(require,module,exports) {
-module.exports = "/panneau_3.092431c9.jpg";
-},{}],"assets/img/panneau/panneau_4.jpg":[function(require,module,exports) {
-module.exports = "/panneau_4.0cdc25b3.jpg";
-},{}],"assets/img/panneau/panneau_5.jpg":[function(require,module,exports) {
-module.exports = "/panneau_5.cf2139f7.jpg";
-},{}],"assets/img/panneau/panneau_6.jpg":[function(require,module,exports) {
-module.exports = "/panneau_6.fc30cac4.jpg";
-},{}],"assets/img/panneau/panneau_7.jpg":[function(require,module,exports) {
-module.exports = "/panneau_7.021d3f32.jpg";
-},{}],"assets/img/panneau/panneau_8.jpg":[function(require,module,exports) {
-module.exports = "/panneau_8.b98bcd90.jpg";
-},{}],"assets/img/panneau/panneau_9.jpg":[function(require,module,exports) {
-module.exports = "/panneau_9.69e618e7.jpg";
-},{}],"assets/img/panneau/panneau_10.jpg":[function(require,module,exports) {
-module.exports = "/panneau_10.01218666.jpg";
-},{}],"assets/img/panneau/panneau_11.jpg":[function(require,module,exports) {
-module.exports = "/panneau_11.265650d8.jpg";
-},{}],"assets/img/panneau/panneau_12.jpg":[function(require,module,exports) {
-module.exports = "/panneau_12.35181ba4.jpg";
-},{}],"assets/img/panneau/panneau_13.jpg":[function(require,module,exports) {
-module.exports = "/panneau_13.81a5f89e.jpg";
-},{}],"assets/img/panneau/panneau_14.jpg":[function(require,module,exports) {
-module.exports = "/panneau_14.5984c353.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_1.jpg":[function(require,module,exports) {
-module.exports = "/panneau_1.e35a9c33.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_2.jpg":[function(require,module,exports) {
-module.exports = "/panneau_2.e6e5d2b6.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_3.jpg":[function(require,module,exports) {
-module.exports = "/panneau_3.9a0b1029.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_4.jpg":[function(require,module,exports) {
-module.exports = "/panneau_4.0a5bfcd3.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_5.jpg":[function(require,module,exports) {
-module.exports = "/panneau_5.df3f7652.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_6.jpg":[function(require,module,exports) {
-module.exports = "/panneau_6.59c0e7f8.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_7.jpg":[function(require,module,exports) {
-module.exports = "/panneau_7.1af732d3.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_8.jpg":[function(require,module,exports) {
-module.exports = "/panneau_8.4b376922.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_9.jpg":[function(require,module,exports) {
-module.exports = "/panneau_9.12b5abc6.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_10.jpg":[function(require,module,exports) {
-module.exports = "/panneau_10.33f552a0.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_11.jpg":[function(require,module,exports) {
-module.exports = "/panneau_11.1a20b445.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_12.jpg":[function(require,module,exports) {
-module.exports = "/panneau_12.178f5ec0.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_13.jpg":[function(require,module,exports) {
-module.exports = "/panneau_13.7e0e881a.jpg";
-},{}],"assets/img/ruelle/back_panneaux/panneau_14.jpg":[function(require,module,exports) {
-module.exports = "/panneau_14.d25a55a2.jpg";
-},{}],"assets/img/ruelle/idbannire.jpg":[function(require,module,exports) {
-module.exports = "/idbannire.0e9a4e06.jpg";
-},{}],"assets/img/ruelle/credits.jpg":[function(require,module,exports) {
-module.exports = "/credits.8e776ed8.jpg";
-},{}],"assets/img/particle.png":[function(require,module,exports) {
-module.exports = "/particle.8e4cb102.png";
+},{}],"assets/img/ruelle/panneaux/panneau_1-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_1-min.d155cbae.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_2-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_2-min.170aa84f.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_3-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_3-min.c8b0220f.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_4-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_4-min.d07e7359.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_5-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_5-min.501e3028.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_6-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_6-min.3fb91b69.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_7-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_7-min.7c588c5e.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_8-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_8-min.6397f03d.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_9-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_9-min.ff918d06.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_10-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_10-min.b82a268d.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_11-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_11-min.5330ed4f.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_12-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_12-min.8103ae67.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_13-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_13-min.8981fb68.jpg";
+},{}],"assets/img/ruelle/panneaux/panneau_14-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_14-min.145b2fe9.jpg";
+},{}],"assets/img/panneau/panneau_1-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_1-min.9c1f007c.jpg";
+},{}],"assets/img/panneau/panneau_2-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_2-min.b5dfef97.jpg";
+},{}],"assets/img/panneau/panneau_3-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_3-min.8253c32c.jpg";
+},{}],"assets/img/panneau/panneau_4-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_4-min.72e44104.jpg";
+},{}],"assets/img/panneau/panneau_5-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_5-min.346a139c.jpg";
+},{}],"assets/img/panneau/panneau_6-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_6-min.bf8e4742.jpg";
+},{}],"assets/img/panneau/panneau_7-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_7-min.14ccb3f6.jpg";
+},{}],"assets/img/panneau/panneau_8-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_8-min.626fd5ab.jpg";
+},{}],"assets/img/panneau/panneau_9-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_9-min.046c2cf8.jpg";
+},{}],"assets/img/panneau/panneau_10-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_10-min.6f937a6f.jpg";
+},{}],"assets/img/panneau/panneau_11-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_11-min.34846914.jpg";
+},{}],"assets/img/panneau/panneau_12-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_12-min.0373943a.jpg";
+},{}],"assets/img/panneau/panneau_13-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_13-min.3907ce1e.jpg";
+},{}],"assets/img/panneau/panneau_14-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_14-min.8fa6783a.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_1-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_1-min.f0bc422e.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_2-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_2-min.749e4777.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_3-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_3-min.a0e46e0c.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_4-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_4-min.dc96c9f2.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_5-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_5-min.45b654cb.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_6-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_6-min.27c3775d.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_7-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_7-min.83a54f0b.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_8-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_8-min.b59523c7.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_9-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_9-min.edb287b2.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_10-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_10-min.48a50798.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_11-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_11-min.7baf019f.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_12-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_12-min.f851c50c.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_13-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_13-min.ee12c941.jpg";
+},{}],"assets/img/ruelle/back_panneaux/panneau_14-min.jpg":[function(require,module,exports) {
+module.exports = "/panneau_14-min.647159c5.jpg";
+},{}],"assets/img/ruelle/idbannire-min.jpg":[function(require,module,exports) {
+module.exports = "/idbannire-min.3904ccf2.jpg";
+},{}],"assets/img/ruelle/credits-min.jpg":[function(require,module,exports) {
+module.exports = "/credits-min.35cc9e1a.jpg";
+},{}],"assets/img/particle-min.png":[function(require,module,exports) {
+module.exports = "/particle-min.a9b258f6.png";
 },{}],"assets/img/trombi/2A/alex.jpg":[function(require,module,exports) {
 module.exports = "/alex.fb0f36c8.jpg";
 },{}],"assets/img/trombi/2A/amandine.jpg":[function(require,module,exports) {
@@ -45738,93 +45738,93 @@ var _fragment = _interopRequireDefault(require("./libs/glsl/fragment.glsl"));
 
 var _fragmentVertical = _interopRequireDefault(require("./libs/glsl/fragmentVertical.glsl"));
 
-var _displace = _interopRequireDefault(require("../assets/img/displaces/displace2.png"));
+var _displace2Min = _interopRequireDefault(require("../assets/img/displaces/displace2-min.jpg"));
 
-var _displace2 = _interopRequireDefault(require("../assets/img/displaces/displace4.png"));
+var _displace5Min = _interopRequireDefault(require("../assets/img/displaces/displace5-min.jpg"));
 
-var _atelier1Default = _interopRequireDefault(require("../assets/img/ateliers/atelier1Default.png"));
+var _atelier1DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier1Default-min.png"));
 
-var _atelier2Default = _interopRequireDefault(require("../assets/img/ateliers/atelier2Default.png"));
+var _atelier2DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier2Default-min.png"));
 
-var _atelier3Default = _interopRequireDefault(require("../assets/img/ateliers/atelier3Default.png"));
+var _atelier3DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier3Default-min.png"));
 
-var _atelier4Default = _interopRequireDefault(require("../assets/img/ateliers/atelier4Default.png"));
+var _atelier4DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier4Default-min.png"));
 
-var _atelier5Default = _interopRequireDefault(require("../assets/img/ateliers/atelier5Default.png"));
+var _atelier5DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier5Default-min.png"));
 
-var _atelier6Default = _interopRequireDefault(require("../assets/img/ateliers/atelier6Default.png"));
+var _atelier6DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier6Default-min.png"));
 
-var _atelier7Default = _interopRequireDefault(require("../assets/img/ateliers/atelier7Default.png"));
+var _atelier7DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier7Default-min.png"));
 
-var _atelier8Default = _interopRequireDefault(require("../assets/img/ateliers/atelier8Default.png"));
+var _atelier8DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier8Default-min.png"));
 
-var _atelier9Default = _interopRequireDefault(require("../assets/img/ateliers/atelier9Default.png"));
+var _atelier9DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier9Default-min.png"));
 
-var _atelier10Default = _interopRequireDefault(require("../assets/img/ateliers/atelier10Default.png"));
+var _atelier10DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier10Default-min.png"));
 
-var _atelier11Default = _interopRequireDefault(require("../assets/img/ateliers/atelier11Default.png"));
+var _atelier11DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier11Default-min.png"));
 
-var _atelier12Default = _interopRequireDefault(require("../assets/img/ateliers/atelier12Default.png"));
+var _atelier12DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier12Default-min.png"));
 
-var _atelier13Default = _interopRequireDefault(require("../assets/img/ateliers/atelier13Default.png"));
+var _atelier13DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier13Default-min.png"));
 
-var _atelier14Default = _interopRequireDefault(require("../assets/img/ateliers/atelier14Default.png"));
+var _atelier14DefaultMin = _interopRequireDefault(require("../assets/img/ateliers/atelier14Default-min.png"));
 
-var _atelier1Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier1Hover.png"));
+var _atelier1HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier1Hover-min.jpg"));
 
-var _atelier2Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier2Hover.png"));
+var _atelier2HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier2Hover-min.jpg"));
 
-var _atelier3Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier3Hover.png"));
+var _atelier3HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier3Hover-min.jpg"));
 
-var _atelier4Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier4Hover.png"));
+var _atelier4HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier4Hover-min.jpg"));
 
-var _atelier5Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier5Hover.png"));
+var _atelier5HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier5Hover-min.jpg"));
 
-var _atelier6Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier6Hover.png"));
+var _atelier6HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier6Hover-min.jpg"));
 
-var _atelier7Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier7Hover.png"));
+var _atelier7HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier7Hover-min.jpg"));
 
-var _atelier8Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier8Hover.png"));
+var _atelier8HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier8Hover-min.jpg"));
 
-var _atelier9Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier9Hover.png"));
+var _atelier9HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier9Hover-min.jpg"));
 
-var _atelier10Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier10Hover.png"));
+var _atelier10HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier10Hover-min.jpg"));
 
-var _atelier11Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier11Hover.png"));
+var _atelier11HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier11Hover-min.jpg"));
 
-var _atelier12Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier12Hover.png"));
+var _atelier12HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier12Hover-min.jpg"));
 
-var _atelier13Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier13Hover.png"));
+var _atelier13HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier13Hover-min.jpg"));
 
-var _atelier14Hover = _interopRequireDefault(require("../assets/img/ateliers/atelier14Hover.png"));
+var _atelier14HoverMin = _interopRequireDefault(require("../assets/img/ateliers/atelier14Hover-min.jpg"));
 
-var _baniere_backstage = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_backstage.jpg"));
+var _banniere_1Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_1-min.jpg"));
 
-var _baniere_fabriquetonmmi = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg"));
+var _banniere_2Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_2-min.jpg"));
 
-var _baniere_vrgaming = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_vrgaming.jpg"));
+var _banniere_3Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_3-min.jpg"));
 
-var _baniere_devweb = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_devweb.jpg"));
+var _banniere_4Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_4-min.jpg"));
 
-var _baniere_cubemusical = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_cubemusical.jpg"));
+var _banniere_5Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_5-min.jpg"));
 
-var _baniere_iaartgeneratif = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg"));
+var _banniere_6Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_6-min.jpg"));
 
-var _baniere_museemmi = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_museemmi.jpg"));
+var _banniere_7Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_7-min.jpg"));
 
-var _baniere_suiteadobe = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_suiteadobe.jpg"));
+var _banniere_8Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_8-min.jpg"));
 
-var _baniere_visiteguidE = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_visiteguid\xE9e.jpg"));
+var _banniere_9Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_9-min.jpg"));
 
-var _baniere_webradio = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_webradio.jpg"));
+var _banniere_10Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_10-min.jpg"));
 
-var _baniere_plateautv = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_plateautv.jpg"));
+var _banniere_11Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_11-min.jpg"));
 
-var _baniere_fondvert = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_fondvert.jpg"));
+var _banniere_12Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_12-min.jpg"));
 
-var _baniere_mapping = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_mapping.jpg"));
+var _banniere_13Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_13-min.jpg"));
 
-var _baniere_audiovisuel = _interopRequireDefault(require("../assets/img/ruelle/banniere/baniere_audiovisuel.jpg"));
+var _banniere_14Min = _interopRequireDefault(require("../assets/img/ruelle/banniere/banniere_14-min.jpg"));
 
 var _rond_ = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_1.jpg"));
 
@@ -45854,95 +45854,95 @@ var _rond_13 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_
 
 var _rond_14 = _interopRequireDefault(require("../assets/img/ruelle/numero/rond_14.jpg"));
 
-var _panneau_ = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_1.jpg"));
+var _panneau_1Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_1-min.jpg"));
 
-var _panneau_2 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_2.jpg"));
+var _panneau_2Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_2-min.jpg"));
 
-var _panneau_3 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_3.jpg"));
+var _panneau_3Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_3-min.jpg"));
 
-var _panneau_4 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_4.jpg"));
+var _panneau_4Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_4-min.jpg"));
 
-var _panneau_5 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_5.jpg"));
+var _panneau_5Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_5-min.jpg"));
 
-var _panneau_6 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_6.jpg"));
+var _panneau_6Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_6-min.jpg"));
 
-var _panneau_7 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_7.jpg"));
+var _panneau_7Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_7-min.jpg"));
 
-var _panneau_8 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_8.jpg"));
+var _panneau_8Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_8-min.jpg"));
 
-var _panneau_9 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_9.jpg"));
+var _panneau_9Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_9-min.jpg"));
 
-var _panneau_10 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_10.jpg"));
+var _panneau_10Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_10-min.jpg"));
 
-var _panneau_11 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_11.jpg"));
+var _panneau_11Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_11-min.jpg"));
 
-var _panneau_12 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_12.jpg"));
+var _panneau_12Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_12-min.jpg"));
 
-var _panneau_13 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_13.jpg"));
+var _panneau_13Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_13-min.jpg"));
 
-var _panneau_14 = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_14.jpg"));
+var _panneau_14Min = _interopRequireDefault(require("../assets/img/ruelle/panneaux/panneau_14-min.jpg"));
 
-var _panneau_15 = _interopRequireDefault(require("../assets/img/panneau/panneau_1.jpg"));
+var _panneau_1Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_1-min.jpg"));
 
-var _panneau_16 = _interopRequireDefault(require("../assets/img/panneau/panneau_2.jpg"));
+var _panneau_2Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_2-min.jpg"));
 
-var _panneau_17 = _interopRequireDefault(require("../assets/img/panneau/panneau_3.jpg"));
+var _panneau_3Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_3-min.jpg"));
 
-var _panneau_18 = _interopRequireDefault(require("../assets/img/panneau/panneau_4.jpg"));
+var _panneau_4Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_4-min.jpg"));
 
-var _panneau_19 = _interopRequireDefault(require("../assets/img/panneau/panneau_5.jpg"));
+var _panneau_5Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_5-min.jpg"));
 
-var _panneau_20 = _interopRequireDefault(require("../assets/img/panneau/panneau_6.jpg"));
+var _panneau_6Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_6-min.jpg"));
 
-var _panneau_21 = _interopRequireDefault(require("../assets/img/panneau/panneau_7.jpg"));
+var _panneau_7Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_7-min.jpg"));
 
-var _panneau_22 = _interopRequireDefault(require("../assets/img/panneau/panneau_8.jpg"));
+var _panneau_8Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_8-min.jpg"));
 
-var _panneau_23 = _interopRequireDefault(require("../assets/img/panneau/panneau_9.jpg"));
+var _panneau_9Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_9-min.jpg"));
 
-var _panneau_24 = _interopRequireDefault(require("../assets/img/panneau/panneau_10.jpg"));
+var _panneau_10Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_10-min.jpg"));
 
-var _panneau_25 = _interopRequireDefault(require("../assets/img/panneau/panneau_11.jpg"));
+var _panneau_11Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_11-min.jpg"));
 
-var _panneau_26 = _interopRequireDefault(require("../assets/img/panneau/panneau_12.jpg"));
+var _panneau_12Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_12-min.jpg"));
 
-var _panneau_27 = _interopRequireDefault(require("../assets/img/panneau/panneau_13.jpg"));
+var _panneau_13Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_13-min.jpg"));
 
-var _panneau_28 = _interopRequireDefault(require("../assets/img/panneau/panneau_14.jpg"));
+var _panneau_14Min2 = _interopRequireDefault(require("../assets/img/panneau/panneau_14-min.jpg"));
 
-var _panneau_29 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_1.jpg"));
+var _panneau_1Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_1-min.jpg"));
 
-var _panneau_30 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_2.jpg"));
+var _panneau_2Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_2-min.jpg"));
 
-var _panneau_31 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_3.jpg"));
+var _panneau_3Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_3-min.jpg"));
 
-var _panneau_32 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_4.jpg"));
+var _panneau_4Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_4-min.jpg"));
 
-var _panneau_33 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_5.jpg"));
+var _panneau_5Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_5-min.jpg"));
 
-var _panneau_34 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_6.jpg"));
+var _panneau_6Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_6-min.jpg"));
 
-var _panneau_35 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_7.jpg"));
+var _panneau_7Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_7-min.jpg"));
 
-var _panneau_36 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_8.jpg"));
+var _panneau_8Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_8-min.jpg"));
 
-var _panneau_37 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_9.jpg"));
+var _panneau_9Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_9-min.jpg"));
 
-var _panneau_38 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_10.jpg"));
+var _panneau_10Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_10-min.jpg"));
 
-var _panneau_39 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_11.jpg"));
+var _panneau_11Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_11-min.jpg"));
 
-var _panneau_40 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_12.jpg"));
+var _panneau_12Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_12-min.jpg"));
 
-var _panneau_41 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_13.jpg"));
+var _panneau_13Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_13-min.jpg"));
 
-var _panneau_42 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_14.jpg"));
+var _panneau_14Min3 = _interopRequireDefault(require("../assets/img/ruelle/back_panneaux/panneau_14-min.jpg"));
 
-var _idbannire = _interopRequireDefault(require("../assets/img/ruelle/idbannire.jpg"));
+var _idbannireMin = _interopRequireDefault(require("../assets/img/ruelle/idbannire-min.jpg"));
 
-var _credits = _interopRequireDefault(require("../assets/img/ruelle/credits.jpg"));
+var _creditsMin = _interopRequireDefault(require("../assets/img/ruelle/credits-min.jpg"));
 
-var _particle2 = _interopRequireDefault(require("../assets/img/particle.png"));
+var _particleMin = _interopRequireDefault(require("../assets/img/particle-min.png"));
 
 var _alex = _interopRequireDefault(require("../assets/img/trombi/2A/alex.jpg"));
 
@@ -46779,48 +46779,48 @@ var planePanneauRue4 = new THREE.PlaneGeometry(6.7, 9, 1, 1);
 var planePanneauRue7 = new THREE.PlaneGeometry(6.584, 2.775, 1);
 var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1); /////// INITIATION DES TEXTURES ///////
 
-var texture1Default = new THREE.TextureLoader().load(_atelier1Default.default);
-var texture1Hover = new THREE.TextureLoader().load(_atelier1Hover.default);
-var texture2Default = new THREE.TextureLoader().load(_atelier2Default.default);
-var texture2Hover = new THREE.TextureLoader().load(_atelier2Hover.default);
-var texture3Default = new THREE.TextureLoader().load(_atelier3Default.default);
-var texture3Hover = new THREE.TextureLoader().load(_atelier3Hover.default);
-var texture4Default = new THREE.TextureLoader().load(_atelier4Default.default);
-var texture4Hover = new THREE.TextureLoader().load(_atelier4Hover.default);
-var texture5Default = new THREE.TextureLoader().load(_atelier5Default.default);
-var texture5Hover = new THREE.TextureLoader().load(_atelier5Hover.default);
-var texture6Default = new THREE.TextureLoader().load(_atelier6Default.default);
-var texture6Hover = new THREE.TextureLoader().load(_atelier6Hover.default);
-var texture7Default = new THREE.TextureLoader().load(_atelier7Default.default);
-var texture7Hover = new THREE.TextureLoader().load(_atelier7Hover.default);
-var texture8Default = new THREE.TextureLoader().load(_atelier8Default.default);
-var texture8Hover = new THREE.TextureLoader().load(_atelier8Hover.default);
-var texture9Default = new THREE.TextureLoader().load(_atelier9Default.default);
-var texture9Hover = new THREE.TextureLoader().load(_atelier9Hover.default);
-var texture10Default = new THREE.TextureLoader().load(_atelier10Default.default);
-var texture10Hover = new THREE.TextureLoader().load(_atelier10Hover.default);
-var texture11Default = new THREE.TextureLoader().load(_atelier11Default.default);
-var texture11Hover = new THREE.TextureLoader().load(_atelier11Hover.default);
-var texture12Default = new THREE.TextureLoader().load(_atelier12Default.default);
-var texture12Hover = new THREE.TextureLoader().load(_atelier12Hover.default);
-var texture13Default = new THREE.TextureLoader().load(_atelier13Default.default);
-var texture13Hover = new THREE.TextureLoader().load(_atelier13Hover.default);
-var texture14Default = new THREE.TextureLoader().load(_atelier14Default.default);
-var texture14Hover = new THREE.TextureLoader().load(_atelier14Hover.default);
-var texturebaniere14 = new THREE.TextureLoader().load(_baniere_backstage.default);
-var texturebaniere13 = new THREE.TextureLoader().load(_baniere_fabriquetonmmi.default);
-var texturebaniere12 = new THREE.TextureLoader().load(_baniere_vrgaming.default);
-var texturebaniere11 = new THREE.TextureLoader().load(_baniere_devweb.default);
-var texturebaniere10 = new THREE.TextureLoader().load(_baniere_cubemusical.default);
-var texturebaniere9 = new THREE.TextureLoader().load(_baniere_iaartgeneratif.default);
-var texturebaniere8 = new THREE.TextureLoader().load(_baniere_museemmi.default);
-var texturebaniere7 = new THREE.TextureLoader().load(_baniere_suiteadobe.default);
-var texturebaniere6 = new THREE.TextureLoader().load(_baniere_visiteguidE.default);
-var texturebaniere5 = new THREE.TextureLoader().load(_baniere_webradio.default);
-var texturebaniere4 = new THREE.TextureLoader().load(_baniere_plateautv.default);
-var texturebaniere3 = new THREE.TextureLoader().load(_baniere_fondvert.default);
-var texturebaniere2 = new THREE.TextureLoader().load(_baniere_mapping.default);
-var texturebaniere1 = new THREE.TextureLoader().load(_baniere_audiovisuel.default);
+var texture1Default = new THREE.TextureLoader().load(_atelier1DefaultMin.default);
+var texture1Hover = new THREE.TextureLoader().load(_atelier1HoverMin.default);
+var texture2Default = new THREE.TextureLoader().load(_atelier2DefaultMin.default);
+var texture2Hover = new THREE.TextureLoader().load(_atelier2HoverMin.default);
+var texture3Default = new THREE.TextureLoader().load(_atelier3DefaultMin.default);
+var texture3Hover = new THREE.TextureLoader().load(_atelier3HoverMin.default);
+var texture4Default = new THREE.TextureLoader().load(_atelier4DefaultMin.default);
+var texture4Hover = new THREE.TextureLoader().load(_atelier4HoverMin.default);
+var texture5Default = new THREE.TextureLoader().load(_atelier5DefaultMin.default);
+var texture5Hover = new THREE.TextureLoader().load(_atelier5HoverMin.default);
+var texture6Default = new THREE.TextureLoader().load(_atelier6DefaultMin.default);
+var texture6Hover = new THREE.TextureLoader().load(_atelier6HoverMin.default);
+var texture7Default = new THREE.TextureLoader().load(_atelier7DefaultMin.default);
+var texture7Hover = new THREE.TextureLoader().load(_atelier7HoverMin.default);
+var texture8Default = new THREE.TextureLoader().load(_atelier8DefaultMin.default);
+var texture8Hover = new THREE.TextureLoader().load(_atelier8HoverMin.default);
+var texture9Default = new THREE.TextureLoader().load(_atelier9DefaultMin.default);
+var texture9Hover = new THREE.TextureLoader().load(_atelier9HoverMin.default);
+var texture10Default = new THREE.TextureLoader().load(_atelier10DefaultMin.default);
+var texture10Hover = new THREE.TextureLoader().load(_atelier10HoverMin.default);
+var texture11Default = new THREE.TextureLoader().load(_atelier11DefaultMin.default);
+var texture11Hover = new THREE.TextureLoader().load(_atelier11HoverMin.default);
+var texture12Default = new THREE.TextureLoader().load(_atelier12DefaultMin.default);
+var texture12Hover = new THREE.TextureLoader().load(_atelier12HoverMin.default);
+var texture13Default = new THREE.TextureLoader().load(_atelier13DefaultMin.default);
+var texture13Hover = new THREE.TextureLoader().load(_atelier13HoverMin.default);
+var texture14Default = new THREE.TextureLoader().load(_atelier14DefaultMin.default);
+var texture14Hover = new THREE.TextureLoader().load(_atelier14HoverMin.default);
+var texturebaniere14 = new THREE.TextureLoader().load(_banniere_1Min.default);
+var texturebaniere13 = new THREE.TextureLoader().load(_banniere_2Min.default);
+var texturebaniere12 = new THREE.TextureLoader().load(_banniere_3Min.default);
+var texturebaniere11 = new THREE.TextureLoader().load(_banniere_4Min.default);
+var texturebaniere10 = new THREE.TextureLoader().load(_banniere_5Min.default);
+var texturebaniere9 = new THREE.TextureLoader().load(_banniere_6Min.default);
+var texturebaniere8 = new THREE.TextureLoader().load(_banniere_7Min.default);
+var texturebaniere7 = new THREE.TextureLoader().load(_banniere_8Min.default);
+var texturebaniere6 = new THREE.TextureLoader().load(_banniere_9Min.default);
+var texturebaniere5 = new THREE.TextureLoader().load(_banniere_10Min.default);
+var texturebaniere4 = new THREE.TextureLoader().load(_banniere_11Min.default);
+var texturebaniere3 = new THREE.TextureLoader().load(_banniere_12Min.default);
+var texturebaniere2 = new THREE.TextureLoader().load(_banniere_13Min.default);
+var texturebaniere1 = new THREE.TextureLoader().load(_banniere_14Min.default);
 var texturechiffre1 = new THREE.TextureLoader().load(_rond_.default);
 var texturechiffre2 = new THREE.TextureLoader().load(_rond_2.default);
 var texturechiffre3 = new THREE.TextureLoader().load(_rond_3.default);
@@ -46835,50 +46835,50 @@ var texturechiffre11 = new THREE.TextureLoader().load(_rond_11.default);
 var texturechiffre12 = new THREE.TextureLoader().load(_rond_12.default);
 var texturechiffre13 = new THREE.TextureLoader().load(_rond_13.default);
 var texturechiffre14 = new THREE.TextureLoader().load(_rond_14.default);
-var texturepanneaurue1 = new THREE.TextureLoader().load(_panneau_.default);
-var texturepanneaurue2 = new THREE.TextureLoader().load(_panneau_2.default);
-var texturepanneaurue3 = new THREE.TextureLoader().load(_panneau_3.default);
-var texturepanneaurue4 = new THREE.TextureLoader().load(_panneau_4.default);
-var texturepanneaurue5 = new THREE.TextureLoader().load(_panneau_5.default);
-var texturepanneaurue6 = new THREE.TextureLoader().load(_panneau_6.default);
-var texturepanneaurue7 = new THREE.TextureLoader().load(_panneau_7.default);
-var texturepanneaurue8 = new THREE.TextureLoader().load(_panneau_8.default);
-var texturepanneaurue9 = new THREE.TextureLoader().load(_panneau_9.default);
-var texturepanneaurue10 = new THREE.TextureLoader().load(_panneau_10.default);
-var texturepanneaurue11 = new THREE.TextureLoader().load(_panneau_11.default);
-var texturepanneaurue12 = new THREE.TextureLoader().load(_panneau_12.default);
-var texturepanneaurue13 = new THREE.TextureLoader().load(_panneau_13.default);
-var texturepanneaurue14 = new THREE.TextureLoader().load(_panneau_14.default);
-var texturepanneau1 = new THREE.TextureLoader().load(_panneau_15.default);
-var texturepanneau2 = new THREE.TextureLoader().load(_panneau_16.default);
-var texturepanneau3 = new THREE.TextureLoader().load(_panneau_17.default);
-var texturepanneau4 = new THREE.TextureLoader().load(_panneau_18.default);
-var texturepanneau5 = new THREE.TextureLoader().load(_panneau_19.default);
-var texturepanneau6 = new THREE.TextureLoader().load(_panneau_20.default);
-var texturepanneau7 = new THREE.TextureLoader().load(_panneau_21.default);
-var texturepanneau8 = new THREE.TextureLoader().load(_panneau_22.default);
-var texturepanneau9 = new THREE.TextureLoader().load(_panneau_23.default);
-var texturepanneau10 = new THREE.TextureLoader().load(_panneau_24.default);
-var texturepanneau11 = new THREE.TextureLoader().load(_panneau_25.default);
-var texturepanneau12 = new THREE.TextureLoader().load(_panneau_26.default);
-var texturepanneau13 = new THREE.TextureLoader().load(_panneau_27.default);
-var texturepanneau14 = new THREE.TextureLoader().load(_panneau_28.default);
-var texturepanneau2rue1 = new THREE.TextureLoader().load(_panneau_29.default);
-var texturepanneau2rue2 = new THREE.TextureLoader().load(_panneau_30.default);
-var texturepanneau2rue3 = new THREE.TextureLoader().load(_panneau_31.default);
-var texturepanneau2rue4 = new THREE.TextureLoader().load(_panneau_32.default);
-var texturepanneau2rue5 = new THREE.TextureLoader().load(_panneau_33.default);
-var texturepanneau2rue6 = new THREE.TextureLoader().load(_panneau_34.default);
-var texturepanneau2rue7 = new THREE.TextureLoader().load(_panneau_35.default);
-var texturepanneau2rue8 = new THREE.TextureLoader().load(_panneau_36.default);
-var texturepanneau2rue9 = new THREE.TextureLoader().load(_panneau_37.default);
-var texturepanneau2rue10 = new THREE.TextureLoader().load(_panneau_38.default);
-var texturepanneau2rue11 = new THREE.TextureLoader().load(_panneau_39.default);
-var texturepanneau2rue12 = new THREE.TextureLoader().load(_panneau_40.default);
-var texturepanneau2rue13 = new THREE.TextureLoader().load(_panneau_41.default);
-var texturepanneau2rue14 = new THREE.TextureLoader().load(_panneau_42.default);
-var textureidbaniere = new THREE.TextureLoader().load(_idbannire.default);
-var texturecredits = new THREE.TextureLoader().load(_credits.default); /////// PLANES MATERIALS ///////
+var texturepanneaurue1 = new THREE.TextureLoader().load(_panneau_1Min.default);
+var texturepanneaurue2 = new THREE.TextureLoader().load(_panneau_2Min.default);
+var texturepanneaurue3 = new THREE.TextureLoader().load(_panneau_3Min.default);
+var texturepanneaurue4 = new THREE.TextureLoader().load(_panneau_4Min.default);
+var texturepanneaurue5 = new THREE.TextureLoader().load(_panneau_5Min.default);
+var texturepanneaurue6 = new THREE.TextureLoader().load(_panneau_6Min.default);
+var texturepanneaurue7 = new THREE.TextureLoader().load(_panneau_7Min.default);
+var texturepanneaurue8 = new THREE.TextureLoader().load(_panneau_8Min.default);
+var texturepanneaurue9 = new THREE.TextureLoader().load(_panneau_9Min.default);
+var texturepanneaurue10 = new THREE.TextureLoader().load(_panneau_10Min.default);
+var texturepanneaurue11 = new THREE.TextureLoader().load(_panneau_11Min.default);
+var texturepanneaurue12 = new THREE.TextureLoader().load(_panneau_12Min.default);
+var texturepanneaurue13 = new THREE.TextureLoader().load(_panneau_13Min.default);
+var texturepanneaurue14 = new THREE.TextureLoader().load(_panneau_14Min.default);
+var texturepanneau1 = new THREE.TextureLoader().load(_panneau_1Min2.default);
+var texturepanneau2 = new THREE.TextureLoader().load(_panneau_2Min2.default);
+var texturepanneau3 = new THREE.TextureLoader().load(_panneau_3Min2.default);
+var texturepanneau4 = new THREE.TextureLoader().load(_panneau_4Min2.default);
+var texturepanneau5 = new THREE.TextureLoader().load(_panneau_5Min2.default);
+var texturepanneau6 = new THREE.TextureLoader().load(_panneau_6Min2.default);
+var texturepanneau7 = new THREE.TextureLoader().load(_panneau_7Min2.default);
+var texturepanneau8 = new THREE.TextureLoader().load(_panneau_8Min2.default);
+var texturepanneau9 = new THREE.TextureLoader().load(_panneau_9Min2.default);
+var texturepanneau10 = new THREE.TextureLoader().load(_panneau_10Min2.default);
+var texturepanneau11 = new THREE.TextureLoader().load(_panneau_11Min2.default);
+var texturepanneau12 = new THREE.TextureLoader().load(_panneau_12Min2.default);
+var texturepanneau13 = new THREE.TextureLoader().load(_panneau_13Min2.default);
+var texturepanneau14 = new THREE.TextureLoader().load(_panneau_14Min2.default);
+var texturepanneau2rue1 = new THREE.TextureLoader().load(_panneau_1Min3.default);
+var texturepanneau2rue2 = new THREE.TextureLoader().load(_panneau_2Min3.default);
+var texturepanneau2rue3 = new THREE.TextureLoader().load(_panneau_3Min3.default);
+var texturepanneau2rue4 = new THREE.TextureLoader().load(_panneau_4Min3.default);
+var texturepanneau2rue5 = new THREE.TextureLoader().load(_panneau_5Min3.default);
+var texturepanneau2rue6 = new THREE.TextureLoader().load(_panneau_6Min3.default);
+var texturepanneau2rue7 = new THREE.TextureLoader().load(_panneau_7Min3.default);
+var texturepanneau2rue8 = new THREE.TextureLoader().load(_panneau_8Min3.default);
+var texturepanneau2rue9 = new THREE.TextureLoader().load(_panneau_9Min3.default);
+var texturepanneau2rue10 = new THREE.TextureLoader().load(_panneau_10Min3.default);
+var texturepanneau2rue11 = new THREE.TextureLoader().load(_panneau_11Min3.default);
+var texturepanneau2rue12 = new THREE.TextureLoader().load(_panneau_12Min3.default);
+var texturepanneau2rue13 = new THREE.TextureLoader().load(_panneau_13Min3.default);
+var texturepanneau2rue14 = new THREE.TextureLoader().load(_panneau_14Min3.default);
+var textureidbaniere = new THREE.TextureLoader().load(_idbannireMin.default);
+var texturecredits = new THREE.TextureLoader().load(_creditsMin.default); /////// PLANES MATERIALS ///////
 
 var planeOpacityDefault;
 
@@ -46913,7 +46913,7 @@ var materialPlane1 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -46954,7 +46954,7 @@ var materialPlane2 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -46995,7 +46995,7 @@ var materialPlane3 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47036,7 +47036,7 @@ var materialPlane4 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47077,7 +47077,7 @@ var materialPlane5 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47118,7 +47118,7 @@ var materialPlane6 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47159,7 +47159,7 @@ var materialPlane7 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47200,7 +47200,7 @@ var materialPlane8 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47241,7 +47241,7 @@ var materialPlane9 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47282,7 +47282,7 @@ var materialPlane10 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47323,7 +47323,7 @@ var materialPlane11 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47364,7 +47364,7 @@ var materialPlane12 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47405,7 +47405,7 @@ var materialPlane13 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47446,7 +47446,7 @@ var materialPlane14 = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace2.default)
+      value: new THREE.TextureLoader().load(_displace5Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47488,7 +47488,7 @@ var materialPlanePanneau = new THREE.ShaderMaterial({
     },
     displacement: {
       type: "t",
-      value: new THREE.TextureLoader().load(_displace.default)
+      value: new THREE.TextureLoader().load(_displace2Min.default)
     },
     dispFactor: {
       type: "f",
@@ -47689,7 +47689,7 @@ for (var i = 0; i < 800; i++) {
 var particleMaterial = new THREE.PointsMaterial({
   size: 0.08,
   //0.018
-  map: new THREE.TextureLoader().load(_particle2.default),
+  map: new THREE.TextureLoader().load(_particleMin.default),
   blending: THREE.AdditiveBlending,
   transparent: true,
   opacity: .35
@@ -48219,128 +48219,39 @@ queue.on("complete", function (event) {
 }); ////////// LOAD FILES //////////
 
 queue.on("fileload", handleFileComplete);
-queue.loadFile(_atelier1Default.default);
-queue.loadFile(_atelier2Default.default);
-queue.loadFile(_atelier3Default.default);
-queue.loadFile(_atelier4Default.default);
-queue.loadFile(_atelier5Default.default);
-queue.loadFile(_atelier6Default.default);
-queue.loadFile(_atelier7Default.default);
-queue.loadFile(_atelier8Default.default);
-queue.loadFile(_atelier9Default.default);
-queue.loadFile(_atelier10Default.default);
-queue.loadFile(_atelier11Default.default);
-queue.loadFile(_atelier12Default.default);
-queue.loadFile(_atelier13Default.default);
-queue.loadFile(_atelier14Default.default);
-queue.loadFile(_atelier1Hover.default);
-queue.loadFile(_atelier2Hover.default);
-queue.loadFile(_atelier3Hover.default);
-queue.loadFile(_atelier4Hover.default);
-queue.loadFile(_atelier5Hover.default);
-queue.loadFile(_atelier6Hover.default);
-queue.loadFile(_atelier7Hover.default);
-queue.loadFile(_atelier8Hover.default);
-queue.loadFile(_atelier9Hover.default);
-queue.loadFile(_atelier10Hover.default);
-queue.loadFile(_atelier11Hover.default);
-queue.loadFile(_atelier12Hover.default);
-queue.loadFile(_atelier13Hover.default);
-queue.loadFile(_atelier14Hover.default);
-queue.loadFile(_panneau_15.default);
-queue.loadFile(_panneau_16.default);
-queue.loadFile(_panneau_17.default);
-queue.loadFile(_panneau_18.default);
-queue.loadFile(_panneau_19.default);
-queue.loadFile(_panneau_20.default);
-queue.loadFile(_panneau_21.default);
-queue.loadFile(_panneau_22.default);
-queue.loadFile(_panneau_23.default);
-queue.loadFile(_panneau_24.default);
-queue.loadFile(_panneau_25.default);
-queue.loadFile(_panneau_26.default);
-queue.loadFile(_panneau_27.default);
-queue.loadFile(_panneau_28.default);
-queue.loadFile(_panneau_.default);
-queue.loadFile(_panneau_2.default);
-queue.loadFile(_panneau_3.default);
-queue.loadFile(_panneau_4.default);
-queue.loadFile(_panneau_5.default);
-queue.loadFile(_panneau_6.default);
-queue.loadFile(_panneau_7.default);
-queue.loadFile(_panneau_8.default);
-queue.loadFile(_panneau_9.default);
-queue.loadFile(_panneau_10.default);
-queue.loadFile(_panneau_11.default);
-queue.loadFile(_panneau_12.default);
-queue.loadFile(_panneau_13.default);
-queue.loadFile(_panneau_14.default);
-queue.loadFile(_panneau_29.default);
-queue.loadFile(_panneau_30.default);
-queue.loadFile(_panneau_31.default);
-queue.loadFile(_panneau_32.default);
-queue.loadFile(_panneau_33.default);
-queue.loadFile(_panneau_34.default);
-queue.loadFile(_panneau_35.default);
-queue.loadFile(_panneau_36.default);
-queue.loadFile(_panneau_37.default);
-queue.loadFile(_panneau_38.default);
-queue.loadFile(_panneau_39.default);
-queue.loadFile(_panneau_40.default);
-queue.loadFile(_panneau_41.default);
-queue.loadFile(_panneau_42.default);
-queue.loadFile(_baniere_backstage.default);
-queue.loadFile(_baniere_fabriquetonmmi.default);
-queue.loadFile(_baniere_vrgaming.default);
-queue.loadFile(_baniere_devweb.default);
-queue.loadFile(_baniere_cubemusical.default);
-queue.loadFile(_baniere_iaartgeneratif.default);
-queue.loadFile(_baniere_museemmi.default);
-queue.loadFile(_baniere_suiteadobe.default);
-queue.loadFile(_baniere_visiteguidE.default);
-queue.loadFile(_baniere_webradio.default);
-queue.loadFile(_baniere_plateautv.default);
-queue.loadFile(_baniere_fondvert.default);
-queue.loadFile(_baniere_mapping.default);
-queue.loadFile(_baniere_audiovisuel.default);
-queue.loadFile(_rond_.default);
-queue.loadFile(_rond_2.default);
-queue.loadFile(_rond_3.default);
-queue.loadFile(_rond_4.default);
-queue.loadFile(_rond_5.default);
-queue.loadFile(_rond_6.default);
-queue.loadFile(_rond_7.default);
-queue.loadFile(_rond_8.default);
-queue.loadFile(_rond_9.default);
-queue.loadFile(_rond_10.default);
-queue.loadFile(_rond_11.default);
-queue.loadFile(_rond_12.default);
-queue.loadFile(_rond_13.default);
-queue.loadFile(_rond_14.default);
-queue.loadFile(_displace.default);
-queue.loadFile(_displace2.default);
-queue.loadFile(_particle2.default);
+queue.loadFile(_atelier1DefaultMin.default);
+queue.loadFile(_atelier2DefaultMin.default);
+queue.loadFile(_atelier3DefaultMin.default);
+queue.loadFile(_atelier4DefaultMin.default);
+queue.loadFile(_atelier5DefaultMin.default);
+queue.loadFile(_atelier6DefaultMin.default);
+queue.loadFile(_atelier7DefaultMin.default);
+queue.loadFile(_atelier8DefaultMin.default);
+queue.loadFile(_atelier9DefaultMin.default);
+queue.loadFile(_atelier10DefaultMin.default);
+queue.loadFile(_atelier11DefaultMin.default);
+queue.loadFile(_atelier12DefaultMin.default);
+queue.loadFile(_atelier13DefaultMin.default);
+queue.loadFile(_atelier14DefaultMin.default);
+queue.loadFile(_atelier1HoverMin.default);
+queue.loadFile(_atelier2HoverMin.default);
+queue.loadFile(_atelier3HoverMin.default);
+queue.loadFile(_atelier4HoverMin.default);
+queue.loadFile(_atelier5HoverMin.default);
+queue.loadFile(_atelier6HoverMin.default);
+queue.loadFile(_atelier7HoverMin.default);
+queue.loadFile(_atelier8HoverMin.default);
+queue.loadFile(_atelier9HoverMin.default);
+queue.loadFile(_atelier10HoverMin.default);
+queue.loadFile(_atelier11HoverMin.default);
+queue.loadFile(_atelier12HoverMin.default);
+queue.loadFile(_atelier13HoverMin.default);
+queue.loadFile(_atelier14HoverMin.default);
+queue.loadFile(_displace2Min.default);
+queue.loadFile(_displace5Min.default);
+queue.loadFile(_particleMin.default);
 queue.loadFile(_socle.default);
 queue.loadFile(_logo.default);
-queue.loadFile(_home.default);
-queue.loadFile(_street.default);
-queue.loadFile(_rightDoor.default);
-queue.loadFile(_rightDoor2.default);
-queue.loadFile(_leftDoor.default);
-queue.loadFile(_leftDoor2.default);
-queue.loadFile(_pylone.default);
-queue.loadFile(_grid.default);
-queue.loadFile(_table.default);
-queue.loadFile(_poutre.default);
-queue.loadFile(_leftWall.default);
-queue.loadFile(_rightWall.default);
-queue.loadFile(_field.default);
-queue.loadFile(_sign.default);
-queue.loadFile(_vr.default);
-queue.loadFile(_tabProg.default);
-queue.loadFile(_tv.default);
-queue.loadFile(_cam.default);
-queue.loadFile(_enceinte.default);
 queue.loadFile(_fragmentVertical.default);
 queue.loadFile(_fragment.default);
 queue.loadFile(_vertex.default);
@@ -48351,107 +48262,200 @@ queue.loadFile(_rpz.default);
 queue.loadFile(_soundHover.default);
 queue.loadFile(_soundHoverPlane.default);
 queue.loadFile(_soundOutPlane.default);
-queue.loadFile(_alex.default);
-queue.loadFile(_amandine.default);
-queue.loadFile(_annie.default);
-queue.loadFile(_annita.default);
-queue.loadFile(_aurore.default);
-queue.loadFile(_ben.default);
-queue.loadFile(_carlaA.default);
-queue.loadFile(_carlaS.default);
-queue.loadFile(_clara.default);
-queue.loadFile(_clemo.default);
-queue.loadFile(_eliottis.default);
-queue.loadFile(_emeric.default);
-queue.loadFile(_enzoD.default);
-queue.loadFile(_enzoF.default);
-queue.loadFile(_flo.default);
-queue.loadFile(_gael.default);
-queue.loadFile(_gregoire.default);
-queue.loadFile(_guigui.default);
-queue.loadFile(_helder.default);
-queue.loadFile(_jules.default);
-queue.loadFile(_kikinou.default);
-queue.loadFile(_lena.default);
-queue.loadFile(_lucas.default);
-queue.loadFile(_lucile.default);
-queue.loadFile(_mael.default);
-queue.loadFile(_martin.default);
-queue.loadFile(_matteo.default);
-queue.loadFile(_max.default);
-queue.loadFile(_moyi.default);
-queue.loadFile(_nathan.default);
-queue.loadFile(_nicoFe.default);
-queue.loadFile(_nicoFi.default);
-queue.loadFile(_ossian.default);
-queue.loadFile(_paoline.default);
-queue.loadFile(_quentin.default);
-queue.loadFile(_raito.default);
-queue.loadFile(_raphL.default);
-queue.loadFile(_raphO.default);
-queue.loadFile(_romane.default);
-queue.loadFile(_sam.default);
-queue.loadFile(_soba.default);
-queue.loadFile(_theo.default);
-queue.loadFile(_thoma.default);
-queue.loadFile(_thomas.default);
-queue.loadFile(_tistouille.default);
-queue.loadFile(_tristan.default);
-queue.loadFile(_valPl.default);
-queue.loadFile(_valPr.default);
-queue.loadFile(_yuxuan.default);
-queue.loadFile(_zoe.default);
-queue.loadFile(_alexia.default);
-queue.loadFile(_alexis.default);
-queue.loadFile(_alexL.default);
-queue.loadFile(_alexM.default);
-queue.loadFile(_alexP.default);
-queue.loadFile(_alize.default);
-queue.loadFile(_andreas.default);
-queue.loadFile(_antoine.default);
-queue.loadFile(_antoineM.default);
-queue.loadFile(_arthur.default);
-queue.loadFile(_arthurV.default);
-queue.loadFile(_auriane.default);
-queue.loadFile(_cantin.default);
-queue.loadFile(_celiaA.default);
-queue.loadFile(_celiaV.default);
-queue.loadFile(_coline.default);
-queue.loadFile(_corentin.default);
-queue.loadFile(_eliott.default);
-queue.loadFile(_elodie.default);
-queue.loadFile(_enora.default);
-queue.loadFile(_eva.default);
-queue.loadFile(_ezekel.default);
-queue.loadFile(_florian.default);
-queue.loadFile(_gilles.default);
-queue.loadFile(_guillaume.default);
-queue.loadFile(_hugoL.default);
-queue.loadFile(_hugoT.default);
-queue.loadFile(_jossua.default);
-queue.loadFile(_julesL.default);
-queue.loadFile(_latrique.default);
-queue.loadFile(_lea.default);
-queue.loadFile(_lorie.default);
-queue.loadFile(_lucasF.default);
-queue.loadFile(_maissane.default);
-queue.loadFile(_nina.default);
-queue.loadFile(_pablo.default);
-queue.loadFile(_robinB.default);
-queue.loadFile(_robinP.default);
-queue.loadFile(_romain.default);
-queue.loadFile(_romainB.default);
-queue.loadFile(_sacha.default);
-queue.loadFile(_sarah.default);
-queue.loadFile(_selmene.default);
-queue.loadFile(_solene.default);
-queue.loadFile(_teva.default);
-queue.loadFile(_thibaut.default);
-queue.loadFile(_thomasB.default);
-queue.loadFile(_thomasF.default);
-queue.loadFile(_valM.default);
-queue.loadFile(_vincent.default);
-queue.loadFile(_yvan.default);
+
+if (!window.matchMedia("(max-width: 1024px)").matches) {
+  queue.loadFile(_panneau_1Min2.default);
+  queue.loadFile(_panneau_2Min2.default);
+  queue.loadFile(_panneau_3Min2.default);
+  queue.loadFile(_panneau_4Min2.default);
+  queue.loadFile(_panneau_5Min2.default);
+  queue.loadFile(_panneau_6Min2.default);
+  queue.loadFile(_panneau_7Min2.default);
+  queue.loadFile(_panneau_8Min2.default);
+  queue.loadFile(_panneau_9Min2.default);
+  queue.loadFile(_panneau_10Min2.default);
+  queue.loadFile(_panneau_11Min2.default);
+  queue.loadFile(_panneau_12Min2.default);
+  queue.loadFile(_panneau_13Min2.default);
+  queue.loadFile(_panneau_14Min2.default);
+  queue.loadFile(_panneau_1Min.default);
+  queue.loadFile(_panneau_2Min.default);
+  queue.loadFile(_panneau_3Min.default);
+  queue.loadFile(_panneau_4Min.default);
+  queue.loadFile(_panneau_5Min.default);
+  queue.loadFile(_panneau_6Min.default);
+  queue.loadFile(_panneau_7Min.default);
+  queue.loadFile(_panneau_8Min.default);
+  queue.loadFile(_panneau_9Min.default);
+  queue.loadFile(_panneau_10Min.default);
+  queue.loadFile(_panneau_11Min.default);
+  queue.loadFile(_panneau_12Min.default);
+  queue.loadFile(_panneau_13Min.default);
+  queue.loadFile(_panneau_14Min.default);
+  queue.loadFile(_panneau_1Min3.default);
+  queue.loadFile(_panneau_2Min3.default);
+  queue.loadFile(_panneau_3Min3.default);
+  queue.loadFile(_panneau_4Min3.default);
+  queue.loadFile(_panneau_5Min3.default);
+  queue.loadFile(_panneau_6Min3.default);
+  queue.loadFile(_panneau_7Min3.default);
+  queue.loadFile(_panneau_8Min3.default);
+  queue.loadFile(_panneau_9Min3.default);
+  queue.loadFile(_panneau_10Min3.default);
+  queue.loadFile(_panneau_11Min3.default);
+  queue.loadFile(_panneau_12Min3.default);
+  queue.loadFile(_panneau_13Min3.default);
+  queue.loadFile(_panneau_14Min3.default);
+  queue.loadFile(_banniere_1Min.default);
+  queue.loadFile(_banniere_2Min.default);
+  queue.loadFile(_banniere_3Min.default);
+  queue.loadFile(_banniere_4Min.default);
+  queue.loadFile(_banniere_5Min.default);
+  queue.loadFile(_banniere_6Min.default);
+  queue.loadFile(_banniere_7Min.default);
+  queue.loadFile(_banniere_8Min.default);
+  queue.loadFile(_banniere_9Min.default);
+  queue.loadFile(_banniere_10Min.default);
+  queue.loadFile(_banniere_11Min.default);
+  queue.loadFile(_banniere_12Min.default);
+  queue.loadFile(_banniere_13Min.default);
+  queue.loadFile(_banniere_14Min.default);
+  queue.loadFile(_rond_.default);
+  queue.loadFile(_rond_2.default);
+  queue.loadFile(_rond_3.default);
+  queue.loadFile(_rond_4.default);
+  queue.loadFile(_rond_5.default);
+  queue.loadFile(_rond_6.default);
+  queue.loadFile(_rond_7.default);
+  queue.loadFile(_rond_8.default);
+  queue.loadFile(_rond_9.default);
+  queue.loadFile(_rond_10.default);
+  queue.loadFile(_rond_11.default);
+  queue.loadFile(_rond_12.default);
+  queue.loadFile(_rond_13.default);
+  queue.loadFile(_rond_14.default);
+  queue.loadFile(_home.default);
+  queue.loadFile(_street.default);
+  queue.loadFile(_rightDoor.default);
+  queue.loadFile(_rightDoor2.default);
+  queue.loadFile(_leftDoor.default);
+  queue.loadFile(_leftDoor2.default);
+  queue.loadFile(_pylone.default);
+  queue.loadFile(_grid.default);
+  queue.loadFile(_table.default);
+  queue.loadFile(_poutre.default);
+  queue.loadFile(_leftWall.default);
+  queue.loadFile(_rightWall.default);
+  queue.loadFile(_field.default);
+  queue.loadFile(_sign.default);
+  queue.loadFile(_vr.default);
+  queue.loadFile(_tabProg.default);
+  queue.loadFile(_tv.default);
+  queue.loadFile(_cam.default);
+  queue.loadFile(_enceinte.default);
+  queue.loadFile(_alex.default);
+  queue.loadFile(_amandine.default);
+  queue.loadFile(_annie.default);
+  queue.loadFile(_annita.default);
+  queue.loadFile(_aurore.default);
+  queue.loadFile(_ben.default);
+  queue.loadFile(_carlaA.default);
+  queue.loadFile(_carlaS.default);
+  queue.loadFile(_clara.default);
+  queue.loadFile(_clemo.default);
+  queue.loadFile(_eliottis.default);
+  queue.loadFile(_emeric.default);
+  queue.loadFile(_enzoD.default);
+  queue.loadFile(_enzoF.default);
+  queue.loadFile(_flo.default);
+  queue.loadFile(_gael.default);
+  queue.loadFile(_gregoire.default);
+  queue.loadFile(_guigui.default);
+  queue.loadFile(_helder.default);
+  queue.loadFile(_jules.default);
+  queue.loadFile(_kikinou.default);
+  queue.loadFile(_lena.default);
+  queue.loadFile(_lucas.default);
+  queue.loadFile(_lucile.default);
+  queue.loadFile(_mael.default);
+  queue.loadFile(_martin.default);
+  queue.loadFile(_matteo.default);
+  queue.loadFile(_max.default);
+  queue.loadFile(_moyi.default);
+  queue.loadFile(_nathan.default);
+  queue.loadFile(_nicoFe.default);
+  queue.loadFile(_nicoFi.default);
+  queue.loadFile(_ossian.default);
+  queue.loadFile(_paoline.default);
+  queue.loadFile(_quentin.default);
+  queue.loadFile(_raito.default);
+  queue.loadFile(_raphL.default);
+  queue.loadFile(_raphO.default);
+  queue.loadFile(_romane.default);
+  queue.loadFile(_sam.default);
+  queue.loadFile(_soba.default);
+  queue.loadFile(_theo.default);
+  queue.loadFile(_thoma.default);
+  queue.loadFile(_thomas.default);
+  queue.loadFile(_tistouille.default);
+  queue.loadFile(_tristan.default);
+  queue.loadFile(_valPl.default);
+  queue.loadFile(_valPr.default);
+  queue.loadFile(_yuxuan.default);
+  queue.loadFile(_zoe.default);
+  queue.loadFile(_alexia.default);
+  queue.loadFile(_alexis.default);
+  queue.loadFile(_alexL.default);
+  queue.loadFile(_alexM.default);
+  queue.loadFile(_alexP.default);
+  queue.loadFile(_alize.default);
+  queue.loadFile(_andreas.default);
+  queue.loadFile(_antoine.default);
+  queue.loadFile(_antoineM.default);
+  queue.loadFile(_arthur.default);
+  queue.loadFile(_arthurV.default);
+  queue.loadFile(_auriane.default);
+  queue.loadFile(_cantin.default);
+  queue.loadFile(_celiaA.default);
+  queue.loadFile(_celiaV.default);
+  queue.loadFile(_coline.default);
+  queue.loadFile(_corentin.default);
+  queue.loadFile(_eliott.default);
+  queue.loadFile(_elodie.default);
+  queue.loadFile(_enora.default);
+  queue.loadFile(_eva.default);
+  queue.loadFile(_ezekel.default);
+  queue.loadFile(_florian.default);
+  queue.loadFile(_gilles.default);
+  queue.loadFile(_guillaume.default);
+  queue.loadFile(_hugoL.default);
+  queue.loadFile(_hugoT.default);
+  queue.loadFile(_jossua.default);
+  queue.loadFile(_julesL.default);
+  queue.loadFile(_latrique.default);
+  queue.loadFile(_lea.default);
+  queue.loadFile(_lorie.default);
+  queue.loadFile(_lucasF.default);
+  queue.loadFile(_maissane.default);
+  queue.loadFile(_nina.default);
+  queue.loadFile(_pablo.default);
+  queue.loadFile(_robinB.default);
+  queue.loadFile(_robinP.default);
+  queue.loadFile(_romain.default);
+  queue.loadFile(_romainB.default);
+  queue.loadFile(_sacha.default);
+  queue.loadFile(_sarah.default);
+  queue.loadFile(_selmene.default);
+  queue.loadFile(_solene.default);
+  queue.loadFile(_teva.default);
+  queue.loadFile(_thibaut.default);
+  queue.loadFile(_thomasB.default);
+  queue.loadFile(_thomasF.default);
+  queue.loadFile(_valM.default);
+  queue.loadFile(_vincent.default);
+  queue.loadFile(_yvan.default);
+}
+
 queue.loadFile(_GLTFLoader.GLTFLoader);
 queue.loadFile(THREE);
 queue.loadFile(_three2.Interaction);
@@ -56540,7 +56544,7 @@ var render = function render() {
 };
 
 render();
-},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","preload-js":"node_modules/preload-js/index.js","howler":"node_modules/howler/dist/howler.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace2.png":"assets/img/displaces/displace2.png","../assets/img/displaces/displace4.png":"assets/img/displaces/displace4.png","../assets/img/ateliers/atelier1Default.png":"assets/img/ateliers/atelier1Default.png","../assets/img/ateliers/atelier2Default.png":"assets/img/ateliers/atelier2Default.png","../assets/img/ateliers/atelier3Default.png":"assets/img/ateliers/atelier3Default.png","../assets/img/ateliers/atelier4Default.png":"assets/img/ateliers/atelier4Default.png","../assets/img/ateliers/atelier5Default.png":"assets/img/ateliers/atelier5Default.png","../assets/img/ateliers/atelier6Default.png":"assets/img/ateliers/atelier6Default.png","../assets/img/ateliers/atelier7Default.png":"assets/img/ateliers/atelier7Default.png","../assets/img/ateliers/atelier8Default.png":"assets/img/ateliers/atelier8Default.png","../assets/img/ateliers/atelier9Default.png":"assets/img/ateliers/atelier9Default.png","../assets/img/ateliers/atelier10Default.png":"assets/img/ateliers/atelier10Default.png","../assets/img/ateliers/atelier11Default.png":"assets/img/ateliers/atelier11Default.png","../assets/img/ateliers/atelier12Default.png":"assets/img/ateliers/atelier12Default.png","../assets/img/ateliers/atelier13Default.png":"assets/img/ateliers/atelier13Default.png","../assets/img/ateliers/atelier14Default.png":"assets/img/ateliers/atelier14Default.png","../assets/img/ateliers/atelier1Hover.png":"assets/img/ateliers/atelier1Hover.png","../assets/img/ateliers/atelier2Hover.png":"assets/img/ateliers/atelier2Hover.png","../assets/img/ateliers/atelier3Hover.png":"assets/img/ateliers/atelier3Hover.png","../assets/img/ateliers/atelier4Hover.png":"assets/img/ateliers/atelier4Hover.png","../assets/img/ateliers/atelier5Hover.png":"assets/img/ateliers/atelier5Hover.png","../assets/img/ateliers/atelier6Hover.png":"assets/img/ateliers/atelier6Hover.png","../assets/img/ateliers/atelier7Hover.png":"assets/img/ateliers/atelier7Hover.png","../assets/img/ateliers/atelier8Hover.png":"assets/img/ateliers/atelier8Hover.png","../assets/img/ateliers/atelier9Hover.png":"assets/img/ateliers/atelier9Hover.png","../assets/img/ateliers/atelier10Hover.png":"assets/img/ateliers/atelier10Hover.png","../assets/img/ateliers/atelier11Hover.png":"assets/img/ateliers/atelier11Hover.png","../assets/img/ateliers/atelier12Hover.png":"assets/img/ateliers/atelier12Hover.png","../assets/img/ateliers/atelier13Hover.png":"assets/img/ateliers/atelier13Hover.png","../assets/img/ateliers/atelier14Hover.png":"assets/img/ateliers/atelier14Hover.png","../assets/img/ruelle/banniere/baniere_backstage.jpg":"assets/img/ruelle/banniere/baniere_backstage.jpg","../assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg":"assets/img/ruelle/banniere/baniere_fabriquetonmmi.jpg","../assets/img/ruelle/banniere/baniere_vrgaming.jpg":"assets/img/ruelle/banniere/baniere_vrgaming.jpg","../assets/img/ruelle/banniere/baniere_devweb.jpg":"assets/img/ruelle/banniere/baniere_devweb.jpg","../assets/img/ruelle/banniere/baniere_cubemusical.jpg":"assets/img/ruelle/banniere/baniere_cubemusical.jpg","../assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg":"assets/img/ruelle/banniere/baniere_iaartgeneratif.jpg","../assets/img/ruelle/banniere/baniere_museemmi.jpg":"assets/img/ruelle/banniere/baniere_museemmi.jpg","../assets/img/ruelle/banniere/baniere_suiteadobe.jpg":"assets/img/ruelle/banniere/baniere_suiteadobe.jpg","../assets/img/ruelle/banniere/baniere_visiteguidée.jpg":"assets/img/ruelle/banniere/baniere_visiteguidée.jpg","../assets/img/ruelle/banniere/baniere_webradio.jpg":"assets/img/ruelle/banniere/baniere_webradio.jpg","../assets/img/ruelle/banniere/baniere_plateautv.jpg":"assets/img/ruelle/banniere/baniere_plateautv.jpg","../assets/img/ruelle/banniere/baniere_fondvert.jpg":"assets/img/ruelle/banniere/baniere_fondvert.jpg","../assets/img/ruelle/banniere/baniere_mapping.jpg":"assets/img/ruelle/banniere/baniere_mapping.jpg","../assets/img/ruelle/banniere/baniere_audiovisuel.jpg":"assets/img/ruelle/banniere/baniere_audiovisuel.jpg","../assets/img/ruelle/numero/rond_1.jpg":"assets/img/ruelle/numero/rond_1.jpg","../assets/img/ruelle/numero/rond_2.jpg":"assets/img/ruelle/numero/rond_2.jpg","../assets/img/ruelle/numero/rond_3.jpg":"assets/img/ruelle/numero/rond_3.jpg","../assets/img/ruelle/numero/rond_4.jpg":"assets/img/ruelle/numero/rond_4.jpg","../assets/img/ruelle/numero/rond_5.jpg":"assets/img/ruelle/numero/rond_5.jpg","../assets/img/ruelle/numero/rond_6.jpg":"assets/img/ruelle/numero/rond_6.jpg","../assets/img/ruelle/numero/rond_7.jpg":"assets/img/ruelle/numero/rond_7.jpg","../assets/img/ruelle/numero/rond_8.jpg":"assets/img/ruelle/numero/rond_8.jpg","../assets/img/ruelle/numero/rond_9.jpg":"assets/img/ruelle/numero/rond_9.jpg","../assets/img/ruelle/numero/rond_10.jpg":"assets/img/ruelle/numero/rond_10.jpg","../assets/img/ruelle/numero/rond_11.jpg":"assets/img/ruelle/numero/rond_11.jpg","../assets/img/ruelle/numero/rond_12.jpg":"assets/img/ruelle/numero/rond_12.jpg","../assets/img/ruelle/numero/rond_13.jpg":"assets/img/ruelle/numero/rond_13.jpg","../assets/img/ruelle/numero/rond_14.jpg":"assets/img/ruelle/numero/rond_14.jpg","../assets/img/ruelle/panneaux/panneau_1.jpg":"assets/img/ruelle/panneaux/panneau_1.jpg","../assets/img/ruelle/panneaux/panneau_2.jpg":"assets/img/ruelle/panneaux/panneau_2.jpg","../assets/img/ruelle/panneaux/panneau_3.jpg":"assets/img/ruelle/panneaux/panneau_3.jpg","../assets/img/ruelle/panneaux/panneau_4.jpg":"assets/img/ruelle/panneaux/panneau_4.jpg","../assets/img/ruelle/panneaux/panneau_5.jpg":"assets/img/ruelle/panneaux/panneau_5.jpg","../assets/img/ruelle/panneaux/panneau_6.jpg":"assets/img/ruelle/panneaux/panneau_6.jpg","../assets/img/ruelle/panneaux/panneau_7.jpg":"assets/img/ruelle/panneaux/panneau_7.jpg","../assets/img/ruelle/panneaux/panneau_8.jpg":"assets/img/ruelle/panneaux/panneau_8.jpg","../assets/img/ruelle/panneaux/panneau_9.jpg":"assets/img/ruelle/panneaux/panneau_9.jpg","../assets/img/ruelle/panneaux/panneau_10.jpg":"assets/img/ruelle/panneaux/panneau_10.jpg","../assets/img/ruelle/panneaux/panneau_11.jpg":"assets/img/ruelle/panneaux/panneau_11.jpg","../assets/img/ruelle/panneaux/panneau_12.jpg":"assets/img/ruelle/panneaux/panneau_12.jpg","../assets/img/ruelle/panneaux/panneau_13.jpg":"assets/img/ruelle/panneaux/panneau_13.jpg","../assets/img/ruelle/panneaux/panneau_14.jpg":"assets/img/ruelle/panneaux/panneau_14.jpg","../assets/img/panneau/panneau_1.jpg":"assets/img/panneau/panneau_1.jpg","../assets/img/panneau/panneau_2.jpg":"assets/img/panneau/panneau_2.jpg","../assets/img/panneau/panneau_3.jpg":"assets/img/panneau/panneau_3.jpg","../assets/img/panneau/panneau_4.jpg":"assets/img/panneau/panneau_4.jpg","../assets/img/panneau/panneau_5.jpg":"assets/img/panneau/panneau_5.jpg","../assets/img/panneau/panneau_6.jpg":"assets/img/panneau/panneau_6.jpg","../assets/img/panneau/panneau_7.jpg":"assets/img/panneau/panneau_7.jpg","../assets/img/panneau/panneau_8.jpg":"assets/img/panneau/panneau_8.jpg","../assets/img/panneau/panneau_9.jpg":"assets/img/panneau/panneau_9.jpg","../assets/img/panneau/panneau_10.jpg":"assets/img/panneau/panneau_10.jpg","../assets/img/panneau/panneau_11.jpg":"assets/img/panneau/panneau_11.jpg","../assets/img/panneau/panneau_12.jpg":"assets/img/panneau/panneau_12.jpg","../assets/img/panneau/panneau_13.jpg":"assets/img/panneau/panneau_13.jpg","../assets/img/panneau/panneau_14.jpg":"assets/img/panneau/panneau_14.jpg","../assets/img/ruelle/back_panneaux/panneau_1.jpg":"assets/img/ruelle/back_panneaux/panneau_1.jpg","../assets/img/ruelle/back_panneaux/panneau_2.jpg":"assets/img/ruelle/back_panneaux/panneau_2.jpg","../assets/img/ruelle/back_panneaux/panneau_3.jpg":"assets/img/ruelle/back_panneaux/panneau_3.jpg","../assets/img/ruelle/back_panneaux/panneau_4.jpg":"assets/img/ruelle/back_panneaux/panneau_4.jpg","../assets/img/ruelle/back_panneaux/panneau_5.jpg":"assets/img/ruelle/back_panneaux/panneau_5.jpg","../assets/img/ruelle/back_panneaux/panneau_6.jpg":"assets/img/ruelle/back_panneaux/panneau_6.jpg","../assets/img/ruelle/back_panneaux/panneau_7.jpg":"assets/img/ruelle/back_panneaux/panneau_7.jpg","../assets/img/ruelle/back_panneaux/panneau_8.jpg":"assets/img/ruelle/back_panneaux/panneau_8.jpg","../assets/img/ruelle/back_panneaux/panneau_9.jpg":"assets/img/ruelle/back_panneaux/panneau_9.jpg","../assets/img/ruelle/back_panneaux/panneau_10.jpg":"assets/img/ruelle/back_panneaux/panneau_10.jpg","../assets/img/ruelle/back_panneaux/panneau_11.jpg":"assets/img/ruelle/back_panneaux/panneau_11.jpg","../assets/img/ruelle/back_panneaux/panneau_12.jpg":"assets/img/ruelle/back_panneaux/panneau_12.jpg","../assets/img/ruelle/back_panneaux/panneau_13.jpg":"assets/img/ruelle/back_panneaux/panneau_13.jpg","../assets/img/ruelle/back_panneaux/panneau_14.jpg":"assets/img/ruelle/back_panneaux/panneau_14.jpg","../assets/img/ruelle/idbannire.jpg":"assets/img/ruelle/idbannire.jpg","../assets/img/ruelle/credits.jpg":"assets/img/ruelle/credits.jpg","../assets/img/particle.png":"assets/img/particle.png","../assets/img/trombi/2A/alex.jpg":"assets/img/trombi/2A/alex.jpg","../assets/img/trombi/2A/amandine.jpg":"assets/img/trombi/2A/amandine.jpg","../assets/img/trombi/2A/annie.jpg":"assets/img/trombi/2A/annie.jpg","../assets/img/trombi/2A/annita.jpg":"assets/img/trombi/2A/annita.jpg","../assets/img/trombi/2A/aurore.jpg":"assets/img/trombi/2A/aurore.jpg","../assets/img/trombi/2A/ben.jpg":"assets/img/trombi/2A/ben.jpg","../assets/img/trombi/2A/carlaA.jpg":"assets/img/trombi/2A/carlaA.jpg","../assets/img/trombi/2A/carlaS.jpg":"assets/img/trombi/2A/carlaS.jpg","../assets/img/trombi/2A/clara.jpg":"assets/img/trombi/2A/clara.jpg","../assets/img/trombi/2A/clemo.jpg":"assets/img/trombi/2A/clemo.jpg","../assets/img/trombi/2A/eliottis.jpg":"assets/img/trombi/2A/eliottis.jpg","../assets/img/trombi/2A/emeric.jpg":"assets/img/trombi/2A/emeric.jpg","../assets/img/trombi/2A/enzoD.jpg":"assets/img/trombi/2A/enzoD.jpg","../assets/img/trombi/2A/enzoF.jpg":"assets/img/trombi/2A/enzoF.jpg","../assets/img/trombi/2A/flo.jpg":"assets/img/trombi/2A/flo.jpg","../assets/img/trombi/2A/gael.jpg":"assets/img/trombi/2A/gael.jpg","../assets/img/trombi/2A/gregoire.jpg":"assets/img/trombi/2A/gregoire.jpg","../assets/img/trombi/2A/guigui.jpg":"assets/img/trombi/2A/guigui.jpg","../assets/img/trombi/2A/helder.jpg":"assets/img/trombi/2A/helder.jpg","../assets/img/trombi/2A/jules.jpg":"assets/img/trombi/2A/jules.jpg","../assets/img/trombi/2A/kikinou.jpg":"assets/img/trombi/2A/kikinou.jpg","../assets/img/trombi/2A/lena.jpg":"assets/img/trombi/2A/lena.jpg","../assets/img/trombi/2A/lucas.jpg":"assets/img/trombi/2A/lucas.jpg","../assets/img/trombi/2A/lucile.jpg":"assets/img/trombi/2A/lucile.jpg","../assets/img/trombi/2A/mael.jpg":"assets/img/trombi/2A/mael.jpg","../assets/img/trombi/2A/martin.jpg":"assets/img/trombi/2A/martin.jpg","../assets/img/trombi/2A/matteo.jpg":"assets/img/trombi/2A/matteo.jpg","../assets/img/trombi/2A/max.jpg":"assets/img/trombi/2A/max.jpg","../assets/img/trombi/2A/moyi.jpg":"assets/img/trombi/2A/moyi.jpg","../assets/img/trombi/2A/nathan.jpg":"assets/img/trombi/2A/nathan.jpg","../assets/img/trombi/2A/nicoFe.jpg":"assets/img/trombi/2A/nicoFe.jpg","../assets/img/trombi/2A/nicoFi.jpg":"assets/img/trombi/2A/nicoFi.jpg","../assets/img/trombi/2A/ossian.jpg":"assets/img/trombi/2A/ossian.jpg","../assets/img/trombi/2A/paoline.jpg":"assets/img/trombi/2A/paoline.jpg","../assets/img/trombi/2A/quentin.jpg":"assets/img/trombi/2A/quentin.jpg","../assets/img/trombi/2A/raito.jpg":"assets/img/trombi/2A/raito.jpg","../assets/img/trombi/2A/raphL.jpg":"assets/img/trombi/2A/raphL.jpg","../assets/img/trombi/2A/raphO.jpg":"assets/img/trombi/2A/raphO.jpg","../assets/img/trombi/2A/romane.jpg":"assets/img/trombi/2A/romane.jpg","../assets/img/trombi/2A/sam.jpg":"assets/img/trombi/2A/sam.jpg","../assets/img/trombi/2A/soba.jpg":"assets/img/trombi/2A/soba.jpg","../assets/img/trombi/2A/theo.jpg":"assets/img/trombi/2A/theo.jpg","../assets/img/trombi/2A/thoma.jpg":"assets/img/trombi/2A/thoma.jpg","../assets/img/trombi/2A/thomas.jpg":"assets/img/trombi/2A/thomas.jpg","../assets/img/trombi/2A/tistouille.jpg":"assets/img/trombi/2A/tistouille.jpg","../assets/img/trombi/2A/tristan.jpg":"assets/img/trombi/2A/tristan.jpg","../assets/img/trombi/2A/valPl.jpg":"assets/img/trombi/2A/valPl.jpg","../assets/img/trombi/2A/valPr.jpg":"assets/img/trombi/2A/valPr.jpg","../assets/img/trombi/2A/yuxuan.jpg":"assets/img/trombi/2A/yuxuan.jpg","../assets/img/trombi/2A/zoe.jpg":"assets/img/trombi/2A/zoe.jpg","../assets/img/trombi/1A/alexia.jpg":"assets/img/trombi/1A/alexia.jpg","../assets/img/trombi/1A/alexis.jpg":"assets/img/trombi/1A/alexis.jpg","../assets/img/trombi/1A/alexL.jpg":"assets/img/trombi/1A/alexL.jpg","../assets/img/trombi/1A/alexM.jpg":"assets/img/trombi/1A/alexM.jpg","../assets/img/trombi/1A/alexP.jpg":"assets/img/trombi/1A/alexP.jpg","../assets/img/trombi/1A/alize.jpg":"assets/img/trombi/1A/alize.jpg","../assets/img/trombi/1A/andreas.jpg":"assets/img/trombi/1A/andreas.jpg","../assets/img/trombi/1A/antoine.jpg":"assets/img/trombi/1A/antoine.jpg","../assets/img/trombi/1A/antoineM.jpg":"assets/img/trombi/1A/antoineM.jpg","../assets/img/trombi/1A/arthur.jpg":"assets/img/trombi/1A/arthur.jpg","../assets/img/trombi/1A/arthurV.jpg":"assets/img/trombi/1A/arthurV.jpg","../assets/img/trombi/1A/auriane.jpg":"assets/img/trombi/1A/auriane.jpg","../assets/img/trombi/1A/cantin.jpg":"assets/img/trombi/1A/cantin.jpg","../assets/img/trombi/1A/celiaA.jpg":"assets/img/trombi/1A/celiaA.jpg","../assets/img/trombi/1A/celiaV.jpg":"assets/img/trombi/1A/celiaV.jpg","../assets/img/trombi/1A/coline.jpg":"assets/img/trombi/1A/coline.jpg","../assets/img/trombi/1A/corentin.jpg":"assets/img/trombi/1A/corentin.jpg","../assets/img/trombi/1A/eliott.jpg":"assets/img/trombi/1A/eliott.jpg","../assets/img/trombi/1A/elodie.jpg":"assets/img/trombi/1A/elodie.jpg","../assets/img/trombi/1A/enora.jpg":"assets/img/trombi/1A/enora.jpg","../assets/img/trombi/1A/eva.jpg":"assets/img/trombi/1A/eva.jpg","../assets/img/trombi/1A/ezekel.jpg":"assets/img/trombi/1A/ezekel.jpg","../assets/img/trombi/1A/florian.jpg":"assets/img/trombi/1A/florian.jpg","../assets/img/trombi/1A/gilles.jpg":"assets/img/trombi/1A/gilles.jpg","../assets/img/trombi/1A/guillaume.jpg":"assets/img/trombi/1A/guillaume.jpg","../assets/img/trombi/1A/hugoL.jpg":"assets/img/trombi/1A/hugoL.jpg","../assets/img/trombi/1A/hugoT.jpg":"assets/img/trombi/1A/hugoT.jpg","../assets/img/trombi/1A/jossua.jpg":"assets/img/trombi/1A/jossua.jpg","../assets/img/trombi/1A/julesL.jpg":"assets/img/trombi/1A/julesL.jpg","../assets/img/trombi/1A/latrique.jpg":"assets/img/trombi/1A/latrique.jpg","../assets/img/trombi/1A/lea.jpg":"assets/img/trombi/1A/lea.jpg","../assets/img/trombi/1A/lorie.jpg":"assets/img/trombi/1A/lorie.jpg","../assets/img/trombi/1A/lucasF.jpg":"assets/img/trombi/1A/lucasF.jpg","../assets/img/trombi/1A/maissane.jpg":"assets/img/trombi/1A/maissane.jpg","../assets/img/trombi/1A/nina.jpg":"assets/img/trombi/1A/nina.jpg","../assets/img/trombi/1A/pablo.jpg":"assets/img/trombi/1A/pablo.jpg","../assets/img/trombi/1A/robinB.jpg":"assets/img/trombi/1A/robinB.jpg","../assets/img/trombi/1A/robinP.jpg":"assets/img/trombi/1A/robinP.jpg","../assets/img/trombi/1A/romain.jpg":"assets/img/trombi/1A/romain.jpg","../assets/img/trombi/1A/romainB.jpg":"assets/img/trombi/1A/romainB.jpg","../assets/img/trombi/1A/sacha.jpg":"assets/img/trombi/1A/sacha.jpg","../assets/img/trombi/1A/sarah.jpg":"assets/img/trombi/1A/sarah.jpg","../assets/img/trombi/1A/selmene.jpg":"assets/img/trombi/1A/selmene.jpg","../assets/img/trombi/1A/solene.jpg":"assets/img/trombi/1A/solene.jpg","../assets/img/trombi/1A/teva.jpg":"assets/img/trombi/1A/teva.jpg","../assets/img/trombi/1A/thibaut.jpg":"assets/img/trombi/1A/thibaut.jpg","../assets/img/trombi/1A/thomasB.jpg":"assets/img/trombi/1A/thomasB.jpg","../assets/img/trombi/1A/thomasF.jpg":"assets/img/trombi/1A/thomasF.jpg","../assets/img/trombi/1A/valM.jpg":"assets/img/trombi/1A/valM.jpg","../assets/img/trombi/1A/vincent.jpg":"assets/img/trombi/1A/vincent.jpg","../assets/img/trombi/1A/yvan.jpg":"assets/img/trombi/1A/yvan.jpg","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf","../assets/sound/rpz.mp3":"assets/sound/rpz.mp3","../assets/sound/bg.mp3":"assets/sound/bg.mp3","../assets/sound/bgLoop.mp3":"assets/sound/bgLoop.mp3","../assets/sound/soundHoverPlane.mp3":"assets/sound/soundHoverPlane.mp3","../assets/sound/soundOutPlane.mp3":"assets/sound/soundOutPlane.mp3","../assets/sound/soundHover.mp3":"assets/sound/soundHover.mp3"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","three.interaction":"node_modules/three.interaction/build/three.interaction.module.js","touchsweep":"node_modules/touchsweep/dist/touchsweep.js","preload-js":"node_modules/preload-js/index.js","howler":"node_modules/howler/dist/howler.js","./libs/glsl/vertex.glsl":"js/libs/glsl/vertex.glsl","./libs/glsl/fragment.glsl":"js/libs/glsl/fragment.glsl","./libs/glsl/fragmentVertical.glsl":"js/libs/glsl/fragmentVertical.glsl","../assets/img/displaces/displace2-min.jpg":"assets/img/displaces/displace2-min.jpg","../assets/img/displaces/displace5-min.jpg":"assets/img/displaces/displace5-min.jpg","../assets/img/ateliers/atelier1Default-min.png":"assets/img/ateliers/atelier1Default-min.png","../assets/img/ateliers/atelier2Default-min.png":"assets/img/ateliers/atelier2Default-min.png","../assets/img/ateliers/atelier3Default-min.png":"assets/img/ateliers/atelier3Default-min.png","../assets/img/ateliers/atelier4Default-min.png":"assets/img/ateliers/atelier4Default-min.png","../assets/img/ateliers/atelier5Default-min.png":"assets/img/ateliers/atelier5Default-min.png","../assets/img/ateliers/atelier6Default-min.png":"assets/img/ateliers/atelier6Default-min.png","../assets/img/ateliers/atelier7Default-min.png":"assets/img/ateliers/atelier7Default-min.png","../assets/img/ateliers/atelier8Default-min.png":"assets/img/ateliers/atelier8Default-min.png","../assets/img/ateliers/atelier9Default-min.png":"assets/img/ateliers/atelier9Default-min.png","../assets/img/ateliers/atelier10Default-min.png":"assets/img/ateliers/atelier10Default-min.png","../assets/img/ateliers/atelier11Default-min.png":"assets/img/ateliers/atelier11Default-min.png","../assets/img/ateliers/atelier12Default-min.png":"assets/img/ateliers/atelier12Default-min.png","../assets/img/ateliers/atelier13Default-min.png":"assets/img/ateliers/atelier13Default-min.png","../assets/img/ateliers/atelier14Default-min.png":"assets/img/ateliers/atelier14Default-min.png","../assets/img/ateliers/atelier1Hover-min.jpg":"assets/img/ateliers/atelier1Hover-min.jpg","../assets/img/ateliers/atelier2Hover-min.jpg":"assets/img/ateliers/atelier2Hover-min.jpg","../assets/img/ateliers/atelier3Hover-min.jpg":"assets/img/ateliers/atelier3Hover-min.jpg","../assets/img/ateliers/atelier4Hover-min.jpg":"assets/img/ateliers/atelier4Hover-min.jpg","../assets/img/ateliers/atelier5Hover-min.jpg":"assets/img/ateliers/atelier5Hover-min.jpg","../assets/img/ateliers/atelier6Hover-min.jpg":"assets/img/ateliers/atelier6Hover-min.jpg","../assets/img/ateliers/atelier7Hover-min.jpg":"assets/img/ateliers/atelier7Hover-min.jpg","../assets/img/ateliers/atelier8Hover-min.jpg":"assets/img/ateliers/atelier8Hover-min.jpg","../assets/img/ateliers/atelier9Hover-min.jpg":"assets/img/ateliers/atelier9Hover-min.jpg","../assets/img/ateliers/atelier10Hover-min.jpg":"assets/img/ateliers/atelier10Hover-min.jpg","../assets/img/ateliers/atelier11Hover-min.jpg":"assets/img/ateliers/atelier11Hover-min.jpg","../assets/img/ateliers/atelier12Hover-min.jpg":"assets/img/ateliers/atelier12Hover-min.jpg","../assets/img/ateliers/atelier13Hover-min.jpg":"assets/img/ateliers/atelier13Hover-min.jpg","../assets/img/ateliers/atelier14Hover-min.jpg":"assets/img/ateliers/atelier14Hover-min.jpg","../assets/img/ruelle/banniere/banniere_1-min.jpg":"assets/img/ruelle/banniere/banniere_1-min.jpg","../assets/img/ruelle/banniere/banniere_2-min.jpg":"assets/img/ruelle/banniere/banniere_2-min.jpg","../assets/img/ruelle/banniere/banniere_3-min.jpg":"assets/img/ruelle/banniere/banniere_3-min.jpg","../assets/img/ruelle/banniere/banniere_4-min.jpg":"assets/img/ruelle/banniere/banniere_4-min.jpg","../assets/img/ruelle/banniere/banniere_5-min.jpg":"assets/img/ruelle/banniere/banniere_5-min.jpg","../assets/img/ruelle/banniere/banniere_6-min.jpg":"assets/img/ruelle/banniere/banniere_6-min.jpg","../assets/img/ruelle/banniere/banniere_7-min.jpg":"assets/img/ruelle/banniere/banniere_7-min.jpg","../assets/img/ruelle/banniere/banniere_8-min.jpg":"assets/img/ruelle/banniere/banniere_8-min.jpg","../assets/img/ruelle/banniere/banniere_9-min.jpg":"assets/img/ruelle/banniere/banniere_9-min.jpg","../assets/img/ruelle/banniere/banniere_10-min.jpg":"assets/img/ruelle/banniere/banniere_10-min.jpg","../assets/img/ruelle/banniere/banniere_11-min.jpg":"assets/img/ruelle/banniere/banniere_11-min.jpg","../assets/img/ruelle/banniere/banniere_12-min.jpg":"assets/img/ruelle/banniere/banniere_12-min.jpg","../assets/img/ruelle/banniere/banniere_13-min.jpg":"assets/img/ruelle/banniere/banniere_13-min.jpg","../assets/img/ruelle/banniere/banniere_14-min.jpg":"assets/img/ruelle/banniere/banniere_14-min.jpg","../assets/img/ruelle/numero/rond_1.jpg":"assets/img/ruelle/numero/rond_1.jpg","../assets/img/ruelle/numero/rond_2.jpg":"assets/img/ruelle/numero/rond_2.jpg","../assets/img/ruelle/numero/rond_3.jpg":"assets/img/ruelle/numero/rond_3.jpg","../assets/img/ruelle/numero/rond_4.jpg":"assets/img/ruelle/numero/rond_4.jpg","../assets/img/ruelle/numero/rond_5.jpg":"assets/img/ruelle/numero/rond_5.jpg","../assets/img/ruelle/numero/rond_6.jpg":"assets/img/ruelle/numero/rond_6.jpg","../assets/img/ruelle/numero/rond_7.jpg":"assets/img/ruelle/numero/rond_7.jpg","../assets/img/ruelle/numero/rond_8.jpg":"assets/img/ruelle/numero/rond_8.jpg","../assets/img/ruelle/numero/rond_9.jpg":"assets/img/ruelle/numero/rond_9.jpg","../assets/img/ruelle/numero/rond_10.jpg":"assets/img/ruelle/numero/rond_10.jpg","../assets/img/ruelle/numero/rond_11.jpg":"assets/img/ruelle/numero/rond_11.jpg","../assets/img/ruelle/numero/rond_12.jpg":"assets/img/ruelle/numero/rond_12.jpg","../assets/img/ruelle/numero/rond_13.jpg":"assets/img/ruelle/numero/rond_13.jpg","../assets/img/ruelle/numero/rond_14.jpg":"assets/img/ruelle/numero/rond_14.jpg","../assets/img/ruelle/panneaux/panneau_1-min.jpg":"assets/img/ruelle/panneaux/panneau_1-min.jpg","../assets/img/ruelle/panneaux/panneau_2-min.jpg":"assets/img/ruelle/panneaux/panneau_2-min.jpg","../assets/img/ruelle/panneaux/panneau_3-min.jpg":"assets/img/ruelle/panneaux/panneau_3-min.jpg","../assets/img/ruelle/panneaux/panneau_4-min.jpg":"assets/img/ruelle/panneaux/panneau_4-min.jpg","../assets/img/ruelle/panneaux/panneau_5-min.jpg":"assets/img/ruelle/panneaux/panneau_5-min.jpg","../assets/img/ruelle/panneaux/panneau_6-min.jpg":"assets/img/ruelle/panneaux/panneau_6-min.jpg","../assets/img/ruelle/panneaux/panneau_7-min.jpg":"assets/img/ruelle/panneaux/panneau_7-min.jpg","../assets/img/ruelle/panneaux/panneau_8-min.jpg":"assets/img/ruelle/panneaux/panneau_8-min.jpg","../assets/img/ruelle/panneaux/panneau_9-min.jpg":"assets/img/ruelle/panneaux/panneau_9-min.jpg","../assets/img/ruelle/panneaux/panneau_10-min.jpg":"assets/img/ruelle/panneaux/panneau_10-min.jpg","../assets/img/ruelle/panneaux/panneau_11-min.jpg":"assets/img/ruelle/panneaux/panneau_11-min.jpg","../assets/img/ruelle/panneaux/panneau_12-min.jpg":"assets/img/ruelle/panneaux/panneau_12-min.jpg","../assets/img/ruelle/panneaux/panneau_13-min.jpg":"assets/img/ruelle/panneaux/panneau_13-min.jpg","../assets/img/ruelle/panneaux/panneau_14-min.jpg":"assets/img/ruelle/panneaux/panneau_14-min.jpg","../assets/img/panneau/panneau_1-min.jpg":"assets/img/panneau/panneau_1-min.jpg","../assets/img/panneau/panneau_2-min.jpg":"assets/img/panneau/panneau_2-min.jpg","../assets/img/panneau/panneau_3-min.jpg":"assets/img/panneau/panneau_3-min.jpg","../assets/img/panneau/panneau_4-min.jpg":"assets/img/panneau/panneau_4-min.jpg","../assets/img/panneau/panneau_5-min.jpg":"assets/img/panneau/panneau_5-min.jpg","../assets/img/panneau/panneau_6-min.jpg":"assets/img/panneau/panneau_6-min.jpg","../assets/img/panneau/panneau_7-min.jpg":"assets/img/panneau/panneau_7-min.jpg","../assets/img/panneau/panneau_8-min.jpg":"assets/img/panneau/panneau_8-min.jpg","../assets/img/panneau/panneau_9-min.jpg":"assets/img/panneau/panneau_9-min.jpg","../assets/img/panneau/panneau_10-min.jpg":"assets/img/panneau/panneau_10-min.jpg","../assets/img/panneau/panneau_11-min.jpg":"assets/img/panneau/panneau_11-min.jpg","../assets/img/panneau/panneau_12-min.jpg":"assets/img/panneau/panneau_12-min.jpg","../assets/img/panneau/panneau_13-min.jpg":"assets/img/panneau/panneau_13-min.jpg","../assets/img/panneau/panneau_14-min.jpg":"assets/img/panneau/panneau_14-min.jpg","../assets/img/ruelle/back_panneaux/panneau_1-min.jpg":"assets/img/ruelle/back_panneaux/panneau_1-min.jpg","../assets/img/ruelle/back_panneaux/panneau_2-min.jpg":"assets/img/ruelle/back_panneaux/panneau_2-min.jpg","../assets/img/ruelle/back_panneaux/panneau_3-min.jpg":"assets/img/ruelle/back_panneaux/panneau_3-min.jpg","../assets/img/ruelle/back_panneaux/panneau_4-min.jpg":"assets/img/ruelle/back_panneaux/panneau_4-min.jpg","../assets/img/ruelle/back_panneaux/panneau_5-min.jpg":"assets/img/ruelle/back_panneaux/panneau_5-min.jpg","../assets/img/ruelle/back_panneaux/panneau_6-min.jpg":"assets/img/ruelle/back_panneaux/panneau_6-min.jpg","../assets/img/ruelle/back_panneaux/panneau_7-min.jpg":"assets/img/ruelle/back_panneaux/panneau_7-min.jpg","../assets/img/ruelle/back_panneaux/panneau_8-min.jpg":"assets/img/ruelle/back_panneaux/panneau_8-min.jpg","../assets/img/ruelle/back_panneaux/panneau_9-min.jpg":"assets/img/ruelle/back_panneaux/panneau_9-min.jpg","../assets/img/ruelle/back_panneaux/panneau_10-min.jpg":"assets/img/ruelle/back_panneaux/panneau_10-min.jpg","../assets/img/ruelle/back_panneaux/panneau_11-min.jpg":"assets/img/ruelle/back_panneaux/panneau_11-min.jpg","../assets/img/ruelle/back_panneaux/panneau_12-min.jpg":"assets/img/ruelle/back_panneaux/panneau_12-min.jpg","../assets/img/ruelle/back_panneaux/panneau_13-min.jpg":"assets/img/ruelle/back_panneaux/panneau_13-min.jpg","../assets/img/ruelle/back_panneaux/panneau_14-min.jpg":"assets/img/ruelle/back_panneaux/panneau_14-min.jpg","../assets/img/ruelle/idbannire-min.jpg":"assets/img/ruelle/idbannire-min.jpg","../assets/img/ruelle/credits-min.jpg":"assets/img/ruelle/credits-min.jpg","../assets/img/particle-min.png":"assets/img/particle-min.png","../assets/img/trombi/2A/alex.jpg":"assets/img/trombi/2A/alex.jpg","../assets/img/trombi/2A/amandine.jpg":"assets/img/trombi/2A/amandine.jpg","../assets/img/trombi/2A/annie.jpg":"assets/img/trombi/2A/annie.jpg","../assets/img/trombi/2A/annita.jpg":"assets/img/trombi/2A/annita.jpg","../assets/img/trombi/2A/aurore.jpg":"assets/img/trombi/2A/aurore.jpg","../assets/img/trombi/2A/ben.jpg":"assets/img/trombi/2A/ben.jpg","../assets/img/trombi/2A/carlaA.jpg":"assets/img/trombi/2A/carlaA.jpg","../assets/img/trombi/2A/carlaS.jpg":"assets/img/trombi/2A/carlaS.jpg","../assets/img/trombi/2A/clara.jpg":"assets/img/trombi/2A/clara.jpg","../assets/img/trombi/2A/clemo.jpg":"assets/img/trombi/2A/clemo.jpg","../assets/img/trombi/2A/eliottis.jpg":"assets/img/trombi/2A/eliottis.jpg","../assets/img/trombi/2A/emeric.jpg":"assets/img/trombi/2A/emeric.jpg","../assets/img/trombi/2A/enzoD.jpg":"assets/img/trombi/2A/enzoD.jpg","../assets/img/trombi/2A/enzoF.jpg":"assets/img/trombi/2A/enzoF.jpg","../assets/img/trombi/2A/flo.jpg":"assets/img/trombi/2A/flo.jpg","../assets/img/trombi/2A/gael.jpg":"assets/img/trombi/2A/gael.jpg","../assets/img/trombi/2A/gregoire.jpg":"assets/img/trombi/2A/gregoire.jpg","../assets/img/trombi/2A/guigui.jpg":"assets/img/trombi/2A/guigui.jpg","../assets/img/trombi/2A/helder.jpg":"assets/img/trombi/2A/helder.jpg","../assets/img/trombi/2A/jules.jpg":"assets/img/trombi/2A/jules.jpg","../assets/img/trombi/2A/kikinou.jpg":"assets/img/trombi/2A/kikinou.jpg","../assets/img/trombi/2A/lena.jpg":"assets/img/trombi/2A/lena.jpg","../assets/img/trombi/2A/lucas.jpg":"assets/img/trombi/2A/lucas.jpg","../assets/img/trombi/2A/lucile.jpg":"assets/img/trombi/2A/lucile.jpg","../assets/img/trombi/2A/mael.jpg":"assets/img/trombi/2A/mael.jpg","../assets/img/trombi/2A/martin.jpg":"assets/img/trombi/2A/martin.jpg","../assets/img/trombi/2A/matteo.jpg":"assets/img/trombi/2A/matteo.jpg","../assets/img/trombi/2A/max.jpg":"assets/img/trombi/2A/max.jpg","../assets/img/trombi/2A/moyi.jpg":"assets/img/trombi/2A/moyi.jpg","../assets/img/trombi/2A/nathan.jpg":"assets/img/trombi/2A/nathan.jpg","../assets/img/trombi/2A/nicoFe.jpg":"assets/img/trombi/2A/nicoFe.jpg","../assets/img/trombi/2A/nicoFi.jpg":"assets/img/trombi/2A/nicoFi.jpg","../assets/img/trombi/2A/ossian.jpg":"assets/img/trombi/2A/ossian.jpg","../assets/img/trombi/2A/paoline.jpg":"assets/img/trombi/2A/paoline.jpg","../assets/img/trombi/2A/quentin.jpg":"assets/img/trombi/2A/quentin.jpg","../assets/img/trombi/2A/raito.jpg":"assets/img/trombi/2A/raito.jpg","../assets/img/trombi/2A/raphL.jpg":"assets/img/trombi/2A/raphL.jpg","../assets/img/trombi/2A/raphO.jpg":"assets/img/trombi/2A/raphO.jpg","../assets/img/trombi/2A/romane.jpg":"assets/img/trombi/2A/romane.jpg","../assets/img/trombi/2A/sam.jpg":"assets/img/trombi/2A/sam.jpg","../assets/img/trombi/2A/soba.jpg":"assets/img/trombi/2A/soba.jpg","../assets/img/trombi/2A/theo.jpg":"assets/img/trombi/2A/theo.jpg","../assets/img/trombi/2A/thoma.jpg":"assets/img/trombi/2A/thoma.jpg","../assets/img/trombi/2A/thomas.jpg":"assets/img/trombi/2A/thomas.jpg","../assets/img/trombi/2A/tistouille.jpg":"assets/img/trombi/2A/tistouille.jpg","../assets/img/trombi/2A/tristan.jpg":"assets/img/trombi/2A/tristan.jpg","../assets/img/trombi/2A/valPl.jpg":"assets/img/trombi/2A/valPl.jpg","../assets/img/trombi/2A/valPr.jpg":"assets/img/trombi/2A/valPr.jpg","../assets/img/trombi/2A/yuxuan.jpg":"assets/img/trombi/2A/yuxuan.jpg","../assets/img/trombi/2A/zoe.jpg":"assets/img/trombi/2A/zoe.jpg","../assets/img/trombi/1A/alexia.jpg":"assets/img/trombi/1A/alexia.jpg","../assets/img/trombi/1A/alexis.jpg":"assets/img/trombi/1A/alexis.jpg","../assets/img/trombi/1A/alexL.jpg":"assets/img/trombi/1A/alexL.jpg","../assets/img/trombi/1A/alexM.jpg":"assets/img/trombi/1A/alexM.jpg","../assets/img/trombi/1A/alexP.jpg":"assets/img/trombi/1A/alexP.jpg","../assets/img/trombi/1A/alize.jpg":"assets/img/trombi/1A/alize.jpg","../assets/img/trombi/1A/andreas.jpg":"assets/img/trombi/1A/andreas.jpg","../assets/img/trombi/1A/antoine.jpg":"assets/img/trombi/1A/antoine.jpg","../assets/img/trombi/1A/antoineM.jpg":"assets/img/trombi/1A/antoineM.jpg","../assets/img/trombi/1A/arthur.jpg":"assets/img/trombi/1A/arthur.jpg","../assets/img/trombi/1A/arthurV.jpg":"assets/img/trombi/1A/arthurV.jpg","../assets/img/trombi/1A/auriane.jpg":"assets/img/trombi/1A/auriane.jpg","../assets/img/trombi/1A/cantin.jpg":"assets/img/trombi/1A/cantin.jpg","../assets/img/trombi/1A/celiaA.jpg":"assets/img/trombi/1A/celiaA.jpg","../assets/img/trombi/1A/celiaV.jpg":"assets/img/trombi/1A/celiaV.jpg","../assets/img/trombi/1A/coline.jpg":"assets/img/trombi/1A/coline.jpg","../assets/img/trombi/1A/corentin.jpg":"assets/img/trombi/1A/corentin.jpg","../assets/img/trombi/1A/eliott.jpg":"assets/img/trombi/1A/eliott.jpg","../assets/img/trombi/1A/elodie.jpg":"assets/img/trombi/1A/elodie.jpg","../assets/img/trombi/1A/enora.jpg":"assets/img/trombi/1A/enora.jpg","../assets/img/trombi/1A/eva.jpg":"assets/img/trombi/1A/eva.jpg","../assets/img/trombi/1A/ezekel.jpg":"assets/img/trombi/1A/ezekel.jpg","../assets/img/trombi/1A/florian.jpg":"assets/img/trombi/1A/florian.jpg","../assets/img/trombi/1A/gilles.jpg":"assets/img/trombi/1A/gilles.jpg","../assets/img/trombi/1A/guillaume.jpg":"assets/img/trombi/1A/guillaume.jpg","../assets/img/trombi/1A/hugoL.jpg":"assets/img/trombi/1A/hugoL.jpg","../assets/img/trombi/1A/hugoT.jpg":"assets/img/trombi/1A/hugoT.jpg","../assets/img/trombi/1A/jossua.jpg":"assets/img/trombi/1A/jossua.jpg","../assets/img/trombi/1A/julesL.jpg":"assets/img/trombi/1A/julesL.jpg","../assets/img/trombi/1A/latrique.jpg":"assets/img/trombi/1A/latrique.jpg","../assets/img/trombi/1A/lea.jpg":"assets/img/trombi/1A/lea.jpg","../assets/img/trombi/1A/lorie.jpg":"assets/img/trombi/1A/lorie.jpg","../assets/img/trombi/1A/lucasF.jpg":"assets/img/trombi/1A/lucasF.jpg","../assets/img/trombi/1A/maissane.jpg":"assets/img/trombi/1A/maissane.jpg","../assets/img/trombi/1A/nina.jpg":"assets/img/trombi/1A/nina.jpg","../assets/img/trombi/1A/pablo.jpg":"assets/img/trombi/1A/pablo.jpg","../assets/img/trombi/1A/robinB.jpg":"assets/img/trombi/1A/robinB.jpg","../assets/img/trombi/1A/robinP.jpg":"assets/img/trombi/1A/robinP.jpg","../assets/img/trombi/1A/romain.jpg":"assets/img/trombi/1A/romain.jpg","../assets/img/trombi/1A/romainB.jpg":"assets/img/trombi/1A/romainB.jpg","../assets/img/trombi/1A/sacha.jpg":"assets/img/trombi/1A/sacha.jpg","../assets/img/trombi/1A/sarah.jpg":"assets/img/trombi/1A/sarah.jpg","../assets/img/trombi/1A/selmene.jpg":"assets/img/trombi/1A/selmene.jpg","../assets/img/trombi/1A/solene.jpg":"assets/img/trombi/1A/solene.jpg","../assets/img/trombi/1A/teva.jpg":"assets/img/trombi/1A/teva.jpg","../assets/img/trombi/1A/thibaut.jpg":"assets/img/trombi/1A/thibaut.jpg","../assets/img/trombi/1A/thomasB.jpg":"assets/img/trombi/1A/thomasB.jpg","../assets/img/trombi/1A/thomasF.jpg":"assets/img/trombi/1A/thomasF.jpg","../assets/img/trombi/1A/valM.jpg":"assets/img/trombi/1A/valM.jpg","../assets/img/trombi/1A/vincent.jpg":"assets/img/trombi/1A/vincent.jpg","../assets/img/trombi/1A/yvan.jpg":"assets/img/trombi/1A/yvan.jpg","../assets/model/socle.gltf":"assets/model/socle.gltf","../assets/model/logo.glb":"assets/model/logo.glb","../assets/model/home.gltf":"assets/model/home.gltf","../assets/model/street.gltf":"assets/model/street.gltf","../assets/model/rightDoor.gltf":"assets/model/rightDoor.gltf","../assets/model/rightDoor2.gltf":"assets/model/rightDoor2.gltf","../assets/model/leftDoor.gltf":"assets/model/leftDoor.gltf","../assets/model/leftDoor2.gltf":"assets/model/leftDoor2.gltf","../assets/model/navigation/pylone.gltf":"assets/model/navigation/pylone.gltf","../assets/model/navigation/grid.gltf":"assets/model/navigation/grid.gltf","../assets/model/navigation/table.gltf":"assets/model/navigation/table.gltf","../assets/model/navigation/poutre.gltf":"assets/model/navigation/poutre.gltf","../assets/model/navigation/leftWall.gltf":"assets/model/navigation/leftWall.gltf","../assets/model/navigation/rightWall.gltf":"assets/model/navigation/rightWall.gltf","../assets/model/navigation/field.gltf":"assets/model/navigation/field.gltf","../assets/model/navigation/sign.gltf":"assets/model/navigation/sign.gltf","../assets/model/navigation/vr2.gltf":"assets/model/navigation/vr2.gltf","../assets/model/navigation/tabProg.gltf":"assets/model/navigation/tabProg.gltf","../assets/model/navigation/tv.gltf":"assets/model/navigation/tv.gltf","../assets/model/navigation/cam.gltf":"assets/model/navigation/cam.gltf","../assets/model/navigation/enceinte.gltf":"assets/model/navigation/enceinte.gltf","../assets/sound/rpz.mp3":"assets/sound/rpz.mp3","../assets/sound/bg.mp3":"assets/sound/bg.mp3","../assets/sound/bgLoop.mp3":"assets/sound/bgLoop.mp3","../assets/sound/soundHoverPlane.mp3":"assets/sound/soundHoverPlane.mp3","../assets/sound/soundOutPlane.mp3":"assets/sound/soundOutPlane.mp3","../assets/sound/soundHover.mp3":"assets/sound/soundHover.mp3"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -56568,7 +56572,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34895" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39563" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
