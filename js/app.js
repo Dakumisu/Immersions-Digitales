@@ -888,87 +888,45 @@ var planePanneauRueRond = new THREE.PlaneGeometry(2.05, 2.05, 1);
 
 /////// INITIATION DES TEXTURES ///////
 let texture1Default = new THREE.TextureLoader().load(atelier1Default)
-texture1Default.generateMipmaps = false;
-texture1Default.wrapS = texture1Default.wrapT = THREE.ClampToEdgeWrapping;
-texture1Default.minFilter = THREE.LinearFilter;
 let texture1Hover = new THREE.TextureLoader().load(atelier1Hover)
 
 let texture2Default = new THREE.TextureLoader().load(atelier2Default)
-texture2Default.generateMipmaps = false;
-texture2Default.wrapS = texture2Default.wrapT = THREE.ClampToEdgeWrapping;
-texture2Default.minFilter = THREE.LinearFilter;
 let texture2Hover = new THREE.TextureLoader().load(atelier2Hover)
 
 let texture3Default = new THREE.TextureLoader().load(atelier3Default)
-texture3Default.generateMipmaps = false;
-texture3Default.wrapS = texture3Default.wrapT = THREE.ClampToEdgeWrapping;
-texture3Default.minFilter = THREE.LinearFilter;
 let texture3Hover = new THREE.TextureLoader().load(atelier3Hover)
 
 let texture4Default = new THREE.TextureLoader().load(atelier4Default)
-texture4Default.generateMipmaps = false;
-texture4Default.wrapS = texture4Default.wrapT = THREE.ClampToEdgeWrapping;
-texture4Default.minFilter = THREE.LinearFilter;
 let texture4Hover = new THREE.TextureLoader().load(atelier4Hover)
 
 let texture5Default = new THREE.TextureLoader().load(atelier5Default)
-texture5Default.generateMipmaps = false;
-texture5Default.wrapS = texture5Default.wrapT = THREE.ClampToEdgeWrapping;
-texture5Default.minFilter = THREE.LinearFilter;
 let texture5Hover = new THREE.TextureLoader().load(atelier5Hover)
 
 let texture6Default = new THREE.TextureLoader().load(atelier6Default)
-texture6Default.generateMipmaps = false;
-texture6Default.wrapS = texture6Default.wrapT = THREE.ClampToEdgeWrapping;
-texture6Default.minFilter = THREE.LinearFilter;
 let texture6Hover = new THREE.TextureLoader().load(atelier6Hover)
 
 let texture7Default = new THREE.TextureLoader().load(atelier7Default)
-texture7Default.generateMipmaps = false;
-texture7Default.wrapS = texture7Default.wrapT = THREE.ClampToEdgeWrapping;
-texture7Default.minFilter = THREE.LinearFilter;
 let texture7Hover = new THREE.TextureLoader().load(atelier7Hover)
 
 let texture8Default = new THREE.TextureLoader().load(atelier8Default)
-texture8Default.generateMipmaps = false;
-texture8Default.wrapS = texture8Default.wrapT = THREE.ClampToEdgeWrapping;
-texture8Default.minFilter = THREE.LinearFilter;
 let texture8Hover = new THREE.TextureLoader().load(atelier8Hover)
 
 let texture9Default = new THREE.TextureLoader().load(atelier9Default)
-texture9Default.generateMipmaps = false;
-texture9Default.wrapS = texture9Default.wrapT = THREE.ClampToEdgeWrapping;
-texture9Default.minFilter = THREE.LinearFilter;
 let texture9Hover = new THREE.TextureLoader().load(atelier9Hover)
 
 let texture10Default = new THREE.TextureLoader().load(atelier10Default)
-texture10Default.generateMipmaps = false;
-texture10Default.wrapS = texture10Default.wrapT = THREE.ClampToEdgeWrapping;
-texture10Default.minFilter = THREE.LinearFilter;
 let texture10Hover = new THREE.TextureLoader().load(atelier10Hover)
 
 let texture11Default = new THREE.TextureLoader().load(atelier11Default)
-texture11Default.generateMipmaps = false;
-texture11Default.wrapS = texture11Default.wrapT = THREE.ClampToEdgeWrapping;
-texture11Default.minFilter = THREE.LinearFilter;
 let texture11Hover = new THREE.TextureLoader().load(atelier11Hover)
 
 let texture12Default = new THREE.TextureLoader().load(atelier12Default)
-texture12Default.generateMipmaps = false;
-texture12Default.wrapS = texture12Default.wrapT = THREE.ClampToEdgeWrapping;
-texture12Default.minFilter = THREE.LinearFilter;
 let texture12Hover = new THREE.TextureLoader().load(atelier12Hover)
 
 let texture13Default = new THREE.TextureLoader().load(atelier13Default)
-texture13Default.generateMipmaps = false;
-texture13Default.wrapS = texture13Default.wrapT = THREE.ClampToEdgeWrapping;
-texture13Default.minFilter = THREE.LinearFilter;
 let texture13Hover = new THREE.TextureLoader().load(atelier13Hover)
 
 let texture14Default = new THREE.TextureLoader().load(atelier14Default)
-texture14Default.generateMipmaps = false;
-texture14Default.wrapS = texture14Default.wrapT = THREE.ClampToEdgeWrapping;
-texture14Default.minFilter = THREE.LinearFilter;
 let texture14Hover = new THREE.TextureLoader().load(atelier14Hover)
 
 var texturebaniere14 = new THREE.TextureLoader().load(atelierbaniere1);
