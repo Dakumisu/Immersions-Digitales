@@ -8,10 +8,11 @@ Entrez les commandes suivantes :
 # Installation de parcel
 npm install -g parcel-bundler
 
-# Installation des dependencies (juste une fois)
+# Installation des dépendences (juste une fois)
 npm install
+⚠️ ne pas faire de 'npm audit fix' ⚠️
 
-# Serveur local sur localhost:1234
+# Ouvre un serveur local sur localhost:1234
 npm run start
 
 # Compile le projet dans le dossier /dist
