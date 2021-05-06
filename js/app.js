@@ -331,7 +331,7 @@ if (window.matchMedia("(max-width: 600px)").matches) {
 
 
 /////// MAIN RENDERER ///////
-var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+var renderer = new THREE.WebGLRenderer({ powerPreference: 'high-performance', antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
@@ -346,7 +346,7 @@ window.addEventListener('resize', () => {
 
 
 /////// MESH INTERACTION ///////
-const interaction = new Interaction(renderer, scene, camera);
+new Interaction(renderer, scene, camera);
 
 let rotateZ = -.2; // PLANES ROTATION
 
@@ -393,31 +393,25 @@ scene.add(ambientLight);
 
 /////// 3D MODEL ///////
 
+var gltfLoader = new GLTFLoader();
+gltfLoader.crossOrigin = true
+
 //HOME MODEL
 var home;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderHome = new GLTFLoader();
-    loaderHome.crossOrigin = true
-    
-    loaderHome.load(homeModel, function(addHome) {
+    gltfLoader.load(homeModel, function(addHome) {
         home = addHome.scene;
         scene.add(home);
         home.position.set(20, -10, 105)
         home.scale.set(100, 100, 100);
         home.rotation.y = -Math.PI;
         home.rotation.z = Math.PI;
-
     });
 }
 
 // SOCLE MODEL
 var socle;
-
-var loaderSocle = new GLTFLoader;
-loaderSocle.crossOrigin = true
-
-loaderSocle.load(socleModel, function(addSocle) {
+gltfLoader.load(socleModel, function(addSocle) {
     socle = addSocle.scene;
     scene.add(socle);
     socle.position.set(0, -10.7, 0)
@@ -427,13 +421,7 @@ loaderSocle.load(socleModel, function(addSocle) {
 
 // LOGO MODEL
 var logo;
-
-var loaderLogo = new GLTFLoader;
-loaderLogo.crossOrigin = true;
-loaderLogo.transparent = true;
-loaderLogo.opacity = 0.1;
-
-loaderLogo.load(logoModel, function(addLogo) {
+gltfLoader.load(logoModel, function(addLogo) {
     logo = addLogo.scene;
     scene.add(logo);
     logo.position.set(0, -9.8, 0)
@@ -443,12 +431,8 @@ loaderLogo.load(logoModel, function(addLogo) {
 
 // FIELD MODEL
 var field;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderField = new GLTFLoader;
-    loaderField.crossOrigin = true;
-    
-    loaderField.load(fieldModel, function(addField) {
+    gltfLoader.load(fieldModel, function(addField) {
         field = addField.scene;
         scene.add(field);
         field.position.set(-1.2, -53, -48)
@@ -459,12 +443,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // LEFT WALL MODEL
 var leftWall;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderleftWall = new GLTFLoader;
-    loaderleftWall.crossOrigin = true;
-    
-    loaderleftWall.load(leftWallModel, function(addleftWall) {
+    gltfLoader.load(leftWallModel, function(addleftWall) {
         leftWall = addleftWall.scene;
         scene.add(leftWall);
         leftWall.position.set(-51.2, -4.8, -48)
@@ -475,12 +455,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // RIGHT WALL MODEL
 var rightWall;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderRightWall = new GLTFLoader;
-    loaderRightWall.crossOrigin = true;
-    
-    loaderRightWall.load(rightWallModel, function(addRightWall) {
+    gltfLoader.load(rightWallModel, function(addRightWall) {
         rightWall = addRightWall.scene;
         scene.add(rightWall);
         rightWall.position.set(58.8, -4.8, -48)
@@ -491,12 +467,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // TABLE MODEL
 var table;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderTable = new GLTFLoader;
-    loaderTable.crossOrigin = true;
-    
-    loaderTable.load(tableModel, function(addTable) {
+    gltfLoader.load(tableModel, function(addTable) {
         table = addTable.scene;
         scene.add(table);
         table.position.set(-8.3, -4.9, -8.5)
@@ -507,12 +479,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // PYLONE MODEL
 var pylone;
-
-var loaderPylone = new GLTFLoader;
-loaderPylone.crossOrigin = true;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    loaderPylone.load(pyloneModel, function(addPylone) {
+    gltfLoader.load(pyloneModel, function(addPylone) {
         pylone = addPylone.scene;
         scene.add(pylone);
         pylone.position.set(-9.2, -1.5, -5)
@@ -523,12 +491,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // PYLONE2 MODEL
 var pylone2;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderPylone2 = new GLTFLoader;
-    loaderPylone2.crossOrigin = true;
-    
-    loaderPylone2.load(pyloneModel, function(addPylone2) {
+if (!window.matchMedia("(max-width: 1024px)").matches) { 
+    gltfLoader.load(pyloneModel, function(addPylone2) {
         pylone2 = addPylone2.scene;
         scene.add(pylone2);
         pylone2.position.set(-9.2, -1.5, -6.5)
@@ -539,12 +503,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // PYLONE3 MODEL
 var pylone3;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderPylone3 = new GLTFLoader;
-    loaderPylone3.crossOrigin = true;
-    
-    loaderPylone3.load(pyloneModel, function(addPylone3) {
+        gltfLoader.load(pyloneModel, function(addPylone3) {
         pylone3 = addPylone3.scene;
         scene.add(pylone3);
         pylone3.position.set(-9.2, -1.5, -8)
@@ -555,12 +515,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // PYLONE4 MODEL
 var pylone4;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderPylone4 = new GLTFLoader;
-    loaderPylone4.crossOrigin = true;
-    
-    loaderPylone.load(pyloneModel, function(addPylone4) {
+        gltfLoader.load(pyloneModel, function(addPylone4) {
         pylone4 = addPylone4.scene;
         scene.add(pylone4);
         pylone4.position.set(-9.2, -1.5, -9.5)
@@ -571,12 +527,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // PYLONE 5 MODEL
 var pylone5;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderPylone5 = new GLTFLoader;
-    loaderPylone5.crossOrigin = true;
-    
-    loaderPylone.load(pyloneModel, function(addPylone5) {
+        gltfLoader.load(pyloneModel, function(addPylone5) {
         pylone5 = addPylone5.scene;
         scene.add(pylone5);
         pylone5.position.set(-9.2, -1.5, -11)
@@ -586,13 +538,9 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 }
 
 // GRID MODEL
-var grid;
-
-if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderGrid = new GLTFLoader;
-    loaderGrid.crossOrigin = true;
-    
-    loaderGrid.load(gridModel, function(addGrid) {
+var grid
+if (!window.matchMedia("(max-width: 1024px)").matches) {    
+        gltfLoader.load(gridModel, function(addGrid) {
         grid = addGrid.scene;
         scene.add(grid);
         grid.position.set(-8, -3.8, -7.5)
@@ -603,12 +551,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // GRID 2 MODEL
 var grid2;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderGrid2 = new GLTFLoader;
-    loaderGrid2.crossOrigin = true;
-    
-    loaderGrid2.load(gridModel, function(addGrid2) {
+        gltfLoader.load(gridModel, function(addGrid2) {
         grid2 = addGrid2.scene;
         scene.add(grid2);
         grid2.position.set(-8, -3.2, -7.5)
@@ -619,12 +563,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // GRID 3 MODEL
 var grid3;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderGrid3 = new GLTFLoader;
-    loaderGrid3.crossOrigin = true;
-    
-    loaderGrid3.load(gridModel, function(addGrid3) {
+        gltfLoader.load(gridModel, function(addGrid3) {
         grid3 = addGrid3.scene;
         scene.add(grid3);
         grid3.position.set(-8, -2.6, -7.5)
@@ -635,12 +575,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // GRID 4 MODEL
 var grid4;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderGrid4 = new GLTFLoader;
-    loaderGrid4.crossOrigin = true;
-    
-    loaderGrid4.load(gridModel, function(addGrid4) {
+        gltfLoader.load(gridModel, function(addGrid4) {
         grid4 = addGrid4.scene;
         scene.add(grid4);
         grid4.position.set(-8, -2, -7.5)
@@ -651,12 +587,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // GRID 5 MODEL
 var grid5;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderGrid5 = new GLTFLoader;
-    loaderGrid5.crossOrigin = true;
-    
-    loaderGrid5.load(gridModel, function(addGrid5) {
+        gltfLoader.load(gridModel, function(addGrid5) {
         grid5 = addGrid5.scene;
         scene.add(grid5);
         grid5.position.set(-8, -1.4, -7.5)
@@ -667,12 +599,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // POUTRE MODEL
 var poutre;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderPoutre = new GLTFLoader;
-    loaderPoutre.crossOrigin = true;
-    
-    loaderPoutre.load(poutreModel, function(addPoutre) {
+        gltfLoader.load(poutreModel, function(addPoutre) {
         poutre = addPoutre.scene;
         scene.add(poutre);
         poutre.position.set(-9, 4, -9)
@@ -683,12 +611,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // SIGN MODEL
 var sign;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderSign = new GLTFLoader;
-    loaderSign.crossOrigin = true;
-    
-    loaderSign.load(signModel, function(addSign) {
+        gltfLoader.load(signModel, function(addSign) {
         sign = addSign.scene;
         scene.add(sign);
         sign.position.set(7.8, -3.05, -4)
@@ -699,12 +623,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // TAB PROG
 var tabProg;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderTabProg = new GLTFLoader();
-    loaderTabProg.crossOrigin = true
-    
-    loaderTabProg.load(tabProgModel, function(addTabProg) {
+        gltfLoader.load(tabProgModel, function(addTabProg) {
         tabProg = addTabProg.scene;
         scene.add(tabProg);
         tabProg.position.set(9.2, .5, -11.8)
@@ -715,12 +635,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // TV
 var tv;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderTv = new GLTFLoader();
-    loaderTv.crossOrigin = true
-    
-    loaderTv.load(tvModel, function(addTv) {
+        gltfLoader.load(tvModel, function(addTv) {
         tv = addTv.scene;
         scene.add(tv);
         tv.position.set(8.9, 2.2, -6)
@@ -731,12 +647,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // TV2
 var tv2;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderTv2 = new GLTFLoader();
-    loaderTv2.crossOrigin = true
-    
-    loaderTv2.load(tvModel, function(addTv2) {
+        gltfLoader.load(tvModel, function(addTv2) {
         tv2 = addTv2.scene;
         scene.add(tv2);
         tv2.position.set(9, 4.6, -13)
@@ -746,12 +658,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 }
 // CAM
 var cam;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderCam = new GLTFLoader();
-    loaderCam.crossOrigin = true
-    
-    loaderCam.load(camModel, function(addCam) {
+        gltfLoader.load(camModel, function(addCam) {
         cam = addCam.scene;
         scene.add(cam);
         cam.position.set(-8.8, 5.2, -12.5)
@@ -762,12 +670,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 //VR 2
 var vr2;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderVr2 = new GLTFLoader();
-    loaderVr2.crossOrigin = true
-    
-    loaderVr2.load(vr2Model, function(addVr2) {
+        gltfLoader.load(vr2Model, function(addVr2) {
         vr2 = addVr2.scene;
         scene.add(vr2);
         vr2.position.set(-8.9, 5.2, -8.8)
@@ -777,19 +681,14 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 //ENCEINTE
 var enceinte;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderEnceinte = new GLTFLoader();
-    loaderEnceinte.crossOrigin = true
-    
-    loaderEnceinte.load(enceinteModel, function(addEnceinte) {
+    gltfLoader.load(enceinteModel, function(addEnceinte) {
         enceinte = addEnceinte.scene;
         scene.add(enceinte);
         enceinte.name = 'enceinte';
         enceinte.position.set(-9.2, 5.2,-5)
         enceinte.scale.set(0.0001, 0.0001, 0.0001);
         enceinte.rotation.y = .3*Math.PI;
-
         enceinte.on('click', function() {
             if (!IsRpzMusicPlayed) {
                 IsRpzMusicPlayed = true
@@ -804,12 +703,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // RIGHT DOOR MODEL
 var rightDoor;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderRightDoor = new GLTFLoader;
-    loaderRightDoor.crossOrigin = true;
-    
-    loaderRightDoor.load(rightDoorModel, function(addRightDoor) {
+    gltfLoader.load(rightDoorModel, function(addRightDoor) {
         rightDoor = addRightDoor.scene;
         scene.add(rightDoor);
         rightDoor.position.set(.35, -55.8, -48)
@@ -820,12 +715,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // LEFT DOOR MODEL
 var leftDoor;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderLeftDoor = new GLTFLoader;
-    loaderLeftDoor.crossOrigin = true;
-    
-    loaderLeftDoor.load(leftDoorModel, function(addLeftDoor) {
+    gltfLoader.load(leftDoorModel, function(addLeftDoor) {
         leftDoor = addLeftDoor.scene;
         scene.add(leftDoor);
         leftDoor.position.set(.35, -55.8, -48)
@@ -836,12 +727,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // RIGHT DOOR 2 MODEL
 var rightDoor2;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderRight2Door = new GLTFLoader;
-    loaderRight2Door.crossOrigin = true;
-    
-    loaderRight2Door.load(rightDoor2Model, function(addRightDoor2) {
+    gltfLoader.load(rightDoor2Model, function(addRightDoor2) {
         rightDoor2 = addRightDoor2.scene;
         scene.add(rightDoor2);
         rightDoor2.position.set(.35, -5.8, -197)
@@ -852,12 +739,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // LEFT DOOR 2 MODEL
 var leftDoor2;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderLeftDoor2 = new GLTFLoader;
-    loaderLeftDoor2.crossOrigin = true;
-    
-    loaderLeftDoor2.load(leftDoor2Model, function(addLeftDoor2) {
+    gltfLoader.load(leftDoor2Model, function(addLeftDoor2) {
         leftDoor2 = addLeftDoor2.scene;
         scene.add(leftDoor2);
         leftDoor2.position.set(.35, -5.8, -197)
@@ -868,12 +751,8 @@ if (!window.matchMedia("(max-width: 1024px)").matches) {
 
 // STREET MODEL
 var street;
-
 if (!window.matchMedia("(max-width: 1024px)").matches) {
-    var loaderStreet = new GLTFLoader;
-    loaderStreet.crossOrigin = true;
-    
-    loaderStreet.load(streetModel, function(addStreet) {
+    gltfLoader.load(streetModel, function(addStreet) {
         street = addStreet.scene;
         scene.add(street);
         street.position.set(.5, -5.83, -48.75)
@@ -1422,8 +1301,6 @@ scene.add(planeMeshPanneau)
 planeMeshPanneau.position.set(7.575, -2.998, -3.755);
 planeMeshPanneau.rotation.set(-.035, -.74, -.07);
 planeMeshPanneau.scale.set(0.0001,0.0001,0.0001);
-
-// sign.position.set(7.8, -3.05, -4)
 
 planeMesh2.rotation.y = -Math.PI / 2;
 planeMesh3.rotation.y = -Math.PI;
@@ -5152,7 +5029,6 @@ function scrollPlane14() {
 }
 
 function scrollPlane13() {
-    // if (planeAxe.position.y <= -16.01 && planeAxe.position.y >= -17) {
     //AXES ANIM
     gsap.to(planeAxe.position, .75, { y: -16, ease: "power3.inOut" })
     gsap.to(planeAxe.rotation, .75, { y: -4 * Math.PI, ease: "power3.inOut" })
@@ -6403,65 +6279,6 @@ document.querySelector("#dl_artgen").addEventListener('click', function () {
 })
 
 
-// global variable for the player
-var player;
-
-// this function gets called when API is ready to use
-function onYouTubePlayerAPIReady() {
-    // create the global player from the specific iframe (#video)
-    player = new YT.Player('video', {
-        events: {
-            // call this function when player is ready to use
-            'onReady': onPlayerReady
-        }
-    });
-}
-
-function onPlayerReady(event) {
-    // bind events
-    // var playButton = document.getElementById("play-button");
-    iframe.forEach(element => {        
-        element.addEventListener("click", function() {
-            // player.playVideo();
-            console.log('ueueue')
-            switchMusic()
-        });
-    });
-
-    musicBtn.addEventListener('click', function(){
-        switchMusic() 
-        if (!stopMusic) {
-            stopMusic = true
-        } else {
-            stopMusic = false
-        }
-        player.pauseVideo();
-    })
-    
-
-    // var pauseButton = document.getElementById("pause-button");
-    // pauseButton.addEventListener("click", function() {
-    //     player.pauseVideo();
-    // });
-
-    // var stopButton = document.getElementById("stop-button");
-    // stopButton.addEventListener("click", function() {
-    //     player.stopVideo();
-    // });
-}
-
-// Inject YouTube API script
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/player_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-
-
-
-
-
 let variation = 0;
 let variationShaders = 0;
 
@@ -6473,8 +6290,8 @@ var render = function() {
         }
     }
 
-
-    particleGeo.vertices.forEach(p => { //PARTICLES ANIMATION
+    //PARTICLES ANIMATION
+    particleGeo.vertices.forEach(p => { 
         p.y += 0.0025;
         variation += 0.000005;
         p.x += Math.sin(variation) / 1000
@@ -6484,7 +6301,6 @@ var render = function() {
     });
 
     particleGeo.verticesNeedUpdate = true;
-    
 
     materialPlane1.uniforms.time.value = clock.running = false;
     materialPlane2.uniforms.time.value = clock.running = false;
@@ -6531,8 +6347,6 @@ var render = function() {
         materialPlane13.uniforms.time.value = clock.getElapsedTime();
         materialPlane14.uniforms.time.value = clock.getElapsedTime();
     }
-
-    // composer.render();
 
     requestAnimationFrame(render);
 
