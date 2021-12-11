@@ -290,7 +290,7 @@ var rpzMusic = new Howl({
     src: [rpzImport],
     autoplay: false,
     loop: false,
-    volume: 0.03
+    volume: 0.4
 });
 
 var soundHover = new Howl({
