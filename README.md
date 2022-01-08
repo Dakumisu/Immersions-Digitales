@@ -1,4 +1,4 @@
-# Immersions Digitales 2021
+# JPO - Immersions Digitales 2021 💻
 
 ## Setup
 Installez [Node.js](https://nodejs.org/en/download/).
